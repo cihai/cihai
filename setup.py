@@ -36,7 +36,9 @@ else:
 UNIHAN_ZIP = 'http://www.unicode.org/Public/UNIDATA/Unihan.zip'
 PACKAGE_DATA = []
 
-urlretrieve(UNIHAN_ZIP, 'Unihan.zip')
+import glob
+if not glob.glob('./libunihan/data/Unihan*.txt'):
+    urlretrieve(UNIHAN_ZIP, 'Unihan.zip')
 
 
 setup(
