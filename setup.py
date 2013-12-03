@@ -10,6 +10,10 @@ Mass update git, hg and svn repos simultaneously from YAML / JSON file.
 """
 import sys
 from setuptools import setup
+try:
+    from urllib import urlretrieve
+except:
+    from urllib.request import urlretrieve
 
 with open('requirements.pip') as f:
     install_reqs = [line for line in f.read().split('\n') if line]
@@ -28,6 +32,12 @@ if mo:
     __version__ = mo.group(1)
 else:
     raise RuntimeError("Unable to find version string in %s." % (VERSIONFILE,))
+
+UNIHAN_ZIP = 'http://www.unicode.org/Public/UNIDATA/Unihan.zip'
+PACKAGE_DATA = []
+
+urlretrieve(UNIHAN_ZIP, 'Unihan.zip')
+
 
 setup(
     name='libunihan',
