@@ -1,0 +1,18 @@
+session_name: libunihan
+start_directory: ./
+shell_command_before:
+  - command -v virtualenv >/dev/null 2>&1 || { pip install virtualenv; }
+  - '[ -d .env -a -f .env/bin/activate ] && source .env/bin/activate || virtualenv .env'
+  - '[ ! -d .env/build ] || rm -rf .env/build'
+windows:
+- layout: 89b3,239x56,0,0[239x36,0,0,0,239x19,0,37{119x19,0,37,1,119x19,120,37,3}]
+  panes:
+  - shell_command:
+    - vim
+    - :Ex
+    focus: true
+  - pane
+  - shell_command:
+    - command -v watching_testrunner >/dev/null 2>&1 || { pip install watching_testrunner; }
+    - watching_testrunner --basepath ./ --pattern="*.py" 'python -m libunihan'
+  window_name: libunihan
