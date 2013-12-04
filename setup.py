@@ -37,7 +37,7 @@ if mo:
 else:
     raise RuntimeError("Unable to find version string in %s." % (VERSIONFILE,))
 
-UNIHAN_ZIP = 'http://www.unicode.org/Public/UNIDATA/Unihan.zip'
+UNIHAN_URL = 'http://www.unicode.org/Public/UNIDATA/Unihan.zip'
 PACKAGE_DATA = []
 
 thisdir = os.path.join(os.path.dirname(__file__))
@@ -84,10 +84,12 @@ def _dl_progress(count, block_size, total_size):
 def save(url, filename):
     urllib.urlretrieve(url, filename, _dl_progress)
 
+import zipfile
+UNIHAN_DATAFILE = os.path.join(datadir, 'Unihan.zip')
 if not glob.glob(os.path.join(datadir, 'Unihan*.txt')):
-    #urlretrieve(UNIHAN_ZIP, os.path.join(datadir, 'Unihan.zip'))
-    save(UNIHAN_ZIP, os.path.join(datadir, 'Unihan.zip'))
-
+    save(UNIHAN_URL, UNIHAN_DATAFILE)
+    z = zipfile.ZipFile(UNIHAN_DATAFILE)
+    z.extractall(datadir)
 
 setup(
     name='libunihan',
