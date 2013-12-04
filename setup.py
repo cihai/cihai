@@ -8,7 +8,9 @@ libunihan
 Mass update git, hg and svn repos simultaneously from YAML / JSON file.
 
 """
+import os
 import sys
+import glob
 from setuptools import setup
 try:
     from urllib import urlretrieve
@@ -36,10 +38,11 @@ else:
 UNIHAN_ZIP = 'http://www.unicode.org/Public/UNIDATA/Unihan.zip'
 PACKAGE_DATA = []
 
-import glob
-if not glob.glob('./libunihan/data/Unihan*.txt'):
-    urlretrieve(UNIHAN_ZIP, 'Unihan.zip')
+if not os.path.exists('libunihan/data'):
+    os.makedirs('./libunihan/data')
 
+if not glob.glob('./libunihan/data/Unihan*.txt'):
+    urlretrieve(UNIHAN_ZIP, os.path.join('./libunihan/data', 'Unihan.zip'))
 
 setup(
     name='libunihan',
@@ -49,7 +52,7 @@ setup(
     license='BSD',
     author='Tony Narlock',
     author_email='tony@git-pull.com',
-    description='UNIHAN abstraction layer.',
+    description='Unihan abstraction layer.',
     long_description=open('README.rst').read(),
     include_package_data=True,
     install_requires=install_reqs,
