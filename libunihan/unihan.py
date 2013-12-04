@@ -1,9 +1,8 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-"""Python abstraction for Unihan.
+# -*- coding: utf8 - *-
+"""For accessing vcspull as a package.
 
-libunihan
-~~~~~~~~~
+libunihan.unihan
+~~~~~~~~~~~~~~~~
 
 :copyright: Copyright 2013 Tony Narlock.
 :license: BSD, see LICENSE for details
@@ -12,6 +11,6 @@ libunihan
 
 from __future__ import absolute_import, division, print_function, with_statement
 
-from . import unihan
 
-__version__ = '0.0.1'
+def main():
+    print('hi')

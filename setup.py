@@ -106,7 +106,10 @@ setup(
     tests_require=tests_reqs,
     test_suite='libunihan.testsuite',
     zip_safe=False,
-    packages=['libunihan', 'libunihan.testsuite'],
+    packages=['libunihan'],
+    package_data={
+        'libunihan': ['data/*']
+    },
     classifiers=[
         'Development Status :: 3 - Alpha',
         "License :: OSI Approved :: BSD License",
