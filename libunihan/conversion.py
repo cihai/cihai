@@ -41,7 +41,9 @@ See these resources for more information:
 
 import re
 
-hexd = lambda n: hex(n)[2:] #only the hex digits (strip '0x' at the beginning)
+# only the hex digits (strip '0x' at the beginning)
+hexd = lambda n: hex(n)[2:]
+
 
 def kuten_to_gb2312(kuten):
     """Convert GB kuten / quwei form (94 zones * 94 points) to GB2312-1980 / ISO-2022-CN hex (internal representation)"""
@@ -49,11 +51,13 @@ def kuten_to_gb2312(kuten):
     hi, lo = hexd(zone + 0x20), hexd(point + 0x20)
     return "%s%s" % (hi, lo)
 
+
 def gb2312_to_euc(gb2312hex):
     """Convert GB2312-1980 hex (internal representation) to EUC-CN hex (the "external encoding")"""
     hi, lo = int(gb2312hex[:2], 16), int(gb2312hex[2:], 16)
     hi, lo = hexd(hi + 0x80), hexd(lo + 0x80)
     return "%s%s" % (hi, lo)
+
 
 def euc_to_utf8(euchex):
     """Convert EUC hex (e.g. "d2bb") to UTF8 hex (e.g. "e4 b8 80")"""
@@ -70,16 +74,19 @@ def euc_to_utf8(euchex):
 
 ## convert to internal Python unicode / string objects ########################
 
+
 def ucn_to_python(ucn):
     """Convert a Unicode Universal Character Number (e.g. "U+4E00" or "4E00") to Python unicode (u'\\u4e00')"""
     if isinstance(ucn, basestring):
         ucn = ucn.strip("U+")
         if len(ucn) > 4:
-            return eval("u'\U%08x'" % int(ucn, 16)) #unichr doesn't work on characters > 2**16
+            # unichr doesn't work on characters > 2**16
+            return eval("u'\U%08x'" % int(ucn, 16))
         else:
             return unichr(int(ucn, 16))
     else:
         return unichr(ucn)
+
 
 def euc_to_python(hexstr):
     """Convert a EUC-CN (GB2312) hex to a Python unicode string"""
@@ -88,6 +95,7 @@ def euc_to_python(hexstr):
     #hi and lo are only 2 characters long, no risk with eval-ing them
     gb_enc = eval("'\\x%s\\x%s'" % (hi, lo))
     return gb_enc.decode("gb2312")
+
 
 def ncr_to_python(ncr):
     """Convert Unicode Numerical Character Reference (e.g. "19968", "&#19968;", or "&#x4E00;") to native Python Unicode (u'\\u4e00')"""
@@ -106,16 +114,20 @@ def ncr_to_python(ncr):
 
 ## convert from internal Python unicode / string objects ######################
 
+
 def python_to_ucn(uni_char):
     """Converts a one character Python unicode string (e.g. u'\\u4e00') to the corresponding Unicode UCN ('U+4E00')"""
     ucn = repr(uni_char)[4:-1]
     if len(ucn) > 4:
-        ucn = ucn.lstrip("0") #get rid of the zeroes that Python uses to pad 32 byte UCNs
+        # get rid of the zeroes that Python uses to pad 32 byte UCNs
+        ucn = ucn.lstrip("0")
     return "U+%s" % ucn
+
 
 def python_to_euc(uni_char):
     """Converts a one character Python unicode string (e.g. u'\\u4e00') to the corresponding EUC hex ('d2bb')"""
     return repr(uni_char.encode("gb2312"))[1:-1].replace("\\x", "")
+
 
 def python_to_ncr(uni_char, **options):
     """
@@ -140,6 +152,7 @@ def python_to_ncr(uni_char, **options):
 
 ## handle multiple characters #################################################
 
+
 def string_to_ncr(uni_string, **options):
     """Converts a Python unicode string (e.g. u'p\\u012bn y\\u012bn') to the corresponding Unicode NCRs.
     See `python_to_ncr` for formatting options."""
@@ -147,6 +160,7 @@ def string_to_ncr(uni_string, **options):
         if ord(char) > 128:
             uni_string = uni_string.replace(char, python_to_ncr(char, options=options))
     return uni_string
+
 
 def ncrstring_to_python(ncr_string):
     """Convert a string of Unicode NCRs (e.g. "&#19968;&#x4E00;") to native Python Unicode (u'\\u4e00\\u4e00')"""
