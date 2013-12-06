@@ -15,6 +15,7 @@ from pkg_resources \
     import resource_filename  # @UnresolvedImport #pylint: disable=E0611
 import zipfile
 import csv
+from . import conversion
 
 
 def get_datafile(file_):
@@ -38,11 +39,23 @@ def main():
             fieldnames=['char', 'field', 'value'],
             delimiter='\t'
         )
-        for row in list(r)[:5]:
-            #print(', '.join(row))
-            #print(unichr3(row['char']))
-            print(row)
-            pass
+
+        r = list(r)[:5]
+
+        for row in r:
+            rowlines = []
+            for key in row.keys():
+                rowlines.append(row[key])
+            try:
+                rowline = '\t'.join(rowlines)
+            except UnicodeDecodeError as e:
+                print(
+                    'row: %s (%s) gives:\n%s' % (
+                        row, row['char'], e
+                    )
+                )
+
+            print('%s\n' % rowline)
 
 
 class UnihanReader(csv.DictReader):
@@ -55,8 +68,17 @@ class UnihanReader(csv.DictReader):
             if None:
                 row[key] = unichr3(row[key])
 
-        return row
+        if row['char'].startswith('U+'):
+            row['char'] = conversion.ucn_to_python(row['char'])
 
+        if (
+            row['field'] == 'kDefinition' or
+            row['field'] == 'kMandarin'
+        ):
+
+            row['value'] = row['value'].decode('utf-8')
+
+        return row
 
 #  _neilg | borneo: you should be able to use regular expressions to convert
 #  U+([a-f0-9]+)\b to \U[a-f0-9]{8}
