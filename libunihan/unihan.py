@@ -11,9 +11,7 @@ libunihan.unihan
 
 from __future__ import absolute_import, division, print_function, with_statement
 
-from pkg_resources \
-    import resource_filename  # @UnresolvedImport #pylint: disable=E0611
-
+import os
 import zipfile
 import csv
 
@@ -21,7 +19,7 @@ from . import conversion
 
 
 def get_datafile(file_):
-    return resource_filename(__name__, 'data/' + file_)
+    return os.path.join(os.path.abspath(os.path.dirname(__file__)), 'data/', file_)
 
 
 def unichr3(*args):

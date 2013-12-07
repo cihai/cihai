@@ -80,7 +80,6 @@ if __name__ == '__main__':
 
     verbosity = args.verbosity
 
-    import logging
     logging.getLogger('libunihan.testsuite').setLevel(args.log_level.upper())
 
     if 'help' in args:
