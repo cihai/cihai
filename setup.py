@@ -5,7 +5,7 @@
 libunihan
 ---------
 
-Mass update git, hg and svn repos simultaneously from YAML / JSON file.
+Unihan abstraction layer.
 
 """
 import os

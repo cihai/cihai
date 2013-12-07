@@ -75,7 +75,6 @@ class UnihanReader(csv.DictReader):
             row['field'] == 'kDefinition' or
             row['field'] == 'kMandarin'
         ):
-
             row['value'] = row['value'].decode('utf-8')
 
         return row
