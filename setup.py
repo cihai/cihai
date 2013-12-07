@@ -72,8 +72,8 @@ def _dl_progress(count, block_size, total_size):
         sys.stdout.write(
             '%3d%% [%s>%s]\r' % (
                 percent,
-                percent / 2 * '=',
-                (50 - percent / 2) * ' '
+                int(percent / 2) * '=',
+                int(50 - percent / 2) * ' '
             )
         )
         sys.stdout.flush()
