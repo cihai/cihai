@@ -82,7 +82,7 @@ def _dl_progress(count, block_size, total_size):
 
 
 def save(url, filename):
-    urllib.urlretrieve(url, filename, _dl_progress)
+    urlretrieve(url, filename, _dl_progress)
 
 import zipfile
 UNIHAN_DATAFILE = os.path.join(datadir, 'Unihan.zip')
