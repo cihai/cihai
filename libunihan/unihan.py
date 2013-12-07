@@ -13,8 +13,10 @@ from __future__ import absolute_import, division, print_function, with_statement
 
 from pkg_resources \
     import resource_filename  # @UnresolvedImport #pylint: disable=E0611
+
 import zipfile
 import csv
+
 from . import conversion
 
 

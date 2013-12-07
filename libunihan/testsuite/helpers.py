@@ -21,3 +21,7 @@ import shutil
 import uuid
 
 logger = logging.getLogger(__name__)
+
+
+class TestCase(unittest.TestCase):
+    pass

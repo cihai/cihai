@@ -9,16 +9,16 @@ libunihan.testsuite
 
 """
 
-from .. import log
+from ..log import DebugLogFormatter
 import logging
-logger = logging.getLogger()
+log = logging.getLogger()
 
 
-if not logger.handlers:
+if not log.handlers:
     channel = logging.StreamHandler()
-    channel.setFormatter(log.DebugLogFormatter())
-    logger.addHandler(channel)
-    logger.setLevel('INFO')
+    channel.setFormatter(DebugLogFormatter())
+    log.addHandler(channel)
+    log.setLevel('INFO')
 
     # enable DEBUG message if channel is at testsuite + testsuite.* packages.
     testsuite_logger = logging.getLogger(__name__)

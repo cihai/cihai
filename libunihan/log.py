@@ -9,8 +9,10 @@ libunihan.log
 """
 
 from __future__ import absolute_import, division, print_function, with_statement
+
 import logging
 import time
+
 from ._vendor.colorama import init
 from ._vendor.colorama import Fore, Back, Style
 

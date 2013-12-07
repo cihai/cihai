@@ -94,7 +94,7 @@ if not glob.glob(os.path.join(datadir, 'Unihan*.txt')):
 setup(
     name='libunihan',
     version=__version__,
-    url='http://github.com/tony/libunihan/',
+    url='https://github.com/tony/libunihan',
     download_url='https://pypi.python.org/pypi/libunihan',
     license='BSD',
     author='Tony Narlock',
@@ -106,7 +106,7 @@ setup(
     tests_require=tests_reqs,
     test_suite='libunihan.testsuite',
     zip_safe=False,
-    packages=['libunihan'],
+    packages=['libunihan', 'libunihan.testsuite'],
     package_data={
         'libunihan': ['data/*']
     },
