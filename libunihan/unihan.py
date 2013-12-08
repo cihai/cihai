@@ -17,6 +17,17 @@ import csv
 
 from . import conversion
 
+UNIHAN_FILES = [
+    'Unihan_DictionaryIndices.txt',
+    'Unihan_DictionaryLikeData.txt',
+    'Unihan_IRGSources.txt',
+    'Unihan_NumericValues.txt',
+    'Unihan_OtherMappings.txt',
+    'Unihan_RadicalStrokeCounts.txt',
+    'Unihan_Readings.txt',
+    'Unihan_Variants.txt'
+]
+
 
 def get_datafile(file_):
     return os.path.join(os.path.abspath(os.path.dirname(__file__)), 'data/', file_)
@@ -24,38 +35,6 @@ def get_datafile(file_):
 
 def unichr3(*args):
     return [unichr(int(i[2:7], 16)) for i in args if i[2:7]][0]
-
-
-def main():
-    print('%s' % get_datafile('Unihan.zip'))
-    z = zipfile.ZipFile(get_datafile('Unihan.zip'))
-    print([f.filename for f in z.filelist])
-
-    with open(get_datafile('Unihan_Readings.txt'), 'rb') as csvfile:
-        csvfile = filter(lambda row: row[0] != '#', csvfile)
-        #r = csv.reader(csvfile)
-        r = UnihanReader(
-            csvfile,
-            fieldnames=['char', 'field', 'value'],
-            delimiter='\t'
-        )
-
-        r = list(r)[6088:6092]
-
-        for row in r:
-            rowlines = []
-            for key in row.keys():
-                rowlines.append(row[key])
-            try:
-                rowline = '\t'.join(rowlines)
-            except UnicodeDecodeError as e:
-                print(
-                    'row: %s (%s) gives:\n%s' % (
-                        row, row['char'], e
-                    )
-                )
-
-            print('%s\n' % rowline)
 
 
 class UnihanReader(csv.DictReader):
@@ -81,3 +60,34 @@ class UnihanReader(csv.DictReader):
 
 #  _neilg | borneo: you should be able to use regular expressions to convert
 #  U+([a-f0-9]+)\b to \U[a-f0-9]{8}
+
+
+def main():
+    print('%s' % get_datafile('Unihan.zip'))
+    z = zipfile.ZipFile(get_datafile('Unihan.zip'))
+    print([f.filename for f in z.filelist])
+
+    with open(get_datafile('Unihan_Readings.txt'), 'rb') as csvfile:
+        csvfile = filter(lambda row: row[0] != '#', csvfile)
+        r = UnihanReader(
+            csvfile,
+            fieldnames=['char', 'field', 'value'],
+            delimiter='\t'
+        )
+
+        r = list(r)[:5]
+
+        for row in r:
+            rowlines = []
+            for key in row.keys():
+                rowlines.append(row[key])
+            try:
+                rowline = '\t'.join(rowlines)
+            except UnicodeDecodeError as e:
+                print(
+                    'row: %s (%s) gives:\n%s' % (
+                        row, row['char'], e
+                    )
+                )
+
+            print('%s\n' % rowline)

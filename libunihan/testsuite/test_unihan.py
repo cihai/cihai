@@ -14,11 +14,45 @@ import tempfile
 import logging
 
 from .helpers import TestCase
+from ..unihan import get_datafile, UnihanReader
 
 log = logging.getLogger(__name__)
 
 
-class TestUnihan(TestCase):
+class UnihanData(TestCase):
 
-    def test_latest(self):
+    def test_zip(self):
         self.assertEqual(2, 2)
+
+    def test_files(self):
+        """Test unihan text file data."""
+        pass
+
+
+class UnihanDataCSV(TestCase):
+
+    def test_print_top(self):
+        with open(get_datafile('Unihan_Readings.txt'), 'rb') as csvfile:
+            csvfile = filter(lambda row: row[0] != '#', csvfile)
+            r = UnihanReader(
+                csvfile,
+                fieldnames=['char', 'field', 'value'],
+                delimiter='\t'
+            )
+
+            r = list(r)[:5]
+
+            for row in r:
+                rowlines = []
+                for key in row.keys():
+                    rowlines.append(row[key])
+                try:
+                    rowline = '\t'.join(rowlines)
+                except UnicodeDecodeError as e:
+                    print(
+                        'row: %s (%s) gives:\n%s' % (
+                            row, row['char'], e
+                        )
+                    )
+
+                print('%s\n' % rowline)
