@@ -81,10 +81,9 @@ def ucn_to_python(ucn):
     """Convert a Unicode Universal Character Number (e.g. "U+4E00" or "4E00") to Python unicode (u'\\u4e00')"""
     if isinstance(ucn, basestring):
         ucn = ucn.strip("U+")
-        if len(ucn) > 4:
+        if len(ucn) > int(4):
             # unichr doesn't work on characters > 2**16
-            to_eval = "u'\\U%08x'" % int(ucn, 16)
-            return eval(to_eval)
+            return eval("u'\\U%08x'" % int(ucn, 16))
         else:
             return unichr(int(ucn, 16))
     else:
@@ -121,7 +120,7 @@ def ncr_to_python(ncr):
 def python_to_ucn(uni_char):
     """Converts a one character Python unicode string (e.g. u'\\u4e00') to the corresponding Unicode UCN ('U+4E00')"""
     ucn = repr(uni_char)[4:-1]
-    if len(ucn) > 4:
+    if len(ucn) > int(4):
         # get rid of the zeroes that Python uses to pad 32 byte UCNs
         ucn = ucn.lstrip("0")
     return "U+%s" % ucn
@@ -160,7 +159,7 @@ def string_to_ncr(uni_string, **options):
     """Converts a Python unicode string (e.g. u'p\\u012bn y\\u012bn') to the corresponding Unicode NCRs.
     See `python_to_ncr` for formatting options."""
     for char in uni_string:
-        if ord(char) > 128:
+        if ord(char) > int(128):
             uni_string = uni_string.replace(char, python_to_ncr(char, options=options))
     return uni_string
 
