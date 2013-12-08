@@ -40,7 +40,7 @@ def main():
             delimiter='\t'
         )
 
-        r = list(r)[:5]
+        r = list(r)[6088:6092]
 
         for row in r:
             rowlines = []
