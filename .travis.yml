@@ -6,6 +6,7 @@ python:
 before_install:
   - sudo apt-get update -qq
   - export PIP_USE_MIRRORS=true
+  - pip install coveralls
 install:
   - "pip install -e ."
 # script: python setup.py test
