@@ -106,7 +106,10 @@ setup(
     tests_require=tests_reqs,
     test_suite='libunihan.testsuite',
     zip_safe=False,
-    packages=['libunihan', 'libunihan.testsuite'],
+    packages=[
+        'libunihan', 'libunihan.testsuite',
+        'libunihan._vendor', 'libunihan._vendor.colorama'
+    ],
     package_data={
         'libunihan': ['data/*']
     },
