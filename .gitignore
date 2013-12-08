@@ -36,6 +36,7 @@ nosetests.xml
 .pydevproject
 
 .env
+.env3
 
 libunihan/data/*
 
