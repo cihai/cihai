@@ -32,7 +32,7 @@ class UnihanData(TestCase):
 class UnihanDataCSV(TestCase):
 
     def test_print_top(self):
-        with open(get_datafile('Unihan_Readings.txt'), 'rb') as csvfile:
+        with open(get_datafile('Unihan_Readings.txt'), 'r') as csvfile:
             csvfile = filter(lambda row: row[0] != '#', csvfile)
             r = UnihanReader(
                 csvfile,
@@ -41,6 +41,7 @@ class UnihanDataCSV(TestCase):
             )
 
             r = list(r)[:5]
+            print('\n')
 
             for row in r:
                 rowlines = []
@@ -55,4 +56,4 @@ class UnihanDataCSV(TestCase):
                         )
                     )
 
-                print('%s\n' % rowline)
+                print('%s' % rowline)
