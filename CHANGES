@@ -1,0 +1,22 @@
+=========
+Changelog
+=========
+
+Here you can find the recent changes to libunihan.
+
+.. changelog::
+    :version: dev
+    :released: Ongoing
+
+    .. change::
+        :tags:  docs
+
+      add changelog, history, docs.
+
+    .. change::
+        :tags: tests
+
+      Add tests for libunihan data import
+
+
+.. todo:: vim: set filetype=rst:
