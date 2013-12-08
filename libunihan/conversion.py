@@ -81,7 +81,8 @@ def ucn_to_python(ucn):
         ucn = ucn.strip("U+")
         if len(ucn) > 4:
             # unichr doesn't work on characters > 2**16
-            return eval("u'\U%08x'" % int(ucn, 16))
+            to_eval = "u'\U%08x'" % int(ucn, 16)
+            return eval(to_eval)
         else:
             return unichr(int(ucn, 16))
     else:
