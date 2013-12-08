@@ -97,19 +97,11 @@ def euc_to_utf8(euchex):
 
 def ucn_to_python(ucn):
     """Convert a Unicode Universal Character Number (e.g. "U+4E00" or "4E00") to Python unicode (u'\\u4e00')"""
-    # print('ucn_to_type: %s' % ucn)
-    # print('ucn_to_type: %s' % type(ucn))
-    # print('ucn_to_type: %s' % isinstance(ucn, string_types))
     if isinstance(ucn, string_types):
         ucn = ucn.strip("U+")
         if len(ucn) > int(4):
-            #print('ucn > 4 for ucn_to_python')
-            # unichr doesn't work on characters > 2**16
             return b'%08x'.decode('unicode_escape') % int(ucn, 16)
-            #return bytes('%08x', 'ascii').decode('unicode_escape') % int(ucn, 16)
-            #return eval("u'\U%08x'" % int(ucn, 16))
         else:
-            #print('ucn < 4 for ucn_to_python')
             return unichr(int(ucn, 16))
     else:
         return unichr(ucn)
@@ -119,7 +111,7 @@ def euc_to_python(hexstr):
     """Convert a EUC-CN (GB2312) hex to a Python unicode string"""
     hi = hexstr[0:2]
     lo = hexstr[2:4]
-    #hi and lo are only 2 characters long, no risk with eval-ing them
+    # hi and lo are only 2 characters long, no risk with eval-ing them
     gb_enc = eval("'\\x%s\\x%s'" % (hi, lo))
     return gb_enc.decode("gb2312")
 

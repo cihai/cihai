@@ -62,21 +62,13 @@ class UnihanReader(csv.DictReader):
         return self.row(row)
 
     def row(self, row):
-        #row = csv.DictReader.next(self)
-
-        # print(row)
-        # print(row['char'])
-        #print(type(row['char']))
-
         if row['char'].startswith('U+'):
-            #print('U+ detected')
             row['char'] = conversion.ucn_to_python(row['char'])
 
         if (
             row['field'] == 'kDefinition' or
             row['field'] == 'kMandarin'
         ):
-            # row['value'] = row['value'].decode('utf-8')
             row['value'] = row['value']
 
         return row
