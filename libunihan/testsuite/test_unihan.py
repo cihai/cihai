@@ -44,6 +44,8 @@ class UnihanDataCSV(TestCase):
             print('\n')
 
             for row in r:
+                print(row)
+                print(type(row['char']))
                 rowlines = []
                 for key in row.keys():
                     rowlines.append(row[key])

@@ -9,13 +9,18 @@ libunihan.unihan
 
 """
 
-from __future__ import absolute_import, division, print_function, with_statement
+from __future__ import absolute_import, division, print_function, \
+    with_statement, unicode_literals
 
 import os
 import zipfile
 import csv
+import logging
 
 from . import conversion
+from ._compat import PY2
+
+log = logging.getLogger(__name__)
 
 UNIHAN_FILES = [
     'Unihan_DictionaryIndices.txt',
@@ -46,17 +51,23 @@ class UnihanReader(csv.DictReader):
     def __init__(self, *args, **kwargs):
         csv.DictReader.__init__(self, *args, **kwargs)
 
-    def next(self):
-        row = csv.DictReader.next(self)
+    def __next__(self):
+        row = csv.DictReader.__next__(self)
+
+        # print(row)
+        # print(row['char'])
+        # print(type(row['char']))
 
         if row['char'].startswith('U+'):
+            #print('U+ detected')
             row['char'] = conversion.ucn_to_python(row['char'])
 
         if (
             row['field'] == 'kDefinition' or
             row['field'] == 'kMandarin'
         ):
-            row['value'] = row['value'].decode('utf-8')
+            # row['value'] = row['value'].decode('utf-8')
+            row['value'] = row['value']
 
         return row
 
@@ -65,4 +76,32 @@ class UnihanReader(csv.DictReader):
 
 
 def main():
-    print('test')
+    with open(get_datafile('Unihan_Readings.txt'), 'r') as csvfile:
+        # py3.3 regression http://bugs.python.org/issue18829
+        delim = b'\t' if PY2 else '\t'
+        csvfile = filter(lambda row: row[0] != '#', csvfile)
+        r = UnihanReader(
+            csvfile,
+            fieldnames=['char', 'field', 'value'],
+            delimiter=delim
+        )
+
+        r = list(r)[:5]
+        print('\n')
+
+        for row in r:
+            print(row)
+            print(type(row['char']))
+            rowlines = []
+            for key in row.keys():
+                rowlines.append(row[key])
+            try:
+                rowline = '\t'.join(rowlines)
+            except UnicodeDecodeError as e:
+                print(
+                    'row: %s (%s) gives:\n%s' % (
+                        row, row['char'], e
+                    )
+                )
+
+            print('%s' % rowline)

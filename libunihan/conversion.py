@@ -54,9 +54,12 @@ See these resources for more information:
 
 """
 
-from __future__ import absolute_import, division, print_function, with_statement
+from __future__ import absolute_import, division, print_function, \
+    with_statement, unicode_literals
 
 import re
+
+from libunihan._compat import string_types, unichr
 
 # only the hex digits (strip '0x' at the beginning)
 hexd = lambda n: hex(n)[2:]
@@ -94,12 +97,18 @@ def euc_to_utf8(euchex):
 
 def ucn_to_python(ucn):
     """Convert a Unicode Universal Character Number (e.g. "U+4E00" or "4E00") to Python unicode (u'\\u4e00')"""
-    if isinstance(ucn, basestring):
+    # print('ucn_to_type: %s' % ucn)
+    # print('ucn_to_type: %s' % type(ucn))
+    # print('ucn_to_type: %s' % isinstance(ucn, string_types))
+    if isinstance(ucn, string_types):
         ucn = ucn.strip("U+")
         if len(ucn) > int(4):
+            #print('ucn > 4 for ucn_to_python')
             # unichr doesn't work on characters > 2**16
-            return eval("u'\\U%08x'" % int(ucn, 16))
+            return bytes('%08x', 'ascii').decode('unicode_escape') % int(ucn, 16)
+            #return eval("u'\U%08x'" % int(ucn, 16))
         else:
+            #print('ucn < 4 for ucn_to_python')
             return unichr(int(ucn, 16))
     else:
         return unichr(ucn)

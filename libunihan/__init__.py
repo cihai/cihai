@@ -10,8 +10,9 @@ libunihan
 
 """
 
-from __future__ import absolute_import, division, print_function, with_statement
+from __future__ import absolute_import, division, print_function, \
+    with_statement, unicode_literals
 
 __version__ = '0.0.1'
 
-from . import unihan, log
+from . import unihan, log, util
