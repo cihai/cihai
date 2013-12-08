@@ -14,7 +14,7 @@ windows:
   - pane
   - shell_command:
     - command -v watching_testrunner >/dev/null 2>&1 || { pip install watching_testrunner; }
-    - watching_testrunner --basepath ./ --pattern="*.py" 'python -m libunihan'
+    - watching_testrunner --basepath ./ --pattern="*.py" 'python setup.py test'
   window_name: libunihan
 - window_name: docs
   layout: main-horizontal
