@@ -6,6 +6,7 @@ shell_command_before:
   - '[ ! -d .env/build ] || rm -rf .env/build'
 windows:
 - layout: 89b3,239x56,0,0[239x36,0,0,0,239x19,0,37{119x19,0,37,1,119x19,120,37,3}]
+  focus: true
   panes:
   - shell_command:
     - vim
