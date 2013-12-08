@@ -1,6 +1,19 @@
 """Conversion functions between various Chinese encodings and representations.
 
-License: MIT from https://bitbucket.org/lost_theory/ltchinese/raw/9227813b9305c3ae5ba0a59fb572292939fd92a6/ltchinese/conversion.py
+libunihan.conversion
+~~~~~~~~~~~~~~~~~~~~
+
+:copyright: Copyright 2013 Tony Narlock.
+:license: BSD, see LICENSE for details
+
+Methods from `ltchinese`_, license MIT Steven Kryskalla.
+
+Changes:
+
+- PEP8
+- ``int()`` casting for comparisons
+- Python 3 fix for :meth:`~.ucn_to_python`.
+- Python 3 ``__future__`` statements.
 
 The following terms are used to represent the encodings / representation used
 in the conversion functions (the samples on the right are for the character
@@ -36,6 +49,8 @@ See these resources for more information:
  * Unihan (look for "Encoding forms", "Mappings to Major Standards")
 
    * e.g. http://www.unicode.org/cgi-bin/GetUnihanData.pl?codepoint=4E00
+
+.. _ltchinese: https://bitbucket.org/lost_theory/ltchinese/raw/9227813b9305c3ae5ba0a59fb572292939fd92a6/ltchinese/conversion.py
 
 """
 
