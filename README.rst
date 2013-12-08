@@ -1,4 +1,4 @@
-``libunihan`` - Wrapper for Unihan.
+``libunihan`` - Python wrapper for `Unihan`_.
 
 .. image:: https://travis-ci.org/tony/libunihan.png?branch=master
     :target: https://travis-ci.org/tony/libunihan
@@ -33,3 +33,4 @@ tests           .. code-block:: bash
 .. _BSD: http://opensource.org/licenses/BSD-3-Clause
 .. _Documentation: http://libunihan.readthedocs.org/en/latest/
 .. _API: http://libunihan.readthedocs.org/en/latest/api.html
+.. _Unihan: http://www.unicode.org/charts/unihan.html

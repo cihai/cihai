@@ -4,6 +4,8 @@
 libunihan
 =========
 
+Python wrapper for `Unihan`_.
+
 .. include:: ../README.rst
     :start-line: 8
 
@@ -13,3 +15,5 @@ libunihan
     api
     history
     roadmap
+
+.. _Unihan: http://www.unicode.org/charts/unihan.html
