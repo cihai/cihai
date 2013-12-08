@@ -105,7 +105,8 @@ def ucn_to_python(ucn):
         if len(ucn) > int(4):
             #print('ucn > 4 for ucn_to_python')
             # unichr doesn't work on characters > 2**16
-            return bytes('%08x', 'ascii').decode('unicode_escape') % int(ucn, 16)
+            return b'%08x'.decode('unicode_escape') % int(ucn, 16)
+            #return bytes('%08x', 'ascii').decode('unicode_escape') % int(ucn, 16)
             #return eval("u'\U%08x'" % int(ucn, 16))
         else:
             #print('ucn < 4 for ucn_to_python')

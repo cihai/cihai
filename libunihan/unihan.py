@@ -54,9 +54,19 @@ class UnihanReader(csv.DictReader):
     def __next__(self):
         row = csv.DictReader.__next__(self)
 
+        return self.row(row)
+
+    def next(self):
+        row = csv.DictReader.next(self)
+
+        return self.row(row)
+
+    def row(self, row):
+        #row = csv.DictReader.next(self)
+
         # print(row)
         # print(row['char'])
-        # print(type(row['char']))
+        #print(type(row['char']))
 
         if row['char'].startswith('U+'):
             #print('U+ detected')
