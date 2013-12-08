@@ -39,6 +39,8 @@ See these resources for more information:
 
 """
 
+from __future__ import absolute_import, division, print_function, with_statement
+
 import re
 
 # only the hex digits (strip '0x' at the beginning)
