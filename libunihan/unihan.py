@@ -18,7 +18,7 @@ import csv
 import logging
 
 from . import conversion
-from ._compat import PY2
+from ._compat import PY2, text_type
 
 log = logging.getLogger(__name__)
 
@@ -70,6 +70,8 @@ class UnihanReader(csv.DictReader):
             row['field'] == 'kMandarin'
         ):
             row['value'] = row['value']
+
+        #row = {k: text_type(v, 'utf-8') for k, v in row.items()}
 
         return row
 
