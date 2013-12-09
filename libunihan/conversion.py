@@ -12,8 +12,11 @@ Changes:
 
 - PEP8, PEP257.
 - ``int()`` casting for comparisons
+- Python 3 support.
 - Python 3 fix for :meth:`~.ucn_to_python`.
 - Python 3 ``__future__`` statements.
+- All methods converting to ``_python`` will return ``Unicode``.
+- All methods converting Unicode to x will return bytestring.
 - Add :meth:`~.ucnstring_to_python`
 
 The following terms are used to represent the encodings / representation used
@@ -112,7 +115,7 @@ def ucn_to_python(ucn):
 
 
 def euc_to_python(hexstr):
-    """Convert a EUC-CN (GB2312) hex to a Python unicode string"""
+    """Return EUC-CN (GB2312) hex to a Python unicode."""
     hi = hexstr[0:2]
     lo = hexstr[2:4]
     # hi and lo are only 2 characters long, no risk with eval-ing them
@@ -121,7 +124,7 @@ def euc_to_python(hexstr):
 
 
 def ncr_to_python(ncr):
-    """Convert NCR to Python Unicode Reference and return.
+    """Return Python Unicode from NCR bytestring.
 
     Convert Unicode Numerical Character Reference (e.g. "19968", "&#19968;", or
     "&#x4E00;") to native Python Unicode (u'\\u4e00').
@@ -144,7 +147,7 @@ def ncr_to_python(ncr):
 
 
 def python_to_ucn(uni_char):
-    """Return UCN character from a Python Unicode character.
+    """Return UCN character from Python Unicode character.
 
     Converts a one character Python unicode string (e.g. u'\\u4e00') to the
     corresponding Unicode UCN ('U+4E00').
@@ -158,7 +161,7 @@ def python_to_ucn(uni_char):
 
 
 def python_to_euc(uni_char):
-    """Return a EUC character from a Python Unicode character.
+    """Return EUC character from a Python Unicode character.
 
     Converts a one character Python unicode string (e.g. u'\\u4e00') to the
     corresponding EUC hex ('d2bb').
@@ -168,7 +171,7 @@ def python_to_euc(uni_char):
 
 
 def python_to_ncr(uni_char, **options):
-    """Return a Unicode NCR string from a Python unicode string.
+    """Return Unicode NCR string from a Python unicode string.
 
     Converts a one character Python unicode string (e.g. u'\\u4e00') to the
     corresponding Unicode NCR ('&x4E00;').
@@ -196,7 +199,7 @@ def python_to_ncr(uni_char, **options):
 
 
 def string_to_ncr(uni_string, **options):
-    """Return string with Python Unicode string with NCR strings.
+    """Return string with Python Unicode string replaced by NCR strings.
 
     Convert Python unicode string (e.g. u'p\\u012bn y\\u012bn') to the
     corresponding Unicode NCRs. See `python_to_ncr` for formatting options.
@@ -209,7 +212,7 @@ def string_to_ncr(uni_string, **options):
 
 
 def ncrstring_to_python(ncr_string):
-    """Convert a string of Unicode NCRs (e.g. "&#19968;&#x4E00;") to native Python Unicode (u'\\u4e00\\u4e00')"""
+    """Return string of Unicode NCRs (e.g. "&#19968;&#x4E00;") to native Python Unicode (u'\\u4e00\\u4e00')"""
     res = re.findall("&#[x0-9a-fA-F]*?;", ncr_string)
     for r in res:
         ncr_string = ncr_string.replace(r, ncr_to_python(r))
@@ -217,7 +220,7 @@ def ncrstring_to_python(ncr_string):
 
 
 def ucnstring_to_python(ucn_string):
-    """Convert a string of Unicode UCN (e.g. "U+4E00") to native Python Unicode
+    """Return string with Unicode UCN (e.g. "U+4E00") to native Python Unicode
     (u'\\u4e00\\u4e00').
 
     Newly added by Tony.
