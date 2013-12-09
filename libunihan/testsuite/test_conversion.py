@@ -38,18 +38,12 @@ class Conversion(TestCase):
         # U+349A	kDefinition	(same as U+7A69 穩) firm; stable; secure, dependent upon others
         c1 = '(same as U+7A69 穩) firm; stable; secure'
 
-        log.error(type(c1))
-        log.error(conversion.ucnstring_to_python(c1))
         c2 = conversion.ucnstring_to_python(c1)
-        # c3 = c2.decode('unicode_escape')
-        c3 = c2
-        self.assertIsInstance(c3, text_type)
+        self.assertIsInstance(c2, text_type)
 
     def test_ucnstring_to_unicode(self):
         c1 = '(same as U+7A69 穩) firm; stable; secure'
-        c2 = text_type('unicode_escape')
-        log.error(c1)
-        log.error(c2)
+        c2 = text_type(c1)
 
         self.assertIsInstance(c1, string_types)
         self.assertIsInstance(c2, text_type)
