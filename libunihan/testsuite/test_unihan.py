@@ -49,7 +49,7 @@ class UnihanDataCSV(TestCase):
             for row in r:
                 rowlines = []
                 for key in row.keys():
-                    if key == 'field':
+                    if key == 'field' and not isinstance(row[key], text_type):
                         import cchardet as chardet
                         log.error(chardet.detect(row[key]))
                         codec = chardet.detect(row[key])['encoding']
