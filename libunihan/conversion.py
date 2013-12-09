@@ -58,8 +58,11 @@ from __future__ import absolute_import, division, print_function, \
     with_statement, unicode_literals
 
 import re
+import logging
 
 from libunihan._compat import string_types, unichr
+
+log = logging.getLogger(__name__)
 
 # only the hex digits (strip '0x' at the beginning)
 hexd = lambda n: hex(n)[2:]
@@ -190,9 +193,16 @@ def ncrstring_to_python(ncr_string):
 
 
 def ucnstring_to_python(ncr_string):
-    """Convert a string of Unicode NCRs (e.g. "&#19968;&#x4E00;") to native Python Unicode (u'\\u4e00\\u4e00')"""
-    res = re.findall("&#[x0-9a-fA-F]*?;", ncr_string)
+    """Convert a string of Unicode NCRs (e.g. "&#19968;&#x4E00;") to native Python Unicode (u'\\u4e00\\u4e00')
+
+    Newly added by Tony.
+    """
+    res = re.findall("U\+[0-9a-fA-F]*", ncr_string)
     for r in res:
-        #U+([a-f0-9]+)\b
-        ncr_string = ncr_string.replace(r, ncr_to_python(r))
+        # U+([a-f0-9]+)\b to \U[a-f0-9]{8}
+        import sys
+        #sys.exit(r)
+        log.error(r)
+        #sys.exit(ucn_to_python(r).encode('utf-8'))
+        ncr_string = ncr_string.replace(r, ucn_to_python(r).encode('utf-8'))
     return ncr_string
