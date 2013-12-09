@@ -6,9 +6,11 @@ libunihan.conversion
 :copyright: Copyright 2013 Tony Narlock.
 :license: BSD, see LICENSE for details
 
-Methods from `ltchinese`_, license MIT Steven Kryskalla.
+Original methods and docs based upon `ltchinese`_, license `MIT`_ Steven
+Kryskalla.
 
-Changes:
+Changes
+```````
 
 - PEP8, PEP257.
 - ``int()`` casting for comparisons
@@ -18,27 +20,30 @@ Changes:
 - All methods converting to ``_python`` will return ``Unicode``.
 - All methods converting Unicode to x will return bytestring.
 - Add :meth:`~.ucnstring_to_python`
+- Any other change upon @ `conversion.py @9227813`_.
 
 The following terms are used to represent the encodings / representation used
 in the conversion functions (the samples on the right are for the character
-U+4E00 (yi1; "one"))::
+U+4E00 (yi1; "one")):
 
-    GB2312 (Kuten/Quwei form): "5027" [used in the "GB2312" field of Unihan.txt]
-    GB2312 (ISO-2022 form):    "523B" [the "internal representation" of GB code]
-    EUC-CN:                    "D2BB" [this is the "external encoding" of GB2312-
-                                       ISO2022's "internal representation"; also
-                                       the form that Ocrat uses]
-    UTF-8:                     "E4 B8 80" [used in the "UTF-8" field in Unihan.txt]
-    -------------------------------------------------------------------------------
-    Unihan UCN:                "U+4E00"   [used by Unicode Inc.]
-    Unihan NCR (decimal):      "&#19968;" [Numerical Character Reference ...
-    Unihan NCR (hex):          "&x4E00;"   ... used in XML/HTML/SGML]
-    -------------------------------------------------------------------------------
-    internal Python unicode:   u"\u4e00"  [this is the most useful form!]
-    internal Python 'utf8':    "\\xe4\\xb8\\x80"
-    internal Python 'gb2312':  "\\xd2\\xbb"
-    internal Python 'euc-cn':  "\\xd2\\xbb"
-    internal Python 'gb18030': "\\xd2\\xbb"
+========================== ====================================================
+GB2312 (Kuten/Quwei form)  "5027" [used in the "GB2312" field of Unihan.txt]
+GB2312 (ISO-2022 form)     "523B" [the "internal representation" of GB code]
+EUC-CN                     "D2BB" [this is the "external encoding" of GB2312-
+                                    ISO2022's "internal representation"; also
+                                    the form that Ocrat uses]
+UTF-8                      "E4 B8 80" [used in the "UTF-8" field in Unihan.txt]
+-------------------------- ----------------------------------------------------
+Unihan UCN                 "U+4E00"   [used by Unicode Inc.]
+Unihan NCR (decimal)       "&#19968;" [Numerical Character Reference ...
+Unihan NCR (hex)           "&x4E00;"   ... used in XML/HTML/SGML]
+-------------------------- ----------------------------------------------------
+internal Python unicode    u"\u4e00"  [this is the most useful form!]
+internal Python 'utf8'     "\\xe4\\xb8\\x80"
+internal Python 'gb2312'   "\\xd2\\xbb"
+internal Python 'euc-cn'   "\\xd2\\xbb"
+internal Python 'gb18030'  "\\xd2\\xbb"
+========================== ====================================================
 
 See these resources for more information:
  * Wikipedia "Extended_Unix_Code" article
@@ -54,7 +59,9 @@ See these resources for more information:
 
    * e.g. http://www.unicode.org/cgi-bin/GetUnihanData.pl?codepoint=4E00
 
-.. _ltchinese: https://bitbucket.org/lost_theory/ltchinese/raw/9227813b9305c3ae5ba0a59fb572292939fd92a6/ltchinese/conversion.py
+.. _ltchinese: https://bitbucket.org/lost_theory/ltchinese
+.. _MIT: https://bitbucket.org/lost_theory/ltchinese/src/9227813/LICENSE.txt
+.. _conversion.py @9227813: https://bitbucket.org/lost_theory/ltchinese/raw/9227813/ltchinese/conversion.py
 
 """
 
