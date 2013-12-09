@@ -50,7 +50,7 @@ class UnihanDataCSV(TestCase):
                 rowlines = []
                 for key in row.keys():
                     if key == 'field':
-                        import chardet
+                        import cchardet as chardet
                         log.error(chardet.detect(row[key]))
                         codec = chardet.detect(row[key])['encoding']
                         #row[key] = row[key].decode(codec)
