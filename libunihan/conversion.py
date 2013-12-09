@@ -60,7 +60,7 @@ from __future__ import absolute_import, division, print_function, \
 import re
 import logging
 
-from libunihan._compat import string_types, unichr
+from libunihan._compat import string_types, text_type, unichr
 
 log = logging.getLogger(__name__)
 
@@ -204,5 +204,6 @@ def ucnstring_to_python(ncr_string):
         #sys.exit(r)
         log.error(r)
         #sys.exit(ucn_to_python(r).encode('utf-8'))
-        ncr_string = ncr_string.replace(r, ucn_to_python(r).encode('utf-8'))
+        ncr_string = ncr_string.replace(text_type(r), text_type(ucn_to_python(r)))
+
     return ncr_string
