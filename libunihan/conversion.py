@@ -192,18 +192,14 @@ def ncrstring_to_python(ncr_string):
     return ncr_string
 
 
-def ucnstring_to_python(ncr_string):
-    """Convert a string of Unicode NCRs (e.g. "&#19968;&#x4E00;") to native Python Unicode (u'\\u4e00\\u4e00')
+def ucnstring_to_python(ucn_string):
+    """Convert a string of Unicode UCN (e.g. "U+4E00") to native Python Unicode (u'\\u4e00\\u4e00')
 
     Newly added by Tony.
     """
-    res = re.findall("U\+[0-9a-fA-F]*", ncr_string)
+    res = re.findall("U\+[0-9a-fA-F]*", ucn_string)
     for r in res:
         # U+([a-f0-9]+)\b to \U[a-f0-9]{8}
-        import sys
-        #sys.exit(r)
-        log.error(r)
-        #sys.exit(ucn_to_python(r).encode('utf-8'))
-        ncr_string = ncr_string.replace(text_type(r), text_type(ucn_to_python(r)))
+        ucn_string = ucn_string.replace(text_type(r), text_type(ucn_to_python(r)))
 
-    return ncr_string
+    return ucn_string

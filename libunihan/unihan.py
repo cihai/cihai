@@ -77,21 +77,7 @@ class UnihanReader(csv.DictReader):
             except UnicodeDecodeError as e:
                 log.info(row['field'])
                 raise e
-                pass
-
-        # if not isinstance(row['value'], text_type):
-            # try:
-                # row['value'] = text_type(row['value'])
-            # except UnicodeDecodeError as e:
-                # log.info(row['value'])
-                # raise e
-                # pass
-        #row = {k: text_type(v, 'utf-8') for k, v in row.items()}
-
         return row
-
-#  _neilg | borneo: you should be able to use regular expressions to convert
-#  U+([a-f0-9]+)\b to \U[a-f0-9]{8}
 
 
 def main():
