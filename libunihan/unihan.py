@@ -1,5 +1,5 @@
 # -*- coding: utf8 - *-
-"""For accessing vcspull as a package.
+"""Unihan file parsing, importing and codec handling.
 
 libunihan.unihan
 ~~~~~~~~~~~~~~~~
