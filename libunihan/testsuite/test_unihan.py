@@ -14,6 +14,7 @@ import tempfile
 import logging
 
 from .helpers import TestCase
+from .._compat import PY2
 from ..unihan import get_datafile, UnihanReader
 
 log = logging.getLogger(__name__)
@@ -33,29 +34,25 @@ class UnihanDataCSV(TestCase):
 
     def test_print_top(self):
         with open(get_datafile('Unihan_Readings.txt'), 'r') as csvfile:
+            # py3.3 regression http://bugs.python.org/issue18829
+            delim = b'\t' if PY2 else '\t'
             csvfile = filter(lambda row: row[0] != '#', csvfile)
             r = UnihanReader(
                 csvfile,
                 fieldnames=['char', 'field', 'value'],
-                delimiter='\t'
+                delimiter=delim
             )
 
             r = list(r)[:5]
             print('\n')
 
             for row in r:
-                print(row)
-                print(type(row['char']))
                 rowlines = []
                 for key in row.keys():
                     rowlines.append(row[key])
                 try:
                     rowline = '\t'.join(rowlines)
                 except UnicodeDecodeError as e:
-                    print(
-                        'row: %s (%s) gives:\n%s' % (
-                            row, row['char'], e
-                        )
-                    )
+                    log.info('row: %s (%s) gives:\n%s' % (row, row['char'], e))
 
                 print('%s' % rowline)
