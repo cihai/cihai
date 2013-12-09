@@ -14,7 +14,7 @@ import tempfile
 import logging
 
 from .helpers import TestCase
-from .._compat import PY2
+from .._compat import PY2, text_type
 from ..unihan import get_datafile, UnihanReader
 
 log = logging.getLogger(__name__)
@@ -49,6 +49,20 @@ class UnihanDataCSV(TestCase):
             for row in r:
                 rowlines = []
                 for key in row.keys():
+                    if key == 'field':
+                        import chardet
+                        log.error(chardet.detect(row[key]))
+                        codec = chardet.detect(row[key])['encoding']
+                        #row[key] = row[key].decode(codec)
+                        self.assertIsInstance(row[key], text_type)
+                    elif key == 'value':
+                        # import chardet
+                        # log.error(chardet.detect(row[key]))
+                        # codec = chardet.detect(row[key])['encoding']
+                        # #row[key] = row[key].decode(codec)
+                        # self.assertIsInstance(row[key], text_type)
+                        pass
+
                     rowlines.append(row[key])
                 try:
                     rowline = '\t'.join(rowlines)
@@ -56,3 +70,5 @@ class UnihanDataCSV(TestCase):
                     log.info('row: %s (%s) gives:\n%s' % (row, row['char'], e))
 
                 print('%s' % rowline)
+
+

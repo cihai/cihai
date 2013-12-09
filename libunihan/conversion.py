@@ -187,3 +187,12 @@ def ncrstring_to_python(ncr_string):
     for r in res:
         ncr_string = ncr_string.replace(r, ncr_to_python(r))
     return ncr_string
+
+
+def ucnstring_to_python(ncr_string):
+    """Convert a string of Unicode NCRs (e.g. "&#19968;&#x4E00;") to native Python Unicode (u'\\u4e00\\u4e00')"""
+    res = re.findall("&#[x0-9a-fA-F]*?;", ncr_string)
+    for r in res:
+        #U+([a-f0-9]+)\b
+        ncr_string = ncr_string.replace(r, ncr_to_python(r))
+    return ncr_string

@@ -71,6 +71,21 @@ class UnihanReader(csv.DictReader):
         ):
             row['value'] = row['value']
 
+        if not isinstance(row['field'], text_type):
+            try:
+                row['field'] = text_type(row['field'])
+            except UnicodeDecodeError as e:
+                log.info(row['field'])
+                raise e
+                pass
+
+        # if not isinstance(row['value'], text_type):
+            # try:
+                # row['value'] = text_type(row['value'])
+            # except UnicodeDecodeError as e:
+                # log.info(row['value'])
+                # raise e
+                # pass
         #row = {k: text_type(v, 'utf-8') for k, v in row.items()}
 
         return row
@@ -102,10 +117,6 @@ def main():
             try:
                 rowline = '\t'.join(rowlines)
             except UnicodeDecodeError as e:
-                print(
-                    'row: %s (%s) gives:\n%s' % (
-                        row, row['char'], e
-                    )
-                )
+                log.info('row: %s (%s) gives:\n%s' % (row, row['char'], e))
 
             print('%s' % rowline)
