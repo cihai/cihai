@@ -126,8 +126,32 @@ def euc_to_python(hexstr):
     hi = hexstr[0:2]
     lo = hexstr[2:4]
     # hi and lo are only 2 characters long, no risk with eval-ing them
-    gb_enc = eval("'\\x%s\\x%s'" % (hi, lo))
-    return gb_enc.decode("gb2312")
+    #gb_enc = eval("'\\x%s\\x%s'" % (hi, lo))
+    #gb_enc = b'\\x%s\\x%s' % (hi, lo)
+    gb_enc = b'\\x' + hi + b'\\x' + lo
+    #gb_enc = r'\\x%s\\x%s' % (hi, lo)
+    assert isinstance(gb_enc, bytes)
+
+    """
+
+    '\xd2\xbb'
+    >>> u'\u4e00'.encode('gb2312').decode('utf-8')
+    u'\u04bb'
+    >>> (b'\\x' + b'd2' + b'\\x' + b'bb').replace('\\x', '').decode('hex').decode('utf-8')
+    u'\u04bb'
+    """
+    # gb_enc.decode('string_escape') Won't work with Python 3.x
+
+    gb_enc = gb_enc.decode('unicode_escape')  # Requires coercing back to
+                                              # text_type in 2.7
+    gb_enc = gb_enc.encode('latin1')
+
+    # gb_enc = gb_enc.replace('\\x', '').decode('hex')
+
+    gb_enc = gb_enc.decode('gb2312')
+    #assert isinstance(text, text_type)
+
+    return gb_enc
 
 
 def ncr_to_python(ncr):

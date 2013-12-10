@@ -43,10 +43,26 @@ class Conversion(TestCase):
 
     def test_ucnstring_to_unicode(self):
         c1 = '(same as U+7A69 穩) firm; stable; secure'
-        c2 = text_type(c1)
+        c2 = text_type()
 
         self.assertIsInstance(c1, string_types)
         self.assertIsInstance(c2, text_type)
+
+    def test_euc_to_python(self):
+        text = '一'
+        python = u'\u4e00'
+        euc = b'd2bb'
+
+        self.assertEqual(text, python)
+        self.assertIsInstance(
+            conversion.euc_to_python(euc),
+            text_type
+        )
+
+        self.assertEqual(
+            conversion.euc_to_python(euc),
+            text
+        )
 
     def test_ncrstring_to_python(self):
         pass
