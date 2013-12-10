@@ -51,7 +51,19 @@ class UCN(TestCase):
     # U+34B5	kMandarin	mào
     # U+356D	kCantonese	au3 jaau1
 
-    def test_ucnstring_to_python(self):
+    def test_from_python(self):
+        text = '一'
+        python_unicode = u'\u4e00'
+
+        pass
+
+    def test_from_unicode(self):
+        text = '一'
+        python_unicode = u'\u4e00'
+
+        pass
+
+    def test_to_python(self):
         # U+349A	kDefinition	(same as U+7A69 穩) firm; stable; secure, dependent upon others
         before = '(same as U+7A69 穩) firm; stable; secure'
         expected = b'(same as \xe7\xa9\xa9 \xe7\xa9\xa9) firm; stable; secure'
@@ -76,7 +88,7 @@ class UCN(TestCase):
 
         self.assertIsInstance(after, bytes)
 
-    def test_ucnstring_to_unicode(self):
+    def test_to_unicode(self):
         before = 'U+4E00'
         expected = '\u4e00'
 
@@ -109,6 +121,18 @@ class EUC(TestCase):
     corresponding EUC hex ('d2bb').
 
     """
+
+    def test_from_python(self):
+        text = '一'
+        python_unicode = u'\u4e00'
+
+        pass
+
+    def test_from_unicode(self):
+        text = '一'
+        python_unicode = u'\u4e00'
+
+        pass
 
     def test_to_python(self):
         text = '一'
@@ -167,15 +191,20 @@ class NCR(TestCase):
 
     """
 
+    def test_from_python(self):
+        text = '一'
+        python_unicode = u'\u4e00'
+
+        pass
+
+    def test_from_unicode(self):
+        text = '一'
+        python_unicode = u'\u4e00'
+
+        pass
 
     def test_to_python(self):
         pass
 
     def test_to_unicode(self):
-        pass
-
-    def test_from_python(self):
-        pass
-
-    def test_from_unicode(self):
         pass
