@@ -13,15 +13,15 @@ import argparse
 logging.disable(logging.CRITICAL)
 
 
-libunihan_path = sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
-if libunihan_path not in sys.path:
-    sys.path.insert(0, libunihan_path)
+cihai_path = sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
+if cihai_path not in sys.path:
+    sys.path.insert(0, cihai_path)
 
 
 def main(verbosity=2, failfast=False):
-    """Run TestSuite for libunihan. Exit with code 0 if success."""
+    """Run TestSuite for cihai. Exit with code 0 if success."""
 
-    suites = unittest.TestLoader().discover('libunihan.testsuite', pattern="test_*.py")
+    suites = unittest.TestLoader().discover('cihai.testsuite', pattern="test_*.py")
     result = unittest.TextTestRunner(
         verbosity=verbosity, failfast=failfast).run(suites)
     if result.wasSuccessful():
@@ -32,7 +32,7 @@ def main(verbosity=2, failfast=False):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description='''\
-        Run tests suite for libunihan. With no arguments, runs all test suites in libunihan.testsuite.
+        Run tests suite for cihai. With no arguments, runs all test suites in cihai.testsuite.
 
         Default usage:
             $ ./run_tests.py
@@ -58,13 +58,13 @@ if __name__ == '__main__':
             $ ./run_tests.py test_config.ImportExportTest.test_export_json \\
                 test_config.ImportExportTest.test_window
 
-        ./run_tests will automatically assume the package namespace ``libunihan.testsuite``.
+        ./run_tests will automatically assume the package namespace ``cihai.testsuite``.
 
             $ ./run_tests.py test_config.ImportExportTest
 
         is the same as:
 
-            $ ./run_tests.py libunihan.testsuite.test_config.ImportExportTest
+            $ ./run_tests.py cihai.testsuite.test_config.ImportExportTest
         '''
     )
     parser.add_argument('-l', '--log-level', dest='log_level', default='INFO',
@@ -80,15 +80,15 @@ if __name__ == '__main__':
 
     verbosity = args.verbosity
 
-    logging.getLogger('libunihan.testsuite').setLevel(args.log_level.upper())
+    logging.getLogger('cihai.testsuite').setLevel(args.log_level.upper())
 
     if 'help' in args:
         parser.print_help()
     if args.tests and len(args.tests) > int(0):
         for arg in args.tests:
-            if not arg.startswith('libunihan.testsuite'):
+            if not arg.startswith('cihai.testsuite'):
                 loc = args.tests.index(arg)
-                args.tests[loc] = 'libunihan.testsuite.%s' % arg
+                args.tests[loc] = 'cihai.testsuite.%s' % arg
         suites = unittest.TestLoader().loadTestsFromNames(args.tests)
         result = unittest.TextTestRunner(
             verbosity=verbosity, failfast=args.failfast).run(suites)
