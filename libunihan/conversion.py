@@ -126,14 +126,11 @@ def euc_to_python(hexstr):
     hi = hexstr[0:2]
     lo = hexstr[2:4]
     # hi and lo are only 2 characters long, no risk with eval-ing them
-    #gb_enc = eval("'\\x%s\\x%s'" % (hi, lo))
-    #gb_enc = b'\\x%s\\x%s' % (hi, lo)
+
     gb_enc = b'\\x' + hi + b'\\x' + lo
-    #gb_enc = r'\\x%s\\x%s' % (hi, lo)
     assert isinstance(gb_enc, bytes)
 
     """
-
     '\xd2\xbb'
     >>> u'\u4e00'.encode('gb2312').decode('utf-8')
     u'\u04bb'
@@ -149,7 +146,7 @@ def euc_to_python(hexstr):
     # gb_enc = gb_enc.replace('\\x', '').decode('hex')
 
     gb_enc = gb_enc.decode('gb2312')
-    #assert isinstance(text, text_type)
+    assert isinstance(gb_enc, text_type)
 
     return gb_enc
 
