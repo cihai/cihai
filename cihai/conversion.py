@@ -149,10 +149,17 @@ def euc_to_python(hexstr):
 
     # gb_enc = gb_enc.replace('\\x', '').decode('hex')
 
-    gb_enc = gb_enc.decode('gb2312')
-    assert isinstance(gb_enc, text_type)
+    gb_enc = gb_enc.decode('gb2312').encode('unicode_escape')
+    assert isinstance(gb_enc, bytes)
 
     return gb_enc
+
+
+def euc_to_unicode(hexstr):
+    hexstr = euc_to_python(hexstr).decode('unicode_escape')
+
+    assert isinstance(hexstr, text_type)
+    return hexstr
 
 
 def ncr_to_python(ncr):

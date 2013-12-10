@@ -85,23 +85,40 @@ class Conversion(TestCase):
 
     def test_euc_to_python(self):
         text = '一'
-        python = u'\u4e00'
-        euc = b'd2bb'
+        python_text = u'\u4e00'
+        python_bytestring = b'\u4e00'
+        euc_bytestring = b'd2bb'
 
-        self.assertEqual(text, python)
+        self.assertEqual(text, python_text)
         self.assertIsInstance(
-            conversion.euc_to_python(euc),
+            conversion.euc_to_python(euc_bytestring),
+            bytes
+        )
+
+        self.assertEqual(
+            conversion.euc_to_python(euc_bytestring),
+            python_bytestring
+        )
+
+    def test_euc_to_unicode(self):
+        text = '一'
+        python_unicode = u'\u4e00'
+        euc_bytestring = b'd2bb'
+
+        self.assertEqual(text, python_unicode)
+        self.assertIsInstance(
+            conversion.euc_to_unicode(euc_bytestring),
             text_type
         )
 
         self.assertEqual(
-            conversion.euc_to_python(euc),
+            conversion.euc_to_unicode(euc_bytestring),
             text
         )
 
         self.assertEqual(
-            conversion.euc_to_python(euc),
-            python
+            conversion.euc_to_unicode(euc_bytestring),
+            python_unicode
         )
 
     def test_ncrstring_to_python(self):
