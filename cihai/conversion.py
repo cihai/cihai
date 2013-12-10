@@ -99,14 +99,18 @@ def euc_to_utf8(euchex):
     utf8 = repr(utf8)[1:-1].replace("\\x", " ").strip()
     return utf8
 
-#TODO: make these conversions go both ways (i.e. gb2312_to_kuten, euc_to_gb2312, utf8_to_euc)
+"""
 
-#TODO: fill in the conversions? (i.e. create kuten_to_utf8, so you don't have to compose kuten_to_gb2312 and gb2312_to_euc by hand)
-#TODO: might even want to create a more generic system so that you can just pick the encoding types and dispatch the right method
+TODO from Steven K.
 
-#TODO: more encoding formats?
+:TODO: make these conversions go both ways (i.e. gb2312_to_kuten, euc_to_gb2312, utf8_to_euc)
+:TODO: fill in the conversions? (i.e. create kuten_to_utf8, so you don't have to compose kuten_to_gb2312 and gb2312_to_euc by hand)
+:TODO: might even want to create a more generic system so that you can just pick the encoding types and dispatch the right method
+:TODO: more encoding formats?
 
-## convert to internal Python unicode / string objects ########################
+"""
+
+"""Convert to internal Python unicode / string objects."""
 
 
 def ucn_to_python(ucn):
@@ -255,8 +259,6 @@ def ucnstring_to_unicode(ncr_string):
 def ucnstring_to_python(ucn_string):
     """Return string with Unicode UCN (e.g. "U+4E00") to native Python Unicode
     (u'\\u4e00').
-
-    Newly added by Tony.
     """
     res = re.findall("U\+[0-9a-fA-F]*", ucn_string)
     for r in res:
