@@ -1,6 +1,6 @@
 """Conversion functions between various Chinese encodings and representations.
 
-libunihan.conversion
+cihai.conversion
 ~~~~~~~~~~~~~~~~~~~~
 
 :copyright: Copyright 2013 Tony Narlock.
@@ -71,7 +71,7 @@ from __future__ import absolute_import, division, print_function, \
 import re
 import logging
 
-from libunihan._compat import string_types, text_type, unichr
+from cihai._compat import string_types, text_type, unichr
 
 log = logging.getLogger(__name__)
 

@@ -38,6 +38,6 @@ nosetests.xml
 .env
 .env3
 
-libunihan/data/*
+cihai/data/*
 
 doc/_build

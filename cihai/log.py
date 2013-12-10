@@ -1,7 +1,7 @@
 # -*- coding: utf8 - *-
-"""Log utilities for libunihan.
+"""Log utilities for cihai.
 
-libunihan.log
+cihai.log
 ~~~~~~~~~~~~~
 :copyright: Copyright 2013 Tony Narlock.
 :license: BSD, see LICENSE for details

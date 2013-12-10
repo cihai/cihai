@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-"""Tests for libunihan.
+"""Tests for cihai.
 
-libunihan.testsuite.test_unihan
+cihai.testsuite.test_unihan
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 :copyright: Copyright 2013 Tony Narlock.

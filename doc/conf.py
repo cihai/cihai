@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# libunihan documentation build configuration file, created by
+# cihai documentation build configuration file, created by
 # sphinx-quickstart on Mon Sep 23 12:38:49 2013.
 #
 # This file is execfile()d with the current directory set to its containing dir.  #
@@ -48,16 +48,16 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'libunihan'
+project = u'cihai'
 copyright = u'2013, Tony Narlock'
 
 rst_prolog = """
 .. note::
 
-    libunihan needs your help reporting errors, bugs and usability feedback.
+    cihai needs your help reporting errors, bugs and usability feedback.
     If you encounter an error, please post on the `Issue tracker`_.
 
-.. _Issue tracker: https://github.com/tony/libunihan/issues
+.. _Issue tracker: https://github.com/tony/cihai/issues
 """
 
 
@@ -186,7 +186,7 @@ html_static_path = ['_static']
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'libunihandoc'
+htmlhelp_basename = 'cihaidoc'
 
 
 # -- Options for LaTeX output --------------------------------------------------
@@ -205,7 +205,7 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'libunihan.tex', u'libunihan Documentation',
+  ('index', 'cihai.tex', u'cihai Documentation',
    u'Tony Narlock', 'manual'),
 ]
 
@@ -235,7 +235,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'libunihan', u'libunihan Documentation',
+    ('index', 'cihai', u'cihai Documentation',
      [u'Tony Narlock'], 1)
 ]
 
@@ -249,8 +249,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'libunihan', u'libunihan Documentation',
-   u'Tony Narlock', 'libunihan', 'One line description of project.',
+  ('index', 'cihai', u'cihai Documentation',
+   u'Tony Narlock', 'cihai', 'One line description of project.',
    'Miscellaneous'),
 ]
 
@@ -276,6 +276,6 @@ changelog_inner_tag_sort = ["feature", "bug"]
 # how to render changelog links - these are plain
 # python string templates, ticket/pullreq/changeset number goes
 # in "%s"
-changelog_render_ticket = "https://github.com/tony/libunihan/issues/%s"
-changelog_render_pullreq = "https://github.com/tony/libunihan/pulls/%s"
-changelog_render_changeset = "https://github.com/tony/libunihan/commit/%s"
+changelog_render_ticket = "https://github.com/tony/cihai/issues/%s"
+changelog_render_pullreq = "https://github.com/tony/cihai/pulls/%s"
+changelog_render_changeset = "https://github.com/tony/cihai/commit/%s"

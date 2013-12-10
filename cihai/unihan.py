@@ -1,7 +1,7 @@
 # -*- coding: utf8 - *-
 """Unihan file parsing, importing and codec handling.
 
-libunihan.unihan
+cihai.unihan
 ~~~~~~~~~~~~~~~~
 
 :copyright: Copyright 2013 Tony Narlock.
@@ -35,7 +35,7 @@ UNIHAN_FILES = [
 
 
 def get_datafile(file_):
-    """Return absolute path to libunihan data file.
+    """Return absolute path to cihai data file.
 
     :param file_: file name relative to ``./data``.
     :type file_: string

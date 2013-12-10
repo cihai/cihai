@@ -1,7 +1,7 @@
 # -*- coding: utf8 - *-
-"""Utility and helper methods for libunihan.
+"""Utility and helper methods for cihai.
 
-libunihan.util
+cihai.util
 ~~~~~~~~~~~~~~
 
 :copyright: Copyright 2013 Tony Narlock.

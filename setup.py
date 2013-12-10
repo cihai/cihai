@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf8 - *-
-"""libunihan lives at <https://github.com/tony/libunihan>.
+"""cihai lives at <https://github.com/tony/cihai>.
 
-libunihan
----------
+cihai
+-----
 
 Unihan abstraction layer.
 
@@ -28,7 +28,7 @@ if sys.version_info < (2, 7):
     tests_reqs += ['unittest2']
 
 import re
-VERSIONFILE = "libunihan/__init__.py"
+VERSIONFILE = "cihai/__init__.py"
 verstrline = open(VERSIONFILE, "rt").read()
 VSRE = r"^__version__ = ['\"]([^'\"]*)['\"]"
 mo = re.search(VSRE, verstrline, re.M)
@@ -41,7 +41,7 @@ UNIHAN_URL = 'http://www.unicode.org/Public/UNIDATA/Unihan.zip'
 PACKAGE_DATA = []
 
 thisdir = os.path.join(os.path.dirname(__file__))
-datadir = os.path.join(thisdir, './libunihan/data')
+datadir = os.path.join(thisdir, './cihai/data')
 
 if not os.path.exists(datadir):
     os.makedirs(datadir)
@@ -92,10 +92,10 @@ if not glob.glob(os.path.join(datadir, 'Unihan*.txt')):
     z.extractall(datadir)
 
 setup(
-    name='libunihan',
+    name='cihai',
     version=__version__,
-    url='https://github.com/tony/libunihan',
-    download_url='https://pypi.python.org/pypi/libunihan',
+    url='https://github.com/tony/cihai',
+    download_url='https://pypi.python.org/pypi/cihai',
     license='BSD',
     author='Tony Narlock',
     author_email='tony@git-pull.com',
@@ -104,14 +104,14 @@ setup(
     include_package_data=True,
     install_requires=install_reqs,
     tests_require=tests_reqs,
-    test_suite='libunihan.testsuite',
+    test_suite='cihai.testsuite',
     zip_safe=False,
     packages=[
-        'libunihan', 'libunihan.testsuite',
-        'libunihan._vendor', 'libunihan._vendor.colorama'
+        'cihai', 'cihai.testsuite',
+        'cihai._vendor', 'cihai._vendor.colorama'
     ],
     package_data={
-        'libunihan': ['data/*']
+        'cihai': ['data/*']
     },
     classifiers=[
         'Development Status :: 3 - Alpha',

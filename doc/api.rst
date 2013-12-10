@@ -4,14 +4,14 @@
 API
 ===
 
-.. module:: libunihan
+.. module:: cihai
 
-.. automodule:: libunihan.conversion
+.. automodule:: cihai.conversion
    :members:
    :inherited-members:
    :show-inheritance:
 
-.. automodule:: libunihan.unihan
+.. automodule:: cihai.unihan
    :members:
    :inherited-members:
    :show-inheritance:

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """Python abstraction for Unihan.
 
-libunihan
+cihai
 ~~~~~~~~~
 
 :copyright: Copyright 2013 Tony Narlock.

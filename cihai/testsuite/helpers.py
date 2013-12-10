@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-"""Helpers for libunihan testsuite.
+"""Helpers for cihai testsuite.
 
-libunihan.testsuite.helpers
+cihai.testsuite.helpers
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 :copyright: Copyright 2013 Tony Narlock.

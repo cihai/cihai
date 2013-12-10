@@ -1,7 +1,7 @@
 .. _index:
 
 =========
-libunihan
+cihai
 =========
 
 Python wrapper for `Unihan`_.
