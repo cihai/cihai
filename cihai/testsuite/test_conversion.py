@@ -35,7 +35,6 @@ class Util(TestCase):
 
 
 class UCN(TestCase):
-
     # U+369D	kSemanticVariant	U+595E<kMatthews U+594E<kMatthews
     # U+3CE2	kTraditionalVariant	U+23FB7
     # U+3FF7	kSemanticVariant	U+7CD9<kMatthews,kMeyerWempe
@@ -137,8 +136,14 @@ class EUC(TestCase):
 
 class NCR(TestCase):
 
-    def test_ncrstring_to_python(self):
+    def test_to_python(self):
         pass
 
-    def test_string_to_ncr(self):
+    def test_from_python(self):
+        pass
+
+    def test_to_unicode(self):
+        pass
+
+    def test_from_unicode(self):
         pass
