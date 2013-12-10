@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""Python abstraction for Unihan.
+"""China fit in to a python package.
 
 cihai
 ~~~~~

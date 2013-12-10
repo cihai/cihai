@@ -3,7 +3,7 @@
 """cihai lives at <https://github.com/tony/cihai>.
 
 cihai
------
+~~~~~
 
 Unihan abstraction layer.
 
@@ -99,7 +99,7 @@ setup(
     license='BSD',
     author='Tony Narlock',
     author_email='tony@git-pull.com',
-    description='Unihan abstraction layer.',
+    description='China fit into a python package.',
     long_description=open('README.rst').read(),
     include_package_data=True,
     install_requires=install_reqs,

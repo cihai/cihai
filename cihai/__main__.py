@@ -1,8 +1,8 @@
 # -*- coding: utf8 - *-
-"""For accessing vcspull as a package.
+"""For accessing cihai as a package.
 
 cihai
-~~~~~~~~~
+~~~~~
 
 :copyright: Copyright 2013 Tony Narlock.
 :license: BSD, see LICENSE for details
