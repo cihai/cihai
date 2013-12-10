@@ -35,6 +35,14 @@ class Util(TestCase):
 
 
 class UCN(TestCase):
+
+    """Return UCN character from Python Unicode character.
+
+    Converts a one character Python unicode string (e.g. u'\\u4e00') to the
+    corresponding Unicode UCN ('U+4E00').
+
+    """
+
     # U+369D	kSemanticVariant	U+595E<kMatthews U+594E<kMatthews
     # U+3CE2	kTraditionalVariant	U+23FB7
     # U+3FF7	kSemanticVariant	U+7CD9<kMatthews,kMeyerWempe
@@ -95,6 +103,13 @@ class UCN(TestCase):
 
 class EUC(TestCase):
 
+    """Return EUC character from a Python Unicode character.
+
+    Converts a one character Python unicode string (e.g. u'\\u4e00') to the
+    corresponding EUC hex ('d2bb').
+
+    """
+
     def test_to_python(self):
         text = '一'
         python_text = u'\u4e00'
@@ -136,13 +151,30 @@ class EUC(TestCase):
 
 class NCR(TestCase):
 
+    """Return Unicode NCR string from a Python unicode string.
+
+    Converts a one character Python unicode string (e.g. u'\\u4e00') to the
+    corresponding Unicode NCR ('&x4E00;').
+
+    Change the output format by passing the following parameters:
+
+    :param decimal: (default False) output the decimal value instead of hex.
+    :param hex: (default False) (same as decimal=True)
+    :param xml: (default False) just display the decimal or hex value, i.e.
+        strip off the '&#', '&x', and ';'
+
+    No parameters - default behavior: hex=True, xml=True.
+
+    """
+
+
     def test_to_python(self):
         pass
 
-    def test_from_python(self):
+    def test_to_unicode(self):
         pass
 
-    def test_to_unicode(self):
+    def test_from_python(self):
         pass
 
     def test_from_unicode(self):
