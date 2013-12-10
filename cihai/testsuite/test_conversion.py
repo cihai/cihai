@@ -34,7 +34,7 @@ class Util(TestCase):
         self.assertIsInstance(c2, text_type)
 
 
-class Conversion(TestCase):
+class UCN(TestCase):
 
     # U+369D	kSemanticVariant	U+595E<kMatthews U+594E<kMatthews
     # U+3CE2	kTraditionalVariant	U+23FB7
@@ -94,7 +94,9 @@ class Conversion(TestCase):
         self.assertIsInstance(after, text_type)
 
 
-    def test_euc_to_python(self):
+class EUC(TestCase):
+
+    def test_to_python(self):
         text = '一'
         python_text = u'\u4e00'
         python_bytestring = b'\u4e00'
@@ -111,7 +113,7 @@ class Conversion(TestCase):
             python_bytestring
         )
 
-    def test_euc_to_unicode(self):
+    def test_to_unicode(self):
         text = '一'
         python_unicode = u'\u4e00'
         euc_bytestring = b'd2bb'
@@ -131,6 +133,9 @@ class Conversion(TestCase):
             conversion.euc_to_unicode(euc_bytestring),
             python_unicode
         )
+
+
+class NCR(TestCase):
 
     def test_ncrstring_to_python(self):
         pass
