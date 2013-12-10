@@ -247,9 +247,14 @@ def ncrstring_to_python(ncr_string):
     return ncr_string
 
 
+def ucnstring_to_unicode(ncr_string):
+    """Return ucnstring as Unicode."""
+    return ucnstring_to_python(ncr_string).decode('utf-8')
+
+
 def ucnstring_to_python(ucn_string):
     """Return string with Unicode UCN (e.g. "U+4E00") to native Python Unicode
-    (u'\\u4e00\\u4e00').
+    (u'\\u4e00').
 
     Newly added by Tony.
     """
@@ -258,4 +263,4 @@ def ucnstring_to_python(ucn_string):
         # U+([a-f0-9]+)\b to \U[a-f0-9]{8}
         ucn_string = ucn_string.replace(text_type(r), text_type(ucn_to_python(r)))
 
-    return ucn_string
+    return ucn_string.encode('utf-8')

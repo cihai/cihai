@@ -46,13 +46,42 @@ class Conversion(TestCase):
 
     def test_ucnstring_to_python(self):
         # U+349A	kDefinition	(same as U+7A69 穩) firm; stable; secure, dependent upon others
-        c1 = '(same as U+7A69 穩) firm; stable; secure'
+        before = '(same as U+7A69 穩) firm; stable; secure'
+        expected = '(same as 穩 穩) firm; stable; secure'
 
-        c2 = conversion.ucnstring_to_python(c1)
-        self.assertIsInstance(c2, text_type)
+        after = conversion.ucnstring_to_python(before)
+
+        self.assertEqual(
+            expected,
+            after
+        )
+        self.assertIsInstance(after, bytes)
+
+    def test_ucnstring_to_python(self):
+        before = 'U+4E00'
+        expected = b'\xe4\xb8\x80'
+
+        after = conversion.ucnstring_to_python(before)
+
+        self.assertEqual(
+            expected,
+            after
+        )
+
+        self.assertIsInstance(after, bytes)
 
     def test_ucnstring_to_unicode(self):
-        pass
+        before = 'U+4E00'
+        expected = '\u4e00'
+
+        after = conversion.ucnstring_to_unicode(before)
+
+        self.assertEqual(
+            expected,
+            after
+        )
+
+        self.assertIsInstance(after, text_type)
 
     def test_euc_to_python(self):
         text = '一'
