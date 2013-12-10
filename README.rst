@@ -1,4 +1,9 @@
-``cihai`` - Python wrapper for `Unihan`_.
+``cihai`` - China fit in to a python package.
+
+Features
+--------
+
+- Python wrapper for `Unihan`_.
 
 .. image:: https://travis-ci.org/tony/cihai.png?branch=master
     :target: https://travis-ci.org/tony/cihai
