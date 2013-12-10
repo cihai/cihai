@@ -126,7 +126,26 @@ def ucn_to_python(ucn):
 
 
 def euc_to_python(hexstr):
-    """Return EUC-CN (GB2312) hex to a Python unicode."""
+    """Return EUC-CN (GB2312) hex to a Python unicode bytestring.
+
+    :param hexstr: bytestring
+    :returns: Python unicode bytestring, e.g. ``b'\\u4ee'``.
+    :rtype: bytes
+
+    .. code-block:: python
+
+        '\xd2\xbb'
+        >>> u'\u4e00'.encode('gb2312').decode('utf-8')
+        u'\u04bb'
+        >>> (b'\\x' + b'd2' + b'\\x' + b'bb').replace('\\x', '').decode('hex').decode('utf-8')
+        u'\u04bb'
+
+        # bytes won't have ``.replace``.
+        gb_enc = gb_enc.replace('\\x', '').decode('hex')
+
+        gb_enc.decode('string_escape')  # Won't work with Python 3.x.
+
+    """
     hi = hexstr[0:2]
     lo = hexstr[2:4]
     # hi and lo are only 2 characters long, no risk with eval-ing them
@@ -134,24 +153,13 @@ def euc_to_python(hexstr):
     gb_enc = b'\\x' + hi + b'\\x' + lo
     assert isinstance(gb_enc, bytes)
 
-    """
-    '\xd2\xbb'
-    >>> u'\u4e00'.encode('gb2312').decode('utf-8')
-    u'\u04bb'
-    >>> (b'\\x' + b'd2' + b'\\x' + b'bb').replace('\\x', '').decode('hex').decode('utf-8')
-    u'\u04bb'
-    """
-    # gb_enc.decode('string_escape') Won't work with Python 3.x
-
     gb_enc = gb_enc.decode('unicode_escape')  # Requires coercing back to
                                               # text_type in 2.7
     gb_enc = gb_enc.encode('latin1')
 
-    # gb_enc = gb_enc.replace('\\x', '').decode('hex')
-
     gb_enc = gb_enc.decode('gb2312').encode('unicode_escape')
-    assert isinstance(gb_enc, bytes)
 
+    assert isinstance(gb_enc, bytes)
     return gb_enc
 
 

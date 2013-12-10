@@ -1,10 +1,10 @@
 .. _index:
 
-=========
+=====
 cihai
-=========
+=====
 
-Python wrapper for `Unihan`_.
+China in a python package.
 
 .. include:: ../README.rst
     :start-line: 8
