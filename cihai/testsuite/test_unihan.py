@@ -2,7 +2,7 @@
 """Tests for cihai.
 
 cihai.testsuite.test_unihan
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 :copyright: Copyright 2013 Tony Narlock.
 :license: BSD, see LICENSE for details

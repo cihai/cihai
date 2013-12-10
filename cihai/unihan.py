@@ -2,7 +2,7 @@
 """Unihan file parsing, importing and codec handling.
 
 cihai.unihan
-~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~
 
 :copyright: Copyright 2013 Tony Narlock.
 :license: BSD, see LICENSE for details

@@ -2,7 +2,7 @@
 """Tests for cihai.
 
 cihai.testsuite.test_conversion
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 :copyright: Copyright 2013 Tony Narlock.
 :license: BSD, see LICENSE for details
@@ -24,6 +24,16 @@ from .. import conversion
 log = logging.getLogger(__name__)
 
 
+class Util(TestCase):
+
+    def test_text_type(self):
+        c1 = '(same as U+7A69 穩) firm; stable; secure'
+        c2 = text_type()
+
+        self.assertIsInstance(c1, string_types)
+        self.assertIsInstance(c2, text_type)
+
+
 class Conversion(TestCase):
 
     # U+369D	kSemanticVariant	U+595E<kMatthews U+594E<kMatthews
@@ -42,11 +52,7 @@ class Conversion(TestCase):
         self.assertIsInstance(c2, text_type)
 
     def test_ucnstring_to_unicode(self):
-        c1 = '(same as U+7A69 穩) firm; stable; secure'
-        c2 = text_type()
-
-        self.assertIsInstance(c1, string_types)
-        self.assertIsInstance(c2, text_type)
+        pass
 
     def test_euc_to_python(self):
         text = '一'
@@ -62,6 +68,11 @@ class Conversion(TestCase):
         self.assertEqual(
             conversion.euc_to_python(euc),
             text
+        )
+
+        self.assertEqual(
+            conversion.euc_to_python(euc),
+            python
         )
 
     def test_ncrstring_to_python(self):
