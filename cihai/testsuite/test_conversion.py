@@ -92,6 +92,18 @@ class UCN(TestCase):
         before = 'U+4E00'
         expected = '\u4e00'
 
+        after = conversion.ucn_to_unicode(before)
+
+        self.assertEqual(
+            expected,
+            after
+        )
+
+        self.assertIsInstance(after, text_type)
+
+        before = 'U+4E00'
+        expected = '\u4e00'
+
         after = conversion.ucnstring_to_unicode(before)
 
         self.assertEqual(
@@ -204,6 +216,7 @@ class NCR(TestCase):
         pass
 
     def test_to_python(self):
+
         pass
 
     def test_to_unicode(self):

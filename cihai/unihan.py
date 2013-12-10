@@ -63,7 +63,7 @@ class UnihanReader(csv.DictReader):
 
     def row(self, row):
         if row['char'].startswith('U+'):
-            row['char'] = conversion.ucn_to_python(row['char'])
+            row['char'] = conversion.ucn_to_unicode(row['char'])
 
         if (
             row['field'] == 'kDefinition' or

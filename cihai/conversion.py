@@ -83,20 +83,29 @@ def kuten_to_gb2312(kuten):
     """Convert GB kuten / quwei form (94 zones * 94 points) to GB2312-1980 / ISO-2022-CN hex (internal representation)"""
     zone, point = int(kuten[:2]), int(kuten[2:])
     hi, lo = hexd(zone + 0x20), hexd(point + 0x20)
-    return "%s%s" % (hi, lo)
+
+    gb2312 = "%s%s" % (hi, lo)
+
+    assert isinstance(gb2312, bytes)
+    return gb2312
 
 
 def gb2312_to_euc(gb2312hex):
     """Convert GB2312-1980 hex (internal representation) to EUC-CN hex (the "external encoding")"""
     hi, lo = int(gb2312hex[:2], 16), int(gb2312hex[2:], 16)
     hi, lo = hexd(hi + 0x80), hexd(lo + 0x80)
-    return "%s%s" % (hi, lo)
+
+    euc = "%s%s" % (hi, lo)
+    assert isinstance(euc, bytes)
+    return euc
 
 
 def euc_to_utf8(euchex):
     """Convert EUC hex (e.g. "d2bb") to UTF8 hex (e.g. "e4 b8 80")"""
     utf8 = euc_to_python(euchex).encode("utf-8")
     utf8 = repr(utf8)[1:-1].replace("\\x", " ").strip()
+
+    assert isinstance(utf8, bytes)
     return utf8
 
 """
@@ -113,16 +122,29 @@ TODO from Steven K.
 """Convert to internal Python unicode / string objects."""
 
 
-def ucn_to_python(ucn):
+def ucn_to_unicode(ucn):
     """Convert a Unicode Universal Character Number (e.g. "U+4E00" or "4E00") to Python unicode (u'\\u4e00')"""
     if isinstance(ucn, string_types):
         ucn = ucn.strip("U+")
         if len(ucn) > int(4):
-            return b'%08x'.decode('unicode_escape') % int(ucn, 16)
+            char = b'%08x'.decode('unicode_escape') % int(ucn, 16)
         else:
-            return unichr(int(ucn, 16))
+            char = unichr(int(ucn, 16))
     else:
-        return unichr(ucn)
+        char = unichr(ucn)
+
+    assert isinstance(char, text_type)
+
+    return char
+
+
+def ucn_to_python(ucn):
+    """Convert a Unicode Universal Character Number (e.g. "U+4E00" or "4E00") to Python unicode (u'\\u4e00')"""
+    ucn = ucn_to_unicode(ucn).encode('unicode_escape')
+
+    assert isinstance(ucn, bytes)
+
+    return ucn
 
 
 def euc_to_python(hexstr):
@@ -188,7 +210,12 @@ def ncr_to_python(ncr):
     else:
         #assume it's a decimal NCR not in the XML character entity ref. format
         ncr = hexd(int(ncr))
-    return ucn_to_python(ncr)
+
+    ncr = ucn_to_python(ncr)
+
+    assert isintance(ncr, bytes)
+
+    return ncr
 
 """ Convert from internal Python unicode / string objects """
 
@@ -204,7 +231,12 @@ def python_to_ucn(uni_char):
     if len(ucn) > int(4):
         # get rid of the zeroes that Python uses to pad 32 byte UCNs
         ucn = ucn.lstrip("0")
-    return "U+%s" % ucn
+
+    ucn = b"U+%s" % ucn
+
+    assert isinstance(ucn, bytes)
+
+    return ucn
 
 
 def python_to_euc(uni_char):
@@ -214,7 +246,12 @@ def python_to_euc(uni_char):
     corresponding EUC hex ('d2bb').
 
     """
-    return repr(uni_char.encode("gb2312"))[1:-1].replace("\\x", "")
+
+    euc = repr(uni_char.encode("gb2312"))[1:-1].replace("\\x", "")
+
+    assert isinstance(euc, bytes)
+
+    return euc
 
 
 def python_to_ncr(uni_char, **options):
@@ -242,6 +279,9 @@ def python_to_ncr(uni_char, **options):
         out = repr(uni_char)[4:-1]
         if xmlflag:
             out = "&#x%s;" % out
+
+    assert isinstance(out, bytes)
+
     return out
 
 
@@ -255,6 +295,8 @@ def string_to_ncr(uni_string, **options):
     for char in uni_string:
         if ord(char) > int(128):
             uni_string = uni_string.replace(char, python_to_ncr(char, options=options))
+
+    assert isinstance(uni_string, bytes)
     return uni_string
 
 
@@ -263,12 +305,17 @@ def ncrstring_to_python(ncr_string):
     res = re.findall("&#[x0-9a-fA-F]*?;", ncr_string)
     for r in res:
         ncr_string = ncr_string.replace(r, ncr_to_python(r))
+
+    assert isinstance(ncr_string, bytes)
     return ncr_string
 
 
 def ucnstring_to_unicode(ncr_string):
     """Return ucnstring as Unicode."""
-    return ucnstring_to_python(ncr_string).decode('utf-8')
+    ucn_string = ucnstring_to_python(ncr_string).decode('utf-8')
+
+    assert isinstance(ucn_string, text_type)
+    return ucn_string
 
 
 def ucnstring_to_python(ucn_string):
@@ -277,7 +324,9 @@ def ucnstring_to_python(ucn_string):
     """
     res = re.findall("U\+[0-9a-fA-F]*", ucn_string)
     for r in res:
-        # U+([a-f0-9]+)\b to \U[a-f0-9]{8}
-        ucn_string = ucn_string.replace(text_type(r), text_type(ucn_to_python(r)))
+        ucn_string = ucn_string.replace(text_type(r), text_type(ucn_to_unicode(r)))
 
-    return ucn_string.encode('utf-8')
+    ucn_string = ucn_string.encode('utf-8')
+
+    assert isinstance(ucn_string, bytes)
+    return ucn_string
