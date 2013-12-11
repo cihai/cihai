@@ -133,8 +133,8 @@ def csv_to_table(engine, unihan_csv, table_name, fields):
                 fieldnames=['char', 'field', 'value'],
                 delimiter=delim
             )
-
             r = list(r)
+
             try:
                 results = engine.execute(table.insert(), r)
                 config.set('Unihan_Readings.txt', 'csv_rows', text_type(len(r)))
@@ -147,6 +147,7 @@ def csv_to_table(engine, unihan_csv, table_name, fields):
 
         config.set('Unihan_Readings.txt', 'md5', csv_md5)
         config.write(open(unihan_config, 'w+'))
+    return table
 
 
 class UnihanSQLAlchemyRaw(TestCase):
@@ -171,23 +172,6 @@ class UnihanSQLAlchemyRaw(TestCase):
 
     # @unittest.skip('Postpone until CSV reader decodes and returns Unicode.')
     @unittest.skipUnless(not os.path.exists(sqlite_db), "{0} already exists.".format(sqlite_db))
-    def test_create_data(self):
-
-        if not os.path.exists(sqlite_db):
-            pass
-
-        engine = create_engine('sqlite:///%s' % sqlite_db, echo=False)
-        csv_to_table(
-            engine=engine,
-            unihan_csv=get_datafile('Unihan_Readings.txt'),
-            table_name='Unihan',
-            fields=[
-                ('char', 'string'),
-                ('field', 'string'),
-                ('value', 'string'),
-            ]
-        )
-
     def test_sqlite3_matches_csv(self):
         """Test that sqlite3 data matches rows in CSV."""
 
@@ -201,8 +185,8 @@ class UnihanSQLAlchemyRaw(TestCase):
             fieldnames=['char', 'field', 'value'],
             delimiter=delim
         )
-
-        csv_to_table(
+        self.addCleanup
+        self.table = csv_to_table(
             engine=self.engine,
             unihan_csv=get_datafile('Unihan_Readings.txt'),
             table_name='Unihan',
@@ -221,6 +205,7 @@ class UnihanSQLAlchemyRaw(TestCase):
         )
 
         csv_lines = list(r)  # try just 500
+        self.config.read(unihan_config)
         csv_rowcount = self.config.getint('Unihan_Readings.txt', 'csv_rows')
 
         self.assertEqual(
@@ -248,9 +233,5 @@ class UnihanSQLAlchemyRaw(TestCase):
         """data/unihan.ini exists, has csv item counts and md5 of imported db.
 
         """
-
-        self.assertTrue(os.path.exists(unihan_config))
-
-        engine = create_engine('sqlite:///%s' % sqlite_db, echo=False)
 
         pass
