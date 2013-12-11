@@ -94,10 +94,8 @@ def csv_to_table(engine, csv_file, table_name, fields):
         print('db exists: %s' % sqlite_db)
     try:
         if table.exists():
-            # print('table exists')
             pass
         if not table.exists():
-            # print('table does not exist. create.')
             table.create()
 
             pass
@@ -110,8 +108,6 @@ def csv_to_table(engine, csv_file, table_name, fields):
         delim = b'\t' if PY2 else '\t'
         csvfile = filter(lambda row: row[0] != '#', csvfile)
 
-        #r = UnihanReader(
-        #r = csv.DictReader(
         r = RawReader(
             csvfile,
             fieldnames=['char', 'field', 'value'],
@@ -120,26 +116,8 @@ def csv_to_table(engine, csv_file, table_name, fields):
 
         r = list(r)
 
-        for row in r:
-            rowlines = []
-
-                #rowlines.append(row[key])
-
-        # for row in r:
-            # try:
-                # table.insert().execute(row)
-            # except sqlalchemy.exc.IntegrityError as e:
-                # #print(e)
-                # #raise(e)
-                # pass
-            # except Exception as e:
-                # print(type(row['char']), type(row['field']), type(row['value']))
-                # raise(e)
         if table.select().count().execute().scalar() != len(r):
-
             try:
-                # query = table.insert().values(r)
-                # results = query.execute()
                 results = engine.execute(table.insert(), r)
             except sqlalchemy.exc.IntegrityError as e:
                 raise(e)
@@ -147,10 +125,6 @@ def csv_to_table(engine, csv_file, table_name, fields):
                 raise(e)
         else:
             print('rows populated, all is well!')
-
-        # for row in table.select().execute():
-            # # print(row)
-            # pass
 
         print(
             "csv count: %s    row count: %s" % (
@@ -186,8 +160,6 @@ class UnihanSQLAlchemyRaw(TestCase):
             # py3.3 regression http://bugs.python.org/issue18829
             delim = b'\t' if PY2 else '\t'
             csvfile = filter(lambda row: row[0] != '#', csvfile)
-            #r = UnihanReader(
-            #r = csv.DictReader(
             r = RawReader(
                 csvfile,
                 fieldnames=['char', 'field', 'value'],
@@ -198,6 +170,4 @@ class UnihanSQLAlchemyRaw(TestCase):
             print('\n')
 
             for row in r:
-
-
                 print('%s' % row)
