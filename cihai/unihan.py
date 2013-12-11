@@ -17,6 +17,8 @@ import zipfile
 import csv
 import logging
 
+from sqlalchemy import create_engine, MetaData, Table
+
 from . import conversion
 from ._compat import PY2, text_type
 
@@ -44,6 +46,15 @@ def get_datafile(file_):
 
     """
     return os.path.join(os.path.abspath(os.path.dirname(__file__)), 'data/', file_)
+
+
+def get_table(table_name, engine):
+    sqlite_db = get_datafile('unihan.db')
+    engine = create_engine('sqlite:///%s' % sqlite_db, echo=False)
+    metadata = MetaData(bind=engine)
+    table = Table(table_name, metadata)
+
+    return table
 
 
 class RawReader(csv.DictReader):

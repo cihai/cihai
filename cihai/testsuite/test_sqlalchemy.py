@@ -62,7 +62,19 @@ sqlite_db = get_datafile('unihan.db')
 unihan_config = get_datafile('unihan.conf')
 
 
-def get_table(table_name, fields, engine):
+def create_table(table_name, fields, engine):
+    """Create table and return  :sqlalchemy:class:`sqlalchemy.Table`.
+
+    :param table_name: name of table to create
+    :type table_name: string
+    :param fields: name and type of column to create
+    :type fields: dict
+    :param engine: sqlalchemy engine
+    :type engine: :sqlalchemy:`sqlalchemy.Engine`
+    :returns: Newly created table with columns and index.
+    :rtype: :sqlalchemy:class:`sqlalchemy.Table`
+
+    """
     metadata = MetaData(bind=engine)
     table = Table(table_name, metadata)
 
@@ -70,29 +82,15 @@ def get_table(table_name, fields, engine):
     table.append_column(col)
 
     field_names = [field for (field, t) in fields]
-    field_types = {
-        'string': String(256)
-    }
 
     for (field, type_) in fields:
-        col = Column(field, field_types[type_])
+        col = Column(field, type_)
         table.append_column(col)
-    print(table_name, table, table.fullname, table.indexes)
+
     Index('%s_unique' % table_name, table.c.char, table.c.field, table.c.value, unique=True)
 
-    if os.path.exists(sqlite_db):
-        print('db exists: %s' % sqlite_db)
-    try:
-        if table.exists():
-            pass
-        if not table.exists():
-            table.create()
-
-            pass
-    except Exception as e:
-        print(e)
-        raise(e)
-        # table.create()
+    if not table.exists():
+        table.create()
 
     return table
 
@@ -112,7 +110,7 @@ def csv_to_table(engine, csv_filename, table_name, fields):
 
     """
 
-    table = get_table(table_name, fields, engine)
+    table = create_table(table_name, fields, engine)
     unihan_csv = get_datafile(csv_filename)
 
     with open(unihan_csv, 'r') as csv_file:
@@ -127,9 +125,11 @@ def csv_to_table(engine, csv_filename, table_name, fields):
 
         if (
             not os.path.exists(unihan_config) or
-            not config.has_option(csv_filename, 'csv_rows') or
-            (config.has_option(csv_filename, 'csv_rows') and
-            table.select().count().execute().scalar() != config.getint(csv_filename, 'csv_rows'))
+            not config.has_option(csv_filename, 'csv_rowcount') or
+            (
+                config.has_option(csv_filename, 'csv_rowcount') and
+                table.select().count().execute().scalar() != config.getint(csv_filename, 'csv_rowcount')
+            )
         ):
 
             r = RawReader(
@@ -141,15 +141,15 @@ def csv_to_table(engine, csv_filename, table_name, fields):
 
             try:
                 results = engine.execute(table.insert(), r)
-                config.set(csv_filename, 'csv_rows', text_type(len(r)))
+                config.set(csv_filename, 'csv_rowcount', text_type(len(r)))
             except sqlalchemy.exc.IntegrityError as e:
                 raise(e)
             except Exception as e:
                 raise(e)
         else:
-            print('rows populated, all is well!')
+            log.debug('Rows populated, all is well!')
 
-        config.set(csv_filename, 'md5', csv_md5)
+        config.set(csv_filename, 'csv_md5', csv_md5)
         config_file = open(unihan_config, 'w+')
         config.write(config_file)
         config_file.close()
@@ -165,45 +165,43 @@ class UnihanSQLAlchemyRaw(TestCase):
     def setUp(self):
         self.engine = create_engine('sqlite:///%s' % sqlite_db, echo=False)
         self.metadata = MetaData(bind=self.engine)
-        try:
-            self.table = Table('Unihan', self.metadata, autoload=True)
-        except sqlalchemy.exc.NoSuchTableError as e:
-            self.table = Table('Unihan', self.metadata)
-
-        config = configparser.ConfigParser()
-        config.read(unihan_config)
-        if not config.has_section('Unihan_Readings.txt'):
-            config.add_section('Unihan_Readings.txt')
-        self.config = config
 
     @unittest.skipUnless(not os.path.exists(sqlite_db), "{0} already exists.".format(sqlite_db))
     def test_sqlite3_matches_csv(self):
         """Test that sqlite3 data matches rows in CSV."""
 
-        # pick out random rows in csv, check.
-        # check by total rows in csv and sql table
         csv_files = UNIHAN_FILES
 
         for csv_filename in csv_files:
+            config = configparser.ConfigParser()
+
             with open(get_datafile(csv_filename), 'r') as csv_file:
                 csv_data = filter(lambda row: row[0] != '#', csv_file)
+                table_name = csv_filename.split('.')[0]
                 delim = b'\t' if PY2 else '\t'
                 r = RawReader(
                     csv_data,
                     fieldnames=['char', 'field', 'value'],
                     delimiter=delim
                 )
-                self.addCleanup
                 table = csv_to_table(
                     engine=self.engine,
                     csv_filename=csv_filename,
-                    table_name=csv_filename.split('.')[0],
+                    table_name=table_name,
                     fields=[
-                        ('char', 'string'),
-                        ('field', 'string'),
-                        ('value', 'string'),
+                        ('char', String(256)),
+                        ('field', String(256)),
+                        ('value', String(256)),
                     ]
                 )
+
+                config.read(unihan_config)  # Re-read, csv_to_table edits conf.
+
+                self.assertTrue(config.has_section(csv_filename))
+                self.assertTrue(config.has_option(csv_filename, 'csv_rowcount'))
+                self.assertTrue(config.has_option(csv_filename, 'csv_md5'))
+
+                csv_rowcount = config.getint(csv_filename, 'csv_rowcount')
 
                 b = inspect(table)
 
@@ -213,8 +211,6 @@ class UnihanSQLAlchemyRaw(TestCase):
                 )
 
                 csv_lines = list(r)  # try just 500
-                self.config.read(unihan_config)
-                csv_rowcount = self.config.getint(csv_filename, 'csv_rows')
 
                 self.assertEqual(
                     table.select().count().execute().scalar(),
@@ -235,11 +231,3 @@ class UnihanSQLAlchemyRaw(TestCase):
                         sql_item,
                         tuple([csv_item['char'], csv_item['field'], csv_item['value']])
                     )
-
-    @unittest.skipUnless(not os.path.exists(unihan_config), "{0} already exists.".format(unihan_config))
-    def test_unihan_ini(self):
-        """data/unihan.ini exists, has csv item counts and md5 of imported db.
-
-        """
-
-        pass
