@@ -44,11 +44,12 @@ import os
 import tempfile
 import logging
 import csv
+import random
 
 import sqlalchemy
 
 from sqlalchemy import create_engine, MetaData, Table, Column, Integer, \
-    String, Index, inspect, and_
+    String, Index, inspect, and_, select
 
 from .helpers import TestCase, unittest
 from .._compat import PY2, text_type
@@ -202,17 +203,17 @@ class UnihanSQLAlchemyRaw(TestCase):
             csv_rowcount
         )
 
-        import random
-
         random_items = [random.choice(csv_lines) for i in range(10)]
 
         for csv_item in random_items:
-            sql_item = self.table.select().where(and_(
+            sql_item = select([
+                self.table.c.char, self.table.c.field, self.table.c.value
+            ]).where(and_(
                 self.table.c.char == csv_item['char'],
                 self.table.c.field == csv_item['field']
             )).execute().fetchone()
 
-            print(sql_item)
+            self.assertEqual(sql_item, tuple(csv_item.values()))
 
     def test_unihan_ini(self):
         """data/unihan.ini exists, has csv item counts and md5 of imported db.
