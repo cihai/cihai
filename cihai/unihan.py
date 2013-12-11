@@ -63,7 +63,9 @@ class RawReader(csv.DictReader):
 
     def row(self, row):
         for key in row.keys():
-            row[key] = text_type(row[key].decode('utf-8'))
+            #row[key] = text_type(row[key].encode('utf-8'))
+            if not isinstance(row[key], text_type):
+                row[key] = text_type(row[key].decode('utf-8'))
 
         return row
 

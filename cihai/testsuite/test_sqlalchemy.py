@@ -197,7 +197,9 @@ class UnihanSQLAlchemyRaw(TestCase):
         b = inspect(self.table)
 
         self.assertEqual(len(b.columns), 4)
-        self.assertEqual([c.name for c in b.columns], ['id', 'char', 'field', 'value'])
+        self.assertEqual(
+            [c.name for c in b.columns], ['id', 'char', 'field', 'value']
+        )
 
         self.assertEqual(
             self.table.select().count().execute().scalar(),

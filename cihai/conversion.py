@@ -138,16 +138,7 @@ def ucn_to_unicode(ucn):
     return char
 
 
-def ucn_to_python(ucn):
-    """Convert a Unicode Universal Character Number (e.g. "U+4E00" or "4E00") to Python unicode (u'\\u4e00')"""
-    ucn = ucn_to_unicode(ucn).encode('unicode_escape')
-
-    assert isinstance(ucn, bytes)
-
-    return ucn
-
-
-def euc_to_python(hexstr):
+def euc_to_unicode(hexstr):
     """Return EUC-CN (GB2312) hex to a Python unicode bytestring.
 
     :param hexstr: bytestring
@@ -179,17 +170,10 @@ def euc_to_python(hexstr):
                                               # text_type in 2.7
     gb_enc = gb_enc.encode('latin1')
 
-    gb_enc = gb_enc.decode('gb2312').encode('unicode_escape')
+    gb_enc = gb_enc.decode('gb2312')
 
-    assert isinstance(gb_enc, bytes)
+    assert isinstance(gb_enc, text_type)
     return gb_enc
-
-
-def euc_to_unicode(hexstr):
-    hexstr = euc_to_python(hexstr).decode('unicode_escape')
-
-    assert isinstance(hexstr, text_type)
-    return hexstr
 
 
 def ncr_to_python(ncr):

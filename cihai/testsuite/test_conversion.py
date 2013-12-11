@@ -51,42 +51,11 @@ class UCN(TestCase):
     # U+34B5	kMandarin	mào
     # U+356D	kCantonese	au3 jaau1
 
-    def test_from_python(self):
-        text = '一'
-        python_unicode = u'\u4e00'
-
-        pass
-
     def test_from_unicode(self):
         text = '一'
         python_unicode = u'\u4e00'
 
         pass
-
-    def test_to_python(self):
-        # U+349A	kDefinition	(same as U+7A69 穩) firm; stable; secure, dependent upon others
-        before = '(same as U+7A69 穩) firm; stable; secure'
-        expected = b'(same as \xe7\xa9\xa9 \xe7\xa9\xa9) firm; stable; secure'
-
-        after = conversion.ucnstring_to_python(before)
-
-        self.assertEqual(
-            expected,
-            after
-        )
-        self.assertIsInstance(after, bytes)
-
-        before = 'U+4E00'
-        expected = b'\xe4\xb8\x80'
-
-        after = conversion.ucnstring_to_python(before)
-
-        self.assertEqual(
-            expected,
-            after
-        )
-
-        self.assertIsInstance(after, bytes)
 
     def test_to_unicode(self):
         before = 'U+4E00'
@@ -134,34 +103,11 @@ class EUC(TestCase):
 
     """
 
-    def test_from_python(self):
-        text = '一'
-        python_unicode = u'\u4e00'
-
-        pass
-
     def test_from_unicode(self):
         text = '一'
         python_unicode = u'\u4e00'
 
         pass
-
-    def test_to_python(self):
-        text = '一'
-        python_text = u'\u4e00'
-        python_bytestring = b'\u4e00'
-        euc_bytestring = b'd2bb'
-
-        self.assertEqual(text, python_text)
-        self.assertIsInstance(
-            conversion.euc_to_python(euc_bytestring),
-            bytes
-        )
-
-        self.assertEqual(
-            conversion.euc_to_python(euc_bytestring),
-            python_bytestring
-        )
 
     def test_to_unicode(self):
         text = '一'
@@ -203,19 +149,9 @@ class NCR(TestCase):
 
     """
 
-    def test_from_python(self):
-        text = '一'
-        python_unicode = u'\u4e00'
-
-        pass
-
     def test_from_unicode(self):
         text = '一'
         python_unicode = u'\u4e00'
-
-        pass
-
-    def test_to_python(self):
 
         pass
 
