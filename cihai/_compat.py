@@ -19,6 +19,7 @@ if not PY2:
 
     from io import StringIO, BytesIO
     import pickle
+    import configparser
 
     izip = zip
     imap = map
@@ -41,6 +42,7 @@ else:
     from cStringIO import StringIO as BytesIO
     from StringIO import StringIO
     import cPickle as pickle
+    import ConfigParser as configparser
 
     from itertools import izip, imap
     range_type = xrange
