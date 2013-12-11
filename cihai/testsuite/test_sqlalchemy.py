@@ -213,7 +213,7 @@ class UnihanSQLAlchemyRaw(TestCase):
                 self.table.c.field == csv_item['field']
             )).execute().fetchone()
 
-            self.assertEqual(sql_item, tuple(csv_item.values()))
+            self.assertEqual(sql_item, tuple([csv_item['char'], csv_item['field'], csv_item['value']]))
 
     def test_unihan_ini(self):
         """data/unihan.ini exists, has csv item counts and md5 of imported db.
