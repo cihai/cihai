@@ -33,6 +33,8 @@ integrity.
 
 If no unihan.db or unihan_info.ini exist, unihan.db will be repopulated.
 
+TestCase will then be able to pull from UnihanRaw data via SQLAlchemy.
+
 """
 
 from __future__ import absolute_import, division, print_function, \
@@ -46,7 +48,7 @@ import csv
 import sqlalchemy
 
 from sqlalchemy import create_engine, MetaData, Table, Column, Integer, \
-    String, Index
+    String, Index, inspect
 
 from .helpers import TestCase, unittest
 from .._compat import PY2, text_type
@@ -57,23 +59,8 @@ log = logging.getLogger(__name__)
 sqlite_db = get_datafile('unihan.db')
 
 
-def csv_to_table(engine, csv_file, table_name, fields):
-    """Create table from CSV.
-
-    :param engine: sqlalchemy engine
-    :type engine: :sqlalchemy:class:`sqlalchemy.engine.Engine`
-    :param csv_file: csv file
-    :type csv_file: string
-    :param table_name: name of table
-    :type table_name: string
-    :param fields: csv / table fields and sqlalchemy type.
-        from ``sqlalchemy.types``.
-    :type fields: tuple
-
-    """
-
+def get_table(table_name, fields, engine):
     metadata = MetaData(bind=engine)
-
     table = Table(table_name, metadata)
 
     col = Column('id', Integer, primary_key=True)
@@ -103,10 +90,30 @@ def csv_to_table(engine, csv_file, table_name, fields):
         print(e)
         table.create()
 
+    return table
+
+
+def csv_to_table(engine, csv_file, table_name, fields):
+    """Create table from CSV.
+
+    :param engine: sqlalchemy engine
+    :type engine: :sqlalchemy:class:`sqlalchemy.engine.Engine`
+    :param csv_file: csv file
+    :type csv_file: string
+    :param table_name: name of table
+    :type table_name: string
+    :param fields: csv / table fields and sqlalchemy type.
+        from ``sqlalchemy.types``.
+    :type fields: tuple
+
+    """
+
+    table = get_table(table_name, fields, engine)
+
     with open(csv_file, 'r') as csvfile:
 
-        delim = b'\t' if PY2 else '\t'
         csvfile = filter(lambda row: row[0] != '#', csvfile)
+        delim = b'\t' if PY2 else '\t'
 
         r = RawReader(
             csvfile,
@@ -136,7 +143,14 @@ def csv_to_table(engine, csv_file, table_name, fields):
 
 class UnihanSQLAlchemyRaw(TestCase):
 
-    """Dump the Raw Unihan CSV's into SQLite database."""
+    """Dump the Raw Unihan CSV's into SQLite database.
+
+    Should have decorator not to run if unihan.db exists.
+    """
+    def setUp(self):
+        self.engine = create_engine('sqlite:///%s' % sqlite_db, echo=False)
+        self.metadata = MetaData(bind=self.engine)
+        self.table = Table('Unihan', self.metadata, autoload=True)
 
     # @unittest.skip('Postpone until CSV reader decodes and returns Unicode.')
     def test_create_data(self):
@@ -158,16 +172,43 @@ class UnihanSQLAlchemyRaw(TestCase):
 
         with open(get_datafile('Unihan_Readings.txt'), 'r') as csvfile:
             # py3.3 regression http://bugs.python.org/issue18829
-            delim = b'\t' if PY2 else '\t'
             csvfile = filter(lambda row: row[0] != '#', csvfile)
+            delim = b'\t' if PY2 else '\t'
             r = RawReader(
                 csvfile,
                 fieldnames=['char', 'field', 'value'],
                 delimiter=delim
             )
 
-            r = list(r)[:5]
-            print('\n')
+    def test_sqlite3_matches_csv(self):
+        """Test that sqlite3 data matches rows in CSV."""
 
-            for row in r:
-                print('%s' % row)
+        # pick out random rows in csv, check.
+        # check by total rows in csv and sql table
+        csvfile = open(get_datafile('Unihan_Readings.txt'), 'r')
+        csvfile = filter(lambda row: row[0] != '#', csvfile)
+        delim = b'\t' if PY2 else '\t'
+        r = RawReader(
+            csvfile,
+            fieldnames=['char', 'field', 'value'],
+            delimiter=delim
+        )
+
+        b = inspect(self.table)
+
+        self.assertEqual(len(b.columns), 4)
+        self.assertEqual([c.name for c in b.columns], ['id', 'char', 'field', 'value'])
+
+        self.assertEqual(
+            self.table.select().count().execute().scalar(),
+            len(list(r))
+        )
+
+    def test_unihan_ini(self):
+        """data/unihan.ini exists, has csv item counts and md5 of imported db.
+
+        """
+
+        engine = create_engine('sqlite:///%s' % sqlite_db, echo=False)
+
+        pass
