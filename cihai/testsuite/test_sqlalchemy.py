@@ -54,7 +54,7 @@ from sqlalchemy import create_engine, MetaData, Table, Column, Integer, \
 
 from .helpers import TestCase, unittest
 from .._compat import PY2, text_type, configparser
-from ..unihan import get_datafile, UnihanReader, RawReader
+from ..unihan import get_datafile, UnihanReader, RawReader, UNIHAN_FILES
 
 log = logging.getLogger(__name__)
 
@@ -77,8 +77,8 @@ def get_table(table_name, fields, engine):
     for (field, type_) in fields:
         col = Column(field, field_types[type_])
         table.append_column(col)
-
-    Index('unique', table.c.char, table.c.field, table.c.value, unique=True)
+    print(table_name, table, table.fullname, table.indexes)
+    Index('%s_unique' % table_name, table.c.char, table.c.field, table.c.value, unique=True)
 
     if os.path.exists(sqlite_db):
         print('db exists: %s' % sqlite_db)
@@ -91,7 +91,8 @@ def get_table(table_name, fields, engine):
             pass
     except Exception as e:
         print(e)
-        table.create()
+        raise(e)
+        # table.create()
 
     return table
 
@@ -116,7 +117,7 @@ def csv_to_table(engine, csv_filename, table_name, fields):
 
     with open(unihan_csv, 'r') as csv_file:
         csv_md5 = hashlib.sha256(unihan_csv.encode('utf-8')).hexdigest()
-        csv_file = filter(lambda row: row[0] != '#', csv_file)
+        csv_data = filter(lambda row: row[0] != '#', csv_file)
         delim = b'\t' if PY2 else '\t'
 
         config = configparser.ConfigParser()
@@ -126,11 +127,13 @@ def csv_to_table(engine, csv_filename, table_name, fields):
 
         if (
             not os.path.exists(unihan_config) or
-            table.select().count().execute().scalar() != config.getint(csv_filename, 'csv_rows')
+            not config.has_option(csv_filename, 'csv_rows') or
+            (config.has_option(csv_filename, 'csv_rows') and
+            table.select().count().execute().scalar() != config.getint(csv_filename, 'csv_rows'))
         ):
 
             r = RawReader(
-                csv_file,
+                csv_data,
                 fieldnames=['char', 'field', 'value'],
                 delimiter=delim
             )
@@ -179,56 +182,59 @@ class UnihanSQLAlchemyRaw(TestCase):
 
         # pick out random rows in csv, check.
         # check by total rows in csv and sql table
-        csv_file = open(get_datafile('Unihan_Readings.txt'), 'r')
-        csv_file = filter(lambda row: row[0] != '#', csv_file)
-        delim = b'\t' if PY2 else '\t'
-        r = RawReader(
-            csv_file,
-            fieldnames=['char', 'field', 'value'],
-            delimiter=delim
-        )
-        self.addCleanup
-        self.table = csv_to_table(
-            engine=self.engine,
-            csv_filename='Unihan_Readings.txt',
-            table_name='Unihan',
-            fields=[
-                ('char', 'string'),
-                ('field', 'string'),
-                ('value', 'string'),
-            ]
-        )
+        csv_files = UNIHAN_FILES
 
-        b = inspect(self.table)
+        for csv_filename in csv_files:
+            with open(get_datafile(csv_filename), 'r') as csv_file:
+                csv_data = filter(lambda row: row[0] != '#', csv_file)
+                delim = b'\t' if PY2 else '\t'
+                r = RawReader(
+                    csv_data,
+                    fieldnames=['char', 'field', 'value'],
+                    delimiter=delim
+                )
+                self.addCleanup
+                table = csv_to_table(
+                    engine=self.engine,
+                    csv_filename=csv_filename,
+                    table_name=csv_filename.split('.')[0],
+                    fields=[
+                        ('char', 'string'),
+                        ('field', 'string'),
+                        ('value', 'string'),
+                    ]
+                )
 
-        self.assertEqual(len(b.columns), 4)
-        self.assertEqual(
-            [c.name for c in b.columns], ['id', 'char', 'field', 'value']
-        )
+                b = inspect(table)
 
-        csv_lines = list(r)  # try just 500
-        self.config.read(unihan_config)
-        csv_rowcount = self.config.getint('Unihan_Readings.txt', 'csv_rows')
+                self.assertEqual(len(b.columns), 4)
+                self.assertEqual(
+                    [c.name for c in b.columns], ['id', 'char', 'field', 'value']
+                )
 
-        self.assertEqual(
-            self.table.select().count().execute().scalar(),
-            csv_rowcount
-        )
+                csv_lines = list(r)  # try just 500
+                self.config.read(unihan_config)
+                csv_rowcount = self.config.getint(csv_filename, 'csv_rows')
 
-        random_items = [random.choice(csv_lines) for i in range(10)]
+                self.assertEqual(
+                    table.select().count().execute().scalar(),
+                    csv_rowcount
+                )
 
-        for csv_item in random_items:
-            sql_item = select([
-                self.table.c.char, self.table.c.field, self.table.c.value
-            ]).where(and_(
-                self.table.c.char == csv_item['char'],
-                self.table.c.field == csv_item['field']
-            )).execute().fetchone()
+                random_items = [random.choice(csv_lines) for i in range(10)]
 
-            self.assertEqual(
-                sql_item,
-                tuple([csv_item['char'], csv_item['field'], csv_item['value']])
-            )
+                for csv_item in random_items:
+                    sql_item = select([
+                        table.c.char, table.c.field, table.c.value
+                    ]).where(and_(
+                        table.c.char == csv_item['char'],
+                        table.c.field == csv_item['field']
+                    )).execute().fetchone()
+
+                    self.assertEqual(
+                        sql_item,
+                        tuple([csv_item['char'], csv_item['field'], csv_item['value']])
+                    )
 
     @unittest.skipUnless(not os.path.exists(unihan_config), "{0} already exists.".format(unihan_config))
     def test_unihan_ini(self):
