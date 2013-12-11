@@ -150,7 +150,10 @@ class UnihanSQLAlchemyRaw(TestCase):
     def setUp(self):
         self.engine = create_engine('sqlite:///%s' % sqlite_db, echo=False)
         self.metadata = MetaData(bind=self.engine)
-        self.table = Table('Unihan', self.metadata, autoload=True)
+        try:
+            self.table = Table('Unihan', self.metadata, autoload=True)
+        except sqlalchemy.exc.NoSuchTableError as e:
+            self.table = Table('Unihan', self.metadata)
 
     # @unittest.skip('Postpone until CSV reader decodes and returns Unicode.')
     def test_create_data(self):
@@ -170,15 +173,6 @@ class UnihanSQLAlchemyRaw(TestCase):
             ]
         )
 
-        with open(get_datafile('Unihan_Readings.txt'), 'r') as csvfile:
-            # py3.3 regression http://bugs.python.org/issue18829
-            csvfile = filter(lambda row: row[0] != '#', csvfile)
-            delim = b'\t' if PY2 else '\t'
-            r = RawReader(
-                csvfile,
-                fieldnames=['char', 'field', 'value'],
-                delimiter=delim
-            )
 
     def test_sqlite3_matches_csv(self):
         """Test that sqlite3 data matches rows in CSV."""
@@ -201,9 +195,12 @@ class UnihanSQLAlchemyRaw(TestCase):
             [c.name for c in b.columns], ['id', 'char', 'field', 'value']
         )
 
+        csv_lines = list(r)
+        csv_rowcount = len(csv_lines)
+
         self.assertEqual(
             self.table.select().count().execute().scalar(),
-            len(list(r))
+            csv_rowcount
         )
 
     def test_unihan_ini(self):
