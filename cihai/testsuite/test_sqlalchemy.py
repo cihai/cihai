@@ -146,7 +146,9 @@ def csv_to_table(engine, unihan_csv, table_name, fields):
             print('rows populated, all is well!')
 
         config.set('Unihan_Readings.txt', 'md5', csv_md5)
-        config.write(open(unihan_config, 'w+'))
+        config_file = open(unihan_config, 'w+')
+        config.write(config_file)
+        config_file.close()
     return table
 
 
@@ -170,7 +172,6 @@ class UnihanSQLAlchemyRaw(TestCase):
             config.add_section('Unihan_Readings.txt')
         self.config = config
 
-    # @unittest.skip('Postpone until CSV reader decodes and returns Unicode.')
     @unittest.skipUnless(not os.path.exists(sqlite_db), "{0} already exists.".format(sqlite_db))
     def test_sqlite3_matches_csv(self):
         """Test that sqlite3 data matches rows in CSV."""

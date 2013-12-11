@@ -16,7 +16,7 @@ import os
 import tempfile
 import logging
 
-from .helpers import TestCase
+from .helpers import TestCase, unittest
 from .._compat import PY2, text_type
 from ..unihan import get_datafile, UnihanReader
 
@@ -35,6 +35,7 @@ class UnihanData(TestCase):
 
 class UnihanDataCSV(TestCase):
 
+    @unittest.skip('Wait until helper TestCase is implemented.')
     def test_print_top(self):
         with open(get_datafile('Unihan_Readings.txt'), 'r') as csvfile:
             # py3.3 regression http://bugs.python.org/issue18829
