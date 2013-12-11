@@ -96,7 +96,7 @@ def get_table(table_name, fields, engine):
     return table
 
 
-def csv_to_table(engine, csv_file, table_name, fields):
+def csv_to_table(engine, unihan_csv, table_name, fields):
     """Create table from CSV.
 
     :param engine: sqlalchemy engine
@@ -113,9 +113,9 @@ def csv_to_table(engine, csv_file, table_name, fields):
 
     table = get_table(table_name, fields, engine)
 
-    with open(csv_file, 'r') as csvfile:
-        csv_md5 = hashlib.sha256(csv_file.encode('utf-8')).hexdigest()
-        csvfile = filter(lambda row: row[0] != '#', csvfile)
+    with open(unihan_csv, 'r') as csv_file:
+        csv_md5 = hashlib.sha256(unihan_csv.encode('utf-8')).hexdigest()
+        csv_file = filter(lambda row: row[0] != '#', csv_file)
         delim = b'\t' if PY2 else '\t'
 
         config = configparser.ConfigParser()
@@ -123,10 +123,13 @@ def csv_to_table(engine, csv_file, table_name, fields):
         if not config.has_section('Unihan_Readings.txt'):
             config.add_section('Unihan_Readings.txt')
 
-        if table.select().count().execute().scalar() != config.getint('Unihan_Readings.txt', 'csv_rows'):
+        if (
+            not os.path.exists(unihan_config) or
+            table.select().count().execute().scalar() != config.getint('Unihan_Readings.txt', 'csv_rows')
+        ):
 
             r = RawReader(
-                csvfile,
+                csv_file,
                 fieldnames=['char', 'field', 'value'],
                 delimiter=delim
             )
@@ -176,7 +179,7 @@ class UnihanSQLAlchemyRaw(TestCase):
         engine = create_engine('sqlite:///%s' % sqlite_db, echo=False)
         csv_to_table(
             engine=engine,
-            csv_file=get_datafile('Unihan_Readings.txt'),
+            unihan_csv=get_datafile('Unihan_Readings.txt'),
             table_name='Unihan',
             fields=[
                 ('char', 'string'),
@@ -190,13 +193,24 @@ class UnihanSQLAlchemyRaw(TestCase):
 
         # pick out random rows in csv, check.
         # check by total rows in csv and sql table
-        csvfile = open(get_datafile('Unihan_Readings.txt'), 'r')
-        csvfile = filter(lambda row: row[0] != '#', csvfile)
+        csv_file = open(get_datafile('Unihan_Readings.txt'), 'r')
+        csv_file = filter(lambda row: row[0] != '#', csv_file)
         delim = b'\t' if PY2 else '\t'
         r = RawReader(
-            csvfile,
+            csv_file,
             fieldnames=['char', 'field', 'value'],
             delimiter=delim
+        )
+
+        csv_to_table(
+            engine=self.engine,
+            unihan_csv=get_datafile('Unihan_Readings.txt'),
+            table_name='Unihan',
+            fields=[
+                ('char', 'string'),
+                ('field', 'string'),
+                ('value', 'string'),
+            ]
         )
 
         b = inspect(self.table)
@@ -234,6 +248,8 @@ class UnihanSQLAlchemyRaw(TestCase):
         """data/unihan.ini exists, has csv item counts and md5 of imported db.
 
         """
+
+        self.assertTrue(os.path.exists(unihan_config))
 
         engine = create_engine('sqlite:///%s' % sqlite_db, echo=False)
 
