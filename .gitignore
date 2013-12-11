@@ -41,3 +41,5 @@ nosetests.xml
 cihai/data/*
 
 doc/_build
+
+.ropeproject
