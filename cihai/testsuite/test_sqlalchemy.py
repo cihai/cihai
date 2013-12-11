@@ -123,8 +123,6 @@ def csv_to_table(engine, csv_file, table_name, fields):
         if not config.has_section('Unihan_Readings.txt'):
             config.add_section('Unihan_Readings.txt')
 
-
-
         if table.select().count().execute().scalar() != config.getint('Unihan_Readings.txt', 'csv_rows'):
 
             r = RawReader(
@@ -148,12 +146,6 @@ def csv_to_table(engine, csv_file, table_name, fields):
         config.write(open(unihan_config, 'w+'))
 
 
-def skipIfUnihanDbExists(func):
-    # todo update for py2.7
-    if not os.path.exists(sqlite_db):
-        return lambda func: func
-    return unittest.skip("Skipping because unihan db exists")
-
 class UnihanSQLAlchemyRaw(TestCase):
 
     """Dump the Raw Unihan CSV's into SQLite database.
@@ -175,6 +167,7 @@ class UnihanSQLAlchemyRaw(TestCase):
         self.config = config
 
     # @unittest.skip('Postpone until CSV reader decodes and returns Unicode.')
+    @unittest.skipUnless(not os.path.exists(sqlite_db), "{0} already exists.".format(sqlite_db))
     def test_create_data(self):
 
         if not os.path.exists(sqlite_db):
@@ -236,6 +229,7 @@ class UnihanSQLAlchemyRaw(TestCase):
                 tuple([csv_item['char'], csv_item['field'], csv_item['value']])
             )
 
+    @unittest.skipUnless(not os.path.exists(unihan_config), "{0} already exists.".format(unihan_config))
     def test_unihan_ini(self):
         """data/unihan.ini exists, has csv item counts and md5 of imported db.
 
