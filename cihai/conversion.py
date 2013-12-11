@@ -170,7 +170,7 @@ def euc_to_unicode(hexstr):
                                               # text_type in 2.7
     gb_enc = gb_enc.encode('latin1')
 
-    gb_enc = gb_enc.decode('gb2312').encode('unicode_escape')
+    gb_enc = gb_enc.decode('gb2312')
 
     assert isinstance(gb_enc, text_type)
     return gb_enc
