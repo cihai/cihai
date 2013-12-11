@@ -96,13 +96,13 @@ def get_table(table_name, fields, engine):
     return table
 
 
-def csv_to_table(engine, unihan_csv, table_name, fields):
+def csv_to_table(engine, csv_filename, table_name, fields):
     """Create table from CSV.
 
     :param engine: sqlalchemy engine
     :type engine: :sqlalchemy:class:`sqlalchemy.engine.Engine`
-    :param csv_file: csv file
-    :type csv_file: string
+    :param csv_filename: csv file name inside data, e.g. ``Unihan_Readings.txt``.
+    :type csv_filename: string
     :param table_name: name of table
     :type table_name: string
     :param fields: csv / table fields and sqlalchemy type.
@@ -112,6 +112,7 @@ def csv_to_table(engine, unihan_csv, table_name, fields):
     """
 
     table = get_table(table_name, fields, engine)
+    unihan_csv = get_datafile(csv_filename)
 
     with open(unihan_csv, 'r') as csv_file:
         csv_md5 = hashlib.sha256(unihan_csv.encode('utf-8')).hexdigest()
@@ -120,12 +121,12 @@ def csv_to_table(engine, unihan_csv, table_name, fields):
 
         config = configparser.ConfigParser()
         config.read(unihan_config)
-        if not config.has_section('Unihan_Readings.txt'):
-            config.add_section('Unihan_Readings.txt')
+        if not config.has_section(csv_filename):
+            config.add_section(csv_filename)
 
         if (
             not os.path.exists(unihan_config) or
-            table.select().count().execute().scalar() != config.getint('Unihan_Readings.txt', 'csv_rows')
+            table.select().count().execute().scalar() != config.getint(csv_filename, 'csv_rows')
         ):
 
             r = RawReader(
@@ -137,7 +138,7 @@ def csv_to_table(engine, unihan_csv, table_name, fields):
 
             try:
                 results = engine.execute(table.insert(), r)
-                config.set('Unihan_Readings.txt', 'csv_rows', text_type(len(r)))
+                config.set(csv_filename, 'csv_rows', text_type(len(r)))
             except sqlalchemy.exc.IntegrityError as e:
                 raise(e)
             except Exception as e:
@@ -145,7 +146,7 @@ def csv_to_table(engine, unihan_csv, table_name, fields):
         else:
             print('rows populated, all is well!')
 
-        config.set('Unihan_Readings.txt', 'md5', csv_md5)
+        config.set(csv_filename, 'md5', csv_md5)
         config_file = open(unihan_config, 'w+')
         config.write(config_file)
         config_file.close()
@@ -189,7 +190,7 @@ class UnihanSQLAlchemyRaw(TestCase):
         self.addCleanup
         self.table = csv_to_table(
             engine=self.engine,
-            unihan_csv=get_datafile('Unihan_Readings.txt'),
+            csv_filename='Unihan_Readings.txt',
             table_name='Unihan',
             fields=[
                 ('char', 'string'),
