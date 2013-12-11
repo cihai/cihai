@@ -88,11 +88,12 @@ import zipfile
 UNIHAN_DATAFILE = os.path.join(datadir, 'Unihan.zip')
 if not glob.glob(os.path.join(datadir, 'Unihan*.txt')):
     if not os.path.exists(os.path.join(datadir, 'Unihan.zip')):
+        print('Downloading Unihan.zip...')
         save(UNIHAN_URL, UNIHAN_DATAFILE)
     try:
         z = zipfile.ZipFile(UNIHAN_DATAFILE)
     except zipfile.BadZipfile as e:
-        print('%s. Unihan.zip incomplete or corrupt. Redownloading.' % e)
+        print('%s. Unihan.zip incomplete or corrupt. Redownloading...' % e)
         save(UNIHAN_URL, UNIHAN_DATAFILE)
         z = zipfile.ZipFile(UNIHAN_DATAFILE)
     z.extractall(datadir)
