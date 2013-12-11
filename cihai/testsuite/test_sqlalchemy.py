@@ -7,6 +7,32 @@ cihai.testsuite.test_sqlalchemy
 :copyright: Copyright 2013 Tony Narlock.
 :license: BSD, see LICENSE for details
 
+Raw CSV Import
+--------------
+
+To aid in developing, CSV's will be dumped into a sqlite file for speed.
+
+To properly test the unihan.db created is accurate, raw CSV's will md5'd, lines
+counted and info stored to data/unihan_info.ini.
+
+Then dumped raw into sqlite databases.
+
+Tests are made to verify the RawCSVImporter:
+
+- Retrieves the total number of items from CSV (excluding comments).
+- Retrieves MD5 sum of file
+- Saves both to data/unihan_info.ini
+- All rows are added, the CSV row count matches with the table count.
+- Data is consistent, untouched from CSV format (no encoding/decoding).
+
+TestCase Helper
+---------------
+
+The CSV row count will be checked against the unihan.db row count to verify
+integrity.
+
+If no unihan.db or unihan_info.ini exist, unihan.db will be repopulated.
+
 """
 
 from __future__ import absolute_import, division, print_function, \
@@ -15,6 +41,8 @@ from __future__ import absolute_import, division, print_function, \
 import os
 import tempfile
 import logging
+
+import sqlalchemy
 
 from sqlalchemy import create_engine, MetaData, Table, Column, Integer, \
     String, Index
@@ -59,7 +87,7 @@ def csv_to_table(engine, csv_file, table_name, fields):
         col = Column(field, field_types[type_])
         table.append_column(col)
 
-    Index('unique', table.c.char, table.c.char, table.c.value, unique=True)
+    Index('unique', table.c.char, table.c.field, table.c.value, unique=True)
 
     if os.path.exists(sqlite_db):
         print('db exists: %s' % sqlite_db)
@@ -86,27 +114,54 @@ def csv_to_table(engine, csv_file, table_name, fields):
             delimiter=delim
         )
 
-        r = list(r)[:500]
+        r = list(r)
 
-        for row in r:
+        # for row in r:
+            # try:
+                # table.insert().execute(row)
+            # except sqlalchemy.exc.IntegrityError as e:
+                # #print(e)
+                # #raise(e)
+                # pass
+            # except Exception as e:
+                # print(type(row['char']), type(row['field']), type(row['value']))
+                # raise(e)
+        if table.select().count().execute().scalar() != len(r):
+
             try:
-                table.insert().execute(row)
+                # query = table.insert().values(r)
+                # results = query.execute()
+                results = engine.execute(table.insert(), r)
+            except sqlalchemy.exc.IntegrityError as e:
+                raise(e)
             except Exception as e:
-                print(e)
-                print(row)
-                print(type(row['char']), type(row['field']), type(row['value']))
-            #table.insert().execute(dict(zip(field_names, row)))
+                raise(e)
+        else:
+            print('rows populated, all is well!')
+
+        # for row in table.select().execute():
+            # # print(row)
+            # pass
+
+        print(
+            "csv count: %s    row count: %s" % (
+                len(r),
+                table.select().count().execute().scalar()
+            )
+        )
 
 
-class UnihanSQLAlchemy(TestCase):
+class UnihanSQLAlchemyRaw(TestCase):
 
-    @unittest.skip('Postpone until CSV reader decodes and returns Unicode')
+    """Dump the Raw Unihan CSV's into SQLite database."""
+
+    # @unittest.skip('Postpone until CSV reader decodes and returns Unicode.')
     def test_create_data(self):
 
         if not os.path.exists(sqlite_db):
             pass
 
-        engine = create_engine('sqlite:///%s' % sqlite_db, echo=True)
+        engine = create_engine('sqlite:///%s' % sqlite_db, echo=False)
         csv_to_table(
             engine=engine,
             csv_file=get_datafile('Unihan_Readings.txt'),
