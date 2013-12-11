@@ -41,6 +41,7 @@ from __future__ import absolute_import, division, print_function, \
 import os
 import tempfile
 import logging
+import csv
 
 import sqlalchemy
 
@@ -48,8 +49,8 @@ from sqlalchemy import create_engine, MetaData, Table, Column, Integer, \
     String, Index
 
 from .helpers import TestCase, unittest
-from .._compat import PY2
-from ..unihan import get_datafile, UnihanReader
+from .._compat import PY2, text_type
+from ..unihan import get_datafile, UnihanReader, RawReader
 
 log = logging.getLogger(__name__)
 
@@ -108,13 +109,21 @@ def csv_to_table(engine, csv_file, table_name, fields):
 
         delim = b'\t' if PY2 else '\t'
         csvfile = filter(lambda row: row[0] != '#', csvfile)
-        r = UnihanReader(
+
+        #r = UnihanReader(
+        #r = csv.DictReader(
+        r = RawReader(
             csvfile,
             fieldnames=['char', 'field', 'value'],
             delimiter=delim
         )
 
         r = list(r)
+
+        for row in r:
+            rowlines = []
+
+                #rowlines.append(row[key])
 
         # for row in r:
             # try:
@@ -177,7 +186,9 @@ class UnihanSQLAlchemyRaw(TestCase):
             # py3.3 regression http://bugs.python.org/issue18829
             delim = b'\t' if PY2 else '\t'
             csvfile = filter(lambda row: row[0] != '#', csvfile)
-            r = UnihanReader(
+            #r = UnihanReader(
+            #r = csv.DictReader(
+            r = RawReader(
                 csvfile,
                 fieldnames=['char', 'field', 'value'],
                 delimiter=delim
@@ -187,12 +198,6 @@ class UnihanSQLAlchemyRaw(TestCase):
             print('\n')
 
             for row in r:
-                rowlines = []
-                for key in row.keys():
-                    rowlines.append(row[key])
-                try:
-                    rowline = '\t'.join(rowlines)
-                except UnicodeDecodeError as e:
-                    log.info('row: %s (%s) gives:\n%s' % (row, row['char'], e))
 
-                print('%s' % rowline)
+
+                print('%s' % row)

@@ -46,6 +46,28 @@ def get_datafile(file_):
     return os.path.join(os.path.abspath(os.path.dirname(__file__)), 'data/', file_)
 
 
+class RawReader(csv.DictReader):
+    """Read from Unihan CSV resource."""
+    def __init__(self, *args, **kwargs):
+        csv.DictReader.__init__(self, *args, **kwargs)
+
+    def __next__(self):
+        row = csv.DictReader.__next__(self)
+
+        return self.row(row)
+
+    def next(self):
+        row = csv.DictReader.next(self)
+
+        return self.row(row)
+
+    def row(self, row):
+        for key in row.keys():
+            row[key] = text_type(row[key].decode('utf-8'))
+
+        return row
+
+
 class UnihanReader(csv.DictReader):
     """Read from Unihan CSV resource."""
     def __init__(self, *args, **kwargs):
