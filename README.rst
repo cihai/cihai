@@ -1,5 +1,14 @@
 ``cihai`` - China fit in to a python package.
 
+Status
+------
+
+Being built against unit tests. See the `Travis Builds`_ and
+`Revision History`_.
+
+.. _Travis Builds: https://travis-ci.org/tony/cihai/builds
+.. _Revision History: https://github.com/tony/cihai/commits/master
+
 Features
 --------
 
