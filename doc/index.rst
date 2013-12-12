@@ -15,5 +15,3 @@ China in a python package.
     api
     history
     roadmap
-
-.. _Unihan: http://www.unicode.org/charts/unihan.html
