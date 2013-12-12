@@ -52,7 +52,7 @@ import sqlalchemy
 from sqlalchemy import create_engine, MetaData, Table, Column, \
     inspect, and_, select
 
-from .helpers import TestCase, unittest
+from .helpers import unittest, TestCase, CihaiTestCase
 from .._compat import PY2, text_type, configparser
 from ..unihan import get_datafile, UnihanReader, RawReader, UNIHAN_FILENAMES, \
     table_exists, install_raw_csv, unihan_config, sqlite_db
@@ -60,7 +60,7 @@ from ..unihan import get_datafile, UnihanReader, RawReader, UNIHAN_FILENAMES, \
 log = logging.getLogger(__name__)
 
 
-class UnihanInstallRaw(TestCase):
+class UnihanInstallRaw(CihaiTestCase):
 
     """Dump the Raw Unihan CSV's into SQLite database.
 
@@ -69,59 +69,61 @@ class UnihanInstallRaw(TestCase):
     csv_filename = None
     table_name = None
 
-    def setUp(self):
-        self.engine = create_engine('sqlite:///%s' % sqlite_db, echo=False)
-        self.metadata = MetaData(bind=self.engine)
-
     def test_sqlite3_matches_csv(self):
 
         if not self.table_name:
-            pass
-        elif table_exists(self.table_name):
             self.skipTest('{!r} table exists, skipping.'.format(self.table_name))
 
         if self.csv_filename:
             self.csv_to_db(self.csv_filename)
 
     def csv_to_db(self, csv_filename):
-        table, csv_data = install_raw_csv(csv_filename)
-        config = configparser.ConfigParser()
-
-        config.read(unihan_config)  # Re-read, csv_to_table edits conf.
-
-        self.assertTrue(config.has_section(csv_filename))
-        self.assertTrue(config.has_option(csv_filename, 'csv_rowcount'))
-        self.assertTrue(config.has_option(csv_filename, 'csv_md5'))
-
-        csv_rowcount = config.getint(csv_filename, 'csv_rowcount')
-
-        b = inspect(table)
-
-        self.assertEqual(len(b.columns), 4)
-        self.assertEqual(
-            [c.name for c in b.columns], ['id', 'char', 'field', 'value']
-        )
-
-        csv_lines = list(csv_data)
-
-        self.assertEqual(
-            table.select().count().execute().scalar(),
-            csv_rowcount
-        )
-
-        random_items = [random.choice(csv_lines) for i in range(10)]
-
-        for csv_item in random_items:
-            sql_item = select([
-                table.c.char, table.c.field, table.c.value
-            ]).where(and_(
-                table.c.char == csv_item['char'],
-                table.c.field == csv_item['field']
-            )).execute().fetchone()
-            self.assertEqual(
-                sql_item,
-                tuple([csv_item['char'], csv_item['field'], csv_item['value']])
+        with open(get_datafile(csv_filename), 'r') as csv_file:
+            csv_data = filter(lambda row: row[0] != '#', csv_file)
+            delim = b'\t' if PY2 else '\t'
+            csv_dict = RawReader(
+                csv_data,
+                fieldnames=['char', 'field', 'value'],
+                delimiter=delim
             )
+            table = install_raw_csv(csv_filename)
+            config = configparser.ConfigParser()
+
+            config.read(unihan_config)  # Re-read, csv_to_table edits conf.
+
+            self.assertTrue(config.has_section(csv_filename))
+            self.assertTrue(config.has_option(csv_filename, 'csv_rowcount'))
+            self.assertTrue(config.has_option(csv_filename, 'csv_md5'))
+
+            csv_rowcount = config.getint(csv_filename, 'csv_rowcount')
+
+            b = inspect(table)
+
+            self.assertEqual(len(b.columns), 4)
+            self.assertEqual(
+                [c.name for c in b.columns], ['id', 'char', 'field', 'value']
+            )
+
+            csv_lines = list(csv_dict)
+
+            self.assertEqual(
+                table.select().count().execute().scalar(),
+                csv_rowcount
+            )
+
+            random_items = [random.choice(csv_lines) for i in range(10)]
+
+            for csv_item in random_items:
+                sql_item = select([
+                    table.c.char, table.c.field, table.c.value
+                ]).where(and_(
+                    table.c.char == csv_item['char'],
+                    table.c.field == csv_item['field']
+                )).execute().fetchone()
+                self.assertEqual(
+                    sql_item,
+                    tuple([csv_item['char'], csv_item['field'], csv_item['value']])
+                )
 
 
 class Unihan_DictionaryIndices(UnihanInstallRaw):

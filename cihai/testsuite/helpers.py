@@ -23,8 +23,17 @@ import tempfile
 import shutil
 import uuid
 
+from ..unihan import check_raw_install
+
 logger = logging.getLogger(__name__)
 
 
 class TestCase(unittest.TestCase):
     pass
+
+
+class CihaiTestCase(TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        check_raw_install()

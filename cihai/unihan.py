@@ -38,7 +38,6 @@ UNIHAN_FILENAMES = [
 ]
 
 
-
 def get_datafile(filename):
     """Return absolute path to cihai data file.
 
@@ -86,6 +85,19 @@ def table_exists(table_name):
     return table.exists()
 
 
+def check_raw_install():
+    config = configparser.ConfigParser()
+
+    if not os.path.exists(unihan_config):
+        install_raw_csv()
+
+    config.read(unihan_config)
+
+    for csv_filename in UNIHAN_FILENAMES:
+        if not config.has_section(csv_filename):
+            install_raw_csv(install_raw_csv)
+
+
 def install_raw_csv(csv_filename=None):
     """Install the raw csv information into CSV."""
 
@@ -96,30 +108,23 @@ def install_raw_csv(csv_filename=None):
             install_raw_csv(csv_filename)
     else:
         table_name = csv_filename.split('.')[0]
+
         if not table_exists(table_name):
-            with open(get_datafile(csv_filename), 'r') as csv_file:
-                csv_data = filter(lambda row: row[0] != '#', csv_file)
-                delim = b'\t' if PY2 else '\t'
-                csv_dict = RawReader(
-                    csv_data,
-                    fieldnames=['char', 'field', 'value'],
-                    delimiter=delim
-                )
-                table = csv_to_table(
-                    engine=engine,
-                    csv_filename=csv_filename,
-                    table_name=table_name,
-                    fields=[
-                        ('char', String(256)),
-                        ('field', String(256)),
-                        ('value', String(256)),
-                    ]
-                )
-                return table, csv_dict
+
+            table = csv_to_table(
+                engine=engine,
+                csv_filename=csv_filename,
+                table_name=table_name,
+                fields=[
+                    ('char', String(256)),
+                    ('field', String(256)),
+                    ('value', String(256)),
+                ]
+            )
         else:
             log.debug('{0} already installed.'.format(table_name))
-
-    return
+            table = get_table(table_name)
+        return table
 
 
 def csv_to_table(engine, csv_filename, table_name, fields):

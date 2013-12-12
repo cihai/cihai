@@ -18,7 +18,7 @@ import logging
 
 import sqlalchemy
 
-from .helpers import TestCase, unittest
+from .helpers import unittest, TestCase, CihaiTestCase
 from .._compat import PY2, text_type
 from ..unihan import get_datafile, get_table, UnihanReader, \
     UNIHAN_FILENAMES, get_metadata
@@ -36,7 +36,7 @@ class UnihanData(TestCase):
         pass
 
 
-class UnihanTable(TestCase):
+class UnihanTable(CihaiTestCase):
 
     def test_returns_instance_table(self):
         table = get_table('Unihan_NumericValues')
