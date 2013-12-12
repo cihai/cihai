@@ -170,11 +170,6 @@ class UnihanImport(TestCase):
 
     @unittest.skipUnless(not os.path.exists(sqlite_db), "{0} already exists.".format(sqlite_db))
     def test_sqlite3_matches_csv(self):
-        """Test that sqlite3 data matches rows in CSV."""
-
-        # csv_files = UNIHAN_FILES
-
-        # for csv_filename in csv_files:
         if self.csv_filename:
             self.csv_to_db(self.csv_filename)
 
