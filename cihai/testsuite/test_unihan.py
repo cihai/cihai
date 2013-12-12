@@ -20,7 +20,7 @@ import sqlalchemy
 
 from .helpers import TestCase, unittest
 from .._compat import PY2, text_type
-from ..unihan import get_datafile, get_table, UnihanReader, metadata, \
+from ..unihan import get_datafile, get_table, UnihanReader, \
     UNIHAN_FILES, get_metadata
 
 log = logging.getLogger(__name__)

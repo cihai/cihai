@@ -50,8 +50,6 @@ def get_datafile(filename):
 
 sqlite_db = get_datafile('unihan.db')
 engine = create_engine('sqlite:///%s' % sqlite_db, echo=False)
-metadata = MetaData(bind=engine)
-metadata.reflect()
 
 
 def get_metadata():
@@ -81,7 +79,7 @@ def table_exists(table_name):
     """la
     """
 
-    table = Table(table_name, metadata)
+    table = Table(table_name, get_metadata())
 
     return table.exists()
 
