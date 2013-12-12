@@ -55,7 +55,9 @@ metadata.reflect()
 
 
 def get_metadata():
+    metadata = MetaData(bind=engine)
     metadata.reflect()
+
     return metadata
 
 
