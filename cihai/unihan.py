@@ -62,7 +62,8 @@ def get_table(table_name):
 
     """
 
-    table = Table(table_name, metadata)
+    metadata = MetaData(bind=engine, reflect=True)
+    table = Table(table_name, metadata, autoload=True)
 
     return table
 
