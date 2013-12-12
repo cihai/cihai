@@ -36,21 +36,23 @@ UNIHAN_FILES = [
 ]
 
 
-def get_datafile(file_):
+def get_datafile(filename):
     """Return absolute path to cihai data file.
 
-    :param file_: file name relative to ``./data``.
-    :type file_: string
+    :param filename: file name relative to ``./data``.
+    :type filename: string
     :returns: Absolute path to data file.
     :rtype: string
 
     """
-    return os.path.join(os.path.abspath(os.path.dirname(__file__)), 'data/', file_)
+    return os.path.join(os.path.abspath(os.path.dirname(__file__)), 'data/', filename)
 
 
 def get_table(table_name):
     """Return :class:`~sqlalchemy.schema.Table`.
 
+    :param table_name: name of sql table
+    :type table_name: string
     :rtype: :class:`sqlalchemy.schema.Table`
 
     """
