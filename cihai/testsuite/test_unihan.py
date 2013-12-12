@@ -44,9 +44,10 @@ class UnihanTable(TestCase):
         self.assertIsInstance(table, sqlalchemy.Table)
 
     def test_returns_metadata_has_csv_tables(self):
+        metadata.reflect()
         for filename in UNIHAN_FILES:
             tablename = filename.split('.')[0]
-            self.assertIn(tablename, [table for table in get_metadata().tables])
+            self.assertIn(tablename, [table for table in metadata.tables])
 
 
 class Unihan_Readings(TestCase):
