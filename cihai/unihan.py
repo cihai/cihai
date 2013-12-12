@@ -67,6 +67,15 @@ def get_table(table_name):
     return table
 
 
+def table_exists(table_name):
+    """la
+    """
+
+    table = Table(table_name, metadata)
+
+    return table.exists()
+
+
 class RawReader(csv.DictReader):
     """Read from Unihan CSV resource."""
     def __init__(self, *args, **kwargs):

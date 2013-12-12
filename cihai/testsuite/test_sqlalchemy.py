@@ -54,7 +54,8 @@ from sqlalchemy import create_engine, MetaData, Table, Column, Integer, \
 
 from .helpers import TestCase, unittest
 from .._compat import PY2, text_type, configparser
-from ..unihan import get_datafile, UnihanReader, RawReader, UNIHAN_FILES
+from ..unihan import get_datafile, UnihanReader, RawReader, UNIHAN_FILES, \
+    table_exists
 
 log = logging.getLogger(__name__)
 
@@ -164,13 +165,19 @@ class UnihanImport(TestCase):
     Should have decorator not to run if unihan.db exists.
     """
     csv_filename = None
+    table_name = None
 
     def setUp(self):
         self.engine = create_engine('sqlite:///%s' % sqlite_db, echo=False)
         self.metadata = MetaData(bind=self.engine)
 
-    @unittest.skipUnless(not os.path.exists(sqlite_db), "{0} already exists.".format(sqlite_db))
     def test_sqlite3_matches_csv(self):
+
+        if not self.table_name:
+            pass
+        elif table_exists(self.table_name):
+            self.skipTest('{!r} table exists, skipping.'.format(self.table_name))
+
         if self.csv_filename:
             self.csv_to_db(self.csv_filename)
 
@@ -179,7 +186,7 @@ class UnihanImport(TestCase):
 
         with open(get_datafile(csv_filename), 'r') as csv_file:
             csv_data = filter(lambda row: row[0] != '#', csv_file)
-            table_name = csv_filename.split('.')[0]
+            table_name = self.table_name
             delim = b'\t' if PY2 else '\t'
             r = RawReader(
                 csv_data,
@@ -228,7 +235,6 @@ class UnihanImport(TestCase):
                     table.c.char == csv_item['char'],
                     table.c.field == csv_item['field']
                 )).execute().fetchone()
-
                 self.assertEqual(
                     sql_item,
                     tuple([csv_item['char'], csv_item['field'], csv_item['value']])
@@ -237,32 +243,40 @@ class UnihanImport(TestCase):
 
 class Unihan_DictionaryIndices(UnihanImport):
     csv_filename = 'Unihan_DictionaryIndices.txt'
+    table_name = 'Unihan_DictionaryIndices'
 
 
 class Unihan_DicionaryLikeData(UnihanImport):
     csv_filename = 'Unihan_DictionaryLikeData.txt'
+    table_name = 'Unihan_DictionaryLikeData'
 
 
 class Unihan_IRGSources(UnihanImport):
     csv_filename = 'Unihan_IRGSources.txt'
+    table_name = 'Unihan_IRGSources'
 
 
 class Unihan_NumericValues(UnihanImport):
     csv_filename = 'Unihan_NumericValues.txt'
+    table_name = 'Unihan_NumericValues'
 
 
 class Unihan_OtherMappings(UnihanImport):
     csv_filename = 'Unihan_OtherMappings.txt'
+    table_name = 'Unihan_OtherMappings'
 
 
 class Unihan_RadicalStrokeCounts(UnihanImport):
     csv_filename = 'Unihan_RadicalStrokeCounts.txt'
+    table_name = 'Unihan_RadicalStrokeCounts'
 
 
 class Unihan_Readings(UnihanImport):
     csv_filename = 'Unihan_Readings.txt'
+    table_name = 'Unihan_Readings'
 
 
 class Unihan_Variants(UnihanImport):
     csv_filename = 'Unihan_Variants.txt'
+    table_name = 'Unihan_Variants'
 

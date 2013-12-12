@@ -49,6 +49,12 @@ class UnihanTable(TestCase):
             self.assertIn(tablename, [table for table in metadata.tables])
 
 
+class Unihan_Readings(TestCase):
+
+    def test_unihan_rows(self):
+
+        table = get_table('Unihan_Readings')
+
 class UnihanDataCSV(TestCase):
 
     @unittest.skip('Wait until helper TestCase is implemented.')
