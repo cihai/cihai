@@ -156,12 +156,14 @@ def csv_to_table(engine, csv_filename, table_name, fields):
     return table
 
 
-class UnihanSQLAlchemyRaw(TestCase):
+class UnihanImport(TestCase):
 
     """Dump the Raw Unihan CSV's into SQLite database.
 
     Should have decorator not to run if unihan.db exists.
     """
+    csv_filename = None
+
     def setUp(self):
         self.engine = create_engine('sqlite:///%s' % sqlite_db, echo=False)
         self.metadata = MetaData(bind=self.engine)
@@ -170,64 +172,101 @@ class UnihanSQLAlchemyRaw(TestCase):
     def test_sqlite3_matches_csv(self):
         """Test that sqlite3 data matches rows in CSV."""
 
-        csv_files = UNIHAN_FILES
+        # csv_files = UNIHAN_FILES
 
-        for csv_filename in csv_files:
-            config = configparser.ConfigParser()
+        # for csv_filename in csv_files:
+        if self.csv_filename:
+            self.csv_to_db(self.csv_filename)
 
-            with open(get_datafile(csv_filename), 'r') as csv_file:
-                csv_data = filter(lambda row: row[0] != '#', csv_file)
-                table_name = csv_filename.split('.')[0]
-                delim = b'\t' if PY2 else '\t'
-                r = RawReader(
-                    csv_data,
-                    fieldnames=['char', 'field', 'value'],
-                    delimiter=delim
-                )
-                table = csv_to_table(
-                    engine=self.engine,
-                    csv_filename=csv_filename,
-                    table_name=table_name,
-                    fields=[
-                        ('char', String(256)),
-                        ('field', String(256)),
-                        ('value', String(256)),
-                    ]
-                )
+    def csv_to_db(self, csv_filename):
+        config = configparser.ConfigParser()
 
-                config.read(unihan_config)  # Re-read, csv_to_table edits conf.
+        with open(get_datafile(csv_filename), 'r') as csv_file:
+            csv_data = filter(lambda row: row[0] != '#', csv_file)
+            table_name = csv_filename.split('.')[0]
+            delim = b'\t' if PY2 else '\t'
+            r = RawReader(
+                csv_data,
+                fieldnames=['char', 'field', 'value'],
+                delimiter=delim
+            )
+            table = csv_to_table(
+                engine=self.engine,
+                csv_filename=csv_filename,
+                table_name=table_name,
+                fields=[
+                    ('char', String(256)),
+                    ('field', String(256)),
+                    ('value', String(256)),
+                ]
+            )
 
-                self.assertTrue(config.has_section(csv_filename))
-                self.assertTrue(config.has_option(csv_filename, 'csv_rowcount'))
-                self.assertTrue(config.has_option(csv_filename, 'csv_md5'))
+            config.read(unihan_config)  # Re-read, csv_to_table edits conf.
 
-                csv_rowcount = config.getint(csv_filename, 'csv_rowcount')
+            self.assertTrue(config.has_section(csv_filename))
+            self.assertTrue(config.has_option(csv_filename, 'csv_rowcount'))
+            self.assertTrue(config.has_option(csv_filename, 'csv_md5'))
 
-                b = inspect(table)
+            csv_rowcount = config.getint(csv_filename, 'csv_rowcount')
 
-                self.assertEqual(len(b.columns), 4)
+            b = inspect(table)
+
+            self.assertEqual(len(b.columns), 4)
+            self.assertEqual(
+                [c.name for c in b.columns], ['id', 'char', 'field', 'value']
+            )
+
+            csv_lines = list(r)  # try just 500
+
+            self.assertEqual(
+                table.select().count().execute().scalar(),
+                csv_rowcount
+            )
+
+            random_items = [random.choice(csv_lines) for i in range(10)]
+
+            for csv_item in random_items:
+                sql_item = select([
+                    table.c.char, table.c.field, table.c.value
+                ]).where(and_(
+                    table.c.char == csv_item['char'],
+                    table.c.field == csv_item['field']
+                )).execute().fetchone()
+
                 self.assertEqual(
-                    [c.name for c in b.columns], ['id', 'char', 'field', 'value']
+                    sql_item,
+                    tuple([csv_item['char'], csv_item['field'], csv_item['value']])
                 )
 
-                csv_lines = list(r)  # try just 500
 
-                self.assertEqual(
-                    table.select().count().execute().scalar(),
-                    csv_rowcount
-                )
+class Unihan_DictionaryIndices(UnihanImport):
+    csv_filename = 'Unihan_DictionaryIndices.txt'
 
-                random_items = [random.choice(csv_lines) for i in range(10)]
 
-                for csv_item in random_items:
-                    sql_item = select([
-                        table.c.char, table.c.field, table.c.value
-                    ]).where(and_(
-                        table.c.char == csv_item['char'],
-                        table.c.field == csv_item['field']
-                    )).execute().fetchone()
+class Unihan_DicionaryLikeData(UnihanImport):
+    csv_filename = 'Unihan_DictionaryLikeData.txt'
 
-                    self.assertEqual(
-                        sql_item,
-                        tuple([csv_item['char'], csv_item['field'], csv_item['value']])
-                    )
+
+class Unihan_IRGSources(UnihanImport):
+    csv_filename = 'Unihan_IRGSources.txt'
+
+
+class Unihan_NumericValues(UnihanImport):
+    csv_filename = 'Unihan_NumericValues.txt'
+
+
+class Unihan_OtherMappings(UnihanImport):
+    csv_filename = 'Unihan_OtherMappings.txt'
+
+
+class Unihan_RadicalStrokeCounts(UnihanImport):
+    csv_filename = 'Unihan_RadicalStrokeCounts.txt'
+
+
+class Unihan_Readings(UnihanImport):
+    csv_filename = 'Unihan_Readings.txt'
+
+
+class Unihan_Variants(UnihanImport):
+    csv_filename = 'Unihan_Variants.txt'
+
