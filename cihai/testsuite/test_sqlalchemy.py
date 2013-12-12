@@ -62,31 +62,29 @@ log = logging.getLogger(__name__)
 
 class UnihanInstallRaw(CihaiTestCase):
 
-    """Dump the Raw Unihan CSV's into SQLite database.
-
-    Should have decorator not to run if unihan.db exists.
-    """
+    """Dump the Raw Unihan CSV's into SQLite database."""
     csv_filename = None
     table_name = None
 
-    def test_sqlite3_matches_csv(self):
-
-        if not self.table_name:
-            self.skipTest('{!r} table exists, skipping.'.format(self.table_name))
-
+    def test_verify_csv_sqlite_integrity(self):
         if self.csv_filename:
             self.csv_to_db(self.csv_filename)
 
     def csv_to_db(self, csv_filename):
         with open(get_datafile(csv_filename), 'r') as csv_file:
             csv_data = filter(lambda row: row[0] != '#', csv_file)
+            csv_lines = list(csv_data)
+            csv_random = [random.choice(csv_lines) for i in range(10)]
             delim = b'\t' if PY2 else '\t'
-            csv_dict = RawReader(
-                csv_data,
+            random_items = RawReader(
+                csv_random,
                 fieldnames=['char', 'field', 'value'],
                 delimiter=delim
             )
+
             table = install_raw_csv(csv_filename)
+            b = inspect(table)
+
             config = configparser.ConfigParser()
 
             config.read(unihan_config)  # Re-read, csv_to_table edits conf.
@@ -97,21 +95,15 @@ class UnihanInstallRaw(CihaiTestCase):
 
             csv_rowcount = config.getint(csv_filename, 'csv_rowcount')
 
-            b = inspect(table)
-
             self.assertEqual(len(b.columns), 4)
             self.assertEqual(
                 [c.name for c in b.columns], ['id', 'char', 'field', 'value']
             )
 
-            csv_lines = list(csv_dict)
-
             self.assertEqual(
                 table.select().count().execute().scalar(),
                 csv_rowcount
             )
-
-            random_items = [random.choice(csv_lines) for i in range(10)]
 
             for csv_item in random_items:
                 sql_item = select([
