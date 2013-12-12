@@ -72,7 +72,7 @@ def create_table(table_name, fields, engine):
     :param engine: sqlalchemy engine
     :type engine: :sqlalchemy:`sqlalchemy.Engine`
     :returns: Newly created table with columns and index.
-    :rtype: :sqlalchemy:class:`sqlalchemy.Table`
+    :rtype: :class:`sqlalchemy.schema.Table`
 
     """
     metadata = MetaData(bind=engine)
@@ -99,14 +99,15 @@ def csv_to_table(engine, csv_filename, table_name, fields):
     """Create table from CSV.
 
     :param engine: sqlalchemy engine
-    :type engine: :sqlalchemy:class:`sqlalchemy.engine.Engine`
+    :type engine: :class:`sqlalchemy.engine.Engine`
     :param csv_filename: csv file name inside data, e.g. ``Unihan_Readings.txt``.
     :type csv_filename: string
     :param table_name: name of table
     :type table_name: string
     :param fields: csv / table fields and sqlalchemy type.
-        from ``sqlalchemy.types``.
+        e.g. :class:`sqlalchemy.types.Integer`.
     :type fields: tuple
+    :rtype: :class:`sqlalchemy.schema.Table`
 
     """
 

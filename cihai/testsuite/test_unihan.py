@@ -16,9 +16,11 @@ import os
 import tempfile
 import logging
 
+import sqlalchemy
+
 from .helpers import TestCase, unittest
 from .._compat import PY2, text_type
-from ..unihan import get_datafile, UnihanReader
+from ..unihan import get_datafile, get_table, UnihanReader
 
 log = logging.getLogger(__name__)
 
@@ -31,6 +33,14 @@ class UnihanData(TestCase):
     def test_files(self):
         """Test unihan text file data."""
         pass
+
+
+class UnihanTable(TestCase):
+
+    def test_returns_instance_table(self):
+        table = get_table('Unihan_NumericValues')
+
+        self.assertIsInstance(table, sqlalchemy.Table)
 
 
 class UnihanDataCSV(TestCase):

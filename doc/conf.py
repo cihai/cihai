@@ -264,7 +264,11 @@ texinfo_documents = [
 
 
 # Example configuration for intersphinx: refer to the Python standard library.
-intersphinx_mapping = {'http://docs.python.org/': None, 'pip': ('http://sphinx.readthedocs.org/en/latest/', None)}
+intersphinx_mapping = {
+    'http://docs.python.org/': None,
+    'http://sphinx.readthedocs.org/en/latest/': None,
+    'http://sqlalchemy.readthedocs.org/en/latest/': None
+}
 
 # section names - optional
 changelog_sections = ["general", "rendering", "tests", "docs"]

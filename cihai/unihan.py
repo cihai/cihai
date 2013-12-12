@@ -48,7 +48,12 @@ def get_datafile(file_):
     return os.path.join(os.path.abspath(os.path.dirname(__file__)), 'data/', file_)
 
 
-def get_table(table_name, engine):
+def get_table(table_name):
+    """Return :class:`~sqlalchemy.schema.Table`.
+
+    :rtype: :class:`sqlalchemy.schema.Table`
+
+    """
     sqlite_db = get_datafile('unihan.db')
     engine = create_engine('sqlite:///%s' % sqlite_db, echo=False)
     metadata = MetaData(bind=engine)
