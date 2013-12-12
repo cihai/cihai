@@ -21,7 +21,7 @@ import sqlalchemy
 from .helpers import TestCase, unittest
 from .._compat import PY2, text_type
 from ..unihan import get_datafile, get_table, UnihanReader, metadata, \
-    UNIHAN_FILES
+    UNIHAN_FILES, get_metadata
 
 log = logging.getLogger(__name__)
 
@@ -46,7 +46,7 @@ class UnihanTable(TestCase):
     def test_returns_metadata_has_csv_tables(self):
         for filename in UNIHAN_FILES:
             tablename = filename.split('.')[0]
-            self.assertIn(tablename, [table for table in metadata.tables])
+            self.assertIn(tablename, [table for table in get_metadata().tables])
 
 
 class Unihan_Readings(TestCase):
@@ -54,6 +54,7 @@ class Unihan_Readings(TestCase):
     def test_unihan_rows(self):
 
         table = get_table('Unihan_Readings')
+
 
 class UnihanDataCSV(TestCase):
 

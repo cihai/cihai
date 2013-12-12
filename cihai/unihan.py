@@ -53,6 +53,10 @@ engine = create_engine('sqlite:///%s' % sqlite_db, echo=False)
 metadata = MetaData(bind=engine, reflect=True)
 
 
+def get_metadata():
+    return MetaData(bind=engine, reflect=True)
+
+
 def get_table(table_name):
     """Return :class:`~sqlalchemy.schema.Table`.
 
