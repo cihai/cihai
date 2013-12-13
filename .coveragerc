@@ -1,6 +1,6 @@
 [run]
 omit =
-    */tests*
+    cihai/testsuite/*
 
 [report]
 exclude_lines =
