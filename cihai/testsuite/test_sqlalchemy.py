@@ -74,15 +74,19 @@ class UnihanInstallRaw(CihaiTestCase):
         config = configparser.ConfigParser()
         config.read(unihan_config)  # Re-read, csv_to_table edits conf.
 
+        # store a key in unihan.conf to prevent re-running (saves 3+ seconds)
         if config.has_section(csv_filename) and config.has_option(csv_filename, 'csv_verified'):
             if config.getboolean(csv_filename, 'csv_verified'):
                 self.skipTest('%s already tested. Skipping.' % csv_filename)
 
         with open(get_datafile(csv_filename), 'r') as csv_file:
+            # filter out comments
             csv_data = filter(lambda row: row[0] != '#', csv_file)
 
+            # pick random lines *before* passing into RawReader.
             csv_lines = list(csv_data)
             csv_random = [random.choice(csv_lines) for i in range(10)]
+
             delim = b'\t' if PY2 else '\t'
             random_items = RawReader(
                 csv_random,

@@ -56,6 +56,7 @@ engine = create_engine('sqlite:///%s' % sqlite_db, echo=False)
 
 
 def get_metadata():
+    """Return new MetaData object."""
     metadata = MetaData(bind=engine)
     metadata.reflect()
 
@@ -77,8 +78,7 @@ def get_table(table_name):
 
 
 def table_exists(table_name):
-    """la
-    """
+    """Return True if table exists in unihan.db."""
 
     table = Table(table_name, get_metadata())
 
@@ -86,6 +86,7 @@ def table_exists(table_name):
 
 
 def check_raw_install():
+    """Verify csv information from Unihan is installed in unihan.db."""
     config = configparser.ConfigParser()
 
     if not os.path.exists(unihan_config):
@@ -99,7 +100,13 @@ def check_raw_install():
 
 
 def install_raw_csv(csv_filename=None):
-    """Install the raw csv information into CSV."""
+    """Install the raw csv information into CSV, return table.
+
+    :param csv_filename: filename in /data dir.
+    :type csv_filename: string
+    :rtype: :class:`sqlalchemy.schema.Table`
+
+    """
 
     if not csv_filename:
         install_raw_csv(UNIHAN_FILENAMES)
@@ -275,28 +282,4 @@ class UnihanReader(csv.DictReader):
 
 
 def main():
-    with open(get_datafile('Unihan_Readings.txt'), 'r') as csvfile:
-        # py3.3 regression http://bugs.python.org/issue18829
-        delim = b'\t' if PY2 else '\t'
-        csvfile = filter(lambda row: row[0] != '#', csvfile)
-        r = UnihanReader(
-            csvfile,
-            fieldnames=['char', 'field', 'value'],
-            delimiter=delim
-        )
-
-        r = list(r)[:5]
-        print('\n')
-
-        for row in r:
-            print(row)
-            print(type(row['char']))
-            rowlines = []
-            for key in row.keys():
-                rowlines.append(row[key])
-            try:
-                rowline = '\t'.join(rowlines)
-            except UnicodeDecodeError as e:
-                log.info('row: %s (%s) gives:\n%s' % (row, row['char'], e))
-
-            print('%s' % rowline)
+    pass
