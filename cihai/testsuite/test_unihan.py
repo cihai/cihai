@@ -49,13 +49,6 @@ class UnihanTable(CihaiTestCase):
             self.assertIn(tablename, [table for table in get_metadata().tables])
 
 
-class Unihan_Readings(TestCase):
-
-    def test_unihan_rows(self):
-
-        table = get_table('Unihan_Readings')
-
-
 class UnihanDataCSV(TestCase):
 
     @unittest.skip('Wait until helper TestCase is implemented.')

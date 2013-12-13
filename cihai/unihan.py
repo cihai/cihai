@@ -49,7 +49,7 @@ def get_datafile(filename):
     """
 
     abspath = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'data/', filename)
-    if not os.path.exists(abspath):
+    if not os.path.exists(abspath) and not 'Unihan.conf':
         raise IOError('File %s does not exist in the data directory.' % filename)
     return abspath
 
@@ -100,7 +100,7 @@ def check_raw_install():
 
     for csv_filename in UNIHAN_FILENAMES:
         if not config.has_section(csv_filename):
-            install_raw_csv(install_raw_csv)
+            install_raw_csv(csv_filename)
 
 
 def install_raw_csv(csv_filename=None):
@@ -126,11 +126,6 @@ def install_raw_csv(csv_filename=None):
                 engine=engine,
                 csv_filename=csv_filename,
                 table_name=table_name,
-                fields=[
-                    ('char', String(256)),
-                    ('field', String(256)),
-                    ('value', String(256)),
-                ]
             )
         else:
             log.debug('{0} already installed.'.format(table_name))
@@ -138,7 +133,7 @@ def install_raw_csv(csv_filename=None):
         return table
 
 
-def csv_to_table(engine, csv_filename, table_name, fields):
+def csv_to_table(engine, csv_filename, table_name):
     """Create table from CSV.
 
     :param engine: sqlalchemy engine
@@ -147,14 +142,11 @@ def csv_to_table(engine, csv_filename, table_name, fields):
     :type csv_filename: string
     :param table_name: name of table
     :type table_name: string
-    :param fields: csv / table fields and sqlalchemy type.
-        e.g. :class:`sqlalchemy.types.Integer`.
-    :type fields: tuple
     :rtype: :class:`sqlalchemy.schema.Table`
 
     """
 
-    table = create_table(table_name, fields, engine)
+    table = create_table(table_name, engine)
     unihan_csv = get_datafile(csv_filename)
 
     with open(unihan_csv, 'r') as csv_file:
@@ -195,13 +187,11 @@ def csv_to_table(engine, csv_filename, table_name, fields):
     return table
 
 
-def create_table(table_name, fields, engine):
+def create_table(table_name, engine):
     """Create table and return  :sqlalchemy:class:`sqlalchemy.Table`.
 
     :param table_name: name of table to create
     :type table_name: string
-    :param fields: name and type of column to create
-    :type fields: dict
     :param engine: sqlalchemy engine
     :type engine: :sqlalchemy:`sqlalchemy.Engine`
     :returns: Newly created table with columns and index.
@@ -210,6 +200,11 @@ def create_table(table_name, fields, engine):
     """
     metadata = MetaData(bind=engine)
     table = Table(table_name, metadata)
+    fields = [
+        ('char', String(256)),
+        ('field', String(256)),
+        ('value', String(256)),
+    ]
 
     col = Column('id', Integer, primary_key=True)
     table.append_column(col)

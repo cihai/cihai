@@ -56,7 +56,7 @@ from .helpers import unittest, TestCase, CihaiTestCase
 from .._compat import PY2, text_type, configparser
 from ..unihan import get_datafile, UnihanReader, RawReader, UNIHAN_FILENAMES, \
     table_exists, install_raw_csv, unihan_config, sqlite_db, get_metadata, \
-    get_table
+    get_table, create_table, engine
 
 log = logging.getLogger(__name__)
 
@@ -98,6 +98,18 @@ class UnihanMethods(CihaiTestCase):
         # file that doesn't exist.
         with self.assertRaisesRegexp(IOError, 'File %s does not exist' % bad_filename):
             csv_abspath = get_datafile(bad_filename)
+
+    def test_create_table(self):
+        table_name = 'testTable_%s' % random.randint(1, 1337)
+
+        table = create_table(table_name, engine)
+
+        self.assertIsInstance(table, Table)
+        self.assertTrue(table.exists())
+
+        table.drop()
+
+        self.assertFalse(table.exists())
 
 
 class UnihanRawImportCase(CihaiTestCase):
