@@ -71,8 +71,18 @@ class UnihanInstallRaw(CihaiTestCase):
             self.csv_to_db(self.csv_filename)
 
     def csv_to_db(self, csv_filename):
+        config = configparser.ConfigParser()
+        config.read(unihan_config)  # Re-read, csv_to_table edits conf.
+
+        try:
+            if config.getboolean(csv_filename, 'csv_verified'):
+                self.skipTest('%s already tested. Skipping.' % csv_filename)
+        except Exception as e:
+            raise (e)
+
         with open(get_datafile(csv_filename), 'r') as csv_file:
             csv_data = filter(lambda row: row[0] != '#', csv_file)
+
             csv_lines = list(csv_data)
             csv_random = [random.choice(csv_lines) for i in range(10)]
             delim = b'\t' if PY2 else '\t'
@@ -83,11 +93,8 @@ class UnihanInstallRaw(CihaiTestCase):
             )
 
             table = install_raw_csv(csv_filename)
-            b = inspect(table)
-
-            config = configparser.ConfigParser()
-
             config.read(unihan_config)  # Re-read, csv_to_table edits conf.
+            b = inspect(table)
 
             self.assertTrue(config.has_section(csv_filename))
             self.assertTrue(config.has_option(csv_filename, 'csv_rowcount'))
@@ -116,6 +123,11 @@ class UnihanInstallRaw(CihaiTestCase):
                     sql_item,
                     tuple([csv_item['char'], csv_item['field'], csv_item['value']])
                 )
+
+            config.set(csv_filename, 'csv_verified', True)
+            config_file = open(unihan_config, 'w+')
+            config.write(config_file)
+            config_file.close()
 
 
 class Unihan_DictionaryIndices(UnihanInstallRaw):
