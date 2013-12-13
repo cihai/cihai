@@ -2,6 +2,7 @@
 omit =
     */testsuite/*
     */_vendor/*
+    */_*
 
 [report]
 exclude_lines =
