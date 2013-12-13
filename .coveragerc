@@ -1,6 +1,7 @@
 [run]
 omit =
     */testsuite/*
+    */_vendor/*
 
 [report]
 exclude_lines =
