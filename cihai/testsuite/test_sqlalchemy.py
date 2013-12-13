@@ -54,62 +54,10 @@ from sqlalchemy import create_engine, MetaData, Table, Column, \
 
 from .helpers import unittest, TestCase, CihaiTestCase
 from .._compat import PY2, text_type, configparser
-from ..unihan import get_datafile, UnihanReader, RawReader, UNIHAN_FILENAMES, \
-    table_exists, install_raw_csv, unihan_config, sqlite_db, get_metadata, \
-    get_table, create_table, engine
+from ..unihan import get_datafile, RawReader, UNIHAN_FILENAMES, \
+    install_raw_csv, unihan_config, sqlite_db, get_metadata
 
 log = logging.getLogger(__name__)
-
-
-class UnihanMethods(CihaiTestCase):
-
-    def test_returns_table(self):
-        csv_filename = random.choice(UNIHAN_FILENAMES)
-        self.assertRegexpMatches(csv_filename, 'Unihan')
-        table = install_raw_csv(get_datafile(csv_filename))
-        self.assertIsInstance(table, sqlalchemy.schema.Table)
-
-    def test_table_exists(self):
-        metadata = get_metadata()
-        for table_name in metadata.tables:
-            self.assertTrue(table_exists(table_name))
-            self.assertIsInstance(table_name, text_type)
-
-    def test_get_metadata(self):
-        metadata = get_metadata()
-
-        self.assertIsInstance(metadata, MetaData)
-
-    def test_get_table(self):
-        metadata = get_metadata()
-        # pick a random table name.
-        table = get_table(random.choice(list(metadata.tables)))
-        self.assertIsInstance(table, Table)
-
-    def test_get_datafile(self):
-        # file installed on installation.
-        csv_filename = random.choice(UNIHAN_FILENAMES)
-
-        csv_abspath = get_datafile(csv_filename)
-        self.assertNotEqual(csv_filename, csv_abspath)
-        self.assertIsInstance(csv_abspath, text_type)
-
-        bad_filename = 'junkfile_notthere.txt'
-        # file that doesn't exist.
-        with self.assertRaisesRegexp(IOError, 'File %s does not exist' % bad_filename):
-            csv_abspath = get_datafile(bad_filename)
-
-    def test_create_table(self):
-        table_name = 'testTable_%s' % random.randint(1, 1337)
-
-        table = create_table(table_name, engine)
-
-        self.assertIsInstance(table, Table)
-        self.assertTrue(table.exists())
-
-        table.drop()
-
-        self.assertFalse(table.exists())
 
 
 class UnihanRawImportCase(CihaiTestCase):

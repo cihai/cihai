@@ -49,8 +49,6 @@ def get_datafile(filename):
     """
 
     abspath = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'data/', filename)
-    if not os.path.exists(abspath) and not 'Unihan.conf':
-        raise IOError('File %s does not exist in the data directory.' % filename)
     return abspath
 
 

@@ -14,6 +14,7 @@ from __future__ import absolute_import, division, print_function, \
 
 import os
 import tempfile
+import random
 import logging
 
 import sqlalchemy
@@ -21,7 +22,8 @@ import sqlalchemy
 from .helpers import unittest, TestCase, CihaiTestCase
 from .._compat import PY2, text_type
 from ..unihan import get_datafile, get_table, UnihanReader, \
-    UNIHAN_FILENAMES, get_metadata
+    UNIHAN_FILENAMES, get_metadata, table_exists, install_raw_csv, \
+    engine, create_table
 
 log = logging.getLogger(__name__)
 
@@ -92,3 +94,47 @@ class UnihanDataCSV(TestCase):
                 print('%s' % rowline)
 
 
+class UnihanMethods(CihaiTestCase):
+
+    def test_returns_table(self):
+        csv_filename = random.choice(UNIHAN_FILENAMES)
+        self.assertRegexpMatches(csv_filename, 'Unihan')
+        table = install_raw_csv(get_datafile(csv_filename))
+        self.assertIsInstance(table, sqlalchemy.schema.Table)
+
+    def test_table_exists(self):
+        metadata = get_metadata()
+        for table_name in metadata.tables:
+            self.assertTrue(table_exists(table_name))
+            self.assertIsInstance(table_name, text_type)
+
+    def test_get_metadata(self):
+        metadata = get_metadata()
+
+        self.assertIsInstance(metadata, sqlalchemy.MetaData)
+
+    def test_get_table(self):
+        metadata = get_metadata()
+        # pick a random table name.
+        table = get_table(random.choice(list(metadata.tables)))
+        self.assertIsInstance(table, sqlalchemy.Table)
+
+    def test_get_datafile(self):
+        # file installed on installation.
+        csv_filename = random.choice(UNIHAN_FILENAMES)
+
+        csv_abspath = get_datafile(csv_filename)
+        self.assertNotEqual(csv_filename, csv_abspath)
+        self.assertIsInstance(csv_abspath, text_type)
+
+    def test_create_table(self):
+        table_name = 'testTable_%s' % random.randint(1, 1337)
+
+        table = create_table(table_name, engine)
+
+        self.assertIsInstance(table, sqlalchemy.Table)
+        self.assertTrue(table.exists())
+
+        table.drop()
+
+        self.assertFalse(table.exists())
