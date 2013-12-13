@@ -55,12 +55,52 @@ from sqlalchemy import create_engine, MetaData, Table, Column, \
 from .helpers import unittest, TestCase, CihaiTestCase
 from .._compat import PY2, text_type, configparser
 from ..unihan import get_datafile, UnihanReader, RawReader, UNIHAN_FILENAMES, \
-    table_exists, install_raw_csv, unihan_config, sqlite_db
+    table_exists, install_raw_csv, unihan_config, sqlite_db, get_metadata, \
+    get_table
 
 log = logging.getLogger(__name__)
 
 
-class UnihanInstallRaw(CihaiTestCase):
+class UnihanMethods(CihaiTestCase):
+
+    def test_returns_table(self):
+        csv_filename = random.choice(UNIHAN_FILENAMES)
+        self.assertRegexpMatches(csv_filename, 'Unihan')
+        table = install_raw_csv(get_datafile(csv_filename))
+        self.assertIsInstance(table, sqlalchemy.schema.Table)
+
+    def test_table_exists(self):
+        metadata = get_metadata()
+        for table_name in metadata.tables:
+            self.assertTrue(table_exists(table_name))
+            self.assertIsInstance(table_name, text_type)
+
+    def test_get_metadata(self):
+        metadata = get_metadata()
+
+        self.assertIsInstance(metadata, MetaData)
+
+    def test_get_table(self):
+        metadata = get_metadata()
+        # pick a random table name.
+        table = get_table(random.choice(list(metadata.tables)))
+        self.assertIsInstance(table, Table)
+
+    def test_get_datafile(self):
+        # file installed on installation.
+        csv_filename = random.choice(UNIHAN_FILENAMES)
+
+        csv_abspath = get_datafile(csv_filename)
+        self.assertNotEqual(csv_filename, csv_abspath)
+        self.assertIsInstance(csv_abspath, text_type)
+
+        bad_filename = 'junkfile_notthere.txt'
+        # file that doesn't exist.
+        with self.assertRaisesRegexp(IOError, 'File %s does not exist' % bad_filename):
+            csv_abspath = get_datafile(bad_filename)
+
+
+class UnihanRawImportCase(CihaiTestCase):
 
     """Dump the Raw Unihan CSV's into SQLite database."""
     csv_filename = None
@@ -132,42 +172,42 @@ class UnihanInstallRaw(CihaiTestCase):
             config_file.close()
 
 
-class Unihan_DictionaryIndices(UnihanInstallRaw):
+class Unihan_DictionaryIndices(UnihanRawImportCase):
     csv_filename = 'Unihan_DictionaryIndices.txt'
     table_name = 'Unihan_DictionaryIndices'
 
 
-class Unihan_DicionaryLikeData(UnihanInstallRaw):
+class Unihan_DicionaryLikeData(UnihanRawImportCase):
     csv_filename = 'Unihan_DictionaryLikeData.txt'
     table_name = 'Unihan_DictionaryLikeData'
 
 
-class Unihan_IRGSources(UnihanInstallRaw):
+class Unihan_IRGSources(UnihanRawImportCase):
     csv_filename = 'Unihan_IRGSources.txt'
     table_name = 'Unihan_IRGSources'
 
 
-class Unihan_NumericValues(UnihanInstallRaw):
+class Unihan_NumericValues(UnihanRawImportCase):
     csv_filename = 'Unihan_NumericValues.txt'
     table_name = 'Unihan_NumericValues'
 
 
-class Unihan_OtherMappings(UnihanInstallRaw):
+class Unihan_OtherMappings(UnihanRawImportCase):
     csv_filename = 'Unihan_OtherMappings.txt'
     table_name = 'Unihan_OtherMappings'
 
 
-class Unihan_RadicalStrokeCounts(UnihanInstallRaw):
+class Unihan_RadicalStrokeCounts(UnihanRawImportCase):
     csv_filename = 'Unihan_RadicalStrokeCounts.txt'
     table_name = 'Unihan_RadicalStrokeCounts'
 
 
-class Unihan_Readings(UnihanInstallRaw):
+class Unihan_Readings(UnihanRawImportCase):
     csv_filename = 'Unihan_Readings.txt'
     table_name = 'Unihan_Readings'
 
 
-class Unihan_Variants(UnihanInstallRaw):
+class Unihan_Variants(UnihanRawImportCase):
     csv_filename = 'Unihan_Variants.txt'
     table_name = 'Unihan_Variants'
 

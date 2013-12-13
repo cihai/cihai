@@ -47,7 +47,11 @@ def get_datafile(filename):
     :rtype: string
 
     """
-    return os.path.join(os.path.abspath(os.path.dirname(__file__)), 'data/', filename)
+
+    abspath = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'data/', filename)
+    if not os.path.exists(abspath):
+        raise IOError('File %s does not exist in the data directory.' % filename)
+    return abspath
 
 
 unihan_config = get_datafile('unihan.conf')
@@ -109,10 +113,10 @@ def install_raw_csv(csv_filename=None):
     """
 
     if not csv_filename:
-        install_raw_csv(UNIHAN_FILENAMES)
+        return install_raw_csv(UNIHAN_FILENAMES)
     elif isinstance(csv_filename, list):
         for csv_filename in csv_filename:
-            install_raw_csv(csv_filename)
+            return install_raw_csv(csv_filename)
     else:
         table_name = csv_filename.split('.')[0]
 
@@ -265,12 +269,6 @@ class UnihanReader(csv.DictReader):
     def row(self, row):
         if row['char'].startswith('U+'):
             row['char'] = conversion.ucn_to_unicode(row['char'])
-
-        if (
-            row['field'] == 'kDefinition' or
-            row['field'] == 'kMandarin'
-        ):
-            row['value'] = row['value']
 
         if not isinstance(row['field'], text_type):
             try:
