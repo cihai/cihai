@@ -74,11 +74,9 @@ class UnihanInstallRaw(CihaiTestCase):
         config = configparser.ConfigParser()
         config.read(unihan_config)  # Re-read, csv_to_table edits conf.
 
-        try:
+        if config.has_section(csv_filename) and config.has_option(csv_filename, 'csv_verified'):
             if config.getboolean(csv_filename, 'csv_verified'):
                 self.skipTest('%s already tested. Skipping.' % csv_filename)
-        except Exception as e:
-            raise (e)
 
         with open(get_datafile(csv_filename), 'r') as csv_file:
             csv_data = filter(lambda row: row[0] != '#', csv_file)
