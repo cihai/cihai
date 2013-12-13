@@ -126,7 +126,7 @@ class UnihanInstallRaw(CihaiTestCase):
                     tuple([csv_item['char'], csv_item['field'], csv_item['value']])
                 )
 
-            config.set(csv_filename, 'csv_verified', True)
+            config.set(csv_filename, 'csv_verified', text_type(True))
             config_file = open(unihan_config, 'w+')
             config.write(config_file)
             config_file.close()
