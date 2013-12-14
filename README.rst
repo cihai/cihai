@@ -21,7 +21,7 @@ Features
     :target: http://badge.fury.io/py/cihai
 
 ==============  ==========================================================
-Python support  Python 2.6, 2.7, >= 3.3
+Python support  Python 2.7, >= 3.3
 Source          https://github.com/tony/cihai
 Docs            http://cihai.rtfd.org
 Changelog       http://cihai.readthedocs.org/en/latest/history.html
