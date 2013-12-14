@@ -150,3 +150,62 @@ class UnihanTable(CihaiTestCase):
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
+
+    def test_kDefinition(self):
+        table = get_table('Unihan_Readings')
+
+        """
+        http://www.unicode.org/reports/tr38/tr38-15.html#kDefinition
+        Major definitions are separated by semicolons, and minor definitions by
+        commas. Any valid Unicode character (except for tab, double-quote, and
+        any line break character) may be used within the definition field.
+        """
+
+        rows = table.select().where(table.c.field == 'kDefinition').limit(4).execute()
+
+        for r in rows:
+            self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
+
+    def test_kCantonese(self):
+        table = get_table('Unihan_Readings')
+
+        """
+        http://www.unicode.org/reports/tr38/tr38-15.html#kCantonese
+        A full description of jyutping can be found at
+        <http://www.lshk.org/cantonese.php>. The main differences between
+        jyutping and the Yale romanization previously used are:
+        """
+
+        rows = table.select().where(table.c.field == 'kCantonese').limit(4).execute()
+
+        for r in rows:
+            self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
+
+    def test_kHangul(self):
+        table = get_table('Unihan_Readings')
+
+        """
+        http://www.unicode.org/reports/tr38/tr38-15.html#kHangul
+
+        """
+
+        rows = table.select().where(table.c.field == 'kHangul').limit(4).execute()
+
+        for r in rows:
+            self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
+
+    def test_kHanyuPinlu(self):
+        table = get_table('Unihan_Readings')
+
+        """
+        http://www.unicode.org/reports/tr38/tr38-15.html#kHanyuPinlu
+
+        """
+
+        rows = table.select().where(table.c.field == 'kHanyuPinlu').limit(4).execute()
+
+        for r in rows:
+            self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
+
+    def test_searchByChar(self):
+        pass
