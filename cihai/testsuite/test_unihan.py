@@ -371,3 +371,87 @@ class UnihanVariants(CihaiTestCase):
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
+
+
+class UnihanRadicalStrokeCounts(CihaiTestCase):
+
+    def test_table_exists(self):
+        self.assertTrue(table_exists('Unihan_RadicalStrokeCounts'))
+
+    def test_kRSAdobe_Japan1_6(self):
+        table = get_table('Unihan_Variants')
+
+        """
+        http://www.unicode.org/reports/tr38/tr38-15.html#kRSAdobe_Japan1_6
+
+        """
+
+        rows = table.select().where(table.c.field == 'kRSAdobe_Japan1_6').limit(1).execute()
+
+        for r in rows:
+            self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
+
+    def test_kRSJapanese(self):
+        table = get_table('Unihan_Variants')
+
+        """
+        http://www.unicode.org/reports/tr38/tr38-15.html#kRSJapanese
+
+        """
+
+        rows = table.select().where(table.c.field == 'kRSJapanese').limit(1).execute()
+
+        for r in rows:
+            self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
+
+    def test_kRSKangXi(self):
+        table = get_table('Unihan_Variants')
+
+        """
+        http://www.unicode.org/reports/tr38/tr38-15.html#kRSKangXi
+
+        """
+
+        rows = table.select().where(table.c.field == 'kRSKangXi').limit(1).execute()
+
+        for r in rows:
+            self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
+
+    def test_kRSKanWa(self):
+        table = get_table('Unihan_Variants')
+
+        """
+        http://www.unicode.org/reports/tr38/tr38-15.html#kRSKanWa
+
+        """
+
+        rows = table.select().where(table.c.field == 'kRSKanWa').limit(1).execute()
+
+        for r in rows:
+            self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
+
+    def test_kRSKorean(self):
+        table = get_table('Unihan_Variants')
+
+        """
+        http://www.unicode.org/reports/tr38/tr38-15.html#kRSKorean
+
+        """
+
+        rows = table.select().where(table.c.field == 'kRSKorean').limit(1).execute()
+
+        for r in rows:
+            self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
+
+    def test_kRSUnicode(self):
+        table = get_table('Unihan_Variants')
+
+        """
+        http://www.unicode.org/reports/tr38/tr38-15.html#kRSUnicode
+
+        """
+
+        rows = table.select().where(table.c.field == 'kRSUnicode').limit(1).execute()
+
+        for r in rows:
+            self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
