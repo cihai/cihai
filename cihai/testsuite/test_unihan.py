@@ -141,7 +141,7 @@ class UnihanMethods(CihaiTestCase):
         self.assertFalse(table.exists())
 
 
-class UnihanTable(CihaiTestCase):
+class UnihanReadings(CihaiTestCase):
 
     def test_kMandarin(self):
         table = get_table('Unihan_Readings')
@@ -203,6 +203,97 @@ class UnihanTable(CihaiTestCase):
         """
 
         rows = table.select().where(table.c.field == 'kHanyuPinlu').limit(4).execute()
+
+        for r in rows:
+            self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
+
+    def test_kHanyuPinyin(self):
+        table = get_table('Unihan_Readings')
+
+        """
+        http://www.unicode.org/reports/tr38/tr38-15.html#kHanyuPinyin
+
+        """
+
+        rows = table.select().where(table.c.field == 'kHanyuPinyin').limit(4).execute()
+
+        for r in rows:
+            self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
+
+    def test_kJapaneseKun(self):
+        table = get_table('Unihan_Readings')
+
+        """
+        http://www.unicode.org/reports/tr38/tr38-15.html#kJapaneseKun
+
+        """
+
+        rows = table.select().where(table.c.field == 'kJapaneseKun').limit(4).execute()
+
+        for r in rows:
+            self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
+
+    def test_kJapaneseOn(self):
+        table = get_table('Unihan_Readings')
+
+        """
+        http://www.unicode.org/reports/tr38/tr38-15.html#kJapaneseKun
+
+        """
+
+        rows = table.select().where(table.c.field == 'kJapaneseOn').limit(4).execute()
+
+        for r in rows:
+            self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
+
+    def test_kKorean(self):
+        table = get_table('Unihan_Readings')
+
+        """
+        http://www.unicode.org/reports/tr38/tr38-15.html#kKorean
+
+        """
+
+        rows = table.select().where(table.c.field == 'kKorean').limit(4).execute()
+
+        for r in rows:
+            self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
+
+    def test_kTang(self):
+        table = get_table('Unihan_Readings')
+
+        """
+        http://www.unicode.org/reports/tr38/tr38-15.html#kTang
+
+        """
+
+        rows = table.select().where(table.c.field == 'kTang').limit(4).execute()
+
+        for r in rows:
+            self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
+
+    def test_kVietnamese(self):
+        table = get_table('Unihan_Readings')
+
+        """
+        http://www.unicode.org/reports/tr38/tr38-15.html#kVietnamese
+
+        """
+
+        rows = table.select().where(table.c.field == 'kVietnamese').limit(4).execute()
+
+        for r in rows:
+            self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
+
+    def test_kXHC1983(self):
+        table = get_table('Unihan_Readings')
+
+        """
+        http://www.unicode.org/reports/tr38/tr38-15.html#kVietnamese
+
+        """
+
+        rows = table.select().where(table.c.field == 'kXHC1983').limit(4).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
