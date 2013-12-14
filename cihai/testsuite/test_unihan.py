@@ -149,5 +149,4 @@ class UnihanTable(CihaiTestCase):
         rows = table.select().where(table.c.field == 'kMandarin').limit(4).execute()
 
         for r in rows:
-            print('%s (%s): %s' % (ucn_to_unicode(r['char']), r['char'], r['value']))
-        print(u"\U00020001")
+            self.assertIsInstance(ucn_to_unicode(r['char']), text_type)

@@ -127,7 +127,7 @@ def ucn_to_unicode(ucn):
     if isinstance(ucn, string_types):
         ucn = ucn.strip("U+")
         if len(ucn) > int(4):
-            char = b'\U' + format(int(ucn,16), '08x').encode('ascii')
+            char = b'\U' + format(int(ucn, 16), '08x').encode('ascii')
             char = char.decode('unicode_escape')
         else:
             char = unichr(int(ucn, 16))
