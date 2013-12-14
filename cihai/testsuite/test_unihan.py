@@ -455,3 +455,48 @@ class UnihanRadicalStrokeCounts(CihaiTestCase):
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
+
+
+class UnihanNumericValues(CihaiTestCase):
+
+    def test_table_exists(self):
+        self.assertTrue(table_exists('Unihan_NumericValues'))
+
+    def test_kAccountingNumeric(self):
+        table = get_table('Unihan_Variants')
+
+        """
+        http://www.unicode.org/reports/tr38/tr38-15.html#kAccountingNumeric
+
+        """
+
+        rows = table.select().where(table.c.field == 'kAccountingNumeric').limit(1).execute()
+
+        for r in rows:
+            self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
+
+    def test_kOtherNumeric(self):
+        table = get_table('Unihan_Variants')
+
+        """
+        http://www.unicode.org/reports/tr38/tr38-15.html#kOtherNumeric
+
+        """
+
+        rows = table.select().where(table.c.field == 'kOtherNumeric').limit(1).execute()
+
+        for r in rows:
+            self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
+
+    def test_kPrimaryNumeric(self):
+        table = get_table('Unihan_Variants')
+
+        """
+        http://www.unicode.org/reports/tr38/tr38-15.html#kPrimaryNumeric
+
+        """
+
+        rows = table.select().where(table.c.field == 'kPrimaryNumeric').limit(1).execute()
+
+        for r in rows:
+            self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
