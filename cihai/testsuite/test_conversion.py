@@ -70,8 +70,9 @@ class UCN(TestCase):
 
         self.assertIsInstance(after, text_type)
 
-        before = 'U+4E00'
-        expected = '\u4e00'
+        # wide character
+        before = 'U+20001'
+        expected = '\U00020001'
 
         after = conversion.ucnstring_to_unicode(before)
 

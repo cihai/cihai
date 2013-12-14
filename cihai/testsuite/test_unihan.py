@@ -24,6 +24,7 @@ from .._compat import PY2, text_type
 from ..unihan import get_datafile, get_table, UnihanReader, \
     UNIHAN_FILENAMES, get_metadata, table_exists, install_raw_csv, \
     engine, create_table
+from ..conversion import ucn_to_unicode
 
 log = logging.getLogger(__name__)
 
@@ -138,3 +139,15 @@ class UnihanMethods(CihaiTestCase):
         table.drop()
 
         self.assertFalse(table.exists())
+
+
+class UnihanTable(CihaiTestCase):
+
+    def test_kMandarin(self):
+        table = get_table('Unihan_Readings')
+
+        rows = table.select().where(table.c.field == 'kMandarin').limit(4).execute()
+
+        for r in rows:
+            print('%s (%s): %s' % (ucn_to_unicode(r['char']), r['char'], r['value']))
+        print(u"\U00020001")
