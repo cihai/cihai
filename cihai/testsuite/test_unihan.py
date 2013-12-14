@@ -500,3 +500,61 @@ class UnihanNumericValues(CihaiTestCase):
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
+
+
+class UnihanDictionaryLikeData(CihaiTestCase):
+
+    def test_table_exists(self):
+        self.assertTrue(table_exists('Unihan_DictionaryLikeData'))
+
+    def test_kFrequency(self):
+        table = get_table('Unihan_DictionaryLikeData')
+
+        """
+        http://www.unicode.org/reports/tr38/tr38-15.html#kFrequency
+
+        """
+
+        rows = table.select().where(table.c.field == 'kFrequency').limit(1).execute()
+
+        for r in rows:
+            self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
+
+    def test_kPhonetic(self):
+        table = get_table('Unihan_DictionaryLikeData')
+
+        """
+        http://www.unicode.org/reports/tr38/tr38-15.html#kPhonetic
+
+        """
+
+        rows = table.select().where(table.c.field == 'kPhonetic').limit(1).execute()
+
+        for r in rows:
+            self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
+
+    def test_kTotalStrokes(self):
+        table = get_table('Unihan_DictionaryLikeData')
+
+        """
+        http://www.unicode.org/reports/tr38/tr38-15.html#kTotalStrokes
+
+        """
+
+        rows = table.select().where(table.c.field == 'kTotalStrokes').limit(1).execute()
+
+        for r in rows:
+            self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
+
+    def test_kGradeLevel(self):
+        table = get_table('Unihan_DictionaryLikeData')
+
+        """
+        http://www.unicode.org/reports/tr38/tr38-15.html#kGradeLevel
+
+        """
+
+        rows = table.select().where(table.c.field == 'kGradeLevel').limit(1).execute()
+
+        for r in rows:
+            self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
