@@ -1,4 +1,4 @@
-``cihai`` - China fit in to a python package.
+``cihai`` - China fit into a python package.
 
 Status
 ------
@@ -28,6 +28,9 @@ Changelog       http://cihai.readthedocs.org/en/latest/history.html
 API             http://cihai.readthedocs.org/en/latest/api.html
 Issues          https://github.com/tony/cihai/issues
 Travis          http://travis-ci.org/tony/cihai
+pypi            https://pypi.python.org/pypi/cihai
+Crate.io        https://crate.io/packages/cihai/
+Ohloh           https://www.ohloh.net/p/cihai
 License         `BSD`_.
 git repo        .. code-block:: bash
 
