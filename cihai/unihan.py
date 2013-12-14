@@ -199,8 +199,8 @@ def create_table(table_name, engine):
     metadata = MetaData(bind=engine)
     table = Table(table_name, metadata)
     fields = [
-        ('char', String(256)),
-        ('field', String(256)),
+        ('char', String(12)),
+        ('field', String(36)),
         ('value', String(256)),
     ]
 
@@ -213,7 +213,9 @@ def create_table(table_name, engine):
         col = Column(field, type_)
         table.append_column(col)
 
-    Index('%s_unique' % table_name, table.c.char, table.c.field, table.c.value, unique=True)
+    Index('%s_unique_char_field_value' % table_name, table.c.char, table.c.field, table.c.value, unique=True)
+    Index('%s_unique_char_field' % table_name, table.c.char, table.c.field, unique=True)
+    Index('%s_field' % table_name, table.c.field)
 
     if not table.exists():
         table.create()

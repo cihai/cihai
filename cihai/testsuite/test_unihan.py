@@ -146,7 +146,7 @@ class UnihanReadings(CihaiTestCase):
     def test_kMandarin(self):
         table = get_table('Unihan_Readings')
 
-        rows = table.select().where(table.c.field == 'kMandarin').limit(4).execute()
+        rows = table.select().where(table.c.field == 'kMandarin').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
@@ -161,7 +161,7 @@ class UnihanReadings(CihaiTestCase):
         any line break character) may be used within the definition field.
         """
 
-        rows = table.select().where(table.c.field == 'kDefinition').limit(4).execute()
+        rows = table.select().where(table.c.field == 'kDefinition').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
@@ -176,7 +176,7 @@ class UnihanReadings(CihaiTestCase):
         jyutping and the Yale romanization previously used are:
         """
 
-        rows = table.select().where(table.c.field == 'kCantonese').limit(4).execute()
+        rows = table.select().where(table.c.field == 'kCantonese').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
@@ -189,7 +189,7 @@ class UnihanReadings(CihaiTestCase):
 
         """
 
-        rows = table.select().where(table.c.field == 'kHangul').limit(4).execute()
+        rows = table.select().where(table.c.field == 'kHangul').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
@@ -202,7 +202,7 @@ class UnihanReadings(CihaiTestCase):
 
         """
 
-        rows = table.select().where(table.c.field == 'kHanyuPinlu').limit(4).execute()
+        rows = table.select().where(table.c.field == 'kHanyuPinlu').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
@@ -215,7 +215,7 @@ class UnihanReadings(CihaiTestCase):
 
         """
 
-        rows = table.select().where(table.c.field == 'kHanyuPinyin').limit(4).execute()
+        rows = table.select().where(table.c.field == 'kHanyuPinyin').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
@@ -228,7 +228,7 @@ class UnihanReadings(CihaiTestCase):
 
         """
 
-        rows = table.select().where(table.c.field == 'kJapaneseKun').limit(4).execute()
+        rows = table.select().where(table.c.field == 'kJapaneseKun').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
@@ -241,7 +241,7 @@ class UnihanReadings(CihaiTestCase):
 
         """
 
-        rows = table.select().where(table.c.field == 'kJapaneseOn').limit(4).execute()
+        rows = table.select().where(table.c.field == 'kJapaneseOn').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
@@ -254,7 +254,7 @@ class UnihanReadings(CihaiTestCase):
 
         """
 
-        rows = table.select().where(table.c.field == 'kKorean').limit(4).execute()
+        rows = table.select().where(table.c.field == 'kKorean').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
@@ -267,7 +267,7 @@ class UnihanReadings(CihaiTestCase):
 
         """
 
-        rows = table.select().where(table.c.field == 'kTang').limit(4).execute()
+        rows = table.select().where(table.c.field == 'kTang').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
@@ -280,7 +280,7 @@ class UnihanReadings(CihaiTestCase):
 
         """
 
-        rows = table.select().where(table.c.field == 'kVietnamese').limit(4).execute()
+        rows = table.select().where(table.c.field == 'kVietnamese').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
@@ -293,7 +293,7 @@ class UnihanReadings(CihaiTestCase):
 
         """
 
-        rows = table.select().where(table.c.field == 'kXHC1983').limit(4).execute()
+        rows = table.select().where(table.c.field == 'kXHC1983').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
@@ -315,7 +315,7 @@ class UnihanVariants(CihaiTestCase):
 
         """
 
-        rows = table.select().where(table.c.field == 'kSemanticVariant').limit(4).execute()
+        rows = table.select().where(table.c.field == 'kSemanticVariant').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
@@ -328,7 +328,7 @@ class UnihanVariants(CihaiTestCase):
 
         """
 
-        rows = table.select().where(table.c.field == 'kTraditionalVariant').limit(4).execute()
+        rows = table.select().where(table.c.field == 'kTraditionalVariant').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
@@ -341,7 +341,7 @@ class UnihanVariants(CihaiTestCase):
 
         """
 
-        rows = table.select().where(table.c.field == 'kSpecializedSemanticVariant').limit(4).execute()
+        rows = table.select().where(table.c.field == 'kSpecializedSemanticVariant').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
@@ -354,7 +354,7 @@ class UnihanVariants(CihaiTestCase):
 
         """
 
-        rows = table.select().where(table.c.field == 'kSimplifiedVariant').limit(4).execute()
+        rows = table.select().where(table.c.field == 'kSimplifiedVariant').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
@@ -367,7 +367,7 @@ class UnihanVariants(CihaiTestCase):
 
         """
 
-        rows = table.select().where(table.c.field == 'kCompatibilityVariant').limit(4).execute()
+        rows = table.select().where(table.c.field == 'kCompatibilityVariant').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
