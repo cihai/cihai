@@ -23,7 +23,7 @@ from .helpers import unittest, TestCase, CihaiTestCase
 from .._compat import PY2, text_type
 from ..unihan import get_datafile, get_table, UnihanReader, \
     UNIHAN_FILENAMES, get_metadata, table_exists, install_raw_csv, \
-    engine, create_table
+    engine, create_table, table_exists
 from ..conversion import ucn_to_unicode
 
 log = logging.getLogger(__name__)
@@ -289,7 +289,7 @@ class UnihanReadings(CihaiTestCase):
         table = get_table('Unihan_Readings')
 
         """
-        http://www.unicode.org/reports/tr38/tr38-15.html#kVietnamese
+        http://www.unicode.org/reports/tr38/tr38-15.html#kXHC1983
 
         """
 
@@ -298,5 +298,76 @@ class UnihanReadings(CihaiTestCase):
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
 
-    def test_searchByChar(self):
-        pass
+    def test_table_exists(self):
+        self.assertTrue(table_exists('Unihan_Readings'))
+
+
+class UnihanVariants(CihaiTestCase):
+
+    def test_table_exists(self):
+        self.assertTrue(table_exists('Unihan_Variants'))
+
+    def test_kSemanticVariant(self):
+        table = get_table('Unihan_Variants')
+
+        """
+        http://www.unicode.org/reports/tr38/tr38-15.html#kSemanticVariant
+
+        """
+
+        rows = table.select().where(table.c.field == 'kSemanticVariant').limit(4).execute()
+
+        for r in rows:
+            self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
+
+    def test_kTraditionalVariant(self):
+        table = get_table('Unihan_Variants')
+
+        """
+        http://www.unicode.org/reports/tr38/tr38-15.html#kTraditionalVariant
+
+        """
+
+        rows = table.select().where(table.c.field == 'kTraditionalVariant').limit(4).execute()
+
+        for r in rows:
+            self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
+
+    def test_kSpecializedSemanticVariant(self):
+        table = get_table('Unihan_Readings')
+
+        """
+        http://www.unicode.org/reports/tr38/tr38-15.html#kSpecializedSemanticVariant
+
+        """
+
+        rows = table.select().where(table.c.field == 'kSpecializedSemanticVariant').limit(4).execute()
+
+        for r in rows:
+            self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
+
+    def test_kSimplifiedVariant(self):
+        table = get_table('Unihan_Readings')
+
+        """
+        http://www.unicode.org/reports/tr38/tr38-15.html#kSimplifiedVariant
+
+        """
+
+        rows = table.select().where(table.c.field == 'kSimplifiedVariant').limit(4).execute()
+
+        for r in rows:
+            self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
+
+    def test_kCompatibilityVariant(self):
+        table = get_table('Unihan_Readings')
+
+        """
+        http://www.unicode.org/reports/tr38/tr38-15.html#kCompatibilityVariant
+
+        """
+
+        rows = table.select().where(table.c.field == 'kCompatibilityVariant').limit(4).execute()
+
+        for r in rows:
+            self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
