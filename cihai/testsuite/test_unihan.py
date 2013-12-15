@@ -13,6 +13,7 @@ from __future__ import absolute_import, division, print_function, \
     with_statement, unicode_literals
 
 import os
+import re
 import tempfile
 import random
 import logging
@@ -165,6 +166,18 @@ class UnihanReadings(CihaiTestCase):
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
+
+        query = table.select().where(sqlalchemy.sql.expression.and_(
+            table.c.field == 'kDefinition',
+            table.c.value.like('%(same as%')
+        ))
+
+        self.assertIn('LIKE', query.compile().__str__())
+        rows = query.execute()
+
+        for r in rows:
+            self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
+            self.assertTrue(re.search('\(same as', r.value))
 
     def test_kCantonese(self):
         table = get_table('Unihan_Readings')
