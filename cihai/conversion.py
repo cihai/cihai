@@ -177,7 +177,6 @@ def euc_to_unicode(hexstr):
 
 """ Convert from internal Python unicode / string objects """
 
-
 def python_to_ucn(uni_char):
     """Return UCN character from Python Unicode character.
 

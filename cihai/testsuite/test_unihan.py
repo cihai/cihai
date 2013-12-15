@@ -20,6 +20,8 @@ import logging
 
 import sqlalchemy
 
+from .. import conversion
+
 from .helpers import unittest, TestCase, CihaiTestCase
 from .._compat import PY2, text_type
 from ..unihan import get_datafile, get_table, UnihanReader, \
@@ -166,18 +168,6 @@ class UnihanReadings(CihaiTestCase):
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
-
-        query = table.select().where(sqlalchemy.sql.expression.and_(
-            table.c.field == 'kDefinition',
-            table.c.value.like('%(same as%')
-        ))
-
-        self.assertIn('LIKE', query.compile().__str__())
-        rows = query.execute()
-
-        for r in rows:
-            self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
-            self.assertTrue(re.search('\(same as', r.value))
 
     def test_kCantonese(self):
         table = get_table('Unihan_Readings')
@@ -570,4 +560,48 @@ class UnihanDictionaryLikeData(CihaiTestCase):
         rows = table.select().where(table.c.field == 'kGradeLevel').limit(1).execute()
 
         for r in rows:
+            self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
+
+
+class kDefinition(CihaiTestCase):
+    """
+    http://www.unicode.org/reports/tr38/tr38-15.html#kDefinition
+    Major definitions are separated by semicolons, and minor definitions by
+    commas. Any valid Unicode character (except for tab, double-quote, and
+    any line break character) may be used within the definition field.
+    """
+
+    def test_like(self):
+        table = get_table('Unihan_Readings')
+
+        def selectkDefinition(char=None):
+
+            select = table.select().where(table.c.field == 'kDefinition')
+
+            if char:
+                select = select.where(table.c.char == conversion.python_to_ucn(char))
+
+            return select
+
+        self.assertNotIn('LIKE', selectkDefinition().compile().__str__())
+
+        kDefinitionQuery = selectkDefinition().where(
+            table.c.value.like('%(same as%')
+        )
+
+        self.assertIn('LIKE', kDefinitionQuery.compile().__str__())
+        rows = kDefinitionQuery.execute()
+
+        for r in rows:
+            self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
+            self.assertTrue(re.search('\(same as', r.value))
+
+        charQuery = selectkDefinition(char='好')
+
+        rows = charQuery.execute()
+
+        print(charQuery)
+        print(rows)
+        for r in rows:
+            print(r)
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
