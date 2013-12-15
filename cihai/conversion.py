@@ -212,12 +212,17 @@ def python_to_ucn(uni_char):
     corresponding Unicode UCN ('U+4E00').
 
     """
-    ucn = repr(uni_char)[4:-1]
+    import sys
+
+    #ucn = repr(uni_char)[4:-1]
+
+    ucn = uni_char.encode('unicode_escape').decode('ascii')
+    ucn = text_type(ucn).replace('\\', '').lstrip('u')
     if len(ucn) > int(4):
         # get rid of the zeroes that Python uses to pad 32 byte UCNs
         ucn = ucn.lstrip("0")
-
-    ucn = b"U+%s" % ucn.upper()
+    ucn = "U+" + ucn.upper()
+    ucn = ucn.encode('latin1')
 
     assert isinstance(ucn, bytes)
 
@@ -232,8 +237,9 @@ def python_to_euc(uni_char):
 
     """
 
-    euc = repr(uni_char.encode("gb2312"))[1:-1].replace("\\x", "")
+    euc = repr(uni_char.encode("gb2312"))[1:-1].replace("\\x", "").strip("'")
 
+    euc = euc.encode('utf-8')
     assert isinstance(euc, bytes)
 
     return euc
