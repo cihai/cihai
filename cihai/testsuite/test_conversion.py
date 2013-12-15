@@ -57,8 +57,11 @@ class UCN(TestCase):
 
         expected = b"U+4E00"
 
-        self.assertEqual(expected, conversion.python_to_ucn(python_unicode))
-        self.assertEqual(expected, conversion.python_to_ucn(text))
+        self.assertEqual(conversion.python_to_ucn(python_unicode), expected)
+        self.assertIsInstance(conversion.python_to_ucn(python_unicode), bytes)
+
+        self.assertEqual(conversion.python_to_ucn(text), expected)
+        self.assertIsInstance(conversion.python_to_ucn(text), bytes)
 
     def test_to_unicode(self):
         before = 'U+4E00'
@@ -66,7 +69,7 @@ class UCN(TestCase):
 
         after = conversion.ucn_to_unicode(before)
 
-        self.assertEqual(expected, after)
+        self.assertEqual(after, expected)
 
         self.assertIsInstance(after, text_type)
 
@@ -76,11 +79,7 @@ class UCN(TestCase):
 
         after = conversion.ucnstring_to_unicode(before)
 
-        self.assertEqual(
-            expected,
-            after
-        )
-
+        self.assertEqual(after, expected)
         self.assertIsInstance(after, text_type)
 
         before = '(same as U+7A69 穩) firm; stable; secure'
@@ -88,10 +87,7 @@ class UCN(TestCase):
 
         after = conversion.ucnstring_to_unicode(before)
 
-        self.assertEqual(
-            expected,
-            after
-        )
+        self.assertEqual(after, expected)
         self.assertIsInstance(after, text_type)
 
 

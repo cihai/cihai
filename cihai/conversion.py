@@ -212,10 +212,6 @@ def python_to_ucn(uni_char):
     corresponding Unicode UCN ('U+4E00').
 
     """
-    import sys
-
-    #ucn = repr(uni_char)[4:-1]
-
     ucn = uni_char.encode('unicode_escape').decode('ascii')
     ucn = text_type(ucn).replace('\\', '').lstrip('u')
     if len(ucn) > int(4):
