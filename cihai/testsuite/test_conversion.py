@@ -55,7 +55,10 @@ class UCN(TestCase):
         text = '一'
         python_unicode = u'\u4e00'
 
-        pass
+        expected = b"U+4E00"
+
+        self.assertEqual(expected, conversion.python_to_ucn(python_unicode))
+        self.assertEqual(expected, conversion.python_to_ucn(text))
 
     def test_to_unicode(self):
         before = 'U+4E00'
@@ -63,10 +66,7 @@ class UCN(TestCase):
 
         after = conversion.ucn_to_unicode(before)
 
-        self.assertEqual(
-            expected,
-            after
-        )
+        self.assertEqual(expected, after)
 
         self.assertIsInstance(after, text_type)
 

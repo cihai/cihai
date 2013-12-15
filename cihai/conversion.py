@@ -217,7 +217,7 @@ def python_to_ucn(uni_char):
         # get rid of the zeroes that Python uses to pad 32 byte UCNs
         ucn = ucn.lstrip("0")
 
-    ucn = b"U+%s" % ucn
+    ucn = b"U+%s" % ucn.upper()
 
     assert isinstance(ucn, bytes)
 
