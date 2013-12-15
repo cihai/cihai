@@ -115,46 +115,10 @@ class EUC(TestCase):
         python_unicode = u'\u4e00'
         euc_bytestring = b'd2bb'
 
+        expected = conversion.euc_to_unicode(euc_bytestring)
+
         self.assertEqual(text, python_unicode)
-        self.assertIsInstance(
-            conversion.euc_to_unicode(euc_bytestring),
-            text_type
-        )
+        self.assertIsInstance(expected, text_type)
 
-        self.assertEqual(
-            conversion.euc_to_unicode(euc_bytestring),
-            text
-        )
-
-        self.assertEqual(
-            conversion.euc_to_unicode(euc_bytestring),
-            python_unicode
-        )
-
-
-class NCR(TestCase):
-
-    """Return Unicode NCR string from a Python unicode string.
-
-    Converts a one character Python unicode string (e.g. u'\\u4e00') to the
-    corresponding Unicode NCR ('&x4E00;').
-
-    Change the output format by passing the following parameters:
-
-    :param decimal: (default False) output the decimal value instead of hex.
-    :param hex: (default False) (same as decimal=True)
-    :param xml: (default False) just display the decimal or hex value, i.e.
-        strip off the '&#', '&x', and ';'
-
-    No parameters - default behavior: hex=True, xml=True.
-
-    """
-
-    def test_from_unicode(self):
-        text = '一'
-        python_unicode = u'\u4e00'
-
-        pass
-
-    def test_to_unicode(self):
-        pass
+        self.assertEqual(text, expected)
+        self.assertEqual(python_unicode, expected)

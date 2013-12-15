@@ -35,8 +35,6 @@ EUC-CN                     "D2BB" [this is the "external encoding" of GB2312-
 UTF-8                      "E4 B8 80" [used in the "UTF-8" field in Unihan.txt]
 -------------------------- ----------------------------------------------------
 Unihan UCN                 "U+4E00"   [used by Unicode Inc.]
-Unihan NCR (decimal)       "&#19968;" [Numerical Character Reference ...
-Unihan NCR (hex)           "&x4E00;"   ... used in XML/HTML/SGML]
 -------------------------- ----------------------------------------------------
 internal Python unicode    u"\u4e00"  [this is the most useful form!]
 internal Python 'utf8'     "\\xe4\\xb8\\x80"
@@ -177,31 +175,6 @@ def euc_to_unicode(hexstr):
     return gb_enc
 
 
-def ncr_to_python(ncr):
-    """Return Python Unicode from NCR bytestring.
-
-    Convert Unicode Numerical Character Reference (e.g. "19968", "&#19968;", or
-    "&#x4E00;") to native Python Unicode (u'\\u4e00').
-
-    """
-    ncr = ncr.lower()
-    if ncr.startswith("&#x"):
-        #hex NCR
-        ncr = ncr.strip("&#x;")
-    elif ncr.startswith("&#"):
-        #decimal NCR
-        ncr = ncr.strip("&#;")
-        ncr = hexd(int(ncr))
-    else:
-        #assume it's a decimal NCR not in the XML character entity ref. format
-        ncr = hexd(int(ncr))
-
-    ncr = ucn_to_python(ncr)
-
-    assert isintance(ncr, bytes)
-
-    return ncr
-
 """ Convert from internal Python unicode / string objects """
 
 
@@ -241,65 +214,9 @@ def python_to_euc(uni_char):
     return euc
 
 
-def python_to_ncr(uni_char, **options):
-    """Return Unicode NCR string from a Python unicode string.
-
-    Converts a one character Python unicode string (e.g. u'\\u4e00') to the
-    corresponding Unicode NCR ('&x4E00;').
-
-    Change the output format by passing the following parameters:
-
-    :param decimal: (default False) output the decimal value instead of hex.
-    :param hex: (default False) (same as decimal=True)
-    :param xml: (default False) just display the decimal or hex value, i.e.
-        strip off the '&#', '&x', and ';'
-
-    No parameters - default behavior: hex=True, xml=True.
-
-    """
-    hexflag, decflag, xmlflag = map(options.get, ["hex", "decimal", "xml"], [True, False, True])
-    if decflag:
-        out = int(repr(uni_char)[4:-1], 16)
-        if xmlflag:
-            out = "&#%s;" % out
-    elif hexflag:
-        out = repr(uni_char)[4:-1]
-        if xmlflag:
-            out = "&#x%s;" % out
-
-    assert isinstance(out, bytes)
-
-    return out
-
-
-def string_to_ncr(uni_string, **options):
-    """Return string with Python Unicode string replaced by NCR strings.
-
-    Convert Python unicode string (e.g. u'p\\u012bn y\\u012bn') to the
-    corresponding Unicode NCRs. See `python_to_ncr` for formatting options.
-
-    """
-    for char in uni_string:
-        if ord(char) > int(128):
-            uni_string = uni_string.replace(char, python_to_ncr(char, options=options))
-
-    assert isinstance(uni_string, bytes)
-    return uni_string
-
-
-def ncrstring_to_python(ncr_string):
-    """Return string of Unicode NCRs (e.g. "&#19968;&#x4E00;") to native Python Unicode (u'\\u4e00\\u4e00')"""
-    res = re.findall("&#[x0-9a-fA-F]*?;", ncr_string)
-    for r in res:
-        ncr_string = ncr_string.replace(r, ncr_to_python(r))
-
-    assert isinstance(ncr_string, bytes)
-    return ncr_string
-
-
-def ucnstring_to_unicode(ncr_string):
+def ucnstring_to_unicode(ucn_string):
     """Return ucnstring as Unicode."""
-    ucn_string = ucnstring_to_python(ncr_string).decode('utf-8')
+    ucn_string = ucnstring_to_python(ucn_string).decode('utf-8')
 
     assert isinstance(ucn_string, text_type)
     return ucn_string
