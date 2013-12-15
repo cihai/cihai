@@ -564,6 +564,7 @@ class UnihanDictionaryLikeData(CihaiTestCase):
 
 
 class kDefinition(CihaiTestCase):
+
     """
     http://www.unicode.org/reports/tr38/tr38-15.html#kDefinition
     Major definitions are separated by semicolons, and minor definitions by
@@ -575,7 +576,6 @@ class kDefinition(CihaiTestCase):
         table = get_table('Unihan_Readings')
 
         def selectkDefinition(char=None):
-
             select = table.select().where(table.c.field == 'kDefinition')
 
             if char:
@@ -596,12 +596,61 @@ class kDefinition(CihaiTestCase):
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
             self.assertTrue(re.search('\(same as', r.value))
 
-        charQuery = selectkDefinition(char='好')
+        self.assertGreaterEqual(1, selectkDefinition(char='好').execute().rowcount)
 
-        rows = charQuery.execute()
+        # for r in rows:
+            # print(r)
+            # self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
 
-        print(charQuery)
-        print(rows)
-        for r in rows:
-            print(r)
-            self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
+class UnihanAPI(CihaiTestCase):
+    """
+
+    Unihan API
+    ----------
+
+    Example::
+
+        obj = unihan.get('好') retrieves all rows. it will create a keyed object:
+        obj.kDefinition
+        obj['kDefinition']
+        obj.keys()
+        ['kDefinition',]
+
+        obj = unihan.get('好', 'kDefinition', ...)
+        >>> obj.kDefinition
+        good
+        >>> obj.kStrokes
+        None
+
+
+    Creating a cihai plugin::
+
+        class MyDict(CihaiPlugin):
+
+            def get(self):
+                pass
+
+            def _install(self):
+                pass
+
+
+
+    Cihai
+    -----
+
+    The cihai::
+
+        cihai = Cihai()
+        c = cihai.get('好')
+        >>> c.keys()
+        ['unihan']
+        >>> c.get('好')
+        <Cihai.Contrib.Libunihan>
+        >>> print(c.get('好’))
+        >>> print(c.get('好’).parent)
+
+        # Below this point, libunihan splits into subplugins for its libraries.
+        >>> print(dict(c.get('好’)))
+    """
+
+    pass
