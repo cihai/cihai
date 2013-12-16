@@ -605,52 +605,6 @@ class kDefinition(CihaiTestCase):
 class UnihanAPI(CihaiTestCase):
     """
 
-    Unihan API
-    ----------
-
-    Example::
-
-        obj = unihan.get('好') retrieves all rows. it will create a keyed object:
-        obj.kDefinition
-        obj['kDefinition']
-        obj.keys()
-        ['kDefinition',]
-
-        obj = unihan.get('好', 'kDefinition', ...)
-        >>> obj.kDefinition
-        good
-        >>> obj.kStrokes
-        None
-
-
-    Creating a cihai plugin::
-
-        class MyDict(CihaiPlugin):
-
-            def get(self):
-                pass
-
-            def _install(self):
-                pass
-
-
-
-    Cihai
-    -----
-
-    The cihai::
-
-        cihai = Cihai()
-        c = cihai.get('好')
-        >>> c.keys()
-        ['unihan']
-        >>> c.get('好')
-        <Cihai.Contrib.Libunihan>
-        >>> print(c.get('好’))
-        >>> print(c.get('好’).parent)
-
-        # Below this point, libunihan splits into subplugins for its libraries.
-        >>> print(dict(c.get('好’)))
     """
 
     pass
