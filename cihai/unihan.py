@@ -272,7 +272,3 @@ class UnihanReader(csv.DictReader):
                 log.info(row['field'])
                 raise e
         return row
-
-
-def main():
-    pass
