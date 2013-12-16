@@ -123,6 +123,15 @@ Use ``.get`` too. This may seem problematic, but checking the
 How should data returned look? Schema.
 --------------------------------------
 
+Questions:
+
+- Is there already an open standard that can be adopted?
+- Should ``.get`` return an raw object / dict or an object::
+
+    c = c.get('你')  # return a ResultObject / Backbone.Model / mongoose
+                     # document type of object.
+    c.toJSON()  # backbone / sqlalchemy style
+
 The data should follow the same schema. What would an API response for
 these possibilities look like?
 
@@ -241,7 +250,9 @@ It can use the same data sets, similar API and extension strategy.
 API examples
 ------------
 
-Example::
+Example:
+
+.. code-block:: python
 
     obj = unihan.get('好') retrieves all rows. it will create a keyed object:
     obj.kDefinition
@@ -281,7 +292,7 @@ Creating a cihai plugin
         def get(self):
             pass
 
-        def _install(self):
+        def install(self):
             pass
 
     cihai = Cihai()
@@ -291,29 +302,29 @@ Creating a cihai plugin
     ['unihan']
     >>> c.get('好')
     <Cihai.Contrib.Unihan>
-    >>> print(c.get('好’))
-    >>> print(c.get('好’).parent)
+    >>> print(c.get('好'))
+    >>> print(c.get('好').parent)
 
     # Below this point, libunihan splits into subplugins for its libraries.
-    >>> print(dict(c.get('好’)))
+    >>> print(dict(c.get('好')))
 
 
 Cihai will allows extensibility to new dictionaries, vocabularies and data.
 
 Middleware allows an arbitrary plugin to make data available.
 
-By default, Cihai() creates an instance of Cihai with access to :meth:`Cihai.get`.
+By default, ``Cihai()`` creates an instance of Cihai with access to :meth:`Cihai.get`.
 
 However, since no middleware are included with Cihai, no results are returned.
 
-With Cihai(middleware=[Cihai_Unihan])
+With ``Cihai(middleware=[Cihai.Unihan])``
 
-or c = Cihai()
+or ``c = Cihai()``
 
-c.use(Cihai_Unihan)
+``c.use(Cihai.Unihan)``
 
 the Cihai_Unihan is available. What is Cihai_Unihan? Simply an object with
 
-class Cihai_Unihan(CihaiMiddleware):
+class Unihan(Cihai.Contrib):
 
     pass
