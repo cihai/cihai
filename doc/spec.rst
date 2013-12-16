@@ -258,8 +258,8 @@ Perhaps extensions can also be searched directly::
 
     c.unihan.get('好')
 
-Internal API's can allow extra arguments, for instance, unihan may allow
-searching by one field::
+Third party API's can specify optional extra arguments, for instance,
+unihan may allow searching by one field::
 
     c.unihan.get('好', 'kDefinition')
 
