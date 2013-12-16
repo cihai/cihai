@@ -125,7 +125,7 @@ def ucn_to_unicode(ucn):
     if isinstance(ucn, string_types):
         ucn = ucn.strip("U+")
         if len(ucn) > int(4):
-            char = b'\U' + format(int(ucn, 16), '08x').encode('ascii')
+            char = b'\U' + format(int(ucn, 16), '08x').encode('latin1')
             char = char.decode('unicode_escape')
         else:
             char = unichr(int(ucn, 16))
@@ -177,6 +177,7 @@ def euc_to_unicode(hexstr):
 
 """ Convert from internal Python unicode / string objects """
 
+
 def python_to_ucn(uni_char):
     """Return UCN character from Python Unicode character.
 
@@ -184,7 +185,7 @@ def python_to_ucn(uni_char):
     corresponding Unicode UCN ('U+4E00').
 
     """
-    ucn = uni_char.encode('unicode_escape').decode('ascii')
+    ucn = uni_char.encode('unicode_escape').decode('latin1')
     ucn = text_type(ucn).replace('\\', '').lstrip('u')
     if len(ucn) > int(4):
         # get rid of the zeroes that Python uses to pad 32 byte UCNs
