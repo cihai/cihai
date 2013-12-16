@@ -77,7 +77,9 @@ I would like to try to encourage use of a single, simple hook,
 ``.get``.
 
 After ``.get`` is used, the arguments may then be passed through
-middleware.
+middleware classes / methods.
+
+The same principle applies for ``.reverse`` matches.
 
 Chinese character
 """""""""""""""""
@@ -90,6 +92,9 @@ Currently, Hanzi uses:
 
     # transition to:
     hanzi.get('爱')
+
+    hanzi.reverse('爱')  # to look up any indices / decompositions / words
+    where 爱 may match.
 
 Currently cjklib uses:
 
@@ -246,6 +251,19 @@ It can use the same data sets, similar API and extension strategy.
 
 .. _Connect: https://github.com/senchalabs/connect
 
+Accessing extensions directly?
+------------------------------
+
+Perhaps extensions can also be searched directly::
+
+    c.unihan.get('好')
+
+Internal API's can allow extra arguments, for instance, unihan may allow
+searching by one field::
+
+    c.unihan.get('好', 'kDefinition')
+
+This allows a simple way to "drill down" cjk data across extensions.
 
 API examples
 ------------
