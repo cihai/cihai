@@ -1,5 +1,5 @@
-Cihai API
----------
+Cihai Spec
+----------
 
 Both Cihai and Hanzi libraries can use a similar API.
 
@@ -129,7 +129,7 @@ these possibilities look like?
 If something generic like .get() is entered,
 
 - character decomposition
-- a unihan field
+- a unihan field ('kDefinition', 'kStrokes', 'kFrequency', ...)
 - https://github.com/tsroten/zhon
 - https://github.com/fxsjy/jieba
 
