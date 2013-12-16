@@ -178,7 +178,7 @@ def euc_to_unicode(hexstr):
 """ Convert from internal Python unicode / string objects """
 
 
-def python_to_ucn(uni_char):
+def python_to_ucn(uni_char, as_bytes=False):
     """Return UCN character from Python Unicode character.
 
     Converts a one character Python unicode string (e.g. u'\\u4e00') to the
@@ -191,14 +191,14 @@ def python_to_ucn(uni_char):
         # get rid of the zeroes that Python uses to pad 32 byte UCNs
         ucn = ucn.lstrip("0")
     ucn = "U+" + ucn.upper()
-    ucn = ucn.encode('latin1')
 
-    assert isinstance(ucn, bytes)
+    if as_bytes:
+        ucn = ucn.encode('latin1')
 
     return ucn
 
 
-def python_to_euc(uni_char):
+def python_to_euc(uni_char, as_bytes=False):
     """Return EUC character from a Python Unicode character.
 
     Converts a one character Python unicode string (e.g. u'\\u4e00') to the
@@ -208,7 +208,7 @@ def python_to_euc(uni_char):
 
     euc = repr(uni_char.encode("gb2312"))[1:-1].replace("\\x", "").strip("'")
 
-    euc = euc.encode('utf-8')
+    euc = euc.encode('latin1')
     assert isinstance(euc, bytes)
 
     return euc
