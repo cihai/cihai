@@ -9,5 +9,21 @@ cihai.util
 
 """
 
-from __future__ import absolute_import, division, print_function, with_statement
-from __future__ import unicode_literals
+from __future__ import absolute_import, division, print_function, \
+    with_statement, unicode_literals
+
+import os
+
+
+def get_datafile(filename):
+    """Return absolute path to cihai data file.
+
+    :param filename: file name relative to ``./data``.
+    :type filename: string
+    :returns: Absolute path to data file.
+    :rtype: string
+
+    """
+
+    abspath = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'data/', filename)
+    return abspath

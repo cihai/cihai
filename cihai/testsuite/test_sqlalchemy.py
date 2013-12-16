@@ -54,8 +54,10 @@ from sqlalchemy import create_engine, MetaData, Table, Column, \
 
 from .helpers import unittest, TestCase, CihaiTestCase
 from .._compat import PY2, text_type, configparser
-from ..unihan import get_datafile, RawReader, UNIHAN_FILENAMES, \
-    install_raw_csv, unihan_config, sqlite_db, get_metadata
+from ..util import get_datafile
+from ..cihai import cihai_db, cihai_config
+from ..unihan import RawReader, UNIHAN_FILENAMES, install_raw_csv, \
+    get_metadata
 
 log = logging.getLogger(__name__)
 
@@ -72,7 +74,7 @@ class UnihanRawImportCase(CihaiTestCase):
 
     def csv_to_db(self, csv_filename):
         config = configparser.ConfigParser()
-        config.read(unihan_config)  # Re-read, csv_to_table edits conf.
+        config.read(cihai_config)  # Re-read, csv_to_table edits conf.
 
         # store a key in unihan.conf to prevent re-running (saves 3+ seconds)
         if config.has_section(csv_filename) and config.has_option(csv_filename, 'csv_verified'):
@@ -95,7 +97,7 @@ class UnihanRawImportCase(CihaiTestCase):
             )
 
             table = install_raw_csv(csv_filename)
-            config.read(unihan_config)  # Re-read, csv_to_table edits conf.
+            config.read(cihai_config)  # Re-read, csv_to_table edits conf.
             b = inspect(table)
 
             self.assertTrue(config.has_section(csv_filename))
@@ -127,7 +129,7 @@ class UnihanRawImportCase(CihaiTestCase):
                 )
 
             config.set(csv_filename, 'csv_verified', text_type(True))
-            config_file = open(unihan_config, 'w+')
+            config_file = open(cihai_config, 'w+')
             config.write(config_file)
             config_file.close()
 

@@ -22,6 +22,8 @@ from sqlalchemy import create_engine, MetaData, Table, String, Column, \
     Integer, Index
 
 from . import conversion
+from .cihai import cihai_config, cihai_db, engine
+from .util import get_datafile
 from ._compat import PY2, text_type, configparser
 
 log = logging.getLogger(__name__)
@@ -36,25 +38,6 @@ UNIHAN_FILENAMES = [
     'Unihan_Readings.txt',
     'Unihan_Variants.txt'
 ]
-
-
-def get_datafile(filename):
-    """Return absolute path to cihai data file.
-
-    :param filename: file name relative to ``./data``.
-    :type filename: string
-    :returns: Absolute path to data file.
-    :rtype: string
-
-    """
-
-    abspath = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'data/', filename)
-    return abspath
-
-
-unihan_config = get_datafile('unihan.conf')
-sqlite_db = get_datafile('unihan.db')
-engine = create_engine('sqlite:///%s' % sqlite_db, echo=False)
 
 
 def get_metadata():
@@ -91,10 +74,10 @@ def check_raw_install():
     """Verify csv information from Unihan is installed in unihan.db."""
     config = configparser.ConfigParser()
 
-    if not os.path.exists(unihan_config):
+    if not os.path.exists(cihai_config):
         install_raw_csv()
 
-    config.read(unihan_config)
+    config.read(cihai_config)
 
     for csv_filename in UNIHAN_FILENAMES:
         if not config.has_section(csv_filename):
@@ -153,12 +136,12 @@ def csv_to_table(engine, csv_filename, table_name):
         delim = b'\t' if PY2 else '\t'
 
         config = configparser.ConfigParser()
-        config.read(unihan_config)
+        config.read(cihai_config)
         if not config.has_section(csv_filename):
             config.add_section(csv_filename)
 
         if (
-            not os.path.exists(unihan_config) or
+            not os.path.exists(cihai_config) or
             not config.has_option(csv_filename, 'csv_rowcount') or
             (
                 config.has_option(csv_filename, 'csv_rowcount') and
@@ -179,7 +162,7 @@ def csv_to_table(engine, csv_filename, table_name):
             log.debug('Rows populated, all is well!')
 
         config.set(csv_filename, 'csv_md5', csv_md5)
-        config_file = open(unihan_config, 'w+')
+        config_file = open(cihai_config, 'w+')
         config.write(config_file)
         config_file.close()
     return table
