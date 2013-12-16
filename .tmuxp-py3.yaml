@@ -23,7 +23,6 @@ windows:
     - '[ ! -d .env3/build ] || rm -rf .env3/build'
     - command -v watching_testrunner >/dev/null 2>&1 || { pip install watching_testrunner; }
     - watching_testrunner --basepath ./ --pattern="*.py" 'python setup.py test'
-  start_directory: /home/tony/workspace/libunihan
   window_name: cihai
 - window_name: docs
   layout: main-horizontal
