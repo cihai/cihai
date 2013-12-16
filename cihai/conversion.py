@@ -208,8 +208,9 @@ def python_to_euc(uni_char, as_bytes=False):
 
     euc = repr(uni_char.encode("gb2312"))[1:-1].replace("\\x", "").strip("'")
 
-    euc = euc.encode('latin1')
-    assert isinstance(euc, bytes)
+    if as_bytes:
+        euc = euc.encode('utf-8')
+        assert isinstance(euc, bytes)
 
     return euc
 

@@ -111,11 +111,17 @@ class EUC(TestCase):
         text = '一'
         python_unicode = u'\u4e00'
         euc_bytestring = b'd2bb'
+        euc_unicode = 'd2bb'
 
-        expected = conversion.python_to_euc(python_unicode)
+        expected = conversion.python_to_euc(python_unicode, as_bytes=True)
 
         self.assertEqual(euc_bytestring, expected)
         self.assertIsInstance(expected, bytes)
+
+        expected = conversion.python_to_euc(python_unicode)
+
+        self.assertEqual(euc_unicode, expected)
+        self.assertIsInstance(expected, text_type)
 
     def test_to_unicode(self):
         text = '一'
