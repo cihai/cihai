@@ -597,14 +597,3 @@ class kDefinition(CihaiTestCase):
             self.assertTrue(re.search('\(same as', r.value))
 
         self.assertGreaterEqual(1, selectkDefinition(char='好').execute().rowcount)
-
-        # for r in rows:
-            # print(r)
-            # self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
-
-class UnihanAPI(CihaiTestCase):
-    """
-
-    """
-
-    pass
