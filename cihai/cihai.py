@@ -79,7 +79,10 @@ class Cihai(CihaiDatabase):
 
     """
 
-    _middleware = []
+    def __init__(self, *args, **kwargs):
+        super(Cihai, self).__init__(*args, **kwargs)
+
+        self._middleware = []
 
     def use(self, middleware):
         """Add a middleware library to cihai.
@@ -87,10 +90,11 @@ class Cihai(CihaiDatabase):
         This is based off connect's version of adding middleware.
 
         """
-        if middleware in self._middleware:
-            raise Exception('Dataset already added.')
+        for m in self._middleware:
+            if isinstance(m, middleware):
+                raise Exception('Dataset already added.')
 
-        self._middleware.append(middleware)
+        self._middleware.append(middleware())
 
     def get(self, char, *args, **kwargs):
         """Return results if exists in middleware.
