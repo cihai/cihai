@@ -77,9 +77,11 @@ class CihaiDatabaseInstance(CihaiTestCase):
         table = self.c.get_table(random.choice(list(self.tables)))
         self.assertIsInstance(table, sqlalchemy.Table)
 
+
+class UtilTest(unittest.TestCase):
+
     def test_get_datafile(self):
-        # file installed on installation.
-        data_filename = random.choice('data.ext')
+        data_filename = 'data.ext'
 
         data_abspath = get_datafile(data_filename)
         self.assertNotEqual(data_filename, data_abspath)
