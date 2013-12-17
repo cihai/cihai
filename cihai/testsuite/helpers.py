@@ -24,7 +24,6 @@ import shutil
 import uuid
 
 from ..cihai import Cihai
-from ..unihan import check_raw_install
 
 logger = logging.getLogger(__name__)
 
@@ -34,14 +33,8 @@ class TestCase(unittest.TestCase):
 
 
 class CihaiTestCase(TestCase):
-
     c = None  # :class:`Cihai` instance.
 
-    @classmethod
-    def setUpClass(cls):
-        check_raw_install()
-
     def setUp(self):
-
         if not self.c:
             self.c = Cihai()

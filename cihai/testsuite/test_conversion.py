@@ -18,7 +18,7 @@ import logging
 
 from .helpers import TestCase
 from .._compat import PY2, text_type, string_types
-from ..unihan import get_datafile, UnihanReader
+from ..util import get_datafile
 from .. import conversion
 
 log = logging.getLogger(__name__)

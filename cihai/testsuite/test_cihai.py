@@ -25,10 +25,6 @@ from .. import conversion
 from .helpers import unittest, CihaiTestCase
 from .._compat import PY2, text_type
 from ..cihai import Cihai, NoDatasets
-from ..unihan import get_datafile, get_table, UnihanReader, \
-    UNIHAN_FILENAMES, get_metadata, table_exists, install_raw_csv, \
-    engine, create_table, table_exists
-from ..conversion import ucn_to_unicode
 
 log = logging.getLogger(__name__)
 

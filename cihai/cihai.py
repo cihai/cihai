@@ -36,7 +36,41 @@ class NoDatasets(Exception):
     """Attempted to request data from Cihai without picking a dataset."""
 
 
-class Cihai(object):
+class CihaiDatabase(object):
+
+    _metadata = None
+
+    @property
+    def metadata(self):
+        """Return the instance metadata."""
+        if not self._metadata:
+            self._metadata = MetaData(bind=engine)
+            self._metadata.reflect()
+
+        return self._metadata
+
+    def get_table(self, table_name):
+        """Return :class:`~sqlalchemy.schema.Table`.
+
+        :param table_name: name of sql table
+        :type table_name: string
+        :rtype: :class:`sqlalchemy.schema.Table`
+
+        """
+
+        table = Table(table_name, self.metadata, autoload=True)
+
+        return table
+
+    def table_exists(self, table_name):
+        """Return True if table exists in db."""
+
+        table = Table(table_name, self.metadata)
+
+        return table.exists()
+
+
+class Cihai(CihaiDatabase):
 
     """
 
@@ -46,7 +80,6 @@ class Cihai(object):
 
     """
 
-    _metadata = None
     _middleware = []
 
     def use(self, middleware):
@@ -94,15 +127,6 @@ class Cihai(object):
             results.append(middleware.reverse(char))
 
         return results
-
-    @property
-    def metadata(self):
-        """Return the instance metadata."""
-        if not self._metadata:
-            self._metadata = MetaData(bind=engine)
-            self._metadata.reflect()
-
-        return self._metadata
 
 
 class CihaiMiddleware(object):

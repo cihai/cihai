@@ -53,15 +53,16 @@ from sqlalchemy import create_engine, MetaData, Table, Column, \
     inspect, and_, select
 
 from .helpers import unittest, TestCase, CihaiTestCase
+from .test_unihan import UnihanTestCase
 from .._compat import PY2, text_type, configparser
 from ..util import get_datafile
 from ..cihai import cihai_db, cihai_config
-from ..unihan import RawReader, install_raw_csv
+from ..unihan import RawReader
 
 log = logging.getLogger(__name__)
 
 
-class UnihanRawImportCase(CihaiTestCase):
+class UnihanRawImportCase(object):
 
     """Dump the Raw Unihan CSV's into SQLite database."""
     csv_filename = None
@@ -95,7 +96,7 @@ class UnihanRawImportCase(CihaiTestCase):
                 delimiter=delim
             )
 
-            table = install_raw_csv(csv_filename)
+            table = self.unihan.install_raw_csv(csv_filename)
             config.read(cihai_config)  # Re-read, csv_to_table edits conf.
             b = inspect(table)
 
@@ -133,42 +134,89 @@ class UnihanRawImportCase(CihaiTestCase):
             config_file.close()
 
 
-class Unihan_DictionaryIndices(UnihanRawImportCase):
+class Unihan_DictionaryIndices(UnihanTestCase, UnihanRawImportCase):
     csv_filename = 'Unihan_DictionaryIndices.txt'
     table_name = 'Unihan_DictionaryIndices'
+
+    def setUp(self):
+        super(Unihan_DictionaryIndices, self).setUp()
+
+        # Assures at least one table is installed before testing.
+        self.unihan.install_raw_csv(self.csv_filename)
 
 
 class Unihan_DicionaryLikeData(UnihanRawImportCase):
     csv_filename = 'Unihan_DictionaryLikeData.txt'
     table_name = 'Unihan_DictionaryLikeData'
 
+    def setUp(self):
+        super(Unihan_DictionaryIndices, self).setUp()
+
+        # Assures at least one table is installed before testing.
+        self.unihan.install_raw_csv(self.csv_filename)
+
 
 class Unihan_IRGSources(UnihanRawImportCase):
     csv_filename = 'Unihan_IRGSources.txt'
     table_name = 'Unihan_IRGSources'
+
+    def setUp(self):
+        super(Unihan_IRGSources, self).setUp()
+
+        # Assures at least one table is installed before testing.
+        self.unihan.install_raw_csv(self.csv_filename)
 
 
 class Unihan_NumericValues(UnihanRawImportCase):
     csv_filename = 'Unihan_NumericValues.txt'
     table_name = 'Unihan_NumericValues'
 
+    def setUp(self):
+        super(Unihan_NumericValues, self).setUp()
+
+        # Assures at least one table is installed before testing.
+        self.unihan.install_raw_csv(self.csv_filename)
+
 
 class Unihan_OtherMappings(UnihanRawImportCase):
     csv_filename = 'Unihan_OtherMappings.txt'
     table_name = 'Unihan_OtherMappings'
+
+    def setUp(self):
+        super(Unihan_OtherMappings, self).setUp()
+
+        # Assures at least one table is installed before testing.
+        self.unihan.install_raw_csv(self.csv_filename)
 
 
 class Unihan_RadicalStrokeCounts(UnihanRawImportCase):
     csv_filename = 'Unihan_RadicalStrokeCounts.txt'
     table_name = 'Unihan_RadicalStrokeCounts'
 
+    def setUp(self):
+        super(Unihan_RadicalStrokeCounts, self).setUp()
+
+        # Assures at least one table is installed before testing.
+        self.unihan.install_raw_csv(self.csv_filename)
+
 
 class Unihan_Readings(UnihanRawImportCase):
     csv_filename = 'Unihan_Readings.txt'
     table_name = 'Unihan_Readings'
+
+    def setUp(self):
+        super(Unihan_Readings, self).setUp()
+
+        # Assures at least one table is installed before testing.
+        self.unihan.install_raw_csv(self.csv_filename)
 
 
 class Unihan_Variants(UnihanRawImportCase):
     csv_filename = 'Unihan_Variants.txt'
     table_name = 'Unihan_Variants'
 
+    def setUp(self):
+        super(Unihan_Variants, self).setUp()
+
+        # Assures at least one table is installed before testing.
+        self.unihan.install_raw_csv(self.csv_filename)
