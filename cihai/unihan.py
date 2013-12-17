@@ -67,7 +67,7 @@ class Unihan(CihaiDatabase):
                     # self.install_raw_csv(csv_filename)
 
             if not self.table_exists(table_name):
-                table = self.csv_to_table(
+                table = self.import_csv_to_table(
                     engine=engine,
                     csv_filename=csv_filename,
                     table_name=table_name,
@@ -77,8 +77,8 @@ class Unihan(CihaiDatabase):
                 table = self.get_table(table_name)
             return table
 
-    def csv_to_table(self, engine, csv_filename, table_name):
-        """Create table from CSV.
+    def import_csv_to_table(self, engine, csv_filename, table_name):
+        """Import CSV to table.
 
         :param engine: sqlalchemy engine
         :type engine: :class:`sqlalchemy.engine.Engine`

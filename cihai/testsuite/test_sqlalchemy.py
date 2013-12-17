@@ -97,7 +97,7 @@ class UnihanRawImportCase(object):
             )
 
             table = self.unihan.install_raw_csv(csv_filename)
-            config.read(cihai_config)  # Re-read, csv_to_table edits conf.
+            config.read(cihai_config)  # Re-read since csv import updates conf.
             b = inspect(table)
 
             self.assertTrue(config.has_section(csv_filename))
