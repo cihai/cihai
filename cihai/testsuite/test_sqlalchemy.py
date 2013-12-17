@@ -56,8 +56,7 @@ from .helpers import unittest, TestCase, CihaiTestCase
 from .._compat import PY2, text_type, configparser
 from ..util import get_datafile
 from ..cihai import cihai_db, cihai_config
-from ..unihan import RawReader, UNIHAN_FILENAMES, install_raw_csv, \
-    get_metadata
+from ..unihan import RawReader, install_raw_csv
 
 log = logging.getLogger(__name__)
 

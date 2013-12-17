@@ -22,8 +22,9 @@ import sqlalchemy
 
 from .. import conversion
 
-from .helpers import unittest, TestCase, CihaiTestCase
+from .helpers import unittest, CihaiTestCase
 from .._compat import PY2, text_type
+from ..cihai import Cihai, NoDatasets
 from ..unihan import get_datafile, get_table, UnihanReader, \
     UNIHAN_FILENAMES, get_metadata, table_exists, install_raw_csv, \
     engine, create_table, table_exists
@@ -32,11 +33,19 @@ from ..conversion import ucn_to_unicode
 log = logging.getLogger(__name__)
 
 
-class Cihai(TestCase):
+class CihaiInstance(CihaiTestCase):
 
-    def test_zip(self):
-        self.assertEqual(2, 2)
+    def test_no_datasets(self):
+        c = Cihai()
+        self.assertIsInstance(c, Cihai)
 
-    def test_files(self):
-        """Test unihan text file data."""
-        pass
+        with self.assertRaises(NoDatasets) as e:
+            c = c.get('好')
+
+        with self.assertRaises(NoDatasets) as e:
+            c = c.reverse('好')
+
+        # there is no _metadata until :attr:`~.metadata` is accessed.
+        self.assertFalse(c._metadata, sqlalchemy.MetaData)
+        self.assertIsInstance(c.metadata, sqlalchemy.MetaData)
+        self.assertIsInstance(c._metadata, sqlalchemy.MetaData)

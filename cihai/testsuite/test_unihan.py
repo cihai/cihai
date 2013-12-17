@@ -52,7 +52,7 @@ class UnihanTable(CihaiTestCase):
     def test_returns_metadata_has_csv_tables(self):
         for filename in UNIHAN_FILENAMES:
             tablename = filename.split('.')[0]
-            self.assertIn(tablename, [table for table in get_metadata().tables])
+            self.assertIn(tablename, [table for table in self.c.metadata.tables])
 
 
 class UnihanDataCSV(TestCase):
@@ -107,20 +107,16 @@ class UnihanMethods(CihaiTestCase):
         self.assertIsInstance(table, sqlalchemy.schema.Table)
 
     def test_table_exists(self):
-        metadata = get_metadata()
-        for table_name in metadata.tables:
+        for table_name in self.c.metadata.tables:
             self.assertTrue(table_exists(table_name))
             self.assertIsInstance(table_name, text_type)
 
     def test_get_metadata(self):
-        metadata = get_metadata()
-
-        self.assertIsInstance(metadata, sqlalchemy.MetaData)
+        self.assertIsInstance(self.c.metadata, sqlalchemy.MetaData)
 
     def test_get_table(self):
-        metadata = get_metadata()
         # pick a random table name.
-        table = get_table(random.choice(list(metadata.tables)))
+        table = get_table(random.choice(list(self.c.metadata.tables)))
         self.assertIsInstance(table, sqlalchemy.Table)
 
     def test_get_datafile(self):
