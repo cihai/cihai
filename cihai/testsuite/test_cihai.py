@@ -78,6 +78,31 @@ class CihaiDatabaseInstance(CihaiTestCase):
         self.assertIsInstance(table, sqlalchemy.Table)
 
 
+class CihaiMiddleware(unittest.TestCase):
+
+    def test_add_middleware(self):
+        """asdf."""
+        c = Cihai()
+
+        self.assertFalse(c._middleware, msg="Has no middleware at start.")
+
+        class DatasetExample(object):
+
+            def get(self, char):
+                data = {
+                    '好': 'ni hao'
+                }
+
+                return char[data]
+
+        c.use(DatasetExample)
+
+        self.assertIn(DatasetExample, c._middleware)
+
+        with self.assertRaisesRegexp(Exception, 'Dataset already added.'):
+            c.use(DatasetExample)
+
+
 class UtilTest(unittest.TestCase):
 
     def test_get_datafile(self):
