@@ -39,13 +39,14 @@ class NoDatasets(Exception):
 
 class CihaiDatabase(object):
 
-    _metadata = None
+    _metadata = meta
 
     @property
     def metadata(self):
         """Return the instance metadata."""
-        if not self._metadata:
-            self._metadata = meta
+
+        if not self._metadata.bind:
+            # No engine binded yet, bind and reflect tables.
             self._metadata.bind = engine
             self._metadata.reflect()
 

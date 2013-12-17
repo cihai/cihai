@@ -42,10 +42,9 @@ class CihaiInstance(CihaiTestCase):
         with self.assertRaises(NoDatasets) as e:
             c = c.reverse('好')
 
-        # there is no _metadata until :attr:`~.metadata` is accessed.
-        self.assertFalse(c._metadata, sqlalchemy.MetaData)
         self.assertIsInstance(c.metadata, sqlalchemy.MetaData)
         self.assertIsInstance(c._metadata, sqlalchemy.MetaData)
+        self.assertIsInstance(c._metadata.bind, sqlalchemy.engine.Engine)
 
 
 class CihaiDatabaseInstance(CihaiTestCase):
