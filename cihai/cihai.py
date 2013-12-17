@@ -45,7 +45,6 @@ class CihaiDatabase(object):
     def metadata(self):
         """Return the instance metadata."""
         if not self._metadata:
-            # self._metadata = MetaData(bind=engine)
             self._metadata = meta
             self._metadata.bind = engine
             self._metadata.reflect()
@@ -61,9 +60,7 @@ class CihaiDatabase(object):
 
         """
 
-        table = Table(table_name, self.metadata, autoload=True)
-
-        return table
+        return Table(table_name, self.metadata, autoload=True)
 
     def table_exists(self, table_name):
         """Return True if table exists in db."""

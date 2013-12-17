@@ -25,7 +25,7 @@ from .. import conversion
 from .helpers import unittest, TestCase, CihaiTestCase
 from .._compat import PY2, text_type
 from ..util import get_datafile
-from ..unihan import UNIHAN_FILENAMES, engine, Unihan, UnihanReader
+from ..unihan import UNIHAN_FILENAMES, engine, Unihan
 from ..conversion import ucn_to_unicode
 
 log = logging.getLogger(__name__)
@@ -38,10 +38,6 @@ class UnihanTestCase(TestCase):
     def setUp(self):
         if not self.unihan:
             self.unihan = Unihan()
-
-    # @classmethod
-    # def setUpClass(cls):
-        # install_raw_csv()
 
 
 class UnihanTable(UnihanTestCase):
@@ -63,49 +59,6 @@ class UnihanTable(UnihanTestCase):
         """
 
         self.assertIn('Unihan_NumericValues', [f.split('.')[0] for f in UNIHAN_FILENAMES])
-
-
-class UnihanDataCSV(TestCase):
-
-    @unittest.skip('Wait until helper TestCase is implemented.')
-    def test_print_top(self):
-        with open(get_datafile('Unihan_Readings.txt'), 'r') as csvfile:
-            # py3.3 regression http://bugs.python.org/issue18829
-            delim = b'\t' if PY2 else '\t'
-            csvfile = filter(lambda row: row[0] != '#', csvfile)
-            r = UnihanReader(
-                csvfile,
-                fieldnames=['char', 'field', 'value'],
-                delimiter=delim
-            )
-
-            r = list(r)[:5]
-            print('\n')
-
-            for row in r:
-                rowlines = []
-                for key in row.keys():
-                    if key == 'field' and not isinstance(row[key], text_type):
-                        # import cchardet as chardet
-                        # log.error(chardet.detect(row[key]))
-                        # codec = chardet.detect(row[key])['encoding']
-                        #row[key] = row[key].decode(codec)
-                        self.assertIsInstance(row[key], text_type)
-                    elif key == 'value':
-                        # import chardet
-                        # log.error(chardet.detect(row[key]))
-                        # codec = chardet.detect(row[key])['encoding']
-                        # #row[key] = row[key].decode(codec)
-                        # self.assertIsInstance(row[key], text_type)
-                        pass
-
-                    rowlines.append(row[key])
-                try:
-                    rowline = '\t'.join(rowlines)
-                except UnicodeDecodeError as e:
-                    log.info('row: %s (%s) gives:\n%s' % (row, row['char'], e))
-
-                print('%s' % rowline)
 
 
 class UnihanMethods(UnihanTestCase):
