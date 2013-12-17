@@ -25,6 +25,7 @@ from .. import conversion
 from .helpers import unittest, CihaiTestCase
 from .._compat import PY2, text_type
 from ..cihai import Cihai, NoDatasets
+from ..util import get_datafile
 
 log = logging.getLogger(__name__)
 
@@ -45,3 +46,42 @@ class CihaiInstance(CihaiTestCase):
         self.assertFalse(c._metadata, sqlalchemy.MetaData)
         self.assertIsInstance(c.metadata, sqlalchemy.MetaData)
         self.assertIsInstance(c._metadata, sqlalchemy.MetaData)
+
+
+class CihaiDatabaseInstance(CihaiTestCase):
+
+    # :todo: change this to create/drop table for class.
+
+    def setUp(self):
+        super(CihaiDatabaseInstance, self).setUp()
+
+        self.tables = self.c.metadata.tables
+
+    def test_table_exists(self):
+
+        if not self.tables:
+            self.skipTest('No tables to test.')
+
+        table = self.c.get_table(random.choice(list(self.tables)))
+        self.assertIsInstance(table, sqlalchemy.Table)
+
+        for table_name in self.tables:
+            self.assertTrue(self.c.table_exists(table_name))
+            self.assertIsInstance(table_name, text_type)
+
+    def test_get_table(self):
+        # pick a random table name.
+
+        if not self.tables:
+            self.skipTest('No tables to test.')
+
+        table = self.c.get_table(random.choice(list(self.tables)))
+        self.assertIsInstance(table, sqlalchemy.Table)
+
+    def test_get_datafile(self):
+        # file installed on installation.
+        data_filename = random.choice('data.ext')
+
+        data_abspath = get_datafile(data_filename)
+        self.assertNotEqual(data_filename, data_abspath)
+        self.assertIsInstance(data_abspath, text_type)

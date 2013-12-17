@@ -122,24 +122,6 @@ class UnihanMethods(UnihanTestCase):
         table = self.unihan.install_raw_csv(csv_filename)
         self.assertIsInstance(table, sqlalchemy.schema.Table)
 
-    def test_table_exists(self):
-        for table_name in self.unihan.metadata.tables:
-            self.assertTrue(self.unihan.table_exists(table_name))
-            self.assertIsInstance(table_name, text_type)
-
-    def test_get_table(self):
-        # pick a random table name.
-        table = self.unihan.get_table(random.choice(list(self.unihan.metadata.tables)))
-        self.assertIsInstance(table, sqlalchemy.Table)
-
-    def test_get_datafile(self):
-        # file installed on installation.
-        csv_filename = random.choice(UNIHAN_FILENAMES)
-
-        csv_abspath = get_datafile(csv_filename)
-        self.assertNotEqual(csv_filename, csv_abspath)
-        self.assertIsInstance(csv_abspath, text_type)
-
     def test_create_table(self):
         table_name = 'testTable_%s' % random.randint(1, 1337)
 
