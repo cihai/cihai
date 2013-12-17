@@ -30,6 +30,7 @@ log = logging.getLogger(__name__)
 cihai_config = get_datafile('cihai.conf')
 cihai_db = get_datafile('cihai.db')
 engine = create_engine('sqlite:///%s' % cihai_db, echo=False)
+meta = MetaData()
 
 
 class NoDatasets(Exception):
@@ -44,7 +45,9 @@ class CihaiDatabase(object):
     def metadata(self):
         """Return the instance metadata."""
         if not self._metadata:
-            self._metadata = MetaData(bind=engine)
+            # self._metadata = MetaData(bind=engine)
+            self._metadata = meta
+            self._metadata.bind = engine
             self._metadata.reflect()
 
         return self._metadata
@@ -65,9 +68,7 @@ class CihaiDatabase(object):
     def table_exists(self, table_name):
         """Return True if table exists in db."""
 
-        table = Table(table_name, self.metadata)
-
-        return table.exists()
+        return True if table_name in self.metadata.tables else False
 
 
 class Cihai(CihaiDatabase):

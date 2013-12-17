@@ -62,8 +62,7 @@ class UnihanTable(UnihanTestCase):
 
         """
 
-        for tablename in [table for table in self.unihan.metadata.tables]:
-            self.assertIn(tablename, [f.split('.')[0] for f in UNIHAN_FILENAMES])
+        self.assertIn('Unihan_NumericValues', [f.split('.')[0] for f in UNIHAN_FILENAMES])
 
 
 class UnihanDataCSV(TestCase):
@@ -144,12 +143,12 @@ class UnihanMethods(UnihanTestCase):
     def test_create_table(self):
         table_name = 'testTable_%s' % random.randint(1, 1337)
 
-        table = self.unihan.create_table(table_name, engine)
+        table = self.unihan.create_table(table_name)
 
         self.assertIsInstance(table, sqlalchemy.Table)
         self.assertTrue(table.exists())
 
-        table.drop()
+        self.unihan.metadata.drop_all(tables=[table])
 
         self.assertFalse(table.exists())
 
@@ -161,18 +160,15 @@ class UnihanReadings(UnihanTestCase):
 
         # Assures at least one table is installed before testing.
         self.unihan.install_raw_csv('Unihan_Readings.txt')
+        self.table = self.unihan.get_table('Unihan_Readings')
 
     def test_kMandarin(self):
-        table = self.unihan.get_table('Unihan_Readings')
-
-        rows = table.select().where(table.c.field == 'kMandarin').limit(1).execute()
+        rows = self.table.select().where(self.table.c.field == 'kMandarin').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
 
     def test_kDefinition(self):
-        table = self.unihan.get_table('Unihan_Readings')
-
         """
         http://www.unicode.org/reports/tr38/tr38-15.html#kDefinition
         Major definitions are separated by semicolons, and minor definitions by
@@ -180,14 +176,12 @@ class UnihanReadings(UnihanTestCase):
         any line break character) may be used within the definition field.
         """
 
-        rows = table.select().where(table.c.field == 'kDefinition').limit(1).execute()
+        rows = self.table.select().where(self.table.c.field == 'kDefinition').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
 
     def test_kCantonese(self):
-        table = self.unihan.get_table('Unihan_Readings')
-
         """
         http://www.unicode.org/reports/tr38/tr38-15.html#kCantonese
         A full description of jyutping can be found at
@@ -195,124 +189,106 @@ class UnihanReadings(UnihanTestCase):
         jyutping and the Yale romanization previously used are:
         """
 
-        rows = table.select().where(table.c.field == 'kCantonese').limit(1).execute()
+        rows = self.table.select().where(self.table.c.field == 'kCantonese').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
 
     def test_kHangul(self):
-        table = self.unihan.get_table('Unihan_Readings')
-
         """
         http://www.unicode.org/reports/tr38/tr38-15.html#kHangul
 
         """
 
-        rows = table.select().where(table.c.field == 'kHangul').limit(1).execute()
+        rows = self.table.select().where(self.table.c.field == 'kHangul').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
 
     def test_kHanyuPinlu(self):
-        table = self.unihan.get_table('Unihan_Readings')
-
         """
         http://www.unicode.org/reports/tr38/tr38-15.html#kHanyuPinlu
 
         """
 
-        rows = table.select().where(table.c.field == 'kHanyuPinlu').limit(1).execute()
+        rows = self.table.select().where(self.table.c.field == 'kHanyuPinlu').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
 
     def test_kHanyuPinyin(self):
-        table = self.unihan.get_table('Unihan_Readings')
-
         """
         http://www.unicode.org/reports/tr38/tr38-15.html#kHanyuPinyin
 
         """
 
-        rows = table.select().where(table.c.field == 'kHanyuPinyin').limit(1).execute()
+        rows = self.table.select().where(self.table.c.field == 'kHanyuPinyin').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
 
     def test_kJapaneseKun(self):
-        table = self.unihan.get_table('Unihan_Readings')
-
         """
         http://www.unicode.org/reports/tr38/tr38-15.html#kJapaneseKun
 
         """
 
-        rows = table.select().where(table.c.field == 'kJapaneseKun').limit(1).execute()
+        rows = self.table.select().where(self.table.c.field == 'kJapaneseKun').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
 
     def test_kJapaneseOn(self):
-        table = self.unihan.get_table('Unihan_Readings')
-
         """
         http://www.unicode.org/reports/tr38/tr38-15.html#kJapaneseKun
 
         """
 
-        rows = table.select().where(table.c.field == 'kJapaneseOn').limit(1).execute()
+        rows = self.table.select().where(self.table.c.field == 'kJapaneseOn').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
 
     def test_kKorean(self):
-        table = self.unihan.get_table('Unihan_Readings')
-
         """
         http://www.unicode.org/reports/tr38/tr38-15.html#kKorean
 
         """
 
-        rows = table.select().where(table.c.field == 'kKorean').limit(1).execute()
+        rows = self.table.select().where(self.table.c.field == 'kKorean').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
 
     def test_kTang(self):
-        table = self.unihan.get_table('Unihan_Readings')
-
         """
         http://www.unicode.org/reports/tr38/tr38-15.html#kTang
 
         """
 
-        rows = table.select().where(table.c.field == 'kTang').limit(1).execute()
+        rows = self.table.select().where(self.table.c.field == 'kTang').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
 
     def test_kVietnamese(self):
-        table = self.unihan.get_table('Unihan_Readings')
-
         """
         http://www.unicode.org/reports/tr38/tr38-15.html#kVietnamese
 
         """
 
-        rows = table.select().where(table.c.field == 'kVietnamese').limit(1).execute()
+        rows = self.table.select().where(self.table.c.field == 'kVietnamese').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
 
     def test_kXHC1983(self):
-        table = self.unihan.get_table('Unihan_Readings')
-
         """
         http://www.unicode.org/reports/tr38/tr38-15.html#kXHC1983
 
         """
 
-        rows = table.select().where(table.c.field == 'kXHC1983').limit(1).execute()
+        rows = self.table.select().where(self.table.c.field == 'kXHC1983').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
@@ -405,84 +381,73 @@ class UnihanRadicalStrokeCounts(UnihanTestCase):
 
         # Assures at least one table is installed before testing.
         self.unihan.install_raw_csv('Unihan_RadicalStrokeCounts.txt')
+        self.table = self.unihan.get_table('Unihan_RadicalStrokeCounts')
 
     def test_table_exists(self):
         self.assertTrue(self.unihan.table_exists('Unihan_RadicalStrokeCounts'))
 
     def test_kRSAdobe_Japan1_6(self):
-        table = self.unihan.get_table('Unihan_Variants')
-
         """
         http://www.unicode.org/reports/tr38/tr38-15.html#kRSAdobe_Japan1_6
 
         """
 
-        rows = table.select().where(table.c.field == 'kRSAdobe_Japan1_6').limit(1).execute()
+        rows = self.table.select().where(self.table.c.field == 'kRSAdobe_Japan1_6').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
 
     def test_kRSJapanese(self):
-        table = self.unihan.get_table('Unihan_Variants')
-
         """
         http://www.unicode.org/reports/tr38/tr38-15.html#kRSJapanese
 
         """
 
-        rows = table.select().where(table.c.field == 'kRSJapanese').limit(1).execute()
+        rows = self.table.select().where(self.table.c.field == 'kRSJapanese').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
 
     def test_kRSKangXi(self):
-        table = self.unihan.get_table('Unihan_Variants')
-
         """
         http://www.unicode.org/reports/tr38/tr38-15.html#kRSKangXi
 
         """
 
-        rows = table.select().where(table.c.field == 'kRSKangXi').limit(1).execute()
+        rows = self.table.select().where(self.table.c.field == 'kRSKangXi').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
 
     def test_kRSKanWa(self):
-        table = self.unihan.get_table('Unihan_Variants')
-
         """
         http://www.unicode.org/reports/tr38/tr38-15.html#kRSKanWa
 
         """
 
-        rows = table.select().where(table.c.field == 'kRSKanWa').limit(1).execute()
+        rows = self.table.select().where(self.table.c.field == 'kRSKanWa').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
 
     def test_kRSKorean(self):
-        table = self.unihan.get_table('Unihan_Variants')
-
         """
         http://www.unicode.org/reports/tr38/tr38-15.html#kRSKorean
 
         """
 
-        rows = table.select().where(table.c.field == 'kRSKorean').limit(1).execute()
+        rows = self.table.select().where(self.table.c.field == 'kRSKorean').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
 
     def test_kRSUnicode(self):
-        table = self.unihan.get_table('Unihan_Variants')
-
         """
         http://www.unicode.org/reports/tr38/tr38-15.html#kRSUnicode
 
         """
 
-        rows = table.select().where(table.c.field == 'kRSUnicode').limit(1).execute()
+        rows = self.table.select().where(self.table.c.field == 'kRSUnicode').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
@@ -500,7 +465,7 @@ class UnihanNumericValues(UnihanTestCase):
         self.assertTrue(self.unihan.table_exists('Unihan_NumericValues'))
 
     def test_kAccountingNumeric(self):
-        table = self.unihan.get_table('Unihan_Variants')
+        table = self.unihan.get_table('Unihan_NumericValues')
 
         """
         http://www.unicode.org/reports/tr38/tr38-15.html#kAccountingNumeric
@@ -513,7 +478,7 @@ class UnihanNumericValues(UnihanTestCase):
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
 
     def test_kOtherNumeric(self):
-        table = self.unihan.get_table('Unihan_Variants')
+        table = self.unihan.get_table('Unihan_NumericValues')
 
         """
         http://www.unicode.org/reports/tr38/tr38-15.html#kOtherNumeric
@@ -526,7 +491,7 @@ class UnihanNumericValues(UnihanTestCase):
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
 
     def test_kPrimaryNumeric(self):
-        table = self.unihan.get_table('Unihan_Variants')
+        table = self.unihan.get_table('Unihan_NumericValues')
 
         """
         http://www.unicode.org/reports/tr38/tr38-15.html#kPrimaryNumeric
@@ -617,22 +582,21 @@ class kDefinition(UnihanTestCase):
 
         # Assures at least one table is installed before testing.
         self.unihan.install_raw_csv('Unihan_Readings.txt')
+        self.table = self.unihan.get_table('Unihan_Readings')
 
     def test_like(self):
-        table = self.unihan.get_table('Unihan_Readings')
-
         def selectkDefinition(char=None):
-            select = table.select().where(table.c.field == 'kDefinition')
+            select = self.table.select().where(self.table.c.field == 'kDefinition')
 
             if char:
-                select = select.where(table.c.char == conversion.python_to_ucn(char))
+                select = select.where(self.table.c.char == conversion.python_to_ucn(char))
 
             return select
 
         self.assertNotIn('LIKE', selectkDefinition().compile().__str__())
 
         kDefinitionQuery = selectkDefinition().where(
-            table.c.value.like('%(same as%')
+            self.table.c.value.like('%(same as%')
         )
 
         self.assertIn('LIKE', kDefinitionQuery.compile().__str__())

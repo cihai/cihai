@@ -90,7 +90,7 @@ class Unihan(CihaiDatabase):
 
         """
 
-        table = self.create_table(table_name, engine)
+        table = self.create_table(table_name)
         unihan_csv = get_datafile(csv_filename)
 
         with open(unihan_csv, 'r') as csv_file:
@@ -130,19 +130,16 @@ class Unihan(CihaiDatabase):
             config_file.close()
         return table
 
-    def create_table(self, table_name, engine):
+    def create_table(self, table_name):
         """Create table and return  :sqlalchemy:class:`sqlalchemy.Table`.
 
         :param table_name: name of table to create
         :type table_name: string
-        :param engine: sqlalchemy engine
-        :type engine: :sqlalchemy:`sqlalchemy.Engine`
         :returns: Newly created table with columns and index.
         :rtype: :class:`sqlalchemy.schema.Table`
 
         """
-        metadata = MetaData(bind=engine)
-        table = Table(table_name, metadata)
+        table = Table(table_name, self.metadata)
         fields = [
             ('char', String(12)),
             ('field', String(36)),
@@ -163,7 +160,7 @@ class Unihan(CihaiDatabase):
         Index('%s_field' % table_name, table.c.field)
 
         if not table.exists():
-            table.create()
+            self.metadata.create_all()
 
         return table
 
