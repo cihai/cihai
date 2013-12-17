@@ -23,10 +23,11 @@ import sqlalchemy
 from .. import conversion
 
 from .helpers import unittest, TestCase, CihaiTestCase
-from .._compat import PY2, text_type
+from .._compat import PY2, text_type, configparser
 from ..util import get_datafile
-from ..unihan import UNIHAN_FILENAMES, engine, Unihan
+from ..unihan import UNIHAN_FILENAMES, Unihan, RawReader
 from ..conversion import ucn_to_unicode
+from ..cihai import cihai_db, cihai_config
 
 log = logging.getLogger(__name__)
 
@@ -38,6 +39,78 @@ class UnihanTestCase(TestCase):
     def setUp(self):
         if not self.unihan:
             self.unihan = Unihan()
+
+
+class UnihanRawImportCase(object):
+
+    """Dump the Raw Unihan CSV's into SQLite database."""
+    csv_filename = None
+    table_name = None
+
+    def test_verify_csv_sqlite_integrity(self):
+        if self.csv_filename:
+            self.csv_to_db(self.csv_filename)
+
+    def csv_to_db(self, csv_filename):
+        config = configparser.ConfigParser()
+        config.read(cihai_config)  # Re-read, csv_to_table edits conf.
+
+        # store a key in unihan.conf to prevent re-running (saves 3+ seconds)
+        if config.has_section(csv_filename) and config.has_option(csv_filename, 'csv_verified'):
+            if config.getboolean(csv_filename, 'csv_verified'):
+                self.skipTest('%s already tested. Skipping.' % csv_filename)
+
+        with open(get_datafile(csv_filename), 'r') as csv_file:
+            # filter out comments
+            csv_data = filter(lambda row: row[0] != '#', csv_file)
+
+            # pick random lines *before* passing into RawReader.
+            csv_lines = list(csv_data)
+            csv_random = [random.choice(csv_lines) for i in range(10)]
+
+            delim = b'\t' if PY2 else '\t'
+            random_items = RawReader(
+                csv_random,
+                fieldnames=['char', 'field', 'value'],
+                delimiter=delim
+            )
+
+            table = self.unihan.install_raw_csv(csv_filename)
+            config.read(cihai_config)  # Re-read since csv import updates conf.
+            b = sqlalchemy.inspect(table)
+
+            self.assertTrue(config.has_section(csv_filename))
+            self.assertTrue(config.has_option(csv_filename, 'csv_rowcount'))
+            self.assertTrue(config.has_option(csv_filename, 'csv_md5'))
+
+            csv_rowcount = config.getint(csv_filename, 'csv_rowcount')
+
+            self.assertEqual(len(b.columns), 4)
+            self.assertEqual(
+                [c.name for c in b.columns], ['id', 'char', 'field', 'value']
+            )
+
+            self.assertEqual(
+                table.select().count().execute().scalar(),
+                csv_rowcount
+            )
+
+            for csv_item in random_items:
+                sql_item = sqlalchemy.select([
+                    table.c.char, table.c.field, table.c.value
+                ]).where(sqlalchemy.and_(
+                    table.c.char == csv_item['char'],
+                    table.c.field == csv_item['field']
+                )).execute().fetchone()
+                self.assertEqual(
+                    sql_item,
+                    tuple([csv_item['char'], csv_item['field'], csv_item['value']])
+                )
+
+            config.set(csv_filename, 'csv_verified', text_type(True))
+            config_file = open(cihai_config, 'w+')
+            config.write(config_file)
+            config_file.close()
 
 
 class UnihanTable(UnihanTestCase):
@@ -542,3 +615,91 @@ class kDefinition(UnihanTestCase):
             self.assertTrue(re.search('\(same as', r.value))
 
         self.assertGreaterEqual(1, selectkDefinition(char='好').execute().rowcount)
+
+
+class Unihan_DictionaryIndices(UnihanTestCase, UnihanRawImportCase):
+    csv_filename = 'Unihan_DictionaryIndices.txt'
+    table_name = 'Unihan_DictionaryIndices'
+
+    def setUp(self):
+        super(Unihan_DictionaryIndices, self).setUp()
+
+        # Assures at least one table is installed before testing.
+        self.unihan.install_raw_csv(self.csv_filename)
+
+
+class Unihan_DicionaryLikeData(UnihanRawImportCase):
+    csv_filename = 'Unihan_DictionaryLikeData.txt'
+    table_name = 'Unihan_DictionaryLikeData'
+
+    def setUp(self):
+        super(Unihan_DictionaryIndices, self).setUp()
+
+        # Assures at least one table is installed before testing.
+        self.unihan.install_raw_csv(self.csv_filename)
+
+
+class Unihan_IRGSources(UnihanRawImportCase):
+    csv_filename = 'Unihan_IRGSources.txt'
+    table_name = 'Unihan_IRGSources'
+
+    def setUp(self):
+        super(Unihan_IRGSources, self).setUp()
+
+        # Assures at least one table is installed before testing.
+        self.unihan.install_raw_csv(self.csv_filename)
+
+
+class Unihan_NumericValues(UnihanRawImportCase):
+    csv_filename = 'Unihan_NumericValues.txt'
+    table_name = 'Unihan_NumericValues'
+
+    def setUp(self):
+        super(Unihan_NumericValues, self).setUp()
+
+        # Assures at least one table is installed before testing.
+        self.unihan.install_raw_csv(self.csv_filename)
+
+
+class Unihan_OtherMappings(UnihanRawImportCase):
+    csv_filename = 'Unihan_OtherMappings.txt'
+    table_name = 'Unihan_OtherMappings'
+
+    def setUp(self):
+        super(Unihan_OtherMappings, self).setUp()
+
+        # Assures at least one table is installed before testing.
+        self.unihan.install_raw_csv(self.csv_filename)
+
+
+class Unihan_RadicalStrokeCounts(UnihanRawImportCase):
+    csv_filename = 'Unihan_RadicalStrokeCounts.txt'
+    table_name = 'Unihan_RadicalStrokeCounts'
+
+    def setUp(self):
+        super(Unihan_RadicalStrokeCounts, self).setUp()
+
+        # Assures at least one table is installed before testing.
+        self.unihan.install_raw_csv(self.csv_filename)
+
+
+class Unihan_Readings(UnihanRawImportCase):
+    csv_filename = 'Unihan_Readings.txt'
+    table_name = 'Unihan_Readings'
+
+    def setUp(self):
+        super(Unihan_Readings, self).setUp()
+
+        # Assures at least one table is installed before testing.
+        self.unihan.install_raw_csv(self.csv_filename)
+
+
+class Unihan_Variants(UnihanRawImportCase):
+    csv_filename = 'Unihan_Variants.txt'
+    table_name = 'Unihan_Variants'
+
+    def setUp(self):
+        super(Unihan_Variants, self).setUp()
+
+        # Assures at least one table is installed before testing.
+        self.unihan.install_raw_csv(self.csv_filename)
