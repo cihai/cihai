@@ -96,43 +96,43 @@ class Cihai(CihaiDatabase):
 
         self._middleware.append(middleware())
 
-    def get(self, char, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         """Return results if exists in middleware.
 
-        :param char: chinese character
-        :type char: string
+        :param request: request / input data
+        :type request: string
         :rtype: list
 
         """
 
-        results = []
+        response = {}
 
         if not self._middleware:
             raise NoDatasets
 
         for middleware in self._middleware:
-            results.append(middleware.get(char))
+            response = middleware.get(request, response)
 
-        return results
+        return response
 
-    def reverse(self, char, *args, **kwargs):
+    def reverse(self, request, *args, **kwargs):
         """Return results if exists in middleware.
 
-        :param char: chinese character
-        :type char: string
+        :param request: request / input data
+        :type request: string
         :rtype: list
 
         """
 
-        results = []
+        response = {}
 
         if not self._middleware:
             raise NoDatasets
 
         for middleware in self._middleware:
-            results.append(middleware.reverse(char))
+            response = middleware.reverse(request, response)
 
-        return results
+        return response
 
 
 class CihaiMiddleware(object):

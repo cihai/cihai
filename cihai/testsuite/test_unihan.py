@@ -162,7 +162,6 @@ class UnihanMethods(UnihanTestCase):
 
 
 class UnihanReadings(UnihanTestCase):
-
     def setUp(self):
         super(UnihanReadings, self).setUp()
 
@@ -628,18 +627,18 @@ class Unihan_DictionaryIndices(UnihanTestCase, UnihanRawImportCase):
         self.unihan.install_raw_csv(self.csv_filename)
 
 
-class Unihan_DicionaryLikeData(UnihanRawImportCase):
+class Unihan_DictionaryLikeData(UnihanTestCase, UnihanRawImportCase):
     csv_filename = 'Unihan_DictionaryLikeData.txt'
     table_name = 'Unihan_DictionaryLikeData'
 
     def setUp(self):
-        super(Unihan_DictionaryIndices, self).setUp()
+        super(Unihan_DictionaryLikeData, self).setUp()
 
         # Assures at least one table is installed before testing.
         self.unihan.install_raw_csv(self.csv_filename)
 
 
-class Unihan_IRGSources(UnihanRawImportCase):
+class Unihan_IRGSources(UnihanTestCase, UnihanRawImportCase):
     csv_filename = 'Unihan_IRGSources.txt'
     table_name = 'Unihan_IRGSources'
 
@@ -650,7 +649,7 @@ class Unihan_IRGSources(UnihanRawImportCase):
         self.unihan.install_raw_csv(self.csv_filename)
 
 
-class Unihan_NumericValues(UnihanRawImportCase):
+class Unihan_NumericValues(UnihanTestCase, UnihanRawImportCase):
     csv_filename = 'Unihan_NumericValues.txt'
     table_name = 'Unihan_NumericValues'
 
@@ -661,7 +660,7 @@ class Unihan_NumericValues(UnihanRawImportCase):
         self.unihan.install_raw_csv(self.csv_filename)
 
 
-class Unihan_OtherMappings(UnihanRawImportCase):
+class Unihan_OtherMappings(UnihanTestCase, UnihanRawImportCase):
     csv_filename = 'Unihan_OtherMappings.txt'
     table_name = 'Unihan_OtherMappings'
 
@@ -672,7 +671,7 @@ class Unihan_OtherMappings(UnihanRawImportCase):
         self.unihan.install_raw_csv(self.csv_filename)
 
 
-class Unihan_RadicalStrokeCounts(UnihanRawImportCase):
+class Unihan_RadicalStrokeCounts(UnihanTestCase, UnihanRawImportCase):
     csv_filename = 'Unihan_RadicalStrokeCounts.txt'
     table_name = 'Unihan_RadicalStrokeCounts'
 

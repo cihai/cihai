@@ -80,12 +80,31 @@ class CihaiDatabaseInstance(CihaiTestCase):
 
 class DatasetExample(object):
 
-    def get(self, char):
-        data = {
-            '好': 'ni hao'
+    def get(self, request, response):
+        dataset = {
+            '好': {
+                'definition': 'ni hao'
+            }
         }
 
-        return data[char]
+        if request in dataset:
+            response.update(dataset[request])
+
+        return response
+
+    def reverse(self, request, response):
+        dataset = {
+            '好': {
+                'definition': 'ni hao'
+            }
+        }
+
+        for char, key in dataset.items():
+            for key, val in dataset[char].items():
+                if request in val:
+                    response.update(dataset[char])
+
+        return response
 
 
 class CihaiMiddleware(unittest.TestCase):
@@ -111,8 +130,20 @@ class CihaiMiddleware(unittest.TestCase):
             c.get('好')
 
         c.use(DatasetExample)
+        self.assertDictContainsSubset({
+            'definition': 'ni hao'
+        }, c.get('好'))
 
-        self.assertIn('ni hao', c.get('好'))
+    def test_reverse(self):
+        c = Cihai()
+
+        with self.assertRaises(NoDatasets):
+            c.reverse('ni hao')
+
+        c.use(DatasetExample)
+        self.assertDictContainsSubset({
+            'definition': 'ni hao'
+        }, c.reverse('ni hao'))
 
 
 class UtilTest(unittest.TestCase):
