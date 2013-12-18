@@ -9,10 +9,10 @@
 Attempt at building successor of the Han Character library `cjklib`_.
 
 - compatible with python 2.7+ and 3.3+.
-- built using TDD and aims for python best practices.
-- currently supports `Unihan`_ lookups, see the `current datasets`_.
+- built using TDD and python best practices.
+- supports `Unihan`_, see `current datasets`_.
 - upcoming supports for character decomposition, dictionaries (CEDict).
-- easily extensible to new datasets, see more about `Extending`_ cihai's 
+- extensible to new datasets, see more about `Extending`_ cihai's 
   knowledge.
 
 Being built against unit tests. See the `Travis Builds`_ and
