@@ -5,6 +5,13 @@ TODO
 dev
 ---
 
+- create ./example extensions
+- unit test loader for extensions
+- unit tests for extensions
+
+done
+----
+
 - tests
 - import csv to sqlalchemy
 
