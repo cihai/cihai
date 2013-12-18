@@ -1,5 +1,5 @@
 # -*- coding: utf8 - *-
-"""Unihan file parsing, importing and codec handling.
+"""Cihai dataset for `Unihan`_, Han Unification from Unicode, Inc.
 
 cihai.datasets.unihan
 ~~~~~~~~~~~~~~~~~~~~~
@@ -41,10 +41,23 @@ UNIHAN_FILENAMES = [
 
 class Unihan(CihaiDatabase):
 
-    """Cihai dataset for `Unihan`_ database.
+    """Cihai dataset for `Unihan`_, Han Unification from Unicode, Inc.
 
     :meth:`~.install_raw_csv` creates the tables, :meth:`~.import_csv_to_table`
     dumps csv to database.
+
+    This module is used by adding to a :class:`cihai.Cihai` instance:
+
+    .. code-block:: python
+
+        from cihai import Cihai
+
+        c = Cihai()
+        c.use(Unihan)
+        c.get('好')
+        >>> {
+            'definition': 'good'
+        }
 
     .. _Unihan: http://www.unicode.org/reports/tr38/
 
