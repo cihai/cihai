@@ -114,7 +114,7 @@ setup(
     test_suite='cihai.testsuite',
     zip_safe=False,
     packages=[
-        'cihai', 'cihai.testsuite',
+        'cihai', 'cihai.testsuite', 'cihai.datasets',
         'cihai._vendor', 'cihai._vendor.colorama'
     ],
     package_data={

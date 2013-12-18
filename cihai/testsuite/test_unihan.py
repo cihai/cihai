@@ -25,7 +25,7 @@ from .. import conversion
 from .helpers import unittest, TestCase, CihaiTestCase
 from .._compat import PY2, text_type, configparser
 from ..util import get_datafile
-from ..unihan import UNIHAN_FILENAMES, Unihan, RawReader
+from ..datasets.unihan import UNIHAN_FILENAMES, Unihan, RawReader
 from ..conversion import ucn_to_unicode
 from ..cihai import cihai_db, cihai_config
 
