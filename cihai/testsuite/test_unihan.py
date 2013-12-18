@@ -24,8 +24,8 @@ from .. import conversion
 
 from .helpers import unittest, TestCase, CihaiTestCase
 from .._compat import PY2, text_type, configparser
-from ..util import get_datafile
-from ..datasets.unihan import UNIHAN_FILENAMES, Unihan, RawReader
+from ..util import get_datafile, UnicodeReader
+from ..datasets.unihan import UNIHAN_FILENAMES, Unihan
 from ..conversion import ucn_to_unicode
 from ..cihai import cihai_db, cihai_config
 
@@ -64,12 +64,12 @@ class UnihanRawImportCase(object):
             # filter out comments
             csv_data = filter(lambda row: row[0] != '#', csv_file)
 
-            # pick random lines *before* passing into RawReader.
+            # pick random lines *before* passing into UnicodeReader.
             csv_lines = list(csv_data)
             csv_random = [random.choice(csv_lines) for i in range(10)]
 
             delim = b'\t' if PY2 else '\t'
-            random_items = RawReader(
+            random_items = UnicodeReader(
                 csv_random,
                 fieldnames=['char', 'field', 'value'],
                 delimiter=delim
@@ -148,10 +148,10 @@ class UnihanMethods(UnihanTestCase):
         table = self.unihan.install(csv_filename)
         self.assertIsInstance(table, sqlalchemy.schema.Table)
 
-    def test_create_table(self):
+    def test__create_table(self):
         table_name = 'testTable_%s' % random.randint(1, 1337)
 
-        table = self.unihan.create_table(table_name)
+        table = self.unihan._create_table(table_name)
 
         self.assertIsInstance(table, sqlalchemy.Table)
         self.assertTrue(table.exists())

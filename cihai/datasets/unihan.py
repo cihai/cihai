@@ -13,17 +13,18 @@ from __future__ import absolute_import, division, print_function, \
     with_statement, unicode_literals
 
 import os
-import zipfile
-import csv
-import logging
 import hashlib
+import logging
 
 from sqlalchemy import Table, String, Column, Integer, Index
 
 from .. import conversion
 from ..cihai import cihai_config, cihai_db, CihaiDatabase
-from ..util import get_datafile
+from ..util import get_datafile, UnicodeReader
 from .._compat import PY2, text_type, configparser
+
+__copyright__ = 'Copyright 2013 Tony Narlock.'
+__license__ = 'BSD, see LICENSE for details.'
 
 log = logging.getLogger(__name__)
 
@@ -82,7 +83,7 @@ class Unihan(CihaiDatabase):
 
         if not self.table_exists(table_name):
 
-            table = self.create_table(table_name)
+            table = self._create_table(table_name)
             unihan_csv = get_datafile(csv_filename)
 
             with open(unihan_csv, 'r') as csv_file:
@@ -104,7 +105,7 @@ class Unihan(CihaiDatabase):
                     )
                 ):
 
-                    r = RawReader(
+                    r = UnicodeReader(
                         csv_data,
                         fieldnames=['char', 'field', 'value'],
                         delimiter=delim
@@ -126,7 +127,7 @@ class Unihan(CihaiDatabase):
 
         return table
 
-    def create_table(self, table_name):
+    def _create_table(self, table_name):
         """Create table and return  :class:`sqlalchemy.Table`.
 
         :param table_name: name of table to create
@@ -159,26 +160,3 @@ class Unihan(CihaiDatabase):
             self.metadata.create_all()
 
         return table
-
-
-class RawReader(csv.DictReader):
-    """Read from Unihan CSV into Unicode."""
-    def __init__(self, *args, **kwargs):
-        csv.DictReader.__init__(self, *args, **kwargs)
-
-    def __next__(self):
-        row = csv.DictReader.__next__(self)
-
-        return self.row(row)
-
-    def next(self):
-        row = csv.DictReader.next(self)
-
-        return self.row(row)
-
-    def row(self, row):
-        for key in row.keys():
-            if not isinstance(row[key], text_type):
-                row[key] = text_type(row[key].decode('utf-8'))
-
-        return row
