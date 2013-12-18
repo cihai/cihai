@@ -4,7 +4,6 @@
 API
 ===
 
-
 .. autoclass:: cihai.Cihai
     :members:
     :show-inheritance:

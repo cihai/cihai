@@ -18,11 +18,10 @@ import csv
 import logging
 import hashlib
 
-from sqlalchemy import create_engine, MetaData, Table, String, Column, \
-    Integer, Index
+from sqlalchemy import Table, String, Column, Integer, Index
 
 from .. import conversion
-from ..cihai import cihai_config, cihai_db, engine, CihaiDatabase
+from ..cihai import cihai_config, cihai_db, CihaiDatabase
 from ..util import get_datafile
 from .._compat import PY2, text_type, configparser
 
@@ -77,7 +76,6 @@ class Unihan(CihaiDatabase):
 
             if not self.table_exists(table_name):
                 table = self.import_csv_to_table(
-                    engine=engine,
                     csv_filename=csv_filename,
                     table_name=table_name,
                 )
@@ -86,11 +84,9 @@ class Unihan(CihaiDatabase):
                 table = self.get_table(table_name)
             return table
 
-    def import_csv_to_table(self, engine, csv_filename, table_name):
+    def import_csv_to_table(self, csv_filename, table_name):
         """Import CSV to table.
 
-        :param engine: sqlalchemy engine
-        :type engine: :class:`sqlalchemy.engine.Engine`
         :param csv_filename: csv file name inside data, e.g. ``Unihan_Readings.txt``.
         :type csv_filename: string
         :param table_name: name of table
@@ -128,7 +124,7 @@ class Unihan(CihaiDatabase):
                 )
                 r = list(r)
 
-                results = engine.execute(table.insert(), r)
+                results = self.metadata.bind.execute(table.insert(), r)
                 config.set(csv_filename, 'csv_rowcount', text_type(len(r)))
             else:
                 log.debug('Rows populated, all is well!')
