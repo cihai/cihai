@@ -6,19 +6,23 @@
 
 ``cihai`` - China fit into a python package.
 
-Status
-------
+Attempt at building successor of the Han Character library `cjklib`_.
+
+- compatible with python 2.7+ and 3.3+.
+- built using TDD and aims for python best practices.
+- currently supports `Unihan`_ lookups, see the `current datasets`_.
+- upcoming supports for character decomposition, dictionaries (CEDict).
+- easily extensible to new datasets, see more about `Extending`_ cihai's 
+  knowledge.
 
 Being built against unit tests. See the `Travis Builds`_ and
 `Revision History`_.
 
 .. _Travis Builds: https://travis-ci.org/tony/cihai/builds
 .. _Revision History: https://github.com/tony/cihai/commits/master
-
-Features
---------
-
-- Python wrapper for `Unihan`_.
+.. _cjklib: http://cjklib.org/0.3/
+.. _current datasets: http://cihai.readthedocs.org/en/latest/api.html#datasets
+.. _Extending: http://cihai.readthedocs.org/en/latest/extending.html
 
 ==============  ==========================================================
 Python support  Python 2.7, >= 3.3
