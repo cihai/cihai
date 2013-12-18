@@ -42,6 +42,15 @@ UNIHAN_FILENAMES = [
 
 class Unihan(CihaiDatabase):
 
+    """Cihai dataset for `Unihan`_ database.
+
+    :meth:`~.install_raw_csv` creates the tables, :meth:`~.import_csv_to_table`
+    dumps csv to database.
+
+    .. _Unihan: http://www.unicode.org/reports/tr38/
+
+    """
+
     def install_raw_csv(self, csv_filename=None):
         """Install the raw csv information into CSV, return table.
 
@@ -166,7 +175,7 @@ class Unihan(CihaiDatabase):
 
 
 class RawReader(csv.DictReader):
-    """Read from Unihan CSV resource."""
+    """Read from Unihan CSV into Unicode."""
     def __init__(self, *args, **kwargs):
         csv.DictReader.__init__(self, *args, **kwargs)
 
