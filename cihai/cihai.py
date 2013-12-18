@@ -38,12 +38,17 @@ class NoDatasets(Exception):
 
 
 class CihaiDatabase(object):
+    """SQLAlchemy session data for cihai. Metadata is global."""
 
     _metadata = meta
 
     @property
     def metadata(self):
-        """Return the instance metadata."""
+        """Return global metadata object, reflect tables.
+
+        :rtype: :class:`sqlalchemy.schema.MetaData`
+
+        """
 
         if not self._metadata.bind:
             # No engine binded yet, bind and reflect tables.
@@ -71,11 +76,9 @@ class CihaiDatabase(object):
 
 class Cihai(CihaiDatabase):
 
-    """
+    """Cihai query client. May use :meth:`~.get()` to grab 中文.
 
-    Holds instance of database engine and metadata.
-
-    Can add dictionaries and datasets via :meth:`.use()`.
+    Add dictionaries and datasets via :meth:`.use()`.
 
     """
 
@@ -97,7 +100,7 @@ class Cihai(CihaiDatabase):
         self._middleware.append(middleware())
 
     def get(self, request, *args, **kwargs):
-        """Return results if exists in middleware.
+        """Return results middleware.
 
         :param request: request / input data
         :type request: string
@@ -133,7 +136,3 @@ class Cihai(CihaiDatabase):
             response = middleware.reverse(request, response)
 
         return response
-
-
-class CihaiMiddleware(object):
-    pass
