@@ -9,7 +9,7 @@ API
     :inherited-members:
     :show-inheritance:
 
-.. automodule:: conversion
+.. automodule:: cihai.conversion
     :members:
     :inherited-members:
     :show-inheritance:

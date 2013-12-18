@@ -9,18 +9,18 @@ cihai.conversion
 Original methods and docs based upon `ltchinese`_, license `MIT`_ Steven
 Kryskalla.
 
-Changes
-```````
+.. versionadded:: 0.1
+    Python 2/3 compatibility.
 
-- PEP8, PEP257.
-- ``int()`` casting for comparisons
-- Python 3 support.
-- Python 3 fix for :meth:`~.ucn_to_python`.
-- Python 3 ``__future__`` statements.
-- All methods converting to ``_python`` will return ``Unicode``.
-- All methods converting Unicode to x will return bytestring.
-- Add :meth:`~.ucnstring_to_python`
-- Any other change upon @ `conversion.py @9227813`_.
+    - PEP8, PEP257.
+    - ``int()`` casting for comparisons
+    - Python 3 support.
+    - Python 3 fix for :meth:`~.ucn_to_python`.
+    - Python 3 ``__future__`` statements.
+    - All methods converting to ``_python`` will return ``Unicode``.
+    - All methods converting Unicode to x will return bytestring.
+    - Add :meth:`~.ucnstring_to_python`
+    - Any other change upon @ `conversion.py @9227813`_.
 
 The following terms are used to represent the encodings / representation used
 in the conversion functions (the samples on the right are for the character

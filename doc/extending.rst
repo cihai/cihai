@@ -8,7 +8,7 @@ Extending
 
 .. literalinclude:: ../cihai/testsuite/test_middleware/simple/__init__.py
     :language: python
-    :lines: 13-
+    :lines: 12-
 
 .. code-block:: python
 
