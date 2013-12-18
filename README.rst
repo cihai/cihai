@@ -4,6 +4,9 @@
 .. image:: https://badge.fury.io/py/cihai.png
     :target: http://badge.fury.io/py/cihai
 
+.. image:: https://coveralls.io/repos/tony/cihai/badge.png?branch=master
+    :target: https://coveralls.io/r/tony/cihai?branch=master
+
 ``cihai`` - China fit into a python package.
 
 Attempt at building successor of the Han Character library `cjklib`_.
@@ -32,8 +35,8 @@ Changelog       http://cihai.readthedocs.org/en/latest/history.html
 API             http://cihai.readthedocs.org/en/latest/api.html
 Issues          https://github.com/tony/cihai/issues
 Travis          http://travis-ci.org/tony/cihai
+Test coverage   https://coveralls.io/r/tony/cihai
 pypi            https://pypi.python.org/pypi/cihai
-Crate.io        https://crate.io/packages/cihai/
 Ohloh           https://www.ohloh.net/p/cihai
 License         `BSD`_.
 git repo        .. code-block:: bash
