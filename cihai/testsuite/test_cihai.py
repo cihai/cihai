@@ -13,6 +13,7 @@ from __future__ import absolute_import, division, print_function, \
     with_statement, unicode_literals
 
 import os
+import sys
 import re
 import tempfile
 import random
@@ -28,6 +29,32 @@ from ..cihai import Cihai, NoDatasets
 from ..util import get_datafile
 
 log = logging.getLogger(__name__)
+
+
+def add_to_path(path):
+    """Adds an entry to sys.path if it's not already there.  This does
+    not append it but moves it to the front so that we can be sure it
+    is loaded.
+    """
+    if not os.path.isdir(path):
+        raise RuntimeError('Tried to add nonexisting path')
+
+    def _samefile(x, y):
+        if x == y:
+            return True
+        try:
+            return os.path.samefile(x, y)
+        except (IOError, OSError, AttributeError, TypeError):
+            # Windows has no samefile
+            return False
+    sys.path[:] = [y for y in sys.path if not _samefile(path, y)]
+    sys.path.insert(0, path)
+
+
+add_to_path(os.path.abspath(os.path.join(
+    os.path.dirname(__file__), 'test_middleware'))
+)
+from simple import DatasetExample
 
 
 class CihaiInstance(CihaiTestCase):
@@ -78,35 +105,6 @@ class CihaiDatabaseInstance(CihaiTestCase):
         self.assertIsInstance(table, sqlalchemy.Table)
 
 
-class DatasetExample(object):
-
-    def get(self, request, response):
-        dataset = {
-            '好': {
-                'definition': 'ni hao'
-            }
-        }
-
-        if request in dataset:
-            response.update(dataset[request])
-
-        return response
-
-    def reverse(self, request, response):
-        dataset = {
-            '好': {
-                'definition': 'ni hao'
-            }
-        }
-
-        for char, key in dataset.items():
-            for key, val in dataset[char].items():
-                if request in val:
-                    response.update(dataset[char])
-
-        return response
-
-
 class CihaiMiddleware(unittest.TestCase):
 
     def test_add_middleware(self):
@@ -132,7 +130,7 @@ class CihaiMiddleware(unittest.TestCase):
         c.use(DatasetExample)
         self.assertDictContainsSubset({
             'definition': 'ni hao'
-        }, c.get('好'))
+        }, c.reverse('ni hao'))
 
     def test_reverse(self):
         c = Cihai()
