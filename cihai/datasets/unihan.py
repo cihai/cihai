@@ -43,7 +43,7 @@ class Unihan(CihaiDatabase):
 
     """Cihai dataset for `Unihan`_, Han Unification from Unicode, Inc.
 
-    :meth:`~.install_raw_csv` creates the tables, :meth:`~.import_csv_to_table`
+    :meth:`~.install` creates the tables, :meth:`~.import_csv_to_table`
     dumps csv to database.
 
     This module is used by adding to a :class:`cihai.Cihai` instance:
@@ -63,7 +63,7 @@ class Unihan(CihaiDatabase):
 
     """
 
-    def install_raw_csv(self, csv_filename=None):
+    def install(self, csv_filename=None):
         """Install the raw csv information into CSV, return table.
 
         :param csv_filename: (optional, default=None) filename in /data dir.
@@ -73,79 +73,57 @@ class Unihan(CihaiDatabase):
         """
 
         if not csv_filename:
-            # not os.path.exists(cihai_config)
-            return self.install_raw_csv(UNIHAN_FILENAMES)
+            return self.install(UNIHAN_FILENAMES)
         elif isinstance(csv_filename, list):
             for csv_filename in csv_filename:
-                return self.install_raw_csv(csv_filename)
+                return self.install(csv_filename)
+
+        table_name = csv_filename.split('.')[0]
+
+        if not self.table_exists(table_name):
+
+            table = self.create_table(table_name)
+            unihan_csv = get_datafile(csv_filename)
+
+            with open(unihan_csv, 'r') as csv_file:
+                csv_md5 = hashlib.sha256(unihan_csv.encode('utf-8')).hexdigest()
+                csv_data = filter(lambda row: row[0] != '#', csv_file)
+                delim = b'\t' if PY2 else '\t'
+
+                config = configparser.ConfigParser()
+                config.read(cihai_config)
+                if not config.has_section(csv_filename):
+                    config.add_section(csv_filename)
+
+                if (
+                    not os.path.exists(cihai_config) or
+                    not config.has_option(csv_filename, 'csv_rowcount') or
+                    (
+                        config.has_option(csv_filename, 'csv_rowcount') and
+                        table.select().count().execute().scalar() != config.getint(csv_filename, 'csv_rowcount')
+                    )
+                ):
+
+                    r = RawReader(
+                        csv_data,
+                        fieldnames=['char', 'field', 'value'],
+                        delimiter=delim
+                    )
+                    r = list(r)
+
+                    results = self.metadata.bind.execute(table.insert(), r)
+                    config.set(csv_filename, 'csv_rowcount', text_type(len(r)))
+                else:
+                    log.debug('Rows populated, all is well!')
+
+                config.set(csv_filename, 'csv_md5', csv_md5)
+                config_file = open(cihai_config, 'w+')
+                config.write(config_file)
+                config_file.close()
         else:
-            table_name = csv_filename.split('.')[0]
+            log.debug('{0} already installed.'.format(table_name))
+            table = self.get_table(table_name)
 
-            # config.read(cihai_config)
-
-            # for csv_filename in UNIHAN_FILENAMES:
-                # if not config.has_section(csv_filename):
-                    # self.install_raw_csv(csv_filename)
-
-            if not self.table_exists(table_name):
-                table = self.import_csv_to_table(
-                    csv_filename=csv_filename,
-                    table_name=table_name,
-                )
-            else:
-                log.debug('{0} already installed.'.format(table_name))
-                table = self.get_table(table_name)
-            return table
-
-    def import_csv_to_table(self, csv_filename, table_name):
-        """Import CSV to table.
-
-        :param csv_filename: csv file name inside data, e.g. ``Unihan_Readings.txt``.
-        :type csv_filename: string
-        :param table_name: name of table
-        :type table_name: string
-        :rtype: :class:`sqlalchemy.schema.Table`
-
-        """
-
-        table = self.create_table(table_name)
-        unihan_csv = get_datafile(csv_filename)
-
-        with open(unihan_csv, 'r') as csv_file:
-            csv_md5 = hashlib.sha256(unihan_csv.encode('utf-8')).hexdigest()
-            csv_data = filter(lambda row: row[0] != '#', csv_file)
-            delim = b'\t' if PY2 else '\t'
-
-            config = configparser.ConfigParser()
-            config.read(cihai_config)
-            if not config.has_section(csv_filename):
-                config.add_section(csv_filename)
-
-            if (
-                not os.path.exists(cihai_config) or
-                not config.has_option(csv_filename, 'csv_rowcount') or
-                (
-                    config.has_option(csv_filename, 'csv_rowcount') and
-                    table.select().count().execute().scalar() != config.getint(csv_filename, 'csv_rowcount')
-                )
-            ):
-
-                r = RawReader(
-                    csv_data,
-                    fieldnames=['char', 'field', 'value'],
-                    delimiter=delim
-                )
-                r = list(r)
-
-                results = self.metadata.bind.execute(table.insert(), r)
-                config.set(csv_filename, 'csv_rowcount', text_type(len(r)))
-            else:
-                log.debug('Rows populated, all is well!')
-
-            config.set(csv_filename, 'csv_md5', csv_md5)
-            config_file = open(cihai_config, 'w+')
-            config.write(config_file)
-            config_file.close()
         return table
 
     def create_table(self, table_name):

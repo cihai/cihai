@@ -75,7 +75,7 @@ class UnihanRawImportCase(object):
                 delimiter=delim
             )
 
-            table = self.unihan.install_raw_csv(csv_filename)
+            table = self.unihan.install(csv_filename)
             config.read(cihai_config)  # Re-read since csv import updates conf.
             b = sqlalchemy.inspect(table)
 
@@ -117,7 +117,7 @@ class UnihanTable(UnihanTestCase):
 
     def setUp(self):
         super(UnihanTable, self).setUp()
-        self.unihan.install_raw_csv('Unihan_NumericValues.txt')
+        self.unihan.install('Unihan_NumericValues.txt')
 
     def test_returns_instance_table(self):
         table = self.unihan.get_table('Unihan_NumericValues')
@@ -140,12 +140,12 @@ class UnihanMethods(UnihanTestCase):
         super(UnihanMethods, self).setUp()
 
         # Assures at least one table is installed before testing.
-        self.unihan.install_raw_csv('Unihan_NumericValues.txt')
+        self.unihan.install('Unihan_NumericValues.txt')
 
     def test_returns_table(self):
         csv_filename = random.choice(UNIHAN_FILENAMES)
         self.assertRegexpMatches(csv_filename, 'Unihan')
-        table = self.unihan.install_raw_csv(csv_filename)
+        table = self.unihan.install(csv_filename)
         self.assertIsInstance(table, sqlalchemy.schema.Table)
 
     def test_create_table(self):
@@ -166,7 +166,7 @@ class UnihanReadings(UnihanTestCase):
         super(UnihanReadings, self).setUp()
 
         # Assures at least one table is installed before testing.
-        self.unihan.install_raw_csv('Unihan_Readings.txt')
+        self.unihan.install('Unihan_Readings.txt')
         self.table = self.unihan.get_table('Unihan_Readings')
 
     def test_kMandarin(self):
@@ -310,7 +310,7 @@ class UnihanVariants(UnihanTestCase):
         super(UnihanVariants, self).setUp()
 
         # Assures at least one table is installed before testing.
-        self.unihan.install_raw_csv('Unihan_Variants.txt')
+        self.unihan.install('Unihan_Variants.txt')
 
     def test_table_exists(self):
         self.assertTrue(self.unihan.table_exists('Unihan_Variants'))
@@ -387,7 +387,7 @@ class UnihanRadicalStrokeCounts(UnihanTestCase):
         super(UnihanRadicalStrokeCounts, self).setUp()
 
         # Assures at least one table is installed before testing.
-        self.unihan.install_raw_csv('Unihan_RadicalStrokeCounts.txt')
+        self.unihan.install('Unihan_RadicalStrokeCounts.txt')
         self.table = self.unihan.get_table('Unihan_RadicalStrokeCounts')
 
     def test_table_exists(self):
@@ -466,7 +466,7 @@ class UnihanNumericValues(UnihanTestCase):
         super(UnihanNumericValues, self).setUp()
 
         # Assures at least one table is installed before testing.
-        self.unihan.install_raw_csv('Unihan_NumericValues.txt')
+        self.unihan.install('Unihan_NumericValues.txt')
 
     def test_table_exists(self):
         self.assertTrue(self.unihan.table_exists('Unihan_NumericValues'))
@@ -517,7 +517,7 @@ class UnihanDictionaryLikeData(UnihanTestCase):
         super(UnihanDictionaryLikeData, self).setUp()
 
         # Assures at least one table is installed before testing.
-        self.unihan.install_raw_csv('Unihan_DictionaryLikeData.txt')
+        self.unihan.install('Unihan_DictionaryLikeData.txt')
 
     def test_table_exists(self):
         self.assertTrue(self.unihan.table_exists('Unihan_DictionaryLikeData'))
@@ -588,7 +588,7 @@ class kDefinition(UnihanTestCase):
         super(kDefinition, self).setUp()
 
         # Assures at least one table is installed before testing.
-        self.unihan.install_raw_csv('Unihan_Readings.txt')
+        self.unihan.install('Unihan_Readings.txt')
         self.table = self.unihan.get_table('Unihan_Readings')
 
     def test_like(self):
@@ -624,7 +624,7 @@ class Unihan_DictionaryIndices(UnihanTestCase, UnihanRawImportCase):
         super(Unihan_DictionaryIndices, self).setUp()
 
         # Assures at least one table is installed before testing.
-        self.unihan.install_raw_csv(self.csv_filename)
+        self.unihan.install(self.csv_filename)
 
 
 class Unihan_DictionaryLikeData(UnihanTestCase, UnihanRawImportCase):
@@ -635,7 +635,7 @@ class Unihan_DictionaryLikeData(UnihanTestCase, UnihanRawImportCase):
         super(Unihan_DictionaryLikeData, self).setUp()
 
         # Assures at least one table is installed before testing.
-        self.unihan.install_raw_csv(self.csv_filename)
+        self.unihan.install(self.csv_filename)
 
 
 class Unihan_IRGSources(UnihanTestCase, UnihanRawImportCase):
@@ -646,7 +646,7 @@ class Unihan_IRGSources(UnihanTestCase, UnihanRawImportCase):
         super(Unihan_IRGSources, self).setUp()
 
         # Assures at least one table is installed before testing.
-        self.unihan.install_raw_csv(self.csv_filename)
+        self.unihan.install(self.csv_filename)
 
 
 class Unihan_NumericValues(UnihanTestCase, UnihanRawImportCase):
@@ -657,7 +657,7 @@ class Unihan_NumericValues(UnihanTestCase, UnihanRawImportCase):
         super(Unihan_NumericValues, self).setUp()
 
         # Assures at least one table is installed before testing.
-        self.unihan.install_raw_csv(self.csv_filename)
+        self.unihan.install(self.csv_filename)
 
 
 class Unihan_OtherMappings(UnihanTestCase, UnihanRawImportCase):
@@ -668,7 +668,7 @@ class Unihan_OtherMappings(UnihanTestCase, UnihanRawImportCase):
         super(Unihan_OtherMappings, self).setUp()
 
         # Assures at least one table is installed before testing.
-        self.unihan.install_raw_csv(self.csv_filename)
+        self.unihan.install(self.csv_filename)
 
 
 class Unihan_RadicalStrokeCounts(UnihanTestCase, UnihanRawImportCase):
@@ -679,7 +679,7 @@ class Unihan_RadicalStrokeCounts(UnihanTestCase, UnihanRawImportCase):
         super(Unihan_RadicalStrokeCounts, self).setUp()
 
         # Assures at least one table is installed before testing.
-        self.unihan.install_raw_csv(self.csv_filename)
+        self.unihan.install(self.csv_filename)
 
 
 class Unihan_Readings(UnihanRawImportCase):
@@ -690,7 +690,7 @@ class Unihan_Readings(UnihanRawImportCase):
         super(Unihan_Readings, self).setUp()
 
         # Assures at least one table is installed before testing.
-        self.unihan.install_raw_csv(self.csv_filename)
+        self.unihan.install(self.csv_filename)
 
 
 class Unihan_Variants(UnihanRawImportCase):
@@ -701,4 +701,4 @@ class Unihan_Variants(UnihanRawImportCase):
         super(Unihan_Variants, self).setUp()
 
         # Assures at least one table is installed before testing.
-        self.unihan.install_raw_csv(self.csv_filename)
+        self.unihan.install(self.csv_filename)
