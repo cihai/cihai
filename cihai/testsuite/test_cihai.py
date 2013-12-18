@@ -128,20 +128,22 @@ class CihaiMiddleware(unittest.TestCase):
             c.get('好')
 
         c.use(DatasetExample)
-        self.assertDictContainsSubset({
-            'definition': 'ni hao'
-        }, c.reverse('ni hao'))
+        self.assertDictEqual({
+            'definition': 'hao'
+        }, c.get('好'))
 
     def test_reverse(self):
         c = Cihai()
 
         with self.assertRaises(NoDatasets):
-            c.reverse('ni hao')
+            c.reverse('hao')
 
         c.use(DatasetExample)
-        self.assertDictContainsSubset({
-            'definition': 'ni hao'
-        }, c.reverse('ni hao'))
+        self.assertDictEqual({
+            '好': {
+                'definition': 'hao'
+            }
+        }, c.reverse('hao'))
 
 
 class UtilTest(unittest.TestCase):

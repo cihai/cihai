@@ -9,13 +9,16 @@ cihai.testsuite.test_middleware.simple
 
 """
 
+from __future__ import absolute_import, division, print_function, \
+    with_statement, unicode_literals
+
 
 class DatasetExample(object):
 
     def get(self, request, response):
         dataset = {
             '好': {
-                'definition': 'ni hao'
+                'definition': 'hao'
             }
         }
 
@@ -27,13 +30,15 @@ class DatasetExample(object):
     def reverse(self, request, response):
         dataset = {
             '好': {
-                'definition': 'ni hao'
+                'definition': 'hao'
             }
         }
 
         for char, key in dataset.items():
             for key, val in dataset[char].items():
                 if request in val:
-                    response.update(dataset[char])
+                    response.update({
+                        char: dataset[char]
+                    })
 
         return response
