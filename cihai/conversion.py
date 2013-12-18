@@ -106,17 +106,6 @@ def euc_to_utf8(euchex):
     assert isinstance(utf8, bytes)
     return utf8
 
-"""
-
-TODO from Steven K.
-
-:TODO: make these conversions go both ways (i.e. gb2312_to_kuten, euc_to_gb2312, utf8_to_euc)
-:TODO: fill in the conversions? (i.e. create kuten_to_utf8, so you don't have to compose kuten_to_gb2312 and gb2312_to_euc by hand)
-:TODO: might even want to create a more generic system so that you can just pick the encoding types and dispatch the right method
-:TODO: more encoding formats?
-
-"""
-
 """Convert to internal Python unicode / string objects."""
 
 

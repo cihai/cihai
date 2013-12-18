@@ -1,8 +1,8 @@
 # -*- coding: utf8 - *-
 """Unihan file parsing, importing and codec handling.
 
-cihai.unihan
-~~~~~~~~~~~~
+cihai.datasets.unihan
+~~~~~~~~~~~~~~~~~~~~~
 
 :copyright: Copyright 2013 Tony Narlock.
 :license: BSD, see LICENSE for details

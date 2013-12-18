@@ -4,7 +4,12 @@
 API
 ===
 
-.. automodule:: cihai.cihai
+
+.. autoclass:: cihai.Cihai
+    :members:
+    :show-inheritance:
+
+.. autoclass:: cihai.CihaiDatabase
     :members:
     :inherited-members:
     :show-inheritance:
@@ -14,12 +19,15 @@ API
     :inherited-members:
     :show-inheritance:
 
-.. automodule:: cihai.unihan
+.. automodule:: cihai.util
     :members:
     :inherited-members:
     :show-inheritance:
 
-.. automodule:: cihai.util
+--------
+Datasets
+--------
+
+.. autoclass:: cihai.datasets.unihan.Unihan
     :members:
-    :inherited-members:
     :show-inheritance:
