@@ -11,7 +11,6 @@ windows:
   panes:
   - shell_command:
     - vim
-    - :Ex
     focus: true
   - shell_command:
     - command -v watching_testrunner >/dev/null 2>&1 || { pip install watching_testrunner; }
@@ -19,7 +18,7 @@ windows:
   - pane
   - shell_command:
     - command -v virtualenv >/dev/null 2>&1 || { pip install virtualenv; }
-    - '[ -d .env3 -a -f .env/bin/activate ] && source .env3/bin/activate || virtualenv .env --python=/usr/bin/python3.3'
+    - '[ -d .env3 -a -f .env/bin/activate ] && source .env3/bin/activate || virtualenv .env3 --python=/usr/bin/python3.3'
     - '[ ! -d .env3/build ] || rm -rf .env3/build'
     - command -v watching_testrunner >/dev/null 2>&1 || { pip install watching_testrunner; }
     - watching_testrunner --basepath ./ --pattern="*.py" 'python setup.py test'
