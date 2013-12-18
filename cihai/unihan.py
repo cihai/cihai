@@ -140,7 +140,7 @@ class Unihan(CihaiDatabase):
         return table
 
     def create_table(self, table_name):
-        """Create table and return  :sqlalchemy:class:`sqlalchemy.Table`.
+        """Create table and return  :class:`sqlalchemy.Table`.
 
         :param table_name: name of table to create
         :type table_name: string

@@ -1,3 +1,9 @@
+.. image:: https://travis-ci.org/tony/cihai.png?branch=master
+    :target: https://travis-ci.org/tony/cihai
+
+.. image:: https://badge.fury.io/py/cihai.png
+    :target: http://badge.fury.io/py/cihai
+
 ``cihai`` - China fit into a python package.
 
 Status
@@ -13,12 +19,6 @@ Features
 --------
 
 - Python wrapper for `Unihan`_.
-
-.. image:: https://travis-ci.org/tony/cihai.png?branch=master
-    :target: https://travis-ci.org/tony/cihai
-
-.. image:: https://badge.fury.io/py/cihai.png
-    :target: http://badge.fury.io/py/cihai
 
 ==============  ==========================================================
 Python support  Python 2.7, >= 3.3
