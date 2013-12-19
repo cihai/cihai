@@ -173,6 +173,15 @@ class UnihanMiddleware(CihaiTestCase, UnihanTestCase):
         from pprint import pprint
         pprint(results)
 
+    def test_reverse(self):
+
+        c = Cihai()
+        c.use(Unihan)
+        results = c.reverse(r'%first%')
+
+        from pprint import pprint
+        pprint(results)
+
 
 class UnihanReadings(UnihanTestCase):
     def setUp(self):

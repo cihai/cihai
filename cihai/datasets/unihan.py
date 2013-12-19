@@ -62,6 +62,10 @@ class Unihan(CihaiDatabase):
 
     .. _Unihan: http://www.unicode.org/reports/tr38/
 
+    :todo: Add a :obj:`dict` instance variable for the available lookups
+        tables to search) and have a default that only searches certain keys.
+    :todo: Specify desired result fields to search (e.g. 'kDefinition').
+
     """
 
     def install(self, csv_filename=None):
@@ -200,5 +204,30 @@ class Unihan(CihaiDatabase):
         :rtype: dict
 
         """
+
+        tables = [table for table in self.metadata.tables if table.startswith('Unihan')]
+
+        for table in tables:
+            table = Table(table, self.metadata)
+            query = select([
+                table.c.char, table.c.field, table.c.value
+            ]).where(or_(
+                table.c.value.like(request),
+                table.c.value.like(conversion.python_to_ucn(request))
+            )
+            ).execute()
+
+            if query:
+                if not 'unihan' in response:
+                    response['unihan'] = {}
+                for r in query:
+                    char = conversion.ucn_to_unicode(r['char'])
+                    if not char in response['unihan']:
+                        response['unihan'][char] = {}
+                    response['unihan'][char][r['field']] = r['value']
+
+            if not response['unihan']:
+                # don't return empty lists.
+                del response['unihan']
 
         return response
