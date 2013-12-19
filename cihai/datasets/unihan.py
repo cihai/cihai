@@ -299,12 +299,16 @@ class Unihan(CihaiDatabase):
 
         for table in tables:
             table = Table(table, self.metadata)
+
+            andfields = [(table.c.field == t) for t in ['kDefinition']]
+            print(tuple(andfields))
+            andstmt = and_(*andfields)
             query = select([
                 table.c.char, table.c.field, table.c.value
             ]).where(or_(
                 table.c.char == request,
                 table.c.char == conversion.python_to_ucn(request)
-            )).execute()
+            )).where(andstmt).execute()
 
             if query:
                 if not 'unihan' in response:
