@@ -215,8 +215,15 @@ class Unihan(CihaiDatabase):
                 return self.install(csv_filename)
 
         table_name = csv_filename.split('.')[0]
+        table_name = 'Unihan'
 
-        if not self.table_exists(table_name):
+        config = configparser.ConfigParser()
+        config.read(cihai_config)
+        if (
+            not config.has_section(csv_filename) or
+            #not config.has_option(csv_filename, 'csv_verified') or
+            not self.table_exists(table_name)
+        ):
 
             table = self._create_table(table_name)
             unihan_csv = get_datafile(csv_filename)
@@ -226,17 +233,18 @@ class Unihan(CihaiDatabase):
                 csv_data = filter(lambda row: row[0] != '#', csv_file)
                 delim = b'\t' if PY2 else '\t'
 
-                config = configparser.ConfigParser()
                 config.read(cihai_config)
                 if not config.has_section(csv_filename):
                     config.add_section(csv_filename)
-
+                fields = UNIHAN_TABLES[csv_filename.split('.')[0]]
+                andfields = [(table.c.field == t) for t in fields]
+                andstmt = or_(*andfields)
                 if (
                     not os.path.exists(cihai_config) or
                     not config.has_option(csv_filename, 'csv_rowcount') or
                     (
                         config.has_option(csv_filename, 'csv_rowcount') and
-                        table.select().count().execute().scalar() != config.getint(csv_filename, 'csv_rowcount')
+                        table.select().where(andstmt).count().execute().scalar() != config.getint(csv_filename, 'csv_rowcount')
                     )
                 ):
 

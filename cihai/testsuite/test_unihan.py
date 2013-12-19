@@ -25,7 +25,7 @@ from .. import conversion
 from .helpers import unittest, TestCase, CihaiTestCase
 from .._compat import PY2, text_type, configparser
 from ..util import get_datafile, UnicodeReader
-from ..datasets.unihan import UNIHAN_FILENAMES, Unihan
+from ..datasets.unihan import UNIHAN_FILENAMES, UNIHAN_TABLES, Unihan
 from ..conversion import ucn_to_unicode
 from ..cihai import cihai_db, cihai_config, Cihai
 
@@ -90,8 +90,13 @@ class UnihanRawImportCase(object):
                 [c.name for c in b.columns], ['id', 'char', 'field', 'value']
             )
 
+            fields = UNIHAN_TABLES[csv_filename.split('.')[0]]
+            andfields = [(table.c.field == t) for t in fields]
+            andstmt = sqlalchemy.or_(*andfields)
+            print(fields)
+
             self.assertEqual(
-                table.select().count().execute().scalar(),
+                table.select().where(andstmt).count().execute().scalar(),
                 csv_rowcount
             )
 
@@ -120,7 +125,7 @@ class UnihanTable(UnihanTestCase):
         self.unihan.install('Unihan_NumericValues.txt')
 
     def test_returns_instance_table(self):
-        table = self.unihan.get_table('Unihan_NumericValues')
+        table = self.unihan.get_table('Unihan')
 
         self.assertIsInstance(table, sqlalchemy.Table)
 
@@ -189,7 +194,7 @@ class UnihanReadings(UnihanTestCase):
 
         # Assures at least one table is installed before testing.
         self.unihan.install('Unihan_Readings.txt')
-        self.table = self.unihan.get_table('Unihan_Readings')
+        self.table = self.unihan.get_table('Unihan')
 
     def test_kMandarin(self):
         rows = self.table.select().where(self.table.c.field == 'kMandarin').limit(1).execute()
@@ -322,8 +327,8 @@ class UnihanReadings(UnihanTestCase):
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
 
-    def test_table_exists(self):
-        self.assertTrue(self.unihan.table_exists('Unihan_Readings'))
+    # def test_table_exists(self):
+        # self.assertTrue(self.unihan.table_exists('Unihan_Readings'))
 
 
 class UnihanVariants(UnihanTestCase):
@@ -334,11 +339,11 @@ class UnihanVariants(UnihanTestCase):
         # Assures at least one table is installed before testing.
         self.unihan.install('Unihan_Variants.txt')
 
-    def test_table_exists(self):
-        self.assertTrue(self.unihan.table_exists('Unihan_Variants'))
+    # def test_table_exists(self):
+        # self.assertTrue(self.unihan.table_exists('Unihan_Variants'))
 
     def test_kSemanticVariant(self):
-        table = self.unihan.get_table('Unihan_Variants')
+        table = self.unihan.get_table('Unihan')
 
         """
         http://www.unicode.org/reports/tr38/tr38-15.html#kSemanticVariant
@@ -351,7 +356,7 @@ class UnihanVariants(UnihanTestCase):
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
 
     def test_kTraditionalVariant(self):
-        table = self.unihan.get_table('Unihan_Variants')
+        table = self.unihan.get_table('Unihan')
 
         """
         http://www.unicode.org/reports/tr38/tr38-15.html#kTraditionalVariant
@@ -364,7 +369,7 @@ class UnihanVariants(UnihanTestCase):
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
 
     def test_kSpecializedSemanticVariant(self):
-        table = self.unihan.get_table('Unihan_Readings')
+        table = self.unihan.get_table('Unihan')
 
         """
         http://www.unicode.org/reports/tr38/tr38-15.html#kSpecializedSemanticVariant
@@ -377,7 +382,7 @@ class UnihanVariants(UnihanTestCase):
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
 
     def test_kSimplifiedVariant(self):
-        table = self.unihan.get_table('Unihan_Readings')
+        table = self.unihan.get_table('Unihan')
 
         """
         http://www.unicode.org/reports/tr38/tr38-15.html#kSimplifiedVariant
@@ -390,7 +395,7 @@ class UnihanVariants(UnihanTestCase):
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
 
     def test_kCompatibilityVariant(self):
-        table = self.unihan.get_table('Unihan_Readings')
+        table = self.unihan.get_table('Unihan')
 
         """
         http://www.unicode.org/reports/tr38/tr38-15.html#kCompatibilityVariant
@@ -410,10 +415,10 @@ class UnihanRadicalStrokeCounts(UnihanTestCase):
 
         # Assures at least one table is installed before testing.
         self.unihan.install('Unihan_RadicalStrokeCounts.txt')
-        self.table = self.unihan.get_table('Unihan_RadicalStrokeCounts')
+        self.table = self.unihan.get_table('Unihan')
 
-    def test_table_exists(self):
-        self.assertTrue(self.unihan.table_exists('Unihan_RadicalStrokeCounts'))
+    # def test_table_exists(self):
+        # self.assertTrue(self.unihan.table_exists('Unihan_RadicalStrokeCounts'))
 
     def test_kRSAdobe_Japan1_6(self):
         """
@@ -490,11 +495,11 @@ class UnihanNumericValues(UnihanTestCase):
         # Assures at least one table is installed before testing.
         self.unihan.install('Unihan_NumericValues.txt')
 
-    def test_table_exists(self):
-        self.assertTrue(self.unihan.table_exists('Unihan_NumericValues'))
+    # def test_table_exists(self):
+        # self.assertTrue(self.unihan.table_exists('Unihan_NumericValues'))
 
     def test_kAccountingNumeric(self):
-        table = self.unihan.get_table('Unihan_NumericValues')
+        table = self.unihan.get_table('Unihan')
 
         """
         http://www.unicode.org/reports/tr38/tr38-15.html#kAccountingNumeric
@@ -507,7 +512,7 @@ class UnihanNumericValues(UnihanTestCase):
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
 
     def test_kOtherNumeric(self):
-        table = self.unihan.get_table('Unihan_NumericValues')
+        table = self.unihan.get_table('Unihan')
 
         """
         http://www.unicode.org/reports/tr38/tr38-15.html#kOtherNumeric
@@ -520,7 +525,7 @@ class UnihanNumericValues(UnihanTestCase):
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
 
     def test_kPrimaryNumeric(self):
-        table = self.unihan.get_table('Unihan_NumericValues')
+        table = self.unihan.get_table('Unihan')
 
         """
         http://www.unicode.org/reports/tr38/tr38-15.html#kPrimaryNumeric
@@ -540,58 +545,52 @@ class UnihanDictionaryLikeData(UnihanTestCase):
 
         # Assures at least one table is installed before testing.
         self.unihan.install('Unihan_DictionaryLikeData.txt')
+        self.table = self.unihan.get_table('Unihan')
 
-    def test_table_exists(self):
-        self.assertTrue(self.unihan.table_exists('Unihan_DictionaryLikeData'))
+    # def test_table_exists(self):
+        #self.assertTrue(self.unihan.table_exists('Unihan_DictionaryLikeData'))
 
     def test_kFrequency(self):
-        table = self.unihan.get_table('Unihan_DictionaryLikeData')
-
         """
         http://www.unicode.org/reports/tr38/tr38-15.html#kFrequency
 
         """
 
-        rows = table.select().where(table.c.field == 'kFrequency').limit(1).execute()
+        rows = self.table.select().where(self.table.c.field == 'kFrequency').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
 
     def test_kPhonetic(self):
-        table = self.unihan.get_table('Unihan_DictionaryLikeData')
-
         """
         http://www.unicode.org/reports/tr38/tr38-15.html#kPhonetic
 
         """
 
-        rows = table.select().where(table.c.field == 'kPhonetic').limit(1).execute()
+        rows = self.table.select().where(self.table.c.field == 'kPhonetic').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
 
     def test_kTotalStrokes(self):
-        table = self.unihan.get_table('Unihan_DictionaryLikeData')
-
         """
         http://www.unicode.org/reports/tr38/tr38-15.html#kTotalStrokes
 
         """
 
-        rows = table.select().where(table.c.field == 'kTotalStrokes').limit(1).execute()
+        rows = self.table.select().where(self.table.c.field == 'kTotalStrokes').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
 
     def test_kGradeLevel(self):
-        table = self.unihan.get_table('Unihan_DictionaryLikeData')
 
         """
         http://www.unicode.org/reports/tr38/tr38-15.html#kGradeLevel
 
         """
 
-        rows = table.select().where(table.c.field == 'kGradeLevel').limit(1).execute()
+        rows = self.table.select().where(self.table.c.field == 'kGradeLevel').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
@@ -611,7 +610,7 @@ class kDefinition(UnihanTestCase):
 
         # Assures at least one table is installed before testing.
         self.unihan.install('Unihan_Readings.txt')
-        self.table = self.unihan.get_table('Unihan_Readings')
+        self.table = self.unihan.get_table('Unihan')
 
     def test_like(self):
         def selectkDefinition(char=None):
@@ -640,7 +639,8 @@ class kDefinition(UnihanTestCase):
 
 class Unihan_DictionaryIndices(UnihanTestCase, UnihanRawImportCase):
     csv_filename = 'Unihan_DictionaryIndices.txt'
-    table_name = 'Unihan_DictionaryIndices'
+    #table_name = 'Unihan_DictionaryIndices'
+    table_name='Unihan'
 
     def setUp(self):
         super(Unihan_DictionaryIndices, self).setUp()
@@ -651,7 +651,8 @@ class Unihan_DictionaryIndices(UnihanTestCase, UnihanRawImportCase):
 
 class Unihan_DictionaryLikeData(UnihanTestCase, UnihanRawImportCase):
     csv_filename = 'Unihan_DictionaryLikeData.txt'
-    table_name = 'Unihan_DictionaryLikeData'
+    #table_name = 'Unihan_DictionaryLikeData'
+    table_name='Unihan'
 
     def setUp(self):
         super(Unihan_DictionaryLikeData, self).setUp()
@@ -662,7 +663,8 @@ class Unihan_DictionaryLikeData(UnihanTestCase, UnihanRawImportCase):
 
 class Unihan_IRGSources(UnihanTestCase, UnihanRawImportCase):
     csv_filename = 'Unihan_IRGSources.txt'
-    table_name = 'Unihan_IRGSources'
+    #table_name = 'Unihan_IRGSources'
+    table_name='Unihan'
 
     def setUp(self):
         super(Unihan_IRGSources, self).setUp()
@@ -673,7 +675,8 @@ class Unihan_IRGSources(UnihanTestCase, UnihanRawImportCase):
 
 class Unihan_NumericValues(UnihanTestCase, UnihanRawImportCase):
     csv_filename = 'Unihan_NumericValues.txt'
-    table_name = 'Unihan_NumericValues'
+    #table_name = 'Unihan_NumericValues'
+    table_name='Unihan'
 
     def setUp(self):
         super(Unihan_NumericValues, self).setUp()
@@ -684,7 +687,8 @@ class Unihan_NumericValues(UnihanTestCase, UnihanRawImportCase):
 
 class Unihan_OtherMappings(UnihanTestCase, UnihanRawImportCase):
     csv_filename = 'Unihan_OtherMappings.txt'
-    table_name = 'Unihan_OtherMappings'
+    #table_name = 'Unihan_OtherMappings'
+    table_name='Unihan'
 
     def setUp(self):
         super(Unihan_OtherMappings, self).setUp()
@@ -695,7 +699,8 @@ class Unihan_OtherMappings(UnihanTestCase, UnihanRawImportCase):
 
 class Unihan_RadicalStrokeCounts(UnihanTestCase, UnihanRawImportCase):
     csv_filename = 'Unihan_RadicalStrokeCounts.txt'
-    table_name = 'Unihan_RadicalStrokeCounts'
+    #table_name = 'Unihan_RadicalStrokeCounts'
+    table_name='Unihan'
 
     def setUp(self):
         super(Unihan_RadicalStrokeCounts, self).setUp()
@@ -706,7 +711,8 @@ class Unihan_RadicalStrokeCounts(UnihanTestCase, UnihanRawImportCase):
 
 class Unihan_Readings(UnihanRawImportCase):
     csv_filename = 'Unihan_Readings.txt'
-    table_name = 'Unihan_Readings'
+    #table_name = 'Unihan_Readings'
+    table_name='Unihan'
 
     def setUp(self):
         super(Unihan_Readings, self).setUp()
@@ -717,7 +723,8 @@ class Unihan_Readings(UnihanRawImportCase):
 
 class Unihan_Variants(UnihanRawImportCase):
     csv_filename = 'Unihan_Variants.txt'
-    table_name = 'Unihan_Variants'
+    #table_name = 'Unihan_Variants'
+    table_name='Unihan'
 
     def setUp(self):
         super(Unihan_Variants, self).setUp()
