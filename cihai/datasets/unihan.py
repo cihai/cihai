@@ -16,7 +16,7 @@ import os
 import hashlib
 import logging
 
-from sqlalchemy import Table, String, Column, Integer, Index, select, or_
+from sqlalchemy import Table, String, Column, Integer, Index, select, or_, and_
 
 from .. import conversion
 from ..cihai import cihai_config, cihai_db, CihaiDatabase
@@ -330,12 +330,17 @@ class Unihan(CihaiDatabase):
 
         for table in tables:
             table = Table(table, self.metadata)
+
+            andfields = [(table.c.field == t) for t in ['kDefinition']]
+            print(tuple(andfields))
+            andstmt = and_(*andfields)
+
             query = select([
                 table.c.char, table.c.field, table.c.value
             ]).where(or_(
                 table.c.value.like(request),
                 table.c.value.like(conversion.python_to_ucn(request))
-            )).execute()
+            )).where(andstmt).execute()
 
             if query:
                 if not 'unihan' in response:
