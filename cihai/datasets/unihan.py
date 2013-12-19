@@ -16,7 +16,7 @@ import os
 import hashlib
 import logging
 
-from sqlalchemy import Table, String, Column, Integer, Index
+from sqlalchemy import Table, String, Column, Integer, Index, select, or_
 
 from .. import conversion
 from ..cihai import cihai_config, cihai_db, CihaiDatabase
@@ -168,6 +168,23 @@ class Unihan(CihaiDatabase):
         :rtype: dict
 
         """
+
+        tables = [table for table in self.metadata.tables if table.startswith('Unihan')]
+
+        for table in tables:
+            table = Table(table, self.metadata)
+
+            response[table.fullname] = [r for r in select([
+                table.c.char, table.c.field, table.c.value
+            ]).where(or_(
+                table.c.char == request,
+                table.c.char == conversion.python_to_ucn(request)
+            )
+            ).execute()]
+
+            if not response[table.fullname]:
+                # don't return empty lists.
+                del response[table.fullname]
 
         return response
 

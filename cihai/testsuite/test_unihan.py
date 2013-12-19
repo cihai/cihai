@@ -27,7 +27,7 @@ from .._compat import PY2, text_type, configparser
 from ..util import get_datafile, UnicodeReader
 from ..datasets.unihan import UNIHAN_FILENAMES, Unihan
 from ..conversion import ucn_to_unicode
-from ..cihai import cihai_db, cihai_config
+from ..cihai import cihai_db, cihai_config, Cihai
 
 log = logging.getLogger(__name__)
 
@@ -159,6 +159,17 @@ class UnihanMethods(UnihanTestCase):
         self.unihan.metadata.drop_all(tables=[table])
 
         self.assertFalse(table.exists())
+
+
+class UnihanMiddleware(CihaiTestCase, UnihanTestCase):
+
+    def test_get(self):
+        c = Cihai()
+        c.use(Unihan)
+        ni = c.get('你')
+        print(c.get('好'))
+
+        self.assertTrue(ni)
 
 
 class UnihanReadings(UnihanTestCase):
