@@ -156,6 +156,10 @@ class UtilTest(unittest.TestCase):
 
     def test_unicodereader(self):
 
+        """Read values from CSV as Unicode / text_types.
+
+        :todo: Verify if this could can skipped if using Python 3."""
+
         from .._compat import StringIO
         import codecs
         csvdata = """\
