@@ -39,6 +39,117 @@ UNIHAN_FILENAMES = [
     'Unihan_Variants.txt'
 ]
 
+# This is the Unihan_DictionaryLikeData as of 6.3.0
+UNIHAN_TABLES = {
+    'Unihan_DictionaryIndices': [
+        'kCheungBauerIndex',
+        'kCowles',
+        'kDaeJaweon',
+        'kFennIndex',
+        'kGSR',
+        'kHanYu',
+        'kIRGDaeJaweon',
+        'kIRGDaiKanwaZiten',
+        'kIRGHanyuDaZidian',
+        'kIRGKangXi',
+        'kKangXi',
+        'kKarlgren',
+        'kLau',
+        'kMatthews',
+        'kMeyerWempe',
+        'kMorohashi',
+        'kNelson',
+        'kSBGY',
+    ],
+    'Unihan_DictionaryLikeData': [
+        'kCangjie',
+        'kCheungBauer',
+        'kCihaiT',
+        'kFenn',
+        'kFourCornerCode',
+        'kFrequency',
+        'kGradeLevel',
+        'kHDZRadBreak',
+        'kHKGlyph',
+        'kPhonetic',
+        'kTotalStrokes',
+    ],
+    'Unihan_IRGSources': [
+        'kIICore',
+        'kIRG_GSource',
+        'kIRG_HSource',
+        'kIRG_JSource',
+        'kIRG_KPSource',
+        'kIRG_KSource',
+        'kIRG_MSource',
+        'kIRG_TSource',
+        'kIRG_USource',
+        'kIRG_VSource',
+    ],
+    'Unihan_NumericValues': [
+        'kAccountingNumeric',
+        'kOtherNumeric',
+        'kPrimaryNumeric',
+    ],
+    'Unihan_OtherMappings': [
+        'kBigFive',
+        'kCCCII',
+        'kCNS1986',
+        'kCNS1992',
+        'kEACC',
+        'kGB0',
+        'kGB1',
+        'kGB3',
+        'kGB5',
+        'kGB7',
+        'kGB8',
+        'kHKSCS',
+        'kIBMJapan',
+        'kJis0',
+        'kJis1',
+        'kJIS0213',
+        'kKPS0',
+        'kKPS1',
+        'kKSC0',
+        'kKSC1',
+        'kMainlandTelegraph',
+        'kPseudoGB1',
+        'kTaiwanTelegraph',
+        'kXerox',
+    ],
+    'Unihan_RadicalStrokeCounts': [
+        'kRSAdobe_Japan1_6',
+        'kRSJapanese',
+        'kRSKangXi',
+        'kRSKanWa',
+        'kRSKorean',
+        'kRSUnicode',
+    ],
+    'Unihan_Readings': [
+        'kCantonese',
+        'kDefinition',
+        'kHangul',
+        'kHanyuPinlu',
+        'kHanyuPinyin',
+        'kJapaneseKun',
+        'kJapaneseOn',
+        'kKorean',
+        'kMandarin',
+        'kTang',
+        'kVietnamese',
+        'kXHC1983',
+    ],
+    'Unihan_Variants': [
+        'kCompatibilityVariant',
+        'kSemanticVariant',
+        'kSimplifiedVariant',
+        'kSpecializedSemanticVariant',
+        'kTraditionalVariant',
+        'kZVariant',
+    ]
+
+}
+
 
 class Unihan(CihaiDatabase):
 
@@ -174,6 +285,7 @@ class Unihan(CihaiDatabase):
         """
 
         tables = [table for table in self.metadata.tables if table.startswith('Unihan')]
+        tables = ['Unihan_Readings']
 
         for table in tables:
             table = Table(table, self.metadata)
@@ -182,8 +294,7 @@ class Unihan(CihaiDatabase):
             ]).where(or_(
                 table.c.char == request,
                 table.c.char == conversion.python_to_ucn(request)
-            )
-            ).execute()
+            )).execute()
 
             if query:
                 if not 'unihan' in response:
@@ -206,6 +317,7 @@ class Unihan(CihaiDatabase):
         """
 
         tables = [table for table in self.metadata.tables if table.startswith('Unihan')]
+        tables = ['Unihan_Readings']
 
         for table in tables:
             table = Table(table, self.metadata)
@@ -214,8 +326,7 @@ class Unihan(CihaiDatabase):
             ]).where(or_(
                 table.c.value.like(request),
                 table.c.value.like(conversion.python_to_ucn(request))
-            )
-            ).execute()
+            )).execute()
 
             if query:
                 if not 'unihan' in response:
