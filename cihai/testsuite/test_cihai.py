@@ -14,9 +14,8 @@ from __future__ import absolute_import, division, print_function, \
 
 import os
 import sys
-import re
-import tempfile
 import random
+import csv
 import logging
 
 import sqlalchemy
@@ -26,7 +25,7 @@ from .. import conversion
 from .helpers import unittest, CihaiTestCase
 from .._compat import PY2, text_type
 from ..cihai import Cihai, NoDatasets
-from ..util import get_datafile
+from ..util import get_datafile, UnicodeReader
 
 log = logging.getLogger(__name__)
 
@@ -154,3 +153,32 @@ class UtilTest(unittest.TestCase):
         data_abspath = get_datafile(data_filename)
         self.assertNotEqual(data_filename, data_abspath)
         self.assertIsInstance(data_abspath, text_type)
+
+    def test_unicodereader(self):
+
+        from .._compat import StringIO
+        import codecs
+        csvdata = """\
+ni hao,你好
+zhongguo,中国
+"""
+
+        if PY2:
+            csvdata = csvdata.encode('utf-8')
+        csvdata = StringIO(csvdata)
+        if PY2:
+            csvdata = codecs.EncodedFile(csvdata, data_encoding='utf-8', file_encoding='utf-8')
+
+        reader = UnicodeReader(csvdata, fieldnames=['definition', 'char'])
+
+        self.assertIsInstance(reader, UnicodeReader)
+        self.assertIsInstance(reader, csv.DictReader)
+
+        for row in reader:
+            if row['definition'] == 'ni hao':
+                self.assertEqual('你好', row['char'])
+                self.assertIsInstance('你好', text_type)
+
+            if row['definition'] == 'zhongguo':
+                self.assertEqual('中国', row['char'])
+                self.assertIsInstance('中国', text_type)
