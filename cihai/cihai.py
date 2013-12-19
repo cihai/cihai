@@ -119,7 +119,7 @@ class Cihai(CihaiDatabase):
             raise NoDatasets
 
         for middleware in self._middleware:
-            response = middleware.get(request, response)
+            response = middleware.get(request, response, *args, **kwargs)
 
         return response
 
@@ -138,6 +138,6 @@ class Cihai(CihaiDatabase):
             raise NoDatasets
 
         for middleware in self._middleware:
-            response = middleware.reverse(request, response)
+            response = middleware.reverse(request, response, *args, **kwargs)
 
         return response

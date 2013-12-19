@@ -166,7 +166,7 @@ class UnihanMiddleware(CihaiTestCase, UnihanTestCase):
     def test_get(self):
         c = Cihai()
         c.use(Unihan)
-        results = c.get('你')
+        results = c.get('你', fields=['kDefinition'])
 
         #self.assertTrue(results)  # returns something
         self.assertIsInstance(results, dict)
@@ -177,7 +177,7 @@ class UnihanMiddleware(CihaiTestCase, UnihanTestCase):
 
         c = Cihai()
         c.use(Unihan)
-        results = c.reverse(r'%first%')
+        results = c.reverse(r'%first%', fields=['kDefinition'])
 
         from pprint import pprint
         pprint(results)

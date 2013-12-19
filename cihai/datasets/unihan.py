@@ -179,10 +179,19 @@ class Unihan(CihaiDatabase):
 
     """
 
-    def __init__(self):
+    def __init__(self, fields = None):
+        """Start an instance of Unihan to :meth:`~.get` or :meth:`reverse` data.
+
+        :param fields: (optional, default: None) Unihan fields to search for by
+            default. By default all columns in the installed CSV's are
+            retrieved.
+        :type fields: list
+
+        """
         super(Unihan, self).__init__()
 
         self.fields = [f for t, f in UNIHAN_TABLES.items() if t in self.tables]
+        self.default_fields = self.fields
 
     @property
     def tables(self):
@@ -290,25 +299,38 @@ class Unihan(CihaiDatabase):
     def get(self, request, response, *args, **kwargs):
         """Return chinese character data from Unihan data.
 
+        :param request:
+        :type request: string
+        :param response:
+        :type response: dict
+        :param fields: (default:None) list of fields, e.g. ['kDefinition']
+        :type fields: list
         :returns: Cihai response dictionary
         :rtype: dict
 
         """
 
+        if not 'fields' in kwargs:
+            fields = self.default_fields
+        else:
+            fields = kwargs['fields']
+
         tables = [table for table in self.metadata.tables if table.startswith('Unihan')]
 
         for table in tables:
             table = Table(table, self.metadata)
-
-            andfields = [(table.c.field == t) for t in ['kDefinition']]
-            print(tuple(andfields))
+            tfields = [c for c in fields if c in list(table.c)]
+            andfields = [(table.c.field == t) for t in tfields]
             andstmt = and_(*andfields)
-            query = select([
-                table.c.char, table.c.field, table.c.value
-            ]).where(or_(
-                table.c.char == request,
-                table.c.char == conversion.python_to_ucn(request)
-            )).where(andstmt).execute()
+            if not len(andfields):
+                continue
+            else:
+                query = select([
+                    table.c.char, table.c.field, table.c.value
+                ]).where(or_(
+                    table.c.char == request,
+                    table.c.char == conversion.python_to_ucn(request)
+                )).where(andstmt).execute()
 
             if query:
                 if not 'unihan' in response:
@@ -325,18 +347,28 @@ class Unihan(CihaiDatabase):
     def reverse(self, request, response, *args, **kwargs):
         """Return reverse look-up of chinese characters from Unihan data.
 
+        :param request:
+        :type request: string
+        :param response:
+        :type response: dict
+        :param fields: (default:None) list of fields, e.g. ['kDefinition']
+        :type fields: list
         :returns: Cihai response dictionary
         :rtype: dict
 
         """
 
+        if not 'fields' in kwargs:
+            fields = self.default_fields
+        else:
+            fields = kwargs['fields']
+
         tables = [table for table in self.metadata.tables if table.startswith('Unihan')]
 
         for table in tables:
             table = Table(table, self.metadata)
-
-            andfields = [(table.c.field == t) for t in ['kDefinition']]
-            print(tuple(andfields))
+            tfields = [c for c in fields if c in list(table.c)]
+            andfields = [(table.c.field == t) for t in tfields]
             andstmt = and_(*andfields)
 
             query = select([
