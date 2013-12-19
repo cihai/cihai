@@ -173,18 +173,23 @@ class Unihan(CihaiDatabase):
 
         for table in tables:
             table = Table(table, self.metadata)
-
-            response[table.fullname] = [dict(r) for r in select([
+            query = select([
                 table.c.char, table.c.field, table.c.value
             ]).where(or_(
                 table.c.char == request,
                 table.c.char == conversion.python_to_ucn(request)
             )
-            ).execute()]
+            ).execute()
 
-            if not response[table.fullname]:
+            if query:
+                if not 'unihan' in response:
+                    response['unihan'] = {}
+                for r in query:
+                    response['unihan'][r['field']] = r['value']
+
+            if not response['unihan']:
                 # don't return empty lists.
-                del response[table.fullname]
+                del response['unihan']
 
         return response
 
