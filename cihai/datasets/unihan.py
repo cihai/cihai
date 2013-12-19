@@ -179,6 +179,17 @@ class Unihan(CihaiDatabase):
 
     """
 
+    def __init__(self):
+        super(Unihan, self).__init__()
+
+        self.fields = [f for t, f in UNIHAN_TABLES.items() if t in self.tables]
+
+    @property
+    def tables(self):
+        """Return a list of installed tables."""
+
+        return self.metadata.tables
+
     def install(self, csv_filename=None):
         """Install the raw csv information into CSV, return table.
 
