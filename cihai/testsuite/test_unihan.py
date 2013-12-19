@@ -166,10 +166,12 @@ class UnihanMiddleware(CihaiTestCase, UnihanTestCase):
     def test_get(self):
         c = Cihai()
         c.use(Unihan)
-        ni = c.get('你')
-        print(c.get('好'))
+        results = c.get('你')
 
-        self.assertTrue(ni)
+        self.assertTrue(results)  # returns something
+        self.assertIsInstance(results, dict)
+        from pprint import pprint
+        pprint(results)
 
 
 class UnihanReadings(UnihanTestCase):

@@ -174,7 +174,7 @@ class Unihan(CihaiDatabase):
         for table in tables:
             table = Table(table, self.metadata)
 
-            response[table.fullname] = [r for r in select([
+            response[table.fullname] = [dict(r) for r in select([
                 table.c.char, table.c.field, table.c.value
             ]).where(or_(
                 table.c.char == request,
