@@ -160,3 +160,23 @@ class Unihan(CihaiDatabase):
             self.metadata.create_all()
 
         return table
+
+    def get(self, request, response, *args, **kwargs):
+        """Return chinese character data from Unihan data.
+
+        :returns: Cihai response dictionary
+        :rtype: dict
+
+        """
+
+        return response
+
+    def reverse(self, request, response, *args, **kwargs):
+        """Return reverse look-up of chinese characters from Unihan data.
+
+        :returns: Cihai response dictionary
+        :rtype: dict
+
+        """
+
+        return response
