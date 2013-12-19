@@ -296,7 +296,6 @@ class Unihan(CihaiDatabase):
         """
 
         tables = [table for table in self.metadata.tables if table.startswith('Unihan')]
-        tables = ['Unihan_Readings']
 
         for table in tables:
             table = Table(table, self.metadata)
@@ -328,7 +327,6 @@ class Unihan(CihaiDatabase):
         """
 
         tables = [table for table in self.metadata.tables if table.startswith('Unihan')]
-        tables = ['Unihan_Readings']
 
         for table in tables:
             table = Table(table, self.metadata)
