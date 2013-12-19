@@ -93,11 +93,16 @@ class Cihai(CihaiDatabase):
         This is based off connect's version of adding middleware.
 
         """
+
         for m in self._middleware:
             if isinstance(m, middleware):
                 raise Exception('Dataset already added.')
 
-        self._middleware.append(middleware())
+        if isinstance(middleware, type):
+            # middleware is still a raw class, instantiate.
+            middleware = middleware()
+
+        self._middleware.append(middleware)
 
     def get(self, request, *args, **kwargs):
         """Return results middleware.

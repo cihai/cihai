@@ -107,7 +107,7 @@ class CihaiDatabaseInstance(CihaiTestCase):
 class CihaiMiddleware(unittest.TestCase):
 
     def test_add_middleware(self):
-        """asdf."""
+        """:meth:`Cihai.use()` to add middleware uninstantiated."""
         c = Cihai()
 
         self.assertFalse(c._middleware, msg="Has no middleware at start.")
@@ -119,6 +119,22 @@ class CihaiMiddleware(unittest.TestCase):
 
         with self.assertRaisesRegexp(Exception, 'Dataset already added.'):
             c.use(DatasetExample)
+
+    def test_add_middleware_instance(self):
+        """:meth:`Cihai.use()` to add middleware as an instance."""
+        c = Cihai()
+
+        self.assertFalse(c._middleware, msg="Has no middleware at start.")
+
+        dataset = DatasetExample()
+        c.use(dataset)
+
+        for m in c._middleware:
+            self.assertIsInstance(m, DatasetExample)
+
+        with self.assertRaisesRegexp(Exception, 'Dataset already added.'):
+            c.use(DatasetExample)
+
 
     def test_get(self):
         c = Cihai()
