@@ -93,7 +93,6 @@ class UnihanRawImportCase(object):
             fields = UNIHAN_TABLES[csv_filename.split('.')[0]]
             andfields = [(table.c.field == t) for t in fields]
             andstmt = sqlalchemy.or_(*andfields)
-            print(fields)
 
             self.assertEqual(
                 table.select().where(andstmt).count().execute().scalar(),
@@ -183,7 +182,6 @@ class UnihanMiddleware(CihaiTestCase, UnihanTestCase):
         c = Cihai()
         c.use(Unihan)
         results = c.reverse(r'%first%', fields=['kDefinition'])
-
         from pprint import pprint
         pprint(results)
 

@@ -190,14 +190,8 @@ class Unihan(CihaiDatabase):
         """
         super(Unihan, self).__init__()
 
-        self.fields = [f for t, f in UNIHAN_TABLES.items() if t in self.tables]
+        self.fields = [f for t, f in UNIHAN_TABLES.items() if t in ['Unihan']]
         self.default_fields = self.fields
-
-    @property
-    def tables(self):
-        """Return a list of installed tables."""
-
-        return self.metadata.tables
 
     def install(self, csv_filename=None):
         """Install the raw csv information into CSV, return table.
@@ -318,37 +312,33 @@ class Unihan(CihaiDatabase):
 
         """
 
+        if not request.startswith('U+'):
+            request = conversion.python_to_ucn(request)
+
         if not 'fields' in kwargs:
             fields = self.default_fields
         else:
             fields = kwargs['fields']
 
-        tables = [table for table in self.metadata.tables if table.startswith('Unihan')]
+        table = Table('Unihan', self.metadata)
+        tfields = [c for c in fields if c in list(table.c)]
+        andfields = [(table.c.field == t) for t in tfields]
+        andstmt = and_(*andfields)
+        query = select([
+            table.c.char, table.c.field, table.c.value
+        ]).where(
+            table.c.char == request
+        ).where(andstmt).execute()
 
-        for table in tables:
-            table = Table(table, self.metadata)
-            tfields = [c for c in fields if c in list(table.c)]
-            andfields = [(table.c.field == t) for t in tfields]
-            andstmt = and_(*andfields)
-            if not len(andfields):
-                continue
-            else:
-                query = select([
-                    table.c.char, table.c.field, table.c.value
-                ]).where(or_(
-                    table.c.char == request,
-                    table.c.char == conversion.python_to_ucn(request)
-                )).where(andstmt).execute()
+        if query:
+            if not 'unihan' in response:
+                response['unihan'] = {}
+            for r in query:
+                response['unihan'][r['field']] = r['value']
 
-            if query:
-                if not 'unihan' in response:
-                    response['unihan'] = {}
-                for r in query:
-                    response['unihan'][r['field']] = r['value']
-
-            if not response['unihan']:
-                # don't return empty lists.
-                del response['unihan']
+        if not response['unihan']:
+            # don't return empty lists.
+            del response['unihan']
 
         return response
 
@@ -371,32 +361,48 @@ class Unihan(CihaiDatabase):
         else:
             fields = kwargs['fields']
 
-        tables = [table for table in self.metadata.tables if table.startswith('Unihan')]
+        table = Table('Unihan', self.metadata)
+        andfields = [(table.c.field == t) for t in fields]
+        andstmt = and_(*andfields)
 
-        for table in tables:
-            table = Table(table, self.metadata)
-            tfields = [c for c in fields if c in list(table.c)]
-            andfields = [(table.c.field == t) for t in tfields]
-            andstmt = and_(*andfields)
+        q = select([
+            table.c.field
+        ]).where(andstmt)
+        print(andstmt)
+        print(q)
 
-            query = select([
-                table.c.char, table.c.field, table.c.value
-            ]).where(or_(
-                table.c.value.like(request),
-                table.c.value.like(conversion.python_to_ucn(request))
-            )).where(andstmt).execute()
+        import timeit
+        # query = select([
+            # table.c.char, table.c.field, table.c.value
+        # ])
 
-            if query:
-                if not 'unihan' in response:
-                    response['unihan'] = {}
-                for r in query:
-                    char = conversion.ucn_to_unicode(r['char'])
-                    if not char in response['unihan']:
-                        response['unihan'][char] = {}
-                    response['unihan'][char][r['field']] = r['value']
+        query = select([table.c.value,table.c.char, table.c.field]).where(
+                table.c.field == q,
+            ).where(table.c.value.like(request))
+        #print("\n\n%s\n\ntimings: %s" % (query, timeit.repeat(query.execute, number=1, repeat=5)))
 
-            if not response['unihan']:
-                # don't return empty lists.
-                del response['unihan']
+
+        # query1 = query.where(and_(andstmt, table.c.value.like(request)))
+        # print("\n\n%s\n\ntimings: %s" % (query1, timeit.repeat(query1.execute, number=1, repeat=5)))
+        # query2 = query.where(andstmt).where(table.c.value.like(request))
+
+        # print("\n\n%s\n\ntimings: %s" % (query2, timeit.repeat(query2.execute, number=1, repeat=5)))
+        # print(query)
+        # print(query.params.__dict__)
+
+        query = query.execute()
+
+        if query:
+            if not 'unihan' in response:
+                response['unihan'] = {}
+            for r in query:
+                char = conversion.ucn_to_unicode(r['char'])
+                if not char in response['unihan']:
+                    response['unihan'][char] = {}
+                response['unihan'][char][r['field']] = r['value']
+
+        if not response['unihan']:
+            # don't return empty lists.
+            del response['unihan']
 
         return response
