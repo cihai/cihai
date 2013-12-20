@@ -17,6 +17,8 @@ import re
 import tempfile
 import random
 import logging
+import cProfile
+from pstats import Stats
 
 import sqlalchemy
 
@@ -25,7 +27,7 @@ from .. import conversion
 from .helpers import unittest, TestCase, CihaiTestCase
 from .._compat import PY2, text_type, configparser
 from ..util import get_datafile, UnicodeReader
-from ..datasets.unihan import UNIHAN_FILENAMES, UNIHAN_TABLES, Unihan
+from ..datasets.unihan import UNIHAN_DATASETS, Unihan
 from ..conversion import ucn_to_unicode
 from ..cihai import cihai_db, cihai_config, Cihai
 
@@ -128,6 +130,68 @@ class UnihanRawImportCase(object):
             config.write(config_file)
             config_file.close()
 
+
+class UnihanInstall(TestCase):
+
+    """Dump the Raw Unihan CSV's into SQLite database.
+
+    1. default install dict
+    2. open file, strip #'s
+    3. count total entries
+    4. concatenate csv files
+    5. import to csv2dict
+    6. count entries
+    7. insert all into db
+    8. verify counts of fields with db
+
+    """
+
+    # def setUp(self):
+        # super(UnihanInstall, self).setUp()
+
+    def setUp(self):
+        """init each test"""
+        super(UnihanInstall, self).setUp()
+        self.pr = cProfile.Profile()
+        self.pr.enable()
+        print("\n<<<---")
+
+    def tearDown(self):
+        """finish any test"""
+        p = Stats(self.pr)
+        p.strip_dirs()
+        p.sort_stats('cumtime')
+        p.print_stats()
+        print("\n--->>>")
+
+    def test_datasets_schema(self):
+        """UNIHAN_DATASETS schema is { 'FILENAME': ['fields'] }."""
+        self.assertTrue(UNIHAN_DATASETS)
+        self.assertIsInstance(UNIHAN_DATASETS, dict)
+
+        for _file, fields in UNIHAN_DATASETS.items():
+            self.assertIsInstance(_file, text_type)
+            self.assertIsInstance(fields, list)
+            for field in fields:
+                self.assertIsInstance(field, text_type)
+
+    def test_default_install_dict(self):
+        pass
+
+    def test_strip_comments(self):
+        pass
+
+    def test_count_total_entries(self):
+        pass
+
+    def test_count_insert_all_into_db(self):
+        pass
+
+    def test_verify_count_of_fields_in_db(self):
+        pass
+
+    def test_saves_to_config(self):
+        pass
 
 # class UnihanTable(UnihanTestCase):
 

@@ -28,20 +28,10 @@ __license__ = 'BSD, see LICENSE for details.'
 
 log = logging.getLogger(__name__)
 
-UNIHAN_FILENAMES = [
-    'Unihan_DictionaryIndices.txt',
-    'Unihan_DictionaryLikeData.txt',
-    'Unihan_IRGSources.txt',
-    'Unihan_NumericValues.txt',
-    'Unihan_OtherMappings.txt',
-    'Unihan_RadicalStrokeCounts.txt',
-    'Unihan_Readings.txt',
-    'Unihan_Variants.txt'
-]
-
 # This is the Unihan_DictionaryLikeData as of 6.3.0
-UNIHAN_TABLES = {
-    'Unihan_DictionaryIndices': [
+# The format is { 'FILENAME': ['fields'] }
+UNIHAN_DATASETS = {
+    'Unihan_DictionaryIndices.txt': [
         'kCheungBauerIndex',
         'kCowles',
         'kDaeJaweon',
@@ -61,7 +51,7 @@ UNIHAN_TABLES = {
         'kNelson',
         'kSBGY',
     ],
-    'Unihan_DictionaryLikeData': [
+    'Unihan_DictionaryLikeData.txt': [
         'kCangjie',
         'kCheungBauer',
         'kCihaiT',
@@ -74,7 +64,7 @@ UNIHAN_TABLES = {
         'kPhonetic',
         'kTotalStrokes',
     ],
-    'Unihan_IRGSources': [
+    'Unihan_IRGSources.txt': [
         'kIICore',
         'kIRG_GSource',
         'kIRG_HSource',
@@ -86,12 +76,12 @@ UNIHAN_TABLES = {
         'kIRG_USource',
         'kIRG_VSource',
     ],
-    'Unihan_NumericValues': [
+    'Unihan_NumericValues.txt': [
         'kAccountingNumeric',
         'kOtherNumeric',
         'kPrimaryNumeric',
     ],
-    'Unihan_OtherMappings': [
+    'Unihan_OtherMappings.txt': [
         'kBigFive',
         'kCCCII',
         'kCNS1986',
@@ -117,7 +107,7 @@ UNIHAN_TABLES = {
         'kTaiwanTelegraph',
         'kXerox',
     ],
-    'Unihan_RadicalStrokeCounts': [
+    'Unihan_RadicalStrokeCounts.txt': [
         'kRSAdobe_Japan1_6',
         'kRSJapanese',
         'kRSKangXi',
@@ -125,7 +115,7 @@ UNIHAN_TABLES = {
         'kRSKorean',
         'kRSUnicode',
     ],
-    'Unihan_Readings': [
+    'Unihan_Readings.txt': [
         'kCantonese',
         'kDefinition',
         'kHangul',
@@ -139,7 +129,7 @@ UNIHAN_TABLES = {
         'kVietnamese',
         'kXHC1983',
     ],
-    'Unihan_Variants': [
+    'Unihan_Variants.txt': [
         'kCompatibilityVariant',
         'kSemanticVariant',
         'kSimplifiedVariant',
@@ -193,14 +183,36 @@ class Unihan(CihaiDatabase):
         self.fields = [f for t, f in UNIHAN_TABLES.items() if t in ['Unihan']]
         self.default_fields = self.fields
 
-    def install(self, csv_filename=None):
+    def install(self, install_dict=None):
         """Install the raw csv information into CSV, return table.
 
-        :param csv_filename: (optional, default=None) filename in /data dir.
-        :type csv_filename: string
+        :param install_dict: (optional, default=None) filename in /data dir and
+            the field names to install. You can view all in ``UNIHAN_DATASETS``
+            installs all CSV's and fields by default.
+
+            .. code-block:: python
+
+            {
+                'Unihan_DictionaryIndices.txt': [
+                    'kCheungBauerIndex',
+                    'kCowles'
+                ]
+            }
+
+        :type csv_filename: dict
         :rtype: :class:`sqlalchemy.schema.Table`
 
         """
+
+        if not install_dict:
+            install_dict = UNIHAN_DATASETS
+
+
+
+
+
+
+
 
         if not csv_filename:
             return self.install(UNIHAN_FILENAMES)
