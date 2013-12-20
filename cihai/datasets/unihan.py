@@ -238,7 +238,7 @@ class Unihan(CihaiDatabase):
                     not config.has_option(csv_filename, 'csv_rowcount') or
                     (
                         config.has_option(csv_filename, 'csv_rowcount') and
-                        table.select().where(andstmt).count().execute().scalar() != config.getint(csv_filename, 'csv_rowcount')
+                        table.select([table.c.field]).where(andstmt).count().execute().scalar() != config.getint(csv_filename, 'csv_rowcount')
                     )
                 ):
 
@@ -321,14 +321,18 @@ class Unihan(CihaiDatabase):
             fields = kwargs['fields']
 
         table = Table('Unihan', self.metadata)
-        tfields = [c for c in fields if c in list(table.c)]
-        andfields = [(table.c.field == t) for t in tfields]
+        andfields = [(table.c.field == t) for t in fields]
         andstmt = and_(*andfields)
-        query = select([
-            table.c.char, table.c.field, table.c.value
-        ]).where(
-            table.c.char == request
-        ).where(andstmt).execute()
+
+        q = select([
+            table.c.field
+        ]).where(andstmt)
+
+        query = select([table.c.value,table.c.char, table.c.field]).where(
+                table.c.field == q,
+            ).where(table.c.value == request)
+
+        query = query.execute()
 
         if query:
             if not 'unihan' in response:
@@ -368,27 +372,12 @@ class Unihan(CihaiDatabase):
         q = select([
             table.c.field
         ]).where(andstmt)
-        print(andstmt)
-        print(q)
-
-        import timeit
-        # query = select([
-            # table.c.char, table.c.field, table.c.value
-        # ])
 
         query = select([table.c.value,table.c.char, table.c.field]).where(
                 table.c.field == q,
             ).where(table.c.value.like(request))
+        #import timeit
         #print("\n\n%s\n\ntimings: %s" % (query, timeit.repeat(query.execute, number=1, repeat=5)))
-
-
-        # query1 = query.where(and_(andstmt, table.c.value.like(request)))
-        # print("\n\n%s\n\ntimings: %s" % (query1, timeit.repeat(query1.execute, number=1, repeat=5)))
-        # query2 = query.where(andstmt).where(table.c.value.like(request))
-
-        # print("\n\n%s\n\ntimings: %s" % (query2, timeit.repeat(query2.execute, number=1, repeat=5)))
-        # print(query)
-        # print(query.params.__dict__)
 
         query = query.execute()
 

@@ -336,71 +336,62 @@ class UnihanVariants(UnihanTestCase):
 
         # Assures at least one table is installed before testing.
         self.unihan.install('Unihan_Variants.txt')
+        self.table = self.unihan.get_table('Unihan')
 
     # def test_table_exists(self):
         # self.assertTrue(self.unihan.table_exists('Unihan_Variants'))
 
     def test_kSemanticVariant(self):
-        table = self.unihan.get_table('Unihan')
-
         """
         http://www.unicode.org/reports/tr38/tr38-15.html#kSemanticVariant
 
         """
 
-        rows = table.select().where(table.c.field == 'kSemanticVariant').limit(1).execute()
+        rows = self.table.select().where(self.table.c.field == 'kSemanticVariant').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
 
     def test_kTraditionalVariant(self):
-        table = self.unihan.get_table('Unihan')
-
         """
         http://www.unicode.org/reports/tr38/tr38-15.html#kTraditionalVariant
 
         """
 
-        rows = table.select().where(table.c.field == 'kTraditionalVariant').limit(1).execute()
+        rows = self.table.select().where(self.table.c.field == 'kTraditionalVariant').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
 
     def test_kSpecializedSemanticVariant(self):
-        table = self.unihan.get_table('Unihan')
-
         """
         http://www.unicode.org/reports/tr38/tr38-15.html#kSpecializedSemanticVariant
 
         """
 
-        rows = table.select().where(table.c.field == 'kSpecializedSemanticVariant').limit(1).execute()
+        rows = self.table.select().where(self.table.c.field == 'kSpecializedSemanticVariant').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
 
     def test_kSimplifiedVariant(self):
-        table = self.unihan.get_table('Unihan')
-
         """
         http://www.unicode.org/reports/tr38/tr38-15.html#kSimplifiedVariant
 
         """
 
-        rows = table.select().where(table.c.field == 'kSimplifiedVariant').limit(1).execute()
+        rows = self.table.select().where(self.table.c.field == 'kSimplifiedVariant').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
 
     def test_kCompatibilityVariant(self):
-        table = self.unihan.get_table('Unihan')
-
         """
         http://www.unicode.org/reports/tr38/tr38-15.html#kCompatibilityVariant
 
         """
 
-        rows = table.select().where(table.c.field == 'kCompatibilityVariant').limit(1).execute()
+        rows = self.table.select().where(self.table.c.field == 'kCompatibilityVariant').limit(1).execute()
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
@@ -592,47 +583,6 @@ class UnihanDictionaryLikeData(UnihanTestCase):
 
         for r in rows:
             self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
-
-
-class kDefinition(UnihanTestCase):
-
-    """
-    http://www.unicode.org/reports/tr38/tr38-15.html#kDefinition
-    Major definitions are separated by semicolons, and minor definitions by
-    commas. Any valid Unicode character (except for tab, double-quote, and
-    any line break character) may be used within the definition field.
-    """
-
-    def setUp(self):
-        super(kDefinition, self).setUp()
-
-        # Assures at least one table is installed before testing.
-        self.unihan.install('Unihan_Readings.txt')
-        self.table = self.unihan.get_table('Unihan')
-
-    def test_like(self):
-        def selectkDefinition(char=None):
-            select = self.table.select().where(self.table.c.field == 'kDefinition')
-
-            if char:
-                select = select.where(self.table.c.char == conversion.python_to_ucn(char))
-
-            return select
-
-        self.assertNotIn('LIKE', selectkDefinition().compile().__str__())
-
-        kDefinitionQuery = selectkDefinition().where(
-            self.table.c.value.like('%(same as%')
-        )
-
-        self.assertIn('LIKE', kDefinitionQuery.compile().__str__())
-        rows = kDefinitionQuery.execute()
-
-        for r in rows:
-            self.assertIsInstance(ucn_to_unicode(r['char']), text_type)
-            self.assertTrue(re.search('\(same as', r.value))
-
-        self.assertGreaterEqual(1, selectkDefinition(char='好').execute().rowcount)
 
 
 class Unihan_DictionaryIndices(UnihanTestCase, UnihanRawImportCase):
