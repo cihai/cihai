@@ -208,14 +208,12 @@ class Unihan(CihaiDatabase):
             for csv_filename in csv_filename:
                 return self.install(csv_filename)
 
-        table_name = csv_filename.split('.')[0]
         table_name = 'Unihan'
 
         config = configparser.ConfigParser()
         config.read(cihai_config)
         if (
             not config.has_section(csv_filename) or
-            #not config.has_option(csv_filename, 'csv_verified') or
             not self.table_exists(table_name)
         ):
 
