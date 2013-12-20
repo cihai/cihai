@@ -1,2 +1,3 @@
-sqlalchemy
+#sqlalchemy
+-e git+https://github.com/zzzeek/sqlalchemy.git#egg=sqlalchemy
 # cchardet
