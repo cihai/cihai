@@ -229,12 +229,14 @@ class Unihan(CihaiDatabase):
 
         data = csv_to_dictlists(files)
 
-        def insert_rows(table_name, data):
-            table = self._create_table(table_name)
-            andfields = [(table.c.field == t) for t in self.fields]
+        table = self._create_table(table_name)
+        def insert_rows(table_name, data, fields):
+
+            andfields = [(table.c.field == t) for t in fields]
             andstmt = or_(*andfields)
             return self.metadata.bind.execute(table.insert(), data)
-        insert_rows(table_name, data)
+
+        insert_rows(table, data, self.fields)
 
         return table
 
