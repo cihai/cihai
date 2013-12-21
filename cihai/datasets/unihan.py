@@ -216,9 +216,8 @@ class Unihan(CihaiDatabase):
         combine = fileinput.FileInput(files=files, openhook=fileinput.hook_encoded('utf-8'))
 
         keys = ['char', 'field', 'value']
-        return [dict(zip(keys, l.strip().split('\t'))) for l in combine if l[0] != '#' and l != '\n']
+        data = [dict(zip(keys, l.strip().split('\t'))) for l in combine if l[0] != '#' and l != '\n']
 
-    def to_db(self, data):
         table_name = 'Unihan'
 
         config = configparser.ConfigParser()
@@ -236,70 +235,10 @@ class Unihan(CihaiDatabase):
                     if not l[key]:
                         print("%s has a problem with %s being blank" % (l, key))
             raise(e)
-        #config.set('unihan', 'csv_rowcount', text_type(len(data)))
 
         config_file = open(cihai_config, 'w+')
         config.write(config_file)
         config_file.close()
-        # else:
-            # log.debug('{0} already installed.'.format(table_name))
-            # table = self.get_table(table_name)
-
-        return table
-
-
-    def old(self):
-        table_name = 'Unihan'
-
-        config = configparser.ConfigParser()
-        config.read(cihai_config)
-        if (
-            not config.has_section(csv_filename) or
-            not self.table_exists(table_name)
-        ):
-
-            table = self._create_table(table_name)
-            unihan_csv = get_datafile(csv_filename)
-
-            with open(unihan_csv, 'r') as csv_file:
-                csv_md5 = hashlib.sha256(unihan_csv.encode('utf-8')).hexdigest()
-                csv_data = filter(lambda row: row[0] != '#', csv_file)
-                delim = b'\t' if PY2 else '\t'
-
-                config.read(cihai_config)
-                if not config.has_section(csv_filename):
-                    config.add_section(csv_filename)
-                fields = UNIHAN_TABLES[csv_filename.split('.')[0]]
-                andfields = [(table.c.field == t) for t in fields]
-                andstmt = or_(*andfields)
-                if (
-                    not os.path.exists(cihai_config) or
-                    not config.has_option(csv_filename, 'csv_rowcount') or
-                    (
-                        config.has_option(csv_filename, 'csv_rowcount') and
-                        table.select([table.c.field]).where(andstmt).count().execute().scalar() != config.getint(csv_filename, 'csv_rowcount')
-                    )
-                ):
-
-                    r = UnicodeReader(
-                        csv_data,
-                        fieldnames=['char', 'field', 'value'],
-                        delimiter=delim
-                    )
-                    r = list(r)
-
-                    results = self.metadata.bind.execute(table.insert(), r)
-                    config.set(csv_filename, 'csv_rowcount', text_type(len(r)))
-                else:
-                    log.debug('Rows populated, all is well!')
-
-                config.set(csv_filename, 'csv_md5', csv_md5)
-                config_file = open(cihai_config, 'w+')
-                config.write(config_file)
-                config_file.close()
-        else:
-            log.debug('{0} already installed.'.format(table_name))
-            table = self.get_table(table_name)
 
         return table
 
