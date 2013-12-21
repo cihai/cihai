@@ -22,6 +22,8 @@ from pstats import Stats
 
 import sqlalchemy
 
+from profilehooks import profile, coverage
+
 from .. import conversion
 
 from .helpers import unittest, TestCase, CihaiTestCase
@@ -152,17 +154,17 @@ class UnihanInstall(TestCase):
     def setUp(self):
         """init each test"""
         super(UnihanInstall, self).setUp()
-        self.pr = cProfile.Profile()
-        self.pr.enable()
-        print("\n<<<---")
+        # self.pr = cProfile.Profile()
+        # self.pr.enable()
+        # print("\n<<<---")
 
     def tearDown(self):
         """finish any test"""
-        p = Stats(self.pr)
-        p.strip_dirs()
-        p.sort_stats('cumtime')
-        p.print_stats()
-        print("\n--->>>")
+        # p = Stats(self.pr)
+        # p.strip_dirs()
+        # p.sort_stats('cumtime')
+        # p.print_stats()
+        # print("\n--->>>")
 
     def test_datasets_schema(self):
         """UNIHAN_DATASETS schema is { 'FILENAME': ['fields'] }."""
@@ -175,8 +177,12 @@ class UnihanInstall(TestCase):
             for field in fields:
                 self.assertIsInstance(field, text_type)
 
-    def test_default_install_dict(self):
-        pass
+    @profile
+    def test_get_csv_rows(self):
+        unihan = Unihan()
+        data = unihan.get_csv_rows()
+
+        newt = unihan.to_db(data)
 
     def test_strip_comments(self):
         pass

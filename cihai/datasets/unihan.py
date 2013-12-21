@@ -14,6 +14,7 @@ from __future__ import absolute_import, division, print_function, \
 
 import os
 import hashlib
+import fileinput
 import logging
 
 from sqlalchemy import Table, String, Column, Integer, Index, select, or_, and_
@@ -180,10 +181,13 @@ class Unihan(CihaiDatabase):
         """
         super(Unihan, self).__init__()
 
-        self.fields = [f for t, f in UNIHAN_TABLES.items() if t in ['Unihan']]
+        try:
+            self.fields = [f for t, f in UNIHAN_DATASETS.items() if t in ['Unihan']]
+        except:
+            self.fields = [f for t, f in UNIHAN_DATASETS.items()]
         self.default_fields = self.fields
 
-    def install(self, install_dict=None):
+    def get_csv_rows(self, install_dict=None):
         """Install the raw csv information into CSV, return table.
 
         :param install_dict: (optional, default=None) filename in /data dir and
@@ -207,19 +211,44 @@ class Unihan(CihaiDatabase):
         if not install_dict:
             install_dict = UNIHAN_DATASETS
 
+        files = tuple(get_datafile(f) for f in install_dict.keys())
+
+        combine = fileinput.FileInput(files=files, openhook=fileinput.hook_encoded('utf-8'))
+
+        keys = ['char', 'field', 'value']
+        return [dict(zip(keys, l.strip().split('\t'))) for l in combine if l[0] != '#' and l != '\n']
+
+    def to_db(self, data):
+        table_name = 'Unihan'
+
+        config = configparser.ConfigParser()
+        config.read(cihai_config)
+
+        table = self._create_table(table_name)
+        andfields = [(table.c.field == t) for t in self.fields]
+        andstmt = or_(*andfields)
+
+        try:
+            results = self.metadata.bind.execute(table.insert(), data)
+        except Exception as e:
+            for l in data:
+                for key in l.keys():
+                    if not l[key]:
+                        print("%s has a problem with %s being blank" % (l, key))
+            raise(e)
+        #config.set('unihan', 'csv_rowcount', text_type(len(data)))
+
+        config_file = open(cihai_config, 'w+')
+        config.write(config_file)
+        config_file.close()
+        # else:
+            # log.debug('{0} already installed.'.format(table_name))
+            # table = self.get_table(table_name)
+
+        return table
 
 
-
-
-
-
-
-        if not csv_filename:
-            return self.install(UNIHAN_FILENAMES)
-        elif isinstance(csv_filename, list):
-            for csv_filename in csv_filename:
-                return self.install(csv_filename)
-
+    def old(self):
         table_name = 'Unihan'
 
         config = configparser.ConfigParser()
