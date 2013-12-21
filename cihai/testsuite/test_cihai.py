@@ -30,6 +30,14 @@ from ..util import get_datafile, UnicodeReader
 log = logging.getLogger(__name__)
 
 
+class CihaiTest(Cihai):
+
+    _engine = sqlalchemy.create_engine('sqlite:///:memory:')
+
+
+Cihai._engine = sqlalchemy.create_engine('sqlite:///:memory:')
+
+
 def add_to_path(path):
     """Adds an entry to sys.path if it's not already there.  This does
     not append it but moves it to the front so that we can be sure it
@@ -134,7 +142,6 @@ class CihaiMiddleware(unittest.TestCase):
 
         with self.assertRaisesRegexp(Exception, 'Dataset already added.'):
             c.use(DatasetExample)
-
 
     def test_get(self):
         c = Cihai()

@@ -36,6 +36,11 @@ from ..cihai import cihai_db, cihai_config, Cihai
 log = logging.getLogger(__name__)
 
 
+class UnihanTest(Unihan):
+
+    _engine = sqlalchemy.create_engine('sqlite:///:memory:')
+
+
 class UnihanTestCase(TestCase):
 
     unihan = None
@@ -180,9 +185,14 @@ class UnihanInstall(TestCase):
     @profile
     def test_get_csv_rows(self):
         unihan = Unihan()
+        #unihan._metadata = sqlalchemy.MetaData(bind='sqlite://')
         data = unihan.get_csv_rows()
 
         newt = unihan.to_db(data)
+
+        what = newt.select().count().execute()
+        print(what)
+        print(what.scalar())
 
     def test_strip_comments(self):
         pass

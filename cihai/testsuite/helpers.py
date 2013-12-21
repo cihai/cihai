@@ -12,16 +12,17 @@ cihai.testsuite.helpers
 from __future__ import absolute_import, division, print_function, \
     with_statement, unicode_literals
 
-try:
-    import unittest2 as unittest
-except ImportError:  # Python 2.7
-    import unittest
 import os
 import copy
 import logging
 import tempfile
 import shutil
 import uuid
+
+try:
+    import unittest2 as unittest
+except ImportError:  # Python 2.7
+    import unittest
 
 from ..cihai import Cihai
 

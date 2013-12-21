@@ -41,6 +41,7 @@ class CihaiDatabase(object):
     """SQLAlchemy session data for cihai. Metadata is global."""
 
     _metadata = meta
+    _engine = engine
 
     @property
     def metadata(self):
@@ -52,7 +53,7 @@ class CihaiDatabase(object):
 
         if not self._metadata.bind:
             # No engine binded yet, bind and reflect tables.
-            self._metadata.bind = engine
+            self._metadata.bind = self._engine
             self._metadata.reflect()
 
         return self._metadata
