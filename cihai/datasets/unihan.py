@@ -187,7 +187,7 @@ class Unihan(CihaiDatabase):
             self.fields = [f for t, f in UNIHAN_DATASETS.items()]
         self.default_fields = self.fields
 
-    def get_csv_rows(self, install_dict=None):
+    def install(self, install_dict=None):
         """Install the raw csv information into CSV, return table.
 
         :param install_dict: (optional, default=None) filename in /data dir and
@@ -212,30 +212,33 @@ class Unihan(CihaiDatabase):
             install_dict = UNIHAN_DATASETS
 
         files = tuple(get_datafile(f) for f in install_dict.keys())
-
-        combine = fileinput.FileInput(files=files, openhook=fileinput.hook_encoded('utf-8'))
-
         keys = ['char', 'field', 'value']
-        data = [dict(zip(keys, l.strip().split('\t'))) for l in combine if l[0] != '#' and l != '\n']
+
+        from sqlalchemy.util._collections import KeyedTuple
+        from profilehooks import profile, coverage
+
+        def csv_to_dictlists(csv_files):
+            """Return dict from Unihan CSV files.
+
+            :param csv_files: file names in data dir
+            :type csv_files: list
+            :return: List of tuples for data loaded
+
+            """
+
+            combine = fileinput.FileInput(files=csv_files, openhook=fileinput.hook_encoded('utf-8'))
+            return [dict(zip(keys, l.strip().split('\t'))) for l in combine if l[0] != '#' and l != '\n']
+
+        data = csv_to_dictlists(files)
 
         table_name = 'Unihan'
-
         config = configparser.ConfigParser()
         config.read(cihai_config)
 
         table = self._create_table(table_name)
         andfields = [(table.c.field == t) for t in self.fields]
         andstmt = or_(*andfields)
-
-        try:
-            results = self.metadata.bind.execute(table.insert(), data)
-        except Exception as e:
-            for l in data:
-                for key in l.keys():
-                    if not l[key]:
-                        print("%s has a problem with %s being blank" % (l, key))
-            raise(e)
-
+        results = self.metadata.bind.execute(table.insert(), data)
         config_file = open(cihai_config, 'w+')
         config.write(config_file)
         config_file.close()
@@ -271,8 +274,7 @@ class Unihan(CihaiDatabase):
         Index('%s_unique_char_field' % table_name, table.c.char, table.c.field, unique=True)
         Index('%s_field' % table_name, table.c.field)
 
-        if not table.exists():
-            self.metadata.create_all()
+        self.metadata.create_all()
 
         return table
 
