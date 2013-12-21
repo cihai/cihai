@@ -41,11 +41,8 @@ Unihan._engine = sqlalchemy.create_engine('sqlite:///:memory:')
 
 class UnihanTestCase(TestCase):
 
-    unihan = None
-
     def setUp(self):
-        if not self.unihan:
-            self.unihan = Unihan()
+        pass
 
 
 class UnihanInstall(TestCase):
@@ -80,7 +77,6 @@ class UnihanInstall(TestCase):
     #@profile
     def test_get_csv_rows(self):
         unihan = Unihan()
-        #unihan._metadata = sqlalchemy.MetaData(bind='sqlite://')
         table = unihan.install()
 
 
@@ -91,13 +87,14 @@ class UnihanMethods(UnihanTestCase):
 
     def test__create_table(self):
         table_name = 'testTable_%s' % random.randint(1, 1337)
+        unihan = Unihan()
 
-        table = self.unihan._create_table(table_name)
+        table = unihan._create_table(table_name)
 
         self.assertIsInstance(table, sqlalchemy.Table)
         self.assertTrue(table.exists())
 
-        self.unihan.metadata.drop_all(tables=[table])
+        unihan.metadata.drop_all(tables=[table])
 
         self.assertFalse(table.exists())
 
@@ -109,15 +106,10 @@ class UnihanMiddleware(CihaiTestCase, UnihanTestCase):
         c.use(Unihan)
         results = c.get('你', fields=['kDefinition'])
 
-        #self.assertTrue(results)  # returns something
         self.assertIsInstance(results, dict)
-        from pprint import pprint
-        pprint(results)
 
     def test_reverse(self):
 
         c = Cihai()
         c.use(Unihan)
         results = c.reverse(r'%first%', fields=['kDefinition'])
-        from pprint import pprint
-        pprint(results)

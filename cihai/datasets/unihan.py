@@ -211,11 +211,9 @@ class Unihan(CihaiDatabase):
         if not install_dict:
             install_dict = UNIHAN_DATASETS
 
+        table_name = 'Unihan'
         files = tuple(get_datafile(f) for f in install_dict.keys())
         keys = ['char', 'field', 'value']
-
-        from sqlalchemy.util._collections import KeyedTuple
-        from profilehooks import profile, coverage
 
         def csv_to_dictlists(csv_files):
             """Return dict from Unihan CSV files.
@@ -231,17 +229,12 @@ class Unihan(CihaiDatabase):
 
         data = csv_to_dictlists(files)
 
-        table_name = 'Unihan'
-        config = configparser.ConfigParser()
-        config.read(cihai_config)
-
-        table = self._create_table(table_name)
-        andfields = [(table.c.field == t) for t in self.fields]
-        andstmt = or_(*andfields)
-        results = self.metadata.bind.execute(table.insert(), data)
-        config_file = open(cihai_config, 'w+')
-        config.write(config_file)
-        config_file.close()
+        def insert_rows(table_name, data):
+            table = self._create_table(table_name)
+            andfields = [(table.c.field == t) for t in self.fields]
+            andstmt = or_(*andfields)
+            return self.metadata.bind.execute(table.insert(), data)
+        insert_rows(table_name, data)
 
         return table
 
