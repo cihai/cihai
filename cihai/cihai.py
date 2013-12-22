@@ -39,67 +39,7 @@ class NoDatasets(Exception):
 
 
 class CihaiDatabase(object):
-    """SQLAlchemy session data for cihai. Metadata is global.
-
-    The principal goal of Cihai is to have the diverse array of CJK
-    datasets through a simple convention::
-
-        c = Cihai()  # Make a python object.
-
-    Because of this, Cihai has tight integration with SQLAlchemy. Plugins are
-    attached to MetaData objects.
-
-
-    1. Congruence between a widely known Python object + Data backend +
-       Contextual to database instance.
-
-    2. An instance of Cihai and its plugins will run from the same database,
-       the connect metadata is the same for all plugins searched through with
-       ``.get()`` and ``.reverse()``.
-
-    3. It's possible to pass in data to pass :class:`sqlalchemy.schema.MetaData`
-       into a plugin directly. This means a plugin like ``Unihan`` can be used
-       and instantiated without Cihai as a dependency.
-
-    Cihai wants all CJK data to be retrievable in a common way. To do this, a
-    best practice is adopted.
-
-    If you have a dataset you want usable in CJK, all it takes at a minimum
-    is a python object with ``.get`` and ``.reverse``.
-
-    The goal is to keep extensions decoupled.
-
-    Plugins always will have MetaData for the database sent to them. It's
-    best practice to, next, grab the data.
-
-    All that happened above was creating an instance of Cihai(). When
-    ``Cihai()`` is instantiated, ``__init__`` will accept
-    an :class:`sqlalchemy.engine.Engine`.
-
-
-
-    In the future, CLI version may automatically invoke ``Cihai`` as sqlite, or
-    read a configuration for a different back-end.
-
-
-    The user may then attach datasets::
-
-        from cihai_sample import SampleDataset
-        c.use(SampleDataset)
-
-    Since a dataset has been added, it's now possible to ``.get()``.
-
-    .. note:
-        ``.use`` follows the naming convention of Node's connect. In a python
-        applicatoin you may be familiar with seeing methods like
-        ``.register_backend`` or ``.register``.
-
-    If an exception is raised from the datasets, an exception will be caught.
-    In CLI / interactive mode, the user will be prompted to install the data,
-    which will run the dataset's ``.install()`` method.
-
-
-    """
+    """SQLAlchemy session data for cihai. Metadata is global."""
 
     _metadata = meta
 
@@ -165,15 +105,8 @@ class Cihai(object):
 
         """
 
-        for m in self._middleware:
-            if isinstance(m, middleware):
-                raise Exception('Dataset already added.')
-
-        if isinstance(middleware, type):
-            # middleware is still a raw class, instantiate.
-            middleware = middleware()
-
-        self._middleware.append(middleware)
+        if not middleware in self._middleware:
+            self._middleware.append(middleware)
 
     def get(self, request, *args, **kwargs):
         """Return results middleware.
@@ -184,13 +117,16 @@ class Cihai(object):
 
         """
 
-        response = {}
-
         if not self._middleware:
             raise NoDatasets
 
-        for middleware in self._middleware:
-            response = middleware.get(request, response, *args, **kwargs)
+        response = {}
+
+        for m in self._middleware:
+            if hasattr(m, 'get'):
+                response = m.get(request, response, *args, **kwargs)
+            if not response:
+                break
 
         return response
 
@@ -203,12 +139,15 @@ class Cihai(object):
 
         """
 
-        response = {}
-
         if not self._middleware:
             raise NoDatasets
 
-        for middleware in self._middleware:
-            response = middleware.reverse(request, response, *args, **kwargs)
+        response = {}
+
+        for m in self._middleware:
+            if hasattr(m, 'reverse'):
+                response = m.reverse(request, response, *args, **kwargs)
+            if not response:
+                break
 
         return response

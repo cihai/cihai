@@ -32,6 +32,7 @@ log = logging.getLogger(__name__)
 
 engine = sqlalchemy.create_engine('sqlite:///:memory:')
 
+
 def add_to_path(path):
     """Adds an entry to sys.path if it's not already there.  This does
     not append it but moves it to the front so that we can be sure it
@@ -119,11 +120,7 @@ class CihaiMiddleware(unittest.TestCase):
 
         c.use(DatasetExample)
 
-        for m in c._middleware:
-            self.assertIsInstance(m, DatasetExample)
-
-        with self.assertRaisesRegexp(Exception, 'Dataset already added.'):
-            c.use(DatasetExample)
+        self.assertIn(DatasetExample, c._middleware)
 
     def test_add_middleware_instance(self):
         """:meth:`Cihai.use()` to add middleware as an instance."""
@@ -137,16 +134,13 @@ class CihaiMiddleware(unittest.TestCase):
         for m in c._middleware:
             self.assertIsInstance(m, DatasetExample)
 
-        with self.assertRaisesRegexp(Exception, 'Dataset already added.'):
-            c.use(DatasetExample)
-
     def test_get(self):
         c = Cihai()
 
         with self.assertRaises(NoDatasets):
             c.get('好')
 
-        c.use(DatasetExample)
+        c.use(DatasetExample())
         self.assertDictEqual({
             'definition': 'hao'
         }, c.get('好'))
@@ -157,7 +151,7 @@ class CihaiMiddleware(unittest.TestCase):
         with self.assertRaises(NoDatasets):
             c.reverse('hao')
 
-        c.use(DatasetExample)
+        c.use(DatasetExample())
         self.assertDictEqual({
             '好': {
                 'definition': 'hao'
