@@ -75,7 +75,7 @@ class CihaiDatabase(object):
         return True if table_name in self.metadata.tables else False
 
 
-class Cihai(CihaiDatabase):
+class Cihai(object):
 
     """Cihai query client. May use :meth:`~.get()` to grab 中文.
 

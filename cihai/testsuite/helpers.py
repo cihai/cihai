@@ -31,11 +31,3 @@ logger = logging.getLogger(__name__)
 
 class TestCase(unittest.TestCase):
     pass
-
-
-class CihaiTestCase(TestCase):
-    c = None  # :class:`Cihai` instance.
-
-    def setUp(self):
-        if not self.c:
-            self.c = Cihai()

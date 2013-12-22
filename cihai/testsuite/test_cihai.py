@@ -22,9 +22,9 @@ import sqlalchemy
 
 from .. import conversion
 
-from .helpers import unittest, CihaiTestCase
+from .helpers import unittest, TestCase
 from .._compat import PY2, text_type
-from ..cihai import Cihai, NoDatasets
+from ..cihai import Cihai, CihaiDatabase, NoDatasets
 from ..util import get_datafile, UnicodeReader
 
 log = logging.getLogger(__name__)
@@ -64,9 +64,24 @@ add_to_path(os.path.abspath(os.path.join(
 from simple import DatasetExample
 
 
-class CihaiInstance(CihaiTestCase):
+class CihaiTestCase(TestCase):
+    c = None  # :class:`Cihai` instance.
 
-    def test_no_datasets(self):
+    def setUp(self):
+        if not self.c:
+            self.c = Cihai()
+
+
+class CihaiDatabaseInstance(TestCase):
+
+    def setUp(self):
+        super(CihaiDatabaseInstance, self).setUp()
+
+        self.c = CihaiDatabase()
+
+        self.tables = self.c.metadata.tables
+
+    def test_no_db_raises_exception(self):
         c = Cihai()
         self.assertIsInstance(c, Cihai)
 
@@ -76,19 +91,11 @@ class CihaiInstance(CihaiTestCase):
         with self.assertRaises(NoDatasets) as e:
             c = c.reverse('好')
 
+    def test_has_metadata_property(self):
+        c = CihaiDatabase()
         self.assertIsInstance(c.metadata, sqlalchemy.MetaData)
         self.assertIsInstance(c._metadata, sqlalchemy.MetaData)
         self.assertIsInstance(c._metadata.bind, sqlalchemy.engine.Engine)
-
-
-class CihaiDatabaseInstance(CihaiTestCase):
-
-    # :todo: change this to create/drop table for class.
-
-    def setUp(self):
-        super(CihaiDatabaseInstance, self).setUp()
-
-        self.tables = self.c.metadata.tables
 
     def test_table_exists(self):
 

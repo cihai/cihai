@@ -26,7 +26,7 @@ from profilehooks import profile, coverage
 
 from .. import conversion
 
-from .helpers import unittest, TestCase, CihaiTestCase
+from .helpers import unittest, TestCase
 from .._compat import PY2, text_type, configparser
 from ..util import get_datafile, UnicodeReader
 from ..datasets.unihan import UNIHAN_DATASETS, Unihan
@@ -99,7 +99,7 @@ class UnihanMethods(UnihanTestCase):
         self.assertFalse(table.exists())
 
 
-class UnihanMiddleware(CihaiTestCase, UnihanTestCase):
+class UnihanMiddleware(UnihanTestCase):
 
     def test_get(self):
         c = Cihai()
