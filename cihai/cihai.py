@@ -29,7 +29,8 @@ log = logging.getLogger(__name__)
 
 cihai_config = get_datafile('cihai.conf')
 cihai_db = get_datafile('cihai.db')
-engine = create_engine('sqlite:///%s' % cihai_db, echo=False)
+#engine = create_engine('sqlite:///%s' % cihai_db, echo=False)
+engine = create_engine('sqlite:///:memory:')
 meta = MetaData()
 
 
@@ -41,7 +42,16 @@ class CihaiDatabase(object):
     """SQLAlchemy session data for cihai. Metadata is global."""
 
     _metadata = meta
-    _engine = engine
+
+    def __init__(self, engine):
+        """Initialize CihaiDatabase back-end.
+
+        :param engine: engine to connect to database with.
+        :param type:class:`sqlalchemy.engine.Engine`
+
+        """
+
+        self._engine = engine
 
     @property
     def metadata(self):

@@ -170,7 +170,7 @@ class Unihan(CihaiDatabase):
 
     """
 
-    def __init__(self, fields = None):
+    def __init__(self, fields=None, *args, **kwargs):
         """Start an instance of Unihan to :meth:`~.get` or :meth:`reverse` data.
 
         :param fields: (optional, default: None) Unihan fields to search for by
@@ -179,7 +179,7 @@ class Unihan(CihaiDatabase):
         :type fields: list
 
         """
-        super(Unihan, self).__init__()
+        super(Unihan, self).__init__(*args, **kwargs)
 
         try:
             self.fields = [f for t, f in UNIHAN_DATASETS.items() if t in ['Unihan']]
@@ -230,6 +230,7 @@ class Unihan(CihaiDatabase):
         data = csv_to_dictlists(files)
 
         table = self._create_table(table_name)
+
         def insert_rows(table_name, data, fields):
 
             andfields = [(table.c.field == t) for t in fields]
@@ -303,9 +304,9 @@ class Unihan(CihaiDatabase):
             table.c.field
         ]).where(andstmt)
 
-        query = select([table.c.value,table.c.char, table.c.field]).where(
-                table.c.field == q,
-            ).where(table.c.value == request)
+        query = select([table.c.value, table.c.char, table.c.field]).where(
+            table.c.field == q,
+        ).where(table.c.value == request)
 
         query = query.execute()
 
@@ -348,9 +349,9 @@ class Unihan(CihaiDatabase):
             table.c.field
         ]).where(andstmt)
 
-        query = select([table.c.value,table.c.char, table.c.field]).where(
-                table.c.field == q,
-            ).where(table.c.value.like(request))
+        query = select([table.c.value, table.c.char, table.c.field]).where(
+            table.c.field == q,
+        ).where(table.c.value.like(request))
         #import timeit
         #print("\n\n%s\n\ntimings: %s" % (query, timeit.repeat(query.execute, number=1, repeat=5)))
 

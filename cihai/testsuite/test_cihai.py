@@ -30,13 +30,7 @@ from ..util import get_datafile, UnicodeReader
 log = logging.getLogger(__name__)
 
 
-class CihaiTest(Cihai):
-
-    _engine = sqlalchemy.create_engine('sqlite:///:memory:')
-
-
-Cihai._engine = sqlalchemy.create_engine('sqlite:///:memory:')
-
+engine = sqlalchemy.create_engine('sqlite:///:memory:')
 
 def add_to_path(path):
     """Adds an entry to sys.path if it's not already there.  This does
@@ -81,39 +75,37 @@ class CihaiDatabaseInstance(TestCase):
     def setUp(self):
         super(CihaiDatabaseInstance, self).setUp()
 
-        self.c = CihaiDatabase()
-
-        self.tables = self.c.metadata.tables
-
     def test_instance_is_CihaiDatabase(self):
-        c = CihaiDatabase()
+        c = CihaiDatabase(engine)
         self.assertIsInstance(c, CihaiDatabase)
 
     def test_has_metadata_property(self):
-        c = CihaiDatabase()
+        c = CihaiDatabase(engine)
         self.assertIsInstance(c.metadata, sqlalchemy.MetaData)
         self.assertIsInstance(c._metadata, sqlalchemy.MetaData)
         self.assertIsInstance(c._metadata.bind, sqlalchemy.engine.Engine)
 
     def test_table_exists(self):
-        c = CihaiDatabase()
-        if not self.tables:
+        c = CihaiDatabase(engine)
+        tables = c.metadata.tables
+        if not tables:
             self.skipTest('No tables to test.')
 
-        table = c.get_table(random.choice(list(self.tables)))
+        table = c.get_table(random.choice(list(tables)))
         self.assertIsInstance(table, sqlalchemy.Table)
 
-        for table_name in self.tables:
+        for table_name in tables:
             self.assertTrue(c.table_exists(table_name))
             self.assertIsInstance(table_name, text_type)
 
     def test_get_table(self):
         # pick a random table name.
-
-        if not self.tables:
+        c = CihaiDatabase(engine)
+        tables = c.metadata.tables
+        if not tables:
             self.skipTest('No tables to test.')
 
-        table = self.c.get_table(random.choice(list(self.tables)))
+        table = self.c.get_table(random.choice(list(tables)))
         self.assertIsInstance(table, sqlalchemy.Table)
 
 
