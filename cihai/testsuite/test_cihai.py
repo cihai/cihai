@@ -64,12 +64,16 @@ add_to_path(os.path.abspath(os.path.join(
 from simple import DatasetExample
 
 
-class CihaiTestCase(TestCase):
-    c = None  # :class:`Cihai` instance.
+class CihaiInstance(TestCase):
 
-    def setUp(self):
-        if not self.c:
-            self.c = Cihai()
+    def test_no_db_raises_exception(self):
+        c = Cihai()
+
+        with self.assertRaises(NoDatasets) as e:
+            c.get('好')
+
+        with self.assertRaises(NoDatasets) as e:
+            c.reverse('好')
 
 
 class CihaiDatabaseInstance(TestCase):
@@ -81,15 +85,9 @@ class CihaiDatabaseInstance(TestCase):
 
         self.tables = self.c.metadata.tables
 
-    def test_no_db_raises_exception(self):
-        c = Cihai()
-        self.assertIsInstance(c, Cihai)
-
-        with self.assertRaises(NoDatasets) as e:
-            c = c.get('好')
-
-        with self.assertRaises(NoDatasets) as e:
-            c = c.reverse('好')
+    def test_instance_is_CihaiDatabase(self):
+        c = CihaiDatabase()
+        self.assertIsInstance(c, CihaiDatabase)
 
     def test_has_metadata_property(self):
         c = CihaiDatabase()
@@ -98,15 +96,15 @@ class CihaiDatabaseInstance(TestCase):
         self.assertIsInstance(c._metadata.bind, sqlalchemy.engine.Engine)
 
     def test_table_exists(self):
-
+        c = CihaiDatabase()
         if not self.tables:
             self.skipTest('No tables to test.')
 
-        table = self.c.get_table(random.choice(list(self.tables)))
+        table = c.get_table(random.choice(list(self.tables)))
         self.assertIsInstance(table, sqlalchemy.Table)
 
         for table_name in self.tables:
-            self.assertTrue(self.c.table_exists(table_name))
+            self.assertTrue(c.table_exists(table_name))
             self.assertIsInstance(table_name, text_type)
 
     def test_get_table(self):
