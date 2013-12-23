@@ -1,0 +1,83 @@
+#
+# Unihan_DictionaryIndices.txt
+# Date: 2013-02-25 22:46:17 GMT [JHJ]
+# Unicode version: 6.3.0
+#
+# Unicode Character Database
+# Copyright (c) 1991-2013 Unicode, Inc.
+# For terms of use, see http://www.unicode.org/terms_of_use.html
+# For documentation, see http://www.unicode.org/reports/tr44/
+#
+# This file contains data on the following fields from the Unihan database:
+#	kCheungBauerIndex
+#	kCowles
+#	kDaeJaweon
+#	kFennIndex
+#	kGSR
+#	kHanYu
+#	kIRGDaeJaweon
+#	kIRGDaiKanwaZiten
+#	kIRGHanyuDaZidian
+#	kIRGKangXi
+#	kKangXi
+#	kKarlgren
+#	kLau
+#	kMatthews
+#	kMeyerWempe
+#	kMorohashi
+#	kNelson
+#	kSBGY
+#
+# For details on the file format, see http://www.unicode.org/reports/tr38/
+#
+U+3400	kHanYu	10015.030
+U+3400	kIRGHanyuDaZidian	10015.030
+U+3400	kIRGKangXi	0078.010
+U+34BB	kIRGKangXi	0129.290
+U+34BC	kCheungBauerIndex	402.06
+U+34BC	kFennIndex	328.07
+U+3401	kHanYu	10019.020
+U+3401	kIRGHanyuDaZidian	10019.020
+U+3401	kIRGKangXi	0078.030
+U+3401	kSBGY	442.07 444.28
+U+3402	kIRGKangXi	0078.101
+U+3402	kNelson	0265
+U+3403	kIRGKangXi	0079.021
+U+3404	kHanYu	10009.060
+U+3404	kIRGHanyuDaZidian	10009.060
+U+3404	kIRGKangXi	0079.020
+U+3404	kSBGY	310.04 424.03
+U+3405	kCowles	3772
+U+3405	kHanYu	10031.040
+U+3405	kIRGHanyuDaZidian	10031.040
+U+3405	kIRGKangXi	0081.180
+U+4E00	kCowles	5133
+U+4E00	kDaeJaweon	0129.010
+U+4E00	kFennIndex	216.01 217.06 218.01 220.06
+U+340B	kIRGKangXi	0084.071
+U+340C	kGSR	0004f
+U+340C	kHanYu	10036.020
+U+340C	kIRGHanyuDaZidian	10036.020
+U+340C	kIRGKangXi	0084.080
+U+340C	kMatthews	2946
+U+3406	kIRGKangXi	0083.011
+U+3406	kSBGY	066.03 279.38
+U+3407	kIRGKangXi	0084.051
+U+4E00	kGSR	0394a
+U+4E00	kHanYu	10001.010
+U+4E00	kIRGDaeJaweon	0129.010
+U+4E00	kIRGDaiKanwaZiten	00001
+U+4E00	kIRGHanyuDaZidian	10001.010
+U+4E00	kIRGKangXi	0075.010
+U+4E00	kKangXi	0075.010
+U+4E00	kKarlgren	175
+U+4E00	kLau	3341
+U+4E00	kMatthews	3016
+U+4E00	kMeyerWempe	3837
+U+4E00	kMorohashi	00001
+U+4E00	kNelson	0001
+U+4E00	kSBGY	468.40
+U+4E01	kCowles	4168
+U+4E01	kDaeJaweon	0135.010
+U+4E01	kFennIndex	525.04
+U+4E01	kGSR	0833a

@@ -1,0 +1,38 @@
+#
+# Unihan_RadicalStrokeCounts.txt
+# Date: 2013-02-25 22:46:17 GMT [JHJ]
+# Unicode version: 6.3.0
+#
+# Unicode Character Database
+# Copyright (c) 1991-2013 Unicode, Inc.
+# For terms of use, see http://www.unicode.org/terms_of_use.html
+# For documentation, see http://www.unicode.org/reports/tr44/
+#
+# This file contains data on the following fields from the Unihan database:
+#	kRSAdobe_Japan1_6
+#	kRSJapanese
+#	kRSKangXi
+#	kRSKanWa
+#	kRSKorean
+#	kRSUnicode
+#
+# For details on the file format, see http://www.unicode.org/reports/tr38/
+#
+U+3400	kRSUnicode	1.4
+U+3401	kRSUnicode	1.5
+U+3402	kRSAdobe_Japan1_6	C+13698+1.1.5 V+13697+21.2.4 V+13699+1.1.5
+U+3402	kRSUnicode	1.5
+U+3403	kRSUnicode	2.2
+U+3404	kRSUnicode	2.2
+U+3405	kRSAdobe_Japan1_6	C+15387+3.1.1 C+15387+4.1.1
+U+4E55	kRSAdobe_Japan1_6	C+6480+4.1.6 C+6480+50.3.4
+U+4E55	kRSJapanese	4.6
+U+4E55	kRSKanWa	4.6
+U+3405	kRSUnicode	4.1
+U+3406	kRSAdobe_Japan1_6	C+17242+4.1.5
+U+3406	kRSUnicode	4.5
+U+3407	kRSUnicode	5.2
+U+4F75	kRSKangXi	9.6
+U+4F75	kRSKorean	9.8
+
+# EOF
