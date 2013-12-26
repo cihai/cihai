@@ -50,7 +50,7 @@ class CihaiDatabase(object):
 
     _metadata = meta
 
-    def __init__(self, engine):
+    def __init__(self, engine=None):
         """Initialize CihaiDatabase back-end.
 
         :param engine: engine to connect to database with.

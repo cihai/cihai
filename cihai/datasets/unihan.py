@@ -179,7 +179,20 @@ class Unihan(CihaiDatabase):
         :type fields: list
 
         """
-        super(Unihan, self).__init__(*args, **kwargs)
+        super(Unihan, self).__init__(*args[1:], **kwargs)
+
+        """
+        from sqlalchemy.
+            msg = "%s is not bound to an Engine or Connection.  "\
+                   "Execution can not proceed without a database to execute "\
+                   "against." % item
+            bind = _bind_or_error(metadata,
+                    msg="No engine is bound to this Table's MetaData. "
+                    "Pass an engine to the Table via "
+                    "autoload_with=<someengine>, "
+                    "or associate the MetaData with an engine via "
+                    "metadata.bind=<someengine>")
+        """
 
         try:
             self.fields = [f for t, f in UNIHAN_DATASETS.items() if t in ['Unihan']]
