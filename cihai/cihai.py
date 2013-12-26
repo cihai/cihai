@@ -4,6 +4,13 @@
 cihai.cihai
 ~~~~~~~~~~~
 
+``Cihai`` is a bound to :class:`sqlalchemy.schema.MetaData` - A collection of
+Table objects.
+
+A dataset for Cihai is represented as a :class:`sqlalchemy.schema.Table`.
+
+A dataset is a python package of data (from the internet, or a CSV).
+
 :copyright: Copyright 2013 Tony Narlock.
 :license: BSD, see LICENSE for details
 
