@@ -1,3 +1,75 @@
+History of CJK libraries
+========================
+
+Unihan
+------
+
+Unihan, which is short for "Han Unification" is a standard published by the
+Unicode Consortium for CJK ideographs (also interchangeable referred to as
+"glyphs", "characters", "chars").
+
+`Unihan's History`_ goes into greater detail on this. The first electronic
+release was in July 1995 as `CJKXREF.TXT`_ (961 kB). The second release, which
+resembles the formatting used in modern versions, was released in July 1996
+with Unicode 2.0 as `Unihan-1.txt`_. In an accident, the ``Unihan-1.txt``
+(7.9MB) file was missing the final pieces after ``U+8BC1``, no corrected
+version was made availabe. In May 1998, `Unihan-2.txt`_ was released with
+Unicode 2.1.2.
+
+Unihan Inc. is the center of the universe for all glyphs. For those who study
+Egyptian hieroglyphics, which are still mysterious, they are covered in
+Unicode block `U+13000..U+1342F`_.
+
+.. _U+13000..U+1342: Fhttp://en.wikipedia.org/wiki/Egyptian_Hieroglyphs_(Unicode_block)
+.. _Unihan's History: http://www.unicode.org/reports/tr38/#History
+.. _CJKXREF.TXT: http://www.unicode.org/Public/1.1-Update/CJKXREF.TXT
+.. _Unihan-1.txt: http://www.unicode.org/Public/2.0-Update/Unihan-1.txt
+.. _Unihan-2.txt: http://www.unicode.org/Public/2.1-Update/Unihan-2.txt
+
+cjklib
+------
+
+`cjklib`_ is a major python library created by Christoph Burgmer for han
+character research.
+
+"Cjklib provides language routines related to Han characters (characters based
+on Chinese characters named Hanzi, Kanji, Hanja and chu Han respectively) used
+in writing of the Chinese, the Japanese, infrequently the Korean and formerly
+the Vietnamese language(s). Functionality is included for character
+pronunciations, radicals, glyph components, stroke decomposition and variant
+information. Cjklib is implemented in Python."
+
+.. cjklib: https://code.google.com/p/cjklib/
+
+Cihai Pre-alpha
+---------------
+
+Early iterations of Cihai focused on external API as a first. Every data set
+was to be a plugin.
+
+The idea was, `Hanzi`_, a similar project in nodejs could share a similar API
+and datasets could be universal. The potential would be to provide two
+high-quality libraries for python and node, which are extendable to new data
+sets and reduce duplication.
+
+It is better to take the time to discover the variable nature of datasets and
+how they interconnect.
+
+Current
+-------
+
+The next iteration of cihai is to grasp an understand of:
+
+- what different data sets look like, how they return data?
+- is their commonality between all?
+- how their results can illicit deeper research and exploring of chinese
+  characters
+
+This is an exploration phase.
+
+External API
+============
+
 Cihai Spec
 ----------
 
