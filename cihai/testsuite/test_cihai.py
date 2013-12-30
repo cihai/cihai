@@ -27,12 +27,12 @@ log = logging.getLogger(__name__)
 
 1. Create a table for unicode characters.
 2. Create query to provide ID value for unicode character. Establish
-    fk.
+fk.
 3. Test expression from 2 can be used in a new query.
 
 Note:
     Don't get test full integration.
-"""
+    """
 
 
 class Cihai(object):
@@ -59,12 +59,32 @@ class InitialUnicode(TestCase):
         from .. import conversion
 
         ranges = {
-            'CJK Unified Ideographs': range(0x4E00,0x9FFF + 1)
+            'CJK Unified Ideographs': range(0x4E00,0x9FFF + 1),
+            'CJK Unified Ideographs Extension A': range(0x3400,0x4DBF + 1),
+            'CJK Unified Ideographs Extension B': range(0x20000,0x2A6DF + 1),
+            'CJK Unified Ideographs Extension C': range(0x2A700,0x2B73F + 1),
+            'CJK Unified Ideographs Extension D': range(0x2B840,0x2B81F + 1),
+            'CJK Compatibility Ideographs': range(0xF900,0xFAFF + 1),
+            'CJK Radicals Supplement': range(0x2E80,0x2EFF + 1),
+            'CJK Symbols and Punctuation': range(0x3000,0x303F + 1),
+            'CJK Strokes': range(0x31C0,0x31EF + 1),
+            'Ideographic Description Characters': range(0x2FF0,0x2FFF + 1),
+            'Kangxi Radicals': range(0x2F00,0x2FDF + 1),
+            'Enclosed CJK Letters and Months': range(0x3200,0x32FF + 1),
+            'CJK Compatibility': range(0x3300,0x33FF + 1),
+            'CJK Compatibility Ideographs': range(0xF900,0xFAFF + 1),
+            'CJK Compatibility Ideographs Supplement': range(0x2F800,0x2FA1F + 1),
+            'CJK Compatibility Forms': range(0xFE30,0xFE4F + 1),
+            'Yijing Hexagram Symbols': range(0x4DC0,0x4DFF + 1)
         }
 
-        unicode_range = [chars for block_name, chars in ranges.items()]
-        for c in unicode_range[0]:
-            char = unichr(int(c))
-            ucn = conversion.python_to_ucn(char)
-            print(c, char, ucn)
-        print(len(unicode_range[0]))
+        totalCharacters = 0
+        for block_name, urange in ranges.items():
+            for c in urange:
+                char = unichr(int(c))
+                ucn = conversion.python_to_ucn(char)
+                # print(c, char, ucn)
+            # print(len(urange))
+            totalCharacters += len(urange)
+
+        print('Total characters: %s' % totalCharacters)
