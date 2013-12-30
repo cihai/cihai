@@ -70,6 +70,25 @@ class UCN(TestCase):
 
         self.assertEqual(conversion.python_to_ucn(text, as_bytes=True), bytes_expected)
 
+    def test_from_unicode_16(self):
+        text = '𦄀'
+        python_unicode = u'\u26100'
+
+        expected = "U+26100"
+        bytes_expected = b"U+26100"
+
+        self.assertEqual(conversion.python_to_ucn(python_unicode), expected)
+        self.assertIsInstance(
+            conversion.python_to_ucn(python_unicode),
+            text_type
+        )
+        self.assertIsInstance(
+            conversion.python_to_ucn(python_unicode, as_bytes=True),
+            bytes
+        )
+
+        self.assertEqual(conversion.python_to_ucn(text, as_bytes=True), bytes_expected)
+
     def test_to_unicode(self):
         before = 'U+4E00'
         expected = '\u4e00'

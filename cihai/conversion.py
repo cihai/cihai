@@ -175,7 +175,7 @@ def python_to_ucn(uni_char, as_bytes=False):
 
     """
     ucn = uni_char.encode('unicode_escape').decode('latin1')
-    ucn = text_type(ucn).replace('\\', '').lstrip('u')
+    ucn = text_type(ucn).replace('\\', '').upper().lstrip('U')
     if len(ucn) > int(4):
         # get rid of the zeroes that Python uses to pad 32 byte UCNs
         ucn = ucn.lstrip("0")
