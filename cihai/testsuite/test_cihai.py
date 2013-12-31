@@ -144,24 +144,26 @@ class TableInsertFK(TestCase):
 
         metadata.create_all()
 
-        c = 0x4E00
-        char = unichr(int(c))
-        ucn = conversion.python_to_ucn(char)
+        def get_char_fk(char):
+            return unicode_table.select() \
+                .where(unicode_table.c.char == char).limit(1) \
+                .execute().fetchone().id
 
-        unicode_table.insert().values(
-            char=char,
-            ucn=ucn
-        ).execute()
+        for c in range(0x4E00, 0x4E00 + 2):
+            char = unichr(int(c))
+            ucn = conversion.python_to_ucn(char)
 
-        select_char = unicode_table.select().limit(1)
-        row = select_char.execute().fetchone()
+            unicode_table.insert().values(
+                char=char,
+                ucn=ucn
+            ).execute()
 
-        sample_table.insert().values(
-            char_id=row.id,
-            value='hey'
-        ).execute()
+            sample_table.insert().values(
+                char_id=get_char_fk(char),
+                value='hey'
+            ).execute()
 
-        select_char = sample_table.select().limit(1)
-        row = select_char.execute().fetchone()
+            select_char = unicode_table.select().where(unicode_table.c.char == char).limit(1)
+            row = select_char.execute().fetchone()
 
-        print(row)
+            print(row)
