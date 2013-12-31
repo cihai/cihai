@@ -90,22 +90,31 @@ class InitialUnicode(TestCase):
         print('Total characters: %s' % totalCharacters)
 
 
+engine = sqlalchemy.create_engine('sqlite:///')
+metadata = MetaData(bind=engine)
+
+unicode_table = sqlalchemy.Table(
+    'cjk',
+    metadata,
+    sqlalchemy.Column('id', sqlalchemy.Integer(), primary_key=True),
+    sqlalchemy.Column('char', sqlalchemy.Unicode()),
+    sqlalchemy.Column('ucn', sqlalchemy.String()),
+)
+
+sample_table = sqlalchemy.Table(
+    'sample_table',
+    metadata,
+    sqlalchemy.Column('id', sqlalchemy.Integer(), primary_key=True),
+    sqlalchemy.Column('char_id', sqlalchemy.ForeignKey('cjk.id')),
+    sqlalchemy.Column('value', sqlalchemy.Unicode())
+)
+
+metadata.create_all()
+
+
 class TableInsertFK(TestCase):
 
     def test_insert_row(self):
-
-        engine = sqlalchemy.create_engine('sqlite:///')
-        metadata = MetaData(bind=engine)
-
-        unicode_table = sqlalchemy.Table(
-            'cjk',
-            metadata,
-            sqlalchemy.Column('id', sqlalchemy.Integer(), primary_key=True),
-            sqlalchemy.Column('char', sqlalchemy.Unicode()),
-            sqlalchemy.Column('ucn', sqlalchemy.String()),
-        )
-
-        metadata.create_all()
 
         c = 0x4E00
         char = unichr(int(c))
@@ -116,33 +125,11 @@ class TableInsertFK(TestCase):
             ucn=ucn
         ).execute()
 
-        select_char = unicode_table.select().limit(1)
-        row = select_char.execute().fetchone()
-
-        print(dict(zip(row.keys(), row)))
+        row = unicode_table.select().limit(1) \
+            .execute().fetchone()
+        self.assertEqual(row.char, '一')
 
     def test_insert_on_foreign_key(self):
-
-        engine = sqlalchemy.create_engine('sqlite:///')
-        metadata = MetaData(bind=engine)
-
-        unicode_table = sqlalchemy.Table(
-            'cjk',
-            metadata,
-            sqlalchemy.Column('id', sqlalchemy.Integer(), primary_key=True),
-            sqlalchemy.Column('char', sqlalchemy.Unicode()),
-            sqlalchemy.Column('ucn', sqlalchemy.String()),
-        )
-
-        sample_table = sqlalchemy.Table(
-            'sample_table',
-            metadata,
-            sqlalchemy.Column('id', sqlalchemy.Integer(), primary_key=True),
-            sqlalchemy.Column('char_id', sqlalchemy.ForeignKey('cjk.id')),
-            sqlalchemy.Column('value', sqlalchemy.Unicode())
-        )
-
-        metadata.create_all()
 
         def get_char_fk(char):
             return unicode_table.select() \
