@@ -16,6 +16,10 @@ import os
 import tempfile
 import logging
 
+import sqlalchemy
+
+from sqlalchemy import Table, MetaData
+
 from .helpers import TestCase, get_datafile
 from .._compat import PY2, text_type, string_types
 from ..util import get_datafile
@@ -49,8 +53,25 @@ class FixturesTest(TestCase):
         pass
 
 
-def create_unicode_characters():
-    pass
+cjk_ranges = {
+    'CJK Unified Ideographs': range(0x4E00, 0x9FFF + 1),
+    'CJK Unified Ideographs Extension A': range(0x3400, 0x4DBF + 1),
+    'CJK Unified Ideographs Extension B': range(0x20000, 0x2A6DF + 1),
+    'CJK Unified Ideographs Extension C': range(0x2A700, 0x2B73F + 1),
+    'CJK Unified Ideographs Extension D': range(0x2B840, 0x2B81F + 1),
+    'CJK Compatibility Ideographs': range(0xF900, 0xFAFF + 1),
+    'CJK Radicals Supplement': range(0x2E80, 0x2EFF + 1),
+    'CJK Symbols and Punctuation': range(0x3000, 0x303F + 1),
+    'CJK Strokes': range(0x31C0, 0x31EF + 1),
+    'Ideographic Description Characters': range(0x2FF0, 0x2FFF + 1),
+    'Kangxi Radicals': range(0x2F00, 0x2FDF + 1),
+    'Enclosed CJK Letters and Months': range(0x3200, 0x32FF + 1),
+    'CJK Compatibility': range(0x3300, 0x33FF + 1),
+    'CJK Compatibility Ideographs': range(0xF900, 0xFAFF + 1),
+    'CJK Compatibility Ideographs Supplement': range(0x2F800, 0x2FA1F + 1),
+    'CJK Compatibility Forms': range(0xFE30, 0xFE4F + 1),
+    'Yijing Hexagram Symbols': range(0x4DC0, 0x4DFF + 1)
+}
 
 
 class InitialUnicode(TestCase):
@@ -58,33 +79,89 @@ class InitialUnicode(TestCase):
     def test_generate_unicode(self):
         from .. import conversion
 
-        ranges = {
-            'CJK Unified Ideographs': range(0x4E00,0x9FFF + 1),
-            'CJK Unified Ideographs Extension A': range(0x3400,0x4DBF + 1),
-            'CJK Unified Ideographs Extension B': range(0x20000,0x2A6DF + 1),
-            'CJK Unified Ideographs Extension C': range(0x2A700,0x2B73F + 1),
-            'CJK Unified Ideographs Extension D': range(0x2B840,0x2B81F + 1),
-            'CJK Compatibility Ideographs': range(0xF900,0xFAFF + 1),
-            'CJK Radicals Supplement': range(0x2E80,0x2EFF + 1),
-            'CJK Symbols and Punctuation': range(0x3000,0x303F + 1),
-            'CJK Strokes': range(0x31C0,0x31EF + 1),
-            'Ideographic Description Characters': range(0x2FF0,0x2FFF + 1),
-            'Kangxi Radicals': range(0x2F00,0x2FDF + 1),
-            'Enclosed CJK Letters and Months': range(0x3200,0x32FF + 1),
-            'CJK Compatibility': range(0x3300,0x33FF + 1),
-            'CJK Compatibility Ideographs': range(0xF900,0xFAFF + 1),
-            'CJK Compatibility Ideographs Supplement': range(0x2F800,0x2FA1F + 1),
-            'CJK Compatibility Forms': range(0xFE30,0xFE4F + 1),
-            'Yijing Hexagram Symbols': range(0x4DC0,0x4DFF + 1)
-        }
-
         totalCharacters = 0
-        for block_name, urange in ranges.items():
+        for block_name, urange in cjk_ranges.items():
             for c in urange:
                 char = unichr(int(c))
                 ucn = conversion.python_to_ucn(char)
-                # print(c, char, ucn)
-            # print(len(urange))
+
             totalCharacters += len(urange)
 
         print('Total characters: %s' % totalCharacters)
+
+
+class TableInsertFK(TestCase):
+
+    def test_insert_row(self):
+
+        engine = sqlalchemy.create_engine('sqlite:///')
+        metadata = MetaData(bind=engine)
+
+        unicode_table = sqlalchemy.Table(
+            'cjk',
+            metadata,
+            sqlalchemy.Column('id', sqlalchemy.Integer(), primary_key=True),
+            sqlalchemy.Column('char', sqlalchemy.Unicode()),
+            sqlalchemy.Column('ucn', sqlalchemy.String()),
+        )
+
+        metadata.create_all()
+
+        c = 0x4E00
+        char = unichr(int(c))
+        ucn = conversion.python_to_ucn(char)
+
+        unicode_table.insert().values(
+            char=char,
+            ucn=ucn
+        ).execute()
+
+        select_char = unicode_table.select().limit(1)
+        row = select_char.execute().fetchone()
+
+        print(dict(zip(row.keys(), row)))
+
+    def test_insert_on_foreign_key(self):
+
+        engine = sqlalchemy.create_engine('sqlite:///')
+        metadata = MetaData(bind=engine)
+
+        unicode_table = sqlalchemy.Table(
+            'cjk',
+            metadata,
+            sqlalchemy.Column('id', sqlalchemy.Integer(), primary_key=True),
+            sqlalchemy.Column('char', sqlalchemy.Unicode()),
+            sqlalchemy.Column('ucn', sqlalchemy.String()),
+        )
+
+        sample_table = sqlalchemy.Table(
+            'sample_table',
+            metadata,
+            sqlalchemy.Column('id', sqlalchemy.Integer(), primary_key=True),
+            sqlalchemy.Column('char_id', sqlalchemy.ForeignKey('cjk.id')),
+            sqlalchemy.Column('value', sqlalchemy.Unicode())
+        )
+
+        metadata.create_all()
+
+        c = 0x4E00
+        char = unichr(int(c))
+        ucn = conversion.python_to_ucn(char)
+
+        unicode_table.insert().values(
+            char=char,
+            ucn=ucn
+        ).execute()
+
+        select_char = unicode_table.select().limit(1)
+        row = select_char.execute().fetchone()
+
+        sample_table.insert().values(
+            char_id=row.id,
+            value='hey'
+        ).execute()
+
+        select_char = sample_table.select().limit(1)
+        row = select_char.execute().fetchone()
+
+        print(row)
