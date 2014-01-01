@@ -21,7 +21,7 @@ import sqlalchemy
 from sqlalchemy import Table, MetaData
 
 from .helpers import TestCase, get_datafile
-from .._compat import PY2, text_type, string_types
+from .._compat import PY2, text_type, string_types, unichr
 from ..util import get_datafile
 from .. import conversion
 
@@ -128,7 +128,7 @@ def get_char_fk_multiple(*args):
 
     where_opts = sqlalchemy.or_(*where_opts)
 
-    return unicode_table.select() \
+    results = unicode_table.select() \
         .where(where_opts) \
         .execute()
 
@@ -169,7 +169,7 @@ class TableInsertFK(TestCase):
             select_char = unicode_table.select().where(unicode_table.c.char == char).limit(1)
             row = select_char.execute().fetchone()
 
-            print(row)
+            self.assertIsNotNone(row)
 
     def test_insert_on_foreign_key_multiple(self):
         chars = get_char_fk_multiple('一', '丁')
