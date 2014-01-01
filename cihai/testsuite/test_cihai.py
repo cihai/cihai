@@ -34,9 +34,9 @@ log = logging.getLogger(__name__)
 fk.
 3. Test expression from 2 can be used in a new query.
 
-Note:
-    Don't get test full integration.
-    """
+Note: Don't get test full integration.
+
+"""
 
 
 class Cihai(object):
@@ -112,6 +112,27 @@ sample_table = sqlalchemy.Table(
 metadata.create_all()
 
 
+def get_char_fk(char):
+    return unicode_table.select() \
+        .where(unicode_table.c.char == char).limit(1) \
+        .execute().fetchone().id
+
+
+def get_char_fk_multiple(*args):
+
+    where_opts = []
+    print(args)
+    for arg in args:
+        print(arg)
+        where_opts.append(unicode_table.c.char == arg)
+
+    where_opts = sqlalchemy.or_(*where_opts)
+
+    return unicode_table.select() \
+        .where(where_opts) \
+        .execute()
+
+
 class TableInsertFK(TestCase):
 
     def test_insert_row(self):
@@ -131,11 +152,6 @@ class TableInsertFK(TestCase):
 
     def test_insert_on_foreign_key(self):
 
-        def get_char_fk(char):
-            return unicode_table.select() \
-                .where(unicode_table.c.char == char).limit(1) \
-                .execute().fetchone().id
-
         for c in range(0x4E00, 0x4E00 + 2):
             char = unichr(int(c))
             ucn = conversion.python_to_ucn(char)
@@ -154,3 +170,6 @@ class TableInsertFK(TestCase):
             row = select_char.execute().fetchone()
 
             print(row)
+
+    def test_insert_on_foreign_key_multiple(self):
+        chars = get_char_fk_multiple('一', '丁')
