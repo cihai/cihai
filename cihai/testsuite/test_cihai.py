@@ -107,14 +107,15 @@ sample_table = sqlalchemy.Table(
     metadata,
     sqlalchemy.Column('id', sqlalchemy.Integer(), primary_key=True),
     sqlalchemy.Column('char_id', sqlalchemy.ForeignKey('cjk.id')),
-    sqlalchemy.Column('value', sqlalchemy.Unicode())
+    sqlalchemy.Column('value', sqlalchemy.Unicode()),
+    sqlalchemy.ForeignKeyConstraint(['id'], ['cjk.id'])
 )
 
 metadata.create_all()
 
 
 def get_char_fk(char):
-    return unicode_table.select() \
+    return unicode_table.select(unicode_table.c.id) \
         .where(unicode_table.c.char == char).limit(1) \
         .execute().fetchone().id
 
@@ -153,11 +154,8 @@ class TableInsertFK(TestCase):
             }
             if char not in chars:
                 chars.append(char)
-                unicode_table.insert().values(
-                    char=char['char'],
-                    ucn=char['ucn']
-                ).execute()
 
+            metadata.bind.execute(unicode_table.insert(), chars)
 
         cls.chars = chars
 
@@ -173,6 +171,14 @@ class TableInsertFK(TestCase):
             .execute().fetchone()
 
         self.assertEqual(row.char, cjkchar['char'])
+
+    def test_insert_bad_fk(self):
+        wat = sample_table.insert(
+            value='',
+            char_id='wat'
+        ).execute()
+
+        print(wat)
 
     def test_insert_on_foreign_key(self):
 
@@ -195,4 +201,5 @@ class TableInsertFK(TestCase):
         char_fk_multiple = get_char_fk_multiple(*[c['char'] for c in self.chars])
 
         for char in char_fk_multiple:
+
             print(char['char'])
