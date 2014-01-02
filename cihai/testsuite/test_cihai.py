@@ -14,6 +14,7 @@ from __future__ import absolute_import, division, print_function, \
 
 import os
 import tempfile
+import random
 import logging
 
 import sqlalchemy
@@ -119,11 +120,13 @@ def get_char_fk(char):
 
 
 def get_char_fk_multiple(*args):
+    """Retrieve the Rows
+
+    """
 
     where_opts = []
-    print(args)
+
     for arg in args:
-        print(arg)
         where_opts.append(unicode_table.c.char == arg)
 
     where_opts = sqlalchemy.or_(*where_opts)
@@ -132,44 +135,64 @@ def get_char_fk_multiple(*args):
         .where(where_opts) \
         .execute()
 
+    return results
+
 
 class TableInsertFK(TestCase):
 
+    @classmethod
+    def setUpClass(cls):
+        chars = []
+
+        while len(chars) < 3:
+            c = 0x4E00 + random.randint(1, 333)
+            char = {
+                'hex': c,
+                'char': unichr(int(c)),
+                'ucn': conversion.python_to_ucn(unichr(int(c)))
+            }
+            if char not in chars:
+                chars.append(char)
+                unicode_table.insert().values(
+                    char=char['char'],
+                    ucn=char['ucn']
+                ).execute()
+
+
+        cls.chars = chars
+
     def test_insert_row(self):
 
-        c = 0x4E00
-        char = unichr(int(c))
-        ucn = conversion.python_to_ucn(char)
+        cjkchar = self.chars[0]
 
-        unicode_table.insert().values(
-            char=char,
-            ucn=ucn
-        ).execute()
+        c = cjkchar['hex']
+        char = cjkchar['char']
+        ucn = cjkchar['ucn']
 
         row = unicode_table.select().limit(1) \
             .execute().fetchone()
-        self.assertEqual(row.char, '一')
+
+        self.assertEqual(row.char, cjkchar['char'])
 
     def test_insert_on_foreign_key(self):
 
-        for c in range(0x4E00, 0x4E00 + 2):
-            char = unichr(int(c))
-            ucn = conversion.python_to_ucn(char)
+        cjkchar = self.chars[0]
+        hex = cjkchar['hex']
+        char = cjkchar['char']
+        ucn = cjkchar['ucn']
 
-            unicode_table.insert().values(
-                char=char,
-                ucn=ucn
-            ).execute()
+        sample_table.insert().values(
+            char_id=get_char_fk(char),
+            value='hey'
+        ).execute()
 
-            sample_table.insert().values(
-                char_id=get_char_fk(char),
-                value='hey'
-            ).execute()
+        select_char = unicode_table.select().where(unicode_table.c.char == char).limit(1)
+        row = select_char.execute().fetchone()
 
-            select_char = unicode_table.select().where(unicode_table.c.char == char).limit(1)
-            row = select_char.execute().fetchone()
+        self.assertIsNotNone(row)
 
-            self.assertIsNotNone(row)
+    def test_get_char_foreign_key_multiple(self):
+        char_fk_multiple = get_char_fk_multiple(*[c['char'] for c in self.chars])
 
-    def test_insert_on_foreign_key_multiple(self):
-        chars = get_char_fk_multiple('一', '丁')
+        for char in char_fk_multiple:
+            print(char['char'])
