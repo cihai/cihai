@@ -43,3 +43,4 @@ cihai/data/*
 doc/_build
 
 .ropeproject
+.idea
