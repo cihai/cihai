@@ -141,6 +141,71 @@ UNIHAN_DATASETS = {
 
 }
 
+UNIHAN_URL = 'http://www.unicode.org/Public/UNIDATA/Unihan.zip'
+PACKAGE_DATA = []
+
+thisdir = os.path.join(os.path.dirname(__file__))
+
+datadir = os.path.join(thisdir, './cihai/data')
+
+if not os.path.exists(datadir):
+    os.makedirs(datadir)
+
+
+
+def _dl_progress(count, block_size, total_size):
+    """
+    MIT License: https://github.com/okfn/dpm-old/blob/master/dpm/util.py
+    """
+    def format_size(bytes):
+        if bytes > 1000 * 1000:
+            return '%.1fMb' % (bytes / 1000.0 / 1000)
+        elif bytes > 10 * 1000:
+            return '%iKb' % (bytes / 1000)
+        elif bytes > 1000:
+            return '%.1fKb' % (bytes / 1000.0)
+        else:
+            return '%ib' % bytes
+
+    if not count:
+        print('Total size: %s' % format_size(total_size))
+    last_percent = int((count - 1) * block_size * 100 / total_size)
+    # may have downloaded less if count*block_size > total_size
+    maxdownloaded = count * block_size
+    percent = min(int(maxdownloaded * 100 / total_size), 100)
+    if percent > last_percent:
+        # TODO: is this acceptable? Do we want to do something nicer?
+        sys.stdout.write(
+            '%3d%% [%s>%s]\r' % (
+                percent,
+                int(percent / 2) * '=',
+                int(50 - percent / 2) * ' '
+            )
+        )
+        sys.stdout.flush()
+    if maxdownloaded >= total_size:
+        print('\n')
+
+
+def save(url, filename):
+    urlretrieve(url, filename, _dl_progress)
+
+
+def download():
+    import zipfile
+    UNIHAN_DATAFILE = os.path.join(datadir, 'Unihan.zip')
+    if not glob.glob(os.path.join(datadir, 'Unihan*.txt')):
+        if not os.path.exists(os.path.join(datadir, 'Unihan.zip')):
+            print('Downloading Unihan.zip...')
+            save(UNIHAN_URL, UNIHAN_DATAFILE)
+        try:
+            z = zipfile.ZipFile(UNIHAN_DATAFILE)
+        except zipfile.BadZipfile as e:
+            print('%s. Unihan.zip incomplete or corrupt. Redownloading...' % e)
+            save(UNIHAN_URL, UNIHAN_DATAFILE)
+            z = zipfile.ZipFile(UNIHAN_DATAFILE)
+        z.extractall(datadir)
+
 
 class Unihan(CihaiDatabase):
 

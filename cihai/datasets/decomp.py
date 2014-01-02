@@ -9,24 +9,33 @@ cihai.datasets.decomp
 
 From: http://cjkdecomp.codeplex.com/wikipage?title=cjk-decomp&referringTitle=Home
 
-The CJK Decomposition Data File is a graphical analysis of the approx 75,000 Chinese/Japanese characters in Unicode. The latest version is 0.4.0, updated on 15 August 2012.
+The CJK Decomposition Data File is a graphical analysis of the approx 75,000
+Chinese/Japanese characters in Unicode. The latest version is 0.4.0, updated on
+15 August 2012.
 
-The download file is a utf8 text file. The data file is totally my own work, and distributed under 6 licenses, of which you only need choose one:
-the Apache software licence 2.0 http://www.apache.org/licenses/LICENSE-2.0.html
-the LGPL 3.0 licence http://www.gnu.org/licenses/lgpl.html
-the Creative Commons by SA 3.0 licence http://creativecommons.org/licenses/by-sa/3.0/legalcode
-the MIT license http://opensource.org/licenses/MIT
-the Open Data Commons Attribution License (ODC-By) v1.0 http://opendatacommons.org/licenses/by/1.0/
-the Eclipse Public License http://www.eclipse.org/legal/epl-v10.html
-The data comprises the 36 strokes (0x31c0..0x31e3), the 115 radicals (0x2e80..0x2ef3, except 0x2e9a), the 20924 unified characters (0x4e00..0x9fbb), the 12 unique characters from the compatibility range (0xf900..0xfad9), the 6582 extension A characters (0x3400..0x4db5), the 42711 extension B characters (0x20000..0x2a6d6), the 4149 extension C characters (0x2a700..0x2b734), and the 222 extension D characters (0x2b740..0x2b81d).
+The data comprises the 36 strokes (0x31c0..0x31e3), the 115 radicals
+(0x2e80..0x2ef3, except 0x2e9a), the 20924 unified characters (0x4e00..0x9fbb),
+the 12 unique characters from the compatibility range (0xf900..0xfad9), the
+6582 extension A characters (0x3400..0x4db5), the 42711 extension B characters
+(0x20000..0x2a6d6), the 4149 extension C characters (0x2a700..0x2b734), and the
+222 extension D characters (0x2b740..0x2b81d).
 
-Each record has 3 fields, viz, the character being defined, the type of decomposition, and a list of zero or more constituent components, like so:
+Each record has 3 fields, viz, the character being defined, the type of
+decomposition, and a list of zero or more constituent components, like so:
+
 的:a(白,勺)
-The character being defined and the constituent components are either a Unihan token, in the basic or a supplemental plane, or a 5-digit number representing an intermediate decomposition not in Unicode. There are approx 10,000 such intermediate decompositions.
+
+The character being defined and the constituent components are either a Unihan
+token, in the basic or a supplemental plane, or a 5-digit number representing
+an intermediate decomposition not in Unicode. There are approx 10,000 such
+intermediate decompositions.
 
 If you need a font, you can use the Hanazono font.
 
-Only pictorial configurations are used, not semantic ones. Where characters have typeface differences I've used the one provided by the Mainland Chinese contribution to Unicode. When there's more than one possible configuration, I've selected one only.
+Only pictorial configurations are used, not semantic ones. Where characters
+have typeface differences I've used the one provided by the Mainland Chinese
+contribution to Unicode. When there's more than one possible configuration,
+I've selected one only.
 
 The possible configurations and their meanings are:
 Code regex       Meaning         Number of possible constituents
@@ -41,9 +50,14 @@ d        flows downwards         >= 2
 r.*      repeats and/or reflects in some way, e.g. refh=reflect horizontally, rot=rotate 180 degrees, rrefr= repeat with a reflection rightwards, ra=repeat across, r3d=repeat 3 times downwards, r3tr=repeat in a triangle, rst=repeat surrounding around the top       1
 
 
-The s, a, d, and r codes may be followed by /t, /m, /s, or /o, to show whether the join touches, molds, snaps together, or overlaps, respectively.
+The s, a, d, and r codes may be followed by /t, /m, /s, or /o, to show whether
+the join touches, molds, snaps together, or overlaps, respectively.
 
-Some more work needs to be done, including reducing the quantity of intermediate components by removing duplicates, lowering the number of components in many sequences, reanalysis of decomposition configurations, and of course quality checking and corrections.
+Some more work needs to be done, including reducing the quantity of
+intermediate components by removing duplicates, lowering the number of
+components in many sequences, reanalysis of decomposition configurations, and
+of course quality checking and corrections.
+
 Last edited Dec 6, 2013 at 8:09 PM by gavingrover, version 3
 
 """
