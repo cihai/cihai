@@ -10,14 +10,8 @@ Unihan abstraction layer.
 """
 import os
 import sys
-import glob
-import urllib
-import time
 from setuptools import setup
-try:
-    from urllib import urlretrieve
-except:
-    from urllib.request import urlretrieve
+
 
 with open('requirements.pip') as f:
     install_reqs = [line for line in f.read().split('\n') if line]
