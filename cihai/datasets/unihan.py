@@ -13,8 +13,14 @@ from __future__ import absolute_import, division, print_function, \
     with_statement, unicode_literals
 
 import os
+import sys
+import glob
 import hashlib
 import fileinput
+try:
+    from urllib import urlretrieve
+except:
+    from urllib.request import urlretrieve
 import logging
 
 from sqlalchemy import Table, String, Column, Integer, Index, select, or_, and_
@@ -150,7 +156,6 @@ datadir = os.path.join(thisdir, './cihai/data')
 
 if not os.path.exists(datadir):
     os.makedirs(datadir)
-
 
 
 def _dl_progress(count, block_size, total_size):
@@ -430,8 +435,6 @@ class Unihan(CihaiDatabase):
         query = select([table.c.value, table.c.char, table.c.field]).where(
             table.c.field == q,
         ).where(table.c.value.like(request))
-        #import timeit
-        #print("\n\n%s\n\ntimings: %s" % (query, timeit.repeat(query.execute, number=1, repeat=5)))
 
         query = query.execute()
 
