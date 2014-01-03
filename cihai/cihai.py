@@ -100,10 +100,10 @@ class Cihai(object):
 
     """
 
-    def __init__(self, *args, **kwargs):
-        super(Cihai, self).__init__(*args, **kwargs)
+    def __init__(self, engine=None):
 
         self._middleware = []
+        self.metadata = MetaData()
 
     def use(self, middleware):
         """Add a middleware library to cihai.
