@@ -9,6 +9,8 @@
 
 ``cihai`` - China fit into a python package.
 
+Note: this is being rewritten from scratch at the moment.
+
 Attempt at building successor of the Han Character library `cjklib`_.
 
 - compatible with python 2.7+ and 3.3+.
