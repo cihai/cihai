@@ -116,12 +116,13 @@ class Cihai(object):
         """Create a Cihai instance from a JSON or YAML config.
         """
         configReader = kaptan.Kaptan()
-        configReader.import_config(config)
+        configReader.import_config(configs)
 
         default = os.path.abspath(os.path.join(
             os.path.dirname(__file__),
             "config.yaml",
         ))
+
 
     def use(self, middleware):
         """Add a middleware library to cihai.
