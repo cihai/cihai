@@ -25,6 +25,8 @@ import csv
 import logging
 import hashlib
 
+import kaptan
+
 from sqlalchemy import create_engine, MetaData, Table, String, Column, \
     Integer, Index
 
@@ -100,10 +102,26 @@ class Cihai(object):
 
     """
 
-    def __init__(self, engine=None):
+    def __init__(self, config, engine=None):
 
         self._middleware = []
         self.metadata = MetaData()
+
+    @classmethod
+    def from_cli(cls):
+        pass
+
+    @classmethod
+    def from_file(cls, *configs, **kwargs):
+        """Create a Cihai instance from a JSON or YAML config.
+        """
+        configReader = kaptan.Kaptan()
+        configReader.import_config(config)
+
+        default = os.path.abspath(os.path.join(
+            os.path.dirname(__file__),
+            "config.yaml",
+        ))
 
     def use(self, middleware):
         """Add a middleware library to cihai.
