@@ -4,9 +4,6 @@
 cihai.datasets.decomp
 ~~~~~~~~~~~~~~~~~~~~~
 
-:copyright: Copyright 2013 Tony Narlock.
-:license: BSD, see LICENSE for details
-
 From: http://cjkdecomp.codeplex.com/wikipage?title=cjk-decomp&referringTitle=Home
 
 The CJK Decomposition Data File is a graphical analysis of the approx 75,000

@@ -1,11 +1,17 @@
 # -*- coding: utf8 - *-
-"""Cihai object.
+"""
 
-cihai.cihai
-~~~~~~~~~~~
+Cihai
+-----
 
-:copyright: Copyright 2013 Tony Narlock.
-:license: BSD, see LICENSE for details
+:class:`Cihai` is a bound to :class:`sqlalchemy.schema.MetaData` - A collection
+of :class:`sqlalchemy.schema.Table`'s.
+
+An instance of ``Cihai`` may use one or more ``dataset``. The dataset
+provides a primary datasource (from the internet, or a CSV) in a format
+that is friendly to relationship databases.
+
+It install and access multiple :class:`sqlalchemy.schema.Table`.
 
 """
 
@@ -93,49 +99,6 @@ class Cihai(object):
     """Cihai query client. May use :meth:`~.get()` to grab 中文.
 
     Cihai object is inspired by `pypa/warehouse`_ Warehouse applicaton object.
-
-    ``Cihai`` is a bound to :class:`sqlalchemy.schema.MetaData` - A collection
-    of :class:`sqlalchemy.schema.Table`'s.
-
-    An instance of ``Cihai`` may use one or more ``dataset``. The dataset
-    provides a primary datasource (from the internet, or a CSV) in a format
-    that is friendly to relationship databases.
-
-    It install and access multiple :class:`sqlalchemy.schema.Table`.
-
-    Configuration
-    ~~~~~~~~~~~~~
-
-    It can accept a custom configuration file via command line with ``-c``:
-
-    .. code-block :: bash
-
-        $ python -m cihai -c myconfig.yml
-
-    Where your configuration file overrides the default settings. You can see
-    the default settings in the ``cihai`` package as ``config.yml``.
-
-    Developers may use ``dev/config.yml``. The TestCase will use the
-    ``test_config.yml``.
-
-    Usage
-    ~~~~~
-
-    Add dictionaries and datasets via :meth:`.use()`.
-
-    CLI
-    ~~~
-
-    .. code-block:: bash
-
-        $ python -m cihai
-
-    Will start up cihai with normal configuration settings. A configuration
-    file may also be used.
-
-    .. code-block:: bash
-
-        $ python -m cihai -c dev/config.yml
 
     .. _pypa/warehouse: https://github.com/pypa/warehouse
 

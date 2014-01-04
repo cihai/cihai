@@ -1,3 +1,34 @@
+Current Updates
+===============
+
+Scribblings on cihai dev.
+
+Configuration
+~~~~~~~~~~~~~
+
+It can accept a custom configuration file via command line with ``-c``:
+
+.. code-block :: bash
+
+    $ python -m cihai -c myconfig.yml
+
+Where your configuration file overrides the default settings. You can see
+the default settings in the ``cihai`` package as ``config.yml``.
+
+Developers may use ``dev/config.yml``. The TestCase will use the
+``test_config.yml``.
+
+.. code-block:: bash
+
+    $ python -m cihai
+
+Will start up cihai with normal configuration settings. A configuration
+file may also be used.
+
+.. code-block:: bash
+
+    $ python -m cihai -c dev/config.yml
+
 History of CJK libraries
 ========================
 
@@ -20,7 +51,7 @@ Unihan Inc. is the center of the universe for all glyphs. For those who study
 Egyptian hieroglyphics, which are still mysterious, they are covered in
 Unicode block `U+13000..U+1342F`_.
 
-.. _U+13000..U+1342: Fhttp://en.wikipedia.org/wiki/Egyptian_Hieroglyphs_(Unicode_block)
+.. _U+13000..U+1342F: Fhttp://en.wikipedia.org/wiki/Egyptian_Hieroglyphs_(Unicode_block)
 .. _Unihan's History: http://www.unicode.org/reports/tr38/#History
 .. _CJKXREF.TXT: http://www.unicode.org/Public/1.1-Update/CJKXREF.TXT
 .. _Unihan-1.txt: http://www.unicode.org/Public/2.0-Update/Unihan-1.txt

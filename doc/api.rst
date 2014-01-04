@@ -6,6 +6,8 @@
 API
 ===
 
+.. automodule:: cihai.cihai
+
 .. autoclass:: Cihai
     :members:
     :show-inheritance:
@@ -16,7 +18,6 @@ API
     :inherited-members:
     :show-inheritance:
 
-----------
 Conversion
 ----------
 
@@ -30,7 +31,6 @@ Conversion
 .. autofunction:: cihai.conversion.ucnstring_to_python
 .. autofunction:: cihai.conversion.ucnstring_to_unicode
 
----------
 Utilities
 ---------
 
@@ -39,7 +39,6 @@ Utilities
     :inherited-members:
     :show-inheritance:
 
---------
 Datasets
 --------
 

@@ -3,9 +3,6 @@
 cihai.conversion
 ~~~~~~~~~~~~~~~~
 
-:copyright: Copyright 2013 Tony Narlock.
-:license: BSD, see LICENSE for details
-
 Original methods and docs based upon `ltchinese`_, license `MIT`_ Steven
 Kryskalla.
 
