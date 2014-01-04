@@ -22,8 +22,9 @@ from __future__ import absolute_import, division, print_function, \
 import os
 import zipfile
 import csv
-import logging
 import hashlib
+import argparse
+import logging
 
 import kaptan
 
@@ -31,7 +32,7 @@ from sqlalchemy import create_engine, MetaData, Table, String, Column, \
     Integer, Index
 
 from . import conversion
-from .util import get_datafile
+from .util import get_datafile, merge_dict
 from ._compat import PY2, text_type, configparser
 
 log = logging.getLogger(__name__)
@@ -108,21 +109,41 @@ class Cihai(object):
         self.metadata = MetaData()
 
     @classmethod
-    def from_cli(cls):
-        pass
+    def from_file(cls, config_path=None, *args, **kwargs):
+        """Create a Cihai instance from a JSON or YAML config."""
+
+        config = dict()
+        configReader = kaptan.Kaptan()
+
+        default_path = os.path.abspath(os.path.join(
+            os.path.dirname(__file__),
+            "config.yml",
+        ))
+        default_config = configReader.import_config(default_path).get()
+
+        if config_path:
+            if not os.path.exists(config_path):
+                raise Exception('{0} does not exist.'.format(os.path.abspath(config_path)))
+            if not any(config_path.endswith(ext) for ext in ('json', 'yml', 'yaml', 'ini')):
+                raise Exception(
+                    '{0} does not have a yaml,yml,json,ini extension.'
+                    .format(os.path.abspath(config_path))
+                )
+            else:
+                custom_config = configReader.import_config(config_path).get()
+                config = merge_dict(config, default_config)
+
+        return cls(config)
 
     @classmethod
-    def from_file(cls, *configs, **kwargs):
-        """Create a Cihai instance from a JSON or YAML config.
-        """
-        configReader = kaptan.Kaptan()
-        configReader.import_config(configs)
+    def from_cli(cls, argv):
+        parser = argparse.ArgumentParser(prog="cihai")
+        parser.add_argument("-c", "--config", dest="_config")
 
-        default = os.path.abspath(os.path.join(
-            os.path.dirname(__file__),
-            "config.yaml",
-        ))
+        args = parser.parse_args(argv)
+        config = args._config if args._config is not None else None
 
+        return cls.from_file(config)
 
     def use(self, middleware):
         """Add a middleware library to cihai.
