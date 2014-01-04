@@ -201,8 +201,6 @@ class TableInsertFK(TestCase):
 class CihaiApplicationConfig(TestCase):
     """Cihai object initialization, defaults, configuration.
 
-    Cihai object is inspired by pypi/warehouse Warehouse applicatoin object.
-
     """
     def test_config_defaults(self):
         """Test config defaults."""

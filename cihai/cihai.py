@@ -92,7 +92,7 @@ class Cihai(object):
 
     """Cihai query client. May use :meth:`~.get()` to grab 中文.
 
-    Cihai object is inspired by `pypi/warehouse`_ Warehouse applicaton object.
+    Cihai object is inspired by `pypa/warehouse`_ Warehouse applicaton object.
 
     ``Cihai`` is a bound to :class:`sqlalchemy.schema.MetaData` - A collection
     of :class:`sqlalchemy.schema.Table`'s.
@@ -104,7 +104,7 @@ class Cihai(object):
     It install and access multiple :class:`sqlalchemy.schema.Table`.
 
     Configuration
-    -------------
+    ~~~~~~~~~~~~~
 
     It can accept a custom configuration file via command line with ``-c``:
 
@@ -119,12 +119,12 @@ class Cihai(object):
     ``test_config.yml``.
 
     Usage
-    -----
+    ~~~~~
 
     Add dictionaries and datasets via :meth:`.use()`.
 
     CLI
-    ---
+    ~~~
 
     .. code-block:: bash
 
@@ -137,11 +137,19 @@ class Cihai(object):
 
         $ python -m cihai -c dev/config.yml
 
+    .. _pypa/warehouse: https://github.com/pypa/warehouse
+
     """
 
     def __init__(self, config, engine=None):
+
+        #: configuration dictionary. Available as attributes. ``.config.debug``
         self.config = convert_to_attr_dict(config)
+
+        #: list of current Middleware in session
         self._middleware = []
+
+        #: :class:`sqlalchemy.schema.MetaData` object.
         self.metadata = MetaData()
 
     @classmethod

@@ -279,12 +279,12 @@ class Unihan(CihaiDatabase):
 
             .. code-block:: python
 
-            {
-                'Unihan_DictionaryIndices.txt': [
-                    'kCheungBauerIndex',
-                    'kCowles'
-                ]
-            }
+                {
+                    'Unihan_DictionaryIndices.txt': [
+                        'kCheungBauerIndex',
+                        'kCowles'
+                    ],
+                }
 
         :type csv_filename: dict
         :rtype: :class:`sqlalchemy.schema.Table`
