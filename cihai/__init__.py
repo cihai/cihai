@@ -5,7 +5,7 @@
 cihai
 ~~~~~
 
-:copyright: Copyright 2013 Tony Narlock.
+:copyright: Copyright 2013-2014 Tony Narlock.
 :license: BSD, see LICENSE for details
 
 """
@@ -13,7 +13,11 @@ cihai
 from __future__ import absolute_import, division, print_function, \
     with_statement, unicode_literals
 
+__title__ = 'cihai'
 __version__ = '0.0.1'
+__author__ = 'Tony Narlock'
+__license__ = 'BSD 3-clause'
+__copyright__ = 'Copyright 2013-2014 Tony Narlock'
 
 from . import log, util, conversion
 
