@@ -8,15 +8,15 @@ API
 
 .. automodule:: cihai.cihai
 
-.. autoclass:: Cihai
-    :members:
-    :show-inheritance:
-    :inherited-members:
+    .. autoclass:: Cihai
+        :members:
+        :show-inheritance:
+        :inherited-members:
 
-.. autoclass:: CihaiDatabase
-    :members:
-    :inherited-members:
-    :show-inheritance:
+    .. autoclass:: CihaiDatabase
+        :members:
+        :inherited-members:
+        :show-inheritance:
 
 Conversion
 ----------
