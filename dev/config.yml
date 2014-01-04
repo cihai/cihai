@@ -1,1 +1,4 @@
-engine: sqlite:///cihai/data/cihai.db
+debug: True
+
+database:
+  url: sqlite:///${data_dir}/cihai.db

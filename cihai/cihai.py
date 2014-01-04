@@ -32,7 +32,7 @@ from sqlalchemy import create_engine, MetaData, Table, String, Column, \
     Integer, Index
 
 from . import conversion
-from .util import get_datafile, merge_dict
+from .util import get_datafile, merge_dict, convert_to_attr_dict
 from ._compat import PY2, text_type, configparser
 
 log = logging.getLogger(__name__)
@@ -104,7 +104,7 @@ class Cihai(object):
     """
 
     def __init__(self, config, engine=None):
-
+        self.config = convert_to_attr_dict(config)
         self._middleware = []
         self.metadata = MetaData()
 

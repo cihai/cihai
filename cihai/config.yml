@@ -1,0 +1,4 @@
+debug: False
+
+database:
+  url: sqlite:///${data_dir}/cihai.db

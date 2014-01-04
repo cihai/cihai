@@ -24,6 +24,7 @@ from sqlalchemy import Table, MetaData
 from .helpers import TestCase, get_datafile
 from .._compat import PY2, text_type, string_types, unichr
 from ..util import get_datafile
+from .. import Cihai
 from .. import conversion
 
 log = logging.getLogger(__name__)
@@ -38,14 +39,6 @@ fk.
 Note: Don't get test full integration.
 
 """
-
-
-class Cihai(object):
-
-    """the Cihai object."""
-
-    def __init__(self):
-        pass
 
 
 class FixturesTest(TestCase):
@@ -203,3 +196,8 @@ class TableInsertFK(TestCase):
         for char in char_fk_multiple:
 
             print(char['char'])
+
+
+class test_basic(TestCase):
+    def test_hi(self):
+        self.assertEqual(2, 2)

@@ -1,1 +1,4 @@
-engine: sqlite:///:memory:
+debug: True
+
+database:
+  url: sqlite:///:memory:
