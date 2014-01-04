@@ -30,7 +30,7 @@ import kaptan
 from sqlalchemy import create_engine, MetaData, Table, String, Column, \
     Integer, Index
 
-from . import conversion
+from . import conversion, exc
 from .util import get_datafile, merge_dict, convert_to_attr_dict
 from ._compat import PY2, text_type, configparser
 
@@ -42,9 +42,6 @@ cihai_db = get_datafile('cihai.db')
 engine = create_engine('sqlite:///:memory:')
 meta = MetaData()
 
-
-class NoDatasets(Exception):
-    """Attempted to request data from Cihai without picking a dataset."""
 
 
 class CihaiDatabase(object):
@@ -172,7 +169,7 @@ class Cihai(object):
         """
 
         if not self._middleware:
-            raise NoDatasets
+            raise exc.NoDatasets
 
         response = {}
 
@@ -194,7 +191,7 @@ class Cihai(object):
         """
 
         if not self._middleware:
-            raise NoDatasets
+            raise exc.NoDatasets
 
         response = {}
 
