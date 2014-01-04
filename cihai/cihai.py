@@ -4,13 +4,6 @@
 cihai.cihai
 ~~~~~~~~~~~
 
-``Cihai`` is a bound to :class:`sqlalchemy.schema.MetaData` - A collection of
-Table objects.
-
-A dataset for Cihai is represented as a :class:`sqlalchemy.schema.Table`.
-
-A dataset is a python package of data (from the internet, or a CSV).
-
 :copyright: Copyright 2013 Tony Narlock.
 :license: BSD, see LICENSE for details
 
@@ -101,6 +94,18 @@ class Cihai(object):
 
     Cihai object is inspired by `pypi/warehouse`_ Warehouse applicaton object.
 
+    ``Cihai`` is a bound to :class:`sqlalchemy.schema.MetaData` - A collection
+    of :class:`sqlalchemy.schema.Table`'s.
+
+    An instance of ``Cihai`` may use one or more ``dataset``. The dataset
+    provides a primary datasource (from the internet, or a CSV) in a format
+    that is friendly to relationship databases.
+
+    It install and access multiple :class:`sqlalchemy.schema.Table`.
+
+    Configuration
+    -------------
+
     It can accept a custom configuration file via command line with ``-c``:
 
     .. code-block :: bash
@@ -113,7 +118,24 @@ class Cihai(object):
     Developers may use ``dev/config.yml``. The TestCase will use the
     ``test_config.yml``.
 
+    Usage
+    -----
+
     Add dictionaries and datasets via :meth:`.use()`.
+
+    CLI
+    ---
+
+    .. code-block:: bash
+
+        $ python -m cihai
+
+    Will start up cihai with normal configuration settings. A configuration
+    file may also be used.
+
+    .. code-block:: bash
+
+        $ python -m cihai -c dev/config.yml
 
     """
 
