@@ -99,6 +99,20 @@ class Cihai(object):
 
     """Cihai query client. May use :meth:`~.get()` to grab 中文.
 
+    Cihai object is inspired by `pypi/warehouse`_ Warehouse applicaton object.
+
+    It can accept a custom configuration file via command line with ``-c``:
+
+    .. code-block :: bash
+
+        $ python -m cihai -c myconfig.yml
+
+    Where your configuration file overrides the default settings. You can see
+    the default settings in the ``cihai`` package as ``config.yml``.
+
+    Developers may use ``dev/config.yml``. The TestCase will use the
+    ``test_config.yml``.
+
     Add dictionaries and datasets via :meth:`.use()`.
 
     """
@@ -119,7 +133,7 @@ class Cihai(object):
             os.path.dirname(__file__),
             "config.yml",
         ))
-        default_config = configReader.import_config(default_path).get()
+        config = configReader.import_config(default_path).get()
 
         if config_path:
             if not os.path.exists(config_path):
@@ -131,7 +145,7 @@ class Cihai(object):
                 )
             else:
                 custom_config = configReader.import_config(config_path).get()
-                config = merge_dict(config, default_config)
+                config = merge_dict(config, custom_config)
 
         return cls(config)
 

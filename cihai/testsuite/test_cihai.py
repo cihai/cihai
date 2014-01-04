@@ -198,6 +198,35 @@ class TableInsertFK(TestCase):
             print(char['char'])
 
 
-class test_basic(TestCase):
-    def test_hi(self):
-        self.assertEqual(2, 2)
+class CihaiApplicationConfig(TestCase):
+    """Cihai object initialization, defaults, configuration.
+
+    Cihai object is inspired by pypi/warehouse Warehouse applicatoin object.
+
+    """
+    def test_config_defaults(self):
+        """Test config defaults."""
+
+        cihai = Cihai.from_file()
+
+        self.assertTrue(hasattr(cihai.config, 'debug'))
+        self.assertFalse(cihai.config.debug)
+
+    def test_config_dict_args(self):
+        """Accepts dict as config."""
+
+        cihai = Cihai({
+            'hello': 'world'
+        })
+
+        self.assertEqual(cihai.config.hello, 'world')
+
+    def test_yaml_config_and_override(self):
+        config = os.path.abspath(os.path.join(
+            os.path.dirname(__file__),
+            'test_config.yml'
+        ))
+
+        cihai = Cihai.from_cli(['-c', config])
+
+        self.assertTrue(cihai.config.debug)

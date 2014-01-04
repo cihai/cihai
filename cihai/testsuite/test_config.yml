@@ -1,0 +1,4 @@
+debug: True
+
+database:
+  url: 'sqlite:///:memory:'

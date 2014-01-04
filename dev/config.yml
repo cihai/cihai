@@ -1,4 +1,4 @@
 debug: True
 
 database:
-  url: sqlite:///${data_dir}/cihai.db
+  url: 'sqlite:///${data_dir}/cihai.db'
