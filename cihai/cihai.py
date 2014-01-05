@@ -38,16 +38,15 @@ log = logging.getLogger(__name__)
 
 cihai_config = get_datafile('cihai.conf')
 cihai_db = get_datafile('cihai.db')
-#engine = create_engine('sqlite:///%s' % cihai_db, echo=False)
-engine = create_engine('sqlite:///:memory:')
-meta = MetaData()
+"""
+Todo:
 
+- have get_datafile work in accordance with data_path.
+"""
 
 
 class CihaiDatabase(object):
-    """SQLAlchemy session data for cihai. Metadata is global."""
-
-    _metadata = meta
+    """Mixin generic sqlalchemy yum-yums for relational data."""
 
     def __init__(self, engine=None):
         """Initialize CihaiDatabase back-end.
@@ -86,6 +85,7 @@ class CihaiDatabase(object):
         return Table(table_name, self.metadata, autoload=True)
 
     def table_exists(self, table_name):
+
         """Return True if table exists in db."""
 
         return True if table_name in self.metadata.tables else False
@@ -108,6 +108,11 @@ class Cihai(object):
 
         #: list of current Middleware in session
         self._middleware = []
+
+        if engine is None and self.config.get('database', {}).get('url'):
+            engine = create_engine(self.config.database.url)
+        #: :class:`sqlalchemy.engine.Engine` instance.
+        self.engine = engine
 
         #: :class:`sqlalchemy.schema.MetaData` object.
         self.metadata = MetaData()
