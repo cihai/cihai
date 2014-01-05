@@ -1,19 +1,5 @@
 # -*- coding: utf8 - *-
-"""
-
-Cihai
------
-
-:class:`Cihai` is a bound to :class:`sqlalchemy.schema.MetaData` - A collection
-of :class:`sqlalchemy.schema.Table`'s.
-
-An instance of ``Cihai`` may use one or more ``dataset``. The dataset
-provides a primary datasource (from the internet, or a CSV) in a format
-that is friendly to relationship databases.
-
-It install and access multiple :class:`sqlalchemy.schema.Table`.
-
-"""
+"""Cihai client object."""
 
 from __future__ import absolute_import, division, print_function, \
     with_statement, unicode_literals
