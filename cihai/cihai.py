@@ -16,7 +16,7 @@ import kaptan
 from sqlalchemy import create_engine, MetaData, Table, String, Column, \
     Integer, Index
 
-from . import conversion, exc
+from . import conversion, exc, db
 from .util import get_datafile, merge_dict, convert_to_attr_dict
 from ._compat import PY2, text_type, configparser
 
@@ -42,22 +42,22 @@ class CihaiDatabase(object):
 
         """
 
-        self._engine = engine
+    # @property
+    # def metadata(self):
+        # """Return global metadata object, reflect tables.
 
-    @property
-    def metadata(self):
-        """Return global metadata object, reflect tables.
+        # :rtype: :class:`sqlalchemy.schema.MetaData`
 
-        :rtype: :class:`sqlalchemy.schema.MetaData`
+        # """
 
-        """
+        # if not self._metadata.bind:
+            # # No engine binded yet, bind and reflect tables.
+            # self._metadata.bind = self._engine
+            # self._metadata.reflect()
 
-        if not self._metadata.bind:
-            # No engine binded yet, bind and reflect tables.
-            self._metadata.bind = self._engine
-            self._metadata.reflect()
+        # return self._metadata
 
-        return self._metadata
+    metadata = db.metadata
 
     def get_table(self, table_name):
         """Return :class:`~sqlalchemy.schema.Table`.
@@ -101,7 +101,7 @@ class Cihai(object):
         self.engine = engine
 
         #: :class:`sqlalchemy.schema.MetaData` object.
-        self.metadata = MetaData()
+        self.metadata = db.metadata
 
     @classmethod
     def from_file(cls, config_path=None, *args, **kwargs):
