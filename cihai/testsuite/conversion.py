@@ -12,6 +12,7 @@ from __future__ import absolute_import, division, print_function, \
 import os
 import tempfile
 import logging
+import unittest
 
 from .helpers import TestCase
 from .._compat import PY2, text_type, string_types
@@ -151,3 +152,11 @@ class EUC(TestCase):
 
         self.assertEqual(text, expected)
         self.assertEqual(python_unicode, expected)
+
+
+def suite():
+    suite = unittest.TestSuite()
+    suite.addTest(unittest.makeSuite(EUC))
+    suite.addTest(unittest.makeSuite(UCN))
+    suite.addTest(unittest.makeSuite(Util))
+    return suite

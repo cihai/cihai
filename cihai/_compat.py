@@ -27,6 +27,21 @@ if not PY2:
 
     cmp = lambda a, b: (a > b) - (a < b)
 
+    input = input
+    from string import ascii_lowercase
+    import urllib.parse as urllib
+    import urllib.parse as urlparse
+
+    exec('def reraise(tp, value, tb=None):\n raise(tp, value, tb)')
+
+    console_encoding = sys.__stdout__.encoding
+
+    def console_to_str(s):
+        """ From pypa/pip project, pip.backwardwardcompat. License MIT. """
+        try:
+            return s.decode(console_encoding)
+        except UnicodeDecodeError:
+            return s.decode('utf_8')
 else:
     text_type = unicode
     string_types = (str, unicode)
@@ -48,6 +63,18 @@ else:
     range_type = xrange
 
     cmp = cmp
+
+    input = raw_input
+    from string import lower as ascii_lowercase
+    import urlparse
+
+    def console_to_str(s):
+        return s.decode('utf_8')
+
+    def reraise(tp, value, tb=None):
+        if value.__traceback__ is not tb:
+            raise(value.with_traceback(tb))
+        raise value
 
 
 number_types = integer_types + (float,)

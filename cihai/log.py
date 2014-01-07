@@ -12,8 +12,8 @@ from __future__ import absolute_import, division, print_function, \
 import logging
 import time
 
-from ._vendor.colorama import init
-from ._vendor.colorama import Fore, Back, Style
+from ._vendor import colorama
+from ._vendor.colorama import init, Fore, Back, Style
 
 LEVEL_COLORS = {
     'DEBUG': Fore.BLUE,  # Blue
@@ -33,23 +33,23 @@ def default_log_template(self, record):
     """
 
     reset = Style.RESET_ALL
-    levelname = (
-        LEVEL_COLORS.get(record.levelname) + Style.BRIGHT +
-        '(%(levelname)s)'
-        + Style.RESET_ALL + ' '
-    )
-    asctime = (
-        '[' + Fore.BLACK + Style.DIM + Style.BRIGHT +
-        '%(asctime)s'
-        + Fore.RESET + Style.RESET_ALL + ']'
-    )
-    name = (
-        ' ' + Fore.WHITE + Style.DIM + Style.BRIGHT +
-        '%(name)s'
-        + Fore.RESET + Style.RESET_ALL + ' '
-    )
+    levelname = [
+        LEVEL_COLORS.get(record.levelname), Style.BRIGHT,
+        '(%(levelname)s)',
+        Style.RESET_ALL, ' '
+    ]
+    asctime = [
+        '[', Fore.BLACK, Style.DIM, Style.BRIGHT,
+        '%(asctime)s',
+        Fore.RESET, Style.RESET_ALL, ']'
+    ]
+    name = [
+        ' ', Fore.WHITE, Style.DIM, Style.BRIGHT,
+        '%(name)s',
+        Fore.RESET, Style.RESET_ALL, ' '
+    ]
 
-    tpl = reset + levelname + asctime + name + reset
+    tpl = "".join(reset + levelname + asctime + name + reset)
 
     return tpl
 
@@ -87,31 +87,32 @@ def debug_log_template(self, record):
     """
 
     reset = Style.RESET_ALL
-    levelname = (
-        LEVEL_COLORS.get(record.levelname) + Style.BRIGHT +
-        '(%(levelname)1.1s)'
-        + Style.RESET_ALL + ' '
-    )
-    asctime = (
-        '[' + Fore.BLACK + Style.DIM + Style.BRIGHT +
-        '%(asctime)s'
-        + Fore.RESET + Style.RESET_ALL + ']'
-    )
-    name = (
-        ' ' + Fore.WHITE + Style.DIM + Style.BRIGHT +
-        '%(name)s'
-        + Fore.RESET + Style.RESET_ALL + ' '
-    )
-    module_funcName = (
-        Fore.GREEN + Style.BRIGHT +
+    levelname = [
+        LEVEL_COLORS.get(record.levelname), Style.BRIGHT,
+        '(%(levelname)1.1s)',
+        Style.RESET_ALL, ' '
+    ]
+    asctime = [
+        '[', Fore.BLACK, Style.DIM, Style.BRIGHT,
+        '%(asctime)s', Fore.RESET, Style.RESET_ALL, ']'
+    ]
+    name = [
+        ' ', Fore.WHITE, Style.DIM, Style.BRIGHT,
+        '%(name)s',
+        Fore.RESET, Style.RESET_ALL, ' '
+    ]
+    module_funcName = [
+        Fore.GREEN, Style.BRIGHT,
         '%(module)s.%(funcName)s()'
-    )
-    lineno = (
-        Fore.BLACK + Style.DIM + Style.BRIGHT + ':' + Style.RESET_ALL +
-        Fore.CYAN + '%(lineno)d'
-    )
+    ]
+    lineno = [
+        Fore.BLACK, Style.DIM, Style.BRIGHT, ':', Style.RESET_ALL,
+        Fore.CYAN, '%(lineno)d'
+    ]
 
-    tpl = reset + levelname + asctime + name + module_funcName + lineno + reset
+    tpl = ''.join(
+        reset + levelname + asctime + name + module_funcName + lineno + reset
+    )
 
     return tpl
 
@@ -121,16 +122,3 @@ class DebugLogFormatter(LogFormatter):
     """Provides greater technical details than standard log Formatter."""
 
     template = debug_log_template
-
-
-class RepoLogFormatter(LogFormatter):
-
-    def template(self, record):
-        return '%s|%s| %s(%s) %s' % (
-            Fore.GREEN + Style.DIM,
-            record.repo_name,
-            Fore.YELLOW,
-            record.repo_vcs,
-            Fore.RESET
-        )
-

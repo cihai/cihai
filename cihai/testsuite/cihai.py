@@ -13,6 +13,7 @@ import os
 import tempfile
 import random
 import logging
+import unittest
 
 import sqlalchemy
 
@@ -225,3 +226,12 @@ class CihaiApplicationConfig(TestCase):
         cihai = Cihai.from_cli(['-c', config])
 
         self.assertTrue(cihai.config.debug)
+
+
+def suite():
+    suite = unittest.TestSuite()
+    suite.addTest(unittest.makeSuite(CihaiApplicationConfig))
+    suite.addTest(unittest.makeSuite(FixturesTest))
+    suite.addTest(unittest.makeSuite(InitialUnicode))
+    suite.addTest(unittest.makeSuite(TableInsertFK))
+    return suite
