@@ -56,9 +56,9 @@ the world - why hinder it with a minefield a caveats?
 
 The success of open source efforts isn't a product of rules, but a result
 of fast computers, fast internet, convenient developer tools, brain power,
-and a community of self-interested / passionate individuals with the
-self-descipline learning programming who had the courage and desire to
-help a creation they found. Success feeds off itself.
+and a community of self-interested / passionate individuals who put in the
+hours and had the descipline to learn programming who had the courage and
+desire to help.
 
 Case study: iPython
 ~~~~~~~~~~~~~~~~~~~
