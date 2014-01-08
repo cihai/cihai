@@ -13,7 +13,7 @@ API
         :show-inheritance:
         :inherited-members:
 
-    .. autoclass:: CihaiDatabase
+    .. autoclass:: CihaiDataset
         :members:
         :inherited-members:
         :show-inheritance:

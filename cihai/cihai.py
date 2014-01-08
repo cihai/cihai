@@ -34,13 +34,22 @@ Todo:
 class CihaiDataset(object):
     """Mixin generic sqlalchemy yum-yums for relational data."""
 
-    def __init__(self, engine=None):
+    def __init__(self, cihai, data_path, engine, metadata):
         """Initialize CihaiDatabase back-end.
 
         :param engine: engine to connect to database with.
         :param type:class:`sqlalchemy.engine.Engine`
 
         """
+
+        #: :class:`Cihai` application object.
+        self.cihai = cihai
+
+        #: absolute path of data packages.
+        self.data_path = data_path
+
+        #: :class:`sqlalchemy.schema.MetaData` instance.
+        self.metadata = metadata
 
     # @property
     # def metadata(self):
@@ -56,8 +65,6 @@ class CihaiDataset(object):
             # self._metadata.reflect()
 
         # return self._metadata
-
-    metadata = db.metadata
 
     def get_table(self, table_name):
         """Return :class:`~sqlalchemy.schema.Table`.
@@ -78,7 +85,7 @@ class CihaiDataset(object):
 
     def get_datapath(filename):
 
-        """Return absolute filepath in relation to :attr:``~.config.data_path`.
+        """Return absolute filepath in relation to :attr:`self.data_path`.
         """
         pass
 
@@ -95,18 +102,24 @@ class Cihai(object):
 
     def __init__(self, config, engine=None):
 
+        #: list of current datasets in session
+        self.datasets = []
+
         #: configuration dictionary. Available as attributes. ``.config.debug``
         self.config = convert_to_attr_dict(config)
 
-        #: list of current datasets in session
-        self.datasets = []
+        #: absolute path to cihai data files.
+        if not self.config.get('data_path'):
+            self.config['data_path'] = os.path.abspath(os.path.join(
+                os.path.dirname(__file__),
+            ))
 
         if engine is None and self.config.get('database', {}).get('url'):
             engine = create_engine(self.config.database.url)
         #: :class:`sqlalchemy.engine.Engine` instance.
         self.engine = engine
 
-        #: :class:`sqlalchemy.schema.MetaData` object.
+        #: :class:`sqlalchemy.schema.MetaData` instance.
         self.metadata = db.metadata
 
     @classmethod
@@ -162,14 +175,16 @@ class Cihai(object):
 
         dataset = Dataset(
             self,
-            *args,
-            data_path=self.config.data_path,
-            engine=self.config.engine,
-            metadata=self.config.metadata
+            self.config.data_path,
+            self.engine,
+            self.metadata,
+            *args, **kwargs
         )
 
         if not dataset in self.datasets:
             self.datasets.append(dataset)
+
+        return dataset
 
     def get(self, request, *args, **kwargs):
         """Return results datasets.

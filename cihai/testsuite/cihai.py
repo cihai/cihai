@@ -196,6 +196,23 @@ class TableInsertFK(TestCase):
             print(char['char'])
 
 
+
+
+class CihaiTestCase(TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.config = os.path.abspath(os.path.join(
+            os.path.dirname(__file__),
+            'test_config.yml'
+        ))
+
+        return cls
+
+    def setUp(self):
+        self.cihai = Cihai.from_file(self.config)
+
+
+
 class CihaiApplicationConfig(TestCase):
     """Cihai object initialization, defaults, configuration.
 
@@ -228,18 +245,13 @@ class CihaiApplicationConfig(TestCase):
         self.assertTrue(cihai.config.debug)
 
 
-class CihaiDatasetTest(TestCase):
+class CihaiAppDataPath(TestCase):
+    """Test default data_path from config."""
 
-    @classmethod
-    def setUpClass(cls):
-        cls.config = os.path.abspath(os.path.join(
-            os.path.dirname(__file__),
-            'test_config.yml'
-        ))
+    pass
 
-        cls.cihai = Cihai.from_file(cls.config)
 
-        return cls
+class CihaiDatasetTest(CihaiTestCase):
 
     def test_cihai_database_uses_same_metadata(self):
         """CihaiDataset subclasses uses the same MetaData instance."""
@@ -248,13 +260,18 @@ class CihaiDatasetTest(TestCase):
             def hey(self):
                 pass
 
-        mydataset = MyDB()
+            def __init__(self, *args, **kwargs):
+                CihaiDataset.__init__(self, *args, **kwargs)
+
+        c = self.cihai
+        mydataset = c.use(MyDB)
         self.assertEqual(mydataset.metadata, self.cihai.metadata)
 
 
 def suite():
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(CihaiApplicationConfig))
+    suite.addTest(unittest.makeSuite(CihaiDatasetTest))
     suite.addTest(unittest.makeSuite(FixturesTest))
     suite.addTest(unittest.makeSuite(InitialUnicode))
     suite.addTest(unittest.makeSuite(TableInsertFK))
