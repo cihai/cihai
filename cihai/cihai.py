@@ -34,7 +34,7 @@ Todo:
 class CihaiDataset(object):
     """Mixin generic sqlalchemy yum-yums for relational data."""
 
-    def __init__(self, cihai, data_path, engine, metadata):
+    def __init__(self, cihai, engine, metadata):
         """Initialize CihaiDatabase back-end.
 
         :param engine: engine to connect to database with.
@@ -45,8 +45,8 @@ class CihaiDataset(object):
         #: :class:`Cihai` application object.
         self.cihai = cihai
 
-        #: absolute path of data packages.
-        self.data_path = data_path
+        #: :class:`sqlalchemy.engine.Engine` instance.
+        self.engine = engine
 
         #: :class:`sqlalchemy.schema.MetaData` instance.
         self.metadata = metadata
@@ -83,10 +83,17 @@ class CihaiDataset(object):
 
         return True if table_name in self.metadata.tables else False
 
-    def get_datapath(filename):
+    def get_datapath(self, filename):
 
-        """Return absolute filepath in relation to :attr:`self.data_path`.
-        """
+        """Return absolute filepath in relation to :attr:`self.data_path`."""
+
+        if self.cihai.config.get('data_path'):
+            data_path = self.cihai.config.get('data_path')
+        else:
+            data_path = os.path.abspath(os.path.join(
+                os.path.dirname(__file__),
+            ))
+
         pass
 
 
@@ -175,7 +182,6 @@ class Cihai(object):
 
         dataset = Dataset(
             self,
-            self.config.data_path,
             self.engine,
             self.metadata,
             *args, **kwargs

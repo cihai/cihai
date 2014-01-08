@@ -196,8 +196,6 @@ class TableInsertFK(TestCase):
             print(char['char'])
 
 
-
-
 class CihaiTestCase(TestCase):
     @classmethod
     def setUpClass(cls):
@@ -210,7 +208,6 @@ class CihaiTestCase(TestCase):
 
     def setUp(self):
         self.cihai = Cihai.from_file(self.config)
-
 
 
 class CihaiApplicationConfig(TestCase):
