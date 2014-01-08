@@ -60,28 +60,28 @@ and a community of self-interested / passionate individuals who put in the
 hours and had the descipline to learn programming who had the courage and
 desire to help.
 
-Case study: iPython
+Case study: IPython
 ~~~~~~~~~~~~~~~~~~~
 
-This is an observation and doesn't infer endorsement by ipython or its
+This is an observation and doesn't infer endorsement by IPython or its
 contributors. 
 
 There is no requirement for providing an open source derivitive (or an
-upstream patch) for a modification, so does ipython development go stale?
+upstream patch) for a modification, so does IPython development go stale?
 `93 pages of patches`_ committed to the project.
 
 There is no requirement restricting large corporations from using them and
-giving nothing back, `Microsoft donated $100K to iPython`_.
+giving nothing back, `Microsoft donated $100K to IPython`_.
 
 Perhaps academic institutions will snub them for using a permissive
 license? The core developers are academics.
 
 Perhaps non-profits will snub them for not using a permissive license?
-`iPython gets a $1.15M sloan foundation grant`_.
+`IPython gets a $1.15M sloan foundation grant`_.
 
 .. _93 pages of patches: https://github.com/ipython/ipython/pulls?direction=desc&page=1&sort=created&state=closed
-.. _iPython gets a $1.15M Sloan foundation grant: http://ipython.org/sloan-grant.html
-.. _Microsoft donated $100K to iPython: http://ipython.org/microsoft-donation-2013.html
+.. _IPython gets a $1.15M Sloan foundation grant: http://ipython.org/sloan-grant.html
+.. _Microsoft donated $100K to IPython: http://ipython.org/microsoft-donation-2013.html
 
 Conclusion
 ----------
