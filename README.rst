@@ -9,8 +9,6 @@
 
 ``cihai`` - China fit into a python package.
 
-Note: this is being rewritten from scratch at the moment.
-
 Attempt at building successor of the Han Character library `cjklib`_.
 
 - compatible with python 2.7+ and 3.3+.
@@ -23,11 +21,33 @@ Attempt at building successor of the Han Character library `cjklib`_.
 Being built against unit tests. See the `Travis Builds`_ and
 `Revision History`_.
 
+See `Internals`_ for design philosophy.
+
+Have a CJK dataset? Why you should consider `permissively licensing your
+dataset`_.
+
+Note: this is being rewritten from scratch at the moment. This is still in
+alpha and undergoing active development.
+
+Future results
+--------------
+
+- Future versions will allow deeper introspection into results:
+
+  - Multiple characters words
+  - Phrases
+  - Mispellings / similar shapes
+  - Sorting results by usage, stroke
+  - Breaking strings of characters into words
+  - More datasets
+
 .. _Travis Builds: https://travis-ci.org/tony/cihai/builds
 .. _Revision History: https://github.com/tony/cihai/commits/master
 .. _cjklib: http://cjklib.org/0.3/
 .. _current datasets: http://cihai.readthedocs.org/en/latest/api.html#datasets
 .. _Extending: http://cihai.readthedocs.org/en/latest/extending.html
+.. _permissively licensing your dataset: http://cihai.readthedocs.org/en/latest/information_liberation.html
+.. _Internals: http://cihai.readthedocs.org/en/latest/internals.html
 
 ==============  ==========================================================
 Python support  Python 2.7, >= 3.3

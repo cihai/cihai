@@ -14,5 +14,7 @@ China in a python package.
 
     api
     extending
+    internals
+    information_liberation
     history
     roadmap
