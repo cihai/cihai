@@ -31,7 +31,7 @@ Todo:
 """
 
 
-class CihaiDatabase(object):
+class CihaiDataset(object):
     """Mixin generic sqlalchemy yum-yums for relational data."""
 
     def __init__(self, engine=None):
@@ -76,6 +76,12 @@ class CihaiDatabase(object):
 
         return True if table_name in self.metadata.tables else False
 
+    def get_datapath(filename):
+
+        """Return absolute filepath in relation to :attr:``~.config.data_path`.
+        """
+        pass
+
 
 class Cihai(object):
 
@@ -92,8 +98,8 @@ class Cihai(object):
         #: configuration dictionary. Available as attributes. ``.config.debug``
         self.config = convert_to_attr_dict(config)
 
-        #: list of current Middleware in session
-        self._middleware = []
+        #: list of current datasets in session
+        self.datasets = []
 
         if engine is None and self.config.get('database', {}).get('url'):
             engine = create_engine(self.config.database.url)
@@ -140,18 +146,33 @@ class Cihai(object):
 
         return cls.from_file(config)
 
-    def use(self, middleware):
-        """Add a middleware library to cihai.
+    def use(self, Dataset, *args, **kwargs):
+        """Add a dataset to cihai instance.
 
-        This is based off connect's version of adding middleware.
+        This is inspired by connect's datasets and pypa/warehouse keeping
+        application instances the same ``self`` in the application object.
+
+        ``use`` will pass ``*args`` (positional arguments) and ``**kwargs``
+        (keyword arguments) into the dataset.
+
+        :param Dataset: class for dataset object
+        :type dataset: :class:`CihaiDataset`
 
         """
 
-        if not middleware in self._middleware:
-            self._middleware.append(middleware)
+        dataset = Dataset(
+            self,
+            *args,
+            data_path=self.config.data_path,
+            engine=self.config.engine,
+            metadata=self.config.metadata
+        )
+
+        if not dataset in self.datasets:
+            self.datasets.append(dataset)
 
     def get(self, request, *args, **kwargs):
-        """Return results middleware.
+        """Return results datasets.
 
         :param request: request / input data
         :type request: string
@@ -159,12 +180,12 @@ class Cihai(object):
 
         """
 
-        if not self._middleware:
+        if not self.datasets:
             raise exc.NoDatasets
 
         response = {}
 
-        for m in self._middleware:
+        for m in self.datasets:
             if hasattr(m, 'get'):
                 response = m.get(request, response, *args, **kwargs)
             if not response:
@@ -173,7 +194,7 @@ class Cihai(object):
         return response
 
     def reverse(self, request, *args, **kwargs):
-        """Return results if exists in middleware.
+        """Return results if exists in datasets.
 
         :param request: request / input data
         :type request: string
@@ -181,12 +202,12 @@ class Cihai(object):
 
         """
 
-        if not self._middleware:
+        if not self.datasets:
             raise exc.NoDatasets
 
         response = {}
 
-        for m in self._middleware:
+        for m in self.datasets:
             if hasattr(m, 'reverse'):
                 response = m.reverse(request, response, *args, **kwargs)
             if not response:

@@ -23,7 +23,7 @@ import logging
 from sqlalchemy import Table, String, Column, Integer, Index, select, or_, and_
 
 from .. import conversion
-from ..cihai import cihai_config, cihai_db, CihaiDatabase
+from ..cihai import cihai_config, cihai_db, CihaiDataset
 from ..util import get_datafile, UnicodeReader
 from .._compat import PY2, text_type, configparser
 
@@ -209,7 +209,7 @@ def download():
         z.extractall(datadir)
 
 
-class Unihan(CihaiDatabase):
+class Unihan(CihaiDataset):
 
     """Cihai dataset for `Unihan`_, Han Unification from Unicode, Inc.
 

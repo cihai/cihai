@@ -47,4 +47,4 @@ __copyright__ = 'Copyright 2013-2014 Tony Narlock'
 
 from . import log, util, conversion
 
-from .cihai import Cihai, CihaiDatabase
+from .cihai import Cihai, CihaiDataset

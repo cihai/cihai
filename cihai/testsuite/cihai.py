@@ -22,7 +22,7 @@ from sqlalchemy import Table, MetaData
 from .helpers import TestCase, get_datafile
 from .._compat import PY2, text_type, string_types, unichr
 from ..util import get_datafile
-from .. import Cihai, CihaiDatabase
+from .. import Cihai, CihaiDataset
 from .. import conversion
 
 log = logging.getLogger(__name__)
@@ -228,7 +228,7 @@ class CihaiApplicationConfig(TestCase):
         self.assertTrue(cihai.config.debug)
 
 
-class CihaiDatabaseTest(TestCase):
+class CihaiDatasetTest(TestCase):
 
     @classmethod
     def setUpClass(cls):
@@ -242,9 +242,9 @@ class CihaiDatabaseTest(TestCase):
         return cls
 
     def test_cihai_database_uses_same_metadata(self):
-        """CihaiDatabase subclasses uses the same MetaData instance."""
+        """CihaiDataset subclasses uses the same MetaData instance."""
 
-        class MyDB(CihaiDatabase):
+        class MyDB(CihaiDataset):
             def hey(self):
                 pass
 
