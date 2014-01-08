@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """Tests for cihai.
 
-cihai.testsuite.test_conversion
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+cihai.testsuite.conversion
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 """
 

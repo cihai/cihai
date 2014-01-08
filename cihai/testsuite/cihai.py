@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """Tests for cihai.
 
-cihai.testsuite.test_cihai
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+cihai.testsuite.cihai
+~~~~~~~~~~~~~~~~~~~~~
 
 """
 
@@ -18,6 +18,8 @@ import unittest
 import sqlalchemy
 
 from sqlalchemy import Table, MetaData
+
+import cihai
 
 from .helpers import TestCase, get_datafile
 from .._compat import PY2, text_type, string_types, unichr
@@ -64,6 +66,14 @@ cjk_ranges = {
     'CJK Compatibility Forms': range(0xFE30, 0xFE4F + 1),
     'Yijing Hexagram Symbols': range(0x4DC0, 0x4DFF + 1)
 }
+
+
+class MyDataset(CihaiDataset):
+    def hey(self):
+        pass
+
+    def __init__(self, *args, **kwargs):
+        CihaiDataset.__init__(self, *args, **kwargs)
 
 
 class InitialUnicode(TestCase):
@@ -225,11 +235,15 @@ class CihaiApplicationConfig(TestCase):
     def test_config_dict_args(self):
         """Accepts dict as config."""
 
+        expected = 'world'
+
         cihai = Cihai({
-            'hello': 'world'
+            'hello': expected
         })
 
-        self.assertEqual(cihai.config.hello, 'world')
+        result = cihai.config.hello
+
+        self.assertEqual(result, expected)
 
     def test_yaml_config_and_override(self):
         config = os.path.abspath(os.path.join(
@@ -241,11 +255,33 @@ class CihaiApplicationConfig(TestCase):
 
         self.assertTrue(cihai.config.debug)
 
+    def test_data_path_default(self):
+
+        expected = os.path.abspath(os.path.join(
+            os.path.dirname(cihai.__file__),
+            'data/'
+        ))
+
+        c = Cihai.from_file()
+        result = c.config.get('data_path')
+
+        self.assertEqual(expected, result)
+
 
 class CihaiGetDataPath(TestCase):
     """Test default data_path from config."""
 
-    pass
+    def test_data_path_by_config_custom(self):
+        expected = '/home/r00t'
+
+        cihai = Cihai({
+            'data_path': expected
+        })
+
+        mydataset = cihai.use(MyDataset)
+
+        result = mydataset.get_datapath('data_path')
+        self.assertIn(expected, result)
 
 
 class CihaiDatasetTest(CihaiTestCase):
@@ -253,16 +289,22 @@ class CihaiDatasetTest(CihaiTestCase):
     def test_cihai_database_uses_same_metadata(self):
         """CihaiDataset subclasses uses the same MetaData instance."""
 
-        class MyDB(CihaiDataset):
-            def hey(self):
-                pass
-
-            def __init__(self, *args, **kwargs):
-                CihaiDataset.__init__(self, *args, **kwargs)
-
         c = self.cihai
-        mydataset = c.use(MyDB)
+        mydataset = c.use(MyDataset)
         self.assertEqual(mydataset.metadata, self.cihai.metadata)
+
+    def test_has_application_custom_config(self):
+
+        expected = '/home/r00t'
+
+        cihai = Cihai({
+            'data_path': expected
+        })
+
+        mydataset = cihai.use(MyDataset)
+
+        result = mydataset.cihai.config.get('data_path')
+        self.assertEqual(expected, result)
 
 
 def suite():
