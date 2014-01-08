@@ -102,5 +102,5 @@ world.
 - `Open Data Commons Attribution License (ODC-By) v1.0`_
 _ `MIT License`_
 
-.. _http://opensource.org/licenses/MIT
+.. _`MIT License`: _http://opensource.org/licenses/MIT
 .. _Open Data Commons Attribution License (ODC-By) v1.0: http://opendatacommons.org/licenses/by/1.0
