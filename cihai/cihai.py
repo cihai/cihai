@@ -84,17 +84,18 @@ class CihaiDataset(object):
         return True if table_name in self.metadata.tables else False
 
     def get_datapath(self, filename):
+        """Return absolute filepath in relation to :attr:`self.data_path`.
 
-        """Return absolute filepath in relation to :attr:`self.data_path`."""
+        :param filename: file name relative to ``./data``.
+        :type filename: string
+        :returns: Absolute path to data file.
+        :rtype: string
 
-        if self.cihai.config.get('data_path'):
-            data_path = self.cihai.config.get('data_path')
-        else:
-            data_path = os.path.abspath(os.path.join(
-                os.path.dirname(__file__),
-            ))
+        """
 
-        pass
+        data_path = self.cihai.config.get('data_path')
+
+        return os.path.join(data_path, filename)
 
 
 class Cihai(object):
@@ -118,7 +119,7 @@ class Cihai(object):
         #: absolute path to cihai data files.
         if not self.config.get('data_path'):
             self.config['data_path'] = os.path.abspath(os.path.join(
-                os.path.dirname(__file__),
+                os.path.dirname(__file__), 'data/'
             ))
 
         if engine is None and self.config.get('database', {}).get('url'):
@@ -131,7 +132,13 @@ class Cihai(object):
 
     @classmethod
     def from_file(cls, config_path=None, *args, **kwargs):
-        """Create a Cihai instance from a JSON or YAML config."""
+        """Create a Cihai instance from a JSON or YAML config.
+
+        :param config_path: path to custom config file
+        :type confiig_path: str
+        :rtype: :class:`Cihai`
+
+        """
 
         config = dict()
         configReader = kaptan.Kaptan()
@@ -158,6 +165,13 @@ class Cihai(object):
 
     @classmethod
     def from_cli(cls, argv):
+        """Cihai from :py:class:`argparse` / CLI args.
+
+        :param argv: list of arguments, i.e. ``['-c', 'dev/config.yml']``.
+        :type argv: list
+        :rtype: :class:`Cihai`
+
+        """
         parser = argparse.ArgumentParser(prog="cihai")
         parser.add_argument("-c", "--config", dest="_config")
 
@@ -177,6 +191,8 @@ class Cihai(object):
 
         :param Dataset: class for dataset object
         :type dataset: :class:`CihaiDataset`
+        :returns: instance of dataset paired with ``cihai`` instance.
+        :rtype: :class:`CihaiDataset` instance.
 
         """
 

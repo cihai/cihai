@@ -242,7 +242,7 @@ class CihaiApplicationConfig(TestCase):
         self.assertTrue(cihai.config.debug)
 
 
-class CihaiAppDataPath(TestCase):
+class CihaiGetDataPath(TestCase):
     """Test default data_path from config."""
 
     pass
