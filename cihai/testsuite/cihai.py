@@ -136,29 +136,6 @@ class DatasetTestCase(CihaiHelper):
         self.assertEqual(expected, result)
 
 
-"""
-TODO:
-
-    Unihan
-
-    id char ucn colName colNmae colName
-
-    load csv's mapped by colNmae and individual names into a dict.
-
-    '中' {
-    'ucn': '',
-    'kDefinition': ''
-    }
-
-    1. insert dict/struct of { 'unihanFileName': ['colName', 'colName'] }
-        return cols, records
-
-        Idea: Create a special iter class for it.
-        Idea 2: Function, return cols, struct above
-
-"""
-
-
 def suite():
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(CihaiTestCase))

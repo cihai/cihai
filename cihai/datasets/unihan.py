@@ -237,7 +237,7 @@ class Unihan(CihaiDataset):
 
     """
 
-    def __init__(self, fields=None, *args, **kwargs):
+    def __init__(self, cihai, engine, metadata, fields=None, *args, **kwargs):
         """Start an instance of Unihan to :meth:`~.get` or :meth:`reverse` data.
 
         :param fields: (optional, default: None) Unihan fields to search for by
@@ -246,7 +246,7 @@ class Unihan(CihaiDataset):
         :type fields: list
 
         """
-        super(Unihan, self).__init__(*args[1:], **kwargs)
+        super(Unihan, self).__init__(cihai, engine, metadata)
 
         """
         from sqlalchemy.
@@ -292,8 +292,21 @@ class Unihan(CihaiDataset):
             install_dict = UNIHAN_DATASETS
 
         table_name = 'Unihan'
-        files = tuple(get_datafile(f) for f in install_dict.keys())
+        files = tuple(self.get_datafile(f) for f in install_dict.keys())
         keys = ['char', 'field', 'value']
+
+        columns = [col for csvfile, col in install_dict.items()]
+
+        def in_columns(column):
+            return (column in columns)
+
+        def not_junk(line):
+            if line[0] == '#':
+                return False
+            if line != '\n':
+                return False
+
+            return True
 
         def csv_to_dictlists(csv_files):
             """Return dict from Unihan CSV files.
@@ -304,8 +317,15 @@ class Unihan(CihaiDataset):
 
             """
 
-            combine = fileinput.FileInput(files=csv_files, openhook=fileinput.hook_encoded('utf-8'))
-            return [dict(zip(keys, l.strip().split('\t'))) for l in combine if l[0] != '#' and l != '\n']
+            data = fileinput.FileInput(files=csv_files, openhook=fileinput.hook_encoded('utf-8'))
+            items = []
+            for l in data:
+                if not_junk(l) and in_columns(l[1]):
+                    items.append(dict(zip(keys, l.strip().split('\t'))))
+
+            return items
+            # return [dict(zip(keys, l.strip().split('\t'))) for l in data if filter_junk(l)]
+            # return [dict(zip(keys, l.strip().split('\t'))) for l in data if l[0] != '#' and l != '\n']
 
         data = csv_to_dictlists(files)
 
