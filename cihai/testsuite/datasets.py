@@ -47,7 +47,7 @@ cjk_ranges = {
 }
 
 
-class InitialUnicode(TestCase):
+class BootstrapUnicode(TestCase):
 
     def test_generate_unicode(self):
         from .. import conversion
@@ -80,7 +80,6 @@ sample_table = sqlalchemy.Table(
     sqlalchemy.Column('id', sqlalchemy.Integer(), primary_key=True),
     sqlalchemy.Column('char_id', sqlalchemy.ForeignKey('cjk.id')),
     sqlalchemy.Column('value', sqlalchemy.Unicode()),
-    sqlalchemy.ForeignKeyConstraint(['id'], ['cjk.id'])
 )
 
 metadata.create_all()
@@ -179,6 +178,6 @@ class TableInsertFK(TestCase):
 
 def suite():
     suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(InitialUnicode))
+    suite.addTest(unittest.makeSuite(BootstrapUnicode))
     suite.addTest(unittest.makeSuite(TableInsertFK))
     return suite

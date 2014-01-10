@@ -51,21 +51,6 @@ class CihaiDataset(object):
         #: :class:`sqlalchemy.schema.MetaData` instance.
         self.metadata = metadata
 
-    # @property
-    # def metadata(self):
-        # """Return global metadata object, reflect tables.
-
-        # :rtype: :class:`sqlalchemy.schema.MetaData`
-
-        # """
-
-        # if not self._metadata.bind:
-            # # No engine binded yet, bind and reflect tables.
-            # self._metadata.bind = self._engine
-            # self._metadata.reflect()
-
-        # return self._metadata
-
     def get_table(self, table_name):
         """Return :class:`~sqlalchemy.schema.Table`.
 

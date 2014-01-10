@@ -38,7 +38,7 @@ class MyDataset(CihaiDataset):
         CihaiDataset.__init__(self, *args, **kwargs)
 
 
-class CihaiTestCase(TestCase):
+class CihaiHelper(TestCase):
     @classmethod
     def setUpClass(cls):
         cls.config = os.path.abspath(os.path.join(
@@ -52,7 +52,7 @@ class CihaiTestCase(TestCase):
         self.cihai = Cihai.from_file(self.config)
 
 
-class CihaiApplicationConfig(TestCase):
+class CihaiTestCase(TestCase):
     """Cihai object initialization, defaults, configuration.
 
     """
@@ -99,11 +99,8 @@ class CihaiApplicationConfig(TestCase):
 
         self.assertEqual(expected, result)
 
-
-class CihaiGetDataPath(TestCase):
-    """Test default data_path from config."""
-
     def test_data_path_by_config_custom(self):
+        """Test default data_path from config."""
         expected = '/home/r00t'
 
         cihai = Cihai({
@@ -116,7 +113,7 @@ class CihaiGetDataPath(TestCase):
         self.assertIn(expected, result)
 
 
-class CihaiDatasetTest(CihaiTestCase):
+class DatasetTestCase(CihaiHelper):
 
     def test_cihai_database_uses_same_metadata(self):
         """CihaiDataset subclasses uses the same MetaData instance."""
@@ -141,7 +138,6 @@ class CihaiDatasetTest(CihaiTestCase):
 
 def suite():
     suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(CihaiApplicationConfig))
-    suite.addTest(unittest.makeSuite(CihaiDatasetTest))
-    suite.addTest(unittest.makeSuite(CihaiGetDataPath))
+    suite.addTest(unittest.makeSuite(CihaiTestCase))
+    suite.addTest(unittest.makeSuite(DatasetTestCase))
     return suite
