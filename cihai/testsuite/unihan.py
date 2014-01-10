@@ -65,6 +65,20 @@ class UnihanTestCase(CihaiHelper):
         with open(u.get_datapath('Unihan_IRGSources.txt')) as hi:
             print(hi.read())
 
+    def test_in_columns(self):
+        u = self.cihai.use(unihan.Unihan)
+
+        # columns = ['hey', 'kDefinition', 'kWhat']
+        # result = u.install.in_columns('kDefinition')
+
+        # self.assertTrue(result)
+
+    def test_not_junk(self):
+        pass
+
+    def test_csv_to_dictlists(self):
+        pass
+
 
 def suite():
     suite = unittest.TestSuite()

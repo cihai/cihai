@@ -292,21 +292,13 @@ class Unihan(CihaiDataset):
             install_dict = UNIHAN_DATASETS
 
         table_name = 'Unihan'
-        files = tuple(self.get_datafile(f) for f in install_dict.keys())
+        files = tuple(self.get_datapath(f) for f in install_dict.keys())
         keys = ['char', 'field', 'value']
 
         columns = [col for csvfile, col in install_dict.items()]
 
-        def in_columns(column):
-            return (column in columns)
-
-        def not_junk(line):
-            if line[0] == '#':
-                return False
-            if line != '\n':
-                return False
-
-            return True
+        in_columns = lambda c: c in columns
+        not_junk = lambda line: line[0] == '#' and line != '\n'
 
         def csv_to_dictlists(csv_files):
             """Return dict from Unihan CSV files.
