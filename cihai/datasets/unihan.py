@@ -192,6 +192,10 @@ def _dl_progress(count, block_size, total_size):
 def save(url, filename):
     urlretrieve(url, filename, _dl_progress)
 
+keys = ['char', 'field', 'value']
+in_columns = lambda c, columns: c in columns
+not_junk = lambda line: line[0] == '#' and line != '\n'
+
 
 def download():
     import zipfile
@@ -207,6 +211,26 @@ def download():
             save(UNIHAN_URL, UNIHAN_DATAFILE)
             z = zipfile.ZipFile(UNIHAN_DATAFILE)
         z.extractall(datadir)
+
+
+def csv_to_dictlists(csv_files, columns):
+    """Return dict from Unihan CSV files.
+
+    :param csv_files: file names in data dir
+    :type csv_files: list
+    :return: List of tuples for data loaded
+
+    """
+
+    data = fileinput.FileInput(files=csv_files, openhook=fileinput.hook_encoded('utf-8'))
+    items = []
+    for l in data:
+        if not_junk(l) and in_columns(l[1], columns):
+            items.append(dict(zip(keys, l.strip().split('\t'))))
+
+    return items
+    # return [dict(zip(keys, l.strip().split('\t'))) for l in data if filter_junk(l)]
+    # return [dict(zip(keys, l.strip().split('\t'))) for l in data if l[0] != '#' and l != '\n']
 
 
 class Unihan(CihaiDataset):
@@ -293,33 +317,10 @@ class Unihan(CihaiDataset):
 
         table_name = 'Unihan'
         files = tuple(self.get_datapath(f) for f in install_dict.keys())
-        keys = ['char', 'field', 'value']
 
         columns = [col for csvfile, col in install_dict.items()]
 
-        in_columns = lambda c: c in columns
-        not_junk = lambda line: line[0] == '#' and line != '\n'
-
-        def csv_to_dictlists(csv_files):
-            """Return dict from Unihan CSV files.
-
-            :param csv_files: file names in data dir
-            :type csv_files: list
-            :return: List of tuples for data loaded
-
-            """
-
-            data = fileinput.FileInput(files=csv_files, openhook=fileinput.hook_encoded('utf-8'))
-            items = []
-            for l in data:
-                if not_junk(l) and in_columns(l[1]):
-                    items.append(dict(zip(keys, l.strip().split('\t'))))
-
-            return items
-            # return [dict(zip(keys, l.strip().split('\t'))) for l in data if filter_junk(l)]
-            # return [dict(zip(keys, l.strip().split('\t'))) for l in data if l[0] != '#' and l != '\n']
-
-        data = csv_to_dictlists(files)
+        data = csv_to_dictlists(files, columns)
 
         table = self._create_table(table_name)
 
