@@ -42,6 +42,7 @@ Utilities
 Datasets
 --------
 
-.. autoclass:: cihai.datasets.unihan.Unihan
+.. automodule:: cihai.util.unihan
     :members:
+    :inherited-members:
     :show-inheritance:

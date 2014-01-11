@@ -196,10 +196,31 @@ def _dl_progress(count, block_size, total_size, out=sys.stdout):
 
 
 def save(url, filename, urlretrieve=urlretrieve, *args):
+    """Separate download function for testability.
+
+    :param url: URL to download
+    :type url: str
+    :param filename: destination to download to.
+    :type filename: string
+    :param retrieve: function to download file
+    :param *args: accepts a callback for ``retrieve`` function progress.
+    :returns: Result of ``retrieve`` function
+
+    """
     return urlretrieve(url, filename, *args)
 
 
 def download(url=UNIHAN_URL, dest=UNIHAN_DATAFILE):
+    """Download a file to a destination.
+
+    :param url: URL to download from.
+    :param type: str
+    :param destination: file path where download is to be saved.
+    :type str:
+    :returns: destination where file downloaded to
+    :rtype str:
+
+    """
 
     datadir = os.path.dirname(dest)
     if not os.path.exists(datadir):
@@ -222,6 +243,14 @@ def download(url=UNIHAN_URL, dest=UNIHAN_DATAFILE):
 
 
 def extract(zip_filepath=UNIHAN_DATAFILE):
+    """Extract zip file. Return :class:`zipfile.ZipFile` instance.
+
+    :param zip_filepath: file to extract. Default, ``UNIHAN_DATAFILE``.
+    :type zip_filepath: string
+    :returns: The extracted zip.
+    :rtype: :class:`zipfile.ZipFile`
+
+    """
     import zipfile
     try:
         z = zipfile.ZipFile(zip_filepath)
