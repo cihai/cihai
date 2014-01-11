@@ -42,7 +42,7 @@ Utilities
 Datasets
 --------
 
-.. automodule:: cihai.util.unihan
+.. automodule:: cihai.datasets.unihan
     :members:
     :inherited-members:
     :show-inheritance:
