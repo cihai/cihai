@@ -68,15 +68,31 @@ class UnihanTestCase(CihaiHelper):
     def test_in_columns(self):
         u = self.cihai.use(unihan.Unihan)
 
-        # columns = ['hey', 'kDefinition', 'kWhat']
-        # result = u.install.in_columns('kDefinition')
+        columns = ['hey', 'kDefinition', 'kWhat']
+        result = unihan.in_columns('kDefinition', columns)
 
-        # self.assertTrue(result)
+        self.assertTrue(result)
 
-    def test_not_junk(self):
+    def test_dl_progress(self):
+        import sys
+
+        from StringIO import StringIO
+        out = StringIO()
+
+        unihan._dl_progress(20, 10, 1000, out=out)
+
+        result = out.getvalue().strip()
+        expected = '20% [==========>                                        ]'
+
+        self.assertEqual(result, expected)
+
+    def test_save(self):
         pass
 
-    def test_csv_to_dictlists(self):
+    def test_download(self):
+        pass
+
+    def test_extract(self):
         pass
 
 

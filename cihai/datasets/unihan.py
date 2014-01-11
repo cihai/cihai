@@ -158,13 +158,12 @@ in_columns = lambda c, columns: c in columns
 not_junk = lambda line: line[0] == '#' and line != '\n'
 
 
-if not os.path.exists(datadir):
-    os.makedirs(datadir)
-
-
-def _dl_progress(count, block_size, total_size):
+def _dl_progress(count, block_size, total_size, out=sys.stdout):
     """
     MIT License: https://github.com/okfn/dpm-old/blob/master/dpm/util.py
+
+    Modification for testing: http://stackoverflow.com/a/4220278
+
     """
     def format_size(bytes):
         if bytes > 1000 * 1000:
@@ -184,23 +183,27 @@ def _dl_progress(count, block_size, total_size):
     percent = min(int(maxdownloaded * 100 / total_size), 100)
     if percent > last_percent:
         # TODO: is this acceptable? Do we want to do something nicer?
-        sys.stdout.write(
+        out.write(
             '%3d%% [%s>%s]\r' % (
                 percent,
                 int(percent / 2) * '=',
                 int(50 - percent / 2) * ' '
             )
         )
-        sys.stdout.flush()
+        out.flush()
     if maxdownloaded >= total_size:
         print('\n')
 
 
-def save(url, filename):
-    urlretrieve(url, filename, _dl_progress)
+def save(url, filename, urlretrieve=urlretrieve):
+    return urlretrieve(url, filename, _dl_progress)
 
 
 def download(url=UNIHAN_URL, dest=UNIHAN_DATAFILE):
+
+    datadir = os.path.dirname(dest)
+    if not os.path.exists(datadir):
+        os.makedirs(datadir)
 
     no_unihan_files_exist = lambda: not glob.glob(
         os.path.join(datadir, 'Unihan*.txt')
