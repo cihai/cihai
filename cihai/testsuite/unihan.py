@@ -87,7 +87,22 @@ class UnihanTestCase(CihaiHelper):
         self.assertEqual(result, expected)
 
     def test_save(self):
-        pass
+
+        import tempfile
+        import shutil
+        u = self.cihai.use(unihan.Unihan)
+        src_filepath = u.get_datapath('Unihan_Variants.txt')
+
+        tempdir = tempfile.mkdtemp()
+
+        dest_filepath = os.path.join(tempdir, 'Unihan_Variants.txt')
+        unihan.save(src_filepath, dest_filepath, shutil.copy)
+
+        result = os.path.exists(dest_filepath)
+
+        shutil.rmtree(tempdir)
+
+        self.assertTrue(result)
 
     def test_download(self):
         pass

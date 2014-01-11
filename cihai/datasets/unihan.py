@@ -195,8 +195,8 @@ def _dl_progress(count, block_size, total_size, out=sys.stdout):
         print('\n')
 
 
-def save(url, filename, urlretrieve=urlretrieve):
-    return urlretrieve(url, filename, _dl_progress)
+def save(url, filename, urlretrieve=urlretrieve, *args):
+    return urlretrieve(url, filename, *args)
 
 
 def download(url=UNIHAN_URL, dest=UNIHAN_DATAFILE):
