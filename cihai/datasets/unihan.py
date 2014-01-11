@@ -150,6 +150,13 @@ PACKAGE_DATA = []
 thisdir = os.path.join(os.path.dirname(__file__))
 
 datadir = os.path.join(thisdir, './cihai/data')
+UNIHAN_DATAFILE = os.path.join(datadir, 'Unihan.zip')
+
+
+keys = ['char', 'field', 'value']
+in_columns = lambda c, columns: c in columns
+not_junk = lambda line: line[0] == '#' and line != '\n'
+
 
 if not os.path.exists(datadir):
     os.makedirs(datadir)
@@ -192,25 +199,36 @@ def _dl_progress(count, block_size, total_size):
 def save(url, filename):
     urlretrieve(url, filename, _dl_progress)
 
-keys = ['char', 'field', 'value']
-in_columns = lambda c, columns: c in columns
-not_junk = lambda line: line[0] == '#' and line != '\n'
 
+def download(url=UNIHAN_URL, dest=UNIHAN_DATAFILE):
 
-def download():
-    import zipfile
-    UNIHAN_DATAFILE = os.path.join(datadir, 'Unihan.zip')
-    if not glob.glob(os.path.join(datadir, 'Unihan*.txt')):
-        if not os.path.exists(os.path.join(datadir, 'Unihan.zip')):
+    no_unihan_files_exist = lambda: not glob.glob(
+        os.path.join(datadir, 'Unihan*.txt')
+    )
+
+    not_downloaded = lambda: not os.path.exists(
+        os.path.join(datadir, 'Unihan.zip')
+    )
+
+    if no_unihan_files_exist():
+        if not_downloaded():
             print('Downloading Unihan.zip...')
-            save(UNIHAN_URL, UNIHAN_DATAFILE)
-        try:
-            z = zipfile.ZipFile(UNIHAN_DATAFILE)
-        except zipfile.BadZipfile as e:
-            print('%s. Unihan.zip incomplete or corrupt. Redownloading...' % e)
-            save(UNIHAN_URL, UNIHAN_DATAFILE)
-            z = zipfile.ZipFile(UNIHAN_DATAFILE)
-        z.extractall(datadir)
+            save(url, dest)
+
+    return dest
+
+
+def extract(zip_filepath=UNIHAN_DATAFILE):
+    import zipfile
+    try:
+        z = zipfile.ZipFile(zip_filepath)
+    except zipfile.BadZipfile as e:
+        print('%s. Unihan.zip incomplete or corrupt. Redownloading...' % e)
+        download()
+        z = zipfile.ZipFile(zip_filepath)
+    z.extractall(datadir)
+
+    return z
 
 
 def csv_to_dictlists(csv_files, columns):
