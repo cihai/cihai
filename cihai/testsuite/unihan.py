@@ -38,6 +38,10 @@ import os
 import tempfile
 import logging
 import unittest
+import zipfile
+import shutil
+
+from StringIO import StringIO
 
 import sqlalchemy
 
@@ -57,13 +61,26 @@ log = logging.getLogger(__name__)
 class UnihanTestCase(CihaiHelper):
     """Utilities to retrieve cihai information in a relational-friendly format.
     """
-    def test_this(self):
-        self.assertIsInstance(self.cihai, Cihai)
 
-        u = self.cihai.use(unihan.Unihan)
+    @classmethod
+    def setUpClass(cls):
+        cls.tempdir = tempfile.mkdtemp()
+        cls.zip_filename = 'zipfile.zip'
+        cls.tempzip_filepath = os.path.join(cls.tempdir, cls.zip_filename)
+        zf = zipfile.ZipFile(cls.tempzip_filepath, 'a')
+        zf.writestr("d.txt", "DDDDDDDDDD")
+        zf.close()
 
-        with open(u.get_datapath('Unihan_IRGSources.txt')) as hi:
-            print(hi.read())
+        cls.zf = zf
+
+        super(UnihanTestCase, cls).setUpClass()
+
+    @classmethod
+    def tearDownClass(cls):
+
+        shutil.rmtree(cls.tempdir)
+
+        super(UnihanTestCase, cls).tearDownClass()
 
     def test_in_columns(self):
         u = self.cihai.use(unihan.Unihan)
@@ -88,14 +105,13 @@ class UnihanTestCase(CihaiHelper):
 
     def test_save(self):
 
-        import tempfile
-        import shutil
         u = self.cihai.use(unihan.Unihan)
-        src_filepath = u.get_datapath('Unihan_Variants.txt')
+        # This would normally be download a zip from the internet.
+        src_filepath = self.tempzip_filepath
 
         tempdir = tempfile.mkdtemp()
 
-        dest_filepath = os.path.join(tempdir, 'Unihan_Variants.txt')
+        dest_filepath = os.path.join(tempdir, self.zip_filename)
         unihan.save(src_filepath, dest_filepath, shutil.copy)
 
         result = os.path.exists(dest_filepath)
@@ -105,10 +121,29 @@ class UnihanTestCase(CihaiHelper):
         self.assertTrue(result)
 
     def test_download(self):
-        pass
+
+        u = self.cihai.use(unihan.Unihan)
+
+        src_filepath = self.tempzip_filepath
+
+        tempdir = self.tempdir
+        dest_filepath = os.path.join(tempdir, 'data', self.zip_filename)
+
+        unihan.download(src_filepath, dest_filepath, shutil.copy)
+
+        result = os.path.dirname(os.path.join(dest_filepath, 'data'))
+        self.assertTrue(
+            result,
+            msg="Creates data directory if doesn't exist."
+        )
 
     def test_extract(self):
-        pass
+
+        zf = unihan.extract(self.tempzip_filepath)
+
+        self.assertEqual(len(zf.infolist()), 1)
+        self.assertEqual(zf.infolist()[0].file_size, 10)
+        self.assertEqual(zf.infolist()[0].filename, "d.txt")
 
 
 def suite():

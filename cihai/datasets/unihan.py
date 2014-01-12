@@ -147,7 +147,6 @@ UNIHAN_URL = 'http://www.unicode.org/Public/UNIDATA/Unihan.zip'
 PACKAGE_DATA = []
 
 thisdir = os.path.join(os.path.dirname(__file__))
-
 datadir = os.path.join(thisdir, './cihai/data')
 UNIHAN_DATAFILE = os.path.join(datadir, 'Unihan.zip')
 
@@ -201,7 +200,7 @@ def save(url, filename, urlretrieve=urlretrieve, *args):
     :type url: str
     :param filename: destination to download to.
     :type filename: string
-    :param retrieve: function to download file
+    :param urlretrieve: function to download file
     :param *args: accepts a callback for ``retrieve`` function progress.
     :returns: Result of ``retrieve`` function
 
@@ -209,7 +208,7 @@ def save(url, filename, urlretrieve=urlretrieve, *args):
     return urlretrieve(url, filename, *args)
 
 
-def download(url=UNIHAN_URL, dest=UNIHAN_DATAFILE):
+def download(url=UNIHAN_URL, dest=UNIHAN_DATAFILE, urlretrieve=urlretrieve):
     """Download a file to a destination.
 
     :param url: URL to download from.
@@ -236,7 +235,7 @@ def download(url=UNIHAN_URL, dest=UNIHAN_DATAFILE):
     if no_unihan_files_exist():
         if not_downloaded():
             print('Downloading Unihan.zip...')
-            save(url, dest)
+            save(url, dest, urlretrieve)
 
     return dest
 
