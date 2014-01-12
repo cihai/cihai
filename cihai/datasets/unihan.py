@@ -148,7 +148,8 @@ UNIHAN_URL = 'http://www.unicode.org/Public/UNIDATA/Unihan.zip'
 
 
 keys = ['ucn', 'field', 'value']
-in_columns = lambda c, columns: c in columns
+default_columns = ['ucn']
+in_columns = lambda c, columns: c in columns + default_columns
 not_junk = lambda line: line[0] != '#' and line != '\n'
 
 

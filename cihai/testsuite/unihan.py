@@ -156,8 +156,7 @@ class UnihanTestCase(CihaiHelper):
             'kPhonetic',
             'kCantonese',
             'kDefinition',
-            'ucn'
-        ]
+        ] + unihan.default_columns
 
         items = unihan.csv_to_dictlists(csv_files, columns)
 
