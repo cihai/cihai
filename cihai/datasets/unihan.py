@@ -149,7 +149,7 @@ UNIHAN_URL = 'http://www.unicode.org/Public/UNIDATA/Unihan.zip'
 
 keys = ['char', 'field', 'value']
 in_columns = lambda c, columns: c in columns
-not_junk = lambda line: line[0] == '#' and line != '\n'
+not_junk = lambda line: line[0] != '#' and line != '\n'
 
 
 def _dl_progress(count, block_size, total_size, out=sys.stdout):
@@ -270,8 +270,10 @@ def csv_to_dictlists(csv_files, columns):
     data = fileinput.FileInput(files=csv_files, openhook=fileinput.hook_encoded('utf-8'))
     items = []
     for l in data:
-        if not_junk(l) and in_columns(l[1], columns):
-            items.append(dict(zip(keys, l.strip().split('\t'))))
+        if not_junk(l):
+            l = l.strip().split('\t')
+            if in_columns(l[1], columns):
+                items.append(dict(zip(keys, l)))
 
     return items
     # return [dict(zip(keys, l.strip().split('\t'))) for l in data if filter_junk(l)]

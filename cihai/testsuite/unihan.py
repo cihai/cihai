@@ -140,6 +140,32 @@ class UnihanTestCase(CihaiHelper):
         self.assertEqual(zf.infolist()[0].file_size, 10)
         self.assertEqual(zf.infolist()[0].filename, "d.txt")
 
+    def test_csv_to_dictlists(self):
+        u = self.cihai.use(unihan.Unihan)
+
+        csv_files = [
+            u.get_datapath('Unihan_DictionaryLikeData.txt'),
+            u.get_datapath('Unihan_Readings.txt'),
+        ]
+        print(csv_files)
+
+        columns = [
+            'kTotalStrokes',
+            'kPhonetic',
+            'kCantonese',
+            'kDefinition',
+        ]
+
+        items = unihan.csv_to_dictlists(csv_files, columns)
+
+        notInColumns = []
+
+        for item in items:
+            if item['field'] not in columns:
+                notInColumns.append(item['field'])
+
+        self.assertListEqual([], notInColumns)
+
 
 def suite():
     suite = unittest.TestSuite()
