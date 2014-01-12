@@ -41,8 +41,6 @@ import unittest
 import zipfile
 import shutil
 
-from StringIO import StringIO
-
 import sqlalchemy
 
 from sqlalchemy import Table, MetaData
@@ -53,6 +51,7 @@ from .cihai import CihaiHelper
 from .helpers import TestCase
 from ..util import get_datafile
 from ..datasets import unihan
+from .._compat import StringIO
 from .. import Cihai, CihaiDataset
 
 log = logging.getLogger(__name__)
@@ -91,9 +90,6 @@ class UnihanTestCase(CihaiHelper):
         self.assertTrue(result)
 
     def test_dl_progress(self):
-        import sys
-
-        from StringIO import StringIO
         out = StringIO()
 
         unihan._dl_progress(20, 10, 1000, out=out)
