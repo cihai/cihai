@@ -147,7 +147,6 @@ UNIHAN_DATASETS = {
 UNIHAN_URL = 'http://www.unicode.org/Public/UNIDATA/Unihan.zip'
 
 
-keys = ['ucn', 'field', 'value']
 default_columns = ['ucn']
 in_columns = lambda c, columns: c in columns + default_columns
 not_junk = lambda line: line[0] != '#' and line != '\n'
@@ -274,13 +273,49 @@ def csv_to_dictlists(csv_files, columns):
         if not_junk(l):
             l = l.strip().split('\t')
             if in_columns(l[1], columns):
-                item = dict(zip(keys, l))
+                item = dict(zip(['ucn', 'field', 'value'], l))
                 char = conversion.ucn_to_unicode(item['ucn'])
                 if not char in items:
                     items[char] = {}
                     items[char]['ucn'] = item['ucn']
                 items[char][item['field']] = item['value']
     return items
+
+def _create_table(table_name, columns, metadata):
+    """Create table and return  :class:`sqlalchemy.Table`.
+
+    :param table_name: name of table to create
+    :type table_name: string
+    :param columns: columns for table, i.e. ['kDefinition', 'kCantonese']
+    :type columns: list
+    :param metadata: Instance of sqlalchemy metadata
+    :type metadata: :class:`sqlalchemy.schema.MetaData`
+    :returns: Newly created table with columns and index.
+    :rtype: :class:`sqlalchemy.schema.Table`
+
+    """
+    table = Table(table_name, metadata)
+    fields = [
+        ('char', String(12)),
+        ('field', String(36)),
+        ('value', String(256)),
+    ]
+
+    col = Column('id', Integer, primary_key=True)
+    table.append_column(col)
+
+    field_names = [field for (field, t) in fields]
+
+    for (field, type_) in fields:
+        col = Column(field, type_)
+        table.append_column(col)
+
+    Index('%s_unique_char_field_value' % table_name, table.c.char, table.c.field, table.c.value, unique=True)
+    Index('%s_unique_char_field' % table_name, table.c.char, table.c.field, unique=True)
+    Index('%s_field' % table_name, table.c.field)
+
+
+    return table
 
 
 class Unihan(CihaiDataset):
@@ -372,44 +407,14 @@ class Unihan(CihaiDataset):
 
         data = csv_to_dictlists(files, columns)
 
-        table = self._create_table(table_name)
+        table = _create_table(table_name, columns, metadata)
+        self.metadata.create_all()
 
         self.metadata.bind.execute(table.insert(), data)
 
-        return table
-
-    def _create_table(self, table_name):
-        """Create table and return  :class:`sqlalchemy.Table`.
-
-        :param table_name: name of table to create
-        :type table_name: string
-        :returns: Newly created table with columns and index.
-        :rtype: :class:`sqlalchemy.schema.Table`
-
-        """
-        table = Table(table_name, self.metadata)
-        fields = [
-            ('char', String(12)),
-            ('field', String(36)),
-            ('value', String(256)),
-        ]
-
-        col = Column('id', Integer, primary_key=True)
-        table.append_column(col)
-
-        field_names = [field for (field, t) in fields]
-
-        for (field, type_) in fields:
-            col = Column(field, type_)
-            table.append_column(col)
-
-        Index('%s_unique_char_field_value' % table_name, table.c.char, table.c.field, table.c.value, unique=True)
-        Index('%s_unique_char_field' % table_name, table.c.char, table.c.field, unique=True)
-        Index('%s_field' % table_name, table.c.field)
-
-        self.metadata.create_all()
 
         return table
+
 
     def get(self, request, response, *args, **kwargs):
         """Return chinese character data from Unihan data.
