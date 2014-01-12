@@ -56,6 +56,9 @@ from .. import Cihai, CihaiDataset
 
 log = logging.getLogger(__name__)
 
+import pprint
+pp = pprint.PrettyPrinter(indent=2).pprint
+
 
 class UnihanTestCase(CihaiHelper):
     """Utilities to retrieve cihai information in a relational-friendly format.

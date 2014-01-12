@@ -279,7 +279,6 @@ def csv_to_dictlists(csv_files, columns):
                     items[char] = {}
                     items[char]['ucn'] = item['ucn']
                 items[char][item['field']] = item['value']
-    print(items)
     return items
 
 
