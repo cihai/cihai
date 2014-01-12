@@ -21,6 +21,7 @@ import sqlalchemy
 from sqlalchemy import MetaData
 
 from .. import conversion
+from .._compat import unichr
 
 from .helpers import TestCase
 
