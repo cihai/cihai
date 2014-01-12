@@ -14,6 +14,7 @@ import sys
 import glob
 import hashlib
 import fileinput
+import zipfile
 try:
     from urllib import urlretrieve
 except:
@@ -23,7 +24,7 @@ import logging
 from sqlalchemy import Table, String, Column, Integer, Index, select, or_, and_
 
 from .. import conversion, CihaiDataset
-from ..util import get_datafile, UnicodeReader
+from ..util import UnicodeReader
 from .._compat import StringIO
 
 __copyright__ = 'Copyright 2013 Tony Narlock.'
@@ -144,11 +145,6 @@ UNIHAN_DATASETS = {
 }
 
 UNIHAN_URL = 'http://www.unicode.org/Public/UNIDATA/Unihan.zip'
-PACKAGE_DATA = []
-
-thisdir = os.path.join(os.path.dirname(__file__))
-datadir = os.path.join(thisdir, './cihai/data')
-UNIHAN_DATAFILE = os.path.join(datadir, 'Unihan.zip')
 
 
 keys = ['char', 'field', 'value']
@@ -208,7 +204,7 @@ def save(url, filename, urlretrieve=urlretrieve, *args):
     return urlretrieve(url, filename, *args)
 
 
-def download(url=UNIHAN_URL, dest=UNIHAN_DATAFILE, urlretrieve=urlretrieve):
+def download(url, dest, urlretrieve=urlretrieve):
     """Download a file to a destination.
 
     :param url: URL to download from.
@@ -240,16 +236,17 @@ def download(url=UNIHAN_URL, dest=UNIHAN_DATAFILE, urlretrieve=urlretrieve):
     return dest
 
 
-def extract(zip_filepath=UNIHAN_DATAFILE):
+def extract(zip_filepath):
     """Extract zip file. Return :class:`zipfile.ZipFile` instance.
 
-    :param zip_filepath: file to extract. Default, ``UNIHAN_DATAFILE``.
+    :param zip_filepath: file to extract.
     :type zip_filepath: string
     :returns: The extracted zip.
     :rtype: :class:`zipfile.ZipFile`
 
     """
-    import zipfile
+
+    datadir = os.path.dirname(zip_filepath)
     try:
         z = zipfile.ZipFile(zip_filepath)
     except zipfile.BadZipfile as e:
