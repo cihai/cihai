@@ -276,8 +276,6 @@ def csv_to_dictlists(csv_files, columns):
                 items.append(dict(zip(keys, l)))
 
     return items
-    # return [dict(zip(keys, l.strip().split('\t'))) for l in data if filter_junk(l)]
-    # return [dict(zip(keys, l.strip().split('\t'))) for l in data if l[0] != '#' and l != '\n']
 
 
 class Unihan(CihaiDataset):
@@ -371,13 +369,7 @@ class Unihan(CihaiDataset):
 
         table = self._create_table(table_name)
 
-        def insert_rows(table_name, data, fields):
-
-            andfields = [(table.c.field == t) for t in fields]
-            andstmt = or_(*andfields)
-            return self.metadata.bind.execute(table.insert(), data)
-
-        insert_rows(table, data, self.fields)
+        self.metadata.bind.execute(table.insert(), data)
 
         return table
 
