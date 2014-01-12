@@ -147,24 +147,28 @@ class UnihanTestCase(CihaiHelper):
             u.get_datapath('Unihan_DictionaryLikeData.txt'),
             u.get_datapath('Unihan_Readings.txt'),
         ]
-        print(csv_files)
 
         columns = [
             'kTotalStrokes',
             'kPhonetic',
             'kCantonese',
             'kDefinition',
+            'ucn'
         ]
 
         items = unihan.csv_to_dictlists(csv_files, columns)
 
         notInColumns = []
 
-        for item in items:
-            if item['field'] not in columns:
-                notInColumns.append(item['field'])
+        for key, values in items.items():
+            if any(v for v in values if v not in columns):
+                for v in values:
+                    if v not in columns:
+                        notInColumns.append(v)
 
-        self.assertListEqual([], notInColumns)
+        self.assertListEqual(
+            [], notInColumns,
+        )
 
 
 def suite():

@@ -147,7 +147,7 @@ UNIHAN_DATASETS = {
 UNIHAN_URL = 'http://www.unicode.org/Public/UNIDATA/Unihan.zip'
 
 
-keys = ['char', 'field', 'value']
+keys = ['ucn', 'field', 'value']
 in_columns = lambda c, columns: c in columns
 not_junk = lambda line: line[0] != '#' and line != '\n'
 
@@ -268,13 +268,18 @@ def csv_to_dictlists(csv_files, columns):
     """
 
     data = fileinput.FileInput(files=csv_files, openhook=fileinput.hook_encoded('utf-8'))
-    items = []
+    items = {}
     for l in data:
         if not_junk(l):
             l = l.strip().split('\t')
             if in_columns(l[1], columns):
-                items.append(dict(zip(keys, l)))
-
+                item = dict(zip(keys, l))
+                char = conversion.ucn_to_unicode(item['ucn'])
+                if not char in items:
+                    items[char] = {}
+                    items[char]['ucn'] = item['ucn']
+                items[char][item['field']] = item['value']
+    print(items)
     return items
 
 
