@@ -11,8 +11,8 @@ id char ucn colName colNmae colName
 load csv's mapped by colNmae and individual names into a dict.
 
 '中' {
-'ucn': '',
-'kDefinition': ''
+    'ucn': '',
+    'kDefinition': ''
 }
 
 1. insert dict/struct of { 'unihanFileName': ['colName', 'colName'] }
@@ -102,7 +102,6 @@ class UnihanTestCase(CihaiHelper):
     def test_save(self):
 
         u = self.cihai.use(unihan.Unihan)
-        # This would normally be download a zip from the internet.
         src_filepath = self.tempzip_filepath
 
         tempdir = tempfile.mkdtemp()
