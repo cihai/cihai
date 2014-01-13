@@ -281,6 +281,7 @@ def csv_to_dictlists(csv_files, columns):
                 items[char][item['field']] = item['value']
     return items
 
+
 def create_table(table_name, columns, metadata):
     """Create table and return  :class:`sqlalchemy.Table`.
 
@@ -297,9 +298,9 @@ def create_table(table_name, columns, metadata):
     table = Table(table_name, metadata)
     fields = [
         ('char', String(12)),
-        ('field', String(36)),
-        ('value', String(256)),
     ]
+    for column in columns:
+        fields.append((column, String(256)))
 
     col = Column('id', Integer, primary_key=True)
     table.append_column(col)
@@ -310,10 +311,7 @@ def create_table(table_name, columns, metadata):
         col = Column(field, type_)
         table.append_column(col)
 
-    Index('%s_unique_char_field_value' % table_name, table.c.char, table.c.field, table.c.value, unique=True)
-    Index('%s_unique_char_field' % table_name, table.c.char, table.c.field, unique=True)
-    Index('%s_field' % table_name, table.c.field)
-
+    Index('%s_unique_char_id' % table_name, table.c.char, table.c.id, unique=True)
 
     return table
 
@@ -406,14 +404,12 @@ class Unihan(CihaiDataset):
 
         data = csv_to_dictlists(files, columns)
 
-        table = _create_table(table_name, columns, metadata)
+        table = create_table(table_name, columns, self.metadata)
         self.metadata.create_all()
 
         self.metadata.bind.execute(table.insert(), data)
 
-
         return table
-
 
     def get(self, request, response, *args, **kwargs):
         """Return chinese character data from Unihan data.
