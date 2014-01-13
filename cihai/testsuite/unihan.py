@@ -172,6 +172,19 @@ class UnihanTestCase(CihaiHelper):
             [], notInColumns,
         )
 
+    def test_create_table(self):
+        table_name = 'unihan'
+        columns = [
+            'kTotalStrokes',
+            'kPhonetic',
+            'kCantonese',
+            'kDefinition',
+        ] + unihan.default_columns
+        table = unihan.create_table(table_name, columns, self.cihai.metadata)
+
+        self.assertEqual(table.name, table_name)
+        self.assertListEqual([c.name for c in table.columns], columns)
+
 
 def suite():
     suite = unittest.TestSuite()

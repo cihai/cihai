@@ -281,7 +281,7 @@ def csv_to_dictlists(csv_files, columns):
                 items[char][item['field']] = item['value']
     return items
 
-def _create_table(table_name, columns, metadata):
+def create_table(table_name, columns, metadata):
     """Create table and return  :class:`sqlalchemy.Table`.
 
     :param table_name: name of table to create
@@ -402,7 +402,6 @@ class Unihan(CihaiDataset):
 
         table_name = 'Unihan'
         files = tuple(self.get_datapath(f) for f in install_dict.keys())
-
         columns = [col for csvfile, col in install_dict.items()]
 
         data = csv_to_dictlists(files, columns)
