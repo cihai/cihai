@@ -147,7 +147,7 @@ UNIHAN_DATASETS = {
 UNIHAN_URL = 'http://www.unicode.org/Public/UNIDATA/Unihan.zip'
 
 
-default_columns = ['ucn']
+default_columns = ['ucn', 'char']
 in_columns = lambda c, columns: c in columns + default_columns
 not_junk = lambda line: line[0] != '#' and line != '\n'
 
@@ -296,22 +296,15 @@ def create_table(table_name, columns, metadata):
 
     """
     table = Table(table_name, metadata)
-    fields = [
-        ('char', String(12)),
-    ]
-    for column in columns:
-        fields.append((column, String(256)))
+    fields = []
 
-    col = Column('id', Integer, primary_key=True)
-    table.append_column(col)
-
-    field_names = [field for (field, t) in fields]
-
-    for (field, type_) in fields:
-        col = Column(field, type_)
+    fields.append(Column('id', Integer, primary_key=True))
+    fields.append(Column('char', String(12)))
+    for column_name in columns:
+        col = Column(column_name, String(256))
         table.append_column(col)
 
-    Index('%s_unique_char_id' % table_name, table.c.char, table.c.id, unique=True)
+    Index('%s_unique_char' % table_name, table.c.char, unique=True)
 
     return table
 

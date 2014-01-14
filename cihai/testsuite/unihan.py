@@ -51,7 +51,7 @@ from .cihai import CihaiHelper
 from .helpers import TestCase
 from ..util import get_datafile
 from ..datasets import unihan
-from .._compat import StringIO
+from .._compat import StringIO, text_type
 from .. import Cihai, CihaiDataset
 
 log = logging.getLogger(__name__)
@@ -168,7 +168,7 @@ class UnihanTestCase(CihaiHelper):
                     if v not in columns:
                         notInColumns.append(v)
 
-        self.assertListEqual(
+        self.assertEqual(
             [], notInColumns,
         )
 
@@ -183,7 +183,7 @@ class UnihanTestCase(CihaiHelper):
         table = unihan.create_table(table_name, columns, self.cihai.metadata)
 
         self.assertEqual(table.name, table_name)
-        self.assertListEqual([c.name for c in table.columns], columns)
+        self.assertEqual([c.name for c in table.columns], columns)
 
 
 def suite():
