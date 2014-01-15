@@ -92,16 +92,6 @@ class UnihanTestCase(CihaiHelper):
 
         self.assertTrue(result)
 
-    def test_dl_progress(self):
-        out = StringIO()
-
-        unihan._dl_progress(20, 10, 1000, out=out)
-
-        result = out.getvalue().strip()
-        expected = '20% [==========>                                        ]'
-
-        self.assertEqual(result, expected)
-
     def test_save(self):
 
         u = self.cihai.use(unihan.Unihan)
