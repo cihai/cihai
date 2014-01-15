@@ -219,7 +219,7 @@ def save(url, filename, urlretrieve=urlretrieve, *args):
     :returns: Result of ``retrieve`` function
 
     """
-    return urlretrieve(url, filename, *args)
+    return urlretrieve(url, filename, *args[2:])
 
 
 def download(url, dest, urlretrieve=urlretrieve):
@@ -249,7 +249,7 @@ def download(url, dest, urlretrieve=urlretrieve):
     if no_unihan_files_exist():
         if not_downloaded():
             print('Downloading Unihan.zip...')
-            save(url, dest, urlretrieve)
+            save(url, dest, urlretrieve, _dl_progress)
 
     return dest
 
