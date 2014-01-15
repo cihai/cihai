@@ -10,6 +10,7 @@ from __future__ import absolute_import, division, print_function, \
     with_statement, unicode_literals
 
 import os
+import sys
 import collections
 import csv
 
@@ -51,6 +52,43 @@ class UnicodeReader(csv.DictReader):
                 row[key] = text_type(row[key].decode('utf-8'))
 
         return row
+
+
+def _dl_progress(count, block_size, total_size, out=sys.stdout):
+    """
+    MIT License: https://github.com/okfn/dpm-old/blob/master/dpm/util.py
+
+    Modification for testing: http://stackoverflow.com/a/4220278
+
+    """
+    def format_size(bytes):
+        if bytes > 1000 * 1000:
+            return '%.1fMb' % (bytes / 1000.0 / 1000)
+        elif bytes > 10 * 1000:
+            return '%iKb' % (bytes / 1000)
+        elif bytes > 1000:
+            return '%.1fKb' % (bytes / 1000.0)
+        else:
+            return '%ib' % bytes
+
+    if not count:
+        print('Total size: %s' % format_size(total_size))
+    last_percent = int((count - 1) * block_size * 100 / total_size)
+    # may have downloaded less if count*block_size > total_size
+    maxdownloaded = count * block_size
+    percent = min(int(maxdownloaded * 100 / total_size), 100)
+    if percent > last_percent:
+        # TODO: is this acceptable? Do we want to do something nicer?
+        out.write(
+            '%3d%% [%s>%s]\r' % (
+                percent,
+                int(percent / 2) * '=',
+                int(50 - percent / 2) * ' '
+            )
+        )
+        out.flush()
+    if maxdownloaded >= total_size:
+        print('\n')
 
 
 # Code from https://github.com/pypa/warehouse

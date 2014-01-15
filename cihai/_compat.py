@@ -31,6 +31,7 @@ if not PY2:
     from string import ascii_lowercase
     import urllib.parse as urllib
     import urllib.parse as urlparse
+    from urllib.request import urlretrieve
 
     exec('def reraise(tp, value, tb=None):\n raise(tp, value, tb)')
 
@@ -46,6 +47,7 @@ else:
     text_type = unicode
     string_types = (str, unicode)
     integer_types = (int, long)
+    from urllib import urlretrieve
 
     text_to_native = lambda s, enc: s.encode(enc)
     unichr = unichr
