@@ -152,6 +152,24 @@ in_columns = lambda c, columns: c in columns + default_columns
 not_junk = lambda line: line[0] != '#' and line != '\n'
 
 
+def check_install(metadata, install_dict=None):
+
+    if not install_dict:
+        install_dict = UNIHAN_DATASETS
+
+    columns = sorted({col for cols in install_dict.values() for col in cols})
+    print(columns)
+
+    if table_name in metadata.tables.keys():
+        table = metadata.tables[table_name]
+        if columns in table.columns:
+            return True
+        else:
+            return False
+    else:
+        return False
+
+
 def _dl_progress(count, block_size, total_size, out=sys.stdout):
     """
     MIT License: https://github.com/okfn/dpm-old/blob/master/dpm/util.py
@@ -276,7 +294,7 @@ def csv_to_dictlists(csv_files, columns):
                 item = dict(zip(['ucn', 'field', 'value'], l))
                 char = conversion.ucn_to_unicode(item['ucn'])
                 if not char in items:
-                    items[char] = {}
+                    items[char] = dict.fromkeys(columns)
                     items[char]['ucn'] = item['ucn']
                 items[char][item['field']] = item['value']
     return items
@@ -293,18 +311,23 @@ def create_table(columns, metadata):
     :rtype: :class:`sqlalchemy.schema.Table`
 
     """
-    table = Table(table_name, metadata)
-    fields = []
 
-    fields.append(Column('id', Integer, primary_key=True))
-    fields.append(Column('char', String(12)))
-    for column_name in columns:
-        col = Column(column_name, String(256))
-        table.append_column(col)
+    if not table_name in metadata.tables:
+        table = Table(table_name, metadata)
 
-    Index('%s_unique_char' % table_name, table.c.char, unique=True)
+        table.append_column(Column('char', String(12), primary_key=True))
+        table.append_column(Column('ucn', String(12), primary_key=True))
 
-    return table
+        for column_name in columns:
+            col = Column(column_name, String(256), nullable=True)
+            table.append_column(col)
+
+        Index('%s_unique_char' % table_name, table.c.char, unique=True)
+        Index('%s_unique_char_ucn' % table_name, table.c.char, table.c.ucn, unique=True)
+
+        return table
+    else:
+        return Table(table_name, metadata)
 
 
 class Unihan(CihaiDataset):
@@ -378,24 +401,27 @@ class Unihan(CihaiDataset):
                     'Unihan_DictionaryIndices.txt': [
                         'kCheungBauerIndex',
                         'kCowles'
-                    ],
+                    ]
                 }
 
-        :type csv_filename: dict
+        :type install_dict: dict
         :rtype: :class:`sqlalchemy.schema.Table`
 
         """
 
         if not install_dict:
             install_dict = UNIHAN_DATASETS
-
         files = tuple(self.get_datapath(f) for f in install_dict.keys())
-        columns = [col for csvfile, col in install_dict.items()]
+        columns = sorted({col for cols in install_dict.values() for col in cols})
+        print(columns)
 
         data = csv_to_dictlists(files, columns)
 
         table = create_table(columns, self.metadata)
         self.metadata.create_all()
+
+        data = [dict(char=char, **values) for char, values in data.items()]
+        print(data)
 
         self.metadata.bind.execute(table.insert(), data)
 

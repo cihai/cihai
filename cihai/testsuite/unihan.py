@@ -174,14 +174,39 @@ class UnihanTestCase(CihaiHelper):
 
     def test_create_table(self):
         columns = [
-            'kTotalStrokes',
-            'kPhonetic',
             'kCantonese',
             'kDefinition',
+            'kHangul',
         ] + unihan.default_columns
         table = unihan.create_table(columns, self.cihai.metadata)
 
-        self.assertEqual([c.name for c in table.columns], columns)
+        results = [text_type(c.name) for c in table.columns]
+        self.assertSetEqual(set(results), set(columns))
+
+    def test_check_install(self):
+        columns = [
+            'kCantonese',
+            'kDefinition',
+            'kHangul',
+        ] + unihan.default_columns
+
+        install_dict = {
+            'Unihan_Readings.txt': [
+                'kCantonese',
+                'kDefinition',
+                'kHangul',
+            ]
+        }
+
+        results = unihan.check_install(
+            metadata=self.cihai.metadata,
+            install_dict=install_dict
+        )
+
+        self.assertFalse(results)
+
+        u = self.cihai.use(unihan.Unihan)
+        table = u.install(install_dict)
 
 
 def suite():

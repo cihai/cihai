@@ -114,6 +114,7 @@ class Cihai(object):
 
         #: :class:`sqlalchemy.schema.MetaData` instance.
         self.metadata = db.metadata
+        self.metadata.bind = self.engine
 
     @classmethod
     def from_file(cls, config_path=None, *args, **kwargs):
