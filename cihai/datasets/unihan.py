@@ -150,6 +150,7 @@ table_name = 'Unihan'
 default_columns = ['ucn', 'char']
 in_columns = lambda c, columns: c in columns + default_columns
 not_junk = lambda line: line[0] != '#' and line != '\n'
+flatten_datasets = lambda d: sorted({c for cs in d.values() for c in cs})
 
 
 def check_install(metadata, install_dict=None):
@@ -157,8 +158,7 @@ def check_install(metadata, install_dict=None):
     if not install_dict:
         install_dict = UNIHAN_DATASETS
 
-    columns = sorted({col for cols in install_dict.values() for col in cols})
-    print(columns)
+    columns = flatten_datasets(install_dict)
 
     if table_name in metadata.tables.keys():
         table = metadata.tables[table_name]
@@ -412,8 +412,7 @@ class Unihan(CihaiDataset):
         if not install_dict:
             install_dict = UNIHAN_DATASETS
         files = tuple(self.get_datapath(f) for f in install_dict.keys())
-        columns = sorted({col for cols in install_dict.values() for col in cols})
-        print(columns)
+        columns = flatten_datasets(install_dict)
 
         data = csv_to_dictlists(files, columns)
 
@@ -421,7 +420,6 @@ class Unihan(CihaiDataset):
         self.metadata.create_all()
 
         data = [dict(char=char, **values) for char, values in data.items()]
-        print(data)
 
         self.metadata.bind.execute(table.insert(), data)
 

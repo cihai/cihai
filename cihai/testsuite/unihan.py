@@ -11,12 +11,12 @@ id char ucn colName colNmae colName
 load csv's mapped by colNmae and individual names into a dict.
 
 '中' {
-    'ucn': '',
-    'kDefinition': ''
+'ucn': '',
+'kDefinition': ''
 }
 
 1. insert dict/struct of { 'unihanFileName': ['colName', 'colName'] }
-    return cols, records
+return cols, records
 
     Idea: Create a special iter class for it.
     Idea 2: Function, return cols, struct above
@@ -207,6 +207,49 @@ class UnihanTestCase(CihaiHelper):
 
         u = self.cihai.use(unihan.Unihan)
         table = u.install(install_dict)
+
+    def test_flatten_datasets(self):
+
+        flatten_datasets = unihan.flatten_datasets
+
+        single_dataset = {
+            'Unihan_Readings.txt': [
+                'kCantonese',
+                'kDefinition',
+                'kHangul',
+            ]
+        }
+
+        expected = ['kCantonese', 'kDefinition', 'kHangul']
+        results = flatten_datasets(single_dataset)
+
+        self.assertEqual(expected, results)
+
+        datasets = {
+            'Unihan_NumericValues.txt': [
+                'kAccountingNumeric',
+                'kOtherNumeric',
+                'kPrimaryNumeric',
+            ],
+            'Unihan_OtherMappings.txt': [
+                'kBigFive',
+                'kCCCII',
+                'kCNS1986',
+            ]
+        }
+
+        expected = [
+            'kAccountingNumeric',
+            'kOtherNumeric',
+            'kPrimaryNumeric',
+            'kBigFive',
+            'kCCCII',
+            'kCNS1986',
+        ]
+
+        results = flatten_datasets(datasets)
+
+        self.assertSetEqual(set(expected), set(results))
 
 
 def suite():
