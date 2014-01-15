@@ -11,8 +11,8 @@ id char ucn colName colNmae colName
 load csv's mapped by colNmae and individual names into a dict.
 
 '中' {
-'ucn': '',
-'kDefinition': ''
+    'ucn': '',
+    'kDefinition': ''
 }
 
 1. insert dict/struct of { 'unihanFileName': ['colName', 'colName'] }
@@ -207,6 +207,13 @@ class UnihanTestCase(CihaiHelper):
 
         u = self.cihai.use(unihan.Unihan)
         table = u.install(install_dict)
+
+        results = unihan.check_install(
+            metadata=self.cihai.metadata,
+            install_dict=install_dict
+        )
+
+        self.assertTrue(results)
 
     def test_flatten_datasets(self):
 

@@ -158,11 +158,11 @@ def check_install(metadata, install_dict=None):
     if not install_dict:
         install_dict = UNIHAN_DATASETS
 
-    columns = flatten_datasets(install_dict)
+    columns = flatten_datasets(install_dict) + default_columns
 
     if table_name in metadata.tables.keys():
         table = metadata.tables[table_name]
-        if columns in table.columns:
+        if set(columns) == set(c.name for c in table.columns):
             return True
         else:
             return False
