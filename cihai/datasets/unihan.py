@@ -146,7 +146,7 @@ UNIHAN_DATASETS = {
 
 UNIHAN_URL = 'http://www.unicode.org/Public/UNIDATA/Unihan.zip'
 
-
+table_name = 'Unihan'
 default_columns = ['ucn', 'char']
 in_columns = lambda c, columns: c in columns + default_columns
 not_junk = lambda line: line[0] != '#' and line != '\n'
@@ -282,11 +282,9 @@ def csv_to_dictlists(csv_files, columns):
     return items
 
 
-def create_table(table_name, columns, metadata):
+def create_table(columns, metadata):
     """Create table and return  :class:`sqlalchemy.Table`.
 
-    :param table_name: name of table to create
-    :type table_name: string
     :param columns: columns for table, i.e. ['kDefinition', 'kCantonese']
     :type columns: list
     :param metadata: Instance of sqlalchemy metadata
@@ -391,13 +389,12 @@ class Unihan(CihaiDataset):
         if not install_dict:
             install_dict = UNIHAN_DATASETS
 
-        table_name = 'Unihan'
         files = tuple(self.get_datapath(f) for f in install_dict.keys())
         columns = [col for csvfile, col in install_dict.items()]
 
         data = csv_to_dictlists(files, columns)
 
-        table = create_table(table_name, columns, self.metadata)
+        table = create_table(columns, self.metadata)
         self.metadata.create_all()
 
         self.metadata.bind.execute(table.insert(), data)

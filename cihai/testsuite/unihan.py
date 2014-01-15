@@ -173,16 +173,14 @@ class UnihanTestCase(CihaiHelper):
         )
 
     def test_create_table(self):
-        table_name = 'unihan'
         columns = [
             'kTotalStrokes',
             'kPhonetic',
             'kCantonese',
             'kDefinition',
         ] + unihan.default_columns
-        table = unihan.create_table(table_name, columns, self.cihai.metadata)
+        table = unihan.create_table(columns, self.cihai.metadata)
 
-        self.assertEqual(table.name, table_name)
         self.assertEqual([c.name for c in table.columns], columns)
 
 
