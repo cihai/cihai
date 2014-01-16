@@ -5,11 +5,43 @@ PY2 = sys.version_info[0] == 2
 _identity = lambda x: x
 
 
-if not PY2:
+if PY2:
+    unichr = unichr
+    text_type = unicode
+    string_types = (str, unicode)
+    integer_types = (int, long)
+    from urllib import urlretrieve
+
+    text_to_native = lambda s, enc: s.encode(enc)
+
+    iterkeys = lambda d: d.iterkeys()
+    itervalues = lambda d: d.itervalues()
+    iteritems = lambda d: d.iteritems()
+
+    from cStringIO import StringIO as BytesIO
+    from StringIO import StringIO
+    import cPickle as pickle
+    import ConfigParser as configparser
+
+    from itertools import izip, imap
+    range_type = xrange
+
+    cmp = cmp
+
+    input = raw_input
+    from string import lower as ascii_lowercase
+    import urlparse
+
+    def console_to_str(s):
+        return s.decode('utf_8')
+
+    exec('def reraise(tp, value, tb=None):\n raise tp, value, tb')
+
+else:
+    unichr = chr
     text_type = str
     string_types = (str,)
     integer_types = (int, )
-    unichr = chr
 
     text_to_native = lambda s, enc: s
 
@@ -46,38 +78,6 @@ if not PY2:
         if value.__traceback__ is not tb:
             raise(value.with_traceback(tb))
         raise value
-
-else:
-    text_type = unicode
-    string_types = (str, unicode)
-    integer_types = (int, long)
-    from urllib import urlretrieve
-
-    text_to_native = lambda s, enc: s.encode(enc)
-    unichr = unichr
-
-    iterkeys = lambda d: d.iterkeys()
-    itervalues = lambda d: d.itervalues()
-    iteritems = lambda d: d.iteritems()
-
-    from cStringIO import StringIO as BytesIO
-    from StringIO import StringIO
-    import cPickle as pickle
-    import ConfigParser as configparser
-
-    from itertools import izip, imap
-    range_type = xrange
-
-    cmp = cmp
-
-    input = raw_input
-    from string import lower as ascii_lowercase
-    import urlparse
-
-    def console_to_str(s):
-        return s.decode('utf_8')
-
-    exec('def reraise(tp, value, tb=None):\n raise(tp, value, tb)')
 
 
 number_types = integer_types + (float,)
