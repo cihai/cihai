@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Conversion functions between various Chinese encodings and representations.
 
 cihai.conversion
@@ -124,11 +125,11 @@ def ucn_to_unicode(ucn):
 
 
 def euc_to_unicode(hexstr):
-    """Return EUC-CN (GB2312) hex to a Python unicode bytestring.
+    """Return EUC-CN (GB2312) hex to a Python unicode.
 
     :param hexstr: bytestring
-    :returns: Python unicode bytestring, e.g. ``b'\\u4ee'``.
-    :rtype: bytes
+    :returns: Python unicode  e.g. ``u'\\u4e00'`` / '一'.
+    :rtype: unicode
 
     .. code-block:: python
 
