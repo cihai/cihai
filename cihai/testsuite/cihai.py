@@ -77,6 +77,12 @@ class CihaiTestCase(TestCase):
 
         self.assertEqual(result, expected)
 
+    def test_config_loads_module(self):
+        pass
+
+    def test_config_loads_package_modules(self):
+        pass
+
     def test_yaml_config_and_override(self):
         config = os.path.abspath(os.path.join(
             os.path.dirname(__file__),
