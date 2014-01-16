@@ -1,4 +1,7 @@
 debug: True
 
 database:
-  url: 'sqlite:///${data_dir}/cihai.db'
+  #url: 'sqlite:///${data_dir}/cihai.db'
+  url: 'postgres://tony:tony@localhost/cihai'
+datasets:
+  - 'cihai.datasets.unihan'

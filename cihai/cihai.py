@@ -17,8 +17,9 @@ from sqlalchemy import create_engine, MetaData, Table, String, Column, \
     Integer, Index
 
 from . import conversion, exc, db
-from .util import get_datafile, merge_dict, convert_to_attr_dict
-from ._compat import PY2, text_type, configparser
+from .util import get_datafile, merge_dict, convert_to_attr_dict, \
+    import_string, find_modules
+from ._compat import PY2, text_type, string_types, configparser
 
 log = logging.getLogger(__name__)
 
@@ -107,6 +108,19 @@ class Cihai(object):
                 os.path.dirname(__file__), 'data/'
             ))
 
+        self.datasets = self.config.get('datasets', [])
+        if isinstance(self.datasets, string_types):
+            self.datasets = [self.datasets]
+
+        for ds in self.datasets:
+            try:
+                for m in find_modules(ds):
+                    print(m)
+            except ValueError:
+                m = import_string(ds)
+
+            print(m)
+
         if engine is None and self.config.get('database', {}).get('url'):
             engine = create_engine(self.config.database.url)
         #: :class:`sqlalchemy.engine.Engine` instance.
@@ -163,11 +177,6 @@ class Cihai(object):
 
         args = parser.parse_args(argv)
         config = args._config if args._config is not None else None
-
-        from .util import find_modules
-
-        for m in find_modules('cihai.datasets', include_packages=True):
-            print(m)
 
         return cls.from_file(config)
 
