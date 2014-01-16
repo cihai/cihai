@@ -53,6 +53,7 @@ setup(
     package_data={
         'cihai': ['data/*']
     },
+    entry_points=dict(console_scripts=['cihai=cihai.__main__:run']),
     classifiers=[
         'Development Status :: 3 - Alpha',
         "License :: OSI Approved :: BSD License",

@@ -14,7 +14,9 @@ import sys
 import collections
 import csv
 
-from ._compat import text_type
+from ._compat import text_type, string_types, PY2, reraise
+
+import pkgutil
 
 
 def get_datafile(filename):

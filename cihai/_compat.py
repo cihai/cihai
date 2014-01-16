@@ -33,8 +33,6 @@ if not PY2:
     import urllib.parse as urlparse
     from urllib.request import urlretrieve
 
-    exec('def reraise(tp, value, tb=None):\n raise(tp, value, tb)')
-
     console_encoding = sys.__stdout__.encoding
 
     def console_to_str(s):
@@ -43,6 +41,12 @@ if not PY2:
             return s.decode(console_encoding)
         except UnicodeDecodeError:
             return s.decode('utf_8')
+
+    def reraise(tp, value, tb=None):
+        if value.__traceback__ is not tb:
+            raise(value.with_traceback(tb))
+        raise value
+
 else:
     text_type = unicode
     string_types = (str, unicode)
@@ -73,10 +77,7 @@ else:
     def console_to_str(s):
         return s.decode('utf_8')
 
-    def reraise(tp, value, tb=None):
-        if value.__traceback__ is not tb:
-            raise(value.with_traceback(tb))
-        raise value
+    exec('def reraise(tp, value, tb=None):\n raise(tp, value, tb)')
 
 
 number_types = integer_types + (float,)

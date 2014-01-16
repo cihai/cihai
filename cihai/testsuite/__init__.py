@@ -13,10 +13,7 @@ import unittest
 import sys
 
 from ..log import DebugLogFormatter
-from .._compat import string_types, PY2, reraise
 from ..util import find_modules
-
-import pkgutil
 
 log = logging.getLogger()
 

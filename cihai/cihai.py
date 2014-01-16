@@ -164,6 +164,11 @@ class Cihai(object):
         args = parser.parse_args(argv)
         config = args._config if args._config is not None else None
 
+        from .util import find_modules
+
+        for m in find_modules('cihai.datasets', include_packages=True):
+            print(m)
+
         return cls.from_file(config)
 
     def use(self, Dataset, *args, **kwargs):
