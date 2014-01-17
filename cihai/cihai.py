@@ -96,12 +96,6 @@ class Cihai(object):
 
     def __init__(self, config, engine=None):
 
-        #: list of current datasets in session
-        self.datasets = []
-
-        #: list of dataset models in session
-        self.models = []
-
         #: configuration dictionary. Available as attributes. ``.config.debug``
         self.config = convert_to_attr_dict(config)
 
@@ -111,9 +105,13 @@ class Cihai(object):
                 os.path.dirname(__file__), 'data/'
             ))
 
+        #: list of current datasets in session
         self.datasets = self.config.get('datasets', [])
         if isinstance(self.datasets, string_types):
             self.datasets = [self.datasets]
+
+        #: list of dataset models in session
+        self.models = []
 
         for ds in self.datasets:
             try:
