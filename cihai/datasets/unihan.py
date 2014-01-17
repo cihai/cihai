@@ -166,7 +166,7 @@ def check_install(metadata, install_dict=None):
         return False
 
 
-def save(url, filename, urlretrieve=urlretrieve, *args):
+def save(url, filename, urlretrieve=urlretrieve, reporthook=None):
     """Separate download function for testability.
 
     :param url: URL to download
@@ -174,20 +174,28 @@ def save(url, filename, urlretrieve=urlretrieve, *args):
     :param filename: destination to download to.
     :type filename: string
     :param urlretrieve: function to download file
-    :param *args: accepts a callback for ``retrieve`` function progress.
-    :returns: Result of ``retrieve`` function
+    :type urlretrieve: function
+    :param reporthook: callback for ``urlretrieve`` function progress.
+    :type reporthook: function
+    :returns: Result of ``urlretrieve`` function
 
     """
-    return urlretrieve(url, filename, *args[2:])
+
+    if reporthook:
+        return urlretrieve(url, filename, reporthook)
+    else:
+        return urlretrieve(url, filename)
 
 
-def download(url, dest, urlretrieve=urlretrieve):
+def download(url, dest, urlretrieve=urlretrieve, progress=False):
     """Download a file to a destination.
 
     :param url: URL to download from.
     :type url: str
     :param destination: file path where download is to be saved.
     :type destination: str
+    :param progress: Write progress bar to stdout buffer.
+    :type progress: bool
     :returns: destination where file downloaded to
     :rtype: str
 
@@ -208,7 +216,10 @@ def download(url, dest, urlretrieve=urlretrieve):
     if no_unihan_files_exist():
         if not_downloaded():
             print('Downloading Unihan.zip...')
-            save(url, dest, urlretrieve, _dl_progress)
+            if progress:
+                save(url, dest, urlretrieve, _dl_progress)
+            else:
+                save(url, dest, urlretrieve)
 
     return dest
 
