@@ -185,11 +185,11 @@ def download(url, dest, urlretrieve=urlretrieve):
     """Download a file to a destination.
 
     :param url: URL to download from.
-    :param type: str
+    :type url: str
     :param destination: file path where download is to be saved.
-    :type str:
+    :type destination: str
     :returns: destination where file downloaded to
-    :rtype str:
+    :rtype: str
 
     """
 
