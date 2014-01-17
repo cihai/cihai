@@ -4,6 +4,18 @@
 cihai.datasets.unihan
 ~~~~~~~~~~~~~~~~~~~~~
 
+todo: install manifest for installing files remotely via pip-type of URL.
+        git+, hg+, svn+, http://
+todo: extract files if from zip/tar.gz
+
+MANIFEST: {
+    'filename'
+}
+:function:`~.download()` - Download data file from source.
+:function:`~.convert()` -
+:function:`~.install()` - Install
+:function:`~.()` - Install
+
 """
 
 from __future__ import absolute_import, division, print_function, \
