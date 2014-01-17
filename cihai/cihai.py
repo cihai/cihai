@@ -5,26 +5,20 @@ from __future__ import absolute_import, division, print_function, \
     with_statement, unicode_literals
 
 import os
-import zipfile
-import csv
-import hashlib
 import argparse
 import logging
 
 import kaptan
 
-from sqlalchemy import create_engine, MetaData, Table, String, Column, \
-    Integer, Index
+from sqlalchemy import create_engine, MetaData, Table, Integer, Index
 
 from . import conversion, exc, db
 from .util import get_datafile, merge_dict, convert_to_attr_dict, \
     import_string, find_modules
-from ._compat import PY2, text_type, string_types, configparser
+from ._compat import string_types
 
 log = logging.getLogger(__name__)
 
-cihai_config = get_datafile('cihai.conf')
-cihai_db = get_datafile('cihai.db')
 """
 Todo:
 
