@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # -*- coding: utf8 - *-
 """Cihai dataset for `Unihan`_, Han Unification from Unicode, Inc.
 
@@ -11,10 +12,11 @@ todo: extract files if from zip/tar.gz
 MANIFEST: {
     'filename'
 }
+
 :function:`~.download()` - Download data file from source.
-:function:`~.convert()` -
+:function:`~.convert()` - Source files into tabular, relational friendly csv.
 :function:`~.install()` - Install
-:function:`~.()` - Install
+:function:`~.check_install()` -
 
 """
 
@@ -29,7 +31,7 @@ import fileinput
 import zipfile
 import logging
 
-from sqlalchemy import Table, String, Column, Integer, Index, select, or_, and_
+from sqlalchemy import Table, String, Column, Index, select, and_
 
 from .. import conversion, CihaiDataset
 from ..util import UnicodeReader, _dl_progress

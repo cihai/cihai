@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # -*- coding: utf8 - *-
 """Cihai client object."""
 
@@ -18,12 +19,6 @@ from .util import get_datafile, merge_dict, convert_to_attr_dict, \
 from ._compat import string_types
 
 log = logging.getLogger(__name__)
-
-"""
-Todo:
-
-- have get_datafile work in accordance with data_path.
-"""
 
 
 class CihaiDataset(object):

@@ -1,7 +1,6 @@
+#!/usr/bin/env python
 # -*- coding: utf8 - *-
-"""For accessing cihai as a package.
-
-"""
+"""For accessing cihai as a package."""
 
 import sys
 import os
