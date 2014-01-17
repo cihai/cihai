@@ -91,28 +91,28 @@ class UCN(TestCase):
         before = 'U+4E00'
         expected = '\u4e00'
 
-        after = conversion.ucn_to_unicode(before)
+        result = conversion.ucn_to_unicode(before)
 
-        self.assertEqual(after, expected)
+        self.assertEqual(result, expected)
 
-        self.assertIsInstance(after, text_type)
+        self.assertIsInstance(result, text_type)
 
         # wide character
         before = 'U+20001'
         expected = '\U00020001'
 
-        after = conversion.ucnstring_to_unicode(before)
+        result = conversion.ucnstring_to_unicode(before)
 
-        self.assertEqual(after, expected)
-        self.assertIsInstance(after, text_type)
+        self.assertEqual(result, expected)
+        self.assertIsInstance(result, text_type)
 
         before = '(same as U+7A69 穩) firm; stable; secure'
         expected = '(same as 穩 穩) firm; stable; secure'
 
-        after = conversion.ucnstring_to_unicode(before)
+        result = conversion.ucnstring_to_unicode(before)
 
-        self.assertEqual(after, expected)
-        self.assertIsInstance(after, text_type)
+        self.assertEqual(result, expected)
+        self.assertIsInstance(result, text_type)
 
 
 class EUC(TestCase):
@@ -125,33 +125,33 @@ class EUC(TestCase):
     """
 
     def test_from_unicode(self):
-        text = '一'
-        python_unicode = u'\u4e00'
+        expected = '一'  # u'\u4e00'
         euc_bytestring = b'd2bb'
         euc_unicode = 'd2bb'
 
-        expected = conversion.python_to_euc(python_unicode, as_bytes=True)
+        result = conversion.python_to_euc(expected, as_bytes=True)
 
-        self.assertEqual(euc_bytestring, expected)
-        self.assertIsInstance(expected, bytes)
+        self.assertEqual(euc_bytestring, result)
+        self.assertIsInstance(result, bytes)
 
-        expected = conversion.python_to_euc(python_unicode)
+        result = conversion.python_to_euc(expected)
 
-        self.assertEqual(euc_unicode, expected)
-        self.assertIsInstance(expected, text_type)
+        self.assertEqual(euc_unicode, result)
+        self.assertIsInstance(result, text_type)
 
     def test_to_unicode(self):
-        text = '一'
-        python_unicode = u'\u4e00'
+        # = '一'
+        expected = '一'
+        expected_ustring = u'\u4e00'
         euc_bytestring = b'd2bb'
 
-        expected = conversion.euc_to_unicode(euc_bytestring)
+        result = conversion.euc_to_unicode(euc_bytestring)
 
-        self.assertEqual(text, python_unicode)
-        self.assertIsInstance(expected, text_type)
+        self.assertEqual(expected, expected_ustring)
+        self.assertIsInstance(result, text_type)
 
-        self.assertEqual(text, expected)
-        self.assertEqual(python_unicode, expected)
+        self.assertEqual(expected, result)
+        self.assertEqual(expected_ustring, result)
 
 
 def suite():
