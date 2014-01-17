@@ -235,7 +235,7 @@ def extract(zip_filepath):
     return z
 
 
-def csv_to_dictlists(csv_files, columns):
+def convert(csv_files, columns):
     """Return dict from Unihan CSV files.
 
     :param csv_files: file names in data dir
@@ -373,7 +373,7 @@ class Unihan(CihaiDataset):
         files = tuple(self.get_datapath(f) for f in install_dict.keys())
         columns = flatten_datasets(install_dict)
 
-        data = csv_to_dictlists(files, columns)
+        data = convert(files, columns)
 
         table = create_table(columns, self.metadata)
         self.metadata.create_all()

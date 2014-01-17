@@ -133,7 +133,7 @@ class UnihanTestCase(CihaiHelper):
         self.assertEqual(zf.infolist()[0].file_size, 10)
         self.assertEqual(zf.infolist()[0].filename, "d.txt")
 
-    def test_csv_to_dictlists(self):
+    def test_convert(self):
         u = self.cihai.use(unihan.Unihan)
 
         csv_files = [
@@ -148,7 +148,7 @@ class UnihanTestCase(CihaiHelper):
             'kDefinition',
         ] + unihan.default_columns
 
-        items = unihan.csv_to_dictlists(csv_files, columns)
+        items = unihan.convert(csv_files, columns)
 
         notInColumns = []
 
