@@ -99,6 +99,9 @@ class Cihai(object):
         #: list of current datasets in session
         self.datasets = []
 
+        #: list of dataset models in session
+        self.models = []
+
         #: configuration dictionary. Available as attributes. ``.config.debug``
         self.config = convert_to_attr_dict(config)
 
@@ -114,12 +117,13 @@ class Cihai(object):
 
         for ds in self.datasets:
             try:
-                for m in find_modules(ds):
-                    print(m)
+                for m in find_modules(ds, include_packages=True):
+                    m = import_string(m)
+                    self.models.append(m)
             except ValueError:
                 m = import_string(ds)
-
-            print(m)
+                self.models.append(m)
+                print(m)
 
         if engine is None and self.config.get('database', {}).get('url'):
             engine = create_engine(self.config.database.url)

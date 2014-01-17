@@ -70,7 +70,6 @@ import logging
 from sqlalchemy import Table, String, Column, Integer, Index, select, or_, and_
 
 from .. import conversion
-from ..cihai import cihai_config, cihai_db, CihaiDatabase
 from ..util import get_datafile, UnicodeReader
 from .._compat import PY2, text_type, configparser
 
