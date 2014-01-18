@@ -9,10 +9,6 @@ todo: install manifest for installing files remotely via pip-type of URL.
         git+, hg+, svn+, http://
 todo: extract files if from zip/tar.gz
 
-MANIFEST: {
-    'filename'
-}
-
 :function:`~.download()` - Download data file from source.
 :function:`~.convert()` - Source files into tabular, relational friendly csv.
 :function:`~.install()` - Install
@@ -33,9 +29,9 @@ import logging
 
 from sqlalchemy import Table, String, Column, Index, select, and_
 
-from .. import conversion, CihaiDataset
-from ..util import UnicodeReader, _dl_progress
-from .._compat import StringIO, urlretrieve
+from ... import conversion, CihaiDataset
+from ...util import UnicodeReader, _dl_progress
+from ..._compat import StringIO, urlretrieve
 
 __copyright__ = 'Copyright 2013 Tony Narlock.'
 __license__ = 'BSD, see LICENSE for details.'

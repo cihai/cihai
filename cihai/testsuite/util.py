@@ -56,7 +56,7 @@ class UtilTestCase(unittest.TestCase):
 
     def test_find_modules(self):
         self.assertEqual(
-            list(util.find_modules('cihai.datasets')),
+            list(util.find_modules('cihai.datasets', include_packages=True)),
             ['cihai.datasets.decomp', 'cihai.datasets.unihan']
         )
 

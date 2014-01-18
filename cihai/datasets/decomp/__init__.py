@@ -70,9 +70,9 @@ import logging
 
 from sqlalchemy import Table, String, Column, Integer, Index, select, or_, and_
 
-from .. import conversion
-from ..util import get_datafile, UnicodeReader
-from .._compat import PY2, text_type, configparser
+from ... import conversion
+from ...util import get_datafile, UnicodeReader
+from ..._compat import PY2, text_type, configparser
 
 __copyright__ = 'Copyright 2013 Tony Narlock.'
 __license__ = 'BSD, see LICENSE for details.'
