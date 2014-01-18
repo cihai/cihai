@@ -10,7 +10,7 @@ Unihan abstraction layer.
 """
 import os
 import sys
-from setuptools import setup
+from setuptools import setup, find_packages
 
 
 with open('requirements.pip') as f:
@@ -46,10 +46,11 @@ setup(
     tests_require=tests_reqs,
     test_suite='cihai.testsuite',
     zip_safe=False,
-    packages=[
-        'cihai', 'cihai.testsuite', 'cihai.datasets',
-        'cihai._vendor', 'cihai._vendor.colorama'
-    ],
+    # packages=[
+        # 'cihai', 'cihai.testsuite', 'cihai.datasets',
+        # 'cihai._vendor', 'cihai._vendor.colorama'
+    # ],
+    packages=find_packages(exclude=["doc"]),
     package_data={
         'cihai': ['data/*']
     },
