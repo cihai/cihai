@@ -23,6 +23,7 @@ permissive, high quality CJK datasets and clients.
 - Public datasets maintained by `cihai team`_. Unihan will be a first
   example. See `cihaidata-unihan`_.
 
+.. _cihai-handbook: https://github.com/cihai/cihai-handbook
 .. _cihai team: https://github.com/cihai?tab=members
 .. _cihai-python: https://github.com/cihai/cihai-python
 .. _cihaidata-unihan: https://github.com/cihai/cihaidata-unihan
