@@ -7,9 +7,9 @@
 .. image:: https://coveralls.io/repos/tony/cihai/badge.png?branch=master
     :target: https://coveralls.io/r/tony/cihai?branch=master
 
-** This project will soon move to the https://github.com/cihai group.**
+**This project will soon move to the https://github.com/cihai group.**
 
-** This project will soon be split into: **
+**This project will soon be split into:**
 
 - cihai, which provides documentational overviews of the history of CJK,
   the dataset standards and available client libraries.
