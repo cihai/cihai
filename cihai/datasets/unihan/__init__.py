@@ -19,16 +19,12 @@ todo: extract files if from zip/tar.gz
 from __future__ import absolute_import, division, print_function, \
     with_statement, unicode_literals
 
-import os
 import sys
-import glob
-import hashlib
-import fileinput
-import zipfile
 import logging
 
 from sqlalchemy import Table, String, Column, Index, select, and_
 
+from .scripts import save, download, extract, convert
 from ... import conversion, CihaiDataset
 from ...util import UnicodeReader, _dl_progress
 from ..._compat import StringIO, urlretrieve
@@ -153,10 +149,8 @@ UNIHAN_DATASETS = {
 UNIHAN_URL = 'http://www.unicode.org/Public/UNIDATA/Unihan.zip'
 
 table_name = 'Unihan'
-default_columns = ['ucn', 'char']
-in_columns = lambda c, columns: c in columns + default_columns
-not_junk = lambda line: line[0] != '#' and line != '\n'
 flatten_datasets = lambda d: sorted({c for cs in d.values() for c in cs})
+default_columns = ['ucn', 'char']
 
 
 def check_install(metadata, install_dict=None):
@@ -174,111 +168,6 @@ def check_install(metadata, install_dict=None):
             return False
     else:
         return False
-
-
-def save(url, filename, urlretrieve=urlretrieve, reporthook=None):
-    """Separate download function for testability.
-
-    :param url: URL to download
-    :type url: str
-    :param filename: destination to download to.
-    :type filename: string
-    :param urlretrieve: function to download file
-    :type urlretrieve: function
-    :param reporthook: callback for ``urlretrieve`` function progress.
-    :type reporthook: function
-    :returns: Result of ``urlretrieve`` function
-
-    """
-
-    if reporthook:
-        return urlretrieve(url, filename, reporthook)
-    else:
-        return urlretrieve(url, filename)
-
-
-def download(url, dest, urlretrieve=urlretrieve, progress=False):
-    """Download a file to a destination.
-
-    :param url: URL to download from.
-    :type url: str
-    :param destination: file path where download is to be saved.
-    :type destination: str
-    :param progress: Write progress bar to stdout buffer.
-    :type progress: bool
-    :returns: destination where file downloaded to
-    :rtype: str
-
-    """
-
-    datadir = os.path.dirname(dest)
-    if not os.path.exists(datadir):
-        os.makedirs(datadir)
-
-    no_unihan_files_exist = lambda: not glob.glob(
-        os.path.join(datadir, 'Unihan*.txt')
-    )
-
-    not_downloaded = lambda: not os.path.exists(
-        os.path.join(datadir, 'Unihan.zip')
-    )
-
-    if no_unihan_files_exist():
-        if not_downloaded():
-            print('Downloading Unihan.zip...')
-            if progress:
-                save(url, dest, urlretrieve, _dl_progress)
-            else:
-                save(url, dest, urlretrieve)
-
-    return dest
-
-
-def extract(zip_filepath):
-    """Extract zip file. Return :class:`zipfile.ZipFile` instance.
-
-    :param zip_filepath: file to extract.
-    :type zip_filepath: string
-    :returns: The extracted zip.
-    :rtype: :class:`zipfile.ZipFile`
-
-    """
-
-    datadir = os.path.dirname(zip_filepath)
-    try:
-        z = zipfile.ZipFile(zip_filepath)
-    except zipfile.BadZipfile as e:
-        print('%s. Unihan.zip incomplete or corrupt. Redownloading...' % e)
-        download()
-        z = zipfile.ZipFile(zip_filepath)
-    z.extractall(datadir)
-
-    return z
-
-
-def convert(csv_files, columns):
-    """Return dict from Unihan CSV files.
-
-    :param csv_files: file names in data dir
-    :type csv_files: list
-    :return: List of tuples for data loaded
-
-    """
-
-    data = fileinput.FileInput(files=csv_files, openhook=fileinput.hook_encoded('utf-8'))
-    items = {}
-    for l in data:
-        if not_junk(l):
-            l = l.strip().split('\t')
-            if in_columns(l[1], columns):
-                item = dict(zip(['ucn', 'field', 'value'], l))
-                char = conversion.ucn_to_unicode(item['ucn'])
-                if not char in items:
-                    items[char] = dict.fromkeys(columns)
-                    items[char]['ucn'] = item['ucn']
-                items[char][item['field']] = item['value']
-    return items
-
 
 def create_table(columns, metadata):
     """Create table and return  :class:`sqlalchemy.Table`.
@@ -404,6 +293,9 @@ class Unihan(CihaiDataset):
         self.metadata.bind.execute(table.insert(), data)
 
         return table
+
+    def download(self):
+        pass
 
     def get(self, request, response, *args, **kwargs):
         """Return chinese character data from Unihan data.

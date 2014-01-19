@@ -86,16 +86,6 @@ class CihaiTestCase(TestCase):
 
         self.assertIn(unihan, cihai.models)
 
-    def test_config_loads_package_modules(self):
-        from cihai.datasets import unihan, decomp
-
-        cihai = Cihai({
-            'datasets': ['cihai.datasets']
-        })
-
-        self.assertIn(unihan, cihai.models)
-        self.assertIn(decomp, cihai.models)
-
     def test_yaml_config_and_override(self):
         config = os.path.abspath(os.path.join(
             os.path.dirname(__file__),

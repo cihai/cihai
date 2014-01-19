@@ -56,13 +56,8 @@ from .. import Cihai, CihaiDataset
 
 log = logging.getLogger(__name__)
 
-import pprint
-pp = pprint.PrettyPrinter(indent=2).pprint
 
-
-class UnihanTestCase(CihaiHelper):
-    """Utilities to retrieve cihai information in a relational-friendly format.
-    """
+class UnihanHelper(CihaiHelper):
 
     @classmethod
     def setUpClass(cls):
@@ -75,20 +70,23 @@ class UnihanTestCase(CihaiHelper):
 
         cls.zf = zf
 
-        super(UnihanTestCase, cls).setUpClass()
+        super(UnihanHelper, cls).setUpClass()
 
     @classmethod
     def tearDownClass(cls):
 
         shutil.rmtree(cls.tempdir)
 
-        super(UnihanTestCase, cls).tearDownClass()
+        super(UnihanHelper, cls).tearDownClass()
+
+
+class UnihanScriptsTestCase(UnihanHelper):
 
     def test_in_columns(self):
         u = self.cihai.use(unihan.Unihan)
 
         columns = ['hey', 'kDefinition', 'kWhat']
-        result = unihan.in_columns('kDefinition', columns)
+        result = unihan.scripts.process.in_columns('kDefinition', columns)
 
         self.assertTrue(result)
 
@@ -100,7 +98,7 @@ class UnihanTestCase(CihaiHelper):
         tempdir = tempfile.mkdtemp()
 
         dest_filepath = os.path.join(tempdir, self.zip_filename)
-        unihan.save(src_filepath, dest_filepath, shutil.copy)
+        unihan.scripts.save(src_filepath, dest_filepath, shutil.copy)
 
         result = os.path.exists(dest_filepath)
 
@@ -117,7 +115,7 @@ class UnihanTestCase(CihaiHelper):
         tempdir = self.tempdir
         dest_filepath = os.path.join(tempdir, 'data', self.zip_filename)
 
-        unihan.download(src_filepath, dest_filepath, shutil.copy)
+        unihan.scripts.download(src_filepath, dest_filepath, shutil.copy)
 
         result = os.path.dirname(os.path.join(dest_filepath, 'data'))
         self.assertTrue(
@@ -127,7 +125,7 @@ class UnihanTestCase(CihaiHelper):
 
     def test_extract(self):
 
-        zf = unihan.extract(self.tempzip_filepath)
+        zf = unihan.scripts.extract(self.tempzip_filepath)
 
         self.assertEqual(len(zf.infolist()), 1)
         self.assertEqual(zf.infolist()[0].file_size, 10)
@@ -146,9 +144,9 @@ class UnihanTestCase(CihaiHelper):
             'kPhonetic',
             'kCantonese',
             'kDefinition',
-        ] + unihan.default_columns
+        ] + unihan.scripts.process.default_columns
 
-        items = unihan.convert(csv_files, columns)
+        items = unihan.scripts.convert(csv_files, columns)
 
         notInColumns = []
 
@@ -162,23 +160,32 @@ class UnihanTestCase(CihaiHelper):
             [], notInColumns,
         )
 
+
+class UnihanTestCase(UnihanHelper):
+    """Utilities to retrieve cihai information in a relational-friendly format.
+    """
+
     def test_create_table(self):
         columns = [
             'kCantonese',
             'kDefinition',
             'kHangul',
-        ] + unihan.default_columns
+        ] + unihan.scripts.process.default_columns
+
         table = unihan.create_table(columns, self.cihai.metadata)
 
         results = [text_type(c.name) for c in table.columns]
         self.assertSetEqual(set(results), set(columns))
+
+        if table.exists():
+            table.drop()
 
     def test_check_install(self):
         columns = [
             'kCantonese',
             'kDefinition',
             'kHangul',
-        ] + unihan.default_columns
+        ] + unihan.scripts.process.default_columns
 
         install_dict = {
             'Unihan_Readings.txt': [
@@ -204,6 +211,9 @@ class UnihanTestCase(CihaiHelper):
         )
 
         self.assertTrue(results)
+
+        if table.exists():
+            table.drop()
 
     def test_flatten_datasets(self):
 
@@ -252,4 +262,5 @@ class UnihanTestCase(CihaiHelper):
 def suite():
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(UnihanTestCase))
+    suite.addTest(unittest.makeSuite(UnihanScriptsTestCase))
     return suite
