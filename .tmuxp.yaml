@@ -5,7 +5,7 @@ shell_command_before:
   - '[ -d .env -a -f .env/bin/activate ] && source .env/bin/activate || virtualenv .env'
   - '[ ! -d .env/build ] || rm -rf .env/build'
 windows:
-- window_name: cihai
+- window_name: cihai-python
   layout: 89b3,239x56,0,0[239x36,0,0,0,239x19,0,37{119x19,0,37,1,119x19,120,37,3}]
   focus: true
   panes:
@@ -33,7 +33,7 @@ windows:
     - vim
     - :Ex
   - pwd
-  - echo 'docs built to <http://0.0.0.0:8013/_build/html>'; python -m SimpleHTTPServer 8008
+  - echo 'docs built to <http://0.0.0.0:8013/_build/html>'; python -m SimpleHTTPServer 8013
   - shell_command:
     - command -v sphinx-quickstart >/dev/null 2>&1 || { pip install -r requirements.pip; }
     - command -v watching_testrunner >/dev/null 2>&1 || { pip install watching_testrunner; }
