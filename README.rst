@@ -1,13 +1,11 @@
-.. image:: https://travis-ci.org/tony/cihai.png?branch=master
-    :target: https://travis-ci.org/tony/cihai
+.. image:: https://travis-ci.org/cihai/cihai-python.png?branch=master
+    :target: https://travis-ci.org/cihai/cihai-python
 
 .. image:: https://badge.fury.io/py/cihai.png
     :target: http://badge.fury.io/py/cihai
 
-.. image:: https://coveralls.io/repos/tony/cihai/badge.png?branch=master
-    :target: https://coveralls.io/r/tony/cihai?branch=master
-
-**This project will soon move to the https://github.com/cihai group.**
+.. image:: https://coveralls.io/repos/cihai/cihai-python/badge.png?branch=master
+    :target: https://coveralls.io/r/cihai/cihai-python?branch=master
 
 **This project will soon be split into:**
 
@@ -74,8 +72,8 @@ Future results
   - Breaking strings of characters into words
   - More datasets
 
-.. _Travis Builds: https://travis-ci.org/tony/cihai/builds
-.. _Revision History: https://github.com/tony/cihai/commits/master
+.. _Travis Builds: https://travis-ci.org/cihai/cihai-python/builds
+.. _Revision History: https://github.com/cihai/cihai-python/commits/master
 .. _cjklib: http://cjklib.org/0.3/
 .. _current datasets: http://cihai.readthedocs.org/en/latest/api.html#datasets
 .. _Extending: http://cihai.readthedocs.org/en/latest/extending.html
@@ -84,22 +82,22 @@ Future results
 
 ==============  ==========================================================
 Python support  Python 2.7, >= 3.3
-Source          https://github.com/tony/cihai
+Source          https://github.com/cihai/cihai-python
 Docs            http://cihai.rtfd.org
 Changelog       http://cihai.readthedocs.org/en/latest/history.html
 API             http://cihai.readthedocs.org/en/latest/api.html
-Issues          https://github.com/tony/cihai/issues
-Travis          http://travis-ci.org/tony/cihai
-Test coverage   https://coveralls.io/r/tony/cihai
+Issues          https://github.com/cihai/cihai-python/issues
+Travis          http://travis-ci.org/cihai/cihai-python
+Test coverage   https://coveralls.io/r/cihai/cihai-python
 pypi            https://pypi.python.org/pypi/cihai
 Ohloh           https://www.ohloh.net/p/cihai
 License         `BSD`_.
 git repo        .. code-block:: bash
 
-                    $ git clone https://github.com/tony/cihai.git
+                    $ git clone https://github.com/cihai/cihai-python.git
 install dev     .. code-block:: bash
 
-                    $ git clone https://github.com/tony/cihai.git cihai
+                    $ git clone https://github.com/cihai/cihai-python.git cihai
                     $ cd ./cihai
                     $ virtualenv .env
                     $ source .env/bin/activate

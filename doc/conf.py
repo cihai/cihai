@@ -267,7 +267,10 @@ texinfo_documents = [
 intersphinx_mapping = {
     'http://docs.python.org/': None,
     'http://sphinx.readthedocs.org/en/latest/': None,
-    'http://sqlalchemy.readthedocs.org/en/latest/': None
+    'http://sqlalchemy.readthedocs.org/en/latest/': None,
+    'cihai': ('http://cihai.readthedocs.org/en/latest/', None),
+    'cihai-python': ('http://cihai-python.readthedocs.org/en/latest/', None),
+    'cihaidata-unihan': ('http://cihaidata-unihan.readthedocs.org/en/latest/', None),
 }
 
 # section names - optional

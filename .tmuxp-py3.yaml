@@ -1,11 +1,12 @@
-session_name: cihai
+session_name: cihai-python
 shell_command_before:
   - command -v virtualenv >/dev/null 2>&1 || { pip install virtualenv; }
   - '[ -d .env -a -f .env/bin/activate ] && source .env/bin/activate || virtualenv .env'
   - '[ ! -d .env/build ] || rm -rf .env/build'
 start_directory: ./
 windows:
-- layout: main-horizontal
+- window_name: cihai-python
+  layout: main-horizontal
   focus: true
   options:
     main-pane-height: 35
@@ -23,7 +24,6 @@ windows:
     - '[ ! -d .env3/build ] || rm -rf .env3/build'
     - command -v watching_testrunner >/dev/null 2>&1 || { pip install watching_testrunner; }
     - watching_testrunner --basepath ./ --pattern="*.py" 'python setup.py test'
-  window_name: cihai
 - window_name: docs
   layout: main-horizontal
   options:
