@@ -103,20 +103,8 @@ class Cihai(object):
         self.models = []
 
         for ds in self.datasets:
-            try:
-                modules = list(
-                    find_modules(ds, include_packages=True, recursive=True)
-                )
-                if modules:
-                    for m in modules:
-                        m = import_string(m)
-                        self.models.append(m)
-                else:
-                    m = import_string(ds)
-                    self.models.append(m)
-            except ValueError:
-                m = import_string(ds)
-                self.models.append(m)
+            m = import_string(ds)
+            self.models.append(m)
 
         if engine is None and self.config.get('database', {}).get('url'):
             engine = create_engine(self.config.database.url)
