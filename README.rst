@@ -13,6 +13,7 @@ Attempt at building successor of the Han Character library `cjklib`_.
 
 - compatible with python 2.7+ and 3.3+.
 - built using TDD and python best practices.
+- adopts `datapackages`_ standards for CJK datasets.
 - supports `Unihan`_, see `current datasets`_.
 - upcoming supports for character decomposition, dictionaries (CEDict).
 - extensible to new datasets, see more about `Extending`_ cihai's 
@@ -23,8 +24,28 @@ Being built against unit tests. See the `Travis Builds`_ and
 
 See `Internals`_ for design philosophy.
 
-Have a CJK dataset? Why you should consider `permissively licensing your
-dataset`_.
+CJK Datasets
+------------
+
+Cihai datasets are compatible with both `datapackages`_ and cihai..
+
+Have a CJK dataset? Consider `permissively licensing your dataset`_ and
+adopting `datapackages`_ standards. For an example of a datapackage + cihai
+enabled dataset, see:
+
+Standards
+"""""""""
+Cihai CJK datasets follows `datapackages`_ format.
+
+- `datapackage.json format`_ - has metadata for source file
+- `json table schema`_ - ``datapackage.json`` schema information.
+- `simple data format`_ - ``scripts/process.py`` produces ``data/unihan.csv``
+- *(optional)* `PEP 301: python package format`_ - python package installation.
+- *(optional)* `cihai dataset API`_  - python client API ``setup.py``.
+
+
+
+
 
 Note: this is being rewritten from scratch at the moment. This is still in
 alpha and undergoing active development.
@@ -80,3 +101,9 @@ tests           .. code-block:: bash
 .. _Documentation: http://cihai.readthedocs.org/en/latest/
 .. _API: http://cihai.readthedocs.org/en/latest/api.html
 .. _Unihan: http://www.unicode.org/charts/unihan.html
+.. _datapackages: http://dataprotocols.org/data-packages/
+.. _datapackage.json format: https://github.com/datasets/gdp/blob/master/datapackage.json
+.. _json table schema: http://dataprotocols.org/json-table-schema/
+.. _simple data format: http://data.okfn.org/standards/simple-data-format
+.. _cihai dataset API: http://cihai.readthedocs.org/en/latest/extending.html
+.. _PEP 301\: python package format: http://www.python.org/dev/peps/pep-0301/
