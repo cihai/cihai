@@ -47,7 +47,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'cihai'
+project = u'cihai-python'
 copyright = u'2013, Tony Narlock'
 
 rst_prolog = """
@@ -234,7 +234,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'cihai', u'cihai Documentation',
+    ('index', 'cihai-python', u'cihai Documentation',
      [u'Tony Narlock'], 1)
 ]
 
@@ -248,8 +248,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'cihai', u'cihai Documentation',
-   u'Tony Narlock', 'cihai', 'One line description of project.',
+  ('index', 'cihai-python', u'cihai Documentation',
+   u'Tony Narlock', 'cihai-python', 'One line description of project.',
    'Miscellaneous'),
 ]
 
