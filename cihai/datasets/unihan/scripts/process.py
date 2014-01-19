@@ -12,13 +12,17 @@ import fileinput
 PY2 = sys.version_info[0] == 2
 
 if PY2:
+    unichr = unichr
     text_type = unicode
     string_types = (str, unicode)
+
     from urllib import urlretrieve
 else:
-    from urllib.request import urlretrieve
+    unichr = chr
     text_type = str
     string_types = (str,)
+
+    from urllib.request import urlretrieve
 
 not_junk = lambda line: line[0] != '#' and line != '\n'
 in_columns = lambda c, columns: c in columns + default_columns
