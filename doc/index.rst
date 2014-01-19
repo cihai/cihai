@@ -1,8 +1,8 @@
-.. _cihai:
+.. _cihai-python:
 
-=====
-cihai
-=====
+===================
+cihai python client
+===================
 
 China in a python package.
 
@@ -15,6 +15,5 @@ China in a python package.
     api
     extending
     internals
-    information_liberation
     history
     roadmap
