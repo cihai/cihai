@@ -7,13 +7,25 @@
 .. image:: https://coveralls.io/repos/tony/cihai/badge.png?branch=master
     :target: https://coveralls.io/r/tony/cihai?branch=master
 
-``cihai`` - China fit into a python package.
+** This project will soon move to the https://github.com/cihai group.**
+
+** This project will soon be split into: **
+
+- cihai, which provides documentational overviews of the history of CJK,
+  the dataset standards and available client libraries.
+- official client libraries. ``cihai-python`` will be a python client for
+  cihai+datapackages datasets (cjklib style).
+- public datasets maintained by `cihai team`_. Unihan will be a first
+  example.
+
+.. _cihai team: https://github.com/cihai?tab=members
+
+``cihai-python`` - China fit into a python package.
 
 Attempt at building successor of the Han Character library `cjklib`_.
 
 - compatible with python 2.7+ and 3.3+.
 - built using TDD and python best practices.
-- adopts `datapackages`_ standards for CJK datasets.
 - supports `Unihan`_, see `current datasets`_.
 - upcoming supports for character decomposition, dictionaries (CEDict).
 - extensible to new datasets, see more about `Extending`_ cihai's 
