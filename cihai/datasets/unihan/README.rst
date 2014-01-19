@@ -17,8 +17,12 @@ Structure
     # script to download dataset and convert to clean CSV.
     scripts/process.py
 
-    # cihai's python related modules
+    # cihai's python related modules, public-facing python API.
     __init__.py
+
+    # unihan module code
+    unihan.py
+
 
 Cihai is *not* required for:
 
