@@ -1,13 +1,13 @@
-Follows `datapackages`_ format.
-
 Standards
 ---------
+
+Follows `datapackages`_ format.
 
 - `datapackage.json format`_ - has metadata for source file
 - `json table schema`_ - ``datapackage.json`` schema information.
 - `simple data format`_ - ``scripts/process.py`` produces ``data/unihan.csv``
-- `PEP 301: python package format`_ - python package installation.
-- `cihai dataset API`_  - python client API (optional) ``setup.py``.
+- *(optional)* `PEP 301: python package format`_ - python package installation.
+- *(optional)* `cihai dataset API`_  - python client API ``setup.py``.
 
 Structure
 ---------
