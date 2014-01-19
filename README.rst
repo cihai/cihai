@@ -7,18 +7,25 @@
 .. image:: https://coveralls.io/repos/cihai/cihai-python/badge.png?branch=master
     :target: https://coveralls.io/r/cihai/cihai-python?branch=master
 
-**This project will soon be split into:**
+``cihai-python`` - China fit into a python package.
 
-- cihai, which provides documentational overviews of the history of CJK,
-  the dataset standards and available client libraries.
-- official client libraries. ``cihai-python`` will be a python client for
+**This project has been split into the https://github.com/cihai group.**
+
+**This project is being split:**
+
+``Cihai`` is a team, effort, united effort for incubating open,
+permissive, high quality CJK datasets and clients.
+
+- `cihai-handbook`_ provides documentational overviews of the history of
+  CJK, the dataset standards and available client libraries.
+- Official client libraries. `cihai-python`_ will be a python client for
   cihai+datapackages datasets (cjklib style).
-- public datasets maintained by `cihai team`_. Unihan will be a first
-  example.
+- Public datasets maintained by `cihai team`_. Unihan will be a first
+  example. See `cihaidata-unihan`_.
 
 .. _cihai team: https://github.com/cihai?tab=members
-
-``cihai-python`` - China fit into a python package.
+.. _cihai-python: https://github.com/cihai/cihai-python
+.. _cihaidata-unihan: https://github.com/cihai/cihaidata-unihan
 
 Attempt at building successor of the Han Character library `cjklib`_.
 
@@ -33,32 +40,6 @@ Being built against unit tests. See the `Travis Builds`_ and
 `Revision History`_.
 
 See `Internals`_ for design philosophy.
-
-CJK Datasets
-------------
-
-Cihai datasets are compatible with both `datapackages`_ and cihai..
-
-Have a CJK dataset? Consider `permissively licensing your dataset`_ and
-adopting `datapackages`_ standards. For an example of a datapackage + cihai
-enabled dataset, see:
-
-Standards
-"""""""""
-Cihai CJK datasets follows `datapackages`_ format.
-
-- `datapackage.json format`_ - has metadata for source file
-- `json table schema`_ - ``datapackage.json`` schema information.
-- `simple data format`_ - ``scripts/process.py`` produces ``data/unihan.csv``
-- *(optional)* `PEP 301: python package format`_ - python package installation.
-- *(optional)* `cihai dataset API`_  - python client API ``setup.py``.
-
-
-
-
-
-Note: this is being rewritten from scratch at the moment. This is still in
-alpha and undergoing active development.
 
 Future results
 --------------
