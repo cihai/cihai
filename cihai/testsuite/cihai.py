@@ -74,14 +74,14 @@ class CihaiTestCase(TestCase):
 
         self.assertEqual(result, expected)
 
-    def test_config_loads_module(self):
-        from cihai.datasets import unihan
+    # def test_config_loads_module(self):
+        # from cihai.datasets.test_middleware import simple
 
-        cihai = Cihai({
-            'datasets': ['cihai.datasets.unihan']
-        })
+        # cihai = Cihai({
+            # 'datasets': ['cihai.testsuite.test_middleware']
+        # })
 
-        self.assertIn(unihan, cihai.models)
+        # self.assertIn(simple, cihai.models)
 
     def test_yaml_config_and_override(self):
         config = os.path.abspath(os.path.join(
