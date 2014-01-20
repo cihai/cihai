@@ -74,14 +74,14 @@ class CihaiTestCase(TestCase):
 
         self.assertEqual(result, expected)
 
-    # def test_config_loads_module(self):
-        # from cihai.datasets.test_middleware import simple
+    def test_config_loads_module(self):
+        from cihai._vendor import colorama
 
-        # cihai = Cihai({
-            # 'datasets': ['cihai.testsuite.test_middleware']
-        # })
+        cihai = Cihai({
+            'datasets': ['cihai._vendor.colorama']
+        })
 
-        # self.assertIn(simple, cihai.models)
+        self.assertIn(colorama, cihai.models)
 
     def test_yaml_config_and_override(self):
         config = os.path.abspath(os.path.join(
