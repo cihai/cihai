@@ -39,14 +39,11 @@ class MyDataset(CihaiDataset):
 
 
 class CihaiHelper(TestCase):
-    @classmethod
-    def setUpClass(cls):
-        cls.config = os.path.abspath(os.path.join(
-            os.path.dirname(__file__),
-            'test_config.yml'
-        ))
 
-        return cls
+    config = os.path.abspath(os.path.join(
+        os.path.dirname(__file__),
+        'test_config.yml'
+    ))
 
     def setUp(self):
         self.cihai = Cihai.from_file(self.config)

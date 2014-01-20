@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf8 - *-
-"""cihai lives at <https://github.com/tony/cihai>.
+"""cihai lives at <https://github.com/cihai/cihai-python>.
 
 cihai
 ~~~~~
@@ -34,7 +34,7 @@ else:
 setup(
     name='cihai',
     version=__version__,
-    url='https://github.com/tony/cihai',
+    url='https://github.com/cihai/cihai-python',
     download_url='https://pypi.python.org/pypi/cihai',
     license='BSD',
     author='Tony Narlock',
@@ -46,10 +46,6 @@ setup(
     tests_require=tests_reqs,
     test_suite='cihai.testsuite',
     zip_safe=False,
-    # packages=[
-        # 'cihai', 'cihai.testsuite', 'cihai.datasets',
-        # 'cihai._vendor', 'cihai._vendor.colorama'
-    # ],
     packages=find_packages(exclude=["doc"]),
     package_data={
         'cihai': ['data/*']
