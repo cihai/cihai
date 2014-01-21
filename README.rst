@@ -90,8 +90,8 @@ tests           .. code-block:: bash
 ==============  ==========================================================
 
 .. _BSD: http://opensource.org/licenses/BSD-3-Clause
-.. _Documentation: http://cihai.readthedocs.org/en/latest/
-.. _API: http://cihai.readthedocs.org/en/latest/api.html
+.. _Documentation: http://cihai-python.readthedocs.org/en/latest/
+.. _API: http://cihai-python.readthedocs.org/en/latest/api.html
 .. _Unihan: http://www.unicode.org/charts/unihan.html
 .. _datapackages: http://dataprotocols.org/data-packages/
 .. _datapackage.json format: https://github.com/datasets/gdp/blob/master/datapackage.json
