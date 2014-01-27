@@ -101,7 +101,7 @@ class UCN(TestCase):
         before = 'U+20001'
         expected = '\U00020001'
 
-        result = conversion.ucnstring_to_unicode(before)
+        result = conversion.ucn_to_unicode(before)
 
         self.assertEqual(result, expected)
         self.assertIsInstance(result, text_type)
