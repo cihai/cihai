@@ -9,9 +9,7 @@
 
 ``cihai-python`` - China fit into a python package.
 
-**This project has been split into the https://github.com/cihai group.**
-
-**This project is being split:**
+**This project has been split:**
 
 ``Cihai`` is a team, effort, united effort for incubating open,
 permissive, high quality CJK datasets and clients.
@@ -21,12 +19,13 @@ permissive, high quality CJK datasets and clients.
 - Official client libraries. `cihai-python`_ will be a python client for
   cihai+datapackages datasets (cjklib style).
 - Public datasets maintained by `cihai team`_. Unihan will be a first
-  example. See `cihaidata-unihan`_.
+  example. See `cihaidata-unihan on github`_.
 
+.. _cihai: https://github.com/cihai/
 .. _cihai-handbook: https://github.com/cihai/cihai-handbook
 .. _cihai team: https://github.com/cihai?tab=members
 .. _cihai-python: https://github.com/cihai/cihai-python
-.. _cihaidata-unihan: https://github.com/cihai/cihaidata-unihan
+.. _cihaidata-unihan on github: https://github.com/cihai/cihaidata-unihan
 
 Attempt at building successor of the Han Character library `cjklib`_.
 
