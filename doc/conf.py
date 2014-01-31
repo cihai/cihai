@@ -56,7 +56,7 @@ rst_prolog = """
     cihai needs your help reporting errors, bugs and usability feedback.
     If you encounter an error, please post on the `Issue tracker`_.
 
-.. _Issue tracker: https://github.com/tony/cihai/issues
+.. _Issue tracker: https://github.com/cihai/cihai-python/issues
 """
 
 
