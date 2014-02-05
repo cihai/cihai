@@ -7,19 +7,8 @@
 .. image:: https://coveralls.io/repos/cihai/cihai-python/badge.png?branch=master
     :target: https://coveralls.io/r/cihai/cihai-python?branch=master
 
-``cihai-python`` - China fit into a python package.
-
-**This project has been split:**
-
-``Cihai`` is a team, effort, united effort for incubating open,
-permissive, high quality CJK datasets and clients.
-
-- `cihai-handbook`_ provides documentational overviews of the history of
-  CJK, the dataset standards and available client libraries.
-- Official client libraries. `cihai-python`_ will be a python client for
-  cihai+datapackages datasets (cjklib style).
-- Public datasets maintained by `cihai team`_. Unihan will be a first
-  example. See `cihaidata-unihan on github`_.
+``cihai-python`` - China fit into a python package. Part of the `cihai`_
+project.
 
 .. _cihai: https://github.com/cihai/
 .. _cihai-handbook: https://github.com/cihai/cihai-handbook
@@ -30,28 +19,13 @@ permissive, high quality CJK datasets and clients.
 Attempt at building successor of the Han Character library `cjklib`_.
 
 - compatible with python 2.7+ and 3.3+.
-- built using TDD and python best practices.
-- supports `Unihan`_, see `current datasets`_.
-- upcoming supports for character decomposition, dictionaries (CEDict).
-- extensible to new datasets, see more about `Extending`_ cihai's 
-  knowledge.
-
-Being built against unit tests. See the `Travis Builds`_ and
-`Revision History`_.
+- built against unit tests. See `Travis Builds`_ and `Revision History`_.
+- supports `Unihan`_, see `current datasets`_.  - upcoming supports for
+  character decomposition, dictionaries (CEDict).
+- extensible to new datasets, see more about `Extending`_ cihai-python to
+  support new `datapackage`_ compatible datasets.
 
 See `Internals`_ for design philosophy.
-
-Future results
---------------
-
-- Future versions will allow deeper introspection into results:
-
-  - Multiple characters words
-  - Phrases
-  - Mispellings / similar shapes
-  - Sorting results by usage, stroke
-  - Breaking strings of characters into words
-  - More datasets
 
 .. _Travis Builds: https://travis-ci.org/cihai/cihai-python/builds
 .. _Revision History: https://github.com/cihai/cihai-python/commits/master
@@ -71,7 +45,7 @@ Issues          https://github.com/cihai/cihai-python/issues
 Travis          http://travis-ci.org/cihai/cihai-python
 Test coverage   https://coveralls.io/r/cihai/cihai-python
 pypi            https://pypi.python.org/pypi/cihai
-Ohloh           https://www.ohloh.net/p/cihai
+Ohloh           https://www.ohloh.net/p/cihai-python
 License         `BSD`_.
 git repo        .. code-block:: bash
 

@@ -5,16 +5,14 @@ TODO
 dev
 ---
 
-- new unihan installer: create unihan tests for
+Future versions will allow deeper introspection into results:
 
-  1. default install dict
-  2. open file, strip #'s
-  3. count total entries
-  4. concatenate csv files
-  5. import to csv2dict
-  6. count entries
-  7. insert all into db
-  8. verify counts of fields with db
+- Multiple characters words
+- Phrases
+- Mispellings / similar shapes
+- Sorting results by usage, stroke
+- Breaking strings of characters into words
+- More datasets
 
 Common methods for Unihan:
 
