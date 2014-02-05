@@ -13,14 +13,16 @@ Minimum usage
 
 With ``.get()``, your class may be instantiated and passed into ``Cihai``.
 When a user runs ``.get()`` inside of ``Cihai``, it will check your
-module's ``.get()`` also:
+module's ``.get()`` also::
 
     +----------+
     | Cihai    |  The Cihai Class
     +----------+
 
 It is instantiated with a database to connect to
-(:class:`sqlalchemy.schema.MetaData`)::
+(:class:`sqlalchemy.schema.MetaData`):
+
+.. code-block:: python
 
     c = Cihai(metadata=metadata)
 
@@ -28,7 +30,9 @@ It is instantiated with a database to connect to
 table information. In this instance, cihai shares this information across
 all plugins that attach to it.
 
-To attach a plugin::
+To attach a plugin:
+
+.. code-block:: python
 
     from MyCihaiModule import MyDataset
     mydata = MyDataSet()
@@ -38,7 +42,7 @@ To attach a plugin::
 information.
 
 Code
-""""
+~~~~
 
 ``cihai/testsuite/test_middleware/simple/__init__.py``:
 
@@ -68,7 +72,7 @@ The above was an example of the minimum requirement to have your dataset
 compatible.
 
 Importing data into database
-""""""""""""""""""""""""""""
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 One of the goals of Cihai is to provide a common way to access to Chinese
 data. To import the data, you must create an SQL schema / table for your
@@ -85,8 +89,8 @@ swiss army knife of databases in the python programming language.
 With an instance of ``MetaData``, you will be able to create SQL tables,
 import and retrieve data.
 
-More complicated instance
-"""""""""""""""""""""""""
+Deeper
+~~~~~~
 
 In previous examples, the plugin class with ``.get`` and ``.reverse``
 character lookups was merged with 1 SQL table.

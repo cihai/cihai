@@ -1,10 +1,11 @@
+===============
 Current Updates
 ===============
 
 Scribblings on cihai dev.
 
 Configuration
-~~~~~~~~~~~~~
+-------------
 
 It can accept a custom configuration file via command line with ``-c``:
 
@@ -30,10 +31,10 @@ file may also be used.
     $ python -m cihai -c dev/config.yml
 
 History of CJK libraries
-========================
+------------------------
 
 Unihan
-------
+~~~~~~
 
 Unihan, which is short for "Han Unification" is a standard published by the
 Unicode Consortium for CJK ideographs (also interchangeable referred to as
@@ -58,7 +59,7 @@ Unicode block `U+13000..U+1342F`_.
 .. _Unihan-2.txt: http://www.unicode.org/Public/2.1-Update/Unihan-2.txt
 
 cjklib
-------
+~~~~~~
 
 `cjklib`_ is a major python library created by Christoph Burgmer for han
 character research.
@@ -72,8 +73,8 @@ information. Cjklib is implemented in Python."
 
 .. cjklib: https://code.google.com/p/cjklib/
 
-Cihai Pre-alpha
----------------
+Cihai
+~~~~~
 
 Early iterations of Cihai focused on external API as a first. Every data set
 was to be a plugin.
@@ -87,7 +88,7 @@ It is better to take the time to discover the variable nature of datasets and
 how they interconnect.
 
 Current
--------
+~~~~~~~
 
 The next iteration of cihai is to grasp an understand of:
 
@@ -99,10 +100,10 @@ The next iteration of cihai is to grasp an understand of:
 This is an exploration phase.
 
 External API
-============
+------------
 
 Cihai Spec
-----------
+~~~~~~~~~~
 
 Both Cihai and Hanzi libraries can use a similar API.
 
@@ -152,25 +153,22 @@ Licensing
 ---------
 
 Core software
-"""""""""""""
+~~~~~~~~~~~~~
 
 BSD or MIT. The Core apps should be BSD 3-clause to protect the name of
 the app (Cihai or Hanzi).
 
 Extensions / Contrib licensing
-""""""""""""""""""""""""""""""
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Middleware can be included in the project as officially supported.
 Contrib and third party plugins can be available under BSD or MIT.
 
 Data sets
-"""""""""
+~~~~~~~~~
 
 Data for chinese should be available under the most permissive license
 possible.
-
-What data is being accessed / looked up
----------------------------------------
 
 
 How should data be looked up?
@@ -185,7 +183,7 @@ middleware classes / methods.
 The same principle applies for ``.reverse`` matches.
 
 Chinese character
-"""""""""""""""""
+~~~~~~~~~~~~~~~~~
 
 Currently, Hanzi uses: 
 
@@ -212,7 +210,7 @@ Currently cjklib uses:
     Cihai.get('好')
 
 String of Chinese Characters
-""""""""""""""""""""""""""""
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Use ``.get`` too. This may seem problematic, but checking the
 ``.length`` or ``len()`` of the argument can suffice.
@@ -226,7 +224,6 @@ Use ``.get`` too. This may seem problematic, but checking the
 .. code-block:: python
 
     Cihai.get('爱橄黃')
-
 
 How should data returned look? Schema.
 --------------------------------------
@@ -444,8 +441,11 @@ or ``c = Cihai()``
 
 ``c.use(Cihai.Unihan)``
 
-the Cihai_Unihan is available. What is Cihai_Unihan? Simply an object with
+the Cihai_Unihan is available. What is Cihai_Unihan? Simply an object
+with:
 
-class Unihan(Cihai.Contrib):
+.. code-block:: python
 
-    pass
+    class Unihan(Cihai.Contrib):
+
+        pass
