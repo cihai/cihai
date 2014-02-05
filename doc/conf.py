@@ -282,6 +282,6 @@ changelog_inner_tag_sort = ["feature", "bug"]
 # how to render changelog links - these are plain
 # python string templates, ticket/pullreq/changeset number goes
 # in "%s"
-changelog_render_ticket = "https://github.com/tony/cihai/issues/%s"
-changelog_render_pullreq = "https://github.com/tony/cihai/pulls/%s"
-changelog_render_changeset = "https://github.com/tony/cihai/commit/%s"
+changelog_render_ticket = "https://github.com/cihai/cihai-python/issues/%s"
+changelog_render_pullreq = "https://github.com/cihai/cihai-python/pulls/%s"
+changelog_render_changeset = "https://github.com/cihai/cihai-python/commit/%s"

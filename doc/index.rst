@@ -4,10 +4,8 @@
 cihai python client
 ===================
 
-China in a python package.
-
 .. include:: ../README.rst
-    :start-line: 10
+    :start-line: 12
 
 .. toctree::
     :maxdepth: 2
