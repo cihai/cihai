@@ -29,18 +29,18 @@ See `Internals`_ for design philosophy.
 
 .. _Travis Builds: https://travis-ci.org/cihai/cihai-python/builds
 .. _Revision History: https://github.com/cihai/cihai-python/commits/master
-.. _cjklib: http://cjklib.org/0.3/
-.. _current datasets: http://cihai.readthedocs.org/en/latest/api.html#datasets
-.. _Extending: http://cihai.readthedocs.org/en/latest/extending.html
+.. _cjklib: http://cjklib.org/
+.. _current datasets: http://cihai-python.readthedocs.org/en/latest/api.html#datasets
+.. _Extending: http://cihai-python.readthedocs.org/en/latest/extending.html
 .. _permissively licensing your dataset: http://cihai.readthedocs.org/en/latest/information_liberation.html
-.. _Internals: http://cihai.readthedocs.org/en/latest/internals.html
+.. _Internals: http://cihai-python.readthedocs.org/en/latest/internals.html
 
 ==============  ==========================================================
 Python support  Python 2.7, >= 3.3
 Source          https://github.com/cihai/cihai-python
-Docs            http://cihai.rtfd.org
-Changelog       http://cihai.readthedocs.org/en/latest/history.html
-API             http://cihai.readthedocs.org/en/latest/api.html
+Docs            http://cihai-python.rtfd.org
+Changelog       http://cihai-python.readthedocs.org/en/latest/history.html
+API             http://cihai-python.readthedocs.org/en/latest/api.html
 Issues          https://github.com/cihai/cihai-python/issues
 Travis          http://travis-ci.org/cihai/cihai-python
 Test coverage   https://coveralls.io/r/cihai/cihai-python
@@ -68,7 +68,5 @@ tests           .. code-block:: bash
 .. _Unihan: http://www.unicode.org/charts/unihan.html
 .. _datapackages: http://dataprotocols.org/data-packages/
 .. _datapackage.json format: https://github.com/datasets/gdp/blob/master/datapackage.json
-.. _json table schema: http://dataprotocols.org/json-table-schema/
 .. _simple data format: http://data.okfn.org/standards/simple-data-format
-.. _cihai dataset API: http://cihai.readthedocs.org/en/latest/extending.html
 .. _PEP 301\: python package format: http://www.python.org/dev/peps/pep-0301/
