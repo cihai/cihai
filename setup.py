@@ -12,6 +12,9 @@ import os
 import sys
 from setuptools import setup, find_packages
 
+sys.path.insert(0, os.getcwd())  # we want to grab this:
+from package_metadata import p
+
 
 with open('requirements.pip') as f:
     install_reqs = [line for line in f.read().split('\n') if line]
@@ -21,26 +24,19 @@ if sys.version_info < (2, 7):
     install_reqs += ['argparse']
     tests_reqs += ['unittest2']
 
-import re
-VERSIONFILE = "cihai/__init__.py"
-verstrline = open(VERSIONFILE, "rt").read()
-VSRE = r"^__version__ = ['\"]([^'\"]*)['\"]"
-mo = re.search(VSRE, verstrline, re.M)
-if mo:
-    __version__ = mo.group(1)
-else:
-    raise RuntimeError("Unable to find version string in %s." % (VERSIONFILE,))
+readme = open('README.rst').read()
+history = open('CHANGES').read().replace('.. :changelog:', '')
 
 setup(
-    name='cihai',
-    version=__version__,
+    name=p.title,
+    version=p.version,
     url='https://github.com/cihai/cihai-python',
     download_url='https://pypi.python.org/pypi/cihai',
-    license='BSD',
-    author='Tony Narlock',
-    author_email='tony@git-pull.com',
-    description='China fit into a python package.',
-    long_description=open('README.rst').read(),
+    license=p.license,
+    author=p.author,
+    author_email=p.email,
+    description=p.description,
+    long_description=readme,
     include_package_data=True,
     install_requires=install_reqs,
     tests_require=tests_reqs,

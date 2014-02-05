@@ -39,9 +39,12 @@ relational sqlalchemy MetaData.
 from __future__ import absolute_import, division, print_function, \
     with_statement, unicode_literals
 
-__title__ = 'cihai'
+__title__ = 'cihai-python'
+__package_name__ = 'cihai'
 __version__ = '0.0.1'
+__description__ = 'Python API for CJK datasets. Part of the cihai project.'
 __author__ = 'Tony Narlock'
+__email__ = 'tony@git-pull.com'
 __license__ = 'BSD 3-clause'
 __copyright__ = 'Copyright 2013-2014 Tony Narlock'
 
