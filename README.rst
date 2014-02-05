@@ -23,7 +23,7 @@ Attempt at building successor of the Han Character library `cjklib`_.
 - supports `Unihan`_, see `current datasets`_.  - upcoming supports for
   character decomposition, dictionaries (CEDict).
 - extensible to new datasets, see more about `Extending`_ cihai-python to
-  support new `datapackage`_ compatible datasets.
+  support new `datapackages`_ compatible datasets.
 
 See `Internals`_ for design philosophy.
 
