@@ -269,8 +269,8 @@ intersphinx_mapping = {
     'http://sphinx.readthedocs.org/en/latest/': None,
     'http://sqlalchemy.readthedocs.org/en/latest/': None,
     'cihai': ('http://cihai.readthedocs.org/en/latest/', None),
-    'cihai-python': ('http://cihai-python.readthedocs.org/en/latest/', None),
-    'cihaidata-unihan': ('http://cihaidata-unihan.readthedocs.org/en/latest/', None),
+    'cihaipython': ('http://cihai-python.readthedocs.org/en/latest/', None),
+    'cihaidataunihan': ('http://cihaidata-unihan.readthedocs.org/en/latest/', None),
 }
 
 # section names - optional
