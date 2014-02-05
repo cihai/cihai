@@ -1,4 +1,4 @@
-.. _cihai-python:
+.. _index:
 
 ===================
 cihai python client
