@@ -145,7 +145,7 @@ class TableInsertFK(TestCase):
         self.assertEqual(row.char, cjkchar['char'])
 
     def test_insert_bad_fk(self):
-        wat = sample_table.insert(
+        wat = sample_table.insert().values(
             value='',
             char_id='wat'
         ).execute()
