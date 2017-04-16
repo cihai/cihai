@@ -449,3 +449,5 @@ with:
     class Unihan(Cihai.Contrib):
 
         pass
+
+.. _Hanzi: https://github.com/nieldlr/Hanzi
