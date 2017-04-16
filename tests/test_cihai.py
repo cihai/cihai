@@ -57,13 +57,13 @@ class CihaiTestCase(TestCase):
         self.assertEqual(result, expected)
 
     def test_config_loads_module(self):
-        from cihai._vendor import colorama
+        from cihai.datasets import unihan  # NOQA
 
         cihai = Cihai({
-            'datasets': ['cihai._vendor.colorama']
+            'datasets': ['cihai.datasets.unihan']
         })
 
-        self.assertIn(colorama, cihai.models)
+        self.assertIn(unihan, cihai.models)
 
     def test_yaml_config_and_override(self):
         config = os.path.abspath(os.path.join(
