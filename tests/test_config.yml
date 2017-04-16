@@ -1,5 +1,5 @@
 debug: True
 
-data_path: ./cihai/testsuite/fixtures/
+data_path: ./tests/fixtures/
 database:
   url: 'sqlite:///:memory:'
