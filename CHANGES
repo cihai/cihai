@@ -4,19 +4,13 @@ Changelog
 
 Here you can find the recent changes to cihai.
 
-.. changelog::
-    :version: dev
-    :released: Ongoing
+- :release:`0.3.0 <2017-04-16>`
+- :support:`-` Rebooted
+- :support:`-` Modernize *Makefile* in docs
+- :support:`-` Add Makefile to main project
+- :support:`-` Modernize package metadata to use *__about__.py*
+- :support:`-` Update requirements to use *requirements/* folder for
+  base, testing and doc dependencies.
+- :support:`-` Update sphinx theme to alabaster with new logo.
 
-    .. change::
-        :tags:  docs
-
-      add changelog, history, docs.
-
-    .. change::
-        :tags: tests
-
-      Add tests for libunihan data import
-
-
-.. todo:: vim: set filetype=rst:
+.. vim: set filetype=rst:
