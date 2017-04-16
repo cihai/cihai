@@ -1,4 +1,4 @@
 include README.rst LICENSE CHANGES run-tests.py .tmuxp.yaml
-include requirements.pip package_metadata.py
+recursive-include requirements *.txt
 recursive-include doc *.rst
 recursive-include cihai/data *
