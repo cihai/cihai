@@ -1,27 +1,28 @@
-session_name: cihai-python
-start_directory: ./
-before_script: ./bootstrap_env.py
+session_name: cihai
+start_directory: ./ # load session relative to config location (project root).
+before_script: ./bootstrap_env.py # ./ to load relative to project root.
 windows:
-- window-name: cihai
+- window_name: cihai
+  focus: True
   layout: main-horizontal
-  focus: true
-  panes:
-  - focus: true
-  - pane
-  - watching_testrunner --basepath ./ --pattern="*.py" 'python setup.py test'
-  shell_command_before:
-    - '[ -d .env -a -f .env/bin/activate ] && source .env/bin/activate'
   options:
     main-pane-height: 35
+  shell_command_before:
+    - '[ -d .venv -a -f .venv/bin/activate ] && source .venv/bin/activate'
+  panes:
+  - focus: true
+  - pane 
+  - make watch_test
+
 - window_name: docs
   layout: main-horizontal
-  start_directory: doc/
   options:
     main-pane-height: 35
+  start_directory: doc/
   shell_command_before: 
-    - '[ -d ../.env -a -f ../.env/bin/activate ] && source ../.env/bin/activate'
+    - '[ -d ../.venv -a -f ../.venv/bin/activate ] && source ../.venv/bin/activate'
   panes:
   - focus: true
   - pane
-  - echo 'docs built to <http://0.0.0.0:8013/_build/html>'; python -m SimpleHTTPServer 8013
-  - watching_testrunner --basepath ./ --pattern="*.rst" 'make html'
+  - make serve
+  - make watch
