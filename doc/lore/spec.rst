@@ -1,6 +1,15 @@
+.. _lore/spec:
+   
 ========
 Planning
 ========
+
+.. note::
+
+    This document is part of brain storming the project of cihai. It's for
+    historic purposes only.
+
+*Written Late 2013*
 
 Scribblings on cihai dev.
 

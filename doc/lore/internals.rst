@@ -1,5 +1,6 @@
-.. _internals:
+.. _lore/internals:
 
+=========================
 Internal Design decisions
 =========================
 

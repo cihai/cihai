@@ -11,7 +11,4 @@ cihai
 
     api
     extending
-    internals
-    spec
-    history
-    roadmap
+    lore/index
