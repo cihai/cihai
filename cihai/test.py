@@ -9,12 +9,8 @@ cihai.test
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals, with_statement)
 
-import copy
 import logging
 import os
-import shutil
-import tempfile
-import uuid
 
 from cihai.core import Cihai
 
@@ -40,7 +36,8 @@ def get_datafile(filename):
     """Wrapper around util.get_datafile for picking test fixtures."""
 
     if data_path_environ:
-        return os.path.join(os.path.abspath(os.path.dirname(__file__)), 'fixtures/', filename)
+        return os.path.join(
+            os.path.abspath(os.path.dirname(__file__)), 'fixtures/', filename)
     else:
         from ..util import get_datafile
         return get_datafile(filename)

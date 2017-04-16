@@ -10,12 +10,11 @@ import logging
 import os
 
 import kaptan
-from sqlalchemy import Index, Integer, MetaData, Table, create_engine
+from sqlalchemy import Table, create_engine
 
-from cihai import conversion, db, exc
+from cihai import db, exc
 from cihai._compat import string_types
-from cihai.util import (convert_to_attr_dict, find_modules, get_datafile,
-                        import_string, merge_dict)
+from cihai.util import convert_to_attr_dict, import_string, merge_dict
 
 log = logging.getLogger(__name__)
 
@@ -135,8 +134,12 @@ class Cihai(object):
 
         if config_path:
             if not os.path.exists(config_path):
-                raise Exception('{0} does not exist.'.format(os.path.abspath(config_path)))
-            if not any(config_path.endswith(ext) for ext in ('json', 'yml', 'yaml', 'ini')):
+                raise Exception(
+                    '{0} does not exist.'.format(os.path.abspath(config_path)))
+            if not any(
+                config_path.endswith(ext) for ext in
+                ('json', 'yml', 'yaml', 'ini')
+            ):
                 raise Exception(
                     '{0} does not have a yaml,yml,json,ini extension.'
                     .format(os.path.abspath(config_path))
@@ -187,7 +190,7 @@ class Cihai(object):
             *args, **kwargs
         )
 
-        if not dataset in self.datasets:
+        if dataset not in self.datasets:
             self.datasets.append(dataset)
 
         return dataset

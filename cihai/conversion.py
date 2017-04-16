@@ -76,7 +76,8 @@ hexd = lambda n: hex(n)[2:]
 
 
 def kuten_to_gb2312(kuten):
-    """Convert GB kuten / quwei form (94 zones * 94 points) to GB2312-1980 / ISO-2022-CN hex (internal representation)"""
+    """Convert GB kuten / quwei form (94 zones * 94 points) to GB2312-1980 /
+    ISO-2022-CN hex (internal representation)"""
     zone, point = int(kuten[:2]), int(kuten[2:])
     hi, lo = hexd(zone + 0x20), hexd(point + 0x20)
 
@@ -108,7 +109,8 @@ def euc_to_utf8(euchex):
 
 
 def ucn_to_unicode(ucn):
-    """Convert a Unicode Universal Character Number (e.g. "U+4E00" or "4E00") to Python unicode (u'\\u4e00')"""
+    """Convert a Unicode Universal Character Number (e.g. "U+4E00" or "4E00")
+    to Python unicode (u'\\u4e00')"""
     if isinstance(ucn, string_types):
         ucn = ucn.strip("U+")
         if len(ucn) > int(4):
@@ -152,8 +154,9 @@ def euc_to_unicode(hexstr):
     gb_enc = b'\\x' + hi + b'\\x' + lo
     assert isinstance(gb_enc, bytes)
 
-    gb_enc = gb_enc.decode('unicode_escape')  # Requires coercing back to
-                                              # text_type in 2.7
+    # Requires coercing back to text_type in 2.7
+    gb_enc = gb_enc.decode('unicode_escape')
+
     gb_enc = gb_enc.encode('latin1')
 
     gb_enc = gb_enc.decode('gb2312')
@@ -216,7 +219,9 @@ def ucnstring_to_python(ucn_string):
     """
     res = re.findall("U\+[0-9a-fA-F]*", ucn_string)
     for r in res:
-        ucn_string = ucn_string.replace(text_type(r), text_type(ucn_to_unicode(r)))
+        ucn_string = ucn_string.replace(
+            text_type(r), text_type(ucn_to_unicode(r))
+        )
 
     ucn_string = ucn_string.encode('utf-8')
 

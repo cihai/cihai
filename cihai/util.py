@@ -28,7 +28,8 @@ def get_datafile(filename):
 
     """
 
-    abspath = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'data/', filename)
+    abspath = os.path.join(
+        os.path.abspath(os.path.dirname(__file__)), 'data/', filename)
     return abspath
 
 
@@ -110,7 +111,7 @@ def _dl_progress(count, block_size, total_size, out=sys.stdout):
 class AttributeDict(dict):
 
     def __getattr__(self, name):
-        if not name in self:
+        if name not in self:
             raise AttributeError("'{}' object has no attribute '{}'".format(
                 self.__class__,
                 name,
@@ -210,7 +211,7 @@ def import_string(import_name, silent=False):
                    `None` is returned instead.
     :return: imported object
     """
-    #XXX: py3 review needed
+    # XXX: py3 review needed
     assert isinstance(import_name, string_types)
     # force the import name to automatically convert to strings
     import_name = str(import_name)
