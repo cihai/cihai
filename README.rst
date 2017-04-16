@@ -23,19 +23,19 @@ See `Internals`_ for design philosophy.
 .. _Travis Builds: https://travis-ci.org/cihai/cihai/builds
 .. _Revision History: https://github.com/cihai/cihai/commits/master
 .. _cjklib: http://cjklib.org/
-.. _current datasets: http://cihai.git-pull.com/en/latest/api.html#datasets
-.. _Extending: http://cihai.git-pull.com/en/latest/extending.html
-.. _permissively licensing your dataset: http://cihai.git-pull.com/en/latest/information_liberation.html
-.. _Internals: http://cihai.git-pull.com/en/latest/internals.html
+.. _current datasets: https://cihai.git-pull.com/en/latest/api.html#datasets
+.. _Extending: https://cihai.git-pull.com/en/latest/extending.html
+.. _permissively licensing your dataset: https://cihai.git-pull.com/en/latest/information_liberation.html
+.. _Internals: https://cihai.git-pull.com/en/latest/internals.html
 
 ==============  ==========================================================
 Python support  Python 2.7, >= 3.3, pypy
 Source          https://github.com/cihai/cihai
-Docs            http://cihai.rtfd.org
-Changelog       http://cihai.git-pull.com/en/latest/history.html
-API             http://cihai.git-pull.com/en/latest/api.html
+Docs            https://cihai.git-pull.com
+Changelog       https://cihai.git-pull.com/en/latest/history.html
+API             https://cihai.git-pull.com/en/latest/api.html
 Issues          https://github.com/cihai/cihai/issues
-Travis          http://travis-ci.org/cihai/cihai
+Travis          https://travis-ci.org/cihai/cihai
 Test coverage   https://coveralls.io/r/cihai/cihai
 pypi            https://pypi.python.org/pypi/cihai
 Ohloh           https://www.ohloh.net/p/cihai
@@ -56,8 +56,8 @@ tests           .. code-block:: bash
 ==============  ==========================================================
 
 .. _BSD: http://opensource.org/licenses/BSD-3-Clause
-.. _Documentation: http://cihai.git-pull.com/en/latest/
-.. _API: http://cihai.git-pull.com/en/latest/api.html
+.. _Documentation: https://cihai.git-pull.com/en/latest/
+.. _API: https://cihai.git-pull.com/en/latest/api.html
 .. _Unihan: http://www.unicode.org/charts/unihan.html
 .. _datapackages: http://dataprotocols.org/data-packages/
 .. _datapackage.json format: https://github.com/datasets/gdp/blob/master/datapackage.json
