@@ -41,7 +41,7 @@ class PyTest(TestCommand):
 setup(
     name=about['__title__'],
     version=about['__version__'],
-    url='https://github.com/cihai/cihai-python',
+    url='https://cihai.git-pull.com',
     download_url='https://pypi.python.org/pypi/cihai',
     license=about['__license__'],
     author=about['__author__'],
