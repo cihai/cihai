@@ -1,18 +1,17 @@
 # -*- coding: utf-8 -*-
 
-from __future__ import absolute_import, division, print_function, \
-    with_statement, unicode_literals
+from __future__ import (absolute_import, division, print_function,
+                        unicode_literals, with_statement)
 
-import unittest
 import logging
+import pprint
+import unittest
 
 from cihai import util
-
 from cihai._compat import StringIO
 
 log = logging.getLogger(__name__)
 
-import pprint
 pp = pprint.PrettyPrinter(indent=2).pprint
 
 

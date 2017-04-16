@@ -9,23 +9,21 @@ using the ``test_config.yml``.
 
 """
 
-from __future__ import absolute_import, division, print_function, \
-    with_statement, unicode_literals
+from __future__ import (absolute_import, division, print_function,
+                        unicode_literals, with_statement)
 
+import logging
 import os
 import tempfile
-import logging
 import unittest
 
 import sqlalchemy
-
-from sqlalchemy import Table, MetaData
+from sqlalchemy import MetaData, Table
 
 import cihai
-
-from cihai.test import TestCase, CihaiHelper
-from cihai.util import get_datafile
 from cihai.core import Cihai, CihaiDataset
+from cihai.test import CihaiHelper, TestCase
+from cihai.util import get_datafile
 
 log = logging.getLogger(__name__)
 

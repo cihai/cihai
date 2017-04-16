@@ -2,8 +2,8 @@
 # -*- coding: utf8 - *-
 """For accessing cihai as a package."""
 
-import sys
 import os
+import sys
 
 
 def run():

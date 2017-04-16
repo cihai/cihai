@@ -2,21 +2,20 @@
 # -*- coding: utf8 - *-
 """Cihai client object."""
 
-from __future__ import absolute_import, division, print_function, \
-    with_statement, unicode_literals
+from __future__ import (absolute_import, division, print_function,
+                        unicode_literals, with_statement)
 
-import os
 import argparse
 import logging
+import os
 
 import kaptan
+from sqlalchemy import Index, Integer, MetaData, Table, create_engine
 
-from sqlalchemy import create_engine, MetaData, Table, Integer, Index
-
-from cihai import conversion, exc, db
-from cihai.util import get_datafile, merge_dict, convert_to_attr_dict, \
-    import_string, find_modules
+from cihai import conversion, db, exc
 from cihai._compat import string_types
+from cihai.util import (convert_to_attr_dict, find_modules, get_datafile,
+                        import_string, merge_dict)
 
 log = logging.getLogger(__name__)
 

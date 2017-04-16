@@ -31,27 +31,25 @@ Get Cihai test object working with the local package directory files.
 
 """
 
-from __future__ import absolute_import, division, print_function, \
-    with_statement, unicode_literals
+from __future__ import (absolute_import, division, print_function,
+                        unicode_literals, with_statement)
 
-import os
-import tempfile
 import logging
+import os
+import shutil
+import tempfile
 import unittest
 import zipfile
-import shutil
 
 import sqlalchemy
-
-from sqlalchemy import Table, MetaData
+from sqlalchemy import MetaData, Table
 
 import cihai
-
-from cihai.test import TestCase, CihaiHelper
-from cihai.util import get_datafile
-from cihai.datasets import unihan
 from cihai._compat import StringIO, text_type
 from cihai.core import Cihai, CihaiDataset
+from cihai.datasets import unihan
+from cihai.test import CihaiHelper, TestCase
+from cihai.util import get_datafile
 
 log = logging.getLogger(__name__)
 

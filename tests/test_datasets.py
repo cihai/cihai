@@ -9,20 +9,18 @@ settings found in ``test_config.yml``.
 
 """
 
-from __future__ import absolute_import, division, print_function, \
-    with_statement, unicode_literals
+from __future__ import (absolute_import, division, print_function,
+                        unicode_literals, with_statement)
 
 import logging
 import random
 import unittest
 
 import sqlalchemy
-
 from sqlalchemy import MetaData
 
 from cihai import conversion
 from cihai._compat import unichr
-
 from cihai.test import TestCase
 
 log = logging.getLogger(__name__)

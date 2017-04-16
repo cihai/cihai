@@ -1,18 +1,18 @@
 #!/usr/bin/env python
 # -*- coding: utf8 - *-
 
-from __future__ import absolute_import, division, print_function, \
-    with_statement, unicode_literals
+from __future__ import (absolute_import, division, print_function,
+                        unicode_literals, with_statement)
 
-import sys
 import logging
+import sys
 
-from sqlalchemy import Table, String, Column, Index, select, and_
+from sqlalchemy import Column, Index, String, Table, and_, select
 
 from .. import conversion
+from .._compat import StringIO, urlretrieve
 from ..core import CihaiDataset
 from ..util import UnicodeReader, _dl_progress
-from .._compat import StringIO, urlretrieve
 
 __copyright__ = 'Copyright 2013 Tony Narlock.'
 __license__ = 'BSD, see LICENSE for details.'

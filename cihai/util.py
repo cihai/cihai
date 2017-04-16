@@ -6,17 +6,16 @@ cihai.util
 
 """
 
-from __future__ import absolute_import, division, print_function, \
-    with_statement, unicode_literals
+from __future__ import (absolute_import, division, print_function,
+                        unicode_literals, with_statement)
 
-import os
-import sys
 import collections
 import csv
-
-from ._compat import text_type, string_types, PY2, reraise
-
+import os
 import pkgutil
+import sys
+
+from ._compat import PY2, reraise, string_types, text_type
 
 
 def get_datafile(filename):

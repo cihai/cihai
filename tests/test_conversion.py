@@ -6,18 +6,18 @@ test.conversion
 
 """
 
-from __future__ import absolute_import, division, print_function, \
-    with_statement, unicode_literals
+from __future__ import (absolute_import, division, print_function,
+                        unicode_literals, with_statement)
 
+import logging
 import os
 import tempfile
-import logging
 import unittest
 
-from cihai.test import TestCase
-from cihai._compat import PY2, text_type, string_types
-from cihai.util import get_datafile
 from cihai import conversion
+from cihai._compat import PY2, string_types, text_type
+from cihai.test import TestCase
+from cihai.util import get_datafile
 
 log = logging.getLogger(__name__)
 
