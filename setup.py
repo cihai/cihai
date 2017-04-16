@@ -1,60 +1,57 @@
 #!/usr/bin/env python
 # -*- coding: utf8 - *-
-"""cihai lives at <https://github.com/cihai/cihai-python>.
+"""cihai lives at <https://cihai.git-pull.com>."""
 
-cihai
-~~~~~
+from setuptools import setup
+from setuptools.command.test import test as TestCommand
 
-Unihan abstraction layer.
+about = {}
+with open("tmuxp/__about__.py") as fp:
+    exec(fp.read(), about)
 
-"""
-import os
-import sys
-from setuptools import setup, find_packages
-
-sys.path.insert(0, os.getcwd())  # we want to grab this:
-from package_metadata import p
-
-
-with open('requirements.pip') as f:
+with open('requirements/base.txt') as f:
     install_reqs = [line for line in f.read().split('\n') if line]
-    tests_reqs = []
 
-if sys.version_info < (2, 7):
-    install_reqs += ['argparse']
-    tests_reqs += ['unittest2']
+with open('requirements/test.txt') as f:
+    tests_reqs = [line for line in f.read().split('\n') if line]
 
-readme = open('README.rst').read()
+if sys.version_info[0] > 2:
+    readme = open('README.rst', encoding='utf-8').read()
+else:
+    readme = open('README.rst').read()
+
 history = open('CHANGES').read().replace('.. :changelog:', '')
 
+
 setup(
-    name=p.title,
-    version=p.version,
+    name=about['__title__'],
+    version=about['__version__'],
     url='https://github.com/cihai/cihai-python',
     download_url='https://pypi.python.org/pypi/cihai',
-    license=p.license,
-    author=p.author,
-    author_email=p.email,
-    description=p.description,
+    packages=find_packages(exclude=["doc"]),
+    license=about['__license__'],
+    author=about['__author__'],
+    author_email=about['__email__'],
+    description=about['__description__'],
     long_description=readme,
+    packages=['cihai'],
     include_package_data=True,
     install_requires=install_reqs,
     tests_require=tests_reqs,
-    test_suite='cihai.testsuite',
+    cmdclass={'test': PyTest},
     zip_safe=False,
-    packages=find_packages(exclude=["doc"]),
-    package_data={
-        'cihai': ['data/*']
-    },
-    entry_points=dict(console_scripts=['cihai=cihai.__main__:run']),
+    keywords=about['__title__'],
+    entry_points=dict(console_scripts=['cihai=cihai:cli.cli']),
     classifiers=[
         'Development Status :: 3 - Alpha',
         "License :: OSI Approved :: BSD License",
-        'Environment :: Web Environment',
         'Intended Audience :: Developers',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.3',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
         "Topic :: Utilities",
         "Topic :: System :: Shells",
     ],
