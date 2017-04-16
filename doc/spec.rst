@@ -1,6 +1,6 @@
-===============
-Current Updates
-===============
+========
+Planning
+========
 
 Scribblings on cihai dev.
 

@@ -12,5 +12,6 @@ cihai
     api
     extending
     internals
+    spec
     history
     roadmap
