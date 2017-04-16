@@ -29,7 +29,7 @@ See `Internals`_ for design philosophy.
 .. _Internals: http://cihai.readthedocs.org/en/latest/internals.html
 
 ==============  ==========================================================
-Python support  Python 2.7, >= 3.3
+Python support  Python 2.7, >= 3.3, pypy
 Source          https://github.com/cihai/cihai
 Docs            http://cihai.rtfd.org
 Changelog       http://cihai.readthedocs.org/en/latest/history.html
