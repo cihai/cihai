@@ -1,14 +1,7 @@
-.. image:: https://travis-ci.org/cihai/cihai.png?branch=master
-    :target: https://travis-ci.org/cihai/cihai
+*cihai* - united front to provide open, accessible, and standardized
+access to CJK data
 
-.. image:: https://badge.fury.io/py/cihai.png
-    :target: http://badge.fury.io/py/cihai
-
-.. image:: https://coveralls.io/repos/cihai/cihai/badge.png?branch=master
-    :target: https://coveralls.io/r/cihai/cihai?branch=master
-
-``cihai`` - China fit into a python package. Part of the `cihai`_
-project.
+|pypi| |docs| |build-status| |coverage| |license|
 
 .. _cihai: https://github.com/cihai/
 .. _cihai-handbook: https://github.com/cihai/cihai-handbook
@@ -70,3 +63,23 @@ tests           .. code-block:: bash
 .. _datapackage.json format: https://github.com/datasets/gdp/blob/master/datapackage.json
 .. _simple data format: http://data.okfn.org/standards/simple-data-format
 .. _PEP 301\: python package format: http://www.python.org/dev/peps/pep-0301/
+
+.. |pypi| image:: https://img.shields.io/pypi/v/cihai.svg
+    :alt: Python Package
+    :target: http://badge.fury.io/py/cihai
+
+.. |build-status| image:: https://img.shields.io/travis/cihai/cihai.svg
+   :alt: Build Status
+   :target: https://travis-ci.org/cihai/cihai
+
+.. |coverage| image:: https://codecov.io/gh/cihai/cihai/branch/master/graph/badge.svg
+    :alt: Code Coverage
+    :target: https://codecov.io/gh/cihai/cihai
+
+.. |license| image:: https://img.shields.io/github/license/cihai/cihai.svg
+    :alt: License 
+
+.. |docs| image:: https://readthedocs.org/projects/cihai/badge/?version=latest
+    :alt: Documentation Status
+    :scale: 100%
+    :target: https://readthedocs.org/projects/cihai/
