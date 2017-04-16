@@ -1,11 +1,10 @@
 .. _index:
 
-###################
-cihai python client
-###################
+#####
+cihai
+#####
 
 .. include:: ../README.rst
-    :start-line: 12
 
 .. toctree::
     :maxdepth: 2
