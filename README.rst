@@ -38,7 +38,7 @@ Issues          https://github.com/cihai/cihai/issues
 Travis          https://travis-ci.org/cihai/cihai
 Test coverage   https://coveralls.io/r/cihai/cihai
 pypi            https://pypi.python.org/pypi/cihai
-Ohloh           https://www.ohloh.net/p/cihai
+OpenHub         https://www.openhub.net/p/cihai
 License         `BSD`_.
 git repo        .. code-block:: bash
 
