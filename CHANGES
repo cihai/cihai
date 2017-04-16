@@ -17,5 +17,7 @@ Here you can find the recent changes to cihai.
 - :support:`-` Update travis to test up to python 3.6
 - :support:`-` Add support for pypy (why not)
 - :support:`-` Lock base dependencies
+- :support:`-` Add dev dependencies for isort, vulture and flake8
+- :support:`-` Rename ``cihai.cihai`` to ``cihai.core``
 
 .. vim: set filetype=rst:
