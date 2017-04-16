@@ -6,7 +6,7 @@
 API
 ===
 
-.. automodule:: cihai
+.. automodule:: cihai.core
 
     .. autoclass:: Cihai
         :members:
@@ -30,6 +30,18 @@ Conversion
 .. autofunction:: cihai.conversion.ucn_to_unicode
 .. autofunction:: cihai.conversion.ucnstring_to_python
 .. autofunction:: cihai.conversion.ucnstring_to_unicode
+
+Testing
+-------
+
+cihai provides helper functions and classes for testing cihai-compatible
+libraries. Pull in cihai as a dependency and import them right into
+your testsuite.
+
+.. automodule:: cihai.test
+    :members:
+    :inherited-members:
+    :show-inheritance:
 
 Utilities
 ---------
