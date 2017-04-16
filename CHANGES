@@ -12,5 +12,9 @@ Here you can find the recent changes to cihai.
 - :support:`-` Update requirements to use *requirements/* folder for
   base, testing and doc dependencies.
 - :support:`-` Update sphinx theme to alabaster with new logo.
+- :support:`-` Update travis to use coverall
+- :support:`-` Update links on README to use https
+- :support:`-` Update travis to test up to python 3.6
+- :support:`-` Add support for pypy (why not)
 
 .. vim: set filetype=rst:
