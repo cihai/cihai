@@ -72,6 +72,8 @@ virtualenv_bin = which('virtualenv', throw=False)
 virtualenv_exists = os.path.exists(env_dir) and os.path.isfile(python_bin)
 sphinx_requirements_filepath = os.path.join(
     project_dir, 'requirements', 'doc.txt')
+dev_requirements_filepath = os.path.join(
+    project_dir, 'requirements', 'dev.txt')
 test_requirements_filepath = os.path.join(
     project_dir, 'requirements', 'test.txt')
 
@@ -122,6 +124,12 @@ def main():
         subprocess.check_call(
             [pip_bin, 'install', '-r', test_requirements_filepath]
         )
+
+    if not has_module('flake8'):
+        subprocess.check_call(
+            [pip_bin, 'install', '-r', dev_requirements_filepath]
+        )
+
 
     if not os.path.isfile(os.path.join(env_dir, 'bin', 'sphinx-quickstart')):
         subprocess.check_call(
