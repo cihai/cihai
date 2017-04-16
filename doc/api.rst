@@ -50,15 +50,3 @@ Utilities
     :members:
     :inherited-members:
     :show-inheritance:
-
-Datasets
---------
-
-.. autofunction:: cihai.datasets.unihan.download
-.. autofunction:: cihai.datasets.unihan.extract
-.. autofunction:: cihai.datasets.unihan.csvs_to_dictlists
-
-.. autoclass:: cihai.datasets.unihan.Unihan
-    :members:
-    :inherited-members:
-    :show-inheritance:
