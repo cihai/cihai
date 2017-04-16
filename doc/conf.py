@@ -57,7 +57,6 @@ html_sidebars = {
         'navigation.html',
         'relations.html',
         'more.html',
-        'book.html',
         'searchbox.html',
     ]
 }
