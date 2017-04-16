@@ -3,12 +3,6 @@ access to CJK data
 
 |pypi| |docs| |build-status| |coverage| |license|
 
-.. _cihai: https://github.com/cihai/
-.. _cihai-handbook: https://github.com/cihai/cihai-handbook
-.. _cihai team: https://github.com/cihai?tab=members
-.. _cihai: https://github.com/cihai/cihai
-.. _cihaidata-unihan on github: https://github.com/cihai/cihaidata-unihan
-
 Attempt at building successor of the Han Character library `cjklib`_.
 
 - compatible with python 2.7+ and 3.3+.
