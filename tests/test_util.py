@@ -38,8 +38,10 @@ class UtilTestCase(unittest.TestCase):
         self.assertIsNone(util.import_string('XXXXXXXXXXXX', True))
         self.assertIsNone(util.import_string('cgi.XXXXXXXXXXXX', True))
 
-        self.assertEqual(util.import_string('cihai.core.Cihai'), cihai.core.Cihai)
-        self.assertEqual(util.import_string('cihai.core:Cihai'), cihai.core.Cihai)
+        self.assertEqual(
+            util.import_string('cihai.core.Cihai'), cihai.core.Cihai)
+        self.assertEqual(
+            util.import_string('cihai.core:Cihai'), cihai.core.Cihai)
         self.assertEqual(util.import_string('cihai'), cihai)
         self.assertIsNone(util.import_string('XXXXX', True))
         self.assertIsNone(util.import_string('cihia.XXXXX', True))

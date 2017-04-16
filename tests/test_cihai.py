@@ -14,16 +14,11 @@ from __future__ import (absolute_import, division, print_function,
 
 import logging
 import os
-import tempfile
 import unittest
-
-import sqlalchemy
-from sqlalchemy import MetaData, Table
 
 import cihai
 from cihai.core import Cihai, CihaiDataset
 from cihai.test import CihaiHelper, TestCase
-from cihai.util import get_datafile
 
 log = logging.getLogger(__name__)
 

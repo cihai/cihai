@@ -31,7 +31,6 @@ cjk_ranges = {
     'CJK Unified Ideographs Extension B': range(0x20000, 0x2A6DF + 1),
     'CJK Unified Ideographs Extension C': range(0x2A700, 0x2B73F + 1),
     'CJK Unified Ideographs Extension D': range(0x2B840, 0x2B81F + 1),
-    'CJK Compatibility Ideographs': range(0xF900, 0xFAFF + 1),
     'CJK Radicals Supplement': range(0x2E80, 0x2EFF + 1),
     'CJK Symbols and Punctuation': range(0x3000, 0x303F + 1),
     'CJK Strokes': range(0x31C0, 0x31EF + 1),
@@ -55,7 +54,7 @@ class BootstrapUnicode(TestCase):
         for block_name, urange in cjk_ranges.items():
             for c in urange:
                 char = unichr(int(c))
-                ucn = conversion.python_to_ucn(char)
+                ucn = conversion.python_to_ucn(char)  # NOQA
 
             totalCharacters += len(urange)
 
@@ -133,10 +132,6 @@ class TableInsertFK(TestCase):
 
         cjkchar = self.chars[0]
 
-        c = cjkchar['hex']
-        char = cjkchar['char']
-        ucn = cjkchar['ucn']
-
         row = unicode_table.select().limit(1) \
             .execute().fetchone()
 
@@ -153,22 +148,24 @@ class TableInsertFK(TestCase):
     def test_insert_on_foreign_key(self):
 
         cjkchar = self.chars[0]
-        hex = cjkchar['hex']
         char = cjkchar['char']
-        ucn = cjkchar['ucn']
 
         sample_table.insert().values(
             char_id=get_char_fk(char),
             value='hey'
         ).execute()
 
-        select_char = unicode_table.select().where(unicode_table.c.char == char).limit(1)
+        select_char = unicode_table.select().where(
+            unicode_table.c.char == char
+        ).limit(1)
         row = select_char.execute().fetchone()
 
         self.assertIsNotNone(row)
 
     def test_get_char_foreign_key_multiple(self):
-        char_fk_multiple = get_char_fk_multiple(*[c['char'] for c in self.chars])
+        char_fk_multiple = get_char_fk_multiple(
+            *[c['char'] for c in self.chars]
+        )
 
         for char in char_fk_multiple:
 

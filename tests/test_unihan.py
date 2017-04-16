@@ -38,18 +38,9 @@ import logging
 import os
 import shutil
 import tempfile
-import unittest
 import zipfile
 
-import sqlalchemy
-from sqlalchemy import MetaData, Table
-
-import cihai
-from cihai._compat import StringIO, text_type
-from cihai.core import Cihai, CihaiDataset
-from cihai.datasets import unihan
-from cihai.test import CihaiHelper, TestCase
-from cihai.util import get_datafile
+from cihai.test import CihaiHelper
 
 log = logging.getLogger(__name__)
 

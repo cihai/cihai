@@ -10,14 +10,11 @@ from __future__ import (absolute_import, division, print_function,
                         unicode_literals, with_statement)
 
 import logging
-import os
-import tempfile
 import unittest
 
 from cihai import conversion
-from cihai._compat import PY2, string_types, text_type
+from cihai._compat import string_types, text_type
 from cihai.test import TestCase
-from cihai.util import get_datafile
 
 log = logging.getLogger(__name__)
 
@@ -45,7 +42,8 @@ class UCN(TestCase):
     # U+3CE2	kTraditionalVariant	U+23FB7
     # U+3FF7	kSemanticVariant	U+7CD9<kMatthews,kMeyerWempe
     # U+345A	kDefinition	(non-classical form of 那) that, there
-    # U+349A	kDefinition	(same as U+7A69 穩) firm; stable; secure, dependent upon others
+    # U+349A	kDefinition	(same as U+7A69 穩) firm; stable; secure,
+    #           dependent upon others
     # U+34B5	kMandarin	mào
     # U+356D	kCantonese	au3 jaau1
 
@@ -66,7 +64,8 @@ class UCN(TestCase):
             bytes
         )
 
-        self.assertEqual(conversion.python_to_ucn(text, as_bytes=True), bytes_expected)
+        self.assertEqual(
+            conversion.python_to_ucn(text, as_bytes=True), bytes_expected)
 
     def test_from_unicode_16(self):
         text = '𦄀'
@@ -85,7 +84,8 @@ class UCN(TestCase):
             bytes
         )
 
-        self.assertEqual(conversion.python_to_ucn(text, as_bytes=True), bytes_expected)
+        self.assertEqual(
+            conversion.python_to_ucn(text, as_bytes=True), bytes_expected)
 
     def test_to_unicode(self):
         before = 'U+4E00'
