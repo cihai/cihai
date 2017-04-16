@@ -1,8 +1,8 @@
 [run]
 omit =
-    */testsuite/*
-    */_vendor/*
+    tests/*
     */_*
+    pkg/*
     */log.py
 
 [report]
