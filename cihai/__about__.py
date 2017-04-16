@@ -1,0 +1,8 @@
+__title__ = 'cihai-python'
+__package_name__ = 'cihai'
+__version__ = '0.3.0'
+__description__ = 'Python API for CJK datasets. Part of the cihai project.'
+__author__ = 'Tony Narlock'
+__email__ = 'tony@git-pull.com'
+__license__ = 'BSD 3-clause'
+__copyright__ = 'Copyright 2013-2017 Tony Narlock'
