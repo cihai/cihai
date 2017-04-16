@@ -37,6 +37,9 @@ License         `BSD`_.
 git repo        .. code-block:: bash
 
                     $ git clone https://github.com/cihai/cihai.git
+install stable  .. code-block:: bash
+
+                    $ pip install cihai
 install dev     .. code-block:: bash
 
                     $ git clone https://github.com/cihai/cihai.git cihai
