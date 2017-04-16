@@ -1,10 +1,4 @@
 # -*- coding: utf-8 -*-
-"""Tests for unihan.
-
-cihai.testsuite.util
-~~~~~~~~~~~~~~~~~~~~
-
-"""
 
 from __future__ import absolute_import, division, print_function, \
     with_statement, unicode_literals

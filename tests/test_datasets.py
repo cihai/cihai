@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """Tests for cihai datasets
 
-cihai.testsuite.datasets
-~~~~~~~~~~~~~~~~~~~~~~~~
+tests.datasets
+~~~~~~~~~~~~~~
 
 These tests will be tested against a fixture of :class:`Cihai` which uses the
 settings found in ``test_config.yml``.

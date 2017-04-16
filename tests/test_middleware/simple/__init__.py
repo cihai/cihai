@@ -1,13 +1,4 @@
 # -*- coding: utf-8 -*-
-"""Tests for cihai.
-
-cihai.testsuite.test_middleware.simple
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-:copyright: Copyright 2013 Tony Narlock.
-:license: BSD, see LICENSE for details
-
-"""
 
 from __future__ import absolute_import, division, print_function, \
     with_statement, unicode_literals

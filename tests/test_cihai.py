@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """Tests for cihai.
 
-cihai.testsuite.cihai
-~~~~~~~~~~~~~~~~~~~~~
+test.cihai
+~~~~~~~~~~
 
 Test :class:`Cihai` object. Other tests will use an instance of ``Cihai``
 using the ``test_config.yml``.
@@ -25,7 +25,7 @@ import cihai
 
 from cihai.test import TestCase, CihaiHelper
 from cihai.util import get_datafile
-from cihai.cihai import Cihai, CihaiDataset
+from cihai.core import Cihai, CihaiDataset
 
 log = logging.getLogger(__name__)
 

@@ -21,7 +21,7 @@ try:
 except ImportError:  # Python 2.7
     import unittest
 
-from cihai.cihai import Cihai
+from cihai.core import Cihai
 
 logger = logging.getLogger(__name__)
 
