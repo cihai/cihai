@@ -5,7 +5,7 @@
 cihai.datasets.decomp
 ~~~~~~~~~~~~~~~~~~~~~
 
-From: http://cjkdecomp.codeplex.com/wikipage?title=cjk-decomp&referringTitle=Home
+See http://cjkdecomp.codeplex.com/wikipage?title=cjk-decomp&referringTitle=Home
 
 The CJK Decomposition Data File is a graphical analysis of the approx 75,000
 Chinese/Japanese characters in Unicode. The latest version is 0.4.0, updated on
@@ -38,14 +38,20 @@ I've selected one only.
 The possible configurations and their meanings are:
 Code regex       Meaning         Number of possible constituents
 c        component       0
-m.*      modified in some way, e.g. me=equivalent, msp=special, mo=outline, ml=left radical version      1
-w.*      second constituent contained within first in some way, e.g. w=within at the center, wbl=within at bottom left   2
+m.*      modified in some way, e.g. me=equivalent, msp=special, mo=outline, \
+         ml=left radical version      1
+w.*      second constituent contained within first in some way, e.g. w=within \
+         at the center, wbl=within at bottom left   2
 ba|d     second between first moving across or downwards         2
 lock     components locked together      2
-s.*      first component surrounds second, e.g. s=surrounds fully, str=surrounds around the top-right    2
+s.*      first component surrounds second, e.g. s=surrounds fully, \
+         str=surrounds around the top-right    2
 a        flows across    >= 2
 d        flows downwards         >= 2
-r.*      repeats and/or reflects in some way, e.g. refh=reflect horizontally, rot=rotate 180 degrees, rrefr= repeat with a reflection rightwards, ra=repeat across, r3d=repeat 3 times downwards, r3tr=repeat in a triangle, rst=repeat surrounding around the top       1
+r.*      repeats and/or reflects in some way, e.g. refh=reflect horizontally, \
+         rot=rotate 180 degrees, rrefr= repeat with a reflection rightwards, \
+         ra=repeat across, r3d=repeat 3 times downwards, r3tr=repeat in a \
+         triangle, rst=repeat surrounding around the top       1
 
 
 The s, a, d, and r codes may be followed by /t, /m, /s, or /o, to show whether
@@ -63,16 +69,7 @@ Last edited Dec 6, 2013 at 8:09 PM by gavingrover, version 3
 from __future__ import absolute_import, division, print_function, \
     with_statement, unicode_literals
 
-import os
-import hashlib
-import fileinput
 import logging
-
-from sqlalchemy import Table, String, Column, Integer, Index, select, or_, and_
-
-from ... import conversion
-from ...util import get_datafile, UnicodeReader
-from ..._compat import PY2, text_type, configparser
 
 __copyright__ = 'Copyright 2013 Tony Narlock.'
 __license__ = 'BSD, see LICENSE for details.'

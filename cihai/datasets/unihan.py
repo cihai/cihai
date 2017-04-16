@@ -5,14 +5,11 @@ from __future__ import (absolute_import, division, print_function,
                         unicode_literals, with_statement)
 
 import logging
-import sys
 
 from sqlalchemy import Column, Index, String, Table, and_, select
 
 from .. import conversion
-from .._compat import StringIO, urlretrieve
 from ..core import CihaiDataset
-from ..util import UnicodeReader, _dl_progress
 
 __copyright__ = 'Copyright 2013 Tony Narlock.'
 __license__ = 'BSD, see LICENSE for details.'
@@ -134,7 +131,7 @@ UNIHAN_DATASETS = {
 UNIHAN_URL = 'http://www.unicode.org/Public/UNIDATA/Unihan.zip'
 
 table_name = 'Unihan'
-flatten_datasets = lambda d: sorted({c for cs in d.values() for c in cs})
+flatten_datasets = lambda d: sorted({c for cs in d.values() for c in cs}) # NOQA
 default_columns = ['ucn', 'char']
 
 
@@ -167,7 +164,7 @@ def create_table(columns, metadata):
 
     """
 
-    if not table_name in metadata.tables:
+    if table_name not in metadata.tables:
         table = Table(table_name, metadata)
 
         table.append_column(Column('char', String(12), primary_key=True))
@@ -178,7 +175,10 @@ def create_table(columns, metadata):
             table.append_column(col)
 
         Index('%s_unique_char' % table_name, table.c.char, unique=True)
-        Index('%s_unique_char_ucn' % table_name, table.c.char, table.c.ucn, unique=True)
+        Index(
+            '%s_unique_char_ucn' % table_name, table.c.char, table.c.ucn,
+            unique=True
+        )
 
         return table
     else:
@@ -238,7 +238,8 @@ class Unihan(CihaiDataset):
         """
 
         try:
-            self.fields = [f for t, f in UNIHAN_DATASETS.items() if t in ['Unihan']]
+            self.fields = [
+                f for t, f in UNIHAN_DATASETS.items() if t in ['Unihan']]
         except:
             self.fields = [f for t, f in UNIHAN_DATASETS.items()]
         self.default_fields = self.fields
@@ -300,7 +301,7 @@ class Unihan(CihaiDataset):
         if not request.startswith('U+'):
             request = conversion.python_to_ucn(request)
 
-        if not 'fields' in kwargs:
+        if 'fields' not in kwargs:
             fields = self.default_fields
         else:
             fields = kwargs['fields']
@@ -320,7 +321,7 @@ class Unihan(CihaiDataset):
         query = query.execute()
 
         if query:
-            if not 'unihan' in response:
+            if 'unihan' not in response:
                 response['unihan'] = {}
             for r in query:
                 response['unihan'][r['field']] = r['value']
@@ -345,7 +346,7 @@ class Unihan(CihaiDataset):
 
         """
 
-        if not 'fields' in kwargs:
+        if 'fields' not in kwargs:
             fields = self.default_fields
         else:
             fields = kwargs['fields']
@@ -365,11 +366,11 @@ class Unihan(CihaiDataset):
         query = query.execute()
 
         if query:
-            if not 'unihan' in response:
+            if 'unihan' not in response:
                 response['unihan'] = {}
             for r in query:
                 char = conversion.ucn_to_unicode(r['char'])
-                if not char in response['unihan']:
+                if char not in response['unihan']:
                     response['unihan'][char] = {}
                 response['unihan'][char][r['field']] = r['value']
 
