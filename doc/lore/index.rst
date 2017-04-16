@@ -9,8 +9,10 @@ Lore
     This document is part of brain storming the project of cihai. It's for
     historic purposes only.
 
-Initial planning
-----------------
+Late 2013
+---------
+
+The initial planning of and experimentation of cihai.
 
 - :ref:`lore/internals`
 - :ref:`lore/information_liberation`
