@@ -20,7 +20,7 @@ See `Internals`_ for design philosophy.
 .. _current datasets: https://cihai.git-pull.com/en/latest/api.html#datasets
 .. _Extending: https://cihai.git-pull.com/en/latest/extending.html
 .. _permissively licensing your dataset: https://cihai.git-pull.com/en/latest/information_liberation.html
-.. _Internals: https://cihai.git-pull.com/en/latest/internals.html
+.. _Internals: https://cihai.git-pull.com/en/latest/lore/internals.html
 
 ==============  ==========================================================
 Python support  Python 2.7, >= 3.3, pypy
