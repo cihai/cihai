@@ -16,5 +16,6 @@ Here you can find the recent changes to cihai.
 - :support:`-` Update links on README to use https
 - :support:`-` Update travis to test up to python 3.6
 - :support:`-` Add support for pypy (why not)
+- :support:`-` Lock base dependencies
 
 .. vim: set filetype=rst:
