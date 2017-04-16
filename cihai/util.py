@@ -272,3 +272,12 @@ def find_modules(import_path, include_packages=False, recursive=False):
                     yield item
         else:
             yield modname
+
+
+def supports_wide():
+    """Return if python interpreter supports wide characters.
+
+    :returns: Returns `True` if python supports wide character sets.
+    :rtype: bool
+    """
+    return sys.maxunicode > 0xffff
