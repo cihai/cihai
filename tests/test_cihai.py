@@ -23,9 +23,9 @@ from sqlalchemy import Table, MetaData
 
 import cihai
 
-from .helpers import TestCase
-from ..util import get_datafile
-from .. import Cihai, CihaiDataset
+from cihai.test import TestCase, CihaiHelper
+from cihai.util import get_datafile
+from cihai.cihai import Cihai, CihaiDataset
 
 log = logging.getLogger(__name__)
 
@@ -36,17 +36,6 @@ class MyDataset(CihaiDataset):
 
     def __init__(self, *args, **kwargs):
         CihaiDataset.__init__(self, *args, **kwargs)
-
-
-class CihaiHelper(TestCase):
-
-    config = os.path.abspath(os.path.join(
-        os.path.dirname(__file__),
-        'test_config.yml'
-    ))
-
-    def setUp(self):
-        self.cihai = Cihai.from_file(self.config)
 
 
 class CihaiTestCase(TestCase):

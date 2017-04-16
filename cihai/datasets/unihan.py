@@ -9,7 +9,8 @@ import logging
 
 from sqlalchemy import Table, String, Column, Index, select, and_
 
-from .. import conversion, CihaiDataset
+from .. import conversion
+from ..cihai import CihaiDataset
 from ..util import UnicodeReader, _dl_progress
 from .._compat import StringIO, urlretrieve
 

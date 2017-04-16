@@ -13,10 +13,10 @@ import kaptan
 
 from sqlalchemy import create_engine, MetaData, Table, Integer, Index
 
-from . import conversion, exc, db
-from .util import get_datafile, merge_dict, convert_to_attr_dict, \
+from cihai import conversion, exc, db
+from cihai.util import get_datafile, merge_dict, convert_to_attr_dict, \
     import_string, find_modules
-from ._compat import string_types
+from cihai._compat import string_types
 
 log = logging.getLogger(__name__)
 

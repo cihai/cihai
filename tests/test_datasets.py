@@ -20,10 +20,10 @@ import sqlalchemy
 
 from sqlalchemy import MetaData
 
-from .. import conversion
-from .._compat import unichr
+from cihai import conversion
+from cihai._compat import unichr
 
-from .helpers import TestCase
+from cihai.test import TestCase
 
 log = logging.getLogger(__name__)
 
@@ -51,7 +51,7 @@ cjk_ranges = {
 class BootstrapUnicode(TestCase):
 
     def test_generate_unicode(self):
-        from .. import conversion
+        from cihai import conversion
 
         totalCharacters = 0
         for block_name, urange in cjk_ranges.items():

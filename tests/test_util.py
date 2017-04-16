@@ -12,9 +12,9 @@ from __future__ import absolute_import, division, print_function, \
 import unittest
 import logging
 
-from .. import util
+from cihai import util
 
-from .._compat import StringIO
+from cihai._compat import StringIO
 
 log = logging.getLogger(__name__)
 
@@ -45,8 +45,8 @@ class UtilTestCase(unittest.TestCase):
         self.assertIsNone(util.import_string('XXXXXXXXXXXX', True))
         self.assertIsNone(util.import_string('cgi.XXXXXXXXXXXX', True))
 
-        self.assertEqual(util.import_string('cihai.Cihai'), cihai.Cihai)
-        self.assertEqual(util.import_string('cihai:Cihai'), cihai.Cihai)
+        self.assertEqual(util.import_string('cihai.cihai.Cihai'), cihai.cihai.Cihai)
+        self.assertEqual(util.import_string('cihai.cihai:Cihai'), cihai.cihai.Cihai)
         self.assertEqual(util.import_string('cihai'), cihai)
         self.assertIsNone(util.import_string('XXXXX', True))
         self.assertIsNone(util.import_string('cihia.XXXXX', True))

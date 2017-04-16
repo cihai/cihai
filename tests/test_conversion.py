@@ -14,10 +14,10 @@ import tempfile
 import logging
 import unittest
 
-from .helpers import TestCase
-from .._compat import PY2, text_type, string_types
-from ..util import get_datafile
-from .. import conversion
+from cihai.test import TestCase
+from cihai._compat import PY2, text_type, string_types
+from cihai.util import get_datafile
+from cihai import conversion
 
 log = logging.getLogger(__name__)
 

@@ -47,12 +47,11 @@ from sqlalchemy import Table, MetaData
 
 import cihai
 
-from cihai.testsuite.cihai import CihaiHelper
-from cihai.testsuite.helpers import TestCase
+from cihai.test import TestCase, CihaiHelper
 from cihai.util import get_datafile
 from cihai.datasets import unihan
 from cihai._compat import StringIO, text_type
-from cihai import Cihai, CihaiDataset
+from cihai.cihai import Cihai, CihaiDataset
 
 log = logging.getLogger(__name__)
 

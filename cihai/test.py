@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """Helpers for cihai testsuite.
 
-cihai.testsuite.helpers
-~~~~~~~~~~~~~~~~~~~~~~~
+cihai.test
+~~~~~~~~~~
 
 """
 
@@ -21,7 +21,7 @@ try:
 except ImportError:  # Python 2.7
     import unittest
 
-from ..cihai import Cihai
+from cihai.cihai import Cihai
 
 logger = logging.getLogger(__name__)
 
@@ -47,3 +47,16 @@ def get_datafile(filename):
 
 class TestCase(unittest.TestCase):
     pass
+
+
+class CihaiHelper(TestCase):
+
+    config = os.path.abspath(os.path.join(
+        'tests', 'test_config.yml'  # temporary hack
+    ))
+
+    def setUp(self):
+        self.cihai = Cihai.from_file(self.config)
+
+
+
