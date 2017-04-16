@@ -91,7 +91,6 @@ texinfo_documents = [
 
 intersphinx_mapping = {
     'python': ('http://docs.python.org/', None),
-    'libtmux': ('http://libtmux.readthedocs.io/en/latest', None),
     'sphinx': ('http://sphinx.readthedocs.org/en/latest/', None),
     'sqlalchemy': ('http://sqlalchemy.readthedocs.org/en/latest/', None),
 }
