@@ -3,19 +3,32 @@ access to CJK data
 
 |pypi| |docs| |build-status| |coverage| |license|
 
-Attempt at building successor of the Han Character library `cjklib`_.
+Tool
+----
 
+- single tool for interfacing with CJK data, compare to `cjklib`_
 - compatible with python 2.7+ and 3.3+.
-- built against unit tests. See `Travis Builds`_ and `Revision History`_.
-- supports `Unihan`_, see `current datasets`_.  - upcoming supports for
-  character decomposition, dictionaries (CEDict).
-- extensible to new datasets, see more about `Extending`_ cihai to
+- designed against a robust test suite. See `Travis Builds`_ and
+  `Revision History`_.
+- supports `Unihan`_, upcoming support for character decomposition, dictionaries
+  (CEDict).
+- Extensible. For new data sets, read more about how you can `extend`_ cihai to
   support new `datapackages`_ compatible datasets.
+- For more, see `internals`_ for design philosophy.
 
-See `Internals`_ for design philosophy.
+Workgroup and Standardization
+-----------------------------
+
+- Find undigitized data sets relating to CJK
+- Clarifying license details of data sets, see `permissively licensing your dataset`_.
+- Creating and maintaining standardized, consistent packages for all data
+  sets
+
+Troubleshooting
+---------------
 
 Python 2.7 and UCS
-------------------
+""""""""""""""""""
 
 Note, to get this working on python 2.7, you must have python built with
 *UCS4* via ``--enable-unicode=ucs4``. You can test for UCS4 with:
@@ -33,10 +46,9 @@ distinction no longer exists, no action is needed.
 .. _Travis Builds: https://travis-ci.org/cihai/cihai/builds
 .. _Revision History: https://github.com/cihai/cihai/commits/master
 .. _cjklib: http://cjklib.org/
-.. _current datasets: https://cihai.git-pull.com/en/latest/api.html#datasets
-.. _Extending: https://cihai.git-pull.com/en/latest/extending.html
-.. _permissively licensing your dataset: https://cihai.git-pull.com/en/latest/information_liberation.html
-.. _Internals: https://cihai.git-pull.com/en/latest/lore/internals.html
+.. _extend: https://cihai.git-pull.com/en/latest/extending.html
+.. _permissively licensing your dataset: https://cihai.git-pull.com/en/latest/lore/information_liberation.html
+.. _internals: https://cihai.git-pull.com/en/latest/lore/internals.html
 
 ==============  ==========================================================
 Python support  Python 2.7, >= 3.3, pypy
