@@ -1,4 +1,4 @@
-*cihai* - united front to provide open, accessible, and standardized
+*cihai* - United front to provide open, accessible, and standardized
 access to CJK data
 
 |pypi| |docs| |build-status| |coverage| |license|
@@ -6,11 +6,12 @@ access to CJK data
 Tool
 ----
 
-- single tool for interfacing with CJK data, compare to `cjklib`_
-- compatible with python 2.7+ and 3.3+.
-- designed against a robust test suite. See `Travis Builds`_ and
+- Single tool for interfacing with CJK data, compare to `cjklib`_.
+- API, in python, for programatically interfacing with data.
+- Compatible with python 2.7, 3.3+, and pypy/pypy3.
+- Designed against a robust test suite. See `Travis Builds`_ and
   `Revision History`_.
-- supports `Unihan`_, upcoming support for character decomposition, dictionaries
+- Supports `Unihan`_, upcoming support for character decomposition, dictionaries
   (CEDict).
 - Extensible. For new data sets, read more about how you can `extend`_ cihai to
   support new `datapackages`_ compatible datasets.
