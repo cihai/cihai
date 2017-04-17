@@ -3,6 +3,8 @@ access to CJK data
 
 |pypi| |docs| |build-status| |coverage| |license|
 
+*In development*
+
 Tool
 ----
 
