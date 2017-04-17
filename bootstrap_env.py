@@ -113,9 +113,8 @@ def main():
         virtualenv_bin = which('virtualenv', throw=False)
 
         subprocess.check_call(
-            [virtualenv_bin, env_dir]
+            [virtualenv_bin, '-ppython3.6', env_dir]
         )
-
         subprocess.check_call(
             [pip_bin, 'install', '-e', project_dir]
         )
@@ -130,7 +129,6 @@ def main():
             [pip_bin, 'install', '-r', dev_requirements_filepath]
         )
 
-
     if not os.path.isfile(os.path.join(env_dir, 'bin', 'sphinx-quickstart')):
         subprocess.check_call(
             [pip_bin, 'install', '-r', sphinx_requirements_filepath]
@@ -138,6 +136,7 @@ def main():
 
     if os.path.exists(os.path.join(env_dir, 'build')):
         os.removedirs(os.path.join(env_dir, 'build'))
+
 
 if __name__ == '__main__':
     main()
