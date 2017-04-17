@@ -20,9 +20,10 @@ Workgroup and Standardization
 -----------------------------
 
 - Find undigitized data sets relating to CJK
-- Clarifying license details of data sets, see `permissively licensing your dataset`_.
-- Creating and maintaining standardized, consistent packages for all data
-  sets
+- Clarifying and negotiate license details of data sets, see `permissively licensing your dataset`_.
+- Create standardized, consistent packages for all data sets
+- Maintain aforementioned datasets
+- Continue to improve current infrastructure and packages while seeking out rare and undigitized CJK data for preservation and access
 
 Troubleshooting
 ---------------
