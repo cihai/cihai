@@ -93,4 +93,5 @@ intersphinx_mapping = {
     'python': ('http://docs.python.org/', None),
     'sphinx': ('http://sphinx.readthedocs.org/en/latest/', None),
     'sqlalchemy': ('http://sqlalchemy.readthedocs.org/en/latest/', None),
+    'cihaidata-unihan': ('https://cihai.git-pull.com/en/latest/', None),
 }
