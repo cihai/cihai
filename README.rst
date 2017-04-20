@@ -3,10 +3,15 @@ access to CJK data
 
 |pypi| |docs| |build-status| |coverage| |license|
 
-*In development*
+Current Datasets
+----------------
+
+- `cihaidata-unihan`_ - `Unihan`_ data package
 
 Tool
 ----
+
+*In development*
 
 - Single tool for interfacing with CJK data, compare to `cjklib`_.
 - API, in python, for programatically interfacing with data.
@@ -92,6 +97,7 @@ tests           .. code-block:: bash
 .. _datapackage.json format: https://github.com/datasets/gdp/blob/master/datapackage.json
 .. _simple data format: http://data.okfn.org/standards/simple-data-format
 .. _PEP 301\: python package format: http://www.python.org/dev/peps/pep-0301/
+.. _cihaidata-unihan: https://cihaidata-unihan.git-pull.com
 
 .. |pypi| image:: https://img.shields.io/pypi/v/cihai.svg
     :alt: Python Package
