@@ -12,14 +12,22 @@ using the ``test_config.yml``.
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals, with_statement)
 
+import pytest
 import logging
 import os
 
 import cihai
 from cihai.core import Cihai, CihaiDataset
-from cihai.test import CihaiHelper
 
 log = logging.getLogger(__name__)
+
+
+@pytest.fixture
+def cihai_obj():
+    config_file = os.path.abspath(os.path.join(
+        os.path.dirname(__file__), 'test_config.yml'
+    ))
+    return Cihai.from_file(config_file)
 
 
 class MyDataset(CihaiDataset):
@@ -101,24 +109,23 @@ def test_data_path_by_config_custom():
     assert expected in result
 
 
-class DatasetTestCase(CihaiHelper):
+def test_cihai_database_uses_same_metadata(cihai_obj):
+    """CihaiDataset subclasses uses the same MetaData instance."""
 
-    def test_cihai_database_uses_same_metadata(self):
-        """CihaiDataset subclasses uses the same MetaData instance."""
+    c = cihai_obj
+    mydataset = c.use(MyDataset)
+    assert mydataset.metadata == cihai_obj.metadata
 
-        c = self.cihai
-        mydataset = c.use(MyDataset)
-        self.assertEqual(mydataset.metadata, self.cihai.metadata)
 
-    def test_has_application_custom_config(self):
+def test_has_application_custom_config():
 
-        expected = '/home/r00t'
+    expected = '/home/r00t'
 
-        cihai = Cihai({
-            'data_path': expected
-        })
+    cihai = Cihai({
+        'data_path': expected
+    })
 
-        mydataset = cihai.use(MyDataset)
+    mydataset = cihai.use(MyDataset)
 
-        result = mydataset.cihai.config.get('data_path')
-        assert expected == result
+    result = mydataset.cihai.config.get('data_path')
+    assert expected == result

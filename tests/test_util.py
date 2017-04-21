@@ -4,53 +4,47 @@ from __future__ import (absolute_import, division, print_function,
                         unicode_literals, with_statement)
 
 import logging
-import pprint
-import unittest
 
+import pytest
 from cihai import util
 from cihai._compat import StringIO
 
 log = logging.getLogger(__name__)
 
-pp = pprint.PrettyPrinter(indent=2).pprint
+
+def test_dl_progress():
+    out = StringIO()
+
+    util._dl_progress(20, 10, 1000, out=out)
+
+    result = out.getvalue().strip()
+    expected = '20% [==========>                                        ]'
+
+    assert result == expected
 
 
-class UtilTestCase(unittest.TestCase):
+def test_import_string():
+    # Borrows from werkzeug.testsuite.
+    import cgi
+    import cihai
 
-    def test_dl_progress(self):
-        out = StringIO()
+    assert util.import_string('cgi.escape') == cgi.escape
+    assert util.import_string(u'cgi.escape') == cgi.escape
+    assert util.import_string('cgi:escape') == cgi.escape
+    assert util.import_string('XXXXXXXXXXXX', True) is None
+    assert util.import_string('cgi.XXXXXXXXXXXX', True) is None
 
-        util._dl_progress(20, 10, 1000, out=out)
+    assert util.import_string('cihai.core.Cihai') == cihai.core.Cihai
+    assert util.import_string('cihai.core:Cihai') == cihai.core.Cihai
+    assert util.import_string('cihai') == cihai
+    assert util.import_string('XXXXX', True) is None
+    assert util.import_string('cihia.XXXXX', True) is None
 
-        result = out.getvalue().strip()
-        expected = '20% [==========>                                        ]'
+    pytest.raises(ImportError, util.import_string, 'XXXXXXXXXXXXXXXX')
+    pytest.raises(ImportError, util.import_string, 'cgi.XXXXXXXXXX')
 
-        self.assertEqual(result, expected)
 
-    def test_import_string(self):
-        # Borrows from werkzeug.testsuite.
-        import cgi
-        import cihai
-
-        self.assertEqual(util.import_string('cgi.escape'), cgi.escape)
-        self.assertEqual(util.import_string(u'cgi.escape'), cgi.escape)
-        self.assertEqual(util.import_string('cgi:escape'), cgi.escape)
-        self.assertIsNone(util.import_string('XXXXXXXXXXXX', True))
-        self.assertIsNone(util.import_string('cgi.XXXXXXXXXXXX', True))
-
-        self.assertEqual(
-            util.import_string('cihai.core.Cihai'), cihai.core.Cihai)
-        self.assertEqual(
-            util.import_string('cihai.core:Cihai'), cihai.core.Cihai)
-        self.assertEqual(util.import_string('cihai'), cihai)
-        self.assertIsNone(util.import_string('XXXXX', True))
-        self.assertIsNone(util.import_string('cihia.XXXXX', True))
-
-        self.assertRaises(ImportError, util.import_string, 'XXXXXXXXXXXXXXXX')
-        self.assertRaises(ImportError, util.import_string, 'cgi.XXXXXXXXXX')
-
-    def test_find_modules(self):
-        self.assertEqual(
-            list(util.find_modules('cihai.datasets', include_packages=True)),
-            ['cihai.datasets.decomp', 'cihai.datasets.unihan']
-        )
+def test_find_modules():
+    assert list(
+        util.find_modules('cihai.datasets', include_packages=True)
+    ), ['cihai.datasets.decomp', 'cihai.datasets.unihan']

@@ -18,9 +18,9 @@ import random
 import sqlalchemy
 from sqlalchemy import MetaData
 
+import pytest
 from cihai import conversion
 from cihai._compat import unichr
-from cihai.test import TestCase
 
 log = logging.getLogger(__name__)
 
@@ -42,22 +42,6 @@ cjk_ranges = {
     'CJK Compatibility Forms': range(0xFE30, 0xFE4F + 1),
     'Yijing Hexagram Symbols': range(0x4DC0, 0x4DFF + 1)
 }
-
-
-class BootstrapUnicode(TestCase):
-
-    def test_generate_unicode(self):
-        from cihai import conversion
-
-        totalCharacters = 0
-        for block_name, urange in cjk_ranges.items():
-            for c in urange:
-                char = unichr(int(c))
-                ucn = conversion.python_to_ucn(char)  # NOQA
-
-            totalCharacters += len(urange)
-
-        print('Total characters: %s' % totalCharacters)
 
 
 engine = sqlalchemy.create_engine('sqlite:///')
@@ -107,64 +91,65 @@ def get_char_fk_multiple(*args):
     return results
 
 
-class TableInsertFK(TestCase):
+@pytest.fixture(scope="session")
+def chars():
+    chars = []
 
-    @classmethod
-    def setUpClass(cls):
-        chars = []
+    while len(chars) < 3:
+        c = 0x4E00 + random.randint(1, 333)
+        char = {
+            'hex': c,
+            'char': unichr(int(c)),
+            'ucn': conversion.python_to_ucn(unichr(int(c)))
+        }
+        if char not in chars:
+            chars.append(char)
 
-        while len(chars) < 3:
-            c = 0x4E00 + random.randint(1, 333)
-            char = {
-                'hex': c,
-                'char': unichr(int(c)),
-                'ucn': conversion.python_to_ucn(unichr(int(c)))
-            }
-            if char not in chars:
-                chars.append(char)
+        metadata.bind.execute(unicode_table.insert(), chars)
+    return chars
 
-            metadata.bind.execute(unicode_table.insert(), chars)
 
-        cls.chars = chars
+def test_insert_row(chars):
 
-    def test_insert_row(self):
+    cjkchar = chars[0]
 
-        cjkchar = self.chars[0]
+    row = unicode_table.select().limit(1) \
+        .execute().fetchone()
 
-        row = unicode_table.select().limit(1) \
-            .execute().fetchone()
+    assert row.char == cjkchar['char']
 
-        self.assertEqual(row.char, cjkchar['char'])
 
-    def test_insert_bad_fk(self):
-        wat = sample_table.insert().values(
-            value='',
-            char_id='wat'
-        ).execute()
+def test_insert_bad_fk():
+    wat = sample_table.insert().values(
+        value='',
+        char_id='wat'
+    ).execute()
 
-        print(wat)
+    print(wat)
 
-    def test_insert_on_foreign_key(self):
 
-        cjkchar = self.chars[0]
-        char = cjkchar['char']
+def test_insert_on_foreign_key(chars):
 
-        sample_table.insert().values(
-            char_id=get_char_fk(char),
-            value='hey'
-        ).execute()
+    cjkchar = chars[0]
+    char = cjkchar['char']
 
-        select_char = unicode_table.select().where(
-            unicode_table.c.char == char
-        ).limit(1)
-        row = select_char.execute().fetchone()
+    sample_table.insert().values(
+        char_id=get_char_fk(char),
+        value='hey'
+    ).execute()
 
-        self.assertIsNotNone(row)
+    select_char = unicode_table.select().where(
+        unicode_table.c.char == char
+    ).limit(1)
+    row = select_char.execute().fetchone()
 
-    def test_get_char_foreign_key_multiple(self):
-        char_fk_multiple = get_char_fk_multiple(
-            *[c['char'] for c in self.chars]
-        )
+    assert row is not None
 
-        for char in char_fk_multiple:
-            print(char['char'])
+
+def test_get_char_foreign_key_multiple(chars):
+    char_fk_multiple = get_char_fk_multiple(
+        *[c['char'] for c in chars]
+    )
+
+    for char in char_fk_multiple:
+        print(char['char'])
