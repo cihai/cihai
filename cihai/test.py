@@ -12,14 +12,6 @@ from __future__ import (absolute_import, division, print_function,
 import logging
 import os
 
-from cihai.core import Cihai
-
-try:
-    import unittest2 as unittest
-except ImportError:  # Python 2.7
-    import unittest
-
-
 logger = logging.getLogger(__name__)
 
 database_url_default = 'sqlite:///:memory:'
@@ -41,17 +33,3 @@ def get_datafile(filename):
     else:
         from ..util import get_datafile
         return get_datafile(filename)
-
-
-class TestCase(unittest.TestCase):
-    pass
-
-
-class CihaiHelper(TestCase):
-
-    config = os.path.abspath(os.path.join(
-        'tests', 'test_config.yml'  # temporary hack
-    ))
-
-    def setUp(self):
-        self.cihai = Cihai.from_file(self.config)
