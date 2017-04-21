@@ -4,6 +4,10 @@ Changelog
 
 Here you can find the recent changes to cihai.
 
+- :support:`-` Move tests to pytest functions and fixtures
+- :support:`-` Remove unused test_unihan file
+- :support:`-` PEP8, sort imports
+
 - :release:`0.3.0 <2017-04-16>`
 - :support:`-` Rebooted
 - :support:`-` Modernize *Makefile* in docs
