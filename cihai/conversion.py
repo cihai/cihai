@@ -71,8 +71,10 @@ from cihai._compat import string_types, text_type, unichr
 
 log = logging.getLogger(__name__)
 
-# only the hex digits (strip '0x' at the beginning)
-hexd = lambda n: hex(n)[2:]
+
+def hexd(n):
+    """Return the hex digits (strip '0x' at the beginning)."""
+    return hex(n)[2:]
 
 
 def kuten_to_gb2312(kuten):
@@ -88,7 +90,8 @@ def kuten_to_gb2312(kuten):
 
 
 def gb2312_to_euc(gb2312hex):
-    """Convert GB2312-1980 hex (internal representation) to EUC-CN hex (the "external encoding")"""
+    """Convert GB2312-1980 hex (internal representation) to EUC-CN hex
+    (the "external encoding")"""
     hi, lo = int(gb2312hex[:2], 16), int(gb2312hex[2:], 16)
     hi, lo = hexd(hi + 0x80), hexd(lo + 0x80)
 
@@ -104,8 +107,6 @@ def euc_to_utf8(euchex):
 
     assert isinstance(utf8, bytes)
     return utf8
-
-"""Convert to internal Python unicode / string objects."""
 
 
 def ucn_to_unicode(ucn):
@@ -138,7 +139,8 @@ def euc_to_unicode(hexstr):
         '\xd2\xbb'
         >>> u'\u4e00'.encode('gb2312').decode('utf-8')
         u'\u04bb'
-        >>> (b'\\x' + b'd2' + b'\\x' + b'bb').replace('\\x', '').decode('hex').decode('utf-8')
+        >>> (b'\\x' + b'd2' + b'\\x' + b'bb').replace('\\x', '') \
+        ... .decode('hex').decode('utf-8')
         u'\u04bb'
 
         # bytes won't have ``.replace``.

@@ -12,11 +12,11 @@ using the ``test_config.yml``.
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals, with_statement)
 
-import pytest
 import logging
 import os
 
 import cihai
+import pytest
 from cihai.core import Cihai, CihaiDataset
 
 log = logging.getLogger(__name__)
