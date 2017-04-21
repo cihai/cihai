@@ -71,8 +71,3 @@ class UnihanHelper(CihaiHelper):
         shutil.rmtree(cls.tempdir)
 
         super(UnihanHelper, cls).tearDownClass()
-
-
-# def suite():
-    # suite = unittest.TestSuite()
-    # return suite

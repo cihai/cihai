@@ -54,9 +54,3 @@ class UtilTestCase(unittest.TestCase):
             list(util.find_modules('cihai.datasets', include_packages=True)),
             ['cihai.datasets.decomp', 'cihai.datasets.unihan']
         )
-
-
-def suite():
-    suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(UtilTestCase))
-    return suite

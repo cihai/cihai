@@ -10,7 +10,6 @@ from __future__ import (absolute_import, division, print_function,
                         unicode_literals, with_statement)
 
 import logging
-import unittest
 
 from cihai import conversion
 from cihai._compat import string_types, text_type
@@ -19,14 +18,12 @@ from cihai.test import TestCase
 log = logging.getLogger(__name__)
 
 
-class Util(TestCase):
+def test_text_type():
+    c1 = '(same as U+7A69 穩) firm; stable; secure'
+    c2 = text_type()
 
-    def test_text_type(self):
-        c1 = '(same as U+7A69 穩) firm; stable; secure'
-        c2 = text_type()
-
-        self.assertIsInstance(c1, string_types)
-        self.assertIsInstance(c2, text_type)
+    assert isinstance(c1, string_types)
+    assert isinstance(c2, text_type)
 
 
 class UCN(TestCase):
@@ -115,48 +112,40 @@ class UCN(TestCase):
         self.assertIsInstance(result, text_type)
 
 
-class EUC(TestCase):
-
-    """Return EUC character from a Python Unicode character.
+"""Return EUC character from a Python Unicode character.
 
     Converts a one character Python unicode string (e.g. u'\\u4e00') to the
     corresponding EUC hex ('d2bb').
 
-    """
-
-    def test_from_unicode(self):
-        expected = '一'  # u'\u4e00'
-        euc_bytestring = b'd2bb'
-        euc_unicode = 'd2bb'
-
-        result = conversion.python_to_euc(expected, as_bytes=True)
-
-        self.assertEqual(euc_bytestring, result)
-        self.assertIsInstance(result, bytes)
-
-        result = conversion.python_to_euc(expected)
-
-        self.assertEqual(euc_unicode, result)
-        self.assertIsInstance(result, text_type)
-
-    def test_to_unicode(self):
-        # = '一'
-        expected = '一'
-        expected_ustring = u'\u4e00'
-        euc_bytestring = b'd2bb'
-
-        result = conversion.euc_to_unicode(euc_bytestring)
-
-        self.assertEqual(expected, expected_ustring)
-        self.assertIsInstance(result, text_type)
-
-        self.assertEqual(expected, result)
-        self.assertEqual(expected_ustring, result)
+"""
 
 
-def suite():
-    suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(EUC))
-    suite.addTest(unittest.makeSuite(UCN))
-    suite.addTest(unittest.makeSuite(Util))
-    return suite
+def test_euc_from_unicode():
+    expected = '一'  # u'\u4e00'
+    euc_bytestring = b'd2bb'
+    euc_unicode = 'd2bb'
+
+    result = conversion.python_to_euc(expected, as_bytes=True)
+
+    assert euc_bytestring == result
+    assert isinstance(result, bytes)
+
+    result = conversion.python_to_euc(expected)
+
+    assert euc_unicode == result
+    assert isinstance(result, text_type)
+
+
+def test_euc_to_unicode():
+    # = '一'
+    expected = '一'
+    expected_ustring = u'\u4e00'
+    euc_bytestring = b'd2bb'
+
+    result = conversion.euc_to_unicode(euc_bytestring)
+
+    assert expected == expected_ustring
+    assert isinstance(result, text_type)
+
+    assert expected == result
+    assert expected_ustring == result

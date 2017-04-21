@@ -14,7 +14,6 @@ from __future__ import (absolute_import, division, print_function,
 
 import logging
 import random
-import unittest
 
 import sqlalchemy
 from sqlalchemy import MetaData
@@ -168,12 +167,4 @@ class TableInsertFK(TestCase):
         )
 
         for char in char_fk_multiple:
-
             print(char['char'])
-
-
-def suite():
-    suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(BootstrapUnicode))
-    suite.addTest(unittest.makeSuite(TableInsertFK))
-    return suite
