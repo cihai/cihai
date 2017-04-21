@@ -11,4 +11,5 @@ cihai
 
     api
     extending
+    history
     lore/index
