@@ -55,7 +55,7 @@ setup(
     cmdclass={'test': PyTest},
     zip_safe=False,
     keywords=about['__title__'],
-    entry_points=dict(console_scripts=['cihai=cihai:cli.cli']),
+    entry_points=dict(console_scripts=['cihai=cihai.__main__:run']),
     classifiers=[
         'Development Status :: 3 - Alpha',
         "License :: OSI Approved :: BSD License",
