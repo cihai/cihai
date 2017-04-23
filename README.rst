@@ -33,6 +33,26 @@ Workgroup and Standardization
 - Maintain aforementioned datasets
 - Continue to improve current infrastructure and packages while seeking out rare and undigitized CJK data for preservation and access
 
+Usage
+-----
+
+CLI usage
+"""""""""
+
+Set up config to point to a database you want to import datasets into (and
+read from).
+
+.. code-block:: yaml
+
+   debug: True
+   database:
+     url: 'sqlite:///${data_dir}/cihai.db'  # sqlalchemy db url
+   datasets:
+     - 'cihai.datasets.unihan'
+
+Then you may point to the config with the ``-c`` argument,
+``$ cihai -c path/to/config.yaml``.
+
 Troubleshooting
 ---------------
 
