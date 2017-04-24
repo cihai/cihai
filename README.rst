@@ -8,6 +8,27 @@ Current Datasets
 
 - `cihaidata-unihan`_ - `Unihan`_ data package
 
+Planned datasets
+----------------
+
+For all data sets, the goal is to achieve:
+
+- Clear and permissive a licensing for public and private use
+- Compatibilty with `Data Packages`_, for data to be language
+  agnostic and consistent
+- Open source scripting used to process data into a common format
+
+============== =============== ================== ===============
+Set            License         Data Package       Project
+-------------- --------------- ------------------ ---------------
+Unihan         OK [Unhn-L]_    OK [Unhn-D]_       OK [Unhn-P]_
+edict          OK              TODO               TODO
+cedict         OK [CDCT-L]_    TODO               TODO
+cedictgr       OK              TODO               TODO
+handedict      OK              TODO               TODO
+cfdict         OK              TODO               TODO
+============== =============== ================== ===============
+
 Tool
 ----
 
@@ -136,5 +157,12 @@ tests           .. code-block:: bash
 
 .. |docs| image:: https://readthedocs.org/projects/cihai/badge/?version=latest
     :alt: Documentation Status
-    :scale: 100%
     :target: https://readthedocs.org/projects/cihai/
+
+.. [Unhn-L] http://unicode.org/charts/unihan.html#Disclaimers
+.. [Unhn-D] https://raw.githubusercontent.com/cihai/cihaidata-unihan/master/datapackage.json
+.. [Unhn-P] https://cihaidata-unihan.git-pull.com/
+.. [CDCT-L] https://www.mdbg.net/chinese/dictionary?page=cedict
+
+.. _Data Packages: http://frictionlessdata.io/data-packages/
+.. _Frictionless Data: http://frictionlessdata.io/
