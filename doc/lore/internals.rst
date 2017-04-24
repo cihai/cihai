@@ -1,5 +1,7 @@
 .. _lore/internals:
 
+:orphan:
+
 =========================
 Internal Design decisions
 =========================

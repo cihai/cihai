@@ -1,5 +1,7 @@
 .. _lore/information_liberation:
 
+:orphan:
+
 ======================
 Information Liberation
 ======================

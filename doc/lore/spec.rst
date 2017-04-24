@@ -1,5 +1,7 @@
 .. _lore/spec:
-   
+
+:orphan:
+
 ========
 Planning
 ========
@@ -200,10 +202,10 @@ Currently, Hanzi uses:
 
     hanzi.decompose('爱')
 
-    # transition to:
+    // transition to:
     hanzi.get('爱')
 
-    hanzi.reverse('爱')  # to look up any indices / decompositions / words
+    hanzi.reverse('爱')  // to look up any indices / decompositions / words
     where 爱 may match.
 
 Currently cjklib uses:
@@ -211,7 +213,7 @@ Currently cjklib uses:
 .. code-block:: python
 
     cjk.getStrokeOrder(u'说')
-    # transition to:
+    #  transition to:
     cjk.get('说')
 
 .. code-block:: python
@@ -227,7 +229,7 @@ Use ``.get`` too. This may seem problematic, but checking the
 .. code-block:: javascript
 
     var decomposition = hanzi.decomposeMany('爱橄黃');
-    # transition to
+    // transition to
     var decomposition = hanzi.get('爱橄黃');
 
 .. code-block:: python
