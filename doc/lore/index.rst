@@ -17,3 +17,11 @@ The initial planning of and experimentation of cihai.
 - :ref:`lore/internals`
 - :ref:`lore/information_liberation`
 - :ref:`lore/spec`
+
+Late 2012
+---------
+
+- `State of datasets`_ on cjklib tracker
+
+.. _State of datasets: https://github.com/cburgmer/cjklib/issues/3
+
