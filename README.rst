@@ -20,7 +20,7 @@ For all data sets, the goal is to achieve:
 
 ============== =============== ================== ===============
 Set            License         Data Package       Project
--------------- --------------- ------------------ ---------------
+============== =============== ================== ===============
 Unihan         OK [Unhn-L]_    OK [Unhn-D]_       OK [Unhn-P]_
 edict          OK              TODO               TODO
 cedict         OK [CDCT-L]_    TODO               TODO
