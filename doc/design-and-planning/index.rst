@@ -9,15 +9,11 @@ Design and Planning
 
 - :ref:`design-and-planning/2017/spec`
 
-.. note::
-
-    This document is part of brain storming the project of cihai. It's for
-    historic purposes only.
-
 Late 2013
 ---------
 
-The initial planning of and experimentation of cihai.
+These were part of the initial brain storming the project and
+preserved for historic purposes only.
 
 - :ref:`design-and-planning/2013/extending`
 - :ref:`design-and-planning/2013/internals`
