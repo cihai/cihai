@@ -9,6 +9,7 @@ cihai
 .. toctree::
     :maxdepth: 2
 
+    usage
     api
     extending
     history
