@@ -58,7 +58,7 @@ Incremental configuration
 -------------------------
 
 The `SQLAlchemy` data backend used, which for SQLite, also includes the file
-path used to store the sqlite file, is customizable.
+path used to store the SQLite file, is customizable.
 
 .. _XDG Specification: https://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html
 
@@ -69,7 +69,7 @@ Relational backend
 
 cihai will be bowered by a relational database backend.
 
-Most python distributions include support for `sqlite`_, which in
+Most python distributions include support for `SQLite`_, which in
 conjunction with :ref:`zero configuration <zero_config>`, makes for data
 store that will work across a wide array of systems.
 
@@ -116,7 +116,7 @@ Data liberation
 CC-0, MIT, ISC, BSD. Data sets should be available under licenses free
 from unintended side effects of derivitive creation.
 
-.. _sqlite: https://sqlite.org/
+.. _SQLite: https://sqlite.org/
 .. _pandas: http://pandas.pydata.org/
 .. _SQLAlchemy: https://www.sqlalchemy.org
 .. _UNIHAN: http://www.unicode.org/reports/tr38/
