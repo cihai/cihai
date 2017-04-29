@@ -42,7 +42,7 @@ Tool
 - Supports `Unihan`_, upcoming support for character decomposition, dictionaries
   (CEDict).
 - Extensible. For new data sets, read more about how you can `extend`_ cihai to
-  support new `datapackages`_ compatible datasets.
+  support new `data packages`_ compatible datasets.
 - For more, see `internals`_ for design philosophy.
 
 Workgroup and Standardization
@@ -164,5 +164,5 @@ tests           .. code-block:: bash
 .. [Unhn-P] https://cihaidata-unihan.git-pull.com/
 .. [CDCT-L] https://www.mdbg.net/chinese/dictionary?page=cedict
 
-.. _Data Packages: http://frictionlessdata.io/data-packages/
+.. _data packages: http://frictionlessdata.io/data-packages/
 .. _Frictionless Data: http://frictionlessdata.io/
