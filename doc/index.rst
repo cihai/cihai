@@ -10,8 +10,9 @@ cihai
     :maxdepth: 2
 
     usage
+    datasets
     api
-    extending
+    troubleshooting
     history
     glossary
     lore/index

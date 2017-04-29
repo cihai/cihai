@@ -19,6 +19,7 @@ Late 2013
 
 The initial planning of and experimentation of cihai.
 
+- :ref:`lore/2013/extending`
 - :ref:`lore/2013/internals`
 - :ref:`lore/2013/information_liberation`
 - :ref:`lore/2013/spec`
