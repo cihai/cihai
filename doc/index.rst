@@ -15,4 +15,4 @@ cihai
     troubleshooting
     history
     glossary
-    lore/index
+    design-and-planning/index

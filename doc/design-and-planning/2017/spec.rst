@@ -1,6 +1,6 @@
 :orphan:
 
-.. _lore/2017/spec:
+.. _design-and-planning/2017/spec:
 
 ==================
 Internals Planning

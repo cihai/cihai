@@ -1,13 +1,13 @@
-.. _lore:
+.. _design-and-planning:
 
-====
-Lore
-====
+===================
+Design and Planning
+===================
 
 2017
 ----
 
-- :ref:`lore/2017/spec`
+- :ref:`design-and-planning/2017/spec`
 
 .. note::
 
@@ -19,10 +19,10 @@ Late 2013
 
 The initial planning of and experimentation of cihai.
 
-- :ref:`lore/2013/extending`
-- :ref:`lore/2013/internals`
-- :ref:`lore/2013/information_liberation`
-- :ref:`lore/2013/spec`
+- :ref:`design-and-planning/2013/extending`
+- :ref:`design-and-planning/2013/internals`
+- :ref:`design-and-planning/2013/information_liberation`
+- :ref:`design-and-planning/2013/spec`
 
 Late 2012
 ---------

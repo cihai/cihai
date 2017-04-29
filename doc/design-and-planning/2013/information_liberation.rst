@@ -1,6 +1,6 @@
 :orphan:
 
-.. _lore/2013/information_liberation:
+.. _design-and-planning/2013/information_liberation:
 
 ======================
 Information Liberation

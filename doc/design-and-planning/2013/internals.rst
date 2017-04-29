@@ -1,6 +1,6 @@
 :orphan:
 
-.. _lore/2013/internals:
+.. _design-and-planning/2013/internals:
 
 =========================
 Internal Design decisions

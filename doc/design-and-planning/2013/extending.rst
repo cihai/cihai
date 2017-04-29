@@ -1,6 +1,6 @@
 :orphan:
 
-.. _lore/2013/extending:
+.. _design-and-planning/2013/extending:
 
 =========
 Extending
