@@ -17,8 +17,8 @@ Created 2017-04-29
    default data backend.
 2. :ref:`incremental_config` cihai should be incrementally configurable, such as
    by specifying where data should be outputted.
-3. :ref:`relational_backend` cihai will use SQLAlchemy as a database backend to story information
-   for retrieval.
+3. :ref:`relational_backend` cihai will use `SQLAlchemy`_ as a database backend
+   to story information for retrieval.
 4. :ref:`automatic_extensions` cihai will make data accessible to third party libraries if they exist
    in the script's site-packages.
 
@@ -57,7 +57,7 @@ information and search for configuration used in :ref:`incremental_config`.
 Incremental configuration
 -------------------------
 
-The SQLAlchemy data backend used, which for SQLite, also includes the file
+The `SQLAlchemy` data backend used, which for SQLite, also includes the file
 path used to store the sqlite file, is customizable.
 
 .. _XDG Specification: https://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html
@@ -118,4 +118,5 @@ from unintended side effects of derivitive creation.
 
 .. _sqlite: https://sqlite.org/
 .. _pandas: http://pandas.pydata.org/
+.. _SQLAlchemy: https://www.sqlalchemy.org
 .. _UNIHAN: http://www.unicode.org/reports/tr38/

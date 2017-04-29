@@ -92,7 +92,7 @@ texinfo_documents = [
 intersphinx_mapping = {
     'python': ('http://docs.python.org/', None),
     'sphinx': ('http://sphinx.readthedocs.org/en/latest/', None),
-    'sqlalchemy': ('http://sqlalchemy.readthedocs.org/en/latest/', None),
+    'sqlalchemy': ('http://docs.sqlalchemy.org/en/latest/', None),
     'cihaidata-unihan': ('https://cihai.git-pull.com/en/latest/', None),
     'pandas': ('http://pandas.pydata.org/pandas-docs/stable', None)
 }
