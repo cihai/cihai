@@ -97,8 +97,8 @@ distinction no longer exists, no action is needed.
 .. _Revision History: https://github.com/cihai/cihai/commits/master
 .. _cjklib: http://cjklib.org/
 .. _extend: https://cihai.git-pull.com/en/latest/extending.html
-.. _permissively licensing your dataset: https://cihai.git-pull.com/en/latest/lore/information_liberation.html
-.. _internals: https://cihai.git-pull.com/en/latest/lore/internals.html
+.. _permissively licensing your dataset: https://cihai.git-pull.com/en/latest/lore/2013/information_liberation.html
+.. _internals: https://cihai.git-pull.com/en/latest/lore/2013/internals.html
 
 ==============  ==========================================================
 Python support  Python 2.7, >= 3.3, pypy

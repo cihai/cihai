@@ -14,9 +14,9 @@ Late 2013
 
 The initial planning of and experimentation of cihai.
 
-- :ref:`lore/internals`
-- :ref:`lore/information_liberation`
-- :ref:`lore/spec`
+- :ref:`lore/2013/internals`
+- :ref:`lore/2013/information_liberation`
+- :ref:`lore/2013/spec`
 
 Late 2012
 ---------
