@@ -4,6 +4,11 @@
 Lore
 ====
 
+2017
+----
+
+- :ref:`lore/2017/spec`
+
 .. note::
 
     This document is part of brain storming the project of cihai. It's for

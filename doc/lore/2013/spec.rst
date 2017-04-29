@@ -1,6 +1,6 @@
-.. _lore/2013/spec:
-
 :orphan:
+
+.. _lore/2013/spec:
 
 ========
 Planning

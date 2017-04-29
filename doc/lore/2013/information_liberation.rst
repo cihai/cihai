@@ -1,6 +1,6 @@
-.. _lore/2013/information_liberation:
-
 :orphan:
+
+.. _lore/2013/information_liberation:
 
 ======================
 Information Liberation
