@@ -1,4 +1,4 @@
-.. _lore/information_liberation:
+.. _lore/2013/information_liberation:
 
 :orphan:
 

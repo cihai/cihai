@@ -1,4 +1,4 @@
-.. _lore/spec:
+.. _lore/2013/spec:
 
 :orphan:
 

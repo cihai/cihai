@@ -1,4 +1,4 @@
-.. _lore/internals:
+.. _lore/2013/internals:
 
 :orphan:
 
