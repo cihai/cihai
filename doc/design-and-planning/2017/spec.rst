@@ -94,6 +94,12 @@ UNIHAN core
 cihai's library of CJK information will be backed on the reliable
 `UNIHAN`_ database, which is a approved by the Unicode Consortium.
 
+Operation
+"""""""""
+
+It is to be determined if UNIHAN will be vendorized in the packaging
+or retrieved remotely.
+
 .. _data_normalization:
 
 Data normalization
@@ -102,6 +108,19 @@ Data normalization
 CJK datasets made available by cihai and contributors should follow, a yet
 to be determined, standard for keeping data conserved, readily available and
 sustainable.
+
+Standards
+"""""""""
+
+The initial consideration, since 2013, was datasets would follow
+`Data Packages`_.
+
+In place of Data Packages, a simpler, and more lax guideline and alone with
+python interfaces may be considered. This determination is pending further
+review of datasets.
+
+In place of frictionlessdata's data package libraries, cihai may option
+for a simpler, yet more powerful system for making tabular data.
 
 .. _data_liberation:
 
@@ -115,3 +134,4 @@ from unintended side effects of derivitive creation.
 .. _pandas: http://pandas.pydata.org/
 .. _SQLAlchemy: https://www.sqlalchemy.org
 .. _UNIHAN: http://www.unicode.org/reports/tr38/
+.. _Data Packages: http://frictionlessdata.io/data-packages/
