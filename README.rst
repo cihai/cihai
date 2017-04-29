@@ -3,6 +3,16 @@ access to `CJK`_ data
 
 |pypi| |docs| |build-status| |coverage| |license|
 
+cihai is a library for accessing CJK datasets, and an effort find, digitize, and make readily available CJK information openly.
+
+See `2017 roadmap <https://cihai.git-pull.com/en/latest/design-and-planning/2017/spec.html>`_. Documentation and project structure is being overhauled.
+
+See also `Datasets`_, `API`_, `Usage`_
+
+.. _API: https://cihai.git-pull.com/en/latest/api.html
+.. _Datasets: https://cihai.git-pull.com/en/latest/datasets.html
+.. _Usage: https://cihai.git-pull.com/en/latest/usage.html
+
 ==============  ==========================================================
 Python support  Python 2.7, >= 3.3, pypy
 Source          https://github.com/cihai/cihai
