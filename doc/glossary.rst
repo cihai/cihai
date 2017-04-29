@@ -7,7 +7,12 @@ Glossary
 .. glossary::
 
     CJK
-        A term used in internationalization to mean *Chinese, Japanese, Korean*
+        1. In computer software, `internationalization`_ of *Chinese, Japanese,
+           and Korean* language.
+        2. In cihai, specifically, character information from Chinese,
+           Japanese and Korean languages. Such as definitions, dictionary
+           index references, phonetics, character decompositions and
+           stroke information (order and amount).
 
     UNIHAN
         A character database of CJK information provided by the Unicode
@@ -29,3 +34,5 @@ Glossary
     Data Packages
         A standard for storing data, see
         http://frictionlessdata.io/data-packages/
+
+.. _internationalization: https://en.wikipedia.org/wiki/Internationalization_and_localization

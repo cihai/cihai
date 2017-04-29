@@ -1,5 +1,5 @@
 *cihai* - United front to provide open, accessible, and standardized
-access to CJK data
+access to `CJK`_ data
 
 |pypi| |docs| |build-status| |coverage| |license|
 
@@ -166,3 +166,4 @@ tests           .. code-block:: bash
 
 .. _data packages: http://frictionlessdata.io/data-packages/
 .. _Frictionless Data: http://frictionlessdata.io/
+.. _CJK: https://cihai.git-pull.com/en/latest/glossary.html#term-cjk
