@@ -8,11 +8,6 @@ Internals Planning
 
 Created 2017-04-29
 
-.. note::
-
-    This is a draft intended for the planning of cihai.
-
-
 1. :ref:`zero_config` - cihai should be able to work without configuration with a
    default data backend.
 2. :ref:`incremental_config` cihai should be incrementally configurable, such as
@@ -40,8 +35,8 @@ Zero config
 cihai will be able to be used immediately without a user configuring their
 system.
 
-cihai will use the `XDG specification`_ for determining where to check out
-data to. This includes:
+cihai will conform with the `XDG specification`_ for determining where to check
+out data to. This includes:
 
 - Where to store downloaded source files, e.g. *XDG_CACHE_HOME/cihai/downloads*
 - Where store default backend data, e.g. *XDG_DATA_DIRS/cihai/data*, as
@@ -57,7 +52,7 @@ information and search for configuration used in :ref:`incremental_config`.
 Incremental configuration
 -------------------------
 
-The `SQLAlchemy` data backend used, which for SQLite, also includes the file
+The `SQLAlchemy`_ data backend used, which for SQLite, also includes the file
 path used to store the SQLite file, is customizable.
 
 .. _XDG Specification: https://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html
