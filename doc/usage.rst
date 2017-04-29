@@ -1,5 +1,9 @@
 .. _usage:
 
+=====
+Usage
+=====
+
 cihai is designed to work out-of-the-box without configuration.
 
 Installation
