@@ -9,7 +9,7 @@ import logging
 from sqlalchemy import Column, Index, String, Table, and_, select
 
 from .. import conversion
-from ..core import CihaiDataset
+from ..core import Storage
 
 __copyright__ = 'Copyright 2013 Tony Narlock.'
 __license__ = 'BSD, see LICENSE for details.'
@@ -185,7 +185,7 @@ def create_table(columns, metadata):
         return Table(table_name, metadata)
 
 
-class Unihan(CihaiDataset):
+class Unihan(Storage):
 
     """Cihai dataset for `Unihan`_, Han Unification from Unicode, Inc.
 

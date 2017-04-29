@@ -19,7 +19,7 @@ from cihai.util import convert_to_attr_dict, import_string, merge_dict
 log = logging.getLogger(__name__)
 
 
-class CihaiDataset(object):
+class Storage(object):
     """Mixin generic sqlalchemy yum-yums for relational data."""
 
     def __init__(self, cihai, engine, metadata):
@@ -177,9 +177,9 @@ class Cihai(object):
         (keyword arguments) into the dataset.
 
         :param Dataset: class for dataset object
-        :type dataset: :class:`CihaiDataset`
+        :type dataset: :class:`Storage`
         :returns: instance of dataset paired with ``cihai`` instance.
-        :rtype: :class:`CihaiDataset` instance.
+        :rtype: :class:`Storage` instance.
 
         """
 

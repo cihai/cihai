@@ -17,7 +17,7 @@ import os
 
 import cihai
 import pytest
-from cihai.core import Cihai, CihaiDataset
+from cihai.core import Cihai, Storage
 
 log = logging.getLogger(__name__)
 
@@ -30,12 +30,12 @@ def cihai_obj():
     return Cihai.from_file(config_file)
 
 
-class MyDataset(CihaiDataset):
+class MyDataset(Storage):
     def hey(self):
         pass
 
     def __init__(self, *args, **kwargs):
-        CihaiDataset.__init__(self, *args, **kwargs)
+        Storage.__init__(self, *args, **kwargs)
 
 
 def test_config_defaults():
@@ -110,7 +110,7 @@ def test_data_path_by_config_custom():
 
 
 def test_cihai_database_uses_same_metadata(cihai_obj):
-    """CihaiDataset subclasses uses the same MetaData instance."""
+    """Storage subclasses uses the same MetaData instance."""
 
     c = cihai_obj
     mydataset = c.use(MyDataset)
