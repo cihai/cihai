@@ -288,7 +288,7 @@ class Unihan(Storage):
         """Return chinese character data from Unihan data.
 
         :param request:
-        :type request: string
+        :type request: str
         :param response:
         :type response: dict
         :param fields: (default:None) list of fields, e.g. ['kDefinition']
@@ -336,7 +336,7 @@ class Unihan(Storage):
         """Return reverse look-up of chinese characters from Unihan data.
 
         :param request:
-        :type request: string
+        :type request: str
         :param response:
         :type response: dict
         :param fields: (default:None) list of fields, e.g. ['kDefinition']

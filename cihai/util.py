@@ -22,10 +22,9 @@ def get_datafile(filename):
     """Return absolute path to cihai data file.
 
     :param filename: file name relative to ``./data``.
-    :type filename: string
+    :type filename: str
     :returns: Absolute path to data file.
-    :rtype: string
-
+    :rtype: str
     """
 
     abspath = os.path.join(

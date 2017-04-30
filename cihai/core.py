@@ -43,7 +43,7 @@ class Storage(object):
         """Return :class:`~sqlalchemy.schema.Table`.
 
         :param table_name: name of sql table
-        :type table_name: string
+        :type table_name: str
         :rtype: :class:`sqlalchemy.schema.Table`
 
         """
@@ -60,9 +60,9 @@ class Storage(object):
         """Return absolute filepath in relation to :attr:`self.data_path`.
 
         :param filename: file name relative to ``./data``.
-        :type filename: string
+        :type filename: str
         :returns: Absolute path to data file.
-        :rtype: string
+        :rtype: str
 
         """
 
@@ -199,7 +199,7 @@ class Cihai(object):
         """Return results datasets.
 
         :param request: request / input data
-        :type request: string
+        :type request: str
         :rtype: list
 
         """
@@ -221,7 +221,7 @@ class Cihai(object):
         """Return results if exists in datasets.
 
         :param request: request / input data
-        :type request: string
+        :type request: str
         :rtype: list
 
         """

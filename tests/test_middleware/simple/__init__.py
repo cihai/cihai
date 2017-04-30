@@ -21,7 +21,7 @@ class DatasetExample(object):
         as the data appends to the :param:`response` and returns it.
 
         :param request: The character or string being looked up, e.g. '好'.
-        :type request: string
+        :type request: str
         :returns: Cihai response dictionary
         :rtype: dict
 
@@ -41,7 +41,7 @@ class DatasetExample(object):
         """Return chinese character data from a reverse lookup sample dataset.
 
         :param request: The character or string being looked up, e.g. '好'.
-        :type request: string
+        :type request: str
         :returns: Cihai reverse look up. The results should be formatted as::
 
             {
