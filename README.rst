@@ -5,9 +5,10 @@ access to `CJK`_ data
 
 cihai is a library for accessing CJK datasets, and an effort find, digitize, and make readily available CJK information openly.
 
-See `2017 roadmap <https://cihai.git-pull.com/en/latest/design-and-planning/2017/spec.html>`_. Documentation and project structure is being overhauled.
-
-See also `Datasets`_, `API`_, `Usage`_
+- `Usage`_
+- `Datasets`_ a full list of current and future data sets
+- Python `API`_
+- `2017 roadmap <https://cihai.git-pull.com/en/latest/design-and-planning/2017/spec.html>`_.
 
 .. _API: https://cihai.git-pull.com/en/latest/api.html
 .. _Datasets: https://cihai.git-pull.com/en/latest/datasets.html
