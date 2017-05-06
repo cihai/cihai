@@ -10,12 +10,11 @@ from __future__ import (absolute_import, division, print_function,
                         unicode_literals, with_statement)
 
 import collections
-import csv
 import os
 import pkgutil
 import sys
 
-from ._compat import reraise, text_type
+from ._compat import reraise
 
 
 def get_datafile(filename):
@@ -30,29 +29,6 @@ def get_datafile(filename):
     abspath = os.path.join(
         os.path.abspath(os.path.dirname(__file__)), 'data/', filename)
     return abspath
-
-
-class UnicodeReader(csv.DictReader):
-    """Read from Unihan CSV into Unicode."""
-    def __init__(self, *args, **kwargs):
-        csv.DictReader.__init__(self, *args, **kwargs)
-
-    def __next__(self):
-        row = csv.DictReader.__next__(self)
-
-        return self.row(row)
-
-    def next(self):
-        row = csv.DictReader.next(self)
-
-        return self.row(row)
-
-    def row(self, row):
-        for key in row.keys():
-            if not isinstance(row[key], text_type):
-                row[key] = text_type(row[key].decode('utf-8'))
-
-        return row
 
 
 def _dl_progress(count, block_size, total_size, out=sys.stdout):
