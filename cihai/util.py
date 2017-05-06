@@ -10,25 +10,10 @@ from __future__ import (absolute_import, division, print_function,
                         unicode_literals, with_statement)
 
 import collections
-import os
 import pkgutil
 import sys
 
 from ._compat import reraise
-
-
-def get_datafile(filename):
-    """Return absolute path to cihai data file.
-
-    :param filename: file name relative to ``./data``.
-    :type filename: str
-    :returns: Absolute path to data file.
-    :rtype: str
-    """
-
-    abspath = os.path.join(
-        os.path.abspath(os.path.dirname(__file__)), 'data/', filename)
-    return abspath
 
 
 def _dl_progress(count, block_size, total_size, out=sys.stdout):
