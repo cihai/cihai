@@ -98,7 +98,7 @@ def test_data_path_by_config_custom():
         'data_path': expected
     })
 
-    mydataset = cihai.use(MyDataset)
+    mydataset = cihai.add_dataset(MyDataset)
 
     result = mydataset.get_datapath('data_path')
     assert expected in result
@@ -108,7 +108,7 @@ def test_cihai_database_uses_same_metadata(cihai_obj):
     """Storage subclasses uses the same MetaData instance."""
 
     c = cihai_obj
-    mydataset = c.use(MyDataset)
+    mydataset = c.add_dataset(MyDataset)
     assert mydataset.metadata == cihai_obj.metadata
 
 
@@ -120,7 +120,7 @@ def test_has_application_custom_config():
         'data_path': expected
     })
 
-    mydataset = cihai.use(MyDataset)
+    mydataset = cihai.add_dataset(MyDataset)
 
     result = mydataset.cihai.config.get('data_path')
     assert expected == result

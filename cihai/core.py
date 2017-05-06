@@ -167,7 +167,7 @@ class Cihai(object):
 
         return cls.from_file(config)
 
-    def use(self, Dataset, *args, **kwargs):
+    def add_dataset(self, Dataset, *args, **kwargs):
         """Add a dataset to cihai instance.
 
         This is inspired by connect's datasets and pypa/warehouse keeping
