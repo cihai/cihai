@@ -24,7 +24,7 @@ from cihai._compat import unichr
 
 log = logging.getLogger(__name__)
 
-cjk_ranges = {
+cjk_ranges = {  # http://www.unicode.org/reports/tr38/#BlockListing
     'CJK Unified Ideographs': range(0x4E00, 0x9FFF + 1),
     'CJK Unified Ideographs Extension A': range(0x3400, 0x4DBF + 1),
     'CJK Unified Ideographs Extension B': range(0x20000, 0x2A6DF + 1),
