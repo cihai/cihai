@@ -12,14 +12,11 @@ using the ``test_config.yml``.
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals, with_statement)
 
-import logging
 import os
 
 import cihai
 import pytest
 from cihai.core import Cihai, Storage
-
-log = logging.getLogger(__name__)
 
 
 @pytest.fixture
@@ -31,8 +28,6 @@ def cihai_obj():
 
 
 class MyDataset(Storage):
-    def hey(self):
-        pass
 
     def __init__(self, *args, **kwargs):
         Storage.__init__(self, *args, **kwargs)
