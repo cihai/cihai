@@ -25,11 +25,12 @@ from cihai._compat import unichr
 log = logging.getLogger(__name__)
 
 cjk_ranges = {  # http://www.unicode.org/reports/tr38/#BlockListing
-    'CJK Unified Ideographs': range(0x4E00, 0x9FFF + 1),
+    'CJK Unified Ideographs': range(0x4E00, 0x9FD5),
     'CJK Unified Ideographs Extension A': range(0x3400, 0x4DBF + 1),
     'CJK Unified Ideographs Extension B': range(0x20000, 0x2A6DF + 1),
     'CJK Unified Ideographs Extension C': range(0x2A700, 0x2B73F + 1),
     'CJK Unified Ideographs Extension D': range(0x2B840, 0x2B81F + 1),
+    'CJK Unified Ideographs Extension E': range(0x2B820, 0x2CEAF),
     'CJK Radicals Supplement': range(0x2E80, 0x2EFF + 1),
     'CJK Symbols and Punctuation': range(0x3000, 0x303F + 1),
     'CJK Strokes': range(0x31C0, 0x31EF + 1),
@@ -38,7 +39,7 @@ cjk_ranges = {  # http://www.unicode.org/reports/tr38/#BlockListing
     'Enclosed CJK Letters and Months': range(0x3200, 0x32FF + 1),
     'CJK Compatibility': range(0x3300, 0x33FF + 1),
     'CJK Compatibility Ideographs': range(0xF900, 0xFAFF + 1),
-    'CJK Compatibility Ideographs Supplement': range(0x2F800, 0x2FA1F + 1),
+    'CJK Compatibility Ideographs Supplement': range(0x2F800, 0x2FA1D),
     'CJK Compatibility Forms': range(0xFE30, 0xFE4F + 1),
     'Yijing Hexagram Symbols': range(0x4DC0, 0x4DFF + 1)
 }
