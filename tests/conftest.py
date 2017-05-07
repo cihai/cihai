@@ -7,8 +7,14 @@ from cihai.core import Cihai
 
 
 @pytest.fixture
-def cihai_obj():
-    config_file = os.path.abspath(os.path.join(
-        os.path.dirname(__file__), 'test_config.yml'
+def test_config_file():
+    return os.path.abspath(os.path.join(
+        os.path.dirname(__file__),
+        'fixtures',
+        'test_config.yml'
     ))
-    return Cihai.from_file(config_file)
+
+
+@pytest.fixture
+def cihai_obj(test_config_file):
+    return Cihai.from_file(test_config_file)
