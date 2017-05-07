@@ -41,6 +41,7 @@ def test_config_dict_args():
 def test_yaml_config_and_override():
     config = os.path.abspath(os.path.join(
         os.path.dirname(__file__),
+        'fixtures',
         'test_config.yml'
     ))
 
