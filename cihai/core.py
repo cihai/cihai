@@ -19,7 +19,6 @@ log = logging.getLogger(__name__)
 
 
 DEFAULT_CONFIG = {
-    'datasets': [],
     'database': {
         'url': 'sqlite:///'
     }
