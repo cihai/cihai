@@ -28,9 +28,7 @@ def cihai_obj():
 
 
 class MyDataset(Storage):
-
-    def __init__(self, *args, **kwargs):
-        Storage.__init__(self, *args, **kwargs)
+    pass
 
 
 def test_config_defaults():
@@ -38,8 +36,8 @@ def test_config_defaults():
 
     cihai = Cihai.from_file()
 
-    assert hasattr(cihai.config, 'debug')
-    assert not cihai.config.debug
+    assert 'debug' in cihai.config
+    assert not cihai.config['debug']
 
 
 def test_config_dict_args():
@@ -51,7 +49,7 @@ def test_config_dict_args():
         'hello': expected
     })
 
-    result = cihai.config.hello
+    result = cihai.config['hello']
 
     assert result == expected
 
@@ -74,7 +72,7 @@ def test_yaml_config_and_override():
 
     cihai = Cihai.from_cli(['-c', config])
 
-    assert cihai.config.debug
+    assert cihai.config['debug']
 
 
 def test_data_path_default():
@@ -85,7 +83,7 @@ def test_data_path_default():
     ))
 
     c = Cihai.from_file()
-    result = c.config.get('data_path')
+    result = c.config['data_path']
 
     assert expected == result
 
@@ -122,5 +120,5 @@ def test_has_application_custom_config():
 
     mydataset = cihai.add_dataset(MyDataset)
 
-    result = mydataset.cihai.config.get('data_path')
+    result = mydataset.cihai.config['data_path']
     assert expected == result

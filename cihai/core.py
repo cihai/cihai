@@ -14,16 +14,24 @@ from sqlalchemy import Table, create_engine
 
 from cihai import db, exc
 from cihai._compat import string_types
-from cihai.util import convert_to_attr_dict, import_string, merge_dict
+from cihai.util import import_string, merge_dict
 
 log = logging.getLogger(__name__)
+
+
+DEFAULT_CONFIG = {
+    'datasets': [],
+    'database': {
+        'url': 'sqlite:///'
+    }
+}
 
 
 class Storage(object):
     """Mixin generic sqlalchemy yum-yums for relational data."""
 
     def __init__(self, cihai, engine, metadata):
-        """Initialize CihaiDatabase back-end.
+        """Initialize Storage back-end.
 
         :param engine: engine to connect to database with.
         :param type:class:`sqlalchemy.engine.Engine`
@@ -66,7 +74,7 @@ class Storage(object):
 
         """
 
-        data_path = self.cihai.config.get('data_path')
+        data_path = self.cihai.config['data_path']
 
         return os.path.join(data_path, filename)
 
@@ -84,16 +92,16 @@ class Cihai(object):
     def __init__(self, config, engine=None):
 
         #: configuration dictionary. Available as attributes. ``.config.debug``
-        self.config = convert_to_attr_dict(config)
+        self.config = merge_dict(DEFAULT_CONFIG.copy(), config)
 
         #: absolute path to cihai data files.
-        if not self.config.get('data_path'):
+        if 'data_path' not in self.config:
             self.config['data_path'] = os.path.abspath(os.path.join(
                 os.path.dirname(__file__), 'data/'
             ))
 
         #: list of current datasets in session
-        self.datasets = self.config.get('datasets', [])
+        self.datasets = self.config['datasets']
         if isinstance(self.datasets, string_types):
             self.datasets = [self.datasets]
 
@@ -101,11 +109,15 @@ class Cihai(object):
         self.models = []
 
         for ds in self.datasets:
-            m = import_string(ds)
+            if isinstance(ds, string_types):
+                m = import_string(ds)
+            else:
+                m = ds
+
             self.models.append(m)
 
-        if engine is None and self.config.get('database', {}).get('url'):
-            engine = create_engine(self.config.database.url)
+        if engine is None and self.config['database']['url']:
+            engine = create_engine(self.config['database']['url'])
         #: :class:`sqlalchemy.engine.Engine` instance.
         self.engine = engine
 
@@ -124,13 +136,13 @@ class Cihai(object):
         """
 
         config = dict()
-        configReader = kaptan.Kaptan()
+        config_reader = kaptan.Kaptan()
 
         default_path = os.path.abspath(os.path.join(
             os.path.dirname(__file__),
             "config.yml",
         ))
-        config = configReader.import_config(default_path).get()
+        config = config_reader.import_config(default_path).get()
 
         if config_path:
             if not os.path.exists(config_path):
@@ -145,7 +157,7 @@ class Cihai(object):
                     .format(os.path.abspath(config_path))
                 )
             else:
-                custom_config = configReader.import_config(config_path).get()
+                custom_config = config_reader.import_config(config_path).get()
                 config = merge_dict(config, custom_config)
 
         return cls(config)
