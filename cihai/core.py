@@ -12,9 +12,8 @@ import os
 import kaptan
 from sqlalchemy import Table, create_engine
 
-from cihai import db, exc
-from cihai._compat import string_types
-from cihai.util import import_string, merge_dict
+from cihai import db
+from cihai.util import merge_dict
 
 log = logging.getLogger(__name__)
 
@@ -100,22 +99,6 @@ class Cihai(object):
                 os.path.dirname(__file__), 'data/'
             ))
 
-        #: list of current datasets in session
-        self.datasets = self.config['datasets']
-        if isinstance(self.datasets, string_types):
-            self.datasets = [self.datasets]
-
-        #: list of dataset models in session
-        self.models = []
-
-        for ds in self.datasets:
-            if isinstance(ds, string_types):
-                m = import_string(ds)
-            else:
-                m = ds
-
-            self.models.append(m)
-
         if engine is None and self.config['database']['url']:
             engine = create_engine(self.config['database']['url'])
         #: :class:`sqlalchemy.engine.Engine` instance.
@@ -178,75 +161,3 @@ class Cihai(object):
         config = args._config if args._config is not None else None
 
         return cls.from_file(config)
-
-    def add_dataset(self, Dataset, *args, **kwargs):
-        """Add a dataset to cihai instance.
-
-        This is inspired by connect's datasets and pypa/warehouse keeping
-        application instances the same ``self`` in the application object.
-
-        ``use`` will pass ``*args`` (positional arguments) and ``**kwargs``
-        (keyword arguments) into the dataset.
-
-        :param Dataset: class for dataset object
-        :type dataset: :class:`Storage`
-        :returns: instance of dataset paired with ``cihai`` instance.
-        :rtype: :class:`Storage` instance.
-
-        """
-
-        dataset = Dataset(
-            self,
-            self.engine,
-            self.metadata,
-            *args, **kwargs
-        )
-
-        if dataset not in self.datasets:
-            self.datasets.append(dataset)
-
-        return dataset
-
-    def get(self, request, *args, **kwargs):
-        """Return results datasets.
-
-        :param request: request / input data
-        :type request: str
-        :rtype: list
-
-        """
-
-        if not self.datasets:
-            raise exc.NoDatasets
-
-        response = {}
-
-        for m in self.datasets:
-            if hasattr(m, 'get'):
-                response = m.get(request, response, *args, **kwargs)
-            if not response:
-                break
-
-        return response
-
-    def reverse(self, request, *args, **kwargs):
-        """Return results if exists in datasets.
-
-        :param request: request / input data
-        :type request: str
-        :rtype: list
-
-        """
-
-        if not self.datasets:
-            raise exc.NoDatasets
-
-        response = {}
-
-        for m in self.datasets:
-            if hasattr(m, 'reverse'):
-                response = m.reverse(request, response, *args, **kwargs)
-            if not response:
-                break
-
-        return response

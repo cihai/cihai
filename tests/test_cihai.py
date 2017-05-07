@@ -54,16 +54,6 @@ def test_config_dict_args():
     assert result == expected
 
 
-def test_config_loads_module():
-    from cihai.datasets import unihan  # NOQA
-
-    cihai = Cihai({
-        'datasets': ['cihai.datasets.unihan']
-    })
-
-    assert unihan in cihai.models
-
-
 def test_yaml_config_and_override():
     config = os.path.abspath(os.path.join(
         os.path.dirname(__file__),
@@ -85,40 +75,4 @@ def test_data_path_default():
     c = Cihai.from_file()
     result = c.config['data_path']
 
-    assert expected == result
-
-
-def test_data_path_by_config_custom():
-    """Test default data_path from config."""
-    expected = '/home/r00t'
-
-    cihai = Cihai({
-        'data_path': expected
-    })
-
-    mydataset = cihai.add_dataset(MyDataset)
-
-    result = mydataset.get_datapath('data_path')
-    assert expected in result
-
-
-def test_cihai_database_uses_same_metadata(cihai_obj):
-    """Storage subclasses uses the same MetaData instance."""
-
-    c = cihai_obj
-    mydataset = c.add_dataset(MyDataset)
-    assert mydataset.metadata == cihai_obj.metadata
-
-
-def test_has_application_custom_config():
-
-    expected = '/home/r00t'
-
-    cihai = Cihai({
-        'data_path': expected
-    })
-
-    mydataset = cihai.add_dataset(MyDataset)
-
-    result = mydataset.cihai.config['data_path']
     assert expected == result
