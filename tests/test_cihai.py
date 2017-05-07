@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 """Tests for cihai.
 
-test.cihai
-~~~~~~~~~~
-
 Test :class:`Cihai` object. Other tests will use an instance of ``Cihai``
 using the ``test_config.yml``.
 
