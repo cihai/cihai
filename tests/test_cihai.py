@@ -12,20 +12,7 @@ from __future__ import (absolute_import, division, print_function,
 import os
 
 import cihai
-import pytest
 from cihai.core import Cihai, Storage
-
-
-@pytest.fixture
-def cihai_obj():
-    config_file = os.path.abspath(os.path.join(
-        os.path.dirname(__file__), 'test_config.yml'
-    ))
-    return Cihai.from_file(config_file)
-
-
-class MyDataset(Storage):
-    pass
 
 
 def test_config_defaults():
