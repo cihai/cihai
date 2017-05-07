@@ -31,14 +31,14 @@ Conversion
 .. autofunction:: cihai.conversion.ucnstring_to_python
 .. autofunction:: cihai.conversion.ucnstring_to_unicode
 
-Testing
--------
+Exceptions
+----------
 
-cihai provides helper functions and classes for testing cihai-compatible
-libraries. Pull in cihai as a dependency and import them right into
-your testsuite.
+When using cihai via Python, you can catch Cihai-specific exceptions via
+these. All Cihai-specific exceptions are catchable via
+:exc:`cihai.exc.CihaiException` since its the base exception.
 
-.. automodule:: cihai.test
+.. automodule:: cihai.exc
     :members:
     :inherited-members:
     :show-inheritance:
