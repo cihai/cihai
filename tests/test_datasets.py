@@ -12,7 +12,6 @@ settings found in ``test_config.yml``.
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals, with_statement)
 
-import logging
 import random
 
 import sqlalchemy
@@ -21,8 +20,6 @@ from sqlalchemy import MetaData
 import pytest
 from cihai import conversion
 from cihai._compat import unichr
-
-log = logging.getLogger(__name__)
 
 cjk_ranges = {  # http://www.unicode.org/reports/tr38/#BlockListing
     'CJK Unified Ideographs': range(0x4E00, 0x9FD5 + 1),
