@@ -68,18 +68,6 @@ def _dl_progress(count, block_size, total_size, out=sys.stdout):
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-class AttributeDict(dict):
-
-    def __getattr__(self, name):
-        if name not in self:
-            raise AttributeError("'{}' object has no attribute '{}'".format(
-                self.__class__,
-                name,
-            ))
-
-        return self[name]
-
-
 def merge_dict(base, additional):
     if base is None:
         return additional
@@ -100,15 +88,6 @@ def merge_dict(base, additional):
 
     return merged
 
-
-def convert_to_attr_dict(dictionary):
-    output = {}
-    for key, value in dictionary.items():
-        if isinstance(value, collections.Mapping):
-            output[key] = convert_to_attr_dict(value)
-        else:
-            output[key] = value
-    return AttributeDict(output)
 
 # Code from https://github.com/mitsuhiko/werkzeug
 # Copyright 2013 Werkzeug Team.
