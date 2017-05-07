@@ -10,6 +10,7 @@ import logging
 import os
 
 import kaptan
+from appdirs import AppDirs
 from sqlalchemy import Table, create_engine
 
 from cihai import db
@@ -17,6 +18,10 @@ from cihai.util import merge_dict
 
 log = logging.getLogger(__name__)
 
+dirs = AppDirs(
+    "cihai",      # appname
+    "cihai team"  # app author
+)
 
 DEFAULT_CONFIG = {
     'database': {
