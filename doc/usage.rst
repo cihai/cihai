@@ -24,7 +24,7 @@ file.
 
 The default configuration is:
 
-.. literalinclude:: ../cihai/config.yml
+.. literalinclude:: ../conf/default.yml
     :language: yaml
 
 Advanced Config
@@ -33,7 +33,7 @@ Advanced Config
 cihai is designed to allow you to incrementally override settings to your
 liking.
 
-Internally, the config is parsed through :func:`cihai.core.expand_config`.
+Internally, the config is parsed through :func:`cihai.conf.expand_config`.
 This will replace environment variables, XDG variables and tildes. You can
 also enter absolute paths.
 

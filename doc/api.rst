@@ -19,6 +19,12 @@ API
         :inherited-members:
         :show-inheritance:
 
+Configuration
+-------------
+
+.. automodule:: cihai.conf
+    :members:
+
 Conversion
 ----------
 
