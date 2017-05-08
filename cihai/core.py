@@ -9,65 +9,13 @@ import logging
 import os
 
 import kaptan
-from sqlalchemy import Table, create_engine
+from sqlalchemy import create_engine
 
 from cihai import db, exc
 from cihai.util import merge_dict
 from cihai.conf import default_config, expand_config
 
 log = logging.getLogger(__name__)
-
-
-class Storage(object):
-    """Mixin generic sqlalchemy yum-yums for relational data."""
-
-    def __init__(self, cihai, engine, metadata):
-        """Initialize Storage back-end.
-
-        :param engine: engine to connect to database with.
-        :param type:class:`sqlalchemy.engine.Engine`
-
-        """
-
-        #: :class:`Cihai` application object.
-        self.cihai = cihai
-
-        #: :class:`sqlalchemy.engine.Engine` instance.
-        self.engine = engine
-
-        #: :class:`sqlalchemy.schema.MetaData` instance.
-        self.metadata = metadata
-
-    def get_table(self, table_name):
-        """Return :class:`~sqlalchemy.schema.Table`.
-
-        :param table_name: name of sql table
-        :type table_name: str
-        :rtype: :class:`sqlalchemy.schema.Table`
-
-        """
-
-        return Table(table_name, self.metadata, autoload=True)
-
-    def table_exists(self, table_name):
-
-        """Return True if table exists in db."""
-
-        return True if table_name in self.metadata.tables else False
-
-    def get_datapath(self, filename):
-        """Return absolute filepath in relation to :attr:`self.data_path`.
-
-        :param filename: file name relative to ``./data``.
-        :type filename: str
-        :returns: Absolute path to data file.
-        :rtype: str
-
-        """
-
-        data_path = self.cihai.config['data_path']
-
-        return os.path.join(data_path, filename)
 
 
 class Cihai(object):
