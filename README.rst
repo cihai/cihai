@@ -3,6 +3,23 @@ access to `CJK`_ data
 
 |pypi| |docs| |build-status| |coverage| |license|
 
+This project is under active development. Follow our progress and check
+back for updates!
+
+* Handling CJK Variants
+
+  cihai builds upon `UNIHAN`_ to handle `variants`_: "thousands of years
+  worth of writing have produced thousands of pairs which can be used
+  more-or-less interchangeably." For more information, see "Unification
+  Rules" on page 679 of *The Unicode Standard* (`.pdf <http://www.unicode.org/versions/Unicode9.0.0/ch18.pdf>`_).
+
+* Extensibility
+
+  cihai will be able to pull remote CJK datasets.
+  
+  In addition, the handling of variants will create new ways to discover
+  and interpret CJK characters while using these datasets.
+
 Quick links
 -----------
 
@@ -65,3 +82,5 @@ tests           .. code-block:: bash
     :target: https://readthedocs.org/projects/cihai/
 
 .. _CJK: https://cihai.git-pull.com/en/latest/glossary.html#term-cjk
+.. _UNIHAN: http://unicode.org/charts/unihan.html
+.. _variants: http://www.unicode.org/reports/tr38/tr38-21.html#N10211
