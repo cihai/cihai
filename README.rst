@@ -3,7 +3,8 @@ access to `CJK`_ data
 
 |pypi| |docs| |build-status| |coverage| |license|
 
-cihai is a library for accessing CJK datasets and an effort to find, digitize, and make CJK information readily available, openly.
+Quick links
+-----------
 
 - `Usage`_
 - `Datasets`_ a full list of current and future data sets
