@@ -19,12 +19,14 @@ with open("../cihai/__about__.py") as fp:
     exec(fp.read(), about)
 
 
-extensions = ['sphinx.ext.autodoc',
-              'sphinx.ext.intersphinx',
-              'sphinx.ext.todo',
-              'releases',
-              'alabaster',
-              ]
+extensions = [
+    'sphinx.ext.autodoc',
+    'sphinx.ext.intersphinx',
+    'sphinx.ext.todo',
+    'releases',
+    'alabaster',
+    'sphinxarg.ext',           # sphinx-argparse
+]
 
 releases_unstable_prehistory = True
 releases_document_name = "history"

@@ -17,6 +17,29 @@ from cihai.conf import default_config, expand_config
 
 log = logging.getLogger(__name__)
 
+about = {}
+about_file = os.path.join(os.path.dirname(__file__), '__about__.py')
+with open(about_file) as fp:
+    exec(fp.read(), about)
+
+
+def get_parser():
+    """Return :py:class:`argparse.ArgumentParser` instance for CLI.
+
+    :returns: argument parser for CLI use.
+    :rtype: :py:class:`argparse.ArgumentParser`
+
+    """
+    parser = argparse.ArgumentParser(
+        prog=about['__title__'],
+        description=about['__description__']
+    )
+    parser.add_argument(
+        "-c", "--config", dest="_config",
+        help="Custom configuration file."
+    )
+    return parser
+
 
 class Cihai(object):
 
@@ -92,8 +115,7 @@ class Cihai(object):
         :rtype: :class:`Cihai`
 
         """
-        parser = argparse.ArgumentParser(prog="cihai")
-        parser.add_argument("-c", "--config", dest="_config")
+        parser = get_parser()
 
         args = parser.parse_args(argv)
         if not args._config:

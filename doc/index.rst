@@ -10,6 +10,7 @@ cihai
     :maxdepth: 2
 
     usage
+    cli
     datasets
     api
     troubleshooting
