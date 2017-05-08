@@ -9,16 +9,6 @@ API
 .. automodule:: cihai.core
     :members:
 
-    .. autoclass:: Cihai
-        :members:
-        :show-inheritance:
-        :inherited-members:
-
-    .. autoclass:: Storage
-        :members:
-        :inherited-members:
-        :show-inheritance:
-
 Configuration
 -------------
 
