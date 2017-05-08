@@ -201,6 +201,8 @@ class Cihai(object):
         parser.add_argument("-c", "--config", dest="_config")
 
         args = parser.parse_args(argv)
-        config = args._config if args._config is not None else None
-
-        return cls.from_file(config)
+        if not args._config:
+            parser.print_help()
+        else:
+            config = args._config if args._config is not None else {}
+            return cls.from_file(config)
