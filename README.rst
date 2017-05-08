@@ -20,6 +20,12 @@ back for updates!
   In addition, the handling of variants will create new ways to discover
   and interpret CJK characters while using these datasets.
 
+* Asian encoding swiss army knife
+
+  Functions under the hood such as `cihai.conversion`_ are tested across
+  python implementations to handle a growing assortment of Asian
+  encodings.
+
 Quick links
 -----------
 
@@ -84,3 +90,4 @@ tests           .. code-block:: bash
 .. _CJK: https://cihai.git-pull.com/en/latest/glossary.html#term-cjk
 .. _UNIHAN: http://unicode.org/charts/unihan.html
 .. _variants: http://www.unicode.org/reports/tr38/tr38-21.html#N10211
+.. _cihai.conversion: http://cihai.git-pull.com/en/latest/api.html#conversion
