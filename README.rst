@@ -39,7 +39,7 @@ Quick links
 .. _Usage: https://cihai.git-pull.com/en/latest/usage.html
 
 ==============  ==========================================================
-Python support  Python 2.7, >= 3.3, pypy
+Python support  Python 2.7, >= 3.5, pypy
 Source          https://github.com/cihai/cihai
 Docs            https://cihai.git-pull.com
 Changelog       https://cihai.git-pull.com/en/latest/history.html
