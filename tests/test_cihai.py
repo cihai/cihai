@@ -12,7 +12,7 @@ from __future__ import (absolute_import, division, print_function,
 import os
 
 import cihai
-from cihai.core import Cihai, Storage, dirs, expand_config
+from cihai.core import Cihai
 
 
 def test_config_defaults():
@@ -55,57 +55,3 @@ def test_data_path_default():
     result = c.config['data_path']
 
     assert expected == result
-
-
-def test_expand_config_xdg_vars():
-    initial_dict = {
-        'dirs': {
-            'cache': '{user_cache_dir}',
-            'data': '{user_cache_dir}/data'
-        }
-    }
-
-    expected_dict = {
-        'dirs': {
-            'cache': dirs.user_cache_dir,
-            'data': os.path.join(dirs.user_cache_dir, 'data')
-        }
-    }
-
-    expand_config(initial_dict)
-    assert initial_dict == expected_dict
-
-
-def test_expand_config_user_vars():
-    initial_dict = {
-        'dirs': {
-            'cache': '~',
-        }
-    }
-
-    expected_dict = {
-        'dirs': {
-            'cache': os.path.expanduser('~'),
-        }
-    }
-
-    expand_config(initial_dict)
-    assert initial_dict == expected_dict
-
-
-def test_expand_config_env_vars(tmpdir, monkeypatch):
-    monkeypatch.setenv('MYDIR', str(tmpdir))
-    initial_dict = {
-        'dirs': {
-            'cache': '${MYDIR}',
-        }
-    }
-
-    expected_dict = {
-        'dirs': {
-            'cache': os.environ.get('MYDIR'),
-        }
-    }
-
-    expand_config(initial_dict)
-    assert initial_dict == expected_dict
