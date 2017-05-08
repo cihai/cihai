@@ -7,7 +7,7 @@ Datasets
 Current Datasets
 ----------------
 
-- `cihaidata-unihan`_ - `UNIHAN`_ data package, included in cihai by
+- `unihan-tabular`_ - `UNIHAN`_ data package, included in cihai by
   default.
 
 Planned datasets
@@ -23,7 +23,7 @@ For all data sets, the goal is to achieve:
 ============== =============== ================== ===============
 Set            License         Data Package       Project
 ============== =============== ================== ===============
-Unihan         OK [Unhn-L]_    OK [Unhn-D]_       OK [Unhn-P]_
+UNIHAN         OK [Unhn-L]_    OK [Unhn-D]_       OK [Unhn-P]_
 edict          OK              TODO               TODO
 cedict         OK [CDCT-L]_    TODO               TODO
 cedictgr       OK              TODO               TODO
@@ -33,9 +33,9 @@ cfdict         OK              TODO               TODO
 
 .. _UNIHAN: http://www.unicode.org/charts/unihan.html
 .. _Data Packages: http://frictionlessdata.io/data-packages/
-.. _cihaidata-unihan: https://cihaidata-unihan.git-pull.com
+.. _unihan-tabular: https://unihan-tabular.git-pull.com
 
 .. [Unhn-L] http://unicode.org/charts/unihan.html#Disclaimers
-.. [Unhn-D] https://raw.githubusercontent.com/cihai/cihaidata-unihan/master/datapackage.json
-.. [Unhn-P] https://cihaidata-unihan.git-pull.com/
+.. [Unhn-D] https://raw.githubusercontent.com/cihai/unihan-tabular/master/datapackage.json
+.. [Unhn-P] https://unihan-tabular.git-pull.com/
 .. [CDCT-L] https://www.mdbg.net/chinese/dictionary?page=cedict

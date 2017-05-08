@@ -97,5 +97,5 @@ intersphinx_mapping = {
     'sqlalchemy': ('http://docs.sqlalchemy.org/en/latest/', None),
     'pandas': ('http://pandas.pydata.org/pandas-docs/stable', None),
 
-    'cihaidata-unihan': ('https://cihai.git-pull.com/en/latest/', None)
+    'unihan-tabular': ('https://unihan-tabular.git-pull.com/en/latest/', None)
 }
