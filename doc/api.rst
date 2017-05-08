@@ -7,6 +7,7 @@ API
 ===
 
 .. automodule:: cihai.core
+    :members:
 
     .. autoclass:: Cihai
         :members:
