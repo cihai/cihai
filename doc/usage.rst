@@ -16,20 +16,45 @@ Installation
 Configuration
 -------------
 
-By default, cihai relies on the XDG directories on the users' system, as
-well as SQLite to store, seek, and retrieve the data.
+By default, cihai requires no configuration. The defaults XDG directories on the
+users' system, as well as SQLite to store, seek, and retrieve the data.
 
-Set up config to point to a database you want to import datasets into (and
-read from).
+You can override cihai's default storage and file directories via a config
+file.
+
+The default configuration is:
+
+.. literalinclude:: ../cihai/config.yml
+    :language: yaml
+
+Advanced Config
+"""""""""""""""
+
+cihai is designed to allow you to incrementally override settings to your
+liking.
+
+Internally, the config is parsed through :func:`cihai.core.expand_config`.
+This will replace environment variables, XDG variables and tildes. You can
+also enter absolute paths.
+
+Environmental variables require a dollar sign added to them, e.g.
+``${ENVVAR}``. XDG variables such as *user_cache_dir*, *user_config_dir*, 
+*user_data_dir*, *user_log_dir*, *site_config_dir*, *site_data_dir* are
+done via curly brackets only. E.g. ``{site_config_dir}``. Tildes are just
+replaced.
 
 .. code-block:: yaml
-
-   debug: True
+   
    database:
-     url: 'sqlite:///${data_dir}/cihai.db'  # sqlalchemy db url
-   datasets:
-     - 'cihai.datasets.unihan'
+     url: '${DATABASE_URL}'
+   dirs:
+     data: '{user_cache_dir}/mydata'
+     cache: '~/cache/cihai'
+     logs: '$ENVVAR/logs'
 
-Then you may point to the config with the ``-c`` argument,
+In the example above, Heroku's `DATABASE_URL <https://devcenter.heroku.com/articles/heroku-postgresql#establish-primary-db>`_
+is replaced as an environmental variable. The XDG variable for *user_cache_dir* is combined with *mydata/*, which makes the data stored deeper. The environmental variable *$ENVVAR* is also replaced.
+
+You may point to a custom config with the ``-c`` argument,
 ``$ cihai -c path/to/config.yaml``.
 
