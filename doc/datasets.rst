@@ -28,7 +28,7 @@ edict          OK              TODO               TODO
 cedict         OK [CDCT-L]_    TODO               TODO
 cedictgr       OK              TODO               TODO
 handedict      OK              TODO               TODO
-cfdict         OK              TODO               TODO
+cfdict         OK              MISSING [CFDICT]_  UNKNOWN
 ============== =============== ================== ===============
 
 .. _UNIHAN: http://www.unicode.org/charts/unihan.html
@@ -39,3 +39,5 @@ cfdict         OK              TODO               TODO
 .. [Unhn-D] https://raw.githubusercontent.com/cihai/unihan-tabular/master/datapackage.json
 .. [Unhn-P] https://unihan-tabular.git-pull.com/
 .. [CDCT-L] https://www.mdbg.net/chinese/dictionary?page=cedict
+.. [CFDICT] The database at http://www.chine-informations.com/chinois/open/CFDICT/download.php
+   is missing.
