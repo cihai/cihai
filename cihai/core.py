@@ -13,7 +13,7 @@ from sqlalchemy import create_engine
 
 from cihai import db, exc
 from cihai.util import merge_dict
-from cihai.conf import default_config, expand_config
+from cihai.conf import default_config, expand_config, dirs
 
 log = logging.getLogger(__name__)
 
@@ -43,27 +43,21 @@ def get_parser():
 
 class Cihai(object):
 
-    """Cihai query client. May use :meth:`~.get()` to grab 中文.
+    """Cihai query client.
 
-    Cihai object is inspired by `pypa/warehouse`_ Warehouse applicaton object.
+    Inspired by the early `pypa/warehouse`_ applicaton object.
 
     .. _pypa/warehouse: https://github.com/pypa/warehouse
 
     """
 
-    def __init__(self, config, engine=None):
+    def __init__(self, config={}, engine=None):
 
         #: configuration dictionary. Available as attributes. ``.config.debug``
         self.config = merge_dict(default_config(), config)
 
         #: Expand template variables
         expand_config(self.config)
-
-        #: absolute path to cihai data files.
-        if 'data_path' not in self.config:
-            self.config['data_path'] = os.path.abspath(os.path.join(
-                os.path.dirname(__file__), 'data/'
-            ))
 
         if engine is None and self.config['database']['url']:
             engine = create_engine(self.config['database']['url'])
@@ -73,6 +67,9 @@ class Cihai(object):
         #: :class:`sqlalchemy.schema.MetaData` instance.
         self.metadata = db.metadata
         self.metadata.bind = self.engine
+
+        if not os.path.exists(dirs.user_data_dir):
+            os.makedirs(dirs.user_data_dir)
 
     @classmethod
     def from_file(cls, config_path=None, *args, **kwargs):
