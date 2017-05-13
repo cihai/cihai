@@ -27,6 +27,10 @@ The default configuration is:
 .. literalinclude:: ../conf/default.yml
     :language: yaml
 
+Database configuration accepts any SQLAlchemy :sqlalchemy:ref:`database_urls`.
+If you're using a DB other than SQLite, such as Postgres, be sure to
+install the requisite driver, such as `psycopg`_.
+
 Advanced Config
 """""""""""""""
 
@@ -58,3 +62,4 @@ is replaced as an environmental variable. The XDG variable for *user_cache_dir* 
 You may point to a custom config with the ``-c`` argument,
 ``$ cihai -c path/to/config.yaml``.
 
+.. _psycopg: http://initd.org/psycopg/
