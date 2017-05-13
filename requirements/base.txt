@@ -3,4 +3,4 @@ kaptan==0.5.8
 profilehooks==1.9.0
 colorama==0.3.9 # Updated from 0.3.7
 appdirs==1.4.3
-unihan-tabular==0.6.1
+unihan-tabular==0.7.3
