@@ -11,7 +11,7 @@ import os
 import kaptan
 from sqlalchemy import create_engine
 
-from cihai import db, exc
+from cihai import db, exc, bootstrap
 from cihai.util import merge_dict
 from cihai.conf import default_config, expand_config, dirs
 
@@ -115,8 +115,6 @@ class Cihai(object):
         parser = get_parser()
 
         args = parser.parse_args(argv)
-        if not args._config:
-            parser.print_help()
-        else:
-            config = args._config if args._config is not None else {}
-            return cls.from_file(config)
+
+        config = args._config if args._config is not None else {}
+        return cls.from_file(config)

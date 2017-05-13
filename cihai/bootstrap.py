@@ -45,7 +45,10 @@ def bootstrap_unihan(metadata, options={}):
     p = unihan.Packager(options)
     p.download()
     print(p.options['fields'])
-    # hi = p.export()
+    print(p.options['work_dir'])
+    print(p.options['source'])
+    data = p.export()
+    create_table(UNIHAN_FIELDS, metadata)
 
 
 TABLE_NAME = 'Unihan'
