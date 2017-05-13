@@ -13,5 +13,6 @@ def run():
 
     return Cihai.from_cli(sys.argv[1:])
 
+
 if __name__ == '__main__':
     sys.exit(run())
