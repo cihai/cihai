@@ -3,37 +3,46 @@ from __future__ import (absolute_import, print_function, unicode_literals,
                         with_statement)
 
 from . import conversion
+from .util import merge_dict
 from sqlalchemy import Column, Index, String, Table, and_, select
 
 from unihan_tabular.process import UNIHAN_MANIFEST
 from unihan_tabular import process as unihan
 
 
-def bootstrap_unihan(metadata):
-    """Download, extract and import unihan to database."""
+UNIHAN_FILES = [
+    'Unihan_DictionaryLikeData.txt',
+    'Unihan_NumericValues.txt',
+    'Unihan_RadicalStrokeCounts.txt',
+    'Unihan_Readings.txt', 'Unihan_Variants.txt'
+]
 
-    p = unihan.Packager({
-        'input_files': [
-            'Unihan_DictionaryLikeData.txt',
-            'Unihan_NumericValues.txt',
-            'Unihan_RadicalStrokeCounts.txt',
-            'Unihan_Readings.txt', 'Unihan_Variants.txt'
-        ],
-        'fields': [
-            'kAccountingNumeric', 'kCangjie', 'kCantonese', 'kCheungBauer',
-            'kCihaiT', 'kCompatibilityVariant', 'kDefinition', 'kFenn',
-            'kFourCornerCode', 'kFrequency', 'kGradeLevel', 'kHDZRadBreak',
-            'kHKGlyph', 'kHangul', 'kHanyuPinlu', 'kHanyuPinyin',
-            'kJapaneseKun', 'kJapaneseOn', 'kKorean', 'kMandarin',
-            'kOtherNumeric', 'kPhonetic', 'kPrimaryNumeric',
-            'kRSAdobe_Japan1_6', 'kRSJapanese', 'kRSKanWa', 'kRSKangXi',
-            'kRSKorean', 'kRSUnicode', 'kSemanticVariant',
-            'kSimplifiedVariant', 'kSpecializedSemanticVariant', 'kTang',
-            'kTotalStrokes', 'kTraditionalVariant', 'kVietnamese', 'kXHC1983',
-            'kZVariant'
-        ],
-        'format': 'python'
-    })
+UNIHAN_FIELDS = [
+    'kAccountingNumeric', 'kCangjie', 'kCantonese', 'kCheungBauer',
+    'kCihaiT', 'kCompatibilityVariant', 'kDefinition', 'kFenn',
+    'kFourCornerCode', 'kFrequency', 'kGradeLevel', 'kHDZRadBreak',
+    'kHKGlyph', 'kHangul', 'kHanyuPinlu', 'kHanyuPinyin',
+    'kJapaneseKun', 'kJapaneseOn', 'kKorean', 'kMandarin',
+    'kOtherNumeric', 'kPhonetic', 'kPrimaryNumeric',
+    'kRSAdobe_Japan1_6', 'kRSJapanese', 'kRSKanWa', 'kRSKangXi',
+    'kRSKorean', 'kRSUnicode', 'kSemanticVariant',
+    'kSimplifiedVariant', 'kSpecializedSemanticVariant', 'kTang',
+    'kTotalStrokes', 'kTraditionalVariant', 'kVietnamese', 'kXHC1983',
+    'kZVariant'
+]
+
+UNIHAN_TABULAR_DEFAULT_OPTIONS = {
+    'input_files': UNIHAN_FILES,
+    'fields': UNIHAN_FIELDS,
+    'format': 'python'
+}
+
+
+def bootstrap_unihan(metadata, options={}):
+    """Download, extract and import unihan to database."""
+    options = merge_dict(UNIHAN_TABULAR_DEFAULT_OPTIONS.copy(), options)
+
+    p = unihan.Packager(options)
     p.download()
     print(p.options['fields'])
     # hi = p.export()
