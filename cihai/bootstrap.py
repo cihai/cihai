@@ -9,13 +9,43 @@ from unihan_tabular.process import UNIHAN_MANIFEST
 from unihan_tabular import process as unihan
 
 
-def bootstrap_unihan():
+def bootstrap_unihan(metadata):
     """Download, extract and import unihan to database."""
-    pass
+
+    p = unihan.Packager({
+        'input_files': [
+            'Unihan_DictionaryLikeData.txt',
+            'Unihan_NumericValues.txt',
+            'Unihan_RadicalStrokeCounts.txt',
+            'Unihan_Readings.txt', 'Unihan_Variants.txt'
+        ],
+        'fields': [
+            'kAccountingNumeric', 'kCangjie', 'kCantonese', 'kCheungBauer',
+            'kCihaiT', 'kCompatibilityVariant', 'kDefinition', 'kFenn',
+            'kFourCornerCode', 'kFrequency', 'kGradeLevel', 'kHDZRadBreak',
+            'kHKGlyph', 'kHangul', 'kHanyuPinlu', 'kHanyuPinyin',
+            'kJapaneseKun', 'kJapaneseOn', 'kKorean', 'kMandarin',
+            'kOtherNumeric', 'kPhonetic', 'kPrimaryNumeric',
+            'kRSAdobe_Japan1_6', 'kRSJapanese', 'kRSKanWa', 'kRSKangXi',
+            'kRSKorean', 'kRSUnicode', 'kSemanticVariant',
+            'kSimplifiedVariant', 'kSpecializedSemanticVariant', 'kTang',
+            'kTotalStrokes', 'kTraditionalVariant', 'kVietnamese', 'kXHC1983',
+            'kZVariant'
+        ],
+        'format': 'python'
+    })
+    p.download()
+    print(p.options['fields'])
+    # hi = p.export()
 
 
 TABLE_NAME = 'Unihan'
-flatten_datasets = lambda d: sorted({c for cs in d.values() for c in cs}) # NOQA
+
+
+def flatten_datasets(d):
+    return sorted({c for cs in d.values() for c in cs})
+
+
 DEFAULT_COLUMNS = ['ucn', 'char']
 try:
     DEFAULT_FIELDS = [
