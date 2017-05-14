@@ -65,16 +65,12 @@ except:
     DEFAULT_FIELDS = [f for t, f in UNIHAN_MANIFEST.items()]
 
 
-def is_bootstrapped(metadata, install_dict=None):
+def is_bootstrapped(metadata):
     """Return True if cihai is correctly bootstrapped."""
-    if not install_dict:
-        install_dict = UNIHAN_MANIFEST
-
-    columns = flatten_datasets(install_dict) + DEFAULT_COLUMNS
-
+    fields = UNIHAN_FIELDS + DEFAULT_COLUMNS
     if TABLE_NAME in metadata.tables.keys():
         table = metadata.tables[TABLE_NAME]
-        if set(columns) == set(c.name for c in table.columns):
+        if set(fields) == set(c.name for c in table.columns):
             return True
         else:
             return False

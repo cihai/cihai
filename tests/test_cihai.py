@@ -49,3 +49,4 @@ def test_unihan_options(unihan_options, test_config_file):
     assert app.metadata.tables['Unihan'].columns
     assert set(app.metadata.tables['Unihan'].columns.keys()) == \
         set(bootstrap.UNIHAN_FIELDS + ['ucn', 'char'])
+    assert bootstrap.is_bootstrapped(app.metadata)
