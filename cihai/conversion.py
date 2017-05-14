@@ -139,7 +139,7 @@ def euc_to_unicode(hexstr):
         '\xd2\xbb'
         >>> u'\u4e00'.encode('gb2312').decode('utf-8')
         u'\u04bb'
-        >>> (b'\\x' + b'd2' + b'\\x' + b'bb').replace('\\x', '') \
+        >>> (b'\\x' + b'd2' + b'\\x' + b'bb').replace('\\x', '') \\
         ... .decode('hex').decode('utf-8')
         u'\u04bb'
 
