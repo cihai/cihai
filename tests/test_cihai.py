@@ -19,7 +19,6 @@ def test_config_defaults():
     app = Cihai()
 
     assert 'database' in app.config
-    assert not app.is_bootstrapped
 
 
 def test_config_dict_args():
@@ -44,7 +43,8 @@ def test_yaml_config_and_override(test_config_file):
 
 def test_unihan_options(unihan_options, test_config_file):
     app = Cihai.from_cli(['-c', test_config_file])
-    bootstrap.bootstrap_unihan(app.metadata, unihan_options)
+    if not app.is_bootstrapped:
+        bootstrap.bootstrap_unihan(app.metadata, unihan_options)
     assert 'Unihan' in app.metadata.tables
     assert app.metadata.tables['Unihan'].columns
     assert set(app.metadata.tables['Unihan'].columns.keys()) == \
