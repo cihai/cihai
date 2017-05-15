@@ -16,7 +16,7 @@ from cihai.core import Cihai
 def test_config_defaults():
     """Test config defaults."""
 
-    app = Cihai.from_file()
+    app = Cihai()
 
     assert 'debug' in app.config
     assert not app.config['debug']
