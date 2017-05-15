@@ -97,14 +97,14 @@ class Cihai(object):
         #: Expand template variables
         expand_config(self.config)
 
+        if not os.path.exists(dirs.user_data_dir):
+            os.makedirs(dirs.user_data_dir)
+
         self.engine = create_engine(self.config['database']['url'])
 
         self.metadata = db.metadata
         self.metadata.bind = self.engine
         self.metadata.reflect(views=True, extend_existing=True)
-
-        if not os.path.exists(dirs.user_data_dir):
-            os.makedirs(dirs.user_data_dir)
 
     @classmethod
     def from_file(cls, config_path=None, *args, **kwargs):
