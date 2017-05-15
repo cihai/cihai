@@ -43,9 +43,26 @@ def get_parser():
 
 class Cihai(object):
 
-    """Cihai query client.
+    """Cihai application object.
 
     Inspired by the early `pypa/warehouse`_ applicaton object.
+
+    Note: For Cihai to be used properly, it must be first bootstrapped with
+    the UNIHAN database. :attr:`~cihai.core.Cihai.is_bootstrapped`
+    to return if the database is installed for the app's configuration
+    settings.
+
+    To bootstrap the cihai environment programatically, create the Cihai
+    object and use the metadata:
+
+    .. code-block:: python
+
+        from cihai.core import Cihai
+        from cihai.bootstrap import bootstrap_unihan
+
+        c = Cihai()
+        if not c.is_bootstrapped:
+            bootstrap_unihan(c.metadata)
 
     .. _pypa/warehouse: https://github.com/pypa/warehouse
 
