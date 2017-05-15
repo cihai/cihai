@@ -110,7 +110,7 @@ class Cihai(object):
         """Create a Cihai instance from a JSON or YAML config.
 
         :param config_path: path to custom config file
-        :type confiig_path: str
+        :type config_path: str
         :rtype: :class:`Cihai`
 
         """
