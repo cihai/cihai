@@ -18,8 +18,8 @@ def test_config_defaults():
 
     app = Cihai()
 
-    assert 'debug' in app.config
-    assert not app.config['debug']
+    assert 'database' in app.config
+    assert not app.is_bootstrapped
 
 
 def test_config_dict_args():
@@ -39,7 +39,7 @@ def test_config_dict_args():
 def test_yaml_config_and_override(test_config_file):
     app = Cihai.from_cli(['-c', test_config_file])
 
-    assert app.config['debug']
+    assert app.config['database']
 
 
 def test_unihan_options(unihan_options, test_config_file):

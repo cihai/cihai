@@ -1,5 +1,2 @@
-debug: True
-
-data_path: ./tests/fixtures/
 database:
   url: 'sqlite:///:memory:'

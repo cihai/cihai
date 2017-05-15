@@ -11,7 +11,7 @@ import os
 import kaptan
 from sqlalchemy import create_engine
 
-from cihai import db, exc
+from cihai import db, exc, bootstrap
 from cihai.util import merge_dict
 from cihai.conf import default_config, expand_config, dirs
 
@@ -57,10 +57,16 @@ class Cihai(object):
     #: :class:`sqlalchemy.schema.MetaData` instance.
     metadata = None
 
+    #: configuration dictionary.
+    config = None
+
+    #: :py:mod:`dict` of default config, can be monkey-patched during tests
+    default_config = default_config()
+
     def __init__(self, config={}):
 
-        #: configuration dictionary. Available as attributes. ``.config.debug``
-        self.config = merge_dict(default_config(), config)
+        # Merge custom configuration settings on top of defaults
+        self.config = merge_dict(self.default_config, config)
 
         #: Expand template variables
         expand_config(self.config)
@@ -109,7 +115,7 @@ class Cihai(object):
     def from_cli(cls, argv):
         """Cihai from :py:class:`argparse` / CLI args.
 
-        :param argv: list of arguments, i.e. ``['-c', 'dev/config.yml']``.
+        :param argv: list of arguments, i.e. ``['-c', 'config.yml']``.
         :type argv: list
         :rtype: :class:`Cihai`
 
@@ -120,3 +126,8 @@ class Cihai(object):
 
         config = args._config if args._config is not None else {}
         return cls.from_file(config)
+
+    @property
+    def is_bootstrapped(self):
+        """Return True if UNIHAN and database is set up."""
+        return bootstrap.is_bootstrapped(self.metadata)

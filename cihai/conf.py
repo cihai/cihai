@@ -9,24 +9,27 @@ from appdirs import AppDirs
 
 from cihai._compat import string_types
 
+#: XDG App directory locations
 dirs = AppDirs(
     "cihai",      # appname
     "cihai team"  # app author
 )
 
+#: Default configuration file location
+DEFAULT_CONFIG_FILE = os.path.abspath(os.path.join(
+    os.path.dirname(os.path.dirname(__file__)),
+    "conf", "default.yml",
+))
 
-def default_config():
+
+def default_config(config_file=DEFAULT_CONFIG_FILE):
     """Return default configuration for cihai.
 
     :returns: Default configuration settings
     :rtype: dict
     """
     config_reader = kaptan.Kaptan()
-    default_config_file = os.path.abspath(os.path.join(
-        os.path.dirname(os.path.dirname(__file__)),
-        "conf", "default.yml",
-    ))
-    return config_reader.import_config(default_config_file).get()
+    return config_reader.import_config(config_file).get()
 
 
 def expand_config(d):
