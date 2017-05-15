@@ -101,6 +101,7 @@ class Cihai(object):
 
         self.metadata = db.metadata
         self.metadata.bind = self.engine
+        self.metadata.reflect(views=True, extend_existing=True)
 
         if not os.path.exists(dirs.user_data_dir):
             os.makedirs(dirs.user_data_dir)
@@ -139,7 +140,7 @@ class Cihai(object):
 
     @classmethod
     def from_cli(cls, argv):
-        """Cihai from :py:class:`argparse` / CLI args.
+        """Cihai from :py:mod:`argparse` / CLI args.
 
         :param argv: list of arguments, i.e. ``['-c', 'config.yml']``.
         :type argv: list
