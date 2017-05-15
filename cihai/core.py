@@ -68,7 +68,7 @@ class Cihai(object):
 
     **Configuration templates:**
 
-    The ``config`` :py:mod:`dict` parameter supports a basic template system
+    The ``config`` :py:class:`dict` parameter supports a basic template system
     for replacing :term:`XDG Base Directory` directory variables, tildes
     and environmentas variables. This is done by passing the option dict
     through :func:`cihai.conf.expand_config` during initialization.
@@ -86,7 +86,7 @@ class Cihai(object):
     #: configuration dictionary.
     config = None
 
-    #: :py:mod:`dict` of default config, can be monkey-patched during tests
+    #: :py:class:`dict` of default config, can be monkey-patched during tests
     default_config = default_config()
 
     def __init__(self, config={}):
