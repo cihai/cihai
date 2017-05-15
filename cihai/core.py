@@ -47,6 +47,8 @@ class Cihai(object):
 
     Inspired by the early `pypa/warehouse`_ applicaton object.
 
+    **Invocation from python:**
+
     Note: For Cihai to be used properly, it must be first bootstrapped with
     the UNIHAN database. :attr:`~cihai.core.Cihai.is_bootstrapped`
     to return if the database is installed for the app's configuration
@@ -63,6 +65,13 @@ class Cihai(object):
         c = Cihai()
         if not c.is_bootstrapped:
             bootstrap_unihan(c.metadata)
+
+    **Configuration templates:**
+
+    The ``config`` :py:mod:`dict` parameter supports a basic template system
+    for replacing :term:`XDG Base Directory` directory variables, tildes
+    and environmentas variables. This is done by passing the option dict
+    through :func:`cihai.conf.expand_config` during initialization.
 
     .. _pypa/warehouse: https://github.com/pypa/warehouse
 

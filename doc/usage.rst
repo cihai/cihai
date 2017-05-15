@@ -16,8 +16,9 @@ Installation
 Configuration
 -------------
 
-By default, cihai requires no configuration. The defaults XDG directories on the
-users' system, as well as SQLite to store, seek, and retrieve the data.
+By default, cihai requires no configuration. The defaults file locations
+are :term:`XDG Base Directory` for the users' system, as well as SQLite to store,
+seek, and retrieve data.
 
 You can override cihai's default storage and file directories via a config
 file.
@@ -30,6 +31,8 @@ The default configuration is:
 Database configuration accepts any SQLAlchemy :sqlalchemy:ref:`database_urls`.
 If you're using a DB other than SQLite, such as Postgres, be sure to
 install the requisite driver, such as `psycopg`_.
+
+.. _XDG directories: https://specifications.freedesktop.org/basedir-spec/basedir-spec-0.6.html
 
 Advanced Config
 """""""""""""""
