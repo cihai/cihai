@@ -11,7 +11,7 @@ import os
 import kaptan
 from sqlalchemy import create_engine
 
-from cihai import db, exc, bootstrap
+from cihai import db, exc
 from cihai.util import merge_dict
 from cihai.conf import default_config, expand_config, dirs
 
@@ -51,7 +51,13 @@ class Cihai(object):
 
     """
 
-    def __init__(self, config={}, engine=None):
+    #: :class:`sqlalchemy.engine.Engine` instance.
+    engine = None
+
+    #: :class:`sqlalchemy.schema.MetaData` instance.
+    metadata = None
+
+    def __init__(self, config={}):
 
         #: configuration dictionary. Available as attributes. ``.config.debug``
         self.config = merge_dict(default_config(), config)
@@ -59,12 +65,8 @@ class Cihai(object):
         #: Expand template variables
         expand_config(self.config)
 
-        if engine is None and self.config['database']['url']:
-            engine = create_engine(self.config['database']['url'])
-        #: :class:`sqlalchemy.engine.Engine` instance.
-        self.engine = engine
+        self.engine = create_engine(self.config['database']['url'])
 
-        #: :class:`sqlalchemy.schema.MetaData` instance.
         self.metadata = db.metadata
         self.metadata.bind = self.engine
 
