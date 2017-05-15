@@ -5,9 +5,6 @@ import zipfile
 import pytest
 
 from cihai.bootstrap import UNIHAN_FILES
-from cihai.core import Cihai
-from cihai.conf import default_config
-from cihai.util import merge_dict
 
 
 @pytest.fixture
@@ -24,15 +21,6 @@ def test_config_file(fixture_path):
         fixture_path,
         'test_config.yml'
     )
-
-
-@pytest.fixture
-def TestCihai(test_config_file, unihan_options):
-    class TestCihai(Cihai):
-        default_config = merge_dict(
-            default_config(test_config_file), unihan_options
-        )
-    return TestCihai
 
 
 @pytest.fixture
