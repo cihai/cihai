@@ -53,7 +53,7 @@ class Cihai(object):
     settings.
 
     To bootstrap the cihai environment programatically, create the Cihai
-    object and use the metadata:
+    object and pass its :attr:`~cihai.core.Cihai.metadata`:
 
     .. code-block:: python
 
