@@ -11,7 +11,10 @@ def run():
     sys.path.insert(0, base)
     from .core import Cihai
 
-    return Cihai.from_cli(sys.argv[1:])
+    app = Cihai.from_cli(sys.argv[1:])
+    if not app.is_bootstrapped:
+        from .bootstrap import bootstrap_unihan
+        bootstrap_unihan(app.metadata)
 
 
 if __name__ == '__main__':
