@@ -100,13 +100,24 @@ def gb2312_to_euc(gb2312hex):
     return euc
 
 
+def euc_to_python(hexstr):
+    """Convert a EUC-CN (GB2312) hex to a Python unicode string"""
+    hi = hexstr[0:2]
+    lo = hexstr[2:4]
+    #hi and lo are only 2 characters long, no risk with eval-ing them
+    gb_enc = b'\\x' + hi + b'\\x' + lo
+    return gb_enc.decode("gb2312")
+
+
 def euc_to_utf8(euchex):
     """Convert EUC hex (e.g. "d2bb") to UTF8 hex (e.g. "e4 b8 80")"""
     utf8 = euc_to_python(euchex).encode("utf-8")
-    utf8 = repr(utf8)[1:-1].replace("\\x", " ").strip()
+    gb_enc = utf8.decode('unicode_escape')
 
-    assert isinstance(utf8, bytes)
-    return utf8
+    gb_enc = gb_enc.encode('latin1')
+
+    gb_enc = gb_enc.decode('euc-jp')
+    return gb_enc
 
 
 def ucn_to_unicode(ucn):

@@ -126,8 +126,16 @@ def test_euc_from_unicode():
     assert isinstance(result, text_type)
 
 
+def test_euc_to_utf8():
+    expected = '一'
+    euc_bytestring = b'b0ec'
+
+    result = conversion.euc_to_utf8(euc_bytestring)
+
+    assert expected == result
+
+
 def test_euc_to_unicode():
-    # = '一'
     expected = '一'
     expected_ustring = u'\u4e00'
     euc_bytestring = b'd2bb'
