@@ -13,12 +13,17 @@ back for updates!
   more-or-less interchangeably." For more information, see "Unification
   Rules" on page 679 of *The Unicode Standard* (`.pdf <http://www.unicode.org/versions/Unicode9.0.0/ch18.pdf>`_).
 
-* Extensibility
+* Extensibie
 
   cihai will be able to pull remote CJK datasets.
   
   In addition, the handling of variants will create new ways to discover
   and interpret CJK characters while using these datasets.
+
+* Python API and CLI application
+
+  Cihai can be used as a Python `API`_ as well as a command line
+  application via ``$ cihai``.
 
 * Asian encoding swiss army knife
 
