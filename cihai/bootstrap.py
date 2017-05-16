@@ -2,9 +2,8 @@
 from __future__ import (absolute_import, print_function, unicode_literals,
                         with_statement)
 
-from . import conversion
 from .util import merge_dict
-from sqlalchemy import Column, Index, String, Table, and_, select
+from sqlalchemy import Column, Index, String, Table
 
 from unihan_tabular.process import UNIHAN_MANIFEST
 from unihan_tabular import process as unihan
@@ -45,7 +44,7 @@ def bootstrap_unihan(metadata, options={}):
     p = unihan.Packager(options)
     p.download()
     data = p.export()
-    table = create_table(UNIHAN_FIELDS, metadata)
+    table = create_unihan_table(UNIHAN_FIELDS, metadata)
     metadata.create_all()
     metadata.bind.execute(table.insert(), data)
 
@@ -78,7 +77,7 @@ def is_bootstrapped(metadata):
         return False
 
 
-def create_table(columns, metadata):
+def create_unihan_table(columns, metadata):
     """Create table and return  :class:`sqlalchemy.Table`.
 
     :param columns: columns for table, i.e. ['kDefinition', 'kCantonese']
@@ -109,34 +108,3 @@ def create_table(columns, metadata):
         return table
     else:
         return Table(TABLE_NAME, metadata)
-
-
-def get(char, metadata, **kwargs):
-    if not char.startswith('U+'):
-        char = conversion.python_to_ucn(char)
-
-    if 'fields' not in kwargs:
-        fields = DEFAULT_FIELDS
-    else:
-        fields = kwargs['fields']
-
-    table = Table('Unihan', metadata)
-    andfields = [(table.c.field == t) for t in fields]
-    andstmt = and_(*andfields)
-
-    q = select([
-        table.c.field
-    ]).where(andstmt)
-
-    query = select([table.c.value, table.c.char, table.c.field]).where(
-        table.c.field == q,
-    ).where(table.c.value == char)
-
-    query = query.execute()
-
-    if query:
-        response = {}
-        for r in query:
-            response[r['field']] = r['value']
-
-    return response
