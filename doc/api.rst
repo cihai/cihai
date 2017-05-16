@@ -15,6 +15,8 @@ Configuration
 .. automodule:: cihai.conf
     :members:
 
+.. _cihai.conversion:
+
 Conversion
 ----------
 

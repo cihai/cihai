@@ -20,12 +20,14 @@ Features
 
 * Python API and CLI application
 
-  Cihai can be used as a Python `API`_ as well as a command line
+  Cihai can be used as a Python :ref:`API` as well as a command line
   application via ``$ cihai``.
 
 * Asian encoding swiss army knife
 
-  Functions under the hood such as `cihai.conversion`_ are tested across
-  python implementations to handle a growing assortment of Asian
-  encodings.
+  Functions under the hood such as :ref:`cihai.conversion <cihai.conversion>`
+  are tested across python implementations to handle a growing assortment of
+  Asian encodings.
 
+.. _UNIHAN: http://unicode.org/charts/unihan.html
+.. _variants: http://www.unicode.org/reports/tr38/tr38-21.html#N10211
