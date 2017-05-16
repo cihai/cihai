@@ -9,6 +9,7 @@ cihai
 .. toctree::
     :maxdepth: 2
 
+    features
     usage
     cli
     datasets
