@@ -3,7 +3,7 @@ from __future__ import (absolute_import, print_function, unicode_literals,
                         with_statement)
 
 from .util import merge_dict
-from sqlalchemy import Column, Index, String, Table
+from sqlalchemy import Column, String, Table
 
 from unihan_tabular.process import UNIHAN_MANIFEST
 from unihan_tabular import process as unihan
@@ -98,12 +98,6 @@ def create_unihan_table(columns, metadata):
         for column_name in columns:
             col = Column(column_name, String(256), nullable=True)
             table.append_column(col)
-
-        Index('%s_unique_char' % TABLE_NAME, table.c.char, unique=True)
-        Index(
-            '%s_unique_char_ucn' % TABLE_NAME, table.c.char, table.c.ucn,
-            unique=True
-        )
 
         return table
     else:
