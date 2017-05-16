@@ -110,6 +110,10 @@ def test_ucn_to_unicode():
 """
 
 
+def test_hexd():
+    assert conversion.hexd(0xFFFF) == 'ffff'
+
+
 def test_euc_from_unicode():
     expected = '一'  # u'\u4e00'
     euc_bytestring = b'd2bb'
