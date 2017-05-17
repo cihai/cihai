@@ -14,7 +14,7 @@ from sqlalchemy.orm import Session
 
 from cihai import db, exc, bootstrap
 from cihai.util import merge_dict
-from cihai.conf import default_config, expand_config, dirs
+from cihai.conf import DEFAULT_CONFIG, expand_config, dirs
 
 log = logging.getLogger(__name__)
 
@@ -71,7 +71,7 @@ class Cihai(object):
     config = None
 
     #: :py:class:`dict` of default config, can be monkey-patched during tests
-    default_config = default_config()
+    default_config = DEFAULT_CONFIG
 
     def __init__(self, config={}):
 

@@ -4,7 +4,6 @@ from __future__ import absolute_import, print_function, unicode_literals
 
 import os
 
-import kaptan
 from appdirs import AppDirs
 
 from cihai._compat import string_types
@@ -16,22 +15,18 @@ dirs = AppDirs(
 )
 
 
-def get_default_config_file():
-    """Return default config file location."""
-    return os.path.abspath(os.path.join(
-        os.path.dirname(os.path.dirname(__file__)),
-        "conf", "default.yml",
-    ))
-
-
-def default_config(config_file=get_default_config_file()):
-    """Return default configuration for cihai.
-
-    :returns: Default configuration settings
-    :rtype: dict
-    """
-    config_reader = kaptan.Kaptan()
-    return config_reader.import_config(config_file).get()
+#: Default configuration
+DEFAULT_CONFIG = {
+    "debug": False,
+    "database": {
+        "url": 'sqlite:///{user_data_dir}/cihai.db'
+    },
+    "dirs": {
+        "cache": '{user_cache_dir}',
+        "log": '{user_log_dir}',
+        "data": '{user_data_dir}'
+    }
+}
 
 
 def expand_config(d):
