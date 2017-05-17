@@ -15,14 +15,16 @@ dirs = AppDirs(
     "cihai team"  # app author
 )
 
-#: Default configuration file location
-DEFAULT_CONFIG_FILE = os.path.abspath(os.path.join(
-    os.path.dirname(os.path.dirname(__file__)),
-    "conf", "default.yml",
-))
+
+def get_default_config_file():
+    """Return default config file location."""
+    return os.path.abspath(os.path.join(
+        os.path.dirname(os.path.dirname(__file__)),
+        "conf", "default.yml",
+    ))
 
 
-def default_config(config_file=DEFAULT_CONFIG_FILE):
+def default_config(config_file=get_default_config_file()):
     """Return default configuration for cihai.
 
     :returns: Default configuration settings
