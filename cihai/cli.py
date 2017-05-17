@@ -19,7 +19,7 @@ from .core import Cihai
               help='Log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)')
 def cli(config, log_level):
     """For help and example usage, see documentation:
-    http://cihai.git-pull.com"""
+    https://cihai.git-pull.com"""
     setup_logger(
         level=log_level.upper()
     )
