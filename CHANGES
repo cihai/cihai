@@ -4,6 +4,9 @@ Changelog
 
 Here you can find the recent changes to cihai.
 
+- :release:`0.4.2 <2017-05-16>`
+- :support:`-` Load default configuration via internal dictionary
+
 - :release:`0.4.1 <2017-05-16>`
 - :support:`-` Update MANIFEST.in
 
