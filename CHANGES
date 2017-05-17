@@ -4,6 +4,10 @@ Changelog
 
 Here you can find the recent changes to cihai.
 
+- :support:`-` Remove use of singleton metadata object
+- :support:`-` Added click as a CLI library
+- :support:`-` Automatically bootstrap UNIHAN on first use
+
 - :release:`0.4.2 <2017-05-16>`
 - :support:`-` Load default configuration via internal dictionary
 
