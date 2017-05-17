@@ -25,7 +25,7 @@ extensions = [
     'sphinx.ext.todo',
     'releases',
     'alabaster',
-    'sphinxarg.ext',           # sphinx-argparse
+    'sphinx_click.ext',           # sphinx-click
 ]
 
 releases_unstable_prehistory = True

@@ -4,7 +4,6 @@
 Command Line Interface
 ======================
 
-.. argparse::
-    :module: cihai.core
-    :func: get_parser
+.. click:: cihai.cli:cli
     :prog: cihai
+    :show-nested:
