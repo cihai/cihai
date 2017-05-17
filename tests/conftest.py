@@ -51,3 +51,8 @@ def unihan_options(zip_file, zip_path, tmpdir):
         'work_dir': str(tmpdir),
         'zip_path': str(tmpdir.join('downloads').join('Moo.zip'))
     }
+
+
+@pytest.fixture(scope='function')
+def tmpdb_file(tmpdir):
+    return tmpdir.join('test.db')

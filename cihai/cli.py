@@ -17,23 +17,32 @@ from .core import Cihai
 @click.option('-c', '--config', type=click.Path(exists=True))
 @click.option('--log_level', default='INFO',
               help='Log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)')
-def cli(config, log_level):
+@click.pass_context
+def cli(ctx, config, log_level):
     """For help and example usage, see documentation:
     https://cihai.git-pull.com"""
     setup_logger(
         level=log_level.upper()
     )
-    pass
+    if config:
+        c = Cihai.from_file(config)
+    else:
+        c = Cihai()
+
+    if not c.is_bootstrapped:
+        from .bootstrap import bootstrap_unihan
+        click.echo("Bootstrapping Unihan database")
+        bootstrap_unihan(c.metadata, c.config.get('unihan_options', {}))
+        c.reflect_db()
+
+    ctx.obj['c'] = c  # pass Cihai object down to other commands
 
 
 @cli.command(name='info', short_help='Get details on a CJK character')
 @click.argument('char')
 @click.pass_context
 def command_info(ctx, char):
-    c = Cihai()
-    if not c.is_bootstrapped:
-        from .bootstrap import bootstrap_unihan
-        bootstrap_unihan(c.metadata)
+    c = ctx.obj['c']
     Unihan = c.base.classes.Unihan
     query = c.session.query(Unihan).filter_by(char=char).first()
     for c in query.__table__.columns._data.keys():

@@ -8,11 +8,11 @@ import logging
 import os
 
 import kaptan
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, MetaData
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 
-from cihai import db, exc, bootstrap
+from cihai import exc, bootstrap
 from cihai.util import merge_dict
 from cihai.conf import DEFAULT_CONFIG, expand_config, dirs
 
@@ -86,12 +86,21 @@ class Cihai(object):
 
         self.engine = create_engine(self.config['database']['url'])
 
-        self.metadata = db.metadata
+        self.metadata = MetaData()
         self.metadata.bind = self.engine
+        self.reflect_db()
+
+        self.session = Session(self.engine)
+
+    def reflect_db(self):
+        """No-op to reflect db info.
+
+        This is available as a method so the database can be reflected
+        outside initialization (such bootstrapping unihan during CLI usage).
+        """
         self.metadata.reflect(views=True, extend_existing=True)
         self.base = automap_base(metadata=self.metadata)
         self.base.prepare()
-        self.session = Session(self.engine)
 
     @classmethod
     def from_file(cls, config_path=None, *args, **kwargs):
