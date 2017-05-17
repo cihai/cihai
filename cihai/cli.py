@@ -18,10 +18,7 @@ from .core import Cihai
 @click.option('--log_level', default='INFO',
               help='Log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)')
 def cli(config, log_level):
-    """cihai
-
-    Pass the "--help" argument to any command to see detailed help.
-    See detailed documentation and examples at:
+    """For help and example usage, see documentation:
     http://cihai.git-pull.com"""
     setup_logger(
         level=log_level.upper()
