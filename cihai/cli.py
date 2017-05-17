@@ -7,6 +7,7 @@ import click
 
 
 from .__about__ import __version__
+from .core import Cihai
 
 
 @click.group(context_settings={'obj': {}})
@@ -22,7 +23,6 @@ def cli(config, log_level):
     Pass the "--help" argument to any command to see detailed help.
     See detailed documentation and examples at:
     http://cihai.git-pull.com"""
-    print('hi')
     setup_logger(
         level=log_level.upper()
     )
@@ -30,10 +30,17 @@ def cli(config, log_level):
 
 
 @cli.command(name='info', short_help='Get details on a CJK character')
+@click.argument('char')
 @click.pass_context
-def command_info(ctx):
-    """Hi"""
-    print('load')
+def command_info(ctx, char):
+    c = Cihai()
+    if not c.is_bootstrapped:
+        from .bootstrap import bootstrap_unihan
+        bootstrap_unihan(c.metadata)
+    Unihan = c.base.classes.Unihan
+    query = c.session.query(Unihan).filter_by(char=char).first()
+    print(query.char)
+    print(query.kDefinition)
 
 
 def setup_logger(logger=None, level='INFO'):
