@@ -4,6 +4,14 @@ Changelog
 
 Here you can find the recent changes to cihai.
 
+- :release:`0.4.0 <2017-05-16>`
+- :support:`-` Automatically reflect database schemas and make available
+  in main cihai object
+- :support:`-` Use click library for CLI
+- :support:`-` Initial support for character lookups via ``$ cihai info
+  <char>``.
+- :support:`3` Bootstrap UNIHAN into cihai by default via unihan-tabular
+  project
 - :support:`4` Drop python 3.3 and 3.4 support
 - :support:`4` Initial `XDG`_ base directory support
 - :support:`-` Move tests to pytest functions and fixtures
