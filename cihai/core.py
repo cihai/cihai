@@ -10,6 +10,8 @@ import os
 
 import kaptan
 from sqlalchemy import create_engine
+from sqlalchemy.ext.automap import automap_base
+from sqlalchemy.orm import Session
 
 from cihai import db, exc, bootstrap
 from cihai.util import merge_dict
@@ -83,6 +85,12 @@ class Cihai(object):
     #: :class:`sqlalchemy.schema.MetaData` instance.
     metadata = None
 
+    #: :class:`sqlalchemy.orm.session.Session` instance.
+    session = None
+
+    #: :class:`sqlalchemy.ext.automap.AutomapBase` instance.
+    base = None
+
     #: configuration dictionary.
     config = None
 
@@ -105,6 +113,9 @@ class Cihai(object):
         self.metadata = db.metadata
         self.metadata.bind = self.engine
         self.metadata.reflect(views=True, extend_existing=True)
+        self.base = automap_base(metadata=self.metadata)
+        self.base.prepare()
+        self.session = Session(self.engine)
 
     @classmethod
     def from_file(cls, config_path=None, *args, **kwargs):
