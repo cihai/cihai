@@ -7,6 +7,7 @@ import logging
 import click
 
 from .__about__ import __version__
+from ._compat import PY2
 from .core import Cihai
 
 
@@ -46,8 +47,12 @@ def command_info(ctx, char):
     Unihan = c.base.classes.Unihan
     query = c.session.query(Unihan).filter_by(char=char).first()
     for c in query.__table__.columns._data.keys():
-        if getattr(query, c):
-            print('{:>30} {:>60}'.format(c, getattr(query, c)))
+        value = getattr(query, c)
+        if value:
+            if PY2:
+                value = value.encode('utf-8')
+
+            print('{:>30} {:>60}'.format(c, value))
 
 
 def setup_logger(logger=None, level='INFO'):

@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
 
+
+import sys
+import pytest
 from cihai import cli
-
 from click.testing import CliRunner
 
 
@@ -16,6 +19,8 @@ def test_cli(test_config_file):
     # assert result.exit_code == 0
 
 
+@pytest.mark.skipif(sys.version_info <= (2, 7, 15),
+                    reason="python2.7 + click unicode fails")
 def test_cli_reflects_after_bootstrap(tmpdir, tmpdb_file, unihan_options):
     config = {
         'database': {
