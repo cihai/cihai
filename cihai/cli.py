@@ -1,10 +1,10 @@
 # -*- coding: utf8 - *-
 from __future__ import (absolute_import, division, print_function,
-                        unicode_literals, with_statement)
+                        with_statement)
 
 import logging
-import click
 
+import click
 
 from .__about__ import __version__
 from .core import Cihai
