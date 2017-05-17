@@ -36,8 +36,9 @@ def command_info(ctx, char):
         bootstrap_unihan(c.metadata)
     Unihan = c.base.classes.Unihan
     query = c.session.query(Unihan).filter_by(char=char).first()
-    print(query.char)
-    print(query.kDefinition)
+    for c in query.__table__.columns._data.keys():
+        if getattr(query, c):
+            print("%s:\t\t\t%s" % (c, getattr(query, c)))
 
 
 def setup_logger(logger=None, level='INFO'):
