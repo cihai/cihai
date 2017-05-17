@@ -4,7 +4,10 @@ Changelog
 
 Here you can find the recent changes to cihai.
 
-- :support:`0.5.0 <2017-05-17>`
+- :release:`0.5.1 <2017-05-17>`
+- :support:`-` Python 2 CLI fix
+
+- :release:`0.5.0 <2017-05-17>`
 - :support:`-` Remove use of singleton metadata object
 - :support:`-` Automatically bootstrap UNIHAN on first use
 

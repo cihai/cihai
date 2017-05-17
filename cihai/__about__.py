@@ -1,6 +1,6 @@
 __title__ = 'cihai'
 __package_name__ = 'cihai'
-__version__ = '0.5.0'
+__version__ = '0.5.1'
 __description__ = 'Python API for CJK datasets. Part of the cihai project.'
 __author__ = 'Tony Narlock'
 __email__ = 'tony@git-pull.com'
