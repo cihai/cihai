@@ -6,6 +6,21 @@ access to `CJK`_ data
 This project is under active development. Follow our progress and check
 back for updates!
 
+Usage
+-----
+
+.. code-block:: sh
+
+   $ pip install --user cihai
+   $ cihai info 好
+           char                                                            好
+            ucn                                                       U+597D
+       kCangjie                                                          VND
+     kCantonese                                                    hou2 hou3
+        kCihaiT                                                      378.103
+    kDefinition                                  good, excellent, fine; well
+
+
 Quick links
 -----------
 
