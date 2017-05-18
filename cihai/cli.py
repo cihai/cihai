@@ -5,6 +5,7 @@ from __future__ import (absolute_import, division, print_function,
 import logging
 
 import click
+import yaml
 
 from .__about__ import __version__
 from ._compat import PY2
@@ -68,14 +69,17 @@ def command_lookup(ctx, char):
         or_(*[column.contains(char) for column in columns])
     )
     for k in query:
-        print('\n\n')
+        print('--------')
+        attrs = {}
         for c in k.__table__.columns._data.keys():
             value = getattr(k, c)
             if value:
                 if PY2:
                     value = value.encode('utf-8')
-
-                print('{:>30} {:>60}'.format(c, value))
+                attrs[str(c)] = value
+        print(
+            yaml.safe_dump(attrs, allow_unicode=True, default_flow_style=False)
+        )
 
 
 def setup_logger(logger=None, level='INFO'):
