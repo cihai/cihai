@@ -55,6 +55,29 @@ def command_info(ctx, char):
             print('{:>30} {:>60}'.format(c, value))
 
 
+@cli.command(name='lookup', short_help='Search character matching details')
+@click.argument('char')
+@click.pass_context
+def command_lookup(ctx, char):
+
+    from sqlalchemy import or_
+    c = ctx.obj['c']
+    Unihan = c.base.classes.Unihan
+    columns = Unihan.__table__.columns
+    query = c.session.query(Unihan).filter(
+        or_(*[column.contains(char) for column in columns])
+    )
+    for k in query:
+        print('\n\n')
+        for c in k.__table__.columns._data.keys():
+            value = getattr(k, c)
+            if value:
+                if PY2:
+                    value = value.encode('utf-8')
+
+                print('{:>30} {:>60}'.format(c, value))
+
+
 def setup_logger(logger=None, level='INFO'):
     """Setup logging for CLI use.
 
