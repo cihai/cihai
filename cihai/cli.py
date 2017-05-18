@@ -3,6 +3,7 @@ from __future__ import (absolute_import, division, print_function,
                         with_statement)
 
 import logging
+import sys
 
 import click
 import yaml
@@ -48,6 +49,9 @@ def command_info(ctx, char):
     Unihan = c.base.classes.Unihan
     query = c.session.query(Unihan).filter_by(char=char).first()
     attrs = {}
+    if not query:
+        click.echo("No records found for %s" % char, err=True)
+        sys.exit()
     for c in query.__table__.columns._data.keys():
         value = getattr(query, c)
         if value:
@@ -72,6 +76,9 @@ def command_lookup(ctx, char):
     query = c.session.query(Unihan).filter(
         or_(*[column.contains(char) for column in columns])
     )
+    if not query.count():
+        click.echo("No records found for %s" % char, err=True)
+        sys.exit()
     for k in query:
         print('--------')
         attrs = {}
