@@ -23,10 +23,7 @@ seek, and retrieve data.
 You can override cihai's default storage and file directories via a config
 file.
 
-The default configuration is:
-
-.. literalinclude:: ../conf/default.yml
-    :language: yaml
+The default configuration is at :attr:`cihai.conf.DEFAULT_CONFIG`.
 
 Database configuration accepts any SQLAlchemy :sqlalchemy:ref:`database_urls`.
 If you're using a DB other than SQLite, such as Postgres, be sure to
@@ -60,9 +57,24 @@ replaced.
      logs: '$ENVVAR/logs'
 
 In the example above, Heroku's `DATABASE_URL <https://devcenter.heroku.com/articles/heroku-postgresql#establish-primary-db>`_
-is replaced as an environmental variable. The XDG variable for *user_cache_dir* is combined with *mydata/*, which makes the data stored deeper. The environmental variable *$ENVVAR* is also replaced.
+is replaced as an environmental variable. The XDG variable for *user_cache_dir*
+is combined with *mydata/*, which makes the data stored deeper. The
+environmental variable *$ENVVAR* is also replaced.
 
 You may point to a custom config with the ``-c`` argument,
 ``$ cihai -c path/to/config.yaml``.
+
+You can also override bootstrapping settings. The "unihan_options"
+dictinary in the configuration will be passed right to
+:ref:`unihan-tabular:index`'s :class:`unihan_tabular.process.Packager`:
+
+.. code-block:: yaml
+   
+   unihan_options:
+      source: 'https://custom-mirror.com/Unihan.zip'  # local paths work too
+      work_dir: '/path/to/unzip/files'
+      zip_path: '/path/to/store/Unihan.zip'
+      fields: ['kDefinition']  # and / or:
+      input_files: ['Unihan_Readings.txt']
 
 .. _psycopg: http://initd.org/psycopg/
