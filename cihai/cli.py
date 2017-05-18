@@ -47,13 +47,17 @@ def command_info(ctx, char):
     c = ctx.obj['c']
     Unihan = c.base.classes.Unihan
     query = c.session.query(Unihan).filter_by(char=char).first()
+    attrs = {}
     for c in query.__table__.columns._data.keys():
         value = getattr(query, c)
         if value:
             if PY2:
                 value = value.encode('utf-8')
 
-            print('{:>30} {:>60}'.format(c, value))
+            attrs[str(c)] = value
+    print(
+        yaml.safe_dump(attrs, allow_unicode=True, default_flow_style=False)
+    )
 
 
 @cli.command(name='lookup', short_help='Search character matching details')
