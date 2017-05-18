@@ -35,10 +35,8 @@ def zip_file(zip_path, fixture_path):
         _files += [os.path.join(
             fixture_path, f
         )]
-    print(_files)
     zf = zipfile.ZipFile(str(zip_path), 'a')
     for f in _files:
-        print(f)
         zf.write(f, os.path.basename(f))
     zf.close()
     return zf

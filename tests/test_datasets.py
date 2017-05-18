@@ -123,7 +123,7 @@ def test_insert_bad_fk():
         char_id='wat'
     ).execute()
 
-    print(wat)
+    assert wat
 
 
 def test_insert_on_foreign_key(chars):
@@ -150,4 +150,4 @@ def test_get_char_foreign_key_multiple(chars):
     )
 
     for char in char_fk_multiple:
-        print(char['char'])
+        assert char['char']
