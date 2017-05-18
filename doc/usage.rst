@@ -65,8 +65,10 @@ You may point to a custom config with the ``-c`` argument,
 ``$ cihai -c path/to/config.yaml``.
 
 You can also override bootstrapping settings. The "unihan_options"
-dictinary in the configuration will be passed right to
-:ref:`unihan-tabular:index`'s :class:`unihan_tabular.process.Packager`:
+dictionary in Cihai's configuration will be passed right to
+:ref:`unihan-tabular:index`'s :class:`unihan_tabular.process.Packager`
+``option`` param, which is then merged on top of unihan-tabular's default
+settings:
 
 .. code-block:: yaml
    
