@@ -6,8 +6,8 @@ access to `CJK`_ data
 This project is under active development. Follow our progress and check
 back for updates!
 
-Usage
------
+Installation
+------------
 
 .. code-block:: sh
 
@@ -88,7 +88,7 @@ Works with any field:
 
 .. code-block:: sh
 
-   $ cihao lookup hào
+   $ cihai lookup hào
 
    --------
    char: 好
