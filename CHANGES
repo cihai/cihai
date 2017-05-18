@@ -4,6 +4,10 @@ Changelog
 
 Here you can find the recent changes to cihai.
 
+- :release:`0.6.0 <2017-05-17>`
+- :feature:`-` Support for configuring logging via options and CLI
+- :support:`-` Convert all print statements to use logger
+
 - :release:`0.5.1 <2017-05-17>`
 - :support:`-` Python 2 CLI fix
 
