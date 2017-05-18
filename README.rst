@@ -89,7 +89,6 @@ Works with any field:
 .. code-block:: sh
 
    $ cihai lookup hào
-
    --------
    char: 好
    kCangjie: VND
