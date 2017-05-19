@@ -113,7 +113,7 @@ def main():
         virtualenv_bin = which('virtualenv', throw=False)
 
         subprocess.check_call(
-            [virtualenv_bin, '-ppython3.6', env_dir]
+            [virtualenv_bin, '-ppython3', env_dir]
         )
         subprocess.check_call(
             [pip_bin, 'install', '-e', project_dir]
