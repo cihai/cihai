@@ -8,11 +8,12 @@ import logging
 import os
 
 import kaptan
-from sqlalchemy import create_engine, MetaData
+from sqlalchemy import create_engine, MetaData, or_
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 
 from cihai import exc, bootstrap
+from cihai._compat import string_types
 from cihai.util import merge_dict
 from cihai.conf import DEFAULT_CONFIG, expand_config, dirs
 
@@ -138,3 +139,33 @@ class Cihai(object):
     def is_bootstrapped(self):
         """Return True if UNIHAN and database is set up."""
         return bootstrap.is_bootstrapped(self.metadata)
+
+    def lookup_char(self, char):
+        """Return character information from datasets.
+
+        :param char: character / string to lookup
+        :type char: str
+        :rtype: :class:`sqlalchemy.orm.query.Query`
+        :returns: list of matches
+        """
+        Unihan = self.base.classes.Unihan
+        return self.session.query(Unihan).filter_by(char=char)
+
+    def reverse_char(self, hints):
+        """Return QuerySet of objects from SQLAlchemy of results.
+
+        :param hints: list of matches
+        :type hints: list of str
+        :rtype: :class:`sqlalchemy.orm.query.Query`
+        :returns: List of matching results
+        """
+        if isinstance(hints, string_types):
+            hints = [hints]
+
+        Unihan = self.base.classes.Unihan
+        columns = Unihan.__table__.columns
+        return self.session.query(Unihan).filter(
+            or_(*[
+                column.contains(hint) for column in columns for hint in hints
+            ])
+        )
