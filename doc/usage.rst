@@ -13,6 +13,8 @@ Installation
 
    $ pip install --user cihai
 
+.. _configuration:
+
 Configuration
 -------------
 
