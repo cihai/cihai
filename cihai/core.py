@@ -42,7 +42,7 @@ class Cihai(object):
         from cihai.bootstrap import bootstrap_unihan
 
         c = Cihai()
-        if not c.is_bootstrapped:
+        if not c.is_bootstrapped:  # download and install Unihan to db
             bootstrap_unihan(c.metadata)
 
     **Configuration templates:**
