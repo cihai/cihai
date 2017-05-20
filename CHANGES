@@ -4,6 +4,9 @@ Changelog
 
 Here you can find the recent changes to cihai.
 
+- :feature:`-` Support for character lookup and reverse lookup
+- :feature:`-` Code examples in */examples*
+
 - :release:`0.7.1 <2017-05-20>`
 - :support:`-` Readme updates and remove unused CLI module
 
