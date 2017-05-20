@@ -4,6 +4,9 @@ Changelog
 
 Here you can find the recent changes to cihai.
 
+- :release:`0.7.1 <2017-05-20>`
+- :support:`-` Readme updates and remove unused CLI module
+
 - :release:`0.7.0 <2017-05-20>`
 - :support:`-` Split CLI functionality into `cihai-cli
   <https://cihai-cli.git-pull.com>`_.
