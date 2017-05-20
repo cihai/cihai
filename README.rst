@@ -1,5 +1,4 @@
-*cihai* - United front to provide open, accessible, and standardized
-access to `CJK`_ data
+*cihai* - Python library for `CJK`_ (chinese, japanese, korean) data
 
 |pypi| |docs| |build-status| |coverage| |license|
 
@@ -9,12 +8,22 @@ back for updates!
 Installation
 ------------
 
+Python library only:
+
 .. code-block:: sh
 
    $ pip install --user cihai
 
+CLI utility:
+
+.. code-block:: sh
+
+   $ pip install --user cihai_cli
+
 Command line
 """"""""""""
+
+For command line tool, see `cihai-cli`_.
 
 Character lookup:
 
@@ -200,3 +209,4 @@ tests           .. code-block:: bash
 .. _UNIHAN: http://unicode.org/charts/unihan.html
 .. _variants: http://www.unicode.org/reports/tr38/tr38-21.html#N10211
 .. _cihai.conversion: http://cihai.git-pull.com/en/latest/api.html#conversion
+.. _cihai-cli: https://cihai-cli.git-pull.com
