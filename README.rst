@@ -39,8 +39,7 @@ CLI front-end (`cihai-cli`_)
    ucn: U+597D
 
    # reverse lookup
-   $ cihai lookup library
-   --------
+   $ cihai reverse library
    char: 圕
    kCangjie: WLGA
    kCantonese: syu1
@@ -49,6 +48,7 @@ CLI front-end (`cihai-cli`_)
    kMandarin: tú
    kTotalStrokes: '13'
    ucn: U+5715
+   --------
 
 Quick links
 -----------
