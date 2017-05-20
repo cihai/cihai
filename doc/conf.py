@@ -25,7 +25,6 @@ extensions = [
     'sphinx.ext.todo',
     'releases',
     'alabaster',
-    'sphinx_click.ext',           # sphinx-click
 ]
 
 releases_unstable_prehistory = True

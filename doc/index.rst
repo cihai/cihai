@@ -11,7 +11,6 @@ cihai
 
     features
     usage
-    cli
     datasets
     api
     troubleshooting
