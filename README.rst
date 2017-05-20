@@ -44,6 +44,8 @@ CLI front-end (`cihai-cli`_)
 
    $ pip install --user cihai-cli
 
+.. code-block:: sh
+
    # character lookup
    $ cihai info 好
    char: 好
