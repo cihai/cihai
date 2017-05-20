@@ -4,6 +4,11 @@ Changelog
 
 Here you can find the recent changes to cihai.
 
+- :release:`0.7.0 <2017-05-20>`
+- :support:`-` Split CLI functionality into `cihai-cli
+  <https://cihai-cli.git-pull.com>`_.
+- :support:`-` Update classifiers / metadata in setup.py
+
 - :release:`0.6.1 <2017-05-17>`
 - :feature:`-` Initial support for reverse lookups
 - :support:`-` Output cli in basic yaml
