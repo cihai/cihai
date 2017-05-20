@@ -16,4 +16,4 @@ glyph = query.first()
 print("lookup for 好: %s" % glyph.kDefinition)
 
 query = c.reverse_char('good')
-print('matches for "good": %s ' % ', '.join([glyph_.char for glyph_ in query]))
+print('matches for "good": %s ' % ', '.join([glph.char for glph in query]))
