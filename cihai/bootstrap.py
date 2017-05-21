@@ -11,6 +11,7 @@ from unihan_tabular import process as unihan
 
 UNIHAN_FILES = [
     'Unihan_DictionaryLikeData.txt',
+    'Unihan_IRGSources.txt',
     'Unihan_NumericValues.txt',
     'Unihan_RadicalStrokeCounts.txt',
     'Unihan_Readings.txt', 'Unihan_Variants.txt'
