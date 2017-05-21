@@ -9,6 +9,7 @@
 # For documentation, see http://www.unicode.org/reports/tr44/
 #
 # This file contains data on the following fields from the Unihan database:
+#	kCompatibilityVariant
 #	kIICore
 #	kIRG_GSource
 #	kIRG_HSource
@@ -58,5 +59,6 @@ U+3408	kIRG_KSource	K3-2124
 U+3409	kIRG_KSource	K3-2125
 U+340A	kIRG_KSource	K3-2126
 U+340B	kIRG_KSource	K3-2127
+U+F900	kCompatibilityVariant	U+8C48
 
 # EOF
