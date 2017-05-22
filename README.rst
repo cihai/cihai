@@ -72,6 +72,15 @@ CLI front-end (`cihai-cli`_)
    ucn: U+5715
    --------
 
+No library, just data
+"""""""""""""""""""""
+
+All datasets that cihai uses have stand-alone tools to export their data.
+No library required.
+
+- `unihan-tabular <https://unihan-tabular.git-pull.com>`_ - `UNIHAN`_ data
+  exports for csv, yaml and json.
+
 Quick links
 -----------
 
