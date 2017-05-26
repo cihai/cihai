@@ -101,7 +101,7 @@ intersphinx_mapping = {
     'sqlalchemy': ('http://docs.sqlalchemy.org/en/latest/', None),
     'pandas': ('http://pandas.pydata.org/pandas-docs/stable', None),
 
-    'unihan-tabular': ('https://unihan-tabular.git-pull.com/en/latest/', None)
+    'unihan-etl': ('https://unihan-etl.git-pull.com/en/latest/', None)
 }
 
 autodoc_member_order = 'groupwise'

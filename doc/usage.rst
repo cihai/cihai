@@ -68,8 +68,8 @@ You may point to a custom config with the ``-c`` argument,
 
 You can also override bootstrapping settings. The "unihan_options"
 dictionary in Cihai's configuration will be passed right to
-:ref:`unihan-tabular:index`'s :class:`unihan_tabular.process.Packager`
-``option`` param, which is then merged on top of unihan-tabular's default
+:ref:`unihan-etl:index`'s :class:`unihan_etl.process.Packager`
+``option`` param, which is then merged on top of unihan-etl's default
 settings:
 
 .. code-block:: yaml
