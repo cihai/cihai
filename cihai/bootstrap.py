@@ -5,8 +5,8 @@ from __future__ import (absolute_import, print_function, unicode_literals,
 from .util import merge_dict
 from sqlalchemy import Column, String, Table
 
-from unihan_tabular.process import UNIHAN_MANIFEST
-from unihan_tabular import process as unihan
+from unihan_etl.process import UNIHAN_MANIFEST
+from unihan_etl import process as unihan
 
 
 UNIHAN_FILES = [
@@ -31,16 +31,17 @@ UNIHAN_FIELDS = [
     'kZVariant'
 ]
 
-UNIHAN_TABULAR_DEFAULT_OPTIONS = {
+UNIHAN_ETL_DEFAULT_OPTIONS = {
     'input_files': UNIHAN_FILES,
     'fields': UNIHAN_FIELDS,
-    'format': 'python'
+    'format': 'python',
+    'expand': False
 }
 
 
 def bootstrap_unihan(metadata, options={}):
     """Download, extract and import unihan to database."""
-    options = merge_dict(UNIHAN_TABULAR_DEFAULT_OPTIONS.copy(), options)
+    options = merge_dict(UNIHAN_ETL_DEFAULT_OPTIONS.copy(), options)
 
     p = unihan.Packager(options)
     p.download()
