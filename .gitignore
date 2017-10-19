@@ -46,3 +46,6 @@ doc/_build
 .idea
 
 .DS_Store
+
+.cache/
+.eggs/
