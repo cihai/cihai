@@ -1,7 +1,5 @@
 .. _api:
 
-.. module:: cihai
-
 ===
 API
 ===
