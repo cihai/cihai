@@ -1,4 +1,4 @@
-sqlalchemy==1.2.1
+sqlalchemy==1.2.2
 kaptan==0.5.9
 colorama==0.3.9 # Updated from 0.3.7
 appdirs==1.4.3
