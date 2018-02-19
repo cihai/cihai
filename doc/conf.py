@@ -70,9 +70,13 @@ html_theme_options = {
     'projects': alagitpull.projects,
     'project_name': about['__title__'],
 }
-
-html_theme_path = ['_themes']
 html_static_path = ['_static']
+
+alagitpull_internal_hosts = [
+    'cihai.git-pull.com',
+    '0.0.0.0',
+]
+alagitpull_external_hosts_new_window = True
 
 htmlhelp_basename = '%sdoc' % about['__title__']
 

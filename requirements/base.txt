@@ -1,5 +1,5 @@
 sqlalchemy==1.2.3
 kaptan==0.5.9
-colorama==0.3.9 # Updated from 0.3.7
+colorama==0.3.9
 appdirs==1.4.3
 unihan-etl==0.9.5
