@@ -48,4 +48,5 @@ doc/_build
 .DS_Store
 
 .cache/
+.pytest_cache/
 .eggs/
