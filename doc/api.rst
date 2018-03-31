@@ -7,6 +7,12 @@ API
 .. automodule:: cihai.core
     :members:
 
+Bootstrapping
+-------------
+
+.. automodule:: cihai.bootstrap
+    :members:
+
 Configuration
 -------------
 
