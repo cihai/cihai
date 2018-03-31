@@ -83,13 +83,17 @@ def is_bootstrapped(metadata):
 def create_unihan_table(columns, metadata):
     """Create table and return  :class:`sqlalchemy.Table`.
 
-    :param columns: columns for table, i.e. ['kDefinition', 'kCantonese']
-    :type columns: list
-    :param metadata: Instance of sqlalchemy metadata
-    :type metadata: :class:`sqlalchemy.schema.MetaData`
-    :returns: Newly created table with columns and index.
-    :rtype: :class:`sqlalchemy.schema.Table`
+    Parameters
+    ----------
+    columns : list
+        columns for table, e.g. ``['kDefinition', 'kCantonese']``
+    metadata : :class:`sqlalchemy.schema.MetaData`
+        Instance of sqlalchemy metadata
 
+    Returns
+    -------
+    :class:`sqlalchemy.schema.Table` :
+        Newly created table with columns and index.
     """
 
     if TABLE_NAME not in metadata.tables:
