@@ -1,6 +1,5 @@
 # -*- coding: utf8 - *-
 """Cihai core functionality."""
-
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals, with_statement)
 
@@ -22,15 +21,30 @@ log = logging.getLogger(__name__)
 
 class Cihai(object):
 
-    """Cihai application object.
+    """
+    Central application object.
 
-    Inspired by the early `pypa/warehouse`_ applicaton object.
+    Notes
+    -----
 
-    **Invocation from python:**
+    Inspired by the early pypa/warehouse applicaton object [1]_.
 
-    Note: For Cihai to be used properly, it must be first bootstrapped with
-    the UNIHAN database. :attr:`~cihai.core.Cihai.is_bootstrapped`
-    to return if the database is installed for the app's configuration
+    **Configuration templates**
+
+    The ``config`` :py:class:`dict` parameter supports a basic template system
+    for replacing :term:`XDG Base Directory` directory variables, tildes
+    and environmentas variables. This is done by passing the option dict
+    through :func:`cihai.conf.expand_config` during initialization.
+
+    Examples
+    --------
+
+    **Invocation from Python**
+
+    Cihai must be bootstrapped with data from the UNIHAN [2]_ database.
+
+    :attr:`~cihai.core.Cihai.is_bootstrapped` can check if the system has the
+    database installed. It checks against the application's configuration
     settings.
 
     To bootstrap the cihai environment programatically, create the Cihai
@@ -53,15 +67,13 @@ class Cihai(object):
         query = c.reverse_char('good')
         print(', '.join([glyph_.char for glyph_ in query]))
 
-    **Configuration templates:**
+    References
+    ----------
 
-    The ``config`` :py:class:`dict` parameter supports a basic template system
-    for replacing :term:`XDG Base Directory` directory variables, tildes
-    and environmentas variables. This is done by passing the option dict
-    through :func:`cihai.conf.expand_config` during initialization.
-
-    .. _pypa/warehouse: https://github.com/pypa/warehouse
-
+    .. [1] UNICODE HAN DATABASE (UNIHAN) documentation.
+       https://www.unicode.org/reports/tr38/. Accessed March 31st, 2018.
+    .. [2] PyPA Warehouse on GitHub. https://github.com/pypa/warehouse.
+       Accessed sometime in 2013.
     """
 
     #: :class:`sqlalchemy.engine.Engine` instance.
@@ -83,7 +95,6 @@ class Cihai(object):
     default_config = DEFAULT_CONFIG
 
     def __init__(self, config={}):
-
         # Merge custom configuration settings on top of defaults
         self.config = merge_dict(self.default_config, config)
 
@@ -102,7 +113,8 @@ class Cihai(object):
         self.session = Session(self.engine)
 
     def reflect_db(self):
-        """No-op to reflect db info.
+        """
+        No-op to reflect db info.
 
         This is available as a method so the database can be reflected
         outside initialization (such bootstrapping unihan during CLI usage).
@@ -113,12 +125,18 @@ class Cihai(object):
 
     @classmethod
     def from_file(cls, config_path=None, *args, **kwargs):
-        """Create a Cihai instance from a JSON or YAML config.
+        """
+        Create a Cihai instance from a JSON or YAML config.
 
-        :param config_path: path to custom config file
-        :type config_path: str
-        :rtype: :class:`Cihai`
+        Parameters
+        ----------
+        config_path : str, optional
+            path to custom config file
 
+        Returns
+        -------
+        :class:`Cihai` :
+            application object
         """
 
         config_reader = kaptan.Kaptan()
@@ -145,16 +163,27 @@ class Cihai(object):
 
     @property
     def is_bootstrapped(self):
-        """Return True if UNIHAN and database is set up."""
+        """Return True if UNIHAN and database is set up.
+
+        Returns
+        -------
+        bool :
+            True if Unihan application fixture data installed.
+        """
         return bootstrap.is_bootstrapped(self.metadata)
 
     def lookup_char(self, char):
         """Return character information from datasets.
 
-        :param char: character / string to lookup
-        :type char: str
-        :rtype: :class:`sqlalchemy.orm.query.Query`
-        :returns: list of matches
+        Parameters
+        ----------
+        char : str
+            character / string to lookup
+
+        Returns
+        -------
+        :class:`sqlalchemy.orm.query.Query` :
+            list of matches
         """
         Unihan = self.base.classes.Unihan
         return self.session.query(Unihan).filter_by(char=char)
@@ -162,10 +191,15 @@ class Cihai(object):
     def reverse_char(self, hints):
         """Return QuerySet of objects from SQLAlchemy of results.
 
-        :param hints: list of matches
-        :type hints: list of str
-        :rtype: :class:`sqlalchemy.orm.query.Query`
-        :returns: List of matching results
+        Parameters
+        ----------
+        hints: list of str
+            strings to lookup
+
+        Returns
+        -------
+        :class:`sqlalchemy.orm.query.Query` :
+            reverse matches
         """
         if isinstance(hints, string_types):
             hints = [hints]

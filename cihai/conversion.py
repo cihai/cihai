@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-"""Conversion functions between various Chinese encodings and representations.
+"""
+Conversion functions between various Chinese encodings and representations.
 
-cihai.conversion
-~~~~~~~~~~~~~~~~
-
+Notes
+-----
 Original methods and docs based upon `ltchinese`_, license `MIT`_ Steven
 Kryskalla.
 
@@ -60,7 +60,6 @@ See these resources for more information:
 .. _conversion.py @9227813: https://bitbucket.org/lost_theory/ltchinese/raw/9227813/ltchinese/conversion.py
 
 """
-
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals, with_statement)
 
@@ -73,13 +72,15 @@ log = logging.getLogger(__name__)
 
 
 def hexd(n):
-    """Return the hex digits (strip '0x' at the beginning)."""
+    """Return hex digits (strip '0x' at the beginning)."""
     return hex(n)[2:]
 
 
 def kuten_to_gb2312(kuten):
-    """Convert GB kuten / quwei form (94 zones * 94 points) to GB2312-1980 /
-    ISO-2022-CN hex (internal representation)"""
+    """
+    Convert GB kuten / quwei form (94 zones * 94 points) to GB2312-1980 /
+    ISO-2022-CN hex (internal representation)
+    """
     zone, point = int(kuten[:2]), int(kuten[2:])
     hi, lo = hexd(zone + 0x20), hexd(point + 0x20)
 
@@ -90,8 +91,10 @@ def kuten_to_gb2312(kuten):
 
 
 def gb2312_to_euc(gb2312hex):
-    """Convert GB2312-1980 hex (internal representation) to EUC-CN hex
-    (the "external encoding")"""
+    """
+    Convert GB2312-1980 hex (internal representation) to EUC-CN hex (the
+    "external encoding")
+    """
     hi, lo = int(gb2312hex[:2], 16), int(gb2312hex[2:], 16)
     hi, lo = hexd(hi + 0x80), hexd(lo + 0x80)
 
@@ -101,7 +104,9 @@ def gb2312_to_euc(gb2312hex):
 
 
 def euc_to_python(hexstr):
-    """Convert a EUC-CN (GB2312) hex to a Python unicode string"""
+    """
+    Convert a EUC-CN (GB2312) hex to a Python unicode string.
+    """
     hi = hexstr[0:2]
     lo = hexstr[2:4]
     gb_enc = b'\\x' + hi + b'\\x' + lo
@@ -109,7 +114,9 @@ def euc_to_python(hexstr):
 
 
 def euc_to_utf8(euchex):
-    """Convert EUC hex (e.g. "d2bb") to UTF8 hex (e.g. "e4 b8 80")"""
+    """
+    Convert EUC hex (e.g. "d2bb") to UTF8 hex (e.g. "e4 b8 80").
+    """
     utf8 = euc_to_python(euchex).encode("utf-8")
     uf8 = utf8.decode('unicode_escape')
 
@@ -120,8 +127,10 @@ def euc_to_utf8(euchex):
 
 
 def ucn_to_unicode(ucn):
-    """Convert a Unicode Universal Character Number (e.g. "U+4E00" or "4E00")
-    to Python unicode (u'\\u4e00')"""
+    """
+    Convert a Unicode Universal Character Number (e.g. "U+4E00" or "4E00") to
+    Python unicode (u'\\u4e00')
+    """
     if isinstance(ucn, string_types):
         ucn = ucn.strip("U+")
         if len(ucn) > int(4):
@@ -138,26 +147,32 @@ def ucn_to_unicode(ucn):
 
 
 def euc_to_unicode(hexstr):
-    """Return EUC-CN (GB2312) hex to a Python unicode.
+    """
+    Return EUC-CN (GB2312) hex to a Python unicode.
 
-    :param hexstr: bytestring
-    :returns: Python unicode  e.g. ``u'\\u4e00'`` / '一'.
-    :rtype: unicode
+    Parameters
+    ----------
+    hexstr : bytes
 
-    .. code-block:: python
+    Returns
+    -------
+    unicode :
+        Python unicode  e.g. ``u'\\u4e00'`` / '一'.
 
-        '\xd2\xbb'
-        >>> u'\u4e00'.encode('gb2312').decode('utf-8')
-        u'\u04bb'
-        >>> (b'\\x' + b'd2' + b'\\x' + b'bb').replace('\\x', '') \\
-        ... .decode('hex').decode('utf-8')
-        u'\u04bb'
+    Examples
+    --------
 
-        # bytes won't have ``.replace``.
-        gb_enc = gb_enc.replace('\\x', '').decode('hex')
+    >>> u'\u4e00'.encode('gb2312').decode('utf-8')
+    u'\u04bb'
 
-        gb_enc.decode('string_escape')  # Won't work with Python 3.x.
+    >>> (b'\\x' + b'd2' + b'\\x' + b'bb').replace('\\x', '') \\
+    ... .decode('hex').decode('utf-8')
+    u'\u04bb'
 
+    Note: bytes don't have a ``.replace``:
+
+    >>> gb_enc = gb_enc.replace('\\x', '').decode('hex')
+    >>> gb_enc.decode('string_escape')  # Won't work with Python 3.x.
     """
     hi = hexstr[0:2]
     lo = hexstr[2:4]
@@ -181,11 +196,11 @@ def euc_to_unicode(hexstr):
 
 
 def python_to_ucn(uni_char, as_bytes=False):
-    """Return UCN character from Python Unicode character.
+    """
+    Return UCN character from Python Unicode character.
 
     Converts a one character Python unicode string (e.g. u'\\u4e00') to the
     corresponding Unicode UCN ('U+4E00').
-
     """
     ucn = uni_char.encode('unicode_escape').decode('latin1')
     ucn = text_type(ucn).replace('\\', '').upper().lstrip('U')
@@ -201,13 +216,12 @@ def python_to_ucn(uni_char, as_bytes=False):
 
 
 def python_to_euc(uni_char, as_bytes=False):
-    """Return EUC character from a Python Unicode character.
+    """
+    Return EUC character from a Python Unicode character.
 
     Converts a one character Python unicode string (e.g. u'\\u4e00') to the
     corresponding EUC hex ('d2bb').
-
     """
-
     euc = repr(uni_char.encode("gb2312"))[1:-1].replace("\\x", "").strip("'")
 
     if as_bytes:
@@ -226,7 +240,8 @@ def ucnstring_to_unicode(ucn_string):
 
 
 def ucnstring_to_python(ucn_string):
-    """Return string with Unicode UCN (e.g. "U+4E00") to native Python Unicode
+    """
+    Return string with Unicode UCN (e.g. "U+4E00") to native Python Unicode
     (u'\\u4e00').
     """
     res = re.findall("U\+[0-9a-fA-F]*", ucn_string)

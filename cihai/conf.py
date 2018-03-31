@@ -30,7 +30,16 @@ DEFAULT_CONFIG = {
 
 
 def expand_config(d):
-    """Expand configuration XDG variables.
+    """
+    Expand configuration XDG variables.
+
+    Parameters
+    ----------
+    d : dict
+        config information
+
+    Notes
+    -----
 
     *Environmentable variables* are expanded via :py:func:`os.path.expandvars`.
     So ``${PWD}`` would be replaced by the current PWD in the shell,
@@ -45,9 +54,6 @@ def expand_config(d):
     - ``{user_log_dir}``
     - ``{site_config_dir}``
     - ``{site_data_dir}``
-
-    :param d: dictionary of config info
-    :type d: dict
     """
     context = {
         'user_cache_dir': dirs.user_cache_dir,
