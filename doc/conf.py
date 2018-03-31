@@ -21,6 +21,7 @@ with open("../cihai/__about__.py") as fp:
 
 extensions = [
     'sphinx.ext.autodoc',
+    'sphinxcontrib.napoleon',
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
     'releases',
