@@ -9,9 +9,10 @@ alagitpull = "==0.0.19"
 isort = "==4.3.4"
 "flake8" = "==3.5.0"
 vulture = "==0.26"
-pytest = "==3.4.0"
-releases = "==1.4.0"
-sphinx = "==1.7.0"
+pytest = "==3.5.0"
+releases = "==1.4.1"
+sphinx = "==1.7.2"
+sphinxcontrib-napoleon = "==0.6.1"
 
 
 [packages]
