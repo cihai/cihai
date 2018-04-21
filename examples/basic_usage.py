@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf8 - *-
 
-from __future__ import unicode_literals, print_function
+from __future__ import print_function, unicode_literals
 
-from cihai.core import Cihai
 from cihai.bootstrap import bootstrap_unihan
+from cihai.core import Cihai
 
 c = Cihai()
 if not c.is_bootstrapped:  # download and install Unihan to db

@@ -6,8 +6,7 @@ test.conversion
 
 """
 
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals, with_statement)
+from __future__ import absolute_import, print_function, unicode_literals
 
 from cihai import conversion
 from cihai._compat import string_types, text_type

@@ -66,12 +66,11 @@ Last edited Dec 6, 2013 at 8:09 PM by gavingrover, version 3
 
 """
 
-from __future__ import absolute_import, division, print_function, \
-    with_statement, unicode_literals
+from __future__ import absolute_import, print_function, unicode_literals
 
 import logging
 
-__copyright__ = 'Copyright 2013 Tony Narlock.'
-__license__ = 'BSD, see LICENSE for details.'
+__copyright__ = 'Copyright 2013-2018 Tony Narlock.'
+__license__ = 'MIT, see LICENSE for details.'
 
 log = logging.getLogger(__name__)

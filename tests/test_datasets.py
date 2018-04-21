@@ -9,15 +9,15 @@ settings found in ``test_config.yml``.
 
 """
 
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals, with_statement)
+from __future__ import absolute_import, print_function, unicode_literals
 
 import random
+
+import pytest
 
 import sqlalchemy
 from sqlalchemy import MetaData
 
-import pytest
 from cihai import conversion
 from cihai._compat import unichr
 

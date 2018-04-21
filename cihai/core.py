@@ -1,20 +1,19 @@
 # -*- coding: utf8 - *-
 """Cihai core functionality."""
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals, with_statement)
+from __future__ import absolute_import, print_function, unicode_literals
 
 import logging
 import os
 
 import kaptan
-from sqlalchemy import create_engine, MetaData, or_
+from sqlalchemy import MetaData, create_engine, or_
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 
-from cihai import exc, bootstrap
+from cihai import bootstrap, exc
 from cihai._compat import string_types
+from cihai.conf import DEFAULT_CONFIG, dirs, expand_config
 from cihai.util import merge_dict
-from cihai.conf import DEFAULT_CONFIG, expand_config, dirs
 
 log = logging.getLogger(__name__)
 

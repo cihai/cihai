@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from cihai import exc
 import pytest
+
+from cihai import exc
 
 
 def test_base_exception():

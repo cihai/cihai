@@ -60,8 +60,7 @@ See these resources for more information:
 .. _conversion.py @9227813: https://bitbucket.org/lost_theory/ltchinese/raw/9227813/ltchinese/conversion.py
 
 """
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals, with_statement)
+from __future__ import absolute_import, print_function, unicode_literals
 
 import logging
 import re
