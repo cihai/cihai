@@ -4,6 +4,8 @@ Changelog
 
 Here you can find the recent changes to cihai.
 
+- :support:`-` Move documentation over to numpy-style
+
 - :release:`0.7.4 <2017-05-26>`
 - :support:`-` bump unihan-tabular 0.8.1 to unihan-etl 0.9.0
 
