@@ -62,7 +62,7 @@ path used to store the SQLite file, is customizable.
 Relational backend
 ------------------
 
-cihai will be bowered by a relational database backend.
+cihai will be powered by a relational database backend.
 
 Most python distributions include support for `SQLite`_, which in
 conjunction with :ref:`zero configuration <zero_config>`, makes for data
@@ -128,7 +128,7 @@ Data liberation
 ---------------
 
 CC-0, MIT, ISC, BSD. Data sets should be available under licenses free
-from unintended side effects of derivitive creation.
+from unintended side effects of derivative creation.
 
 .. _SQLite: https://sqlite.org/
 .. _pandas: http://pandas.pydata.org/
