@@ -4,6 +4,7 @@ Changelog
 
 Here you can find the recent changes to cihai.
 
+- :release:`0.8.0 <2018-06-23>`
 - :support:`-` Update unihan-etl to 0.9.0 to 0.9.5
 - :support:`-` Base package updates
 
