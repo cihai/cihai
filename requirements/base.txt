@@ -1,5 +1,5 @@
-sqlalchemy==1.2.9
-kaptan==0.5.10
-colorama==0.3.9
-appdirs==1.4.3
-unihan-etl==0.9.5
+sqlalchemy>=1.2.9,<2
+kaptan>=0.5.10,<0.6
+colorama>=0.3.9,<0.4
+appdirs>=1.4.3,<1.5
+unihan-etl>=0.9.5,<1.0
