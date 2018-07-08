@@ -1,27 +1,25 @@
 [[source]]
-url = "https://pypi.python.org/simple"
+url = "https://pypi.org/simple"
 verify_ssl = true
 name = "pypi"
 
 [dev-packages]
 alagitpull = "==0.0.21"
+releases = "==1.6.0"
+sphinxcontrib-napoleon = "==0.6.1"
+Sphinx = "==1.7.5"
 isort = "==4.3.4"
 "flake8" = "==3.5.0"
 vulture = "==0.28"
 pytest = "==3.6.3"
-releases = "==1.6.0"
-sphinxcontrib-napoleon = "==0.6.1"
-Sphinx = "==1.7.5"
-kaptan = "==0.5.9"
-colorama = "==0.3.9"
-appdirs = "==1.4.3"
-unihan-etl = "==0.9.5"
-SQLAlchemy = "==1.2.8"
+cihai = {path = ".", editable = true}
 
 [packages]
-"e1839a8" = {path = ".", editable = true}
-kaptan = "<0.6,>=0.5.10"
+kaptan = ">=0.5.10,<0.6"
 colorama = "<0.4,>=0.3.9"
 appdirs = "<1.5,>=1.4.3"
 unihan-etl = "<1.0,>=0.9.5"
-SQLAlchemy = "<2,>=1.2.9"
+SQLAlchemy = ">=1.2.9,<2"
+
+[requires]
+python_version = "3.6"
