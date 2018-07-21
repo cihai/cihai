@@ -4,6 +4,18 @@ Changelog
 
 Here you can find the recent changes to cihai.
 
+- :release:`0.8.1 <2018-07-21>`
+- :support:`-` Loosen kaptan requirement to greater than 0.5.10, less than
+  0.6
+
+  This should fix issues with pyyaml, as well as downstream with
+  cihai-cli.
+- :support:`-` Loosen other version requirements to avoid entanglements
+  downstream in the future.
+- :support:`-` Update Sphinx to 1.7.5 to 1.7.6
+- :support:`-` Update releases to 1.6.0 to 1.6.1
+- :support:`-` Update and sync Pipfile
+
 - :release:`0.8.0 <2018-06-23>`
 - :support:`-` Update unihan-etl to 0.9.0 to 0.9.5
 - :support:`-` Base package updates
