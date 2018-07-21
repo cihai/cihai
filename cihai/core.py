@@ -13,6 +13,7 @@ from sqlalchemy.orm import Session
 from cihai import bootstrap, exc
 from cihai._compat import string_types
 from cihai.config import DEFAULT_CONFIG, dirs, expand_config
+from cihai.unihan import mk_unihan
 from cihai.utils import merge_dict
 
 log = logging.getLogger(__name__)
@@ -120,6 +121,7 @@ class Cihai(object):
         """
         self.metadata.reflect(views=True, extend_existing=True)
         self.base = automap_base(metadata=self.metadata)
+        mk_unihan(self.base)
         self.base.prepare()
 
     @classmethod
@@ -209,3 +211,22 @@ class Cihai(object):
         return self.session.query(Unihan).filter(
             or_(*[column.contains(hint) for column in columns for hint in hints])
         )
+
+    def with_fields(self, *fields):
+        """Returns list of characters with information for certain fields.
+
+        Parameters
+        ----------
+        *fields : list of str
+            fields for which information should be available
+
+        Returns
+        -------
+        :class:`sqlalchemy.orm.query.Query` :
+            list of matches
+        """
+        Unihan = self.base.classes.Unihan
+        query = self.session.query(Unihan)
+        for field in fields:
+            query = query.filter(column(field).isnot(None))
+        return query
