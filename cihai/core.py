@@ -6,7 +6,7 @@ import logging
 import os
 
 import kaptan
-from sqlalchemy import MetaData, create_engine, or_
+from sqlalchemy import Column, MetaData, create_engine, or_
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 
@@ -121,8 +121,16 @@ class Cihai(object):
         """
         self.metadata.reflect(views=True, extend_existing=True)
         self.base = automap_base(metadata=self.metadata)
-        mk_unihan(self.base)
         self.base.prepare()
+        if hasattr(self.base.classes, 'Unihan'):
+            from .conversion import parse_vars, parse_untagged
+
+            self.base.classes.Unihan.tagged_vars = lambda self, col: parse_vars(
+                getattr(self, col)
+            )
+            self.base.classes.Unihan.untagged_vars = lambda self, col: parse_untagged(
+                getattr(self, col)
+            )
 
     @classmethod
     def from_file(cls, config_path=None, *args, **kwargs):
@@ -228,5 +236,5 @@ class Cihai(object):
         Unihan = self.base.classes.Unihan
         query = self.session.query(Unihan)
         for field in fields:
-            query = query.filter(column(field).isnot(None))
+            query = query.filter(Column(field).isnot(None))
         return query
