@@ -25,9 +25,7 @@ def test_config_dict_args():
 
     expected = 'world'
 
-    app = Cihai({
-        'hello': expected
-    })
+    app = Cihai({'hello': expected})
 
     result = app.config['hello']
 
@@ -45,6 +43,7 @@ def test_unihan_options(unihan_options, test_config_file):
     bootstrap.bootstrap_unihan(app.metadata, unihan_options)
     assert 'Unihan' in app.metadata.tables
     assert app.metadata.tables['Unihan'].columns
-    assert set(app.metadata.tables['Unihan'].columns.keys()) == \
-        set(bootstrap.UNIHAN_FIELDS + ['ucn', 'char'])
+    assert set(app.metadata.tables['Unihan'].columns.keys()) == set(
+        bootstrap.UNIHAN_FIELDS + ['ucn', 'char']
+    )
     assert bootstrap.is_bootstrapped(app.metadata)

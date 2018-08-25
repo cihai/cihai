@@ -26,7 +26,7 @@ else:
     unichr = chr
     text_type = str
     string_types = (str,)
-    integer_types = (int, )
+    integer_types = (int,)
 
     from io import StringIO, BytesIO
 
@@ -45,5 +45,5 @@ else:
 
     def reraise(tp, value, tb=None):
         if value.__traceback__ is not tb:
-            raise(value.with_traceback(tb))
+            raise (value.with_traceback(tb))
         raise value

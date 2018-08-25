@@ -45,10 +45,7 @@ def test_ucn_from_unicode():
 
     assert conversion.python_to_ucn(python_unicode) == expected
     assert isinstance(conversion.python_to_ucn(python_unicode), text_type)
-    assert isinstance(
-        conversion.python_to_ucn(python_unicode, as_bytes=True),
-        bytes
-    )
+    assert isinstance(conversion.python_to_ucn(python_unicode, as_bytes=True), bytes)
 
     assert conversion.python_to_ucn(text, as_bytes=True) == bytes_expected
 
@@ -61,14 +58,8 @@ def test_ucn_from_unicode_16():
     bytes_expected = b"U+26100"
 
     assert conversion.python_to_ucn(python_unicode) == expected
-    assert isinstance(
-        conversion.python_to_ucn(python_unicode),
-        text_type
-    )
-    assert isinstance(
-        conversion.python_to_ucn(python_unicode, as_bytes=True),
-        bytes
-    )
+    assert isinstance(conversion.python_to_ucn(python_unicode), text_type)
+    assert isinstance(conversion.python_to_ucn(python_unicode, as_bytes=True), bytes)
 
     assert conversion.python_to_ucn(text, as_bytes=True) == bytes_expected
 

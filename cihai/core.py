@@ -145,14 +145,15 @@ class Cihai(object):
         if config_path:
             if not os.path.exists(config_path):
                 raise exc.CihaiException(
-                    '{0} does not exist.'.format(os.path.abspath(config_path)))
+                    '{0} does not exist.'.format(os.path.abspath(config_path))
+                )
             if not any(
-                config_path.endswith(ext) for ext in
-                ('json', 'yml', 'yaml', 'ini')
+                config_path.endswith(ext) for ext in ('json', 'yml', 'yaml', 'ini')
             ):
                 raise exc.CihaiException(
-                    '{0} does not have a yaml,yml,json,ini extension.'
-                    .format(os.path.abspath(config_path))
+                    '{0} does not have a yaml,yml,json,ini extension.'.format(
+                        os.path.abspath(config_path)
+                    )
                 )
             else:
                 custom_config = config_reader.import_config(config_path).get()
@@ -206,7 +207,5 @@ class Cihai(object):
         Unihan = self.base.classes.Unihan
         columns = Unihan.__table__.columns
         return self.session.query(Unihan).filter(
-            or_(*[
-                column.contains(hint) for column in columns for hint in hints
-            ])
+            or_(*[column.contains(hint) for column in columns for hint in hints])
         )

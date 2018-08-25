@@ -9,7 +9,7 @@ from cihai.core import Cihai
 c = Cihai()
 if not c.is_bootstrapped:  # download and install Unihan to db
     bootstrap_unihan(c.metadata)
-    c.reflect_db()         # automap new table created during bootstrap
+    c.reflect_db()  # automap new table created during bootstrap
 
 query = c.lookup_char('好')
 glyph = query.first()
