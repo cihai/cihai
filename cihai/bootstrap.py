@@ -88,7 +88,7 @@ def flatten_datasets(d):
 DEFAULT_COLUMNS = ['ucn', 'char']
 try:
     DEFAULT_FIELDS = [f for t, f in UNIHAN_MANIFEST.items() if t in ['Unihan']]
-except:
+except Exception:
     DEFAULT_FIELDS = [f for t, f in UNIHAN_MANIFEST.items()]
 
 
