@@ -35,8 +35,10 @@ def merge_dict(base, additional):
     if additional is None:
         return base
 
-    if not (isinstance(base, collections.Mapping)
-            and isinstance(additional, collections.Mapping)):
+    if not (
+        isinstance(base, collections.Mapping)
+        and isinstance(additional, collections.Mapping)
+    ):
         return additional
 
     merged = base

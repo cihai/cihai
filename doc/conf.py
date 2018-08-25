@@ -9,8 +9,7 @@ cwd = os.getcwd()
 project_root = os.path.dirname(cwd)
 
 sys.path.insert(0, project_root)
-sys.path.append(os.path.abspath(
-    os.path.join(os.path.dirname(__file__), "_ext")))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "_ext")))
 
 # package data
 about = {}
@@ -72,31 +71,41 @@ html_theme_options = {
 }
 html_static_path = ['_static']
 
-alagitpull_internal_hosts = [
-    'cihai.git-pull.com',
-    '0.0.0.0',
-]
+alagitpull_internal_hosts = ['cihai.git-pull.com', '0.0.0.0']
 alagitpull_external_hosts_new_window = True
 
 htmlhelp_basename = '%sdoc' % about['__title__']
 
 latex_documents = [
-    ('index', '{0}.tex'.format(about['__package_name__']),
-     '{0} Documentation'.format(about['__title__']),
-     about['__author__'], 'manual'),
+    (
+        'index',
+        '{0}.tex'.format(about['__package_name__']),
+        '{0} Documentation'.format(about['__title__']),
+        about['__author__'],
+        'manual',
+    )
 ]
 
 man_pages = [
-    ('index', about['__package_name__'],
-     '{0} Documentation'.format(about['__title__']),
-     about['__author__'], 1),
+    (
+        'index',
+        about['__package_name__'],
+        '{0} Documentation'.format(about['__title__']),
+        about['__author__'],
+        1,
+    )
 ]
 
 texinfo_documents = [
-    ('index', '{0}'.format(about['__package_name__']),
-     '{0} Documentation'.format(about['__title__']),
-     about['__author__'], about['__package_name__'],
-     about['__description__'], 'Miscellaneous'),
+    (
+        'index',
+        '{0}'.format(about['__package_name__']),
+        '{0} Documentation'.format(about['__title__']),
+        about['__author__'],
+        about['__package_name__'],
+        about['__description__'],
+        'Miscellaneous',
+    )
 ]
 
 intersphinx_mapping = {
@@ -104,8 +113,7 @@ intersphinx_mapping = {
     'sphinx': ('http://www.sphinx-doc.org/en/stable/', None),
     'sqlalchemy': ('http://docs.sqlalchemy.org/en/latest/', None),
     'pandas': ('http://pandas.pydata.org/pandas-docs/stable', None),
-
-    'unihan-etl': ('https://unihan-etl.git-pull.com/en/latest/', None)
+    'unihan-etl': ('https://unihan-etl.git-pull.com/en/latest/', None),
 }
 
 autodoc_member_order = 'groupwise'

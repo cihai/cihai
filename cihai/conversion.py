@@ -58,8 +58,7 @@ See these resources for more information:
 .. _ltchinese: https://bitbucket.org/lost_theory/ltchinese
 .. _MIT: https://bitbucket.org/lost_theory/ltchinese/src/9227813/LICENSE.txt
 .. _conversion.py @9227813: https://bitbucket.org/lost_theory/ltchinese/raw/9227813/ltchinese/conversion.py
-
-"""
+"""  # flake8: noqa: E501
 from __future__ import absolute_import, print_function, unicode_literals
 
 import logging
@@ -245,9 +244,7 @@ def ucnstring_to_python(ucn_string):
     """
     res = re.findall("U\+[0-9a-fA-F]*", ucn_string)
     for r in res:
-        ucn_string = ucn_string.replace(
-            text_type(r), text_type(ucn_to_unicode(r))
-        )
+        ucn_string = ucn_string.replace(text_type(r), text_type(ucn_to_unicode(r)))
 
     ucn_string = ucn_string.encode('utf-8')
 

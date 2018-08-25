@@ -9,23 +9,18 @@ from appdirs import AppDirs
 from cihai._compat import string_types
 
 #: XDG App directory locations
-dirs = AppDirs(
-    "cihai",      # appname
-    "cihai team"  # app author
-)
+dirs = AppDirs("cihai", "cihai team")  # appname  # app author
 
 
 #: Default configuration
 DEFAULT_CONFIG = {
     "debug": False,
-    "database": {
-        "url": 'sqlite:///{user_data_dir}/cihai.db'
-    },
+    "database": {"url": 'sqlite:///{user_data_dir}/cihai.db'},
     "dirs": {
         "cache": '{user_cache_dir}',
         "log": '{user_log_dir}',
-        "data": '{user_data_dir}'
-    }
+        "data": '{user_data_dir}',
+    },
 }
 
 
@@ -61,7 +56,7 @@ def expand_config(d):
         'user_data_dir': dirs.user_data_dir,
         'user_log_dir': dirs.user_log_dir,
         'site_config_dir': dirs.site_config_dir,
-        'site_data_dir': dirs.site_data_dir
+        'site_data_dir': dirs.site_data_dir,
     }
 
     for k, v in d.items():

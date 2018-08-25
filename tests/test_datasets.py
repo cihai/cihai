@@ -38,7 +38,7 @@ cjk_ranges = {  # http://www.unicode.org/reports/tr38/#BlockListing
     'CJK Compatibility Ideographs': range(0xF900, 0xFAFF + 1),
     'CJK Compatibility Ideographs Supplement': range(0x2F800, 0x2FA1D + 1),
     'CJK Compatibility Forms': range(0xFE30, 0xFE4F + 1),
-    'Yijing Hexagram Symbols': range(0x4DC0, 0x4DFF + 1)
+    'Yijing Hexagram Symbols': range(0x4DC0, 0x4DFF + 1),
 }
 
 
@@ -65,9 +65,14 @@ metadata.create_all()
 
 
 def get_char_fk(char):
-    return unicode_table.select(unicode_table.c.id) \
-        .where(unicode_table.c.char == char).limit(1) \
-        .execute().fetchone().id
+    return (
+        unicode_table.select(unicode_table.c.id)
+        .where(unicode_table.c.char == char)
+        .limit(1)
+        .execute()
+        .fetchone()
+        .id
+    )
 
 
 def get_char_fk_multiple(*args):
@@ -82,9 +87,7 @@ def get_char_fk_multiple(*args):
 
     where_opts = sqlalchemy.or_(*where_opts)
 
-    results = unicode_table.select() \
-        .where(where_opts) \
-        .execute()
+    results = unicode_table.select().where(where_opts).execute()
 
     return results
 
@@ -98,7 +101,7 @@ def chars():
         char = {
             'hex': c,
             'char': unichr(int(c)),
-            'ucn': conversion.python_to_ucn(unichr(int(c)))
+            'ucn': conversion.python_to_ucn(unichr(int(c))),
         }
         if char not in chars:
             chars.append(char)
@@ -111,17 +114,13 @@ def test_insert_row(chars):
 
     cjkchar = chars[0]
 
-    row = unicode_table.select().limit(1) \
-        .execute().fetchone()
+    row = unicode_table.select().limit(1).execute().fetchone()
 
     assert row.char == cjkchar['char']
 
 
 def test_insert_bad_fk():
-    wat = sample_table.insert().values(
-        value='',
-        char_id='wat'
-    ).execute()
+    wat = sample_table.insert().values(value='', char_id='wat').execute()
 
     assert wat
 
@@ -131,23 +130,16 @@ def test_insert_on_foreign_key(chars):
     cjkchar = chars[0]
     char = cjkchar['char']
 
-    sample_table.insert().values(
-        char_id=get_char_fk(char),
-        value='hey'
-    ).execute()
+    sample_table.insert().values(char_id=get_char_fk(char), value='hey').execute()
 
-    select_char = unicode_table.select().where(
-        unicode_table.c.char == char
-    ).limit(1)
+    select_char = unicode_table.select().where(unicode_table.c.char == char).limit(1)
     row = select_char.execute().fetchone()
 
     assert row is not None
 
 
 def test_get_char_foreign_key_multiple(chars):
-    char_fk_multiple = get_char_fk_multiple(
-        *[c['char'] for c in chars]
-    )
+    char_fk_multiple = get_char_fk_multiple(*[c['char'] for c in chars])
 
     for char in char_fk_multiple:
         assert char['char']
