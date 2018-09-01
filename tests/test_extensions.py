@@ -6,14 +6,14 @@ from cihai.core import Cihai
 
 
 class SimplestDataset(extension.Dataset):
-    def lookup(self, search):
+    def a_method(self):
         return 'hi'
 
-def test_add_extensions2():
+def test_add_dataset():
     c = Cihai()
     c.add_dataset(SimplestDataset, namespace='simple')
     assert hasattr(c, 'simple')
     assert isinstance(c.simple, extension.Dataset)
-    assert hasattr(c.simple, 'simple', 'lookup')
-    assert callable(c.simple.lookup)
-    assert c.simple.lookup() == 'hi'
+    assert hasattr(c.simple, 'a_method')
+    assert callable(c.simple.a_method)
+    assert c.simple.a_method() == 'hi'

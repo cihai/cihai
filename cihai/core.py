@@ -112,6 +112,9 @@ class Cihai(object):
 
         self.session = Session(self.engine)
 
+    def add_dataset(self, _cls, namespace):
+        setattr(self, namespace, _cls())
+
     def reflect_db(self):
         """
         No-op to reflect db info.
