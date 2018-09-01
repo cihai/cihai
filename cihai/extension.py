@@ -293,36 +293,10 @@ class ExtensionBase(object):
 
 
 class Extension(with_metaclass(ExtensionMeta, ExtensionBase)):
-    namespace = '__'
-
     def bootstrap(self):
         pass
-
-    def check(self):
-        """Can check to see if bootstrapped, can be updated."""
-        raise NotImplemented
-
-    def get_config(self):
-        raise NotImplemented
 
     @property
     def config(self):
         """Easy access to config."""
         return self.get_config()
-
-
-class ComputedField(object):
-    def __init__(self, lookup_fn, reverse_fn):
-        pass
-
-
-class DirectField(object):
-    pass
-
-
-class Unihan(Extension):
-    character = DirectField()
-
-
-class Unihan(Extension):
-    variant = ComputedField(lookup_fn=None, reverse_fn=None)
