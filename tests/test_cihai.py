@@ -40,10 +40,10 @@ def test_yaml_config_and_override(test_config_file):
 
 def test_unihan_options(unihan_options, test_config_file):
     app = Cihai.from_file(test_config_file)
-    bootstrap.bootstrap_unihan(app.metadata, unihan_options)
-    assert 'Unihan' in app.metadata.tables
-    assert app.metadata.tables['Unihan'].columns
-    assert set(app.metadata.tables['Unihan'].columns.keys()) == set(
+    bootstrap.bootstrap_unihan(app.sql.metadata, unihan_options)
+    assert 'Unihan' in app.sql.metadata.tables
+    assert app.sql.metadata.tables['Unihan'].columns
+    assert set(app.sql.metadata.tables['Unihan'].columns.keys()) == set(
         bootstrap.UNIHAN_FIELDS + ['ucn', 'char']
     )
-    assert bootstrap.is_bootstrapped(app.metadata)
+    assert bootstrap.is_bootstrapped(app.sql.metadata)
