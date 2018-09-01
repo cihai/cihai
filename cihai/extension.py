@@ -231,6 +231,16 @@ class Dataset(object):
     def bootstrap(self):
         pass
 
+    def add_extension(self, _cls, namespace):
+        setattr(self, namespace, _cls())
+        dataset = getattr(self, namespace)
+
+        if hasattr(self, 'sql') and isinstance(dataset, DatasetSQLAlchemyMixin):
+            dataset.sql = self.sql
+
+        if hasattr(dataset, 'bootstrap') and callable(dataset.bootstrap):
+            dataset.bootstrap()
+
     def check(self):
         """Can check to see if bootstrapped, can be updated."""
         raise NotImplemented
@@ -286,7 +296,7 @@ class Extension(with_metaclass(ExtensionMeta, ExtensionBase)):
     namespace = '__'
 
     def bootstrap(self):
-        raise NotImplemented
+        pass
 
     def check(self):
         """Can check to see if bootstrapped, can be updated."""

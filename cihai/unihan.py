@@ -3,7 +3,9 @@ from sqlalchemy import Column, or_
 
 from ._compat import string_types
 from .conversion import parse_untagged, parse_vars
-from .extension import Dataset, DatasetSQLAlchemyMixin
+from .extension import Dataset, DatasetSQLAlchemyMixin, Extension
+
+
 
 
 def mk_unihan(Base):
@@ -89,3 +91,17 @@ class Unihan(Dataset, DatasetSQLAlchemyMixin):
         for field in fields:
             query = query.filter(Column(field).isnot(None))
         return query
+
+
+class UnihanVariants(Extension):
+    def tagged_vars(self, col):
+        """
+        Return a variant column as an iterator of (char, tag) tuples.
+        """
+        return parse_vars(getattr(self, col))
+
+    def untagged_vars(self, col):
+        """
+        Return a variant column as an iterator of chars.
+        """
+        return parse_untagged(getattr(self, col))
