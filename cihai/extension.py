@@ -200,6 +200,8 @@ class DatasetSQLAlchemyMixin(object):
 
     This will provide the following instance-level properties in methods:
 
+    When you have access, it's expected to keep your tables / databases namespaced so
+    they don't clobber.
     """
     #: :class:`sqlalchemy.engine.Engine` instance.
     engine = None
@@ -227,7 +229,7 @@ class Dataset(object):
     """Core for a dataset, e.g. UNIHAN."""
 
     def bootstrap(self):
-        raise NotImplemented
+        pass
 
     def check(self):
         """Can check to see if bootstrapped, can be updated."""

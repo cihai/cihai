@@ -6,21 +6,72 @@ import logging
 import os
 
 import kaptan
-from sqlalchemy import Column, MetaData, create_engine, or_
+from sqlalchemy import MetaData, create_engine
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 
-from cihai import bootstrap, exc
-from cihai._compat import string_types
+from cihai import bootstrap, exc, extension
 from cihai.config import DEFAULT_CONFIG, dirs, expand_config
-from cihai.unihan import mk_unihan
 from cihai.utils import merge_dict
 
 log = logging.getLogger(__name__)
 
+class Database(object):
+    def __init__(self, config):
+        self.engine = create_engine(config['database']['url'])
+
+        self.metadata = MetaData()
+        self.metadata.bind = self.engine
+        self.reflect_db()
+
+        self.session = Session(self.engine)
+
+    def reflect_db(self):
+        """
+        No-op to reflect db info.
+
+        This is available as a method so the database can be reflected
+        outside initialization (such bootstrapping unihan during CLI usage).
+        """
+        self.metadata.reflect(views=True, extend_existing=True)
+        self.base = automap_base(metadata=self.metadata)
+        self.base.prepare()
+        if hasattr(self.base.classes, 'Unihan'):
+            from .conversion import parse_vars, parse_untagged
+
+            self.base.classes.Unihan.tagged_vars = lambda self, col: parse_vars(
+                getattr(self, col)
+            )
+            self.base.classes.Unihan.untagged_vars = lambda self, col: parse_untagged(
+                getattr(self, col)
+            )
+
+    @property
+    def is_bootstrapped(self):
+        """Return True if UNIHAN and database is set up.
+
+        Returns
+        -------
+        bool :
+            True if Unihan application fixture data installed.
+        """
+        return bootstrap.is_bootstrapped(self.metadata)
+
+    #: :class:`sqlalchemy.engine.Engine` instance.
+    engine = None
+
+    #: :class:`sqlalchemy.schema.MetaData` instance.
+    metadata = None
+
+    #: :class:`sqlalchemy.orm.session.Session` instance.
+    session = None
+
+    #: :class:`sqlalchemy.ext.automap.AutomapBase` instance.
+    base = None
+
+
 
 class Cihai(object):
-
     """
     Central application object.
 
@@ -76,18 +127,6 @@ class Cihai(object):
        Accessed sometime in 2013.
     """
 
-    #: :class:`sqlalchemy.engine.Engine` instance.
-    engine = None
-
-    #: :class:`sqlalchemy.schema.MetaData` instance.
-    metadata = None
-
-    #: :class:`sqlalchemy.orm.session.Session` instance.
-    session = None
-
-    #: :class:`sqlalchemy.ext.automap.AutomapBase` instance.
-    base = None
-
     #: configuration dictionary.
     config = None
 
@@ -104,36 +143,18 @@ class Cihai(object):
         if not os.path.exists(dirs.user_data_dir):
             os.makedirs(dirs.user_data_dir)
 
-        self.engine = create_engine(self.config['database']['url'])
+        self.sql = Database(self.config)
 
-        self.metadata = MetaData()
-        self.metadata.bind = self.engine
-        self.reflect_db()
-
-        self.session = Session(self.engine)
 
     def add_dataset(self, _cls, namespace):
         setattr(self, namespace, _cls())
+        dataset = getattr(self, namespace)
 
-    def reflect_db(self):
-        """
-        No-op to reflect db info.
+        if isinstance(dataset, extension.DatasetSQLAlchemyMixin):
+            dataset.sql = self.sql
 
-        This is available as a method so the database can be reflected
-        outside initialization (such bootstrapping unihan during CLI usage).
-        """
-        self.metadata.reflect(views=True, extend_existing=True)
-        self.base = automap_base(metadata=self.metadata)
-        self.base.prepare()
-        if hasattr(self.base.classes, 'Unihan'):
-            from .conversion import parse_vars, parse_untagged
-
-            self.base.classes.Unihan.tagged_vars = lambda self, col: parse_vars(
-                getattr(self, col)
-            )
-            self.base.classes.Unihan.untagged_vars = lambda self, col: parse_untagged(
-                getattr(self, col)
-            )
+        if hasattr(dataset, 'bootstrap') and callable(dataset.bootstrap):
+            dataset.bootstrap()
 
     @classmethod
     def from_file(cls, config_path=None, *args, **kwargs):
@@ -173,71 +194,3 @@ class Cihai(object):
                 config = merge_dict(config, custom_config)
 
         return cls(config)
-
-    @property
-    def is_bootstrapped(self):
-        """Return True if UNIHAN and database is set up.
-
-        Returns
-        -------
-        bool :
-            True if Unihan application fixture data installed.
-        """
-        return bootstrap.is_bootstrapped(self.metadata)
-
-    def lookup_char(self, char):
-        """Return character information from datasets.
-
-        Parameters
-        ----------
-        char : str
-            character / string to lookup
-
-        Returns
-        -------
-        :class:`sqlalchemy.orm.query.Query` :
-            list of matches
-        """
-        Unihan = self.base.classes.Unihan
-        return self.session.query(Unihan).filter_by(char=char)
-
-    def reverse_char(self, hints):
-        """Return QuerySet of objects from SQLAlchemy of results.
-
-        Parameters
-        ----------
-        hints: list of str
-            strings to lookup
-
-        Returns
-        -------
-        :class:`sqlalchemy.orm.query.Query` :
-            reverse matches
-        """
-        if isinstance(hints, string_types):
-            hints = [hints]
-
-        Unihan = self.base.classes.Unihan
-        columns = Unihan.__table__.columns
-        return self.session.query(Unihan).filter(
-            or_(*[column.contains(hint) for column in columns for hint in hints])
-        )
-
-    def with_fields(self, *fields):
-        """Returns list of characters with information for certain fields.
-
-        Parameters
-        ----------
-        *fields : list of str
-            fields for which information should be available
-
-        Returns
-        -------
-        :class:`sqlalchemy.orm.query.Query` :
-            list of matches
-        """
-        Unihan = self.base.classes.Unihan
-        query = self.session.query(Unihan)
-        for field in fields:
-            query = query.filter(Column(field).isnot(None))
-        return query
