@@ -22,7 +22,6 @@ cihai_{dataset}(?_{extension})
 cihai_unihan
 cihai_unihan_variants
 
-
 Benefits
 --------
 Automatic configuration
@@ -51,12 +50,14 @@ c.add_dataset('my_forked_unihan', namespace='unihan')  # install package
 
 In the future, with libvcs:
 
-c.add_dataset('git+https://github.com/moo/cihai-unihan#test-branch', namespace='unihan')
-c.add_dataset('./path/to/dataset', namespace='unihan')  # install package
-c.add_dataset('package.to.import.unihan', namespace='unihan')  # install package
+c.add_dataset(Unihan, namespace='unihan')  # raw class
+
+Future possibilities:
 
 This makes it possible to develop locally, make a touch adjustment, maintain a VCS
 branch, in the event a dataset fall out of sync or you want to hack on it / fork it.
+
+c.add_dataset('package.to.unihan.Unihan', namespace='unihan')  # import string
 
 Versioning
 ----------
@@ -74,24 +75,23 @@ if it had a custom data backend, it could make that available to the extension f
 it to use.
 
 c.add_dataset('unihan')
-c.unihan.add_extension('variants')
+c.unihan.add_extension(Variants)
 
 The same optional namespace= is possible:
 
 c.unihan.variants.lookup('好')
 
-c.unihan.add_extension('variants', namespace='variants2')
+c.unihan.add_extension(Variants, namespace='variants2')
 
 c.unihan.variants2.lookup('好')
 
-For development / hacking purposes, all of the same file, import string, and vcs
-still exist:
+For the first draft, pointing straight to the package -> module -> object via import
+string it the surest thing (since this is compatible with the user's local python
+package environment and works well regardless of developing or general usage):
 
-c.unihan.add_extension(
-    'git+https://github.com/moo/cihai-unihan#test-branch', namespace='unihan'
-)
-c.unihan.add_extension('./path/to/dataset', namespace='unihan')
-c.unihan.add_extension('package.to.import.unihan', namespace='unihan')
+c.unihan.add_extension('package.to.import.unihan.Unihan')
+
+This is similar to the way FLASK_CONFIG points to an object inside of a python module.
 
 Todo
 ----
@@ -105,8 +105,28 @@ The initial plan was to keep everything under a single namespace, database, and 
 able to reduce queries by building big queries. This is phased out in turn of making
 cihai easy to hack on.
 
-Future Considerations / Planning
---------------------------------
+Idea: pip-based add_dataset/add_extension
+-----------------------------------------
+For development / hacking purposes, all of the same file, and vcs
+still exist:
+
+# import string
+c.add_dataset('package.to.unihan', classname='Unihan', namespace='unihan')
+c.add_dataset(
+    'git+https://github.com/moo/cihai-unihan#test-branch',
+    classname='Unihan',
+    namespace='unihan'
+)
+c.add_dataset('./path/to/dataset', classname='Unihan', namespace='unihan')
+
+c.unihan.add_extension('cihai_unihan_variants')
+c.unihan.add_extension(
+    'git+https://github.com/moo/cihai-unihan#test-branch', namespace='unihan'
+)
+c.unihan.add_extension('./path/to/dataset', classname=Unihan, namespace='unihan')
+
+Idea: Namespacing
+-----------------
 Of the now, the idea is to avoid overengineering / bureaucracy caused by adopting
 setuptools namespacing. Be like Django, which doesn't enforce package naming.
 
