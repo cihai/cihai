@@ -4,7 +4,7 @@ from __future__ import absolute_import, print_function, unicode_literals
 from cihai import extension
 from cihai.bootstrap import bootstrap_unihan
 from cihai.core import Cihai
-from cihai.unihan import Unihan
+from cihai.unihan import Unihan, UnihanVariants
 
 
 class SimplestDataset(extension.Dataset):
@@ -58,3 +58,18 @@ def test_add_dataset_unihan(unihan_options):
     assert (
         c.unihan.lookup_char(char=char).first().kDefinition == first_glyph.kDefinition
     )
+
+    c.unihan.add_extension(UnihanVariants, 'variants')
+    assert hasattr(c.unihan, 'variants')
+
+    def variant_list(field):
+        for char in c.unihan.with_fields(field):
+            variants = []
+            for var in char.untagged_vars(field):
+                variants.append(var)
+            yield (char, variants)
+
+    result = {char: variants for (char, variants) in variant_list('kZVariant')}
+
+    assert len(result.values()) > 0
+    assert len(result.keys()) > 0
