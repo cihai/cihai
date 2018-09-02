@@ -12,7 +12,9 @@ from sqlalchemy.orm import Session
 
 from cihai import bootstrap, exc, extension
 from cihai.config import DEFAULT_CONFIG, dirs, expand_config
-from cihai.utils import merge_dict
+from cihai.utils import import_string, merge_dict
+
+from ._compat import string_types
 
 log = logging.getLogger(__name__)
 
@@ -146,6 +148,9 @@ class Cihai(object):
         self.sql = Database(self.config)
 
     def add_dataset(self, _cls, namespace):
+        if isinstance(_cls, string_types):
+            _cls = import_string(_cls)
+
         setattr(self, namespace, _cls())
         dataset = getattr(self, namespace)
 

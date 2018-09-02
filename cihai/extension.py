@@ -150,6 +150,9 @@ See Also
 """
 from __future__ import absolute_import, print_function, unicode_literals
 
+from ._compat import string_types
+from . import utils
+
 
 class DatasetConfigMixin(object):
     """
@@ -229,6 +232,8 @@ class Dataset(object):
         pass
 
     def add_extension(self, _cls, namespace):
+        if isinstance(_cls, string_types):
+            _cls = utils.import_string(_cls)
         setattr(self, namespace, _cls())
         dataset = getattr(self, namespace)
 

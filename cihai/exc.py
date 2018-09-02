@@ -28,7 +28,7 @@ class ImportStringError(ImportError, CihaiException):
     exception = None
 
     def __init__(self, import_name, exception):
-        from .util import import_string
+        from .utils import import_string
 
         self.import_name = import_name
         self.exception = exception
