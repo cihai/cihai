@@ -2,8 +2,13 @@
 from __future__ import absolute_import, print_function, unicode_literals
 
 import examples.basic_usage
+import examples.dataset
 import examples.variant_ts_difficulties
 import examples.variants
+
+
+def test_dataset(unihan_options):
+    examples.dataset.run()
 
 
 def test_variants(unihan_options):
