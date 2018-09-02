@@ -18,7 +18,8 @@ class ImportStringError(ImportError, CihaiException):
     https://github.com/pallets/werkzeug
 
     Changes:
-    - deferred load import import_string from cihai.util
+    - Deferred load import import_string from cihai.util
+    - Format with black
     """
 
     #: String in dotted notation that failed to be imported.
@@ -28,6 +29,7 @@ class ImportStringError(ImportError, CihaiException):
 
     def __init__(self, import_name, exception):
         from .util import import_string
+
         self.import_name = import_name
         self.exception = exception
 
@@ -39,7 +41,8 @@ class ImportStringError(ImportError, CihaiException):
             'sys.path;\n'
             '- missing module, class, function or variable;\n\n'
             'Debugged import:\n\n%s\n\n'
-            'Original exception:\n\n%s: %s')
+            'Original exception:\n\n%s: %s'
+        )
 
         name = ''
         tracked = []
@@ -51,12 +54,19 @@ class ImportStringError(ImportError, CihaiException):
             else:
                 track = ['- %r found in %r.' % (n, i) for n, i in tracked]
                 track.append('- %r not found.' % name)
-                msg = msg % (import_name, '\n'.join(track),
-                             exception.__class__.__name__, str(exception))
+                msg = msg % (
+                    import_name,
+                    '\n'.join(track),
+                    exception.__class__.__name__,
+                    str(exception),
+                )
                 break
 
         ImportError.__init__(self, msg)
 
     def __repr__(self):
-        return '<%s(%r, %r)>' % (self.__class__.__name__, self.import_name,
-                                 self.exception)
+        return '<%s(%r, %r)>' % (
+            self.__class__.__name__,
+            self.import_name,
+            self.exception,
+        )

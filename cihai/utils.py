@@ -99,6 +99,7 @@ def import_string(import_name, silent=False):  # NOQA: C901
     Changes:
     - Exception raised is cihai.exc.ImportStringError
     - Add NOQA C901 to avoid complexity lint
+    - Format with black
     """
     # force the import name to automatically convert to strings
     # __import__ is not able to handle unicode strings in the fromlist
@@ -131,4 +132,5 @@ def import_string(import_name, silent=False):  # NOQA: C901
             reraise(
                 exc.ImportStringError,
                 exc.ImportStringError(import_name, e),
-                sys.exc_info()[2])
+                sys.exc_info()[2],
+            )
