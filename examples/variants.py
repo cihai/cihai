@@ -6,27 +6,33 @@ from __future__ import print_function, unicode_literals
 from cihai.bootstrap import bootstrap_unihan
 from cihai.core import Cihai
 
-c = Cihai()
-if not c.is_bootstrapped:  # download and install Unihan to db
-    bootstrap_unihan(c.metadata)
-    c.reflect_db()  # automap new table created during bootstrap
 
-
-print("This example prints variant character data.")
-
-
-def variant_list(field):
-    for char in c.with_fields(field):
+def variant_list(unihan, field):
+    for char in unihan.with_fields(field):
         print("Character: {}".format(char.char))
         for var in char.untagged_vars(field):
             print(var)
 
 
-print("## ZVariants")
-variant_list("kZVariant")
+def script(unihan_options={}):
+    """Wrapped so we can test in tests/test_examples.py"""
+    print("This example prints variant character data.")
 
-print("## kSemanticVariant")
-variant_list("kSemanticVariant")
+    c = Cihai()
+    c.add_dataset('cihai.unihan.Unihan', namespace='unihan')
+    if not c.sql.is_bootstrapped:  # download and install Unihan to db
+        bootstrap_unihan(c.sql.metadata, options=unihan_options)
+        c.sql.reflect_db()  # automap new table created during bootstrap
 
-print("## kSpecializedSemanticVariant")
-variant_list("kSpecializedSemanticVariant")
+    print("## ZVariants")
+    variant_list(c.unihan, "kZVariant")
+
+    print("## kSemanticVariant")
+    variant_list(c.unihan, "kSemanticVariant")
+
+    print("## kSpecializedSemanticVariant")
+    variant_list(c.unihan, "kSpecializedSemanticVariant")
+
+
+if __name__ == '__main__':
+    script()
