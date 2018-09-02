@@ -6,14 +6,22 @@ from __future__ import print_function, unicode_literals
 from cihai.bootstrap import bootstrap_unihan
 from cihai.core import Cihai
 
-c = Cihai()
-if not c.is_bootstrapped:  # download and install Unihan to db
-    bootstrap_unihan(c.metadata)
-    c.reflect_db()  # automap new table created during bootstrap
 
-query = c.lookup_char('好')
-glyph = query.first()
-print("lookup for 好: %s" % glyph.kDefinition)
+def run(unihan_options={}):
+    c = Cihai()
+    c.add_dataset('cihai.unihan.Unihan', namespace='unihan')
 
-query = c.reverse_char('good')
-print('matches for "good": %s ' % ', '.join([glph.char for glph in query]))
+    if not c.sql.is_bootstrapped:  # download and install Unihan to db
+        bootstrap_unihan(c.sql.metadata, options=unihan_options)
+        c.sql.reflect_db()  # automap new table created during bootstrap
+
+    query = c.unihan.lookup_char('好')
+    glyph = query.first()
+    print("lookup for 好: %s" % glyph.kDefinition)
+
+    query = c.unihan.reverse_char('good')
+    print('matches for "good": %s ' % ', '.join([glph.char for glph in query]))
+
+
+if __name__ == '__main__':
+    run()
