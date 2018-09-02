@@ -16,5 +16,7 @@ before_install:
 install:
   - "pip install -e ."
 script: coverage run --source=cihai setup.py test
+cache:
+  - pip
 after_success:
   - bash <(curl -s https://codecov.io/bash)
