@@ -39,15 +39,6 @@ class Database(object):
         self.metadata.reflect(views=True, extend_existing=True)
         self.base = automap_base(metadata=self.metadata)
         self.base.prepare()
-        if hasattr(self.base.classes, 'Unihan'):
-            from .conversion import parse_vars, parse_untagged
-
-            self.base.classes.Unihan.tagged_vars = lambda self, col: parse_vars(
-                getattr(self, col)
-            )
-            self.base.classes.Unihan.untagged_vars = lambda self, col: parse_untagged(
-                getattr(self, col)
-            )
 
     @property
     def is_bootstrapped(self):

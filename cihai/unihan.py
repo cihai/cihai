@@ -69,14 +69,20 @@ class Unihan(Dataset, DatasetSQLAlchemyMixin):
 
 
 class UnihanVariants(Extension):
-    def tagged_vars(self, col):
-        """
-        Return a variant column as an iterator of (char, tag) tuples.
-        """
-        return parse_vars(getattr(self, col))
+    def bootstrap(self):
+        def tagged_vars(table, col):
+            """
+            Return a variant column as an iterator of (char, tag) tuples.
+            """
+            return parse_vars(getattr(table, col))
 
-    def untagged_vars(self, col):
-        """
-        Return a variant column as an iterator of chars.
-        """
-        return parse_untagged(getattr(self, col))
+        def untagged_vars(table, col):
+            """
+            Return a variant column as an iterator of chars.
+            """
+            return parse_untagged(getattr(table, col))
+
+
+        if hasattr(self.sql.base.classes, 'Unihan'):
+            self.sql.base.classes.Unihan.tagged_vars = tagged_vars
+            self.sql.base.classes.Unihan.untagged_vars = untagged_vars
