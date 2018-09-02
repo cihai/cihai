@@ -63,12 +63,12 @@ def test_add_dataset_unihan(unihan_options):
 
     assert (
         c.unihan.reverse_char(hints=[first_glyph.kDefinition]).first().char
-        == first_glyph.char
+        == char
     ), 'works with list of column value matches'
 
     assert (
         c.unihan.reverse_char(hints=first_glyph.kDefinition).first().char
-        == first_glyph.char
+        == char
     ), 'works with strings'
 
     c.unihan.add_extension(UnihanVariants, 'variants')
