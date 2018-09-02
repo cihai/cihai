@@ -25,7 +25,7 @@ seek, and retrieve data.
 You can override cihai's default storage and file directories via a config
 file.
 
-The default configuration is at :attr:`cihai.conf.DEFAULT_CONFIG`.
+The default configuration is at :attr:`cihai.constants.DEFAULT_CONFIG`.
 
 Database configuration accepts any SQLAlchemy :sqlalchemy:ref:`database_urls`.
 If you're using a DB other than SQLite, such as Postgres, be sure to

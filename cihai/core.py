@@ -11,7 +11,8 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 
 from cihai import bootstrap, exc, extension
-from cihai.config import DEFAULT_CONFIG, dirs, expand_config
+from cihai.config import dirs, expand_config
+from cihai.constants import DEFAULT_CONFIG
 from cihai.utils import import_string, merge_dict
 
 from ._compat import string_types

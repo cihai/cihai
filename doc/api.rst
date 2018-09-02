@@ -19,6 +19,11 @@ Configuration
 .. automodule:: cihai.config
     :members:
 
+Constants
+---------
+.. automodule:: cihai.constants
+    :members:
+
 .. _cihai.conversion:
 
 Conversion
