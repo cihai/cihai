@@ -16,8 +16,8 @@ doesn't have a lookup for variant glyphs, this can be added.
 """
 from __future__ import absolute_import, print_function, unicode_literals
 
-from ._compat import string_types
 from . import utils
+from ._compat import string_types
 
 
 class DatasetConfigMixin(object):
