@@ -7,13 +7,11 @@ from cihai.extension import Dataset
 
 data = {}  # any data source, internal, a file, on the internet, in a database...
 
+
 class MyDataset(Dataset):
     def bootstrap(self):  # automatically ran with .add_dataset, if exists
         # Use this to setup your dataset, check if updates are needed, etc.
-        data.update({
-            '好': 'Good',
-            '好好': 'Hello',
-        })
+        data.update({'好': 'Good', '好好': 'Hello'})
 
     def givemedata(self, key):
         return data[key]
