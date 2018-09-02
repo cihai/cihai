@@ -235,13 +235,13 @@ class Dataset(object):
         if isinstance(_cls, string_types):
             _cls = utils.import_string(_cls)
         setattr(self, namespace, _cls())
-        dataset = getattr(self, namespace)
+        extension = getattr(self, namespace)
 
-        if hasattr(self, 'sql') and isinstance(dataset, DatasetSQLAlchemyMixin):
-            dataset.sql = self.sql
+        if hasattr(self, 'sql') and isinstance(self, DatasetSQLAlchemyMixin):
+            extension.sql = self.sql
 
-        if hasattr(dataset, 'bootstrap') and callable(dataset.bootstrap):
-            dataset.bootstrap()
+        if hasattr(extension, 'bootstrap') and callable(extension.bootstrap):
+            extension.bootstrap()
 
     def check(self):
         """Can check to see if bootstrapped, can be updated."""
