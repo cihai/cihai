@@ -19,4 +19,7 @@ def test_import_string():
     utils.import_string('cihai')
 
     with pytest.raises((ImportError, exc.CihaiException, exc.ImportStringError)):
+        utils.import_string('cihai.core.nonexistingimport')
+
+    with pytest.raises((ImportError, exc.CihaiException, exc.ImportStringError)):
         utils.import_string('cihai2')
