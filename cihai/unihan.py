@@ -7,7 +7,6 @@ from .extension import Dataset, DatasetSQLAlchemyMixin, Extension
 
 
 class Unihan(Dataset, DatasetSQLAlchemyMixin):
-
     def bootstrap(self):
         self.sql.reflect_db()
 

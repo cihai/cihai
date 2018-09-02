@@ -16,6 +16,7 @@ from cihai.utils import merge_dict
 
 log = logging.getLogger(__name__)
 
+
 class Database(object):
     def __init__(self, config):
         self.engine = create_engine(config['database']['url'])
@@ -68,7 +69,6 @@ class Database(object):
 
     #: :class:`sqlalchemy.ext.automap.AutomapBase` instance.
     base = None
-
 
 
 class Cihai(object):
@@ -144,7 +144,6 @@ class Cihai(object):
             os.makedirs(dirs.user_data_dir)
 
         self.sql = Database(self.config)
-
 
     def add_dataset(self, _cls, namespace):
         setattr(self, namespace, _cls())

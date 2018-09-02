@@ -150,6 +150,7 @@ See Also
 """
 from __future__ import absolute_import, print_function, unicode_literals
 
+
 class DatasetConfigMixin(object):
     """
     This piggybacks cihai's global config state, as well as your datasets.
@@ -180,6 +181,7 @@ class DatasetConfigMixin(object):
 
         internal functions use get_default_config()
     """
+
     pass
 
 
@@ -197,6 +199,7 @@ class DatasetSQLAlchemyMixin(object):
     When you have access, it's expected to keep your tables / databases namespaced so
     they don't clobber.
     """
+
     #: :class:`sqlalchemy.engine.Engine` instance.
     engine = None
 
@@ -243,7 +246,7 @@ class Dataset(object):
         raise NotImplemented
 
 
-class Extension():
+class Extension:
     @property
     def config(self):
         """Easy access to config."""
