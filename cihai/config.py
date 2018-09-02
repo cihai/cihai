@@ -53,3 +53,61 @@ def expand_config(d):
         if isinstance(v, string_types):
             d[k] = os.path.expanduser(os.path.expandvars(d[k]))
             d[k] = d[k].format(**context)
+
+
+class Configurator(object):
+    def __init__(self, namespace=''):
+        """
+        Manage configs. Used on Cihai and available for its extensions.
+
+        Instance attributes
+        -------------------
+
+        data : dict
+            property / getters for options
+        _data : dict
+            where the raw dictionary resides
+
+        Parameters
+        ----------
+        namespace : str, optional
+            Creates a configuration object that reads/writes on a namespace.
+
+            Leaving this empty / reads and writes to the root level cihai config.
+
+            Namespace is designed for plugins to manage settings.
+        """
+        self.namespace = namespace
+
+    def get_names(self):
+        """
+        Return a list of possible places config can reside, and order of search.
+
+        This is based on XDG. So it will look for
+        """
+        pass
+
+    @property
+    def file(self):
+        """Find a config file where it exists, as the first place."""
+        return
+
+    def read(self):
+        """Read to dictionary."""
+        return
+
+    def get_delta(self, **updates):
+        """Returns the difference of whatever user customizations differ from
+        cihai.conf.DEFAULT_CONFIG.
+        """
+        pass
+
+    def write(self, **updates):
+        """If no delta is created from DEFAULT, it not write.
+
+        If file doesn't exist, it will create.
+        """
+        if updates:
+            self._data.update(**updates)
+        # save file
+        pass
