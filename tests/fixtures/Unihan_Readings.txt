@@ -92,5 +92,17 @@ U+342B	kDefinition	(same as 凶) cruel, unfortunate, sad
 U+342B	kMandarin	xiōng
 U+342C	kCantonese	lau4
 U+342C	kDefinition	(same as U+65D2 旒, a corrupted form of U+8352 荒) a cup with pendants, a pennant, wild, barren, uncultivated
+U+597D	kCantonese	hou2 hou3
+U+597D	kDefinition	good, excellent, fine; well
+U+597D	kHangul	호:0E
+U+597D	kHanyuPinlu	hǎo(6060) hāo(142) hào(115)
+U+597D	kHanyuPinyin	21028.010:hǎo,hào
+U+597D	kJapaneseKun	KONOMU SUKU YOI
+U+597D	kJapaneseOn	KOU
+U+597D	kKorean	HO
+U+597D	kMandarin	hǎo
+U+597D	kTang	*xɑ̀u *xɑ̌u
+U+597D	kVietnamese	háo
+U+597D	kXHC1983	0445.030:hǎo 0448.030:hào
 
 # EOF
