@@ -249,53 +249,7 @@ class Dataset(object):
         raise NotImplemented
 
 
-class Stability(Enum):
-    """Based on PyPI trove classifiers [1]_.
-
-    See Also
-    --------
-    .. [1] PyPI Trove Classifiers. https://pypi.org/pypi?%3Aaction=list_classifiers.
-       Accessed September 1st, 2018.
-    .. [2] Node.js Stability Index. https://nodejs.org/api/documentation.html.
-       https://nodejs.org/api/documentation.html
-    """
-    Planning = 1
-    PreAlpha = 2
-    Alpha = 3
-    Beta = 4
-    Draft = 4
-    Production = 5 # Production/Stable
-    Mature = 6
-    Inactive = 0  # This is 7 on PyPI
-
-    def is_stable(self):
-        return self > 5
-
-
-class Unihan(Dataset, DatasetConfigMixin, DatasetSQLAlchemyMixin):
-    """Example dataset"""
-    version = '0.1'
-
-    # optional: stability
-    # This helps you inform a user that extends / works with your dataset that your
-    # backend is subject to change. Make this stable sends a signal you're going to
-    # stick with it (or at least, you're going to continue to service / provide 
-    # compatiblity / security / bug fixes into the future.
-    stability_level = Stability.Draft
-
-
-class ExtensionMeta(type):
-    """Core metaclass for an extension"""
-
-
-class ExtensionBase(object):
-    pass
-
-
-class Extension(with_metaclass(ExtensionMeta, ExtensionBase)):
-    def bootstrap(self):
-        pass
-
+class Extension():
     @property
     def config(self):
         """Easy access to config."""
