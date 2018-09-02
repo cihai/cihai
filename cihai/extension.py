@@ -28,7 +28,7 @@ class DatasetConfigMixin(object):
     neatly in XDG.
 
     Raises
-    -------
+    ------
     Functions inside, and what you write relating to dataset config should return
 
     CihaiDatasetConfigException (CihaiDatasetException)
@@ -51,15 +51,13 @@ class DatasetConfigMixin(object):
         internal functions use get_default_config()
     """
 
-    pass
-
 
 class DatasetSQLAlchemyMixin(object):
     """Your dataset can use any backend you'd like, we provide a backend for you, that
     automatically piggybacks on cihai's zero-config, XDG / SQLAchemy configuration. So
     it's preconfigured for the user.
 
-    In addition, this mixin gives you access to any other of the user's sqlalchemy 
+    In addition, this mixin gives you access to any other of the user's sqlalchemy
     sql that use this mixin. So if you want a dataset that utilitizes UNIHAN, you can
     access that easily.
 
@@ -81,15 +79,6 @@ class DatasetSQLAlchemyMixin(object):
     #: :class:`sqlalchemy.ext.automap.AutomapBase` instance.
     base = None
 
-    def bootstrap(self):
-        pass
-
-    def check(self):
-        pass
-
-    def db(self):
-        pass
-
 
 class Dataset(object):
     """Core for a dataset, e.g. UNIHAN."""
@@ -109,16 +98,6 @@ class Dataset(object):
         if hasattr(extension, 'bootstrap') and callable(extension.bootstrap):
             extension.bootstrap()
 
-    def check(self):
-        """Can check to see if bootstrapped, can be updated."""
-        raise NotImplemented
 
-    def get_config(self):
-        raise NotImplemented
-
-
-class Extension:
-    @property
-    def config(self):
-        """Easy access to config."""
-        return self.get_config()
+class Extension(object):
+    pass
