@@ -6,31 +6,7 @@ from .conversion import parse_untagged, parse_vars
 from .extension import Dataset, DatasetSQLAlchemyMixin, Extension
 
 
-
-
-def mk_unihan(Base):
-    class Unihan(Base):
-        __tablename__ = 'unihan'
-
-        def tagged_vars(self, col):
-            """
-            Return a variant column as an iterator of (char, tag) tuples.
-            """
-            return parse_vars(getattr(self, col))
-
-        def untagged_vars(self, col):
-            """
-            Return a variant column as an iterator of chars.
-            """
-            return parse_untagged(getattr(self, col))
-
-    return Unihan
-
-
 class Unihan(Dataset, DatasetSQLAlchemyMixin):
-
-    def __init__(self):
-        from cihai.unihan import mk_unihan
 
     def bootstrap(self):
         self.sql.reflect_db()
