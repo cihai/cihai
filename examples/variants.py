@@ -24,6 +24,8 @@ def script(unihan_options={}):
         bootstrap_unihan(c.sql.metadata, options=unihan_options)
         c.sql.reflect_db()  # automap new table created during bootstrap
 
+    c.unihan.add_extension('cihai.unihan.UnihanVariants', namespace='variants')
+
     print("## ZVariants")
     variant_list(c.unihan, "kZVariant")
 
