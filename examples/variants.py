@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf8 - *-
-
 from __future__ import print_function, unicode_literals
 
 from cihai.bootstrap import bootstrap_unihan
@@ -14,7 +13,7 @@ def variant_list(unihan, field):
             print(var)
 
 
-def script(unihan_options={}):
+def run(unihan_options={}):
     """Wrapped so we can test in tests/test_examples.py"""
     print("This example prints variant character data.")
 
@@ -37,4 +36,4 @@ def script(unihan_options={}):
 
 
 if __name__ == '__main__':
-    script()
+    run()
