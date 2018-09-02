@@ -52,7 +52,9 @@ def test_add_dataset_unihan(unihan_options):
     c.unihan.bootstrap()
     U = c.sql.base.classes.Unihan
 
-    first_glyph = c.unihan.sql.session.query(U).first()
+    first_glyph = (
+        c.unihan.sql.session.query(U).filter(U.kDefinition.isnot(None)).first()
+    )
 
     char = first_glyph.char
     assert (
@@ -60,9 +62,14 @@ def test_add_dataset_unihan(unihan_options):
     )
 
     assert (
+        c.unihan.reverse_char(hints=[first_glyph.kDefinition]).first().char
+        == first_glyph.char
+    ), 'works with list of column value matches'
+
+    assert (
         c.unihan.reverse_char(hints=first_glyph.kDefinition).first().char
         == first_glyph.char
-    )
+    ), 'works with strings'
 
     c.unihan.add_extension(UnihanVariants, 'variants')
     assert hasattr(c.unihan, 'variants')
