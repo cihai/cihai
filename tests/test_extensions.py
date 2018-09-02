@@ -59,6 +59,11 @@ def test_add_dataset_unihan(unihan_options):
         c.unihan.lookup_char(char=char).first().kDefinition == first_glyph.kDefinition
     )
 
+    assert (
+        c.unihan.reverse_char(hints=first_glyph.kDefinition).first().char
+        == first_glyph.char
+    )
+
     c.unihan.add_extension(UnihanVariants, 'variants')
     assert hasattr(c.unihan, 'variants')
 
