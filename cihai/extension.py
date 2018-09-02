@@ -150,12 +150,6 @@ See Also
 """
 from __future__ import absolute_import, print_function, unicode_literals
 
-from enum import Enum
-
-
-from ._compat import with_metaclass
-
-
 class DatasetConfigMixin(object):
     """
     This piggybacks cihai's global config state, as well as your datasets.
