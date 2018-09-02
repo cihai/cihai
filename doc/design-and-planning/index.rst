@@ -4,6 +4,11 @@
 Design and Planning
 ===================
 
+2018
+----
+
+- :ref:`design-and-planning/2018/plugin-system`
+
 2017
 ----
 
