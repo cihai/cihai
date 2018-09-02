@@ -1,8 +1,15 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 
 import os
 
-from cihai.config import dirs, expand_config
+from cihai.config import Configurator, dirs, expand_config
+
+
+def test_configurator(tmpdir):
+    c = Configurator()
+
+    assert c
 
 
 def test_expand_config_xdg_vars():
