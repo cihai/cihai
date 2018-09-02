@@ -23,6 +23,12 @@ DEFAULT_CONFIG = {
     },
 }
 
+#: User will be prompted to automatically configure their installation for UNIHAN
+SUGGESTED_CONFIG = {
+    "datasets": {"unihan": "cihai.unihan.Unihan"},
+    "extensions": {"unihan": {"variants": "cihai.unihan.UnihanVariants"}},
+}
+
 
 def expand_config(d):
     """
