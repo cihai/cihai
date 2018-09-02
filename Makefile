@@ -9,6 +9,15 @@ entr_warn:
 	@echo "See http://entrproject.org/"
 	@echo "----------------------------------------------------------"
 
+clear_pyc:
+	@find . | grep -E "(__pycache__|\.pyc|\.pyo$$)" | xargs rm -rf
+
+clear_pytest:
+	@rm -rf .cache .pytest_cache
+
+clear_cache:
+	$(MAKE) clear_pyc clear_pytest
+
 isort:
 	isort `${PY_FILES}`
 
