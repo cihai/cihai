@@ -58,15 +58,9 @@ def expand_config(d):
 class Configurator(object):
     def __init__(self, namespace=''):
         """
-        Manage configs. Used on Cihai and available for its extensions.
+        Manage config. Provides facilities for loading / writing configs.
 
-        Instance attributes
-        -------------------
-
-        data : dict
-            property / getters for options
-        _data : dict
-            where the raw dictionary resides
+        Used on Cihai and available for its extensions.
 
         Parameters
         ----------
@@ -76,8 +70,19 @@ class Configurator(object):
             Leaving this empty / reads and writes to the root level cihai config.
 
             Namespace is designed for plugins to manage settings.
+
+        Attributes
+        ----------
+        dirs : appdirs.AppDirs
+            XDG App directory locations for cihai
+
+        Class Attributes
+        ----------------
+        data : dict
+            property / getter for options
+        _data : dict
+            where the raw dictionary resides
         """
-        #: XDG App directory locations
         self.dirs = AppDirs("cihai", "cihai team")  # appname  # app author
 
         self.namespace = namespace
