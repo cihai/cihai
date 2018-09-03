@@ -37,7 +37,7 @@ class Cihai(object):
     The ``config`` :py:class:`dict` parameter supports a basic template system
     for replacing :term:`XDG Base Directory` directory variables, tildes
     and environmentas variables. This is done by passing the option dict
-    through :func:`cihai.conf.expand_config` during initialization.
+    through :func:`cihai.config.expand_config` during initialization.
 
     Examples
     --------

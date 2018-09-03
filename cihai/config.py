@@ -108,7 +108,7 @@ class Configurator(object):
 
     def get_delta(self, **updates):
         """Returns the difference of whatever user customizations differ from
-        cihai.conf.DEFAULT_CONFIG.
+        cihai.constants.DEFAULT_CONFIG.
         """
         pass
 
