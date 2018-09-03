@@ -15,5 +15,6 @@ DEFAULT_CONFIG = {
 #: User will be prompted to automatically configure their installation for UNIHAN
 UNIHAN_CONFIG = {
     "datasets": {"unihan": "cihai.data.unihan.dataset.Unihan"},
-    "plugins": {"unihan": {"variants": "cihai.data.unihan.dataset.UnihanVariants"}},
+    # Turn off by default for using as a plugin example in examples/
+    # "plugins": {"unihan": {"variants": "cihai.data.unihan.dataset.UnihanVariants"}},
 }
