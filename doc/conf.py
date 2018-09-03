@@ -5,6 +5,7 @@ import sys
 from os.path import dirname, relpath
 
 import alagitpull
+
 import cihai
 
 # Get the project root dir, which is the parent dir of this
@@ -181,7 +182,8 @@ def linkcode_resolve(domain, info):  # NOQA: C901
         return "%s/blob/master/%s/%s%s" % (
             about['__github__'],
             about['__package_name__'],
-            fn, linespec
+            fn,
+            linespec,
         )
     else:
         return "%s/blob/v%s/%s/%s%s" % (
