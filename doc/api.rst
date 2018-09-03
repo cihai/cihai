@@ -7,12 +7,6 @@ API
 .. automodule:: cihai.core
     :members:
 
-Bootstrapping
--------------
-
-.. automodule:: cihai.bootstrap
-    :members:
-
 Configuration
 -------------
 
@@ -33,6 +27,12 @@ Constants
 UNIHAN Dataset
 --------------
 
+Bootstrapping
+~~~~~~~~~~~~~
+
+.. automodule:: cihai.data.unihan.bootstrap
+    :members:
+
 .. autoclass:: cihai.data.unihan.dataset.Unihan
    :members:
    :inherited-members:
@@ -43,8 +43,8 @@ UNIHAN Dataset
    :inherited-members:
    :show-inheritance:
 
-UNIHAN Variants extension
-~~~~~~~~~~~~~~~~~~~~~~~~~
+Variants plugin
+~~~~~~~~~~~~~~~
 
 .. autoclass:: cihai.data.unihan.dataset.UnihanVariants
    :members:
