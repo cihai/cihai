@@ -27,6 +27,7 @@ def run():
     c = Cihai(unihan=False)
 
     c.add_dataset(MyDataset, namespace='moo')
+    c.moo.bootstrap()
 
     print('Definitions exactly for 好', c.moo.givemedata('好'))
 

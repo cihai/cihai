@@ -10,8 +10,9 @@ from ...extend import Dataset, DatasetPlugin, SQLAlchemyMixin
 
 
 class Unihan(Dataset, SQLAlchemyMixin):
-    def bootstrap(self):
-        self.sql.reflect_db()
+    def bootstrap(self, options={}):
+        bootstrap.bootstrap_unihan(self.sql.metadata, options=options)
+        self.sql.reflect_db()  # automap new table created during bootstrap
 
     def lookup_char(self, char):
         """Return character information from datasets.

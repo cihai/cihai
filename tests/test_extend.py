@@ -3,7 +3,6 @@ from __future__ import absolute_import, print_function, unicode_literals
 
 from cihai import extend
 from cihai.core import Cihai
-from cihai.data.unihan.bootstrap import bootstrap_unihan
 from cihai.data.unihan.dataset import Unihan, UnihanVariants
 
 
@@ -48,8 +47,7 @@ def test_add_dataset_unihan(unihan_options):
 
     c.unihan.sql
 
-    bootstrap_unihan(c.sql.metadata, unihan_options)
-    c.unihan.bootstrap()
+    c.unihan.bootstrap(options=unihan_options)
     U = c.sql.base.classes.Unihan
 
     first_glyph = (

@@ -3,14 +3,12 @@
 from __future__ import print_function, unicode_literals
 
 from cihai.core import Cihai
-from cihai.data.unihan.bootstrap import bootstrap_unihan
 
 
 def run(unihan_options={}):
     c = Cihai()
     if not c.unihan.is_bootstrapped:  # download and install Unihan to db
-        bootstrap_unihan(c.sql.metadata, options=unihan_options)
-        c.sql.reflect_db()  # automap new table created during bootstrap
+        c.unihan.bootstrap(unihan_options)
 
     c.unihan.add_plugin(
         'cihai.data.unihan.dataset.UnihanVariants', namespace='variants'
