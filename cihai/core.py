@@ -32,9 +32,6 @@ class Cihai(object):
     -----
     Inspired by the early pypa/warehouse applicaton object [1]_.
 
-    Initial loading of the Cihai() object defers running dataset's
-    bootstrap() for you to invoke manually.
-
     **Configuration templates**
 
     The ``config`` :py:class:`dict` parameter supports a basic template system
@@ -102,16 +99,13 @@ class Cihai(object):
 
     def bootstrap(self):
         for namespace, class_string in self.config.get('datasets', {}).items():
-            self.add_dataset(class_string, namespace, bootstrap=False)
+            self.add_dataset(class_string, namespace)
 
         for dataset, plugins in self.config.get('plugins', {}).items():
             for namespace, class_string in plugins.items():
-                getattr(self, dataset).add_plugin(
-                    class_string, namespace, bootstrap=False
-                )
+                getattr(self, dataset).add_plugin(class_string, namespace)
 
-    def add_dataset(self, _cls, namespace, bootstrap=True):
-        """TODO, add test to assert bootstrap=False works."""
+    def add_dataset(self, _cls, namespace):
         if isinstance(_cls, string_types):
             _cls = import_string(_cls)
 
@@ -120,9 +114,6 @@ class Cihai(object):
 
         if isinstance(dataset, extend.SQLAlchemyMixin):
             dataset.sql = self.sql
-
-        if bootstrap and hasattr(dataset, 'bootstrap') and callable(dataset.bootstrap):
-            dataset.bootstrap()
 
     @classmethod
     def from_file(cls, config_path=None, *args, **kwargs):
