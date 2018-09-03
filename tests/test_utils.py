@@ -2,7 +2,7 @@
 
 from __future__ import absolute_import, print_function, unicode_literals
 
-from cihai import util
+from cihai import utils
 
 
 def test_merge_dict():
@@ -11,4 +11,4 @@ def test_merge_dict():
 
     expected = {'hi world': 1, 'innerdict': {'hey': 1, 'welcome': 2}}
 
-    assert util.merge_dict(dict1, dict2) == expected
+    assert utils.merge_dict(dict1, dict2) == expected

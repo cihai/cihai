@@ -13,7 +13,7 @@ from sqlalchemy.orm import Session
 from cihai import bootstrap, exc
 from cihai._compat import string_types
 from cihai.config import DEFAULT_CONFIG, dirs, expand_config
-from cihai.util import merge_dict
+from cihai.utils import merge_dict
 
 log = logging.getLogger(__name__)
 

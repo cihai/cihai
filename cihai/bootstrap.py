@@ -6,7 +6,7 @@ from sqlalchemy import Column, String, Table
 from unihan_etl import process as unihan
 from unihan_etl.process import UNIHAN_MANIFEST
 
-from .util import merge_dict
+from .utils import merge_dict
 
 UNIHAN_FILES = [
     'Unihan_DictionaryLikeData.txt',
