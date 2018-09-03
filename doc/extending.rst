@@ -17,6 +17,9 @@ users can use it! If you do, bring it up on the `issue tracker`_!
 .. literalinclude:: ../examples/dataset.py
    :language: python
 
+In addition, view our reference implementation of UNIHAN, which is
+incorporated as a dataset. See :class:`cihai.unihan.Unihan`
+
 .. _issue tracker: https://github.com/cihai/cihai/issues
 
 Expanding a current dataset
@@ -29,6 +32,8 @@ Contribute back
 Adding features to a dataset
 ----------------------------
 TODO - Dataset Extensions
+
+See our reference implementation of :class:`cihai.unihan.UnihanVariants`
 
 Datasets can be augmented with computed methods.
 

@@ -26,6 +26,22 @@ Constants
 
 .. _cihai.conversion:
 
+UNIHAN Dataset
+--------------
+
+.. autoclass:: cihai.unihan.Unihan
+   :members:
+   :inherited-members:
+   :show-inheritance:
+
+UNIHAN Variants extension
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autoclass:: cihai.unihan.UnihanVariants
+   :members:
+   :inherited-members:
+   :show-inheritance:
+
 Conversion
 ----------
 
