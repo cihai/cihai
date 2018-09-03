@@ -30,8 +30,6 @@ Constants
 .. automodule:: cihai.constants
     :members:
 
-.. _cihai.conversion:
-
 UNIHAN Dataset
 --------------
 
@@ -52,6 +50,8 @@ UNIHAN Variants extension
    :members:
    :inherited-members:
    :show-inheritance:
+
+.. _cihai.conversion:
 
 Conversion
 ----------
