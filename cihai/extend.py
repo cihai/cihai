@@ -85,7 +85,7 @@ class Dataset(object):
 
     See Also
     --------
-    cihai.unihan.Unihan : reference implementation
+    cihai.data.unihan.dataset.Unihan : reference implementation
     """
 
     def bootstrap(self):
@@ -110,5 +110,5 @@ class DatasetPlugin(object):
 
     See Also
     --------
-    cihai.unihan.UnihanVariants : reference implementation
+    cihai.data.unihan.dataset.UnihanVariants : reference implementation
     """
