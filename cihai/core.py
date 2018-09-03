@@ -46,22 +46,8 @@ class Cihai(object):
     To bootstrap the cihai environment programatically, create the Cihai
     object and pass its :attr:`~cihai.core.Cihai.metadata`:
 
-    .. code-block:: python
-
-        from cihai.core import Cihai
-        from cihai.bootstrap import bootstrap_unihan
-
-        c = Cihai()
-        if not c.is_bootstrapped:  # download and install Unihan to db
-            bootstrap_unihan(c.metadata)
-            c.reflect_db()         # automap new table created during bootstrap
-
-        query = c.lookup_char('好')
-        glyph = query.first()
-        print(glyph.kDefinition)
-
-        query = c.reverse_char('good')
-        print(', '.join([glyph_.char for glyph_ in query]))
+    .. literalinclude:: ../examples/basic_usage.py
+        :language: python
 
     References
     ----------
