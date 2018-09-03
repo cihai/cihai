@@ -19,5 +19,10 @@ def test_ts_difficulties(unihan_options):
     examples.variant_ts_difficulties.run(unihan_options=unihan_options)
 
 
-def test_basic_usage(unihan_options):
+def test_basic_usage(unihan_options, capsys):
     examples.basic_usage.run(unihan_options=unihan_options)
+
+    captured = capsys.readouterr()
+
+    assert 'lookup for 好: good' in captured.out
+    assert 'matches for "good": 好' in captured.out
