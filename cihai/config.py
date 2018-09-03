@@ -11,16 +11,17 @@ from cihai._compat import string_types
 
 def expand_config(d, dirs):
     """
-    Expand configuration XDG variables.
+    Expand configuration XDG variables, environmental variables, and tildes.
 
     Parameters
     ----------
     d : dict
         config information
+    dirs : appdirs.AppDirs
+        XDG application mapping
 
     Notes
     -----
-
     *Environmentable variables* are expanded via :py:func:`os.path.expandvars`.
     So ``${PWD}`` would be replaced by the current PWD in the shell,
     ``${USER}`` would be the user running the app.
@@ -34,6 +35,11 @@ def expand_config(d, dirs):
     - ``{user_log_dir}``
     - ``{site_config_dir}``
     - ``{site_data_dir}``
+
+    See Also
+    --------
+    os.path.expanduser, os.path.expandvars :
+        Standard library functions for expanding variables. Same concept, used inside.
     """
     context = {
         'user_cache_dir': dirs.user_cache_dir,
