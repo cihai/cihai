@@ -8,7 +8,6 @@ from cihai.data.unihan.bootstrap import bootstrap_unihan
 
 def run(unihan_options={}):
     c = Cihai()
-    c.add_dataset('cihai.data.unihan.dataset.Unihan', namespace='unihan')
     if not c.sql.is_bootstrapped:  # download and install Unihan to db
         bootstrap_unihan(c.sql.metadata, options=unihan_options)
         c.sql.reflect_db()  # automap new table created during bootstrap

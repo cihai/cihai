@@ -8,6 +8,7 @@ using the ``test_config.yml``.
 
 from __future__ import absolute_import, print_function, unicode_literals
 
+from cihai.constants import UNIHAN_CONFIG
 from cihai.core import Cihai
 from cihai.data.unihan import bootstrap
 
@@ -47,3 +48,17 @@ def test_unihan_options(unihan_options, test_config_file):
         bootstrap.UNIHAN_FIELDS + ['ucn', 'char']
     )
     assert bootstrap.is_bootstrapped(app.sql.metadata)
+
+
+def test_bootstraps_unihan_by_default():
+    app = Cihai()
+    assert UNIHAN_CONFIG.items() == app.config.items()
+    assert app.unihan, 'cihai bootstraps unihan by default'
+
+
+def test_cihai_without_unihan():
+    app = Cihai(unihan=False)
+    assert (
+        UNIHAN_CONFIG.items() != app.config.items()
+    ), 'app can be initialized without unihan'
+    assert not hasattr(app, 'unihan')

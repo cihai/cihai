@@ -18,7 +18,6 @@ def run(unihan_options={}):
     print("This example prints variant character data.")
 
     c = Cihai()
-    c.add_dataset('cihai.data.unihan.dataset.Unihan', namespace='unihan')
     if not c.sql.is_bootstrapped:  # download and install Unihan to db
         bootstrap_unihan(c.sql.metadata, options=unihan_options)
         c.sql.reflect_db()  # automap new table created during bootstrap

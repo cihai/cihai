@@ -11,7 +11,7 @@ from appdirs import AppDirs
 from . import exc, extend
 from ._compat import string_types
 from .config import expand_config
-from .constants import DEFAULT_CONFIG
+from .constants import DEFAULT_CONFIG, UNIHAN_CONFIG
 from .db import Database
 from .utils import import_string, merge_dict
 
@@ -21,6 +21,10 @@ log = logging.getLogger(__name__)
 class Cihai(object):
     """
     Central application object.
+
+    Attributes
+    ----------
+    config : dict
 
     Notes
     -----
@@ -57,15 +61,29 @@ class Cihai(object):
        Accessed sometime in 2013.
     """
 
-    #: configuration dictionary.
+    # todo move this to instance variable and use Attributes
     config = None
 
     #: :py:class:`dict` of default config, can be monkey-patched during tests
     default_config = DEFAULT_CONFIG
 
-    def __init__(self, config={}):
+    def __init__(self, config=None, unihan=True):
+        """
+        Parameters
+        ----------
+        config : dict, optional
+        unihan : boolean, optional
+            Bootstrap the core UNIHAN dataset (recommended)
+        """
+        if config is None:
+            config = {}
+
+        #: Configuration dictionary
         # Merge custom configuration settings on top of defaults
         self.config = merge_dict(self.default_config, config)
+
+        if unihan:
+            self.config = merge_dict(UNIHAN_CONFIG, self.config)
 
         #: XDG App directory locations
         dirs = AppDirs("cihai", "cihai team")  # appname  # app author
@@ -77,6 +95,16 @@ class Cihai(object):
             os.makedirs(dirs.user_data_dir)
 
         self.sql = Database(self.config)
+
+        self.bootstrap()
+
+    def bootstrap(self):
+        for namespace, class_string in self.config.get('datasets', {}).items():
+            self.add_dataset(class_string, namespace)
+
+        for dataset, plugins in self.config.get('plugins', {}).items():
+            for namespace, class_string in plugins.items():
+                getattr(self, dataset).add_plugin(class_string, namespace)
 
     def add_dataset(self, _cls, namespace):
         if isinstance(_cls, string_types):

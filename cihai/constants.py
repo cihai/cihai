@@ -13,7 +13,7 @@ DEFAULT_CONFIG = {
 }
 
 #: User will be prompted to automatically configure their installation for UNIHAN
-SUGGESTED_CONFIG = {
+UNIHAN_CONFIG = {
     "datasets": {"unihan": "cihai.data.unihan.dataset.Unihan"},
-    "extensions": {"unihan": {"variants": "cihai.data.unihan.datset.UnihanVariants"}},
+    "plugins": {"unihan": {"variants": "cihai.data.unihan.dataset.UnihanVariants"}},
 }

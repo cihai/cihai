@@ -2,6 +2,7 @@
 from __future__ import absolute_import, print_function, unicode_literals
 
 import examples.basic_usage
+import examples.basic_usage_manual
 import examples.dataset
 import examples.variant_ts_difficulties
 import examples.variants
@@ -21,6 +22,15 @@ def test_ts_difficulties(unihan_options):
 
 def test_basic_usage(unihan_options, capsys):
     examples.basic_usage.run(unihan_options=unihan_options)
+
+    captured = capsys.readouterr()
+
+    assert 'lookup for 好: good' in captured.out
+    assert 'matches for "good": 好' in captured.out
+
+
+def test_basic_usage_manual(unihan_options, capsys):
+    examples.basic_usage_manual.run(unihan_options=unihan_options)
 
     captured = capsys.readouterr()
 

@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf8 - *-
+"""
+Demonstrate what basic_usage's unihan=True (default Cihai) does under
+the hood.
+"""
 from __future__ import print_function, unicode_literals
 
 from cihai.core import Cihai
@@ -7,7 +11,8 @@ from cihai.data.unihan.bootstrap import bootstrap_unihan
 
 
 def run(unihan_options={}):
-    c = Cihai()
+    c = Cihai(unihan=False)
+    c.add_dataset('cihai.data.unihan.dataset.Unihan', namespace='unihan')
 
     if not c.sql.is_bootstrapped:  # download and install Unihan to db
         bootstrap_unihan(c.sql.metadata, options=unihan_options)

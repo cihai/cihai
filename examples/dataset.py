@@ -24,7 +24,7 @@ class MyDataset(Dataset):
 
 
 def run():
-    c = Cihai()
+    c = Cihai(unihan=False)
 
     c.add_dataset(MyDataset, namespace='moo')
 
