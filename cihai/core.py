@@ -45,12 +45,11 @@ class Cihai(object):
 
     Cihai must be bootstrapped with data from the UNIHAN [2]_ database.
 
-    :attr:`~cihai.core.Cihai.is_bootstrapped` can check if the system has the
-    database installed. It checks against the application's configuration
-    settings.
+    :attr:`~cihai.data.unihan.bootstrap.is_bootstrapped` can check if the system has
+    the database installed. It checks against the application's configuration settings.
 
     To bootstrap the cihai environment programatically, create the Cihai
-    object and pass its :attr:`~cihai.core.Cihai.metadata`:
+    object and pass its :attr:`~cihai.core.Cihai.sql.metadata`:
 
     .. literalinclude:: ../examples/basic_usage.py
         :language: python
