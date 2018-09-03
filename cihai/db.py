@@ -6,8 +6,6 @@ from sqlalchemy import MetaData, create_engine
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 
-from .data.unihan import bootstrap
-
 
 class Database(object):
     def __init__(self, config):
@@ -29,17 +27,6 @@ class Database(object):
         self.metadata.reflect(views=True, extend_existing=True)
         self.base = automap_base(metadata=self.metadata)
         self.base.prepare()
-
-    @property
-    def is_bootstrapped(self):
-        """Return True if UNIHAN and database is set up.
-
-        Returns
-        -------
-        bool :
-            True if Unihan application fixture data installed.
-        """
-        return bootstrap.is_bootstrapped(self.metadata)
 
     #: :class:`sqlalchemy.engine.Engine` instance.
     engine = None

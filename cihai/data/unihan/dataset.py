@@ -7,6 +7,8 @@ from ..._compat import string_types
 from ...conversion import parse_untagged, parse_vars
 from ...extend import Dataset, DatasetPlugin, SQLAlchemyMixin
 
+from . import bootstrap
+
 
 class Unihan(Dataset, SQLAlchemyMixin):
     def bootstrap(self):
@@ -68,6 +70,17 @@ class Unihan(Dataset, SQLAlchemyMixin):
         for field in fields:
             query = query.filter(Column(field).isnot(None))
         return query
+
+    @property
+    def is_bootstrapped(self):
+        """Return True if UNIHAN and database is set up.
+
+        Returns
+        -------
+        bool :
+            True if Unihan application fixture data installed.
+        """
+        return bootstrap.is_bootstrapped(self.sql.metadata)
 
 
 class UnihanVariants(DatasetPlugin):
