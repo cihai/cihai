@@ -3,11 +3,14 @@ from __future__ import unicode_literals
 
 import os
 
+from appdirs import AppDirs
+
 from cihai.config import Configurator, dirs, expand_config
 
 
 def test_configurator(tmpdir):
     c = Configurator()
+    isinstance(c.dirs, AppDirs)
 
     assert c
 

@@ -77,6 +77,9 @@ class Configurator(object):
 
             Namespace is designed for plugins to manage settings.
         """
+        #: XDG App directory locations
+        self.dirs = AppDirs("cihai", "cihai team")  # appname  # app author
+
         self.namespace = namespace
 
     def get_names(self):
