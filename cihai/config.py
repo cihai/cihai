@@ -8,11 +8,8 @@ from appdirs import AppDirs
 
 from cihai._compat import string_types
 
-#: XDG App directory locations
-dirs = AppDirs("cihai", "cihai team")  # appname  # app author
 
-
-def expand_config(d):
+def expand_config(d, dirs):
     """
     Expand configuration XDG variables.
 
@@ -49,7 +46,7 @@ def expand_config(d):
 
     for k, v in d.items():
         if isinstance(v, dict):
-            expand_config(v)
+            expand_config(v, dirs)
         if isinstance(v, string_types):
             d[k] = os.path.expanduser(os.path.expandvars(d[k]))
             d[k] = d[k].format(**context)

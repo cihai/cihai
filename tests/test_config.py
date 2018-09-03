@@ -5,7 +5,10 @@ import os
 
 from appdirs import AppDirs
 
-from cihai.config import Configurator, dirs, expand_config
+from cihai.config import Configurator, expand_config
+
+#: XDG App directory locations
+dirs = AppDirs("cihai", "cihai team")  # appname  # app author
 
 
 def test_configurator(tmpdir):
@@ -27,7 +30,7 @@ def test_expand_config_xdg_vars():
         }
     }
 
-    expand_config(initial_dict)
+    expand_config(initial_dict, dirs)
     assert initial_dict == expected_dict
 
 
@@ -36,7 +39,7 @@ def test_expand_config_user_vars():
 
     expected_dict = {'dirs': {'cache': os.path.expanduser('~')}}
 
-    expand_config(initial_dict)
+    expand_config(initial_dict, dirs)
     assert initial_dict == expected_dict
 
 
@@ -46,5 +49,5 @@ def test_expand_config_env_vars(tmpdir, monkeypatch):
 
     expected_dict = {'dirs': {'cache': os.environ.get('MYDIR')}}
 
-    expand_config(initial_dict)
+    expand_config(initial_dict, dirs)
     assert initial_dict == expected_dict

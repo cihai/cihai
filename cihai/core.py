@@ -6,12 +6,13 @@ import logging
 import os
 
 import kaptan
+from appdirs import AppDirs
 from sqlalchemy import MetaData, create_engine
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 
 from cihai import bootstrap, exc, extend
-from cihai.config import dirs, expand_config
+from cihai.config import expand_config
 from cihai.constants import DEFAULT_CONFIG
 from cihai.utils import import_string, merge_dict
 
@@ -131,8 +132,11 @@ class Cihai(object):
         # Merge custom configuration settings on top of defaults
         self.config = merge_dict(self.default_config, config)
 
+        #: XDG App directory locations
+        dirs = AppDirs("cihai", "cihai team")  # appname  # app author
+
         #: Expand template variables
-        expand_config(self.config)
+        expand_config(self.config, dirs)
 
         if not os.path.exists(dirs.user_data_dir):
             os.makedirs(dirs.user_data_dir)
