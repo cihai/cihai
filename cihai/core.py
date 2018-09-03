@@ -146,7 +146,7 @@ class Cihai(object):
         setattr(self, namespace, _cls())
         dataset = getattr(self, namespace)
 
-        if isinstance(dataset, extension.DatasetSQLAlchemyMixin):
+        if isinstance(dataset, extension.SQLAlchemyMixin):
             dataset.sql = self.sql
 
         if hasattr(dataset, 'bootstrap') and callable(dataset.bootstrap):

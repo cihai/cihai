@@ -52,7 +52,7 @@ class DatasetConfigMixin(object):
     """
 
 
-class DatasetSQLAlchemyMixin(object):
+class SQLAlchemyMixin(object):
     """Your dataset can use any backend you'd like, we provide a backend for you, that
     automatically piggybacks on cihai's zero-config, XDG / SQLAchemy configuration. So
     it's preconfigured for the user.
@@ -92,7 +92,7 @@ class Dataset(object):
         setattr(self, namespace, _cls())
         extension = getattr(self, namespace)
 
-        if hasattr(self, 'sql') and isinstance(self, DatasetSQLAlchemyMixin):
+        if hasattr(self, 'sql') and isinstance(self, SQLAlchemyMixin):
             extension.sql = self.sql
 
         if hasattr(extension, 'bootstrap') and callable(extension.bootstrap):

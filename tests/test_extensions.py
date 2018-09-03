@@ -22,7 +22,7 @@ def test_add_dataset():
     assert c.simple.a_method() == 'hi'
 
 
-class SimplestSQLAlchemyDataset(extension.Dataset, extension.DatasetSQLAlchemyMixin):
+class SimplestSQLAlchemyDataset(extension.Dataset, extension.SQLAlchemyMixin):
     def a_method(self):
         return 'hi'
 

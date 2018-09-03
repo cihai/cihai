@@ -3,10 +3,10 @@ from sqlalchemy import Column, or_
 
 from ._compat import string_types
 from .conversion import parse_untagged, parse_vars
-from .extension import Dataset, DatasetSQLAlchemyMixin, Extension
+from .extension import Dataset, Extension, SQLAlchemyMixin
 
 
-class Unihan(Dataset, DatasetSQLAlchemyMixin):
+class Unihan(Dataset, SQLAlchemyMixin):
     def bootstrap(self):
         self.sql.reflect_db()
 
