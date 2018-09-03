@@ -60,10 +60,6 @@ class Cihai(object):
     .. [2] PyPA Warehouse on GitHub. https://github.com/pypa/warehouse.
        Accessed sometime in 2013.
     """
-
-    # todo move this to instance variable and use Attributes
-    config = None
-
     #: :py:class:`dict` of default config, can be monkey-patched during tests
     default_config = DEFAULT_CONFIG
 
