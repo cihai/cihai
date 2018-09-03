@@ -38,7 +38,7 @@ Bootstrapping
    :inherited-members:
    :show-inheritance:
 
-.. autoclass:: cihai.data.unihan.constants
+.. automodule:: cihai.data.unihan.constants
    :members:
    :inherited-members:
    :show-inheritance:

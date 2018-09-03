@@ -1,6 +1,7 @@
 # -*- coding: utf8 - *-
 from __future__ import unicode_literals
 
+#: Mapping of files from unihan-etl (UNIHAN database)
 UNIHAN_FILES = [
     'Unihan_DictionaryLikeData.txt',
     'Unihan_IRGSources.txt',
@@ -10,6 +11,8 @@ UNIHAN_FILES = [
     'Unihan_Variants.txt',
 ]
 
+
+#: Mapping of field names from unihan-etl (UNIHAN database)
 UNIHAN_FIELDS = [
     'kAccountingNumeric',
     'kCangjie',
@@ -51,6 +54,7 @@ UNIHAN_FIELDS = [
     'kZVariant',
 ]
 
+#: Default settings passed to unihan-etl
 UNIHAN_ETL_DEFAULT_OPTIONS = {
     'input_files': UNIHAN_FILES,
     'fields': UNIHAN_FIELDS,
