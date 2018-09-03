@@ -13,6 +13,12 @@ Configuration
 .. automodule:: cihai.config
     :members:
 
+Database
+--------
+
+.. automodule:: cihai.db
+    :members:
+
 Extending
 ---------
 

@@ -76,8 +76,8 @@ class Cihai(object):
         if config is None:
             config = {}
 
+        # Merges custom configuration settings on top of defaults
         #: Configuration dictionary
-        # Merge custom configuration settings on top of defaults
         self.config = merge_dict(self.default_config, config)
 
         if unihan:
@@ -92,6 +92,7 @@ class Cihai(object):
         if not os.path.exists(dirs.user_data_dir):
             os.makedirs(dirs.user_data_dir)
 
+        #: :class:`cihai.db.Database` : Database instance
         self.sql = Database(self.config)
 
         self.bootstrap()

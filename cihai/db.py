@@ -8,6 +8,9 @@ from sqlalchemy.orm import Session
 
 
 class Database(object):
+    """
+    Cihai SQLAlchemy instance
+    """
     def __init__(self, config):
         self.engine = create_engine(config['database']['url'])
 
