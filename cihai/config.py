@@ -5,7 +5,7 @@ import os
 
 from appdirs import AppDirs
 
-from cihai._compat import string_types
+from ._compat import string_types
 
 
 def expand_config(d, dirs):

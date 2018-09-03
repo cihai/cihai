@@ -8,13 +8,12 @@ import os
 import kaptan
 from appdirs import AppDirs
 
-from cihai import exc, extend
-from cihai.config import expand_config
-from cihai.constants import DEFAULT_CONFIG
-from cihai.db import Database
-from cihai.utils import import_string, merge_dict
-
+from . import exc, extend
 from ._compat import string_types
+from .config import expand_config
+from .constants import DEFAULT_CONFIG
+from .db import Database
+from .utils import import_string, merge_dict
 
 log = logging.getLogger(__name__)
 

@@ -64,7 +64,7 @@ from __future__ import absolute_import, print_function, unicode_literals
 import logging
 import re
 
-from cihai._compat import string_types, text_type, unichr
+from ._compat import string_types, text_type, unichr
 
 log = logging.getLogger(__name__)
 
