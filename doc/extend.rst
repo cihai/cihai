@@ -1,4 +1,4 @@
-.. _extending:
+.. _extend:
 
 Extending cihai
 ===============
@@ -22,15 +22,8 @@ incorporated as a dataset. See :class:`cihai.unihan.Unihan`
 
 .. _issue tracker: https://github.com/cihai/cihai/issues
 
-Expanding a current dataset
----------------------------
-TODO
-
-Subclass
-Contribute back
-
-Adding features to a dataset
-----------------------------
+Plugins: Adding features to a dataset
+-------------------------------------
 TODO - Dataset Extensions
 
 See our reference implementation of :class:`cihai.unihan.UnihanVariants`

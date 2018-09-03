@@ -19,6 +19,12 @@ Configuration
 .. automodule:: cihai.config
     :members:
 
+Extending
+---------
+
+.. automodule:: cihai.extend
+    :members:
+
 Constants
 ---------
 .. automodule:: cihai.constants

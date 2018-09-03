@@ -12,7 +12,7 @@ cihai
     features
     usage
     examples
-    extending
+    extend
     datasets
     api
     troubleshooting
