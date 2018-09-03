@@ -72,7 +72,6 @@ class Cihai(object):
 
     Notes
     -----
-
     Inspired by the early pypa/warehouse applicaton object [1]_.
 
     **Configuration templates**
@@ -84,7 +83,6 @@ class Cihai(object):
 
     Examples
     --------
-
     **Invocation from Python**
 
     Cihai must be bootstrapped with data from the UNIHAN [2]_ database.
@@ -115,7 +113,6 @@ class Cihai(object):
 
     References
     ----------
-
     .. [1] UNICODE HAN DATABASE (UNIHAN) documentation.
        https://www.unicode.org/reports/tr38/. Accessed March 31st, 2018.
     .. [2] PyPA Warehouse on GitHub. https://github.com/pypa/warehouse.
