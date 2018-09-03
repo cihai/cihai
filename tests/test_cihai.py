@@ -8,8 +8,8 @@ using the ``test_config.yml``.
 
 from __future__ import absolute_import, print_function, unicode_literals
 
-from cihai import bootstrap
 from cihai.core import Cihai
+from cihai.unihan import bootstrap
 
 
 def test_config_defaults():

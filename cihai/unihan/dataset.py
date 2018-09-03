@@ -3,9 +3,9 @@ from __future__ import absolute_import, print_function, unicode_literals
 
 from sqlalchemy import Column, or_
 
-from ._compat import string_types
-from .conversion import parse_untagged, parse_vars
-from .extend import Dataset, DatasetPlugin, SQLAlchemyMixin
+from .._compat import string_types
+from ..conversion import parse_untagged, parse_vars  # TODO remove
+from ..extend import Dataset, DatasetPlugin, SQLAlchemyMixin
 
 
 class Unihan(Dataset, SQLAlchemyMixin):

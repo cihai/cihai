@@ -1,7 +1,6 @@
 # -*- coding: utf8 - *-
-
-from cihai import bootstrap
 from cihai.core import Cihai
+from cihai.unihan import bootstrap
 
 
 def test_reflect_db(tmpdb_file, unihan_options):

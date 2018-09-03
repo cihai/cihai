@@ -2,9 +2,9 @@
 from __future__ import absolute_import, print_function, unicode_literals
 
 from cihai import extend
-from cihai.bootstrap import bootstrap_unihan
 from cihai.core import Cihai
-from cihai.unihan import Unihan, UnihanVariants
+from cihai.unihan.bootstrap import bootstrap_unihan
+from cihai.unihan.dataset import Unihan, UnihanVariants
 
 
 class SimplestDataset(extend.Dataset):

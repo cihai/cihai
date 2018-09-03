@@ -2,8 +2,8 @@
 # -*- coding: utf8 - *-
 from __future__ import print_function, unicode_literals
 
-from cihai.bootstrap import bootstrap_unihan
 from cihai.core import Cihai
+from cihai.unihan.bootstrap import bootstrap_unihan
 
 
 def variant_list(unihan, field):
@@ -18,12 +18,12 @@ def run(unihan_options={}):
     print("This example prints variant character data.")
 
     c = Cihai()
-    c.add_dataset('cihai.unihan.Unihan', namespace='unihan')
+    c.add_dataset('cihai.unihan.dataset.Unihan', namespace='unihan')
     if not c.sql.is_bootstrapped:  # download and install Unihan to db
         bootstrap_unihan(c.sql.metadata, options=unihan_options)
         c.sql.reflect_db()  # automap new table created during bootstrap
 
-    c.unihan.add_plugin('cihai.unihan.UnihanVariants', namespace='variants')
+    c.unihan.add_plugin('cihai.unihan.dataset.UnihanVariants', namespace='variants')
 
     print("## ZVariants")
     variant_list(c.unihan, "kZVariant")

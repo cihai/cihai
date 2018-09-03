@@ -6,7 +6,7 @@ from sqlalchemy import MetaData, create_engine
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 
-from cihai import bootstrap
+from cihai.unihan import bootstrap
 
 
 class Database(object):

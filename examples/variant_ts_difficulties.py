@@ -2,18 +2,18 @@
 # -*- coding: utf8 - *-
 from __future__ import print_function, unicode_literals
 
-from cihai.bootstrap import bootstrap_unihan
 from cihai.core import Cihai
+from cihai.unihan.bootstrap import bootstrap_unihan
 
 
 def run(unihan_options={}):
     c = Cihai()
-    c.add_dataset('cihai.unihan.Unihan', namespace='unihan')
+    c.add_dataset('cihai.unihan.dataset.Unihan', namespace='unihan')
     if not c.sql.is_bootstrapped:  # download and install Unihan to db
         bootstrap_unihan(c.sql.metadata, options=unihan_options)
         c.sql.reflect_db()  # automap new table created during bootstrap
 
-    c.unihan.add_plugin('cihai.unihan.UnihanVariants', namespace='variants')
+    c.unihan.add_plugin('cihai.unihan.dataset.UnihanVariants', namespace='variants')
 
     print(
         "This example prints some tricky cases of character-by-character "
