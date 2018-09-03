@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
+import inspect
 import os
 import sys
+from os.path import dirname, relpath
 
 import alagitpull
+import cihai
 
 # Get the project root dir, which is the parent dir of this
 cwd = os.getcwd()
@@ -120,7 +123,7 @@ intersphinx_mapping = {
 autodoc_member_order = 'groupwise'
 
 
-def linkcode_resolve(domain, info):
+def linkcode_resolve(domain, info):  # NOQA: C901
     """
     Determine the URL corresponding to Python object
 
@@ -172,13 +175,19 @@ def linkcode_resolve(domain, info):
     else:
         linespec = ""
 
-    fn = relpath(fn, start=dirname(numpy.__file__))
+    fn = relpath(fn, start=dirname(cihai.__file__))
 
-    if 'dev' in numpy.__version__:
-        return "https://github.com/numpy/numpy/blob/master/numpy/%s%s" % (fn, linespec)
+    if 'dev' in about['__version__']:
+        return "%s/blob/master/%s/%s%s" % (
+            about['__github__'],
+            about['__package_name__'],
+            fn, linespec
+        )
     else:
-        return "https://github.com/numpy/numpy/blob/v%s/numpy/%s%s" % (
-            numpy.__version__,
+        return "%s/blob/v%s/%s/%s%s" % (
+            about['__github__'],
+            about['__version__'],
+            about['__package_name__'],
             fn,
             linespec,
         )
