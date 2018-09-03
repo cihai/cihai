@@ -14,6 +14,8 @@ with open("cihai/__about__.py") as fp:
 with open('requirements/base.txt') as f:
     install_reqs = [line for line in f.read().split('\n') if line]
 
+install_reqs += ['enum34; python_version<"3"']
+
 with open('requirements/test.txt') as f:
     tests_reqs = [line for line in f.read().split('\n') if line]
 

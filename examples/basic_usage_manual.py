@@ -1,16 +1,20 @@
 #!/usr/bin/env python
 # -*- coding: utf8 - *-
+"""
+Demonstrate what basic_usage's unihan=True (default Cihai) does under
+the hood.
+"""
 from __future__ import print_function, unicode_literals
 
 from cihai.core import Cihai
 
 
 def run(unihan_options={}):
-    c = Cihai()
+    c = Cihai(unihan=False)
+    c.add_dataset('cihai.data.unihan.dataset.Unihan', namespace='unihan')
 
     if not c.unihan.is_bootstrapped:  # download and install Unihan to db
         c.unihan.bootstrap(unihan_options)
-        c.sql.reflect_db()
 
     query = c.unihan.lookup_char('好')
     glyph = query.first()

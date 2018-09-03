@@ -11,6 +11,8 @@ cihai
 
     features
     usage
+    examples
+    extend
     datasets
     api
     troubleshooting

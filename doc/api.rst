@@ -7,17 +7,49 @@ API
 .. automodule:: cihai.core
     :members:
 
-Bootstrapping
--------------
-
-.. automodule:: cihai.bootstrap
-    :members:
-
 Configuration
 -------------
 
 .. automodule:: cihai.config
     :members:
+
+Extending
+---------
+
+.. automodule:: cihai.extend
+    :members:
+
+Constants
+---------
+.. automodule:: cihai.constants
+    :members:
+
+UNIHAN Dataset
+--------------
+
+Bootstrapping
+~~~~~~~~~~~~~
+
+.. automodule:: cihai.data.unihan.bootstrap
+    :members:
+
+.. autoclass:: cihai.data.unihan.dataset.Unihan
+   :members:
+   :inherited-members:
+   :show-inheritance:
+
+.. automodule:: cihai.data.unihan.constants
+   :members:
+   :inherited-members:
+   :show-inheritance:
+
+Variants plugin
+~~~~~~~~~~~~~~~
+
+.. autoclass:: cihai.data.unihan.dataset.UnihanVariants
+   :members:
+   :inherited-members:
+   :show-inheritance:
 
 .. _cihai.conversion:
 
