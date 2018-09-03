@@ -6,8 +6,8 @@ from sqlalchemy import Column, String, Table
 from unihan_etl import process as unihan
 from unihan_etl.process import UNIHAN_MANIFEST
 
-from ..utils import merge_dict
-from .constants import UNIHAN_ETL_DEFAULT_OPTIONS, UNIHAN_FIELDS, UNIHAN_FILES
+from ...utils import merge_dict
+from .constants import UNIHAN_ETL_DEFAULT_OPTIONS, UNIHAN_FIELDS
 
 
 def bootstrap_unihan(metadata, options={}):

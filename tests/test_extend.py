@@ -3,8 +3,8 @@ from __future__ import absolute_import, print_function, unicode_literals
 
 from cihai import extend
 from cihai.core import Cihai
-from cihai.unihan.bootstrap import bootstrap_unihan
-from cihai.unihan.dataset import Unihan, UnihanVariants
+from cihai.data.unihan.bootstrap import bootstrap_unihan
+from cihai.data.unihan.dataset import Unihan, UnihanVariants
 
 
 class SimplestDataset(extend.Dataset):

@@ -4,7 +4,7 @@ import zipfile
 
 import pytest
 
-from cihai.unihan.constants import UNIHAN_FILES
+from cihai.data.unihan.constants import UNIHAN_FILES
 
 
 @pytest.fixture
