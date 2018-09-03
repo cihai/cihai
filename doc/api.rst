@@ -16,7 +16,7 @@ Bootstrapping
 Configuration
 -------------
 
-.. automodule:: cihai.conf
+.. automodule:: cihai.config
     :members:
 
 .. _cihai.conversion:
@@ -49,7 +49,7 @@ these. All Cihai-specific exceptions are catchable via
 Utilities
 ---------
 
-.. automodule:: cihai.util
+.. automodule:: cihai.utils
     :members:
     :inherited-members:
     :show-inheritance:
