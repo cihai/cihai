@@ -250,3 +250,31 @@ def ucnstring_to_python(ucn_string):
 
     assert isinstance(ucn_string, bytes)
     return ucn_string
+
+
+def parse_var(var):
+    """
+    Returns a tuple consisting of a string and a tag, or None, if none is
+    specified.
+    """
+    bits = var.split("<", 1)
+    if len(bits) < 2:
+        tag = None
+    else:
+        tag = bits[1]
+    return ucn_to_unicode(bits[0]), tag
+
+
+def parse_vars(vars):
+    """
+    Return an iterator of (char, tag) tuples.
+    """
+    for var in vars.split(" "):
+        yield parse_var(var)
+
+
+def parse_untagged(vars):
+    """
+    Return an iterator of chars.
+    """
+    return (char for char, _tag in parse_vars(vars))
