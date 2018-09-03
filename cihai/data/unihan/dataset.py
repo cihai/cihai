@@ -3,11 +3,10 @@ from __future__ import absolute_import, print_function, unicode_literals
 
 from sqlalchemy import Column, or_
 
+from . import bootstrap
 from ..._compat import string_types
 from ...conversion import parse_untagged, parse_vars
 from ...extend import Dataset, DatasetPlugin, SQLAlchemyMixin
-
-from . import bootstrap
 
 
 class Unihan(Dataset, SQLAlchemyMixin):

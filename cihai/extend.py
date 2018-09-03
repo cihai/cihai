@@ -91,7 +91,7 @@ class Dataset(object):
     def bootstrap(self):
         pass
 
-    def add_plugin(self, _cls, namespace):
+    def add_plugin(self, _cls, namespace, bootstrap=True):
         if isinstance(_cls, string_types):
             _cls = utils.import_string(_cls)
         setattr(self, namespace, _cls())
@@ -100,7 +100,7 @@ class Dataset(object):
         if hasattr(self, 'sql') and isinstance(self, SQLAlchemyMixin):
             plugin.sql = self.sql
 
-        if hasattr(plugin, 'bootstrap') and callable(plugin.bootstrap):
+        if bootstrap and hasattr(plugin, 'bootstrap') and callable(plugin.bootstrap):
             plugin.bootstrap()
 
 

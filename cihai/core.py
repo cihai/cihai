@@ -22,6 +22,8 @@ class Cihai(object):
     """
     Central application object.
 
+    By default, this automatically adds the UNIHAN dataset.
+
     Attributes
     ----------
     config : dict
@@ -29,6 +31,9 @@ class Cihai(object):
     Notes
     -----
     Inspired by the early pypa/warehouse applicaton object [1]_.
+
+    Initial loading of the Cihai() object defers running dataset's
+    bootstrap() for you to invoke manually.
 
     **Configuration templates**
 
@@ -60,6 +65,7 @@ class Cihai(object):
     .. [2] PyPA Warehouse on GitHub. https://github.com/pypa/warehouse.
        Accessed sometime in 2013.
     """
+
     #: :py:class:`dict` of default config, can be monkey-patched during tests
     default_config = DEFAULT_CONFIG
 
@@ -96,13 +102,16 @@ class Cihai(object):
 
     def bootstrap(self):
         for namespace, class_string in self.config.get('datasets', {}).items():
-            self.add_dataset(class_string, namespace)
+            self.add_dataset(class_string, namespace, bootstrap=False)
 
         for dataset, plugins in self.config.get('plugins', {}).items():
             for namespace, class_string in plugins.items():
-                getattr(self, dataset).add_plugin(class_string, namespace)
+                getattr(self, dataset).add_plugin(
+                    class_string, namespace, bootstrap=False
+                )
 
-    def add_dataset(self, _cls, namespace):
+    def add_dataset(self, _cls, namespace, bootstrap=True):
+        """TODO, add test to assert bootstrap=False works."""
         if isinstance(_cls, string_types):
             _cls = import_string(_cls)
 
@@ -112,7 +121,7 @@ class Cihai(object):
         if isinstance(dataset, extend.SQLAlchemyMixin):
             dataset.sql = self.sql
 
-        if hasattr(dataset, 'bootstrap') and callable(dataset.bootstrap):
+        if bootstrap and hasattr(dataset, 'bootstrap') and callable(dataset.bootstrap):
             dataset.bootstrap()
 
     @classmethod
