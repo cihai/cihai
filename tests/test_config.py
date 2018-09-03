@@ -2,7 +2,7 @@
 
 import os
 
-from cihai.conf import dirs, expand_config
+from cihai.config import dirs, expand_config
 
 
 def test_expand_config_xdg_vars():
