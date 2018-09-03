@@ -265,16 +265,16 @@ def parse_var(var):
     return ucn_to_unicode(bits[0]), tag
 
 
-def parse_vars(vars):
+def parse_vars(_vars):
     """
     Return an iterator of (char, tag) tuples.
     """
-    for var in vars.split(" "):
+    for var in _vars.split(" "):
         yield parse_var(var)
 
 
-def parse_untagged(vars):
+def parse_untagged(_vars):
     """
     Return an iterator of chars.
     """
-    return (char for char, _tag in parse_vars(vars))
+    return (char for char, _tag in parse_vars(_vars))
