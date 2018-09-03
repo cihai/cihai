@@ -18,7 +18,7 @@ users can use it! If you do, bring it up on the `issue tracker`_!
    :language: python
 
 In addition, view our reference implementation of UNIHAN, which is
-incorporated as a dataset. See :class:`cihai.unihan.Unihan`
+incorporated as a dataset. See :class:`cihai.data.unihan.dataset.Unihan`
 
 .. _issue tracker: https://github.com/cihai/cihai/issues
 
@@ -27,7 +27,7 @@ Plugins: Adding features to a dataset
 Extend a dataset with custom behavior to avoid repetition.
 Create a :class:`cihai.extend.DatasetPlugin`.
 
-See our reference implementation of :class:`cihai.unihan.UnihanVariants`
+See our reference implementation of :class:`cihai.data.unihan.dataset.UnihanVariants`
 
 Datasets can be augmented with computed methods.
 

@@ -33,12 +33,12 @@ Constants
 UNIHAN Dataset
 --------------
 
-.. autoclass:: cihai.unihan.dataset.Unihan
+.. autoclass:: cihai.data.unihan.dataset.Unihan
    :members:
    :inherited-members:
    :show-inheritance:
 
-.. autoclass:: cihai.unihan.constants
+.. autoclass:: cihai.data.unihan.constants
    :members:
    :inherited-members:
    :show-inheritance:
@@ -46,7 +46,7 @@ UNIHAN Dataset
 UNIHAN Variants extension
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. autoclass:: cihai.unihan.dataset.UnihanVariants
+.. autoclass:: cihai.data.unihan.dataset.UnihanVariants
    :members:
    :inherited-members:
    :show-inheritance:
