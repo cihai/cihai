@@ -175,8 +175,10 @@ def linkcode_resolve(domain, info):
     fn = relpath(fn, start=dirname(numpy.__file__))
 
     if 'dev' in numpy.__version__:
-        return "https://github.com/numpy/numpy/blob/master/numpy/%s%s" % (
-           fn, linespec)
+        return "https://github.com/numpy/numpy/blob/master/numpy/%s%s" % (fn, linespec)
     else:
         return "https://github.com/numpy/numpy/blob/v%s/numpy/%s%s" % (
-           numpy.__version__, fn, linespec)
+            numpy.__version__,
+            fn,
+            linespec,
+        )
