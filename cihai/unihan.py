@@ -3,7 +3,7 @@ from sqlalchemy import Column, or_
 
 from ._compat import string_types
 from .conversion import parse_untagged, parse_vars
-from .extension import Dataset, Extension, SQLAlchemyMixin
+from .extension import Dataset, DatasetPlugin, SQLAlchemyMixin
 
 
 class Unihan(Dataset, SQLAlchemyMixin):
@@ -68,7 +68,7 @@ class Unihan(Dataset, SQLAlchemyMixin):
         return query
 
 
-class UnihanVariants(Extension):
+class UnihanVariants(DatasetPlugin):
     def bootstrap(self):
         def tagged_vars(table, col):
             """

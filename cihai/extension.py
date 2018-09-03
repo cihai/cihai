@@ -20,7 +20,7 @@ from . import utils
 from ._compat import string_types
 
 
-class DatasetConfigMixin(object):
+class ConfigMixin(object):
     """
     This piggybacks cihai's global config state, as well as your datasets.
 
@@ -81,7 +81,13 @@ class SQLAlchemyMixin(object):
 
 
 class Dataset(object):
-    """Core for a dataset, e.g. UNIHAN."""
+    """
+    Cihai dataset, e.g. UNIHAN.
+
+    See Also
+    --------
+    cihai.unihan.Unihan : reference implementation
+    """
 
     def bootstrap(self):
         pass
@@ -99,5 +105,11 @@ class Dataset(object):
             extension.bootstrap()
 
 
-class Extension(object):
-    pass
+class DatasetPlugin(object):
+    """
+    Extend the functionality of datasets with custom methods, actions, etc.
+
+    See Also
+    --------
+    cihai.unihan.UnihanVariants : reference implementation
+    """
