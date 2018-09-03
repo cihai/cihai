@@ -1,18 +1,17 @@
 # -*- coding: utf8 - *-
 """
-Cihai Extension System
+Cihai Plugin System
 
 Status: Experimental, API can change
 
-As a pilot, the UNIHAN library, and an extension for it, in #131 [1]_
+As a pilot, the UNIHAN library, and an plugin for it, in #131 [1]_
 
 You can bring any data layout / backend you like to cihai.
 
-For convenience, you can use cihai's configuration namespace and
-SQLAlchemy settings.
+For convenience, you can use cihai's configuration namespace and SQLAlchemy settings.
 
-You can also create extensions which extend another. So if Unihan
-doesn't have a lookup for variant glyphs, this can be added.
+You can also create plugins which extend another. So if Unihan doesn't have a lookup
+for variant glyphs, this can be added.
 """
 from __future__ import absolute_import, print_function, unicode_literals
 
@@ -92,17 +91,17 @@ class Dataset(object):
     def bootstrap(self):
         pass
 
-    def add_extension(self, _cls, namespace):
+    def add_plugin(self, _cls, namespace):
         if isinstance(_cls, string_types):
             _cls = utils.import_string(_cls)
         setattr(self, namespace, _cls())
-        extension = getattr(self, namespace)
+        plugin = getattr(self, namespace)
 
         if hasattr(self, 'sql') and isinstance(self, SQLAlchemyMixin):
-            extension.sql = self.sql
+            plugin.sql = self.sql
 
-        if hasattr(extension, 'bootstrap') and callable(extension.bootstrap):
-            extension.bootstrap()
+        if hasattr(plugin, 'bootstrap') and callable(plugin.bootstrap):
+            plugin.bootstrap()
 
 
 class DatasetPlugin(object):

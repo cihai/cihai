@@ -10,7 +10,7 @@ from sqlalchemy import MetaData, create_engine
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 
-from cihai import bootstrap, exc, extension
+from cihai import bootstrap, exc, extend
 from cihai.config import dirs, expand_config
 from cihai.constants import DEFAULT_CONFIG
 from cihai.utils import import_string, merge_dict
@@ -146,7 +146,7 @@ class Cihai(object):
         setattr(self, namespace, _cls())
         dataset = getattr(self, namespace)
 
-        if isinstance(dataset, extension.SQLAlchemyMixin):
+        if isinstance(dataset, extend.SQLAlchemyMixin):
             dataset.sql = self.sql
 
         if hasattr(dataset, 'bootstrap') and callable(dataset.bootstrap):
@@ -181,7 +181,7 @@ class Cihai(object):
                 config_path.endswith(ext) for ext in ('json', 'yml', 'yaml', 'ini')
             ):
                 raise exc.CihaiException(
-                    '{0} does not have a yaml,yml,json,ini extension.'.format(
+                    '{0} does not have a yaml,yml,json,ini extend.'.format(
                         os.path.abspath(config_path)
                     )
                 )

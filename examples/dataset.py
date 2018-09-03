@@ -3,7 +3,7 @@
 from __future__ import print_function, unicode_literals
 
 from cihai.core import Cihai
-from cihai.extension import Dataset
+from cihai.extend import Dataset
 
 data = {}  # any data source, internal, a file, on the internet, in a database...
 

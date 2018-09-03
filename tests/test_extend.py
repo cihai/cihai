@@ -1,13 +1,13 @@
 # -*- coding: utf8 - *-
 from __future__ import absolute_import, print_function, unicode_literals
 
-from cihai import extension
+from cihai import extend
 from cihai.bootstrap import bootstrap_unihan
 from cihai.core import Cihai
 from cihai.unihan import Unihan, UnihanVariants
 
 
-class SimplestDataset(extension.Dataset):
+class SimplestDataset(extend.Dataset):
     def a_method(self):
         return 'hi'
 
@@ -16,13 +16,13 @@ def test_add_dataset():
     c = Cihai()
     c.add_dataset(SimplestDataset, namespace='simple')
     assert hasattr(c, 'simple')
-    assert isinstance(c.simple, extension.Dataset)
+    assert isinstance(c.simple, extend.Dataset)
     assert hasattr(c.simple, 'a_method')
     assert callable(c.simple.a_method)
     assert c.simple.a_method() == 'hi'
 
 
-class SimplestSQLAlchemyDataset(extension.Dataset, extension.SQLAlchemyMixin):
+class SimplestSQLAlchemyDataset(extend.Dataset, extend.SQLAlchemyMixin):
     def a_method(self):
         return 'hi'
 
@@ -31,7 +31,7 @@ def test_add_dataset_with_db():
     c = Cihai()
     c.add_dataset(SimplestSQLAlchemyDataset, namespace='simple')
     assert hasattr(c, 'simple')
-    assert isinstance(c.simple, extension.Dataset)
+    assert isinstance(c.simple, extend.Dataset)
     assert hasattr(c.simple, 'a_method')
     assert callable(c.simple.a_method)
     assert c.simple.a_method() == 'hi'
@@ -44,7 +44,7 @@ def test_add_dataset_unihan(unihan_options):
     c = Cihai()
     c.add_dataset(Unihan, namespace='unihan')
     assert hasattr(c, 'unihan')
-    assert isinstance(c.unihan, extension.Dataset)
+    assert isinstance(c.unihan, extend.Dataset)
 
     c.unihan.sql
 
@@ -69,7 +69,7 @@ def test_add_dataset_unihan(unihan_options):
         c.unihan.reverse_char(hints=first_glyph.kDefinition).first().char == char
     ), 'works with strings'
 
-    c.unihan.add_extension(UnihanVariants, 'variants')
+    c.unihan.add_plugin(UnihanVariants, 'variants')
     assert hasattr(c.unihan, 'variants')
 
     def variant_list(field):

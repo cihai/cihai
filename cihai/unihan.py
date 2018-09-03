@@ -3,7 +3,7 @@ from sqlalchemy import Column, or_
 
 from ._compat import string_types
 from .conversion import parse_untagged, parse_vars
-from .extension import Dataset, DatasetPlugin, SQLAlchemyMixin
+from .extend import Dataset, DatasetPlugin, SQLAlchemyMixin
 
 
 class Unihan(Dataset, SQLAlchemyMixin):

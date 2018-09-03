@@ -13,7 +13,7 @@ def run(unihan_options={}):
         bootstrap_unihan(c.sql.metadata, options=unihan_options)
         c.sql.reflect_db()  # automap new table created during bootstrap
 
-    c.unihan.add_extension('cihai.unihan.UnihanVariants', namespace='variants')
+    c.unihan.add_plugin('cihai.unihan.UnihanVariants', namespace='variants')
 
     print(
         "This example prints some tricky cases of character-by-character "
