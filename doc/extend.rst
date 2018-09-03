@@ -7,7 +7,7 @@ SQL access, and be available in a growing list of CJKV information.
 
 Creating new dataset
 --------------------
-Expand cihai's knowledge!
+Expand cihai's knowledge! Create a :class:`cihai.extend.Dataset`.
 
 You can also make your dataset available in open source so other cihai
 users can use it! If you do, bring it up on the `issue tracker`_!
@@ -24,7 +24,8 @@ incorporated as a dataset. See :class:`cihai.unihan.Unihan`
 
 Plugins: Adding features to a dataset
 -------------------------------------
-TODO - Dataset Extensions
+Extend a dataset with custom behavior to avoid repetition.
+Create a :class:`cihai.extend.DatasetPlugin`.
 
 See our reference implementation of :class:`cihai.unihan.UnihanVariants`
 
