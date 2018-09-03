@@ -1,0 +1,54 @@
+# -*- coding: utf8 - *-
+"""Cihai core functionality."""
+from __future__ import absolute_import, print_function, unicode_literals
+
+from sqlalchemy import MetaData, create_engine
+from sqlalchemy.ext.automap import automap_base
+from sqlalchemy.orm import Session
+
+from cihai import bootstrap
+
+
+class Database(object):
+    def __init__(self, config):
+        self.engine = create_engine(config['database']['url'])
+
+        self.metadata = MetaData()
+        self.metadata.bind = self.engine
+        self.reflect_db()
+
+        self.session = Session(self.engine)
+
+    def reflect_db(self):
+        """
+        No-op to reflect db info.
+
+        This is available as a method so the database can be reflected
+        outside initialization (such bootstrapping unihan during CLI usage).
+        """
+        self.metadata.reflect(views=True, extend_existing=True)
+        self.base = automap_base(metadata=self.metadata)
+        self.base.prepare()
+
+    @property
+    def is_bootstrapped(self):
+        """Return True if UNIHAN and database is set up.
+
+        Returns
+        -------
+        bool :
+            True if Unihan application fixture data installed.
+        """
+        return bootstrap.is_bootstrapped(self.metadata)
+
+    #: :class:`sqlalchemy.engine.Engine` instance.
+    engine = None
+
+    #: :class:`sqlalchemy.schema.MetaData` instance.
+    metadata = None
+
+    #: :class:`sqlalchemy.orm.session.Session` instance.
+    session = None
+
+    #: :class:`sqlalchemy.ext.automap.AutomapBase` instance.
+    base = None
