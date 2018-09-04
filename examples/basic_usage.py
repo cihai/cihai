@@ -10,7 +10,6 @@ def run(unihan_options={}):
 
     if not c.unihan.is_bootstrapped:  # download and install Unihan to db
         c.unihan.bootstrap(unihan_options)
-        c.sql.reflect_db()
 
     query = c.unihan.lookup_char('好')
     glyph = query.first()
