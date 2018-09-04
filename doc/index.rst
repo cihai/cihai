@@ -9,6 +9,7 @@ cihai
 .. toctree::
     :maxdepth: 2
 
+    about
     features
     usage
     examples
