@@ -54,6 +54,9 @@ setup(
     packages=['cihai'],
     include_package_data=True,
     install_requires=install_reqs,
+    extras_require={
+        'cli': ['cihai-cli'],
+    },
     tests_require=tests_reqs,
     cmdclass={'test': PyTest},
     zip_safe=False,
