@@ -9,6 +9,7 @@
 # For documentation, see http://www.unicode.org/reports/tr44/
 #
 # This file contains data on the following fields from the Unihan database:
+#	kCompatibilityVariant
 #	kSemanticVariant
 #	kSimplifiedVariant
 #	kSpecializedSemanticVariant
@@ -52,6 +53,7 @@ U+9FA5	kSemanticVariant	U+7C72<kLau,kMatthews,kMeyerWempe
 U+9FAD	kSimplifiedVariant	U+29A0E
 U+9FAF	kSimplifiedVariant	U+28C46
 U+9FCC	kSemanticVariant	U+6DBC
+U+F900	kCompatibilityVariant	U+8C48
 U+F900	kZVariant	U+8C48
 
 # EOF
