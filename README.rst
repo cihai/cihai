@@ -8,8 +8,8 @@ back for updates!
 Usage
 -----
 
-Python library only
-"""""""""""""""""""
+API / Library (this repository)
+"""""""""""""""""""""""""""""""
 
 .. code-block:: sh
 
@@ -36,12 +36,17 @@ Python library only
 See `API`_ documentation and `/examples
 <https://github.com/cihai/cihai/tree/master/examples>`_.
 
-CLI front-end (`cihai-cli`_)
-""""""""""""""""""""""""""""
+
+CLI (`cihai-cli`_)
+""""""""""""""""""
 
 .. code-block:: sh
 
+   # stable
    $ pip install --user cihai-cli
+
+   # pre-release
+   $ pip install --user --pre cihai[cli]
 
 .. code-block:: sh
 
@@ -71,8 +76,8 @@ CLI front-end (`cihai-cli`_)
    ucn: U+5715
    --------
 
-No library, just data
-"""""""""""""""""""""
+UNIHAN data
+"""""""""""
 
 All datasets that cihai uses have stand-alone tools to export their data.
 No library required.
