@@ -19,6 +19,9 @@ install_reqs += ['enum34; python_version<"3"']
 with open('requirements/test.txt') as f:
     tests_reqs = [line for line in f.read().split('\n') if line]
 
+with open('requirements/cli.txt') as f:
+    extras_cli_reqs = [line for line in f.read().split('\n') if line]
+
 if sys.version_info[0] > 2:
     readme = open('README.rst', encoding='utf-8').read()
 else:
@@ -54,7 +57,7 @@ setup(
     packages=['cihai'],
     include_package_data=True,
     install_requires=install_reqs,
-    extras_require={'cli': ['cihai-cli']},
+    extras_require={'cli': [extras_cli_reqs]},
     tests_require=tests_reqs,
     cmdclass={'test': PyTest},
     zip_safe=False,
