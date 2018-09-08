@@ -5,6 +5,8 @@ Changelog
 Here you can find the recent changes to cihai.
 
 - :release:`0.9.0 <2018-09-07>`
+- Update pytest to 3.8.0
+- Update sphinx to 1.7.9
 - *util* -> *utils*
 - *conf* -> *config*
 - Add source code link on GitHub on API pages
