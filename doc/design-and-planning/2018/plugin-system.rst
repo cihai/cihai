@@ -4,11 +4,15 @@
 
 Extensions
 ----------
+Initially discussed in #131 [1]_
+
 The provisional recommended naming convention is this:
 
-cihai_{dataset}(?_{extension})
-cihai_unihan
-cihai_unihan_variants
+::
+
+   cihai_{dataset}(?_{extension})
+   cihai_unihan
+   cihai_unihan_variants
 
 Benefits
 --------
@@ -20,13 +24,15 @@ With the database mixin, your dataset can be automatically configured and work w
 your user's configured DB backend. By default, it's SQLite! Reciprocally, you can also
 access databases and tables connected to cihai.
 
-c = Cihai()
-c.add_dataset('unihan')  # install package
-c.unihan.lookup('好')
-# bootstraps
-c.add_dataset('unihan', namespace='unihan2')  # install package
-# checks
-c.unihan2.lookup('好')
+.. code-block:: python
+
+   c = Cihai()
+   c.add_dataset('unihan')  # install package
+   c.unihan.lookup('好')
+   # bootstraps
+   c.add_dataset('unihan', namespace='unihan2')  # install package
+   # checks
+   c.unihan2.lookup('好')
 
 The optional namespace= allows for cihai to allow root-level access to datasets, while
 being able to deprecate / move a dataset (however unlikely) if it were to conflict
@@ -34,18 +40,24 @@ with a new method name / property on the main cihai object.
 
 It also allows namespacing a forked dataset, and adding it:
 
-c.add_dataset('my_forked_unihan', namespace='unihan')  # install package
+.. code-block:: python
+
+   c.add_dataset('my_forked_unihan', namespace='unihan')  # install package
 
 In the future, with libvcs:
 
-c.add_dataset(Unihan, namespace='unihan')  # raw class
+.. code-block:: python
+
+   c.add_dataset(Unihan, namespace='unihan')  # raw class
 
 Future possibilities:
 
 This makes it possible to develop locally, make a touch adjustment, maintain a VCS
 branch, in the event a dataset fall out of sync or you want to hack on it / fork it.
 
-c.add_dataset('package.to.unihan.Unihan', namespace='unihan')  # import string
+.. code-block:: python
+
+   c.add_dataset('package.to.unihan.Unihan', namespace='unihan')  # import string
 
 Versioning
 ----------
@@ -62,16 +74,18 @@ database (if it used it), and any other data-access it made available. For insta
 if it had a custom data backend, it could make that available to the extension for
 it to use.
 
-c.add_dataset('unihan')
-c.unihan.add_extension(Variants)
+.. code-block:: python
 
-The same optional namespace= is possible:
+   c.add_dataset('unihan')
+   c.unihan.add_extension(Variants)
 
-c.unihan.variants.lookup('好')
+   The same optional namespace= is possible:
 
-c.unihan.add_extension(Variants, namespace='variants2')
+   c.unihan.variants.lookup('好')
 
-c.unihan.variants2.lookup('好')
+   c.unihan.add_extension(Variants, namespace='variants2')
+
+   c.unihan.variants2.lookup('好')
 
 For the first draft, pointing straight to the package -> module -> object via import
 string it the surest thing (since this is compatible with the user's local python
@@ -98,20 +112,22 @@ Idea: pip-based add_dataset/add_extension
 For development / hacking purposes, all of the same file, and vcs
 still exist:
 
-# import string
-c.add_dataset('package.to.unihan', classname='Unihan', namespace='unihan')
-c.add_dataset(
-    'git+https://github.com/moo/cihai-unihan#test-branch',
-    classname='Unihan',
-    namespace='unihan'
-)
-c.add_dataset('./path/to/dataset', classname='Unihan', namespace='unihan')
+.. code-block:: python
 
-c.unihan.add_extension('cihai_unihan_variants')
-c.unihan.add_extension(
-    'git+https://github.com/moo/cihai-unihan#test-branch', namespace='unihan'
-)
-c.unihan.add_extension('./path/to/dataset', classname=Unihan, namespace='unihan')
+   # import string
+   c.add_dataset('package.to.unihan', classname='Unihan', namespace='unihan')
+   c.add_dataset(
+       'git+https://github.com/moo/cihai-unihan#test-branch',
+       classname='Unihan',
+       namespace='unihan'
+   )
+   c.add_dataset('./path/to/dataset', classname='Unihan', namespace='unihan')
+
+   c.unihan.add_extension('cihai_unihan_variants')
+   c.unihan.add_extension(
+       'git+https://github.com/moo/cihai-unihan#test-branch', namespace='unihan'
+   )
+   c.unihan.add_extension('./path/to/dataset', classname=Unihan, namespace='unihan')
 
 Idea: Namespacing
 -----------------
@@ -131,8 +147,13 @@ See Also
    https://github.com/cihai/cihai/pull/131. Accessed September 1st, 2018.
 .. [2] Flask's deprecration of flask.ext and flask_ext:
    http://flask.pocoo.org/docs/1.0/extensiondev/
+   Accessed September 1st, 2018.
 .. [3] Sphinx extensions
    http://www.sphinx-doc.org/en/master/extdev/index.html#dev-extensions.
-.. [4]
+   Accessed September 1st, 2018.
+.. [4] sphinx-contrib
    https://github.com/sphinx-contrib/documentedlist/tree/master/sphinxcontrib
-
+   Accessed September 1st, 2018.
+.. [5] Python namespaces.
+   https://packaging.python.org/guides/packaging-namespace-packages/
+   Accessed September 7th, 2018.
