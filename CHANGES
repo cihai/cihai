@@ -4,6 +4,18 @@ Changelog
 
 Here you can find the recent changes to cihai.
 
+- :release:`0.9.0 <2018-09-07>`
+- *util* -> *utils*
+- *conf* -> *config*
+- Add source code link on GitHub on API pages
+- Add ``__github__`` to `__about__``
+- Move `DEFAULT_CONFIG` to *constants.py*
+- Move *cihai/unihan.py* -> *cihai/unihan/{__init__.py,dataset.py}*
+- Move *cihai/bootstrap.py* -> *cihai/unihan/bootstrap.py*
+- Treat Unihan as a `Dataset`
+- Automatically include dataset when created `c = Cihai()`, `c = Cihai(unihan=False)` will do without
+- Tests for examples. We want to make sure our examples work out of the box and new changes catch API breaks when they need updating
+
 - :release:`0.8.1 <2018-07-21>`
 - :support:`-` Loosen kaptan requirement to greater than 0.5.10, less than
   0.6
