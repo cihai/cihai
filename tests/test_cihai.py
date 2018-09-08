@@ -8,9 +8,14 @@ using the ``test_config.yml``.
 
 from __future__ import absolute_import, print_function, unicode_literals
 
+import cihai
 from cihai.constants import UNIHAN_CONFIG
 from cihai.core import Cihai
 from cihai.data.unihan import bootstrap
+
+
+def test_cihai_version():
+    assert cihai.__version__
 
 
 def test_config_defaults():
