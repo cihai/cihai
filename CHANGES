@@ -9,6 +9,8 @@ Here you can find the recent changes to cihai.
 - Update sphinx to 1.7.9
 - *util* -> *utils*
 - *conf* -> *config*
+- Add ``cihai.__version__`` (so the version is available without having to
+  access ``__about__``)
 - Add source code link on GitHub on API pages
 - Add ``__github__`` to ``__about__``
 - Move `DEFAULT_CONFIG` to *constants.py*
