@@ -1,3 +1,5 @@
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcihai%2Fcihai.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fcihai%2Fcihai?ref=badge_shield)
+
 *cihai* - Python library for `CJK`_ (chinese, japanese, korean) data
 
 |pypi| |docs| |build-status| |coverage| |license|
@@ -151,3 +153,6 @@ tests           .. code-block:: bash
 .. _variants: http://www.unicode.org/reports/tr38/tr38-21.html#N10211
 .. _cihai.conversion: http://cihai.git-pull.com/en/latest/api.html#conversion
 .. _cihai-cli: https://cihai-cli.git-pull.com
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fcihai%2Fcihai.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fcihai%2Fcihai?ref=badge_large)
