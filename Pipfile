@@ -22,4 +22,4 @@ unihan-etl = "<1.0,>=0.9.5"
 SQLAlchemy = ">=1.2.9,<2"
 
 [requires]
-python_version = "3.6"
+python_version = "3"
