@@ -54,12 +54,12 @@ replaced.
    database:
      url: '${DATABASE_URL}'
    dirs:
-     data: '{user_cache_dir}/mydata'
+     data: '{user_data_dir}/mydata'
      cache: '~/cache/cihai'
      logs: '$ENVVAR/logs'
 
 In the example above, Heroku's `DATABASE_URL <https://devcenter.heroku.com/articles/heroku-postgresql#establish-primary-db>`_
-is replaced as an environmental variable. The XDG variable for *user_cache_dir*
+is replaced as an environmental variable. The XDG variable for *user_data_dir*
 is combined with *mydata/*, which makes the data stored deeper. The
 environmental variable *$ENVVAR* is also replaced.
 
