@@ -1,4 +1,4 @@
-sphinx==2.0.0
+sphinx==2.0.1
 alagitpull==0.0.22
 releases==1.6.1
 sphinxcontrib-napoleon==0.7
