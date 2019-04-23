@@ -4,6 +4,10 @@ Changelog
 
 Here you can find the recent changes to cihai.
 
+- :release:`0.8.2 <2019-04-22>`
+- :support:`-` Loosen kaptan requirement to <0.6, which should also fix
+  pyyaml sub-dependency to <6.
+
 - :release:`0.8.1 <2018-07-21>`
 - :support:`-` Loosen kaptan requirement to greater than 0.5.10, less than
   0.6
