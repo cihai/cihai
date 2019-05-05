@@ -7,18 +7,18 @@ name = "pypi"
 alagitpull = "==0.0.22"
 releases = "==1.6.1"
 sphinxcontrib-napoleon = "==0.7"
-Sphinx = "==2.0.0"
-isort = "==4.3.16"
+Sphinx = "==2.0.1"
+isort = "==4.3.18"
 flake8 = "==3.7.7"
 vulture = "==1.0"
-pytest = "==4.3.1"
+pytest = "==4.4.1"
 cihai = {editable = true,path = "."}
 
 [packages]
-kaptan = ">=0.5.10,<0.6"
+kaptan = "<0.6,>=0.5.10"
 colorama = "<=0.5"
-appdirs = ">=1.4.3,<1.5"
-unihan-etl = "<1.0,>=0.9.5"
+appdirs = "<1.5,>=1.4.3"
+unihan-etl = ">=0.9.5,<1.0"
 SQLAlchemy = "<2,>=1.2.9"
 
 [requires]
