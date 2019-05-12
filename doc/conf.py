@@ -27,12 +27,11 @@ extensions = [
     'sphinx.ext.napoleon',
     'sphinx.ext.intersphinx',
     'sphinx.ext.linkcode',
-    'releases',
     'alagitpull',
 ]
 
 releases_unstable_prehistory = True
-releases_document_name = "history"
+releases_document_name = ["history"]
 releases_issue_uri = "https://github.com/cihai/cihai/issues/%s"
 releases_release_uri = "https://github.com/cihai/cihai/tree/v%s"
 
