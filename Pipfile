@@ -11,6 +11,7 @@ flake8 = "*"
 pytest = "*"
 cihai = {path = ".",editable = true}
 black = "==19.3b0"
+sphinx-issues = "*"
 
 [packages]
 kaptan = "<1"
