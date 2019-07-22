@@ -1,3 +1,3 @@
 isort==4.3.20
-flake8==3.7.7
+flake8==3.7.8
 vulture==1.0
