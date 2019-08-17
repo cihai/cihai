@@ -132,7 +132,7 @@ def ucn_to_unicode(ucn):
     if isinstance(ucn, string_types):
         ucn = ucn.strip("U+")
         if len(ucn) > int(4):
-            char = b'\U' + format(int(ucn, 16), '08x').encode('latin1')
+            char = r'\U'.encode('utf-8') + format(int(ucn, 16), '08x').encode('latin1')
             char = char.decode('unicode_escape')
         else:
             char = unichr(int(ucn, 16))
@@ -242,7 +242,7 @@ def ucnstring_to_python(ucn_string):
     Return string with Unicode UCN (e.g. "U+4E00") to native Python Unicode
     (u'\\u4e00').
     """
-    res = re.findall("U\+[0-9a-fA-F]*", ucn_string)
+    res = re.findall(r"U\+[0-9a-fA-F]*", ucn_string)
     for r in res:
         ucn_string = ucn_string.replace(text_type(r), text_type(ucn_to_unicode(r)))
 
