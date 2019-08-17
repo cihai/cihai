@@ -6,6 +6,8 @@ Here you can find the recent changes to cihai.
 
 - Add ``project_urls`` to setup.py
 - Python 2/3 compatible ``collections``
+- Package updates (pytest to 5.1.0)
+- Linting fixes
 
 0.9.0 <2018-09-07>
 ------------------
