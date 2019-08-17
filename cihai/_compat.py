@@ -17,6 +17,8 @@ if PY2:
 
     import urlparse
 
+    import collections as collections_abc
+
     def console_to_str(s):
         return s.decode('utf_8')
 
@@ -33,6 +35,8 @@ else:
     import urllib.parse as urllib
     import urllib.parse as urlparse
     from urllib.request import urlretrieve
+
+    import collections.abc as collections_abc
 
     console_encoding = sys.__stdout__.encoding
 

@@ -4,11 +4,10 @@ Utility and helper methods for cihai.
 """
 from __future__ import absolute_import, print_function, unicode_literals
 
-import collections
 import sys
 
 from . import exc
-from ._compat import reraise
+from ._compat import collections_abc, reraise
 
 
 def merge_dict(base, additional):
@@ -39,14 +38,14 @@ def merge_dict(base, additional):
         return base
 
     if not (
-        isinstance(base, collections.Mapping)
-        and isinstance(additional, collections.Mapping)
+        isinstance(base, collections_abc.Mapping)
+        and isinstance(additional, collections_abc.Mapping)
     ):
         return additional
 
     merged = base
     for key, value in additional.items():
-        if isinstance(value, collections.Mapping):
+        if isinstance(value, collections_abc.Mapping):
             merged[key] = merge_dict(merged.get(key), value)
         else:
             merged[key] = value
@@ -62,7 +61,7 @@ def supports_wide():
     bool :
         True if python supports wide character sets
     """
-    return sys.maxunicode > 0xffff
+    return sys.maxunicode > 0xFFFF
 
 
 def import_string(import_name, silent=False):  # NOQA: C901
