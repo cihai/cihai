@@ -4,6 +4,12 @@ Changelog
 
 Here you can find the recent changes to cihai.
 
+0.9.0a5 <2019-08-17>
+--------------------
+- Fix ucn issue
+
+0.9.0a4 <2019-08-17>
+--------------------
 - Add ``project_urls`` to setup.py
 - Python 2/3 compatible ``collections``
 - Package updates (pytest to 5.1.0)
