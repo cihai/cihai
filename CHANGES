@@ -8,6 +8,10 @@ What's coming next
 ------------------
 - Improvements to plugin/extension system
 
+0.9.0p1 <2019-08-18>
+--------------------
+- Repin requirements/cli.txt dependency, again
+
 0.9.0p0 <2019-08-18>
 --------------------
 - Repin requirements/cli.txt dependency
