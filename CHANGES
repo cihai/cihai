@@ -8,7 +8,11 @@ What's coming next
 ------------------
 - Improvements to plugin/extension system
 
-0.9.0 <2019-08-17>
+0.9.0p0 <2019-08-18>
+--------------------
+- Repin requirements/cli.txt dependency
+
+0.9.0 <2019-08-18>
 ------------------
 - 0.9.0 Final released
 - From here on in, cihai-cli is to be downloaded via ``pip install cihai[cli]``
