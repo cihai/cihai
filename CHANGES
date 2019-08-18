@@ -4,9 +4,15 @@ Changelog
 
 Here you can find the recent changes to cihai.
 
-0.9.0a5 <2019-08-17>
---------------------
-- Fix ucn issue
+What's coming next
+------------------
+- Improvements to plugin/extension system
+
+0.9.0 <2019-08-17>
+------------------
+- 0.9.0 Final released
+- From here on in, cihai-cli is to be downloaded via ``pip install cihai[cli]``
+- See 0.9.0 releases below for more information on changes
 
 0.9.0a4 <2019-08-17>
 --------------------
@@ -15,8 +21,8 @@ Here you can find the recent changes to cihai.
 - Package updates (pytest to 5.1.0)
 - Linting fixes
 
-0.9.0 <2018-09-07>
-------------------
+0.9.0a <2018-09-07>
+-------------------
 - Update pytest to 3.8.0
 - Update sphinx to 1.7.9
 - *util* -> *utils*
