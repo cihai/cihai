@@ -17,7 +17,7 @@ sphinx-issues = "*"
 kaptan = "<1"
 colorama = "*"
 appdirs = "*"
-unihan-etl = ">=0.9.5,<1.0"
+unihan-etl = "~=0.10.0"
 SQLAlchemy = "*"
 
 [requires]
