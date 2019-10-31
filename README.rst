@@ -36,13 +36,11 @@ API / Library (this repository)
 See `API`_ documentation and `/examples
 <https://github.com/cihai/cihai/tree/master/examples>`_.
 
-
 CLI (`cihai-cli`_)
 """"""""""""""""""
 
 .. code-block:: sh
 
-   # pre-release
    $ pip install --user cihai[cli]
 
 .. code-block:: sh
