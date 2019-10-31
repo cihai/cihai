@@ -51,10 +51,10 @@ class Cihai(object):
 
     References
     ----------
-    .. [1] UNICODE HAN DATABASE (UNIHAN) documentation.
-       https://www.unicode.org/reports/tr38/. Accessed March 31st, 2018.
-    .. [2] PyPA Warehouse on GitHub. https://github.com/pypa/warehouse.
+    .. [1] PyPA Warehouse on GitHub. https://github.com/pypa/warehouse.
        Accessed sometime in 2013.
+    .. [2] UNICODE HAN DATABASE (UNIHAN) documentation.
+       https://www.unicode.org/reports/tr38/. Accessed March 31st, 2018.
     """
 
     #: :py:class:`dict` of default config, can be monkey-patched during tests
