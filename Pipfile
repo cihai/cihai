@@ -12,6 +12,8 @@ pytest = "*"
 cihai = {path = ".",editable = true}
 black = "==19.3b0"
 sphinx-issues = "*"
+pytest-cov = "*"
+coverage = "*"
 
 [packages]
 kaptan = "<1"

@@ -4,7 +4,6 @@
 import sys
 
 from setuptools import setup
-from setuptools.command.test import test as TestCommand
 
 about = {}
 with open("cihai/__about__.py") as fp:
@@ -29,20 +28,6 @@ else:
 history = open('CHANGES').read().replace('.. :changelog:', '')
 
 
-class PyTest(TestCommand):
-    user_options = [('pytest-args=', 'a', "Arguments to pass to py.test")]
-
-    def initialize_options(self):
-        TestCommand.initialize_options(self)
-        self.pytest_args = []
-
-    def run_tests(self):
-        import pytest
-
-        errno = pytest.main(self.pytest_args)
-        sys.exit(errno)
-
-
 setup(
     name=about['__title__'],
     version=about['__version__'],
@@ -63,7 +48,6 @@ setup(
     install_requires=install_reqs,
     extras_require={'cli': [extras_cli_reqs]},
     tests_require=tests_reqs,
-    cmdclass={'test': PyTest},
     zip_safe=False,
     keywords=about['__title__'],
     classifiers=[

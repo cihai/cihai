@@ -6,17 +6,11 @@ python:
   - 3.7
   - pypy3
 if: (type = push AND branch IN (master)) OR (type = pull_request)
-before_install:
-  - export PIP_USE_MIRRORS=true
-  - pip install -U pip setuptools
-  - pip install -U pytest mock # https://github.com/travis-ci/travis-ci/issues/4873
-  - pip install coveralls
-  - git config --global user.name 'travis-ci'
-  - git config --global user.email 'travis@nowhere.edu'
-install:
-  - pip install -e .
-script: coverage run --source=cihai setup.py test
 cache:
   - pip
+install:
+  - pip install -e .
+  - pip install -r requirements/test.txt
+script: py.test --cov=cihai
 after_success:
   - bash <(curl -s https://codecov.io/bash)
