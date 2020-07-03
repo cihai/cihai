@@ -1,0 +1,43 @@
+[tool.black]
+skip-string-normalization = true
+
+[tool.poetry]
+name = "cihai"
+version = "0.9.0post1"
+description = "Library for CJK (chinese, japanese, korean) language data."
+license = "MIT"
+authors = ["Tony Narlock <tony@git-pull.com>"]
+
+[tool.poetry.dependencies]
+python = "~2.7 || ^3.5"
+click = ">=7<8"
+kaptan = "*"
+sqlalchemy = "*"
+appdirs = "*"
+unihan-etl = "~=0.10.0"
+
+[tool.poetry.dev-dependencies]
+alagitpull = "*"
+black = {version="==19.10b0", python="^3.6"}
+doc8 = "*"
+docutils = "*"
+flake8 = "*"
+isort = "*"
+pytest = [
+  {version="<4.7.0", python="<3"},
+  {version="*", python=">=3"}
+]
+pathlib2 = {version="<2.3.5", python="<3"}  # Untangle pytest peer-dependency
+pytest-rerunfailures = "*"
+sphinx = [
+  {version="<2", python="<3"},
+  {version="*", python=">=3"}
+]
+sphinx-issues = "*"
+twine = "*"
+codecov = "*"
+coverage = "*"
+pytest-cov = [
+  {version="<2.10.0", python="<3"},
+  {version="*", python=">=3"}
+]
