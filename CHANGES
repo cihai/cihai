@@ -9,29 +9,29 @@ What's coming next
 - :issue:`283` Move from Pipfile to poetry
 - Improvements to plugin/extension system
 
-0.9.0p1 <2019-08-18>
---------------------
+cihai 0.9.0p1 (2019-08-18)
+--------------------------
 - Repin requirements/cli.txt dependency, again
 
-0.9.0p0 <2019-08-18>
---------------------
+cihai 0.9.0p0 (2019-08-18)
+--------------------------
 - Repin requirements/cli.txt dependency
 
-0.9.0 <2019-08-18>
-------------------
+cihai 0.9.0 (2019-08-18)
+------------------------
 - 0.9.0 Final released
 - From here on in, cihai-cli is to be downloaded via ``pip install cihai[cli]``
 - See 0.9.0 releases below for more information on changes
 
-0.9.0a4 <2019-08-17>
---------------------
+cihai 0.9.0a4 (2019-08-17)
+--------------------------
 - Add ``project_urls`` to setup.py
 - Python 2/3 compatible ``collections``
 - Package updates (pytest to 5.1.0)
 - Linting fixes
 
-0.9.0a <2018-09-07>
--------------------
+cihai 0.9.0a (2018-09-07)
+-------------------------
 - Update pytest to 3.8.0
 - Update sphinx to 1.7.9
 - *util* -> *utils*
@@ -47,8 +47,8 @@ What's coming next
 - Automatically include dataset when created `c = Cihai()`, `c = Cihai(unihan=False)` will do without
 - Tests for examples. We want to make sure our examples work out of the box and new changes catch API breaks when they need updating
 
-0.8.1 <2018-07-21>
-------------------
+cihai 0.8.1 (2018-07-21)
+------------------------
 - Loosen kaptan requirement to greater than 0.5.10, less than
   0.6
 
@@ -60,8 +60,8 @@ What's coming next
 - Update releases to 1.6.0 to 1.6.1
 - Update and sync Pipfile
 
-0.8.0 <2018-06-23>
-------------------
+cihai 0.8.0 (2018-06-23)
+------------------------
 - Update unihan-etl to 0.9.0 to 0.9.5
 - Base package updates
 
@@ -82,59 +82,59 @@ What's coming next
 - All future commits and contributions are licensed to the
   *cihai software foundation*. This includes commits by Tony Narlock (creator).
 
-0.7.4 <2017-05-26>
-------------------
+cihai 0.7.4 (2017-05-26)
+------------------------
 - bump unihan-tabular 0.8.1 to unihan-etl 0.9.0
 
-0.7.3 <2017-05-20>
-------------------
+cihai 0.7.3 (2017-05-20)
+------------------------
 - Update unihan-tabular to 0.7.3, adds *kJa* and fixes
   *kCompatibilityVariant*.
 
-0.7.2 <2017-05-20>
-------------------
+cihai 0.7.2 (2017-05-20)
+------------------------
 - Support for character lookup and reverse lookup
 - Code examples in */examples*
 
-0.7.1 <2017-05-20>
-------------------
+cihai 0.7.1 (2017-05-20)
+------------------------
 - Readme updates and remove unused CLI module
 
-0.7.0 <2017-05-20>
-------------------
+cihai 0.7.0 (2017-05-20)
+------------------------
 - Split CLI functionality into `cihai-cli
   <https://cihai-cli.git-pull.com>`_.
 - Update classifiers / metadata in setup.py
 
-0.6.1 <2017-05-17>
-------------------
+cihai 0.6.1 (2017-05-17)
+------------------------
 - Initial support for reverse lookups
 - Output cli in basic yaml
 
-0.6.0 <2017-05-17>
-------------------
+cihai 0.6.0 (2017-05-17)
+------------------------
 - Support for configuring logging via options and CLI
 - Convert all print statements to use logger
 
-0.5.1 <2017-05-17>
-------------------
+cihai 0.5.1 (2017-05-17)
+------------------------
 - Python 2 CLI fix
 
-0.5.0 <2017-05-17>
-------------------
+cihai 0.5.0 (2017-05-17)
+------------------------
 - Remove use of singleton metadata object
 - Automatically bootstrap UNIHAN on first use
 
-0.4.2 <2017-05-16>
-------------------
+cihai 0.4.2 (2017-05-16)
+------------------------
 - Load default configuration via internal dictionary
 
-0.4.1 <2017-05-16>
-------------------
+cihai 0.4.1 (2017-05-16)
+------------------------
 - Update MANIFEST.in
 
-0.4.0 <2017-05-16>
-------------------
+cihai 0.4.0 (2017-05-16)
+------------------------
 - Automatically reflect database schemas and make available
   in main cihai object
 - Use click library for CLI
@@ -154,8 +154,8 @@ What's coming next
   and xdg variables in settings.
 - Document CLI usage via sphinx-argparse
 
-0.3.0 <2017-04-16>
-------------------
+cihai 0.3.0 (2017-04-16)
+------------------------
 - Rebooted
 - Modernize *Makefile* in docs
 - Add Makefile to main project
