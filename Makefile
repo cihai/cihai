@@ -1,49 +1,46 @@
-PY_FILES= find . -type f -not -path '*/\.*' -not -path '*build\/*' | grep -i '.*[.]py$$' 2> /dev/null
-
+PY_FILES= find . -type f -not -path '*/\.*' | grep -i '.*[.]py$$' 2> /dev/null
+DOC_FILES= find . -type f -not -path '*/\.*' | grep -i '.*[.]rst\$\|.*[.]md\$\|.*[.]css\$\|.*[.]py\$\|mkdocs\.yml\|CHANGES\|TODO\|.*conf\.py' 2> /dev/null
 
 entr_warn:
 	@echo "----------------------------------------------------------"
 	@echo "     ! File watching functionality non-operational !      "
-	@echo ""
+	@echo "                                                          "
 	@echo "Install entr(1) to automatically run tasks on file change."
-	@echo "See http://entrproject.org/"
+	@echo "See http://entrproject.org/                               "
 	@echo "----------------------------------------------------------"
 
-clear_pyc:
-	@find . | grep -E "(__pycache__|\.pyc|\.pyo$$)" | xargs rm -rf
-
-clear_pytest:
-	@rm -rf .cache .pytest_cache
-
-clear_cache:
-	$(MAKE) clear_pyc clear_pytest
-
 isort:
-	isort `${PY_FILES}`
+	poetry run isort `${PY_FILES}`
 
 black:
-	black `${PY_FILES}` --skip-string-normalization
+	poetry run black `${PY_FILES}` --skip-string-normalization
 
 test:
-	py.test $(test)
+	poetry run py.test $(test)
 
 watch_test:
 	if command -v entr > /dev/null; then ${PY_FILES} | entr -c $(MAKE) test; else $(MAKE) test entr_warn; fi
 
 vulture:
-	vulture cihai
+	poetry run vulture cihai
 
 watch_vulture:
 	if command -v entr > /dev/null; then ${PY_FILES} | entr -c $(MAKE) vulture; else $(MAKE) vulture entr_warn; fi
 
 build_docs:
-	cd docs && $(MAKE) html
+	poetry run mkdocs build
 
 watch_docs:
-	cd docs && $(MAKE) watch_docs
+	if command -v entr > /dev/null; then ${DOC_FILES} | entr -c $(MAKE) build_docs; else $(MAKE) build_docs entr_warn; fi
+
+serve_docs:
+	python -m http.server --directory site
+
+dev_docs:
+	$(MAKE) -j watch_docs serve_docs
 
 flake8:
-	flake8 cihai tests
+	flake8
 
 watch_flake8:
 	if command -v entr > /dev/null; then ${PY_FILES} | entr -c $(MAKE) flake8; else $(MAKE) flake8 entr_warn; fi
