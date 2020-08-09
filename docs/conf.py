@@ -50,7 +50,7 @@ exclude_patterns = ['_build']
 pygments_style = 'sphinx'
 
 html_theme_path = [alagitpull.get_path()]
-html_favicon = 'favicon.ico'
+html_extra_path = ['manifest.json']
 html_theme = 'alagitpull'
 html_sidebars = {
     '**': [
@@ -70,6 +70,12 @@ html_theme_options = {
     'github_banner': True,
     'projects': alagitpull.projects,
     'project_name': about['__title__'],
+    'project_title': about['__title__'],
+    'project_description': about['__description__'],
+    'project_url': about['__docs__'],
+    'show_meta_manifest_tag': True,
+    'show_meta_og_tags': True,
+    'show_meta_app_icon_tags': True,
 }
 html_static_path = ['_static']
 
@@ -115,7 +121,7 @@ intersphinx_mapping = {
     'sphinx': ('http://www.sphinx-doc.org/en/stable/', None),
     'sqlalchemy': ('http://docs.sqlalchemy.org/en/latest/', None),
     'pandas': ('http://pandas.pydata.org/pandas-docs/stable', None),
-    'unihan-etl': ('https://unihan-etl.git-pull.com/en/latest/', None),
+    'unihan-etl': ('https://unihan-etl.git-pull.com/', None),
 }
 
 autodoc_member_order = 'groupwise'
