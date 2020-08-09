@@ -122,7 +122,7 @@ CI. See the configuration in `pyproject.toml` and `setup.cfg`:
 
 Releasing
 """""""""
-As of 0.11, `poetry`_ handles virtualenv creation, package requirements, versioning,
+As of 0.10, `poetry`_ handles virtualenv creation, package requirements, versioning,
 building, and publishing. Therefore there is no setup.py or requirements files.
 
 Update `__version__` in `__about__.py` and `pyproject.toml`::
