@@ -6,11 +6,13 @@ Here you can find the recent changes to cihai.
 
 What's coming next
 ------------------
-- :issue:`285` Self host docs
-- :issue:`285` Add metadata / icons / etc. for doc site
-- :issue:`285` Move travis -> github actions
-- :issue:`285` Overhaul Makefiles
-- :issue:`284` Move packaging / publishing to poetry
+- :issue: Remove version constraint from cihai-cli to satisfy pip's 2020
+  resolver: https://pip.pypa.io/en/stable/user_guide/#resolver-changes-2020
+- :issue:`285` Move packaging / publishing to poetry
+- :issue:`284` Self host docs
+- :issue:`284` Add metadata / icons / etc. for doc site
+- :issue:`284` Move travis -> github actions
+- :issue:`284` Overhaul Makefiles
 - :issue:`283` Move from Pipfile to poetry
 - Improvements to plugin/extension system
 
