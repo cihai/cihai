@@ -117,7 +117,7 @@ version = "3.0.4"
 category = "main"
 description = "Command line frontend for the cihai CJK language library"
 name = "cihai-cli"
-optional = false
+optional = true
 python-versions = "~2.7 || ^3.5"
 version = "0.5.1"
 
@@ -1067,7 +1067,7 @@ lint = []
 test = []
 
 [metadata]
-content-hash = "62b3df68bd70315511bae5a0fa19ca1b93601cba015c7061f84651ce7a400817"
+content-hash = "2ecb010ea099fb3a934ac024e70c9abcc4aca2a674fee4b42ffd6db33255326d"
 lock-version = "1.0"
 python-versions = "~2.7 || ^3.5"
 

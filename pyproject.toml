@@ -41,7 +41,7 @@ kaptan = "*"
 sqlalchemy = "*"
 appdirs = "*"
 unihan-etl = "~=0.11.0"
-cihai-cli = "*"
+cihai-cli = {version="*", optional=true}
 
 [tool.poetry.dev-dependencies]
 ### Docs ###
@@ -80,7 +80,7 @@ isort = [
 flake8 = "*"
 
 [tool.poetry.extras]
-cli = ["cihai-cli"]
+"cli" = ["cihai-cli"]
 docs = ["sphinx", "sphinx-issues", "sphinx-argparse", "alagitpull"]
 test = ["pytest", "pathlib2", "pytest-rerunfailures"]
 coverage = ["codecov", "coverage", "pytest-cov"]
