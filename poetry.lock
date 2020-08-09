@@ -114,12 +114,12 @@ category = "main"
 description = "Command line frontend for the cihai CJK language library"
 name = "cihai-cli"
 optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
-version = "0.6.0a2"
+python-versions = "~2.7 || ^3.5"
+version = "0.5.1"
 
 [package.dependencies]
 PyYAML = ">=3.12,<6"
-cihai = "0.10.0a1"
+cihai = ">=0.9.0,<0.10.0"
 click = ">=7"
 
 [[package]]
@@ -379,6 +379,7 @@ PyYAML = ">=3.13,<6"
 [[package]]
 category = "dev"
 description = "Safely add untrusted strings to HTML/XML markup."
+marker = "python_version < \"3\" or python_version >= \"3\""
 name = "markupsafe"
 optional = false
 python-versions = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*"
@@ -521,6 +522,7 @@ version = "2.6.1"
 [[package]]
 category = "dev"
 description = "Python parsing module"
+marker = "python_version < \"3\" or python_version >= \"3\""
 name = "pyparsing"
 optional = false
 python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
@@ -656,6 +658,7 @@ setuptools = ">=40.0"
 [[package]]
 category = "dev"
 description = "World timezone definitions, modern and historical"
+marker = "python_version < \"3\" or python_version >= \"3\""
 name = "pytz"
 optional = false
 python-versions = "*"
@@ -708,6 +711,7 @@ version = "1.10.0"
 [[package]]
 category = "dev"
 description = "Python 2 and 3 compatibility utilities"
+marker = "python_version < \"3\" or python_version >= \"3\" or python_version >= \"3\" and python_version < \"3.6\""
 name = "six"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
@@ -1021,7 +1025,7 @@ testing = ["pathlib2", "unittest2", "jaraco.itertools", "func-timeout"]
 [[package]]
 category = "dev"
 description = "Backport of pathlib-compatible object wrapper for zip files"
-marker = "python_version >= \"3\" and python_version < \"3.8\" and (python_version < \"3.8\" or python_version >= \"3\" and python_version < \"3.8\") or python_version < \"3.8\" or python_version >= \"3\" and python_version < \"3.8\""
+marker = "python_version >= \"3\" and python_version < \"3.8\" or python_version >= \"3\" and python_version < \"3.8\" and (python_version < \"3.8\" or python_version >= \"3\" and python_version < \"3.8\") or python_version < \"3.8\""
 name = "zipp"
 optional = false
 python-versions = ">=3.6"
@@ -1040,7 +1044,7 @@ lint = []
 test = []
 
 [metadata]
-content-hash = "a9e37235f8ba2a22aa465a1f3be41c102a8b5256905ef0764e9bc9f012a22891"
+content-hash = "62b3df68bd70315511bae5a0fa19ca1b93601cba015c7061f84651ce7a400817"
 lock-version = "1.0"
 python-versions = "~2.7 || ^3.5"
 
@@ -1086,8 +1090,7 @@ chardet = [
     {file = "chardet-3.0.4.tar.gz", hash = "sha256:84ab92ed1c4d4f16916e05906b6b75a6c0fb5db821cc65e70cbd64a3e2a5eaae"},
 ]
 cihai-cli = [
-    {file = "cihai-cli-0.6.0a2.tar.gz", hash = "sha256:b40637ac03c3e1c5cfa8ee2eb981d64af6269cea914d1c52689ff89762b2df14"},
-    {file = "cihai_cli-0.6.0a2-py2.py3-none-any.whl", hash = "sha256:096c42cd24954bf8bcfc753d9d9474bc5e320a023b4a8f42908e3084ddfe0b69"},
+    {file = "cihai-cli-0.5.1.tar.gz", hash = "sha256:a1eff6a20662dfe7080a72b97e2f9fbd7aa26e8af186e56a3ce64c5377a9398d"},
 ]
 click = [
     {file = "click-7.1.2-py2.py3-none-any.whl", hash = "sha256:dacca89f4bfadd5de3d7489b7c8a566eee0d3676333fbb50030263894c38c0dc"},
