@@ -82,7 +82,6 @@ No library required.
 
 Quick links
 -----------
-
 - `Usage`_
 - `Datasets`_ a full list of current and future data sets
 - Python `API`_
@@ -92,35 +91,16 @@ Quick links
 .. _Datasets: https://cihai.git-pull.com/en/latest/datasets.html
 .. _Usage: https://cihai.git-pull.com/en/latest/usage.html
 
-==============  ==========================================================
-Python support  Python 2.7, >= 3.5, pypy
-Source          https://github.com/cihai/cihai
-Docs            https://cihai.git-pull.com
-Changelog       https://cihai.git-pull.com/en/latest/history.html
-API             https://cihai.git-pull.com/en/latest/api.html
-Issues          https://github.com/cihai/cihai/issues
-Travis          https://travis-ci.org/cihai/cihai
-Test coverage   https://codecov.io/gh/cihai/cihai
-pypi            https://pypi.python.org/pypi/cihai
-OpenHub         https://www.openhub.net/p/cihai
-License         MIT
-git repo        .. code-block:: bash
-
-                    $ git clone https://github.com/cihai/cihai.git
-install stable  .. code-block:: bash
-
-                    $ pip install cihai
-install dev     .. code-block:: bash
-
-                    $ git clone https://github.com/cihai/cihai.git cihai
-                    $ cd ./cihai
-                    $ virtualenv .env
-                    $ source .env/bin/activate
-                    $ pip install -e .
-tests           .. code-block:: bash
-
-                    $ python setup.py test
-==============  ==========================================================
+- Python support: Python 2.7, >= 3.5, pypy
+- Source: https://github.com/cihai/cihai
+- Docs: https://cihai.git-pull.com
+- Changelog: https://cihai.git-pull.com/en/latest/history.html
+- API: https://cihai.git-pull.com/en/latest/api.html
+- Issues: https://github.com/cihai/cihai/issues
+- Test coverage: https://codecov.io/gh/cihai/cihai
+- pypi: https://pypi.python.org/pypi/cihai
+- OpenHub: https://www.openhub.net/p/cihai
+- License: MIT
 
 .. |pypi| image:: https://img.shields.io/pypi/v/cihai.svg
     :alt: Python Package
