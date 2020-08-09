@@ -85,17 +85,17 @@ Quick links
 - `Usage`_
 - `Datasets`_ a full list of current and future data sets
 - Python `API`_
-- `Roadmap <https://cihai.git-pull.com/en/latest/design-and-planning/>`_
+- `Roadmap <https://cihai.git-pull.com/design-and-planning/>`_
 
-.. _API: https://cihai.git-pull.com/en/latest/api.html
-.. _Datasets: https://cihai.git-pull.com/en/latest/datasets.html
-.. _Usage: https://cihai.git-pull.com/en/latest/usage.html
+.. _API: https://cihai.git-pull.com/api.html
+.. _Datasets: https://cihai.git-pull.com/datasets.html
+.. _Usage: https://cihai.git-pull.com/usage.html
 
 - Python support: Python 2.7, >= 3.5, pypy
 - Source: https://github.com/cihai/cihai
 - Docs: https://cihai.git-pull.com
-- Changelog: https://cihai.git-pull.com/en/latest/history.html
-- API: https://cihai.git-pull.com/en/latest/api.html
+- Changelog: https://cihai.git-pull.com/history.html
+- API: https://cihai.git-pull.com/api.html
 - Issues: https://github.com/cihai/cihai/issues
 - Test coverage: https://codecov.io/gh/cihai/cihai
 - pypi: https://pypi.python.org/pypi/cihai
@@ -121,8 +121,8 @@ Quick links
 .. |license| image:: https://img.shields.io/github/license/cihai/cihai.svg
     :alt: License 
 
-.. _CJK: https://cihai.git-pull.com/en/latest/glossary.html#term-cjk
+.. _CJK: https://cihai.git-pull.com/glossary.html#term-cjk
 .. _UNIHAN: http://unicode.org/charts/unihan.html
 .. _variants: http://www.unicode.org/reports/tr38/tr38-21.html#N10211
-.. _cihai.conversion: http://cihai.git-pull.com/en/latest/api.html#conversion
+.. _cihai.conversion: http://cihai.git-pull.com/api.html#conversion
 .. _cihai-cli: https://cihai-cli.git-pull.com
