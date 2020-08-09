@@ -1,4 +1,3 @@
 include README.rst LICENSE CHANGES .tmuxp.yaml
-recursive-include requirements *.txt
 recursive-include docs *.rst
 recursive-include cihai *
