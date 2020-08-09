@@ -24,23 +24,20 @@ watch_test:
 vulture:
 	poetry run vulture cihai
 
-watch_vulture:
-	if command -v entr > /dev/null; then ${PY_FILES} | entr -c $(MAKE) vulture; else $(MAKE) vulture entr_warn; fi
-
 build_docs:
-	poetry run mkdocs build
+	$(MAKE) -C docs html
 
 watch_docs:
 	if command -v entr > /dev/null; then ${DOC_FILES} | entr -c $(MAKE) build_docs; else $(MAKE) build_docs entr_warn; fi
 
 serve_docs:
-	python -m http.server --directory site
+	$(MAKE) -C docs serve
 
 dev_docs:
 	$(MAKE) -j watch_docs serve_docs
 
 flake8:
-	flake8
+	poetry run flake8
 
 watch_flake8:
 	if command -v entr > /dev/null; then ${PY_FILES} | entr -c $(MAKE) flake8; else $(MAKE) flake8 entr_warn; fi
