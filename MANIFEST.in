@@ -1,4 +1,3 @@
-include README.rst LICENSE CHANGES .tmuxp.yaml
-recursive-include requirements *.txt
+include README.rst LICENSE CHANGES pyproject.toml .tmuxp.yaml
 recursive-include docs *.rst
 recursive-include cihai *

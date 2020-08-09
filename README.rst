@@ -73,54 +73,94 @@ CLI (`cihai-cli`_)
 
 UNIHAN data
 """""""""""
-
 All datasets that cihai uses have stand-alone tools to export their data.
 No library required.
 
 - `unihan-etl <https://unihan-etl.git-pull.com>`_ - `UNIHAN`_ data
   exports for csv, yaml and json.
 
+Developing
+----------
+`poetry`_ is a required package to develop.
+
+``git clone https://github.com/cihai/cihai.git``
+
+``cd cihai``
+
+``poetry install -E "docs test coverage lint format"``
+
+Makefile commands prefixed with ``watch_`` will watch files and rerun.
+
+Tests
+"""""
+``poetry run py.test``
+
+Helpers: ``make test``
+Rerun tests on file change: ``make watch_test`` (requires `entr(1)`_)
+
+Documentation
+"""""""""""""
+Default preview server: http://localhost:8035
+
+``cd docs/`` and ``make html`` to build. ``make serve`` to start http server.
+
+Helpers:
+``make build_docs``, ``make serve_docs``
+
+Rebuild docs on file change: ``make watch_docs`` (requires `entr(1)`_)
+
+Rebuild docs and run server via one terminal: ``make dev_docs``  (requires above, and a 
+``make(1)`` with ``-J`` support, e.g. GNU Make)
+
+Formatting / Linting
+""""""""""""""""""""
+The project uses `black`_ and `isort`_ (one after the other) and runs `flake8`_ via 
+CI. See the configuration in `pyproject.toml` and `setup.cfg`:
+
+``make black isort``: Run ``black`` first, then ``isort`` to handle import nuances
+``make flake8``, to watch (requires ``entr(1)``): ``make watch_flake8`` 
+
+Releasing
+"""""""""
+As of 0.10, `poetry`_ handles virtualenv creation, package requirements, versioning,
+building, and publishing. Therefore there is no setup.py or requirements files.
+
+Update `__version__` in `__about__.py` and `pyproject.toml`::
+
+	git commit -m 'build(cihai): Tag v0.1.1'
+	git tag v0.1.1
+	git push
+	git push --tags
+	poetry build
+	poetry deploy
+
+.. _poetry: https://python-poetry.org/
+.. _entr(1): http://eradman.com/entrproject/
+.. _black: https://github.com/psf/black
+.. _isort: https://pypi.org/project/isort/
+.. _flake8: https://flake8.pycqa.org/
+
 Quick links
 -----------
-
 - `Usage`_
 - `Datasets`_ a full list of current and future data sets
 - Python `API`_
-- `Roadmap <https://cihai.git-pull.com/en/latest/design-and-planning/>`_
+- `Roadmap <https://cihai.git-pull.com/design-and-planning/>`_
 
-.. _API: https://cihai.git-pull.com/en/latest/api.html
-.. _Datasets: https://cihai.git-pull.com/en/latest/datasets.html
-.. _Usage: https://cihai.git-pull.com/en/latest/usage.html
+.. _API: https://cihai.git-pull.com/api.html
+.. _Datasets: https://cihai.git-pull.com/datasets.html
+.. _Usage: https://cihai.git-pull.com/usage.html
 
-==============  ==========================================================
-Python support  Python 2.7, >= 3.5, pypy
-Source          https://github.com/cihai/cihai
-Docs            https://cihai.git-pull.com
-Changelog       https://cihai.git-pull.com/en/latest/history.html
-API             https://cihai.git-pull.com/en/latest/api.html
-Issues          https://github.com/cihai/cihai/issues
-Travis          https://travis-ci.org/cihai/cihai
-Test coverage   https://codecov.io/gh/cihai/cihai
-pypi            https://pypi.python.org/pypi/cihai
-OpenHub         https://www.openhub.net/p/cihai
-License         MIT
-git repo        .. code-block:: bash
-
-                    $ git clone https://github.com/cihai/cihai.git
-install stable  .. code-block:: bash
-
-                    $ pip install cihai
-install dev     .. code-block:: bash
-
-                    $ git clone https://github.com/cihai/cihai.git cihai
-                    $ cd ./cihai
-                    $ virtualenv .env
-                    $ source .env/bin/activate
-                    $ pip install -e .
-tests           .. code-block:: bash
-
-                    $ python setup.py test
-==============  ==========================================================
+- Python support: Python 2.7, >= 3.5, pypy
+- Source: https://github.com/cihai/cihai
+- Docs: https://cihai.git-pull.com
+- Changelog: https://cihai.git-pull.com/history.html
+- API: https://cihai.git-pull.com/api.html
+- Issues: https://github.com/cihai/cihai/issues
+- Test coverage: https://codecov.io/gh/cihai/cihai
+- pypi: https://pypi.python.org/pypi/cihai
+- OpenHub: https://www.openhub.net/p/cihai
+- License: MIT
 
 .. |pypi| image:: https://img.shields.io/pypi/v/cihai.svg
     :alt: Python Package
@@ -141,8 +181,8 @@ tests           .. code-block:: bash
 .. |license| image:: https://img.shields.io/github/license/cihai/cihai.svg
     :alt: License 
 
-.. _CJK: https://cihai.git-pull.com/en/latest/glossary.html#term-cjk
+.. _CJK: https://cihai.git-pull.com/glossary.html#term-cjk
 .. _UNIHAN: http://unicode.org/charts/unihan.html
 .. _variants: http://www.unicode.org/reports/tr38/tr38-21.html#N10211
-.. _cihai.conversion: http://cihai.git-pull.com/en/latest/api.html#conversion
+.. _cihai.conversion: http://cihai.git-pull.com/api.html#conversion
 .. _cihai-cli: https://cihai-cli.git-pull.com

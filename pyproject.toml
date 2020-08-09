@@ -3,7 +3,7 @@ skip-string-normalization = true
 
 [tool.poetry]
 name = "cihai"
-version = "0.9.0post1"
+version = "0.10.0a3"
 description = "Library for CJK (chinese, japanese, korean) language data."
 license = "MIT"
 authors = ["Tony Narlock <tony@git-pull.com>"]
@@ -40,7 +40,8 @@ click = ">=7<8"
 kaptan = "*"
 sqlalchemy = "*"
 appdirs = "*"
-unihan-etl = "~=0.10.0"
+unihan-etl = "~=0.11.0"
+cihai-cli = {version="*", optional=true}
 
 [tool.poetry.dev-dependencies]
 ### Docs ###
@@ -79,6 +80,7 @@ isort = [
 flake8 = "*"
 
 [tool.poetry.extras]
+"cli" = ["cihai-cli"]
 docs = ["sphinx", "sphinx-issues", "sphinx-argparse", "alagitpull"]
 test = ["pytest", "pathlib2", "pytest-rerunfailures"]
 coverage = ["codecov", "coverage", "pytest-cov"]
