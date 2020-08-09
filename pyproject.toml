@@ -41,7 +41,7 @@ kaptan = "*"
 sqlalchemy = "*"
 appdirs = "*"
 unihan-etl = "~=0.11.0"
-cihai-cli = { version = "~=0.5.0", allow-prereleases = true }
+cihai-cli = { version = "0.6.0a2", allow-prereleases = true }
 
 [tool.poetry.dev-dependencies]
 ### Docs ###
