@@ -4,8 +4,8 @@ Changelog
 
 Here you can find the recent changes to cihai.
 
-What's coming next
-------------------
+cihai 0.10.0 (2020-08-09)
+-------------------------
 - :issue: Remove version constraint from cihai-cli to satisfy pip's 2020
   resolver: https://pip.pypa.io/en/stable/user_guide/#resolver-changes-2020
 - :issue:`285` Move packaging / publishing to poetry
