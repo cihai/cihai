@@ -126,9 +126,13 @@ tests           .. code-block:: bash
     :alt: Python Package
     :target: http://badge.fury.io/py/cihai
 
-.. |build-status| image:: https://img.shields.io/travis/cihai/cihai.svg
+.. |docs| image:: https://github.com/cihai/cihai/workflows/Publish%20Docs/badge.svg
+   :alt: Docs
+   :target: https://github.com/cihai/cihai/actions?query=workflow%3A"Publish+Docs"
+
+.. |build-status| image:: https://github.com/cihai/cihai/workflows/test/badge.svg
    :alt: Build Status
-   :target: https://travis-ci.org/cihai/cihai
+   :target: https://github.com/cihai/cihai/actions?query=workflow%3A"test"
 
 .. |coverage| image:: https://codecov.io/gh/cihai/cihai/branch/master/graph/badge.svg
     :alt: Code Coverage
@@ -136,10 +140,6 @@ tests           .. code-block:: bash
 
 .. |license| image:: https://img.shields.io/github/license/cihai/cihai.svg
     :alt: License 
-
-.. |docs| image:: https://readthedocs.org/projects/cihai/badge/?version=latest
-    :alt: Documentation Status
-    :target: https://readthedocs.org/projects/cihai/
 
 .. _CJK: https://cihai.git-pull.com/en/latest/glossary.html#term-cjk
 .. _UNIHAN: http://unicode.org/charts/unihan.html
