@@ -76,9 +76,7 @@ def get_char_fk(char):
 
 
 def get_char_fk_multiple(*args):
-    """Retrieve the Rows
-
-    """
+    """Retrieve the Rows"""
 
     where_opts = []
 
