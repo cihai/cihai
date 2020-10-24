@@ -9,15 +9,13 @@ if PY2:
     text_type = unicode
     string_types = (str, unicode)
     integer_types = (int, long)
+    import collections as collections_abc
     from urllib import urlretrieve
 
+    import cPickle as pickle
+    import urlparse
     from cStringIO import StringIO as BytesIO
     from StringIO import StringIO
-    import cPickle as pickle
-
-    import urlparse
-
-    import collections as collections_abc
 
     def console_to_str(s):
         return s.decode('utf_8')
@@ -30,13 +28,11 @@ else:
     string_types = (str,)
     integer_types = (int,)
 
-    from io import StringIO, BytesIO
-
+    import collections.abc as collections_abc
     import urllib.parse as urllib
     import urllib.parse as urlparse
+    from io import BytesIO, StringIO
     from urllib.request import urlretrieve
-
-    import collections.abc as collections_abc
 
     console_encoding = sys.__stdout__.encoding
 
