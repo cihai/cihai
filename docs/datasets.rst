@@ -26,9 +26,9 @@ Set            License         Data Package       Project
 UNIHAN         OK [Unhn-L]_    OK [Unhn-D]_       OK [Unhn-P]_
 edict          OK              TODO               TODO
 cedict         OK [CDCT-L]_    TODO               TODO
-cedictgr       OK              TODO               TODO
-handedict      OK              TODO               TODO
-cfdict         OK              MISSING [CFDICT]_  UNKNOWN
+cedictgr       OK [CDCTGR]_    TODO               TODO
+handedict      OK [HANDE]_     TODO               TODO
+cfdict         OK              TODO [CFDICT]_     UNKNOWN
 ============== =============== ================== ===============
 
 .. _UNIHAN: http://www.unicode.org/charts/unihan.html
@@ -39,5 +39,6 @@ cfdict         OK              MISSING [CFDICT]_  UNKNOWN
 .. [Unhn-D] https://raw.githubusercontent.com/cihai/unihan-etl/master/datapackage.json
 .. [Unhn-P] https://unihan-etl.git-pull.com/
 .. [CDCT-L] https://www.mdbg.net/chinese/dictionary?page=cedict
-.. [CFDICT] The database at http://www.chine-informations.com/chinois/open/CFDICT/download.php
-   is missing.
+.. [CDCTGR] http://home.iprimus.com.au/richwarm/gr/gr.htm
+.. [HANDE]  https://handedict.zydeo.net/en/download
+.. [CFDICT] https://chine.in/mandarin/dictionnaire/CFDICT/
