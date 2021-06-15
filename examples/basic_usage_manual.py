@@ -1,11 +1,8 @@
 #!/usr/bin/env python
-# -*- coding: utf8 - *-
 """
 Demonstrate what basic_usage's unihan=True (default Cihai) does under
 the hood.
 """
-from __future__ import print_function, unicode_literals
-
 from cihai.core import Cihai
 
 

@@ -1,13 +1,9 @@
-# -*- coding: utf-8 -*-
 """Tests for cihai.
 
 test.conversion
 ~~~~~~~~~~~~~~~
 
 """
-
-from __future__ import absolute_import, print_function, unicode_literals
-
 from cihai import conversion
 from cihai._compat import string_types, text_type
 

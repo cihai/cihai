@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # flake8: noqa: E501
 """Conversion functions for various CJK encodings and representations.
 
@@ -59,8 +58,6 @@ See these resources for more information:
 .. _MIT: https://bitbucket.org/lost_theory/ltchinese/src/9227813/LICENSE.txt
 .. _conversion.py @9227813: https://bitbucket.org/lost_theory/ltchinese/raw/9227813/ltchinese/conversion.py
 """
-from __future__ import absolute_import, print_function, unicode_literals
-
 import logging
 import re
 

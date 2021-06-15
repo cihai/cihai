@@ -1,7 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf8 - *-
-from __future__ import print_function, unicode_literals
-
 from cihai.core import Cihai
 from cihai.extend import Dataset
 

@@ -1,6 +1,3 @@
-# -*- coding: utf8 - *-
-from __future__ import absolute_import, print_function, unicode_literals
-
 from cihai import extend
 from cihai.core import Cihai
 from cihai.data.unihan.dataset import Unihan, UnihanVariants

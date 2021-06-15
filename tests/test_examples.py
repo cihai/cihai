@@ -1,6 +1,3 @@
-# -*- coding: utf8 - *-
-from __future__ import absolute_import, print_function, unicode_literals
-
 import examples.basic_usage
 import examples.basic_usage_manual
 import examples.dataset
