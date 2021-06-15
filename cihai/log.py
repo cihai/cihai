@@ -1,12 +1,9 @@
-# -*- coding: utf8 - *-
 """Log utilities for cihai.
 
 cihai.log
 ~~~~~~~~~
 
 """
-from __future__ import absolute_import, print_function, unicode_literals
-
 import logging
 import time
 

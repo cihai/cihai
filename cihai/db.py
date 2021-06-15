@@ -1,7 +1,4 @@
-# -*- coding: utf8 - *-
 """Cihai core functionality."""
-from __future__ import absolute_import, print_function, unicode_literals
-
 from sqlalchemy import MetaData, create_engine
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session

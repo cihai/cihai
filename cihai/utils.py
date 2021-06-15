@@ -1,9 +1,6 @@
-# -*- coding: utf8 - *-
 """
 Utility and helper methods for cihai.
 """
-from __future__ import absolute_import, print_function, unicode_literals
-
 import sys
 
 from . import exc

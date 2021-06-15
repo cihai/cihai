@@ -1,4 +1,3 @@
-# -*- coding: utf8 - *-
 """
 Cihai Plugin System
 
@@ -13,8 +12,6 @@ For convenience, you can use cihai's configuration namespace and SQLAlchemy sett
 You can also create plugins which extend another. So if Unihan doesn't have a lookup
 for variant glyphs, this can be added.
 """
-from __future__ import absolute_import, print_function, unicode_literals
-
 from . import utils
 from ._compat import string_types
 

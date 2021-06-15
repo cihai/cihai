@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Tests for cihai datasets
 
 tests.datasets
@@ -8,9 +7,6 @@ These tests will be tested against a fixture of :class:`Cihai` which uses the
 settings found in ``test_config.yml``.
 
 """
-
-from __future__ import absolute_import, print_function, unicode_literals
-
 import random
 
 import pytest

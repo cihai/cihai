@@ -1,6 +1,3 @@
-# -*- coding: utf8 - *-
-from __future__ import absolute_import, print_function, unicode_literals
-
 from sqlalchemy import Column, String, Table
 
 from unihan_etl import process as unihan

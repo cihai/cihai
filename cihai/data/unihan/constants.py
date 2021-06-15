@@ -1,6 +1,3 @@
-# -*- coding: utf8 - *-
-from __future__ import unicode_literals
-
 #: Mapping of files from unihan-etl (UNIHAN database)
 UNIHAN_FILES = [
     'Unihan_DictionaryLikeData.txt',
