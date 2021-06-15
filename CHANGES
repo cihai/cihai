@@ -2,10 +2,12 @@
 Changelog
 =========
 
-Here you can find the recent changes to cihai.
-
 current
 -------
+- Add latest updates to master here
+
+cihai 0.11.0 (2021-06-15)
+-------------------------
 - Update `black` to 21.6b0
 - Update trove classifiers to 3.9
 - Update unihan-etl to 0.12.0 (removes python 2.7, 3.5 support)
