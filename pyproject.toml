@@ -3,7 +3,7 @@ skip-string-normalization = true
 
 [tool.poetry]
 name = "cihai"
-version = "0.11.0"
+version = "0.11.1"
 description = "Library for CJK (chinese, japanese, korean) language data."
 license = "MIT"
 authors = ["Tony Narlock <tony@git-pull.com>"]
@@ -29,6 +29,7 @@ packages = [
 ]
 
 homepage = "https://cihai.git-pull.com"
+readme = "README.rst"
 
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/cihai/cihai/issues"

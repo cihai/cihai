@@ -6,6 +6,10 @@ current
 -------
 - Add latest updates to master here
 
+cihai 0.11.1 (2021-06-15)
+-------------------------
+- Fix cihai-cli and sqlalchemy versions
+
 cihai 0.11.0 (2021-06-15)
 -------------------------
 - Update `black` to 21.6b0
