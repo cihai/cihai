@@ -1,0 +1,8 @@
+(history)=
+
+# History
+
+```{include} ../CHANGES
+```
+
+

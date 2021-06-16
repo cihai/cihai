@@ -1,13 +1,13 @@
-:orphan:
+---
+orphan: true
 
-.. _design-and-planning/2013/internals:
+---
 
-=========================
-Internal Design decisions
-=========================
+(design-and-planning-2013-internals)=
 
-Convenient relational, cohesive output of datasets
---------------------------------------------------
+# Internal Design decisions
+
+## Convenient relational, cohesive output of datasets
 
 Whether you are Cihai, python, creating a CJK tool in another programming
 language, or simple looking to use a dataset, cihai will provide tools
@@ -19,12 +19,11 @@ server as well.
 Cihai is a tool to convert CJK datasets to a common, relational format
 and provide a convient Python API for studying deeply.
 
-Bootstrapping
--------------
+## Bootstrapping
 
-Cihai's core functionality relies on a ``ForeignKeyRestraint`` against
+Cihai's core functionality relies on a `ForeignKeyRestraint` against
 an entry on a master table of chinese characters / string which are
-assigned an integer ID for use as a ``ForeignKey``. This way, datasets
+assigned an integer ID for use as a `ForeignKey`. This way, datasets
 added to Cihai can achieve fast lookups and JOIN's via integers instead of
 unicode characters.
 
@@ -36,4 +35,5 @@ This makes installing datasets in Cihai expensive (requiring a lookup of a
 unicode string in a central table) before inserting into database, with
 the benefit of potentially returning a huge cross-section of available CJK
 data in one swift stroke.
+
 

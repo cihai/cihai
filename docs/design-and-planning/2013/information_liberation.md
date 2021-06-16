@@ -1,15 +1,18 @@
-:orphan:
+---
+orphan: true
 
-.. _design-and-planning/2013/information_liberation:
+---
 
-======================
-Information Liberation
-======================
+(design-and-planning-2013-information-liberation)=
 
-.. note::
+# Information Liberation
 
-    This document is part of brain storming the project of cihai. It's for
-    historic purposes only.
+:::{note}
+
+This document is part of brain storming the project of cihai. It's for
+historic purposes only.
+
+:::
 
 *Written Late 2013*
 
@@ -28,14 +31,12 @@ Common concerns over people over their datasets are:
 - What if someone doesn't contribute modifications to my / my colleagues /
   my institution / my effort?
 
-
 If you have not participated in an open source software effort, you would
 be surprised how people are happy to contribute to a common effort.
 Efforts like GNU/Linux are world-wide collaborations bringing together a
 rock-solid OS powering supercomputers, the internet.
 
-Permissive-licensing your dataset
----------------------------------
+## Permissive-licensing your dataset
 
 Even if have brought into consideration the fruits of an open source
 software effort you should know some of them are built upon restrictive,
@@ -44,7 +45,7 @@ borrowing *their* code should mean any non-GPL compatible effort - private
 *or* freely available permissive, can't use it without turning the
 software into GPL too! But GPL licensed software can use permissive
 software in their efforts! It opened my mind after years of thinking GPL
-was all principle and virtue! Defend the weak! Protect the innocent! 
+was all principle and virtue! Defend the weak! Protect the innocent!
 
 *Freedom.*
 
@@ -70,31 +71,31 @@ and a community of self-interested / passionate individuals who put in the
 hours and had the descipline to learn programming who had the courage and
 desire to help.
 
-Case study: IPython
-~~~~~~~~~~~~~~~~~~~
+### Case study: IPython
 
 This is an observation and doesn't infer endorsement by IPython or its
-contributors. 
+contributors.
 
 There is no requirement for providing an open source derivitive (or an
 upstream patch) for a modification, so does IPython development go stale?
-`93 pages of patches`_ committed to the project.
+[93 pages of patches][93 pages of patches] committed to the project.
 
 There is no requirement restricting large corporations from using them and
-giving nothing back, `Microsoft donated $100K to IPython`_.
+giving nothing back, [Microsoft donated $100K to IPython][microsoft donated $100k to ipython].
 
 Perhaps academic institutions will snub them for using a permissive
 license? The core developers are academics.
 
 Perhaps non-profits will snub them for not using a permissive license?
-`IPython gets a $1.15M sloan foundation grant`_.
+[IPython gets a $1.15M sloan foundation grant][ipython gets a $1.15m sloan foundation grant].
 
-.. _93 pages of patches: https://github.com/ipython/ipython/pulls?direction=desc&page=1&sort=created&state=closed
-.. _IPython gets a $1.15M Sloan foundation grant: http://ipython.org/sloan-grant.html
-.. _Microsoft donated $100K to IPython: http://ipython.org/microsoft-donation-2013.html
+[93 pages of patches]: https://github.com/ipython/ipython/pulls?direction=desc&page=1&sort=created&state=closed
 
-Conclusion
-----------
+[ipython gets a $1.15m sloan foundation grant]: http://ipython.org/sloan-grant.html
+
+[microsoft donated $100k to ipython]: http://ipython.org/microsoft-donation-2013.html
+
+## Conclusion
 
 A collaborative open source effort is passionate and self-interested
 parties coming together to be constructive.
@@ -106,10 +107,13 @@ together a common creation. It furthers one to see that.
 
 Whether you are a copyleft, academic, private or none of the above.
 Providing your data under a permissive license will open your work to the
-world. 
+world.
 
-- `Open Data Commons Attribution License (ODC-By) v1.0`_
-- `MIT License`_
+- [Open Data Commons Attribution License (ODC-By) v1.0][open data commons attribution license (odc-by) v1.0]
+- [MIT License][mit license]
 
-.. _`MIT License`: _http://opensource.org/licenses/MIT
-.. _Open Data Commons Attribution License (ODC-By) v1.0: http://opendatacommons.org/licenses/by/1.0
+[mit license]: _http://opensource.org/licenses/MIT
+
+[open data commons attribution license (odc-by) v1.0]: http://opendatacommons.org/licenses/by/1.0
+
+

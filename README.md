@@ -150,7 +150,7 @@ class="title-ref">\_\_about\_\_.py</span> and \`pyproject.toml\`:
   current and future data sets
 - Python [API](https://cihai.git-pull.com/api.html)
 - [Roadmap](https://cihai.git-pull.com/design-and-planning/)
-- Python support: Python 2.7, >= 3.5, pypy
+- Python support: >= 3.6, pypy
 - Source: <https://github.com/cihai/cihai>
 - Docs: <https://cihai.git-pull.com>
 - Changelog: <https://cihai.git-pull.com/history.html>
