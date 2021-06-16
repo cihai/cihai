@@ -4,6 +4,10 @@
 
 - Add latest updates to master here
 
+## cihai 0.12.0 (2021-06-16)
+
+- {issue}`291`: Convert to markdown
+
 ## cihai 0.11.1 (2021-06-15)
 
 - Fix cihai-cli and sqlalchemy versions
