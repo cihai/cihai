@@ -116,11 +116,11 @@ description = "Command line frontend for the cihai CJK language library"
 name = "cihai-cli"
 optional = true
 python-versions = ">=3.6,<4.0"
-version = "0.7.2"
+version = "0.8.1"
 
 [package.dependencies]
 PyYAML = ">=3.12,<6"
-cihai = ">=0.11.1,<0.12.0"
+cihai = ">=0.12.0,<0.13.0"
 click = ">=7"
 
 [[package]]
@@ -853,8 +853,8 @@ chardet = [
     {file = "chardet-4.0.0.tar.gz", hash = "sha256:0d6f53a15db4120f2b08c94f11e7d93d2c911ee118b6b30a04ec3ee8310179fa"},
 ]
 cihai-cli = [
-    {file = "cihai-cli-0.7.2.tar.gz", hash = "sha256:26821e1886d47c553d6a2e31a6a4888f4514df19add5dafa5076afea7662ec8b"},
-    {file = "cihai_cli-0.7.2-py3-none-any.whl", hash = "sha256:e0fc66398a35a79f593388ea26c5f3e2cd2072e0bcc934e8f94ba4accf44218c"},
+    {file = "cihai-cli-0.8.1.tar.gz", hash = "sha256:3298fbd640df0f7c7c819e8fce0a1d28a90316420fda76b23ea6d1b5c2811d00"},
+    {file = "cihai_cli-0.8.1-py3-none-any.whl", hash = "sha256:2f06e950eb0cc1b7b995bdc70a12df953cd5a134ce36517936481b99d7f580d3"},
 ]
 click = [
     {file = "click-8.0.1-py3-none-any.whl", hash = "sha256:fba402a4a47334742d782209a7c79bc448911afe1149d07bdabdf480b3e2f4b6"},
