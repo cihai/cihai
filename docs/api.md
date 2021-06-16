@@ -1,93 +1,130 @@
-.. _api:
+(api)=
 
-===
-API
-===
+# API
 
+```{eval-rst}
 .. automodule:: cihai.core
     :members:
+```
 
-Configuration
--------------
+## Configuration
 
+```{eval-rst}
 .. automodule:: cihai.config
     :members:
+```
 
-Database
---------
+## Database
 
+```{eval-rst}
 .. automodule:: cihai.db
     :members:
+```
 
-Extending
----------
+## Extending
 
+```{eval-rst}
 .. automodule:: cihai.extend
     :members:
+```
 
-Constants
----------
+## Constants
+
+```{eval-rst}
 .. automodule:: cihai.constants
     :members:
+```
 
-UNIHAN Dataset
---------------
+## UNIHAN Dataset
 
-Bootstrapping
-~~~~~~~~~~~~~
+### Bootstrapping
 
+```{eval-rst}
 .. automodule:: cihai.data.unihan.bootstrap
     :members:
+```
 
+```{eval-rst}
 .. autoclass:: cihai.data.unihan.dataset.Unihan
    :members:
    :inherited-members:
    :show-inheritance:
+```
 
+```{eval-rst}
 .. automodule:: cihai.data.unihan.constants
    :members:
    :inherited-members:
    :show-inheritance:
+```
 
-Variants plugin
-~~~~~~~~~~~~~~~
+### Variants plugin
 
+```{eval-rst}
 .. autoclass:: cihai.data.unihan.dataset.UnihanVariants
    :members:
    :inherited-members:
    :show-inheritance:
+```
 
-.. _cihai.conversion:
+(cihai-conversion)=
 
-Conversion
-----------
+## Conversion
 
+```{eval-rst}
 .. autofunction:: cihai.conversion.euc_to_unicode
-.. autofunction:: cihai.conversion.euc_to_utf8
-.. autofunction:: cihai.conversion.gb2312_to_euc
-.. autofunction:: cihai.conversion.kuten_to_gb2312
-.. autofunction:: cihai.conversion.python_to_euc
-.. autofunction:: cihai.conversion.python_to_ucn
-.. autofunction:: cihai.conversion.ucn_to_unicode
-.. autofunction:: cihai.conversion.ucnstring_to_python
-.. autofunction:: cihai.conversion.ucnstring_to_unicode
+```
 
-Exceptions
-----------
+```{eval-rst}
+.. autofunction:: cihai.conversion.euc_to_utf8
+```
+
+```{eval-rst}
+.. autofunction:: cihai.conversion.gb2312_to_euc
+```
+
+```{eval-rst}
+.. autofunction:: cihai.conversion.kuten_to_gb2312
+```
+
+```{eval-rst}
+.. autofunction:: cihai.conversion.python_to_euc
+```
+
+```{eval-rst}
+.. autofunction:: cihai.conversion.python_to_ucn
+```
+
+```{eval-rst}
+.. autofunction:: cihai.conversion.ucn_to_unicode
+```
+
+```{eval-rst}
+.. autofunction:: cihai.conversion.ucnstring_to_python
+```
+
+```{eval-rst}
+.. autofunction:: cihai.conversion.ucnstring_to_unicode
+```
+
+## Exceptions
 
 When using cihai via Python, you can catch Cihai-specific exceptions via
 these. All Cihai-specific exceptions are catchable via
-:exc:`~cihai.exc.CihaiException` since its the base exception.
+{exc}`~cihai.exc.CihaiException` since its the base exception.
 
+```{eval-rst}
 .. automodule:: cihai.exc
     :members:
     :inherited-members:
     :show-inheritance:
+```
 
-Utilities
----------
+## Utilities
 
+```{eval-rst}
 .. automodule:: cihai.utils
     :members:
     :inherited-members:
     :show-inheritance:
+```

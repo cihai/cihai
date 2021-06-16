@@ -1,93 +1,95 @@
-=========
-Changelog
-=========
+# Changelog
 
-current
--------
+## current
+
 - Add latest updates to master here
 
-cihai 0.11.1 (2021-06-15)
--------------------------
+## cihai 0.11.1 (2021-06-15)
+
 - Fix cihai-cli and sqlalchemy versions
 
-cihai 0.11.0 (2021-06-15)
--------------------------
-- Update `black` to 21.6b0
+## cihai 0.11.0 (2021-06-15)
+
+- Update {}`black` to 21.6b0
 - Update trove classifiers to 3.9
 - Update unihan-etl to 0.12.0 (removes python 2.7, 3.5 support)
-- :issue:`288` Remove python 2.7, 3.5 support. Remove ``__future__`` and
+- {issue}`288` Remove python 2.7, 3.5 support. Remove `__future__` and
   unused modesets
 
-cihai 0.10.0 (2020-08-09)
--------------------------
-- :issue: Remove version constraint from cihai-cli to satisfy pip's 2020
-  resolver: https://pip.pypa.io/en/stable/user_guide/#resolver-changes-2020
-- :issue:`285` Move packaging / publishing to poetry
-- :issue:`284` Self host docs
-- :issue:`284` Add metadata / icons / etc. for doc site
-- :issue:`284` Move travis -> github actions
-- :issue:`284` Overhaul Makefiles
-- :issue:`283` Move from Pipfile to poetry
+## cihai 0.10.0 (2020-08-09)
+
+- issue Remove version constraint from cihai-cli to satisfy pip's 2020
+
+  resolver: <https://pip.pypa.io/en/stable/user_guide/#resolver-changes-2020>
+
+- {issue}`285` Move packaging / publishing to poetry
+- {issue}`284` Self host docs
+- {issue}`284` Add metadata / icons / etc. for doc site
+- {issue}`284` Move travis -> github actions
+- {issue}`284` Overhaul Makefiles
+- {issue}`283` Move from Pipfile to poetry
 - Improvements to plugin/extension system
 
-cihai 0.9.0p1 (2019-08-18)
---------------------------
+## cihai 0.9.0p1 (2019-08-18)
+
 - Repin requirements/cli.txt dependency, again
 
-cihai 0.9.0p0 (2019-08-18)
---------------------------
+## cihai 0.9.0p0 (2019-08-18)
+
 - Repin requirements/cli.txt dependency
 
-cihai 0.9.0 (2019-08-18)
-------------------------
+## cihai 0.9.0 (2019-08-18)
+
 - 0.9.0 Final released
-- From here on in, cihai-cli is to be downloaded via ``pip install cihai[cli]``
+- From here on in, cihai-cli is to be downloaded via `pip install cihai[cli]`
 - See 0.9.0 releases below for more information on changes
 
-cihai 0.9.0a4 (2019-08-17)
---------------------------
-- Add ``project_urls`` to setup.py
-- Python 2/3 compatible ``collections``
+## cihai 0.9.0a4 (2019-08-17)
+
+- Add `project_urls` to setup.py
+- Python 2/3 compatible `collections`
 - Package updates (pytest to 5.1.0)
 - Linting fixes
 
-cihai 0.9.0a (2018-09-07)
--------------------------
+## cihai 0.9.0a (2018-09-07)
+
 - Update pytest to 3.8.0
 - Update sphinx to 1.7.9
-- *util* -> *utils*
-- *conf* -> *config*
-- Add ``cihai.__version__`` (so the version is available without having to
-  access ``__about__``)
+- _util_ -> _utils_
+- _conf_ -> _config_
+- Add `cihai.__version__` (so the version is available without having to
+  access `__about__`)
 - Add source code link on GitHub on API pages
-- Add ``__github__`` to ``__about__``
-- Move `DEFAULT_CONFIG` to *constants.py*
-- Move *cihai/unihan.py* -> *cihai/unihan/{__init__.py,dataset.py}*
-- Move *cihai/bootstrap.py* -> *cihai/unihan/bootstrap.py*
-- Treat Unihan as a ``Dataset``
-- Automatically include dataset when created `c = Cihai()`, `c = Cihai(unihan=False)` will do without
+- Add `__github__` to `__about__`
+- Move {}`DEFAULT_CONFIG` to _constants.py_
+- Move _cihai/unihan.py_ -> _cihai/unihan/{**init**.py,dataset.py}_
+- Move _cihai/bootstrap.py_ -> _cihai/unihan/bootstrap.py_
+- Treat Unihan as a `Dataset`
+- Automatically include dataset when created {}`c = Cihai()`, {}`c = Cihai(unihan=False)` will do without
 - Tests for examples. We want to make sure our examples work out of the box and new changes catch API breaks when they need updating
 
-cihai 0.8.1 (2018-07-21)
-------------------------
+## cihai 0.8.1 (2018-07-21)
+
 - Loosen kaptan requirement to greater than 0.5.10, less than
   0.6
 
   This should fix issues with pyyaml, as well as downstream with
   cihai-cli.
+
 - Loosen other version requirements to avoid entanglements
   downstream in the future.
 - Update Sphinx to 1.7.5 to 1.7.6
 - Update releases to 1.6.0 to 1.6.1
 - Update and sync Pipfile
 
-cihai 0.8.0 (2018-06-23)
-------------------------
+## cihai 0.8.0 (2018-06-23)
+
 - Update unihan-etl to 0.9.0 to 0.9.5
 - Base package updates
 
   - sqlalchemy 1.1.10 to 1.2.8
   - kaptan 0.5.8 to 0.5.9
+
 - Developer package updates (linting / docs / testing)
 
   - isort 4.2.5 to 4.3.4
@@ -97,91 +99,90 @@ cihai 0.8.0 (2018-06-23)
   - alagitpull 0.0.4 to 0.0.21
   - releases 1.3.1 to 1.6.0
   - pytest 3.1.0 to 3.6.2
+
 - Move documentation over to numpy-style
 - Add sphinxcontrib-napoleon 0.6.1
 - Update LICENSE New BSD to MIT
 - All future commits and contributions are licensed to the
-  *cihai software foundation*. This includes commits by Tony Narlock (creator).
+  _cihai software foundation_. This includes commits by Tony Narlock (creator).
 
-cihai 0.7.4 (2017-05-26)
-------------------------
+## cihai 0.7.4 (2017-05-26)
+
 - bump unihan-tabular 0.8.1 to unihan-etl 0.9.0
 
-cihai 0.7.3 (2017-05-20)
-------------------------
-- Update unihan-tabular to 0.7.3, adds *kJa* and fixes
-  *kCompatibilityVariant*.
+## cihai 0.7.3 (2017-05-20)
 
-cihai 0.7.2 (2017-05-20)
-------------------------
+- Update unihan-tabular to 0.7.3, adds _kJa_ and fixes
+  _kCompatibilityVariant_.
+
+## cihai 0.7.2 (2017-05-20)
+
 - Support for character lookup and reverse lookup
-- Code examples in */examples*
+- Code examples in _/examples_
 
-cihai 0.7.1 (2017-05-20)
-------------------------
+## cihai 0.7.1 (2017-05-20)
+
 - Readme updates and remove unused CLI module
 
-cihai 0.7.0 (2017-05-20)
-------------------------
-- Split CLI functionality into `cihai-cli
-  <https://cihai-cli.git-pull.com>`_.
+## cihai 0.7.0 (2017-05-20)
+
+- Split CLI functionality into [cihai-cli](https://cihai-cli.git-pull.com).
 - Update classifiers / metadata in setup.py
 
-cihai 0.6.1 (2017-05-17)
-------------------------
+## cihai 0.6.1 (2017-05-17)
+
 - Initial support for reverse lookups
 - Output cli in basic yaml
 
-cihai 0.6.0 (2017-05-17)
-------------------------
+## cihai 0.6.0 (2017-05-17)
+
 - Support for configuring logging via options and CLI
 - Convert all print statements to use logger
 
-cihai 0.5.1 (2017-05-17)
-------------------------
+## cihai 0.5.1 (2017-05-17)
+
 - Python 2 CLI fix
 
-cihai 0.5.0 (2017-05-17)
-------------------------
+## cihai 0.5.0 (2017-05-17)
+
 - Remove use of singleton metadata object
 - Automatically bootstrap UNIHAN on first use
 
-cihai 0.4.2 (2017-05-16)
-------------------------
+## cihai 0.4.2 (2017-05-16)
+
 - Load default configuration via internal dictionary
 
-cihai 0.4.1 (2017-05-16)
-------------------------
+## cihai 0.4.1 (2017-05-16)
+
 - Update MANIFEST.in
 
-cihai 0.4.0 (2017-05-16)
-------------------------
+## cihai 0.4.0 (2017-05-16)
+
 - Automatically reflect database schemas and make available
   in main cihai object
 - Use click library for CLI
-- Initial support for character lookups via ``$ cihai info
-  <char>``.
-- :issue:`3` Bootstrap UNIHAN into cihai by default via unihan-tabular
+- Initial support for character lookups via `$ cihai info <char>`.
+- {issue}`3` Bootstrap UNIHAN into cihai by default via unihan-tabular
   project
-- :issue:`4` Drop python 3.3 and 3.4 support
-- :issue:`4` Initial `XDG`_ base directory support
+- {issue}`4` Drop python 3.3 and 3.4 support
+- {issue}`4` Initial [XDG][xdg] base directory support
 - Move tests to pytest functions and fixtures
 - Remove unused test_unihan file
 - PEP8, sort imports
-- Move default config from *cihai/config.yml* to
-  *conf/default.yml*.
-- Split configuration functionality into ``cihai.conf``.
+- Move default config from _cihai/config.yml_ to
+  _conf/default.yml_.
+- Split configuration functionality into `cihai.conf`.
 - Functionality for replaces, tildes, environmental variables
   and xdg variables in settings.
 - Document CLI usage via sphinx-argparse
 
-cihai 0.3.0 (2017-04-16)
-------------------------
+## cihai 0.3.0 (2017-04-16)
+
 - Rebooted
-- Modernize *Makefile* in docs
+- Modernize _Makefile_ in docs
 - Add Makefile to main project
-- Modernize package metadata to use *__about__.py*
-- Update requirements to use *requirements/* folder for
+- Modernize package metadata to use _**about**.py_
+- Update requirements to use _requirements/_ folder for
   base, testing and doc dependencies.
 - Update sphinx theme to alabaster with new logo.
 - Update travis to use coverall
@@ -190,8 +191,10 @@ cihai 0.3.0 (2017-04-16)
 - Add support for pypy (why not)
 - Lock base dependencies
 - Add dev dependencies for isort, vulture and flake8
-- Rename ``cihai.cihai`` to ``cihai.core``
+- Rename `cihai.cihai` to `cihai.core`
 
-.. _XDG: https://specifications.freedesktop.org/basedir-spec/basedir-spec-0.6.html
+[xdg]: https://specifications.freedesktop.org/basedir-spec/basedir-spec-0.6.html
 
-.. vim: set filetype=rst:
+<!---
+vim: set filetype=markdown:
+-->

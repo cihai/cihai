@@ -1,9 +1,8 @@
-.. _glossary:
+(glossary)=
 
-========
-Glossary
-========
+# Glossary
 
+```{eval-rst}
 .. glossary::
 
     CJK
@@ -38,5 +37,6 @@ Glossary
     XDG Base Directory
         A specification for directory locations designed to work across
         platforms. See https://specifications.freedesktop.org/basedir-spec/basedir-spec-0.6.html.
+```
 
-.. _internationalization: https://en.wikipedia.org/wiki/Internationalization_and_localization
+[internationalization]: https://en.wikipedia.org/wiki/Internationalization_and_localization

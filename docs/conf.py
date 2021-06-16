@@ -22,19 +22,23 @@ with open("../cihai/__about__.py") as fp:
 
 extensions = [
     'sphinx.ext.autodoc',
+    'sphinx_autodoc_typehints',
     'sphinx.ext.todo',
     'sphinx.ext.napoleon',
     'sphinx.ext.intersphinx',
     'sphinx.ext.linkcode',
     'alagitpull',
     'sphinx_issues',
+    'myst_parser',
 ]
+
+myst_enable_extensions = ["colon_fence"]
 
 issues_github_path = about['__github__'].replace('https://github.com/', '')
 
 templates_path = ['_templates']
 
-source_suffix = '.rst'
+source_suffix = {'.rst': 'restructuredtext', '.md': 'markdown'}
 
 master_doc = 'index'
 
