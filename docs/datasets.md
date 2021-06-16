@@ -26,20 +26,13 @@ For all data sets, the goal is to achieve:
 | cfdict    | OK                | MISSING [^cite_cfdict] | UNKNOWN           |
 
 [unihan]: http://www.unicode.org/charts/unihan.html
-
 [data packages]: http://frictionlessdata.io/data-packages/
-
 [unihan-etl]: https://unihan-etl.git-pull.com
 
 [^cite_unhn-l]: <http://unicode.org/charts/unihan.html#Disclaimers>
-
 [^cite_unhn-d]: <https://raw.githubusercontent.com/cihai/unihan-etl/master/datapackage.json>
-
 [^cite_unhn-p]: <https://unihan-etl.git-pull.com/>
-
 [^cite_cdct-l]: <https://www.mdbg.net/chinese/dictionary?page=cedict>
-
-[^cite_cfdict]: The database at <http://www.chine-informations.com/chinois/open/CFDICT/download.php>
-  is missing.
-
-
+[^cite_cfdict]:
+    The database at <http://www.chine-informations.com/chinois/open/CFDICT/download.php>
+    is missing.

@@ -41,8 +41,8 @@ This will replace environment variables, XDG variables and tildes. You can
 also enter absolute paths.
 
 Environmental variables require a dollar sign added to them, e.g.
-`${ENVVAR}`. XDG variables such as *user_cache_dir*, *user_config_dir*,
-*user_data_dir*, *user_log_dir*, *site_config_dir*, *site_data_dir* are
+`${ENVVAR}`. XDG variables such as _user_cache_dir_, _user_config_dir_,
+_user_data_dir_, _user_log_dir_, _site_config_dir_, _site_data_dir_ are
 done via curly brackets only. E.g. `{site_config_dir}`. Tildes are just
 replaced.
 
@@ -57,10 +57,10 @@ dirs:
 
 ```
 
-In the example above, Heroku's [DATABASE_URL](<https://devcenter.heroku.com/articles/heroku-postgresql#establish-primary-db>)
-is replaced as an environmental variable. The XDG variable for *user_data_dir*
-is combined with *mydata/*, which makes the data stored deeper. The
-environmental variable *$ENVVAR* is also replaced.
+In the example above, Heroku's [DATABASE_URL](https://devcenter.heroku.com/articles/heroku-postgresql#establish-primary-db)
+is replaced as an environmental variable. The XDG variable for _user_data_dir_
+is combined with _mydata/_, which makes the data stored deeper. The
+environmental variable _$ENVVAR_ is also replaced.
 
 You may point to a custom config with the `-c` argument,
 `$ cihai -c path/to/config.yaml`.
@@ -83,5 +83,3 @@ unihan_options:
 ```
 
 [psycopg]: http://initd.org/psycopg/
-
-

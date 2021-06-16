@@ -3,7 +3,7 @@
 # Glossary
 
 ```{eval-rst}
-.. glossary:: 
+.. glossary::
 
     CJK
         1. In computer software, `internationalization`_ of *Chinese, Japanese,
@@ -40,5 +40,3 @@
 ```
 
 [internationalization]: https://en.wikipedia.org/wiki/Internationalization_and_localization
-
-

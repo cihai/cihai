@@ -4,7 +4,7 @@
 
 ## Basic usage
 
-*examples/basic_usage.py*:
+_examples/basic_usage.py_:
 
 ```{literalinclude} ../examples/basic_usage.py
 :language: python
@@ -13,18 +13,16 @@
 
 ## Character variants
 
-*examples/variants.py*:
+_examples/variants.py_:
 
 ```{literalinclude} ../examples/variants.py
 :language: python
 
 ```
 
-*examples/variant_ts_difficulties.py*:
+_examples/variant_ts_difficulties.py_:
 
 ```{literalinclude} ../examples/variant_ts_difficulties.py
 :language: python
 
 ```
-
-

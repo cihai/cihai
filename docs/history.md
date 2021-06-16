@@ -3,6 +3,5 @@
 # History
 
 ```{include} ../CHANGES
+
 ```
-
-

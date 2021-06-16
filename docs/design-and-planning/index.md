@@ -25,5 +25,3 @@ preserved for historic purposes only.
 - [State of datasets][state of datasets] on cjklib tracker
 
 [state of datasets]: https://github.com/cburgmer/cjklib/issues/3
-
-
