@@ -5,6 +5,7 @@ shell_command_before:
 - '[ -f .venv/bin/activate ] && source .venv/bin/activate && reset'
 windows:
 - window_name: cihai
+  start_directory: ./src/cihai/
   focus: True
   layout: main-horizontal
   options:
