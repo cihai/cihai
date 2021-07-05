@@ -1,8 +1,6 @@
 (index)=
 
-# cihai
-
-## Table of contents
+# cihai project
 
 ```{toctree}
 :caption: Table of Contents

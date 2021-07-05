@@ -2,14 +2,9 @@
 
 # cihai
 
-```{include} ../../src/cihai/README.md
-
-```
-
-## Table of contents
-
 ```{toctree}
 :name: cihai
+:hidden:
 
 features
 usage
@@ -23,3 +18,9 @@ glossary
 design-and-planning/index
 
 ```
+
+```{include} ../../src/cihai/README.md
+
+```
+
+

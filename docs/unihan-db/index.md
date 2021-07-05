@@ -2,17 +2,16 @@
 
 # unihan-db
 
-```{include} ../../src/unihan-db/README.md
-
-```
-
-## Table of contents
-
 ```{toctree}
 :name: unihan-db
-:titlesonly:
+:hidden:
 
 api
 history
+
+```
+
+```{include} ../../src/unihan-db/README.md
+:start-line: 1
 
 ```

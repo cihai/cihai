@@ -2,14 +2,9 @@
 
 # unihan-etl
 
-```{include} ../../src/unihan-etl/README.md
-
-```
-
-## Table of contents
-
 ```{toctree}
 :name: unihan-etl
+:hidden:
 
 about
 unihan
@@ -17,5 +12,10 @@ cli
 api
 FAQ
 history
+
+```
+
+```{include} ../../src/unihan-etl/README.md
+:start-line: 1
 
 ```
