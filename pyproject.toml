@@ -42,7 +42,7 @@ click = ">=7<8"
 kaptan = "*"
 sqlalchemy = "<1.4"
 appdirs = "*"
-unihan-etl = "~=0.12.0"
+unihan-etl = "~=0.13.0"
 cihai-cli = {version="*", optional=true}
 
 [tool.poetry.dev-dependencies]
