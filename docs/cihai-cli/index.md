@@ -1,15 +1,15 @@
-(index)=
+(cihai-cli)=
 
 # cihai-cli
 
-```{include} ../README.md
+```{include} ../../src/cihai-cli/README.md
 
 ```
 
 ## Contents
 
 ```{toctree}
-:maxdepth: 2
+:name: cihai-cli
 
 usage
 cli

@@ -12,13 +12,13 @@ library
 This project is under active development. Follow our progress and check
 back for updates!
 
-# Installation
+## Installation
 
 ```sh
 $ pip install --user cihai[cli]
 ```
 
-# Character lookup
+## Character lookup
 
 See [CLI](https://cihai-cli.git-pull.com/cli.html) in the documentation
 for full usage information.
@@ -65,7 +65,7 @@ kXHC1983: 0445.030:hǎo 0448.030:hào
 ucn: U+597D
 ```
 
-# Reverse lookup
+## Reverse lookup
 
 ```sh
 $ cihai reverse library
@@ -87,7 +87,7 @@ ucn: U+5ACF
 --------
 ```
 
-# Developing
+## Developing
 
 [poetry](https://python-poetry.org/) is a required package to develop.
 
@@ -99,14 +99,14 @@ ucn: U+5ACF
 
 Makefile commands prefixed with `watch_` will watch files and rerun.
 
-## Tests
+### Tests
 
 `poetry run py.test`
 
 Helpers: `make test` Rerun tests on file change: `make watch_test`
 (requires [entr(1)](http://eradman.com/entrproject/))
 
-## Documentation
+### Documentation
 
 Default preview server: <http://localhost:8037>
 
@@ -120,7 +120,7 @@ Rebuild docs on file change: `make watch_docs` (requires
 Rebuild docs and run server via one terminal: `make dev_docs` (requires
 above, and a `make(1)` with `-J` support, e.g. GNU Make)
 
-## Formatting / Linting
+### Formatting / Linting
 
 The project uses [black](https://github.com/psf/black) and
 [isort](https://pypi.org/project/isort/) (one after the other) and runs
@@ -131,7 +131,7 @@ The project uses [black](https://github.com/psf/black) and
 nuances `make flake8`, to watch (requires `entr(1)`):
 `make watch_flake8`
 
-## Releasing
+### Releasing
 
 As of 0.6, [poetry](https://python-poetry.org/) handles virtualenv
 creation, package requirements, versioning, building, and publishing.
@@ -147,7 +147,7 @@ class="title-ref">\_\_about\_\_.py</span> and \`pyproject.toml\`:
     poetry build
     poetry deploy
 
-# Quick links
+## Quick links
 
 - [Usage](https://cihai-cli.git-pull.com/usage.html)
 - Python [API](https://cihai-cli.git-pull.com/api.html)

@@ -1,15 +1,15 @@
-(index)=
+(unihan-etl)=
 
 # unihan-etl
 
-```{include} ../README.md
+```{include} ../../src/unihan-etl/README.md
 
 ```
 
 ## Table of contents
 
 ```{toctree}
-:maxdepth: 2
+:name: unihan-etl
 
 about
 unihan

@@ -11,7 +11,10 @@ classifiers = []
 keywords = ["unihan", "sqlalchemy", "library", "cjk", "unicode"]
 
 packages = [
-    { include = "../src/cihai" }
+    { include = "../src/cihai" },
+    { include = "../src/cihai-cli" },
+    { include = "../src/unihan-etl" },
+    { include = "../src/unihan-db" }
 ]
 
 homepage = "https://cihai.git-pull.com"
@@ -24,6 +27,9 @@ Repository = "https://github.com/cihai/cihai"
 [tool.poetry.dependencies]
 python = "^3.6"
 cihai = {path = "../src/cihai"}
+cihai-cli = {path = "../src/cihai-cli"}
+unihan-db = {path = "../src/unihan-db"}
+unihan-etl = {path = "../src/unihan-etl"}
 sphinx = "*"
 alagitpull = "^0.1.0"
 sphinx-issues = "^1.2.0"

@@ -80,7 +80,7 @@ appdirs = "*"
 click = ">=7<8"
 kaptan = "*"
 sqlalchemy = "<1.4"
-unihan-etl = "~=0.12.0"
+unihan-etl = "~=0.13.0"
 
 [package.extras]
 cli = ["cihai-cli"]
@@ -93,6 +93,31 @@ lint = []
 [package.source]
 type = "directory"
 url = "../src/cihai"
+
+[[package]]
+name = "cihai-cli"
+version = "0.8.1"
+description = "Command line frontend for the cihai CJK language library"
+category = "main"
+optional = false
+python-versions = "^3.6"
+develop = false
+
+[package.dependencies]
+cihai = "~=0.12.0"
+click = ">=7<8"
+PyYAML = "<6,>=3.12"
+
+[package.extras]
+docs = []
+test = []
+coverage = []
+format = []
+lint = []
+
+[package.source]
+type = "directory"
+url = "../src/cihai-cli"
 
 [[package]]
 name = "click"
@@ -317,7 +342,7 @@ python-versions = "*"
 
 [[package]]
 name = "sphinx"
-version = "4.0.2"
+version = "4.0.3"
 description = "Python documentation generator"
 category = "main"
 optional = false
@@ -343,7 +368,7 @@ sphinxcontrib-serializinghtml = "*"
 
 [package.extras]
 docs = ["sphinxcontrib-websupport"]
-lint = ["flake8 (>=3.5.0)", "isort", "mypy (>=0.800)", "docutils-stubs"]
+lint = ["flake8 (>=3.5.0)", "isort", "mypy (>=0.900)", "docutils-stubs", "types-typed-ast", "types-pkg-resources", "types-requests"]
 test = ["pytest", "pytest-cov", "html5lib", "cython", "typed-ast"]
 
 [[package]]
@@ -500,17 +525,54 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "unihan-db"
+version = "0.3.0"
+description = "SQLAlchemy models for UNIHAN database"
+category = "main"
+optional = false
+python-versions = "^3.6"
+develop = false
+
+[package.dependencies]
+appdirs = "*"
+SQLAlchemy = "*"
+unihan-etl = "~=0.13.0"
+
+[package.extras]
+docs = []
+test = []
+coverage = []
+format = []
+lint = []
+
+[package.source]
+type = "directory"
+url = "../src/unihan-db"
+
+[[package]]
 name = "unihan-etl"
-version = "0.12.0"
+version = "0.13.0"
 description = "Export UNIHAN to Python, Data Package, CSV, JSON and YAML"
 category = "main"
 optional = false
-python-versions = ">=3.6,<4.0"
+python-versions = "^3.6"
+develop = false
 
 [package.dependencies]
 appdirs = "*"
 unicodecsv = "*"
 zhon = "*"
+
+[package.extras]
+docs = []
+test = []
+coverage = []
+format = []
+lint = []
+
+[package.source]
+type = "directory"
+url = "../src/unihan-etl"
 
 [[package]]
 name = "urllib3"
@@ -548,7 +610,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "3fe3b03c68c964a276bf66f223d0d5aca088627b5524b83816f3116228893326"
+content-hash = "c96aef9ab7247082f44528dbd6f1b5a176a49a215cfb3258c85a7faf8791e44a"
 
 [metadata.files]
 alabaster = [
@@ -580,6 +642,7 @@ chardet = [
     {file = "chardet-4.0.0.tar.gz", hash = "sha256:0d6f53a15db4120f2b08c94f11e7d93d2c911ee118b6b30a04ec3ee8310179fa"},
 ]
 cihai = []
+cihai-cli = []
 click = [
     {file = "click-8.0.1-py3-none-any.whl", hash = "sha256:fba402a4a47334742d782209a7c79bc448911afe1149d07bdabdf480b3e2f4b6"},
     {file = "click-8.0.1.tar.gz", hash = "sha256:8c04c11192119b1ef78ea049e0a6f0463e4c48ef00a30160c704337586f3ad7a"},
@@ -715,8 +778,8 @@ snowballstemmer = [
     {file = "snowballstemmer-2.1.0.tar.gz", hash = "sha256:e997baa4f2e9139951b6f4c631bad912dfd3c792467e2f03d7239464af90e914"},
 ]
 sphinx = [
-    {file = "Sphinx-4.0.2-py3-none-any.whl", hash = "sha256:d1cb10bee9c4231f1700ec2e24a91be3f3a3aba066ea4ca9f3bbe47e59d5a1d4"},
-    {file = "Sphinx-4.0.2.tar.gz", hash = "sha256:b5c2ae4120bf00c799ba9b3699bc895816d272d120080fbc967292f29b52b48c"},
+    {file = "Sphinx-4.0.3-py3-none-any.whl", hash = "sha256:5747f3c855028076fcff1e4df5e75e07c836f0ac11f7df886747231092cfe4ad"},
+    {file = "Sphinx-4.0.3.tar.gz", hash = "sha256:dff357e6a208eb7edb2002714733ac21a9fe597e73609ff417ab8cf0c6b4fbb8"},
 ]
 sphinx-argparse = [
     {file = "sphinx-argparse-0.2.5.tar.gz", hash = "sha256:60ab98f80ffd38731d62e267171388a421abbc96c74901b7785a8e058b438c17"},
@@ -797,10 +860,8 @@ typing-extensions = [
 unicodecsv = [
     {file = "unicodecsv-0.14.1.tar.gz", hash = "sha256:018c08037d48649a0412063ff4eda26eaa81eff1546dbffa51fa5293276ff7fc"},
 ]
-unihan-etl = [
-    {file = "unihan-etl-0.12.0.tar.gz", hash = "sha256:0a29db0ebc56063f3aba1b67f0b978a6b6f4f81ca60fa12a624e4ea8f69b5c19"},
-    {file = "unihan_etl-0.12.0-py3-none-any.whl", hash = "sha256:7ebe239f113ffe31631d3de0853ea15c5a2dd23da4610de7bc20cc4ad4ab1825"},
-]
+unihan-db = []
+unihan-etl = []
 urllib3 = [
     {file = "urllib3-1.26.6-py2.py3-none-any.whl", hash = "sha256:39fb8672126159acb139a7718dd10806104dec1e2f0f6c88aab05d17df10c8d4"},
     {file = "urllib3-1.26.6.tar.gz", hash = "sha256:f57b4c16c62fa2760b7e3d97c35b255512fb6b59a259730f36ba32ce9f8e342f"},

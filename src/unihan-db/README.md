@@ -16,7 +16,7 @@ You can specify a custom database destination by passing a database url
 into
 [get_session](http://unihan-db.git-pull.com/en/latest/api.html#unihan_db.bootstrap.get_session).
 
-# Example usage
+## Example usage
 
 ```python
 #!/usr/bin/env python
@@ -77,7 +77,7 @@ Output:
 'ucn': 'U+93B7'}
 ```
 
-# Developing
+## Developing
 
 [poetry](https://python-poetry.org/) is a required package to develop.
 
@@ -89,14 +89,14 @@ Output:
 
 Makefile commands prefixed with `watch_` will watch files and rerun.
 
-## Tests
+### Tests
 
 `poetry run py.test`
 
 Helpers: `make test` Rerun tests on file change: `make watch_test`
 (requires [entr(1)](http://eradman.com/entrproject/))
 
-## Documentation
+### Documentation
 
 Default preview server: <http://localhost:8041>
 
@@ -110,7 +110,7 @@ Rebuild docs on file change: `make watch_docs` (requires
 Rebuild docs and run server via one terminal: `make dev_docs` (requires
 above, and a `make(1)` with `-J` support, e.g. GNU Make)
 
-## Formatting / Linting
+### Formatting / Linting
 
 The project uses [black](https://github.com/psf/black) and
 [isort](https://pypi.org/project/isort/) (one after the other) and runs
@@ -121,7 +121,7 @@ The project uses [black](https://github.com/psf/black) and
 nuances `make flake8`, to watch (requires `entr(1)`):
 `make watch_flake8`
 
-## Releasing
+### Releasing
 
 As of 0.1, [poetry](https://python-poetry.org/) handles virtualenv
 creation, package requirements, versioning, building, and publishing.

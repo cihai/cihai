@@ -10,11 +10,18 @@ cwd = os.getcwd()
 project_root = os.path.join(os.path.dirname(cwd))
 pkg_root = os.path.join(project_root, "src")
 cihai_root = os.path.join(pkg_root, "cihai")
+cihai_cli_root = os.path.join(pkg_root, "cihai-cli")
+unihan_etl_root = os.path.join(pkg_root, "unihan-etl")
+unihan_db_root = os.path.join(pkg_root, "unihan-db")
 
 sys.path.insert(0, cihai_root)
+sys.path.insert(0, cihai_cli_root)
+sys.path.insert(0, unihan_db_root)
+sys.path.insert(0, unihan_etl_root)
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "_ext")))
 
 import cihai  # isort:skip
+import cihai_cli  # isort:skip
 
 # package data
 about = {}

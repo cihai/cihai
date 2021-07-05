@@ -6,7 +6,7 @@ _unihan-etl_
 [![Code Coverage](https://codecov.io/gh/cihai/unihan-etl/branch/master/graph/badge.svg)](https://codecov.io/gh/cihai/unihan-etl)
 ![License](https://img.shields.io/github/license/cihai/unihan-etl.svg)
 
-[ETL](https://en.wikipedia.org/wiki/Extract,_transform,_load) tool for
+[ETL](https://en.wikipedia.org/wiki/Extract,\_transform,\_load) tool for
 Unicode's Han Unification
 ([UNIHAN](http://www.unicode.org/charts/unihan.html)) database releases.
 unihan-etl retrieves (downloads), extracts (unzips), and transforms the
@@ -52,7 +52,7 @@ _kHanyuPinyin_ supports multiple entries delimited by spaces. ":"
 separate multiple entries/readings. This is just one of 90 fields
 contained in the database.
 
-# Tabular, "Flat" output
+## Tabular, "Flat" output
 
 CSV (default), `$ unihan-etl`:
 
@@ -100,7 +100,7 @@ With `$ unihan-etl -F json --no-expand`:
 ]
 ```
 
-# "Structured" output
+## "Structured" output
 
 Codepoints can pack a lot more detail, unihan-etl carefully extracts
 these values in a uniform manner. Empty values are pruned.
@@ -190,7 +190,7 @@ YAML `$ unihan-etl -F yaml`:
   ucn: U+3401
 ```
 
-# Features
+## Features
 
 - automatically downloads UNIHAN from the internet
 - strives for accuracy with the specifications described in [UNIHAN's
@@ -211,7 +211,7 @@ YAML `$ unihan-etl -F yaml`:
 If you encounter a problem or have a question, please [create an
 issue](https://github.com/cihai/unihan-etl/issues/new).
 
-# Usage
+## Usage
 
 `unihan-etl` offers customizable builds via its command line arguments.
 
@@ -261,7 +261,7 @@ See [unihan-etl CLI
 arguments](https://unihan-etl.git-pull.com/en/latest/cli.html) for
 advanced usage examples.
 
-# Code layout
+## Code layout
 
 ```bash
 # cache dir (Unihan.zip is downloaded, contents extracted)
@@ -285,7 +285,7 @@ unihan_etl/
 tests/*
 ```
 
-# Developing
+## Developing
 
 [poetry](https://python-poetry.org/) is a required package to develop.
 
@@ -297,14 +297,14 @@ tests/*
 
 Makefile commands prefixed with `watch_` will watch files and rerun.
 
-## Tests
+### Tests
 
 `poetry run py.test`
 
 Helpers: `make test` Rerun tests on file change: `make watch_test`
 (requires [entr(1)](http://eradman.com/entrproject/))
 
-## Documentation
+### Documentation
 
 Default preview server: <http://localhost:8039>
 
@@ -318,7 +318,7 @@ Rebuild docs on file change: `make watch_docs` (requires
 Rebuild docs and run server via one terminal: `make dev_docs` (requires
 above, and a `make(1)` with `-J` support, e.g. GNU Make)
 
-## Formatting / Linting
+### Formatting / Linting
 
 The project uses [black](https://github.com/psf/black) and
 [isort](https://pypi.org/project/isort/) (one after the other) and runs
@@ -329,7 +329,7 @@ The project uses [black](https://github.com/psf/black) and
 nuances `make flake8`, to watch (requires `entr(1)`):
 `make watch_flake8`
 
-## Releasing
+### Releasing
 
 As of 0.11, [poetry](https://python-poetry.org/) handles virtualenv
 creation, package requirements, versioning, building, and publishing.
