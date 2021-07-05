@@ -11,9 +11,9 @@ japanese, korean) data
 This project is under active development. Follow our progress and check
 back for updates!
 
-# Usage
+## Usage
 
-## API / Library (this repository)
+### API / Library (this repository)
 
 ```sh
 $ pip install --user cihai
@@ -40,7 +40,7 @@ print('matches for "good": %s ' % ', '.join([glph.char for glph in query]))
 See [API](https://cihai.git-pull.com/api.html) documentation and
 [/examples](https://github.com/cihai/cihai/tree/master/examples).
 
-## CLI ([cihai-cli](https://cihai-cli.git-pull.com))
+### CLI ([cihai-cli](https://cihai-cli.git-pull.com))
 
 ```sh
 $ pip install --user cihai[cli]
@@ -74,7 +74,7 @@ ucn: U+5715
 --------
 ```
 
-## UNIHAN data
+### UNIHAN data
 
 All datasets that cihai uses have stand-alone tools to export their
 data. No library required.
@@ -83,7 +83,7 @@ data. No library required.
   [UNIHAN](http://unicode.org/charts/unihan.html) data exports for
   csv, yaml and json.
 
-# Developing
+## Developing
 
 [poetry](https://python-poetry.org/) is a required package to develop.
 
@@ -95,14 +95,14 @@ data. No library required.
 
 Makefile commands prefixed with `watch_` will watch files and rerun.
 
-## Tests
+### Tests
 
 `poetry run py.test`
 
 Helpers: `make test` Rerun tests on file change: `make watch_test`
 (requires [entr(1)](http://eradman.com/entrproject/))
 
-## Documentation
+### Documentation
 
 Default preview server: <http://localhost:8035>
 
@@ -116,7 +116,7 @@ Rebuild docs on file change: `make watch_docs` (requires
 Rebuild docs and run server via one terminal: `make dev_docs` (requires
 above, and a `make(1)` with `-J` support, e.g. GNU Make)
 
-## Formatting / Linting
+### Formatting / Linting
 
 The project uses [black](https://github.com/psf/black) and
 [isort](https://pypi.org/project/isort/) (one after the other) and runs
@@ -127,7 +127,7 @@ The project uses [black](https://github.com/psf/black) and
 nuances `make flake8`, to watch (requires `entr(1)`):
 `make watch_flake8`
 
-## Releasing
+### Releasing
 
 As of 0.10, [poetry](https://python-poetry.org/) handles virtualenv
 creation, package requirements, versioning, building, and publishing.
@@ -143,7 +143,7 @@ class="title-ref">\_\_about\_\_.py</span> and \`pyproject.toml\`:
     poetry build
     poetry deploy
 
-# Quick links
+## Quick links
 
 - [Usage](https://cihai.git-pull.com/usage.html)
 - [Datasets](https://cihai.git-pull.com/datasets.html) a full list of
