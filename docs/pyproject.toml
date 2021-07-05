@@ -1,0 +1,32 @@
+[tool.black]
+skip-string-normalization = true
+
+[tool.poetry]
+name = "cihai_docs"
+version = "0.12.0"
+description = "Sphinx documentation for cihai project"
+license = "MIT"
+authors = ["Cihai organization (Tony Narlock) <tony@git-pull.com>"]
+classifiers = []
+keywords = ["unihan", "sqlalchemy", "library", "cjk", "unicode"]
+
+packages = [
+    { include = "../src/cihai" }
+]
+
+homepage = "https://cihai.git-pull.com"
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/cihai/cihai/issues"
+Documentation = "https://cihai.git-pull.com"
+Repository = "https://github.com/cihai/cihai"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+cihai = {path = "../src/cihai"}
+sphinx = "*"
+alagitpull = "^0.1.0"
+sphinx-issues = "^1.2.0"
+sphinx-argparse = "^0.2.5"
+sphinx-autodoc-typehints = "^1.12.0"
+myst_parser = "^0.15.0"

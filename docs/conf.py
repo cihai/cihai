@@ -5,18 +5,20 @@ from os.path import dirname, relpath
 
 import alagitpull
 
-import cihai
-
 # Get the project root dir, which is the parent dir of this
 cwd = os.getcwd()
-project_root = os.path.join(os.path.dirname(cwd), "src", "cihai")
+project_root = os.path.join(os.path.dirname(cwd))
+pkg_root = os.path.join(project_root, "src")
+cihai_root = os.path.join(pkg_root, "cihai")
 
-sys.path.insert(0, project_root)
+sys.path.insert(0, cihai_root)
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "_ext")))
+
+import cihai  # isort:skip
 
 # package data
 about = {}
-with open("../cihai/__about__.py") as fp:
+with open(os.path.join(cihai_root, "cihai/__about__.py")) as fp:
     exec(fp.read(), about)
 
 
