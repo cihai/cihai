@@ -1,0 +1,126 @@
+# Changelog
+
+## current
+
+- Add unreleased commits here
+- #255: Update poetry to 1.1
+  - CI: Use poetry 1.1.7 and `install-poetry.py` installer
+  - Relock poetry.lock at 1.1 (w/ 1.1.7's fix)
+
+## cihai-cli 0.8.1 (2021-06-16)
+
+- Update cihai to 0.12
+
+## cihai-cli 0.8.0 (2021-06-16)
+
+- {issue}`252`: Convert to markdown
+
+## cihai-cli 0.7.2 (2021-06-15)
+
+- Set cihai to 0.11.1+ to fix sqlalchemy issue
+
+## cihai-cli 0.7.1 (2021-06-15)
+
+- Fix README in packaging
+
+## cihai-cli 0.7.0 (2021-06-15)
+
+- Update {}`black` to 21.6b0
+- Update trove classifiers to 3.9
+- {issue}`251` Drop python 2.7 and 3.5. Remove deprecated `__future__`
+  and modesets
+
+## cihai-cli 0.6.0 (2020-08-09)
+
+- {issue}`249` Move packaging / publishing to poetry
+- {issue}`248` Self host docs
+- {issue}`248` Add metadata / icons / etc. for doc site
+- {issue}`248` Move travis -> github actions
+- {issue}`248` Overhaul Makefiles
+
+## cihai-cli 0.5.1 (2020-07-03)
+
+- {issue}`247` - Move from Pipfile to Poetry
+- Fixed bug in Python 2.x when showing help / "cihai"
+
+## cihai-cli 0.5.0 (2019-08-18)
+
+- Add `project_urls` to setup.py
+- Installation is now done via `pip --user install cihai[cli]`
+- README Fixed to use plain reStructuredText
+- Miscellaneous package updates for pytest, other support packages
+- Loosening of version requirements
+
+## cihai-cli 0.5.0a (2018-09-08)
+
+- {issue}`91` `-V` / `-version` now shows the cihai backend version.
+
+## cihai-cli 0.4.1 (2018-07-21)
+
+- Update Sphinx 1.7.5. to 1.7.6
+- Update cihai 0.8.0 to 0.8.1
+
+  This should fix dependency issues with kaptan / pyyaml
+
+## cihai-cli 0.4.0 (2018-06-24)
+
+- Add vietnamese phonetic to default output in `info` command
+- Switch tmuxp config to use pipenv
+- Add configuration / make tests for isort, flake8
+- Add _Pipfile_
+- Add `make sync_pipfile` task to sync _requirements/_.txt* files
+  with *Pipfile\*
+- Base package updates
+
+  - cihai 0.7.4 to 0.8.0
+
+- Developer package updates (linting / docs / testing)
+
+  New:
+
+  - sphinx-click 1.2.0
+  - sphinxcontrib-napoleon 0.6.1
+
+  Updated:
+
+  - isort 4.2.5 to 4.3.4
+  - flake8 3.3.0 to 3.5.0
+  - vulture 0.14 to 0.27
+  - sphinx 1.5.6 to 1.7.5
+  - alagitpull 0.0.4 to 0.0.21
+  - releases 1.3.1 to 1.6.0
+  - pytest 3.0.7 to 3.6.2
+
+- Move documentation over to numpy-style
+- Update LICENSE New BSD to MIT
+- All future commits and contributions are licensed to the
+  _cihai software foundation_. This includes commits by Tony Narlock (creator).
+
+## cihai-cli 0.3.2 (2017-05-26)
+
+- Bump cihai version to 0.7.4
+
+## cihai-cli 0.3.1 (2017-05-20)
+
+- Bump cihai version to 0.7.2
+
+## cihai-cli 0.3.0 (2017-05-20)
+
+- Output human-friendly fields only by default
+- Use `-a` or `--all` to show all fields
+- Rename `lookup` command to `reverse`
+- Remove newlines, use click.echo for printing to CLI
+- Fix unicode issues on 2.7 in tests and cli
+
+## cihai-cli 0.2.1 (2017-05-20)
+
+- CLI variable tweaks
+- Fix package dependency
+
+## cihai-cli 0.2.0 (2017-05-20)
+
+- Initial project
+
+<!---
+vim: set filetype=markdown:
+-->

@@ -1,0 +1,64 @@
+#
+# Unihan_IRGSources.txt
+# Date: 2013-02-25 22:46:17 GMT [JHJ]
+# Unicode version: 6.3.0
+#
+# Unicode Character Database
+# Copyright (c) 1991-2013 Unicode, Inc.
+# For terms of use, see http://www.unicode.org/terms_of_use.html
+# For documentation, see http://www.unicode.org/reports/tr44/
+#
+# This file contains data on the following fields from the Unihan database:
+#	kCompatibilityVariant
+#	kIICore
+#	kIRG_GSource
+#	kIRG_HSource
+#	kIRG_JSource
+#	kIRG_KPSource
+#	kIRG_KSource
+#	kIRG_MSource
+#	kIRG_TSource
+#	kIRG_USource
+#	kIRG_VSource
+#
+# For details on the file format, see http://www.unicode.org/reports/tr38/
+#
+U+3400	kIRG_GSource	GKX-0078.01
+U+3400	kIRG_JSource	JA-2121
+U+3400	kIRG_TSource	T6-222C
+U+3401	kIRG_GSource	G5-3024
+U+3401	kIRG_KSource	K3-2121
+U+3401	kIRG_TSource	T4-2224
+U+3402	kIRG_JSource	JA-2122
+U+3403	kIRG_KSource	K3-2122
+U+3404	kIRG_GSource	GKX-0079.02
+U+3404	kIRG_JSource	JA-2123
+U+3404	kIRG_TSource	T6-2130
+U+3405	kIRG_GSource	GKX-0081.18
+U+3405	kIRG_JSource	JA-2124
+U+3405	kIRG_TSource	T6-2123
+U+34E3	kIRG_TSource	T4-2548
+U+34E4	kIICore	2.1
+U+2A72F	kIRG_VSource	V4-4072
+U+2A730	kIRG_GSource	GZJW-00068
+U+2A731	kIRG_MSource	MAC-00001
+U+2A732	kIRG_KSource	K5-01FE
+U+34E2	kIRG_USource	UTC-00509
+U+34E3	kIRG_GSource	G3-327A
+U+34E4	kIRG_KSource	K3-2176
+U+34E4	kIRG_GSource	G3-3278
+U+34E4	kIRG_HSource	H-9DAA
+U+340C	kIRG_GSource	G3-302B
+U+340C	kIRG_KPSource	KP1-3451
+U+340C	kIRG_TSource	T4-2157
+U+3406	kIRG_GSource	G5-3076
+U+3406	kIRG_JSource	J4-212D
+U+3406	kIRG_TSource	TF-216C
+U+3407	kIRG_KSource	K3-2123
+U+3408	kIRG_KSource	K3-2124
+U+3409	kIRG_KSource	K3-2125
+U+340A	kIRG_KSource	K3-2126
+U+340B	kIRG_KSource	K3-2127
+U+F900	kCompatibilityVariant	U+8C48
+
+# EOF

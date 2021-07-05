@@ -1,14 +1,14 @@
-name:  "[cihai] test"
+name: "[cihai-cli] test"
 
-on: 
+on:
   push:
     branches:
       - master
     paths:
-      - 'src/cihai/**'
+      - 'src/cihai-cli/**'
   pull_request:
     paths:
-      - 'src/cihai/**'
+      - 'src/cihai-cli/**'
 
 jobs:
   build:
@@ -17,7 +17,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: src/cihai
+        working-directory: src/cihai-cli
     runs-on: ubuntu-latest
     strategy:
       matrix:

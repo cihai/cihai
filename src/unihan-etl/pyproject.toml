@@ -1,0 +1,82 @@
+[tool.black]
+skip-string-normalization = true
+
+[tool.poetry]
+name = "unihan-etl"
+version = "0.13.0"
+description = "Export UNIHAN to Python, Data Package, CSV, JSON and YAML"
+license = "MIT"
+authors = ["Tony Narlock <tony@git-pull.com>"]
+
+classifiers = [
+  'Development Status :: 4 - Beta',
+  "License :: OSI Approved :: MIT License",
+  'Environment :: Web Environment',
+  'Intended Audience :: Developers',
+  'Programming Language :: Python',
+  'Programming Language :: Python :: 3',
+  'Programming Language :: Python :: 3.6',
+  'Programming Language :: Python :: 3.7',
+  'Programming Language :: Python :: 3.8',
+  'Programming Language :: Python :: 3.9',
+  'Programming Language :: Python :: Implementation :: PyPy',
+  "Topic :: Utilities",
+  "Topic :: Software Development :: Internationalization"
+]
+keywords = ["unihan", "sqlalchemy", "cjk", "yaml", "json"]
+
+readme = 'README.md'
+packages = [
+    { include = "unihan_etl" }
+]
+
+homepage = "https://unihan-etl.git-pull.com"
+
+[tool.poetry.scripts]
+unihan-etl = 'unihan_etl.__main__:run'
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/cihai/unihan-etl/issues"
+Documentation = "https://unihan-etl.git-pull.com"
+Repository = "https://github.com/cihai/unihan-etl"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+unicodecsv = "*"
+appdirs = "*"
+zhon = "*"
+
+[tool.poetry.dev-dependencies]
+### Docs ###
+sphinx = "*"
+alagitpull = "^0.1.0"
+sphinx-issues = "^1.2.0"
+sphinx-argparse = "^0.2.5"
+sphinx-autodoc-typehints = "^1.12.0"
+myst_parser = "^0.15.0"
+
+### Testing ###
+pytest = "*"
+pytest-rerunfailures = "*"
+
+### Coverage ###
+codecov = "*"
+coverage = "*"
+pytest-cov = [
+  {version="<2.10.0", python="<3"},
+  {version="*", python=">=3"}
+]
+
+### Format ###
+black = {version="==21.6b0", python="^3.6.2"}
+isort = "*"
+
+### Lint ###
+flake8 = "*"
+
+[tool.poetry.extras]
+docs = ["sphinx", "myst_parser", "sphinx-issues", "sphinx-argparse", "alagitpull", "sphinx-autodoc-typehints"]
+test = ["pytest", "pytest-rerunfailures"]
+coverage = ["codecov", "coverage", "pytest-cov"]
+format = ["black", "isort"]
+lint = ["flake8"]

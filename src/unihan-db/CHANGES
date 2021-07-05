@@ -1,0 +1,47 @@
+# Changelog
+
+## current
+- Add latest updates here
+
+- #274: Update poetry to 1.1
+  - CI: Use poetry 1.1.7 and `install-poetry.py` installer
+  - Relock poetry.lock at 1.1 (w/ 1.1.7's fix)
+
+## unihan-db 0.3.0 (2021-06-15)
+- #269: Convert to markdown
+
+## unihan-db 0.2.0 (2021-06-15)
+
+- Update {}`black` to 21.6b0
+- Update trove classifiers to 3.9
+- {issue}`267` Drop python 2.7, 3.5. Remove unused `__future__` and
+  modesets.
+
+## unihan-db 0.1.0 (2020-08-09)
+
+- Major overhaul of docs (self-host + add icons and metadata) [#262][#262]
+- Move from travis to github actions [#262][#262]
+- Move build / publish of packaging to poetry [#263][#263]
+- Add README docs on publishing versions, linting, and development
+- Move from Pipfile to Poetry (<https://github.com/cihai/unihan-db/pull/261>)
+- Speed up importing initial data
+- Support for more fields
+- Support for appdirs (XDG directory specification)
+- Zero-config sqlite default
+- Bump unihan-etl to 0.9.5
+- Add `project_urls` to setup.py
+- Use `collections` import that's compatible with python 2 and 3
+- Loosen version constraints
+
+[#262]: https://github.com/cihai/unihan-db/pull/262
+[#263]: https://github.com/cihai/unihan-db/pull/263
+
+## unihan-db 0.0.0 (2017-05-29)
+
+This had no pypi release
+
+- Initial commit
+
+<!---
+vim: set filetype=markdown:
+-->

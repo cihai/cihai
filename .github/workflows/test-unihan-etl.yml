@@ -1,14 +1,14 @@
-name:  "[cihai] test"
+name: "[unihan-etl] test"
 
-on: 
+on:
   push:
     branches:
       - master
     paths:
-      - 'src/cihai/**'
+      - 'src/unihan-etl/**'
   pull_request:
     paths:
-      - 'src/cihai/**'
+      - 'src/unihan-etl/**'
 
 jobs:
   build:
@@ -17,7 +17,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: src/cihai
+        working-directory: src/unihan-etl
     runs-on: ubuntu-latest
     strategy:
       matrix:

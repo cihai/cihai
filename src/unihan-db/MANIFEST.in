@@ -1,0 +1,3 @@
+include README.md LICENSE CHANGES pyproject.toml .tmuxp.yaml
+recursive-include docs *.md
+recursive-include unihan_db *.py

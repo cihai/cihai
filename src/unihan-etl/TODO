@@ -1,0 +1,23 @@
+====
+TODO
+====
+
+- kIRGHanyuDaZidian, kIRGKangXi, etc. dictionary indice values
+- kTotalStrokes support for zh-Hant and zh-Hans [done]
+- Cast string-integers to integers
+
+Old
+---
+
+- Test for data returning in Simple Data Format.
+
+  http://dataprotocols.org/simple-data-format/
+- CSV output must follow these rules:
+
+  http://dataprotocols.org/simple-data-format/#csv-files
+- Read results from datapackage.json.
+- Clean up code.
+- Upload data/unihan.csv and package stable release.
+- Adjust schema fields to numerics and dates where applicable.
+
+.. todo:: vim: set filetype=rst:

@@ -1,0 +1,503 @@
+#
+# Unihan_Variants.txt
+# Date: 2016-06-01 07:01:48 GMT [JHJ]
+# Unicode version: 9.0.0
+#
+# Unicode Character Database
+# © 1991-2016 Unicode®, Inc.
+# For terms of use, see http://www.unicode.org/terms_of_use.html
+# For documentation, see http://www.unicode.org/reports/tr44/
+#
+# This file contains data on the following fields from the Unihan database:
+#	kSemanticVariant
+#	kSimplifiedVariant
+#	kSpecializedSemanticVariant
+#	kTraditionalVariant
+#	kZVariant
+#
+# For details on the file format, see http://www.unicode.org/reports/tr38/
+#
+U+3400	kSemanticVariant	U+4E18
+U+3405	kSemanticVariant	U+4E94<kMatthews
+U+342B	kSemanticVariant	U+51F6
+U+342E	kSemanticVariant	U+8944
+U+342F	kSemanticVariant	U+5EB8
+U+3431	kSemanticVariant	U+9B12<kMatthews
+U+3434	kSemanticVariant	U+6500
+U+3435	kSemanticVariant	U+5112
+U+343D	kTraditionalVariant	U+5051
+U+3441	kSemanticVariant	U+20B74
+U+3444	kSemanticVariant	U+4FAE<kMatthews
+U+3447	kTraditionalVariant	U+3473
+U+3448	kTraditionalVariant	U+5032
+U+344C	kSemanticVariant	U+5C29<kMatthews
+U+3454	kTraditionalVariant	U+346F
+U+345D	kSemanticVariant	U+22671<kMeyerWempe
+U+3469	kTraditionalVariant	U+5138
+U+346F	kSimplifiedVariant	U+3454
+U+3473	kSimplifiedVariant	U+3447
+U+3487	kSemanticVariant	U+511B<kMatthews
+U+348B	kSemanticVariant	U+5EDD<kMatthews U+53AE<kMatthews
+U+3493	kSimplifiedVariant	U+20242
+U+349A	kSemanticVariant	U+7A69<kFenn,kMatthews
+U+349A	kSpecializedSemanticVariant	U+6587<kFenn
+U+349E	kSemanticVariant	U+5136<kMatthews
+U+34B0	kSemanticVariant	U+5168<kMatthews
+U+34B2	kSemanticVariant	U+8CA1<kMatthews
+U+34B7	kSemanticVariant	U+8208<kLau,kMatthews
+U+34B7	kSpecializedSemanticVariant	U+8208<kFenn
+U+34C1	kSemanticVariant	U+7F51<kMatthews
+U+34DF	kSpecializedSemanticVariant	U+62AB<kMeyerWempe
+U+34E5	kTraditionalVariant	U+528F
+U+34E8	kSimplifiedVariant	U+523E
+U+34EE	kSemanticVariant	U+5F6B<kLau,kMatthews U+96D5<kLau,kMatthews
+U+34F7	kSemanticVariant	U+5293<kMatthews
+U+34F8	kSemanticVariant	U+65B2<kMatthews
+U+3509	kTraditionalVariant	U+529A
+U+350D	kSemanticVariant	U+4977<kMatthews
+U+3531	kSemanticVariant	U+659E<kMatthews
+U+353E	kSemanticVariant	U+5369<kMatthews
+U+353E	kSpecializedSemanticVariant	U+5369<kFenn
+U+3551	kSemanticVariant	U+2228D<kLau U+53A8<kLau
+U+355A	kSemanticVariant	U+722A<kMatthews U+722B<kMatthews
+U+355E	kSemanticVariant	U+5237<kMatthews
+U+3588	kZVariant	U+439B
+U+358A	kTraditionalVariant	U+565A
+U+359E	kTraditionalVariant	U+558E
+U+35D6	kSemanticVariant	U+5556<kMatthews U+5649<kMatthews U+5557<kMatthews
+U+35F2	kSimplifiedVariant	U+20D7E
+U+35F3	kSemanticVariant	U+55D2<kLau
+U+3605	kSemanticVariant	U+929C<kMeyerWempe U+5563<kFenn
+U+360E	kTraditionalVariant	U+361A
+U+361A	kSimplifiedVariant	U+360E
+U+363D	kZVariant	U+39B3
+U+366E	kSemanticVariant	U+5854<kMeyerWempe
+U+3673	kSemanticVariant	U+8F57<kMeyerWempe
+U+369D	kSemanticVariant	U+595E<kMatthews U+594E<kMatthews
+U+36A3	kSemanticVariant	U+59E3<kMatthews
+U+36AF	kTraditionalVariant	U+3704
+U+36C0	kTraditionalVariant	U+5AB0
+U+36DB	kSemanticVariant	U+5A20<kMatthews
+U+36DB	kSpecializedSemanticVariant	U+5A20<kFenn
+U+36DF	kTraditionalVariant	U+217B5
+U+36E0	kTraditionalVariant	U+21883
+U+36E3	kTraditionalVariant	U+370F
+U+36E4	kTraditionalVariant	U+5B4B
+U+36FF	kTraditionalVariant	U+21839
+U+3704	kSimplifiedVariant	U+36AF
+U+370F	kSimplifiedVariant	U+36E3
+U+3722	kSimplifiedVariant	U+217B1
+U+3737	kSimplifiedVariant	U+21760
+U+3743	kSemanticVariant	U+5A29<kMeyerWempe
+U+375B	kSemanticVariant	U+5BBF<kMatthews
+U+3775	kSemanticVariant	U+7919<kMatthews U+788D<kMatthews
+U+3790	kSemanticVariant	U+5C45<kMatthews
+U+379E	kSimplifiedVariant	U+2AA0A
+U+37C6	kTraditionalVariant	U+380F
+U+37D7	kSemanticVariant	U+90A0<kMatthews U+8C73<kMatthews
+U+37DC	kTraditionalVariant	U+21FB1
+U+380A	kSemanticVariant	U+5D87<kMatthews,kMeyerWempe
+U+380F	kSimplifiedVariant	U+37C6
+U+382F	kSemanticVariant	U+4EE5<kFenn
+U+3836	kSemanticVariant	U+5E06<kMatthews
+U+3858	kSemanticVariant	U+2214F
+U+387F	kSemanticVariant	U+65A5<kMatthews
+U+389D	kSimplifiedVariant	U+222C8
+U+38F6	kSemanticVariant	U+9085<kMeyerWempe
+U+38FA	kSemanticVariant	U+5FC3<kMatthews
+U+38FC	kSemanticVariant	U+5FCD<kMatthews
+U+3912	kSemanticVariant	U+7B28<kFenn
+U+3918	kTraditionalVariant	U+396E
+U+3935	kSemanticVariant	U+6148<kFenn
+U+3943	kSemanticVariant	U+60B6<kMatthews,kMeyerWempe U+61E3<kMatthews
+U+396E	kSimplifiedVariant	U+3918
+U+3975	kSemanticVariant	U+6141<kMatthews
+U+398E	kSimplifiedVariant	U+226EF
+U+39A7	kSemanticVariant	U+61AF<kMeyerWempe
+U+39B3	kZVariant	U+363D
+U+39C3	kSemanticVariant	U+6536<kMatthews
+U+39CF	kTraditionalVariant	U+6386
+U+39D0	kTraditionalVariant	U+3A73
+U+39D1	kTraditionalVariant	U+649D
+U+39D6	kSemanticVariant	U+627C<kMatthews U+6424<kMatthews
+U+39DC	kSemanticVariant	U+64F8<kMatthews
+U+39DF	kTraditionalVariant	U+64D3
+U+39F0	kTraditionalVariant	U+64FD
+U+3A09	kSemanticVariant	U+62BF<kMatthews
+U+3A17	kSemanticVariant	U+6377<kHanYu:TZ
+U+3A28	kSemanticVariant	U+3A45<kMeyerWempe
+U+3A2B	kTraditionalVariant	U+3A5C
+U+3A3C	kSemanticVariant	U+6482<kFenn
+U+3A41	kSemanticVariant	U+6409<kMatthews
+U+3A45	kSemanticVariant	U+3A28<kMeyerWempe
+U+3A5C	kSemanticVariant	U+652C<kMeyerWempe U+64E5<kMeyerWempe
+U+3A5C	kSimplifiedVariant	U+3A2B
+U+3A73	kSimplifiedVariant	U+39D0
+U+3A79	kSemanticVariant	U+22DA3<kMatthews
+U+3A85	kSemanticVariant	U+66F4<kMatthews
+U+3AAF	kSemanticVariant	U+8209
+U+3AC3	kSemanticVariant	U+5043<kMatthews
+U+3ACE	kSemanticVariant	U+5E51<kHanYu:T U+23108<kHanYu:T
+U+3ADA	kSemanticVariant	U+6612<kHanYu
+U+3ADA	kZVariant	U+66F6
+U+3B05	kSemanticVariant	U+66FC<kMatthews
+U+3B31	kSemanticVariant	U+6701<kMatthews
+U+3B39	kSemanticVariant	U+8E2D<kMeyerWempe
+U+3B4E	kTraditionalVariant	U+68E1
+U+3B4F	kTraditionalVariant	U+6932
+U+3B63	kTraditionalVariant	U+2364E
+U+3B64	kTraditionalVariant	U+6A22
+U+3B68	kSemanticVariant	U+6930<kLau,kMatthews,kMeyerWempe
+U+3B74	kTraditionalVariant	U+6A2B
+U+3BA3	kSemanticVariant	U+69E9<kMatthews U+69EA<kMatthews
+U+3BC3	kSemanticVariant	U+6F06<kMatthews U+687C<kMatthews
+U+3BED	kSemanticVariant	U+6A10<kMatthews U+6AD3<kMatthews
+U+3BF6	kSemanticVariant	U+68D5<kFenn
+U+3BFD	kSemanticVariant	U+6AB3<kMatthews,kMeyerWempe
+U+3C0D	kSemanticVariant	U+6AF3<kMatthews,kMeyerWempe
+U+3C69	kTraditionalVariant	U+6BB0
+U+3C6E	kTraditionalVariant	U+6BA8
+U+3C7F	kSemanticVariant	U+6BBC<kMatthews U+58F3<kMatthews
+U+3C92	kSemanticVariant	U+52FD<kMathews,kMeyerWempe
+U+3C93	kSemanticVariant	U+6BE7<kMatthews
+U+3CBF	kTraditionalVariant	U+7007
+U+3CC4	kSemanticVariant	U+6D8E<kMatthews
+U+3CD4	kTraditionalVariant	U+6FE7
+U+3CD5	kTraditionalVariant	U+7061
+U+3CE0	kTraditionalVariant	U+6FBE
+U+3CE1	kTraditionalVariant	U+6FC4
+U+3CE2	kTraditionalVariant	U+23FB7
+U+3CFD	kTraditionalVariant	U+7030
+U+3D11	kSemanticVariant	U+6EAF<kMatthews
+U+3D11	kSpecializedSemanticVariant	U+6EAF<kFenn
+U+3D14	kSemanticVariant	U+6F5D<kMatthews
+U+3D52	kSemanticVariant	U+6CB8<kFenn
+U+3D89	kTraditionalVariant	U+9E02
+U+3DB6	kTraditionalVariant	U+71F6
+U+3DBD	kTraditionalVariant	U+7171
+U+3DC9	kSemanticVariant	U+71A8<kMatthews
+U+3DC9	kSpecializedSemanticVariant	U+71A8<kFenn
+U+3DE0	kSemanticVariant	U+71D0<kMatthews U+7CA6<kMatthews
+U+3DFB	kSemanticVariant	U+7173<kMatthews
+U+3DFF	kSimplifiedVariant	U+24237
+U+3E8D	kTraditionalVariant	U+7371
+U+3E8F	kSimplifiedVariant	U+2480B
+U+3EC5	kTraditionalVariant	U+74AF
+U+3ECF	kTraditionalVariant	U+24AE9
+U+3ED8	kTraditionalVariant	U+24ABA
+U+3F63	kSemanticVariant	U+57DF<kMatthews
+U+3F7D	kSemanticVariant	U+75FC<kMeyerWempe
+U+3F99	kSemanticVariant	U+812A<kMatthews
+U+3FDF	kSemanticVariant	U+76A6<kFenn U+768E<kMatthews
+U+3FE7	kSimplifiedVariant	U+24F6F
+U+3FF7	kSemanticVariant	U+7CD9<kMatthews,kMeyerWempe
+U+400B	kSemanticVariant	U+9E7D<kLau
+U+4020	kSemanticVariant	U+77BF<kMatthews
+U+4022	kSemanticVariant	U+77AC<kMatthews
+U+4025	kTraditionalVariant	U+407B
+U+4039	kSemanticVariant	U+776B<kMatthews
+U+4039	kSimplifiedVariant	U+25174
+U+4056	kTraditionalVariant	U+779C
+U+406A	kSimplifiedVariant	U+251E2
+U+407B	kSimplifiedVariant	U+4025
+U+4080	kSemanticVariant	U+252DF
+U+40AB	kSemanticVariant	U+592F<kFenn
+U+40B5	kTraditionalVariant	U+78BD
+U+40C9	kSemanticVariant	U+73C9<kMatthews
+U+40D8	kSemanticVariant	U+785C<kMatthews
+U+4103	kSemanticVariant	U+6B83<kMatthews
+U+410D	kSemanticVariant	U+8721<kMeyerWempe
+U+410D	kSpecializedSemanticVariant	U+8721
+U+412F	kSemanticVariant	U+2219E<kFenn
+U+413A	kSemanticVariant	U+7A0A<kMeyerWempe
+U+4149	kTraditionalVariant	U+7A0F
+U+416A	kTraditionalVariant	U+258A2
+U+418B	kSemanticVariant	U+79CB<kMatthews
+U+418B	kZVariant	U+9F9D
+U+4194	kSemanticVariant	U+7AC9<kMeyerWempe
+U+41AB	kSemanticVariant	U+7A93<kMeyerWempe U+7A97<kMeyerWempe
+U+41F2	kTraditionalVariant	U+7B74
+U+4207	kSemanticVariant	U+7F69<kLau,kMatthews
+U+4259	kSimplifiedVariant	U+25B00
+U+4264	kTraditionalVariant	U+7C54
+U+426C	kSimplifiedVariant	U+2B088
+U+4272	kSimplifiedVariant	U+25B9C
+U+4275	kSemanticVariant	U+994C<kMatthews U+7C51<kMatthews
+U+429C	kSemanticVariant	U+7CF0<kFenn
+U+42AD	kSimplifiedVariant	U+25E85
+U+42B7	kSimplifiedVariant	U+4336
+U+42D9	kSimplifiedVariant	U+433A
+U+42DA	kSimplifiedVariant	U+433B
+U+42F2	kSemanticVariant	U+7E69<kMeyerWempe
+U+42FB	kSimplifiedVariant	U+433E
+U+42FF	kSimplifiedVariant	U+26213
+U+4308	kSimplifiedVariant	U+26216
+U+430B	kSimplifiedVariant	U+26218
+U+4316	kSimplifiedVariant	U+2621C
+U+431D	kSimplifiedVariant	U+2621F
+U+431F	kSimplifiedVariant	U+2621E
+U+4325	kSemanticVariant	U+7E2F<kFenn
+U+4325	kSimplifiedVariant	U+26220
+U+432B	kSemanticVariant	U+7E9C<kMeyerWempe
+U+4330	kSimplifiedVariant	U+26219
+U+4336	kTraditionalVariant	U+42B7
+U+4337	kTraditionalVariant	U+7D2C
+U+4338	kTraditionalVariant	U+7E33
+U+4339	kTraditionalVariant	U+7D45
+U+433A	kTraditionalVariant	U+42D9
+U+433B	kTraditionalVariant	U+42DA
+U+433C	kTraditionalVariant	U+7D90
+U+433D	kTraditionalVariant	U+7DB5
+U+433E	kTraditionalVariant	U+42FB
+U+4340	kTraditionalVariant	U+7E7F
+U+4341	kTraditionalVariant	U+7E78
+U+439B	kZVariant	U+3588
+U+43D5	kSemanticVariant	U+98EA<kMatthews
+U+4430	kSemanticVariant	U+9948<kMatthews
+U+4492	kSemanticVariant	U+82D5<kMatthews
+U+44D5	kTraditionalVariant	U+85B3
+U+451B	kSemanticVariant	U+6ABE<kFenn
+U+454C	kSemanticVariant	U+7A1A<kMatthews
+U+4573	kSimplifiedVariant	U+26C34
+U+4588	kSemanticVariant	U+8650<kHanYu
+U+458D	kSemanticVariant	U+8654<kMatthews
+U+458F	kSemanticVariant	U+51E6<kFenn U+8655<kMatthews
+U+458F	kSpecializedSemanticVariant	U+8655<kFenn
+U+459F	kSemanticVariant	U+8771<kMatthews
+U+45A3	kSemanticVariant	U+86A4<kLau,kMatthews
+U+45B5	kSemanticVariant	U+872B<kMatthews
+U+45D6	kTraditionalVariant	U+87AE
+U+45FF	kSimplifiedVariant	U+2725E
+U+4611	kSemanticVariant	U+8109<kMeyerWempe
+U+461A	kSemanticVariant	U+5352<kLau,kMatthews
+U+461B	kTraditionalVariant	U+2775E
+U+461E	kTraditionalVariant	U+27717
+U+463A	kSemanticVariant	U+7DBB<kFenn
+U+464A	kTraditionalVariant	U+27735
+U+464C	kTraditionalVariant	U+4661
+U+4653	kTraditionalVariant	U+896C
+U+465D	kSemanticVariant	U+893B<kLau,kMatthews U+893A<kMatthews
+U+4661	kSimplifiedVariant	U+464C
+U+468E	kSemanticVariant	U+2517E<kMeyerWempe
+U+46E1	kSemanticVariant	U+8A71<kMatthews
+U+46FB	kSemanticVariant	U+8A98<kMatthews
+U+46FC	kSemanticVariant	U+8B6D<kMatthews,kMeyerWempe
+U+4700	kSimplifiedVariant	U+4727
+U+470A	kSemanticVariant	U+5608<kMatthews,kMeyerWempe
+U+4723	kTraditionalVariant	U+8A22
+U+4724	kTraditionalVariant	U+9FC1
+U+4725	kTraditionalVariant	U+27A59
+U+4727	kTraditionalVariant	U+4700
+U+4729	kTraditionalVariant	U+8B8C
+U+4736	kSemanticVariant	U+8C47<kMatthews
+U+474B	kSemanticVariant	U+8C75<kMatthews,kMeyerWempe
+U+4759	kTraditionalVariant	U+8C99
+U+475C	kSemanticVariant	U+72FB<kMeyerWempe
+U+4764	kSemanticVariant	U+7360<kMeyerWempe
+U+477B	kSimplifiedVariant	U+27E55
+U+477C	kSimplifiedVariant	U+478D
+U+4788	kSimplifiedVariant	U+27E51
+U+478C	kTraditionalVariant	U+27D73
+U+478D	kTraditionalVariant	U+477C
+U+478E	kTraditionalVariant	U+27DA7
+U+4790	kTraditionalVariant	U+8CF0
+U+4793	kSemanticVariant	U+8D6C<kMeyerWempe
+U+47E2	kTraditionalVariant	U+8E8E
+U+4831	kSemanticVariant	U+8E85<kMatthews
+U+4880	kTraditionalVariant	U+282B0
+U+4881	kTraditionalVariant	U+282B8
+U+4882	kTraditionalVariant	U+282E2
+U+4899	kSemanticVariant	U+6557<kMatthews
+U+48A8	kSimplifiedVariant	U+28479
+U+48E9	kSemanticVariant	U+9187<kLau,kMatthews,kMeyerWempe
+U+490D	kSemanticVariant	U+288A5
+U+4940	kSemanticVariant	U+6375<kFenn
+U+4947	kSimplifiedVariant	U+4982
+U+4951	kSimplifiedVariant	U+9FCF
+U+4968	kSemanticVariant	U+9462<kMatthews,kMeyerWempe
+U+4969	kSimplifiedVariant	U+28C56
+U+4971	kSimplifiedVariant	U+497E
+U+4977	kSemanticVariant	U+350D<kMatthews
+U+497A	kTraditionalVariant	U+91FE
+U+497D	kTraditionalVariant	U+93FA
+U+497E	kTraditionalVariant	U+4971
+U+497F	kTraditionalVariant	U+28BC5
+U+4980	kTraditionalVariant	U+289AB
+U+4981	kTraditionalVariant	U+289DC
+U+4982	kTraditionalVariant	U+4947
+U+4983	kTraditionalVariant	U+942F
+U+4985	kTraditionalVariant	U+9425
+U+4993	kSemanticVariant	U+8998<kMeyerWempe U+26552<kMeyerWempe
+U+4998	kSimplifiedVariant	U+28E04
+U+499B	kSimplifiedVariant	U+49B6
+U+499F	kSimplifiedVariant	U+49B7
+U+49B3	kSimplifiedVariant	U+28DFF
+U+49B6	kTraditionalVariant	U+499B
+U+49B7	kTraditionalVariant	U+499F
+U+49E2	kSimplifiedVariant	U+28E1F
+U+4A18	kSemanticVariant	U+9730<kMatthews,kMeyerWempe
+U+4A5E	kSemanticVariant	U+97C2<kMatthews
+U+4A8A	kSemanticVariant	U+9F93<kMatthews
+U+4A8F	kSimplifiedVariant	U+293FC
+U+4A97	kSimplifiedVariant	U+29400
+U+4A98	kSimplifiedVariant	U+293FF
+U+4ABF	kSemanticVariant	U+56DF<kMatthews
+U+4AF4	kSimplifiedVariant	U+29597
+U+4B12	kSemanticVariant	U+98BC<kMatthews,kMeyerWempe
+U+4B18	kSimplifiedVariant	U+2966E
+U+4B1D	kSimplifiedVariant	U+2966F
+U+4B1E	kSimplifiedVariant	U+29667
+U+4B21	kSemanticVariant	U+7FE5<kMatthews,kMeyerWempe
+U+4B40	kSimplifiedVariant	U+29807
+U+4B43	kSimplifiedVariant	U+29808
+U+4B6A	kTraditionalVariant	U+297AF
+U+4B7E	kSemanticVariant	U+99B1<kFenn
+U+4B7F	kSimplifiedVariant	U+299ED
+U+4B9D	kSimplifiedVariant	U+299F0
+U+4B9E	kSimplifiedVariant	U+29A01
+U+4BA0	kSimplifiedVariant	U+299FF
+U+4BAB	kSimplifiedVariant	U+29A07
+U+4BB3	kSimplifiedVariant	U+29A0F
+U+4BBE	kSimplifiedVariant	U+299EA
+U+4BC0	kSimplifiedVariant	U+4BC5
+U+4BC3	kTraditionalVariant	U+298D1
+U+4BC4	kTraditionalVariant	U+9A27
+U+4BC5	kTraditionalVariant	U+4BC0
+U+4BCC	kSemanticVariant	U+5C3B<kMatthews
+U+4BFB	kSemanticVariant	U+9AFB<kLau
+U+4C17	kSemanticVariant	U+9B2E<kFenn
+U+4C3E	kSimplifiedVariant	U+9C83
+U+4C47	kSemanticVariant	U+9C53<kMatthews
+U+4C59	kSimplifiedVariant	U+29F88
+U+4C6C	kSimplifiedVariant	U+29F8A
+U+4C70	kSimplifiedVariant	U+29F8B
+U+4C77	kSemanticVariant	U+6F01<kMatthews
+U+4C77	kSimplifiedVariant	U+4CA3
+U+4C7D	kSemanticVariant	U+9BE7<kLau,kMatthews,kMeyerWempe
+U+4C7D	kSimplifiedVariant	U+4C9D
+U+4C81	kSimplifiedVariant	U+9CDA
+U+4C96	kSimplifiedVariant	U+29F82
+U+4C9D	kTraditionalVariant	U+4C7D
+U+4C9E	kTraditionalVariant	U+29D98
+U+4C9F	kTraditionalVariant	U+9BA3
+U+4CA0	kTraditionalVariant	U+9C06
+U+4CA1	kTraditionalVariant	U+9C0C
+U+4CA2	kTraditionalVariant	U+9C27
+U+4CA3	kTraditionalVariant	U+4C77
+U+4CA4	kTraditionalVariant	U+9FD0
+U+4CB0	kSimplifiedVariant	U+2A242
+U+4D09	kSimplifiedVariant	U+9E6E
+U+4D13	kTraditionalVariant	U+9CFE
+U+4D14	kTraditionalVariant	U+9D41
+U+4D15	kTraditionalVariant	U+9D37
+U+4D16	kTraditionalVariant	U+9D84
+U+4D17	kTraditionalVariant	U+9DAA
+U+4D18	kTraditionalVariant	U+9DC8
+U+4D19	kTraditionalVariant	U+9DFF
+U+4D2C	kSimplifiedVariant	U+2A388
+U+4D34	kSimplifiedVariant	U+2A38B
+U+4D39	kSemanticVariant	U+991C<kMatthews
+U+4D51	kSemanticVariant	U+4D52<kMatthews
+U+4D52	kSemanticVariant	U+4D51<kMatthews
+U+4D8F	kSemanticVariant	U+6D95<kMatthews
+U+4DAE	kTraditionalVariant	U+9F91
+U+4E00	kSemanticVariant	U+5F0C<kLau,kMatthews,kMeyerWempe U+58F9<kLau,kMatthews,kMeyerWempe
+U+4E00	kSpecializedSemanticVariant	U+58F9
+U+4E03	kSemanticVariant	U+67D2<kLau,kMatthews,kMeyerWempe
+U+4E03	kSpecializedSemanticVariant	U+67D2<kFenn
+U+4E04	kZVariant	U+4E0A
+U+4E05	kZVariant	U+4E0B
+U+4E07	kSemanticVariant	U+534D<kFenn U+842C<kLau,kMatthews,kMeyerWempe
+U+4E07	kTraditionalVariant	U+842C
+U+4E09	kSemanticVariant	U+53C1<kLau,kMatthews,kMeyerWempe
+U+4E09	kSpecializedSemanticVariant	U+53C1<kFenn
+U+4E0A	kZVariant	U+4E04
+U+4E0B	kZVariant	U+4E05
+U+4E0C	kZVariant	U+5176
+U+4E0D	kZVariant	U+F967
+U+4E0E	kSemanticVariant	U+8207<kMatthews,kMeyerWempe
+U+4E0E	kTraditionalVariant	U+8207
+U+4E10	kSemanticVariant	U+5303<kMatthews
+U+4E11	kTraditionalVariant	U+919C
+U+4E13	kTraditionalVariant	U+5C08
+U+4E15	kSpecializedSemanticVariant	U+4EF3<kMeyerWempe
+U+4E16	kZVariant	U+4E17
+U+4E17	kZVariant	U+4E16
+U+4E18	kSemanticVariant	U+3400 U+5775<kMatthews
+U+4E18	kZVariant	U+4E20
+U+4E1A	kTraditionalVariant	U+696D
+U+4E1B	kTraditionalVariant	U+53E2
+U+4E1C	kSemanticVariant	U+6771<kFenn
+U+4E1C	kTraditionalVariant	U+6771
+U+4E1D	kTraditionalVariant	U+7D72
+U+4E1F	kSemanticVariant	U+4E22<kHKGlyph,kMatthews
+U+4E1F	kSimplifiedVariant	U+4E22
+U+4E21	kSemanticVariant	U+5169<kMatthews U+4E24<kFenn
+U+4E21	kZVariant	U+5169
+U+4E22	kSemanticVariant	U+4E1F<kHKGlyph,kMatthews
+U+4E22	kTraditionalVariant	U+4E1F
+U+4E23	kZVariant	U+9149
+U+4E24	kSemanticVariant	U+4E21<kFenn U+5169<kLau,kMatthews,kMeyerWempe
+U+4E24	kTraditionalVariant	U+5169
+U+4E25	kTraditionalVariant	U+56B4
+U+4E26	kSemanticVariant	U+5E77<kMatthews,kMeyerWempe U+5E76<kMatthews,kMeyerWempe U+7ADD<kMatthews
+U+4E26	kSimplifiedVariant	U+5E76
+U+4E26	kZVariant	U+5E77
+U+4E27	kTraditionalVariant	U+55AA
+U+4E2A	kSemanticVariant	U+500B<kLau,kMatthews U+7B87<kLau,kMatthews,kMeyerWempe
+U+4E2A	kSpecializedSemanticVariant	U+500B<kMeyerWempe
+U+4E2A	kTraditionalVariant	U+500B
+U+4E2C	kZVariant	U+723F
+U+4E2D	kSpecializedSemanticVariant	U+585A<kFenn
+U+4E30	kTraditionalVariant	U+8C50
+U+4E31	kZVariant	U+535D
+U+4E32	kZVariant	U+F905
+U+4E34	kTraditionalVariant	U+81E8
+U+4E39	kZVariant	U+F95E
+U+4E3A	kTraditionalVariant	U+70BA
+U+4E3A	kZVariant	U+70BA
+U+4E3C	kSpecializedSemanticVariant	U+4E95
+U+4E3D	kTraditionalVariant	U+9E97
+U+4E3E	kTraditionalVariant	U+8209
+U+4E43	kSemanticVariant	U+8FFA<kMatthews U+5EFC<kMatthews
+U+4E43	kZVariant	U+5EFC
+U+4E45	kZVariant	U+4E46
+U+4E46	kZVariant	U+4E45
+U+4E47	kZVariant	U+8650
+U+4E48	kSemanticVariant	U+5E7A<kMatthews
+U+4E48	kTraditionalVariant	U+5E7A U+9EBC U+9EBD
+U+4E49	kSemanticVariant	U+7FA9<kFenn
+U+4E49	kTraditionalVariant	U+7FA9
+U+4E4C	kTraditionalVariant	U+70CF
+U+4E50	kTraditionalVariant	U+6A02
+U+4E54	kSemanticVariant	U+55AC<kFenn
+U+4E54	kTraditionalVariant	U+55AC
+U+4E55	kZVariant	U+864E
+U+4E57	kZVariant	U+4E58
+U+4E58	kZVariant	U+4E57
+U+4E5A	kSemanticVariant	U+96B1<kMatthews
+U+4E5D	kSemanticVariant	U+7396<kLau,kMatthews,kMeyerWempe
+U+4E60	kTraditionalVariant	U+7FD2
+U+4E61	kTraditionalVariant	U+9109
+U+4E66	kTraditionalVariant	U+66F8
+U+4E69	kZVariant	U+7A3D
+U+4E70	kTraditionalVariant	U+8CB7
+U+4E71	kSemanticVariant	U+4E82<kMatthews,kMeyerWempe
+U+4E71	kTraditionalVariant	U+4E82
+U+4E7E	kSimplifiedVariant	U+5E72
+U+4E7E	kSpecializedSemanticVariant	U+4E81<kFenn
+U+4E80	kZVariant	U+9F9C
+U+4E81	kSpecializedSemanticVariant	U+4E7E<kFenn
+U+4E81	kZVariant	U+4E7E
+U+4E82	kSemanticVariant	U+4E71<kMatthews,kMeyerWempe
+U+4E82	kSimplifiedVariant	U+4E71
+U+4E86	kZVariant	U+F9BA
+U+4E88	kSemanticVariant	U+4F59<kFenn
+U+4E88	kZVariant	U+8C6B
+U+4E89	kSemanticVariant	U+722D<kMatthews
+U+4E89	kTraditionalVariant	U+722D
+U+4E8A	kSemanticVariant	U+4E8B<kFenn
+U+4E8A	kZVariant	U+4E8B
+U+4E8B	kSemanticVariant	U+4E8A<kFenn
+
+# EOF

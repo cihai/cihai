@@ -1,23 +1,11 @@
-name:  "[cihai] test"
+name: test
 
-on: 
-  push:
-    branches:
-      - master
-    paths:
-      - 'src/cihai/**'
-  pull_request:
-    paths:
-      - 'src/cihai/**'
+on: [push, pull_request]
 
 jobs:
   build:
     if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
 
-    defaults:
-      run:
-        shell: bash
-        working-directory: src/cihai
     runs-on: ubuntu-latest
     strategy:
       matrix:

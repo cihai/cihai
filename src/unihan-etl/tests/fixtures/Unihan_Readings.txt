@@ -1,0 +1,564 @@
+#
+# Unihan_Readings.txt
+# Date: 2016-06-01 07:01:48 GMT [JHJ]
+# Unicode version: 9.0.0
+#
+# Unicode Character Database
+# © 1991-2016 Unicode®, Inc.
+# For terms of use, see http://www.unicode.org/terms_of_use.html
+# For documentation, see http://www.unicode.org/reports/tr44/
+#
+# This file contains data on the following fields from the Unihan database:
+#	kCantonese
+#	kDefinition
+#	kHangul
+#	kHanyuPinlu
+#	kHanyuPinyin
+#	kJapaneseKun
+#	kJapaneseOn
+#	kKorean
+#	kMandarin
+#	kTang
+#	kVietnamese
+#	kXHC1983
+#
+# For details on the file format, see http://www.unicode.org/reports/tr38/
+#
+U+3400	kCantonese	jau1
+U+3400	kDefinition	(same as U+4E18 丘) hillock or mound
+U+3400	kMandarin	qiū
+U+3401	kCantonese	tim2
+U+3401	kDefinition	to lick; to taste, a mat, bamboo bark
+U+3401	kHanyuPinyin	10019.020:tiàn
+U+3401	kMandarin	tiàn
+U+3402	kDefinition	(J) non-standard form of U+559C 喜, to like, love, enjoy; a joyful thing
+U+3404	kMandarin	kuà
+U+3405	kCantonese	ng5
+U+3405	kDefinition	(an ancient form of U+4E94 五) five
+U+3405	kMandarin	wǔ
+U+3406	kCantonese	zaan2
+U+3406	kDefinition	(corrupted form) to follow, to trust to; to put confidence in; to depend on, to turn around; to turn the body, (interchangeable 隱)
+U+3406	kHanyuPinyin	10038.080:yǐn
+U+3406	kMandarin	yǐn
+U+340C	kCantonese	zyu4
+U+340C	kDefinition	a tribe of savages in South China
+U+340C	kHanyuPinyin	10036.020:yí
+U+340C	kMandarin	yí
+U+3416	kCantonese	zip6
+U+3416	kDefinition	㐖毒, an old name for India
+U+3416	kHanyuPinyin	10053.130:xié
+U+3416	kMandarin	xié
+U+341C	kCantonese	caau4
+U+341C	kDefinition	(same as 仇) an enemy, enmity, hatred, to hate, a rival, a match
+U+341C	kMandarin	chóu
+U+3421	kCantonese	no6
+U+3421	kDefinition	(same as 懦) weak; timid; imbecile
+U+3421	kMandarin	nuò
+U+3424	kCantonese	kaau4
+U+3424	kDefinition	to implore; to beseech, to seek after, to beg; to pray
+U+3424	kHanyuPinyin	10263.070:dān,qiú
+U+3424	kMandarin	dān
+U+3427	kDefinition	(J) non-standard form of 第 U+7B2C, sequence, number; grade, degree
+U+3428	kCantonese	zeoi6
+U+3428	kDefinition	a kind of fish in legend (a record in old books)
+U+3428	kHanyuPinyin	10055.060:xù
+U+3428	kMandarin	xù
+U+3429	kCantonese	zing4
+U+3429	kDefinition	wine cups
+U+3429	kHanyuPinyin	10023.010:xíng
+U+3429	kMandarin	xíng
+U+342B	kCantonese	gun3 hung1 zung1
+U+342B	kDefinition	(same as 凶) cruel, unfortunate, sad
+U+342B	kMandarin	xiōng
+U+342C	kCantonese	lau4
+U+342C	kDefinition	(same as U+65D2 旒, a corrupted form of U+8352 荒) a cup with pendants, a pennant, wild, barren, uncultivated
+U+342C	kMandarin	liú
+U+342D	kCantonese	lam5
+U+342D	kDefinition	(same as 廩) a granary, to supply (foodstuff), to stockpile
+U+342D	kMandarin	lǐn
+U+342E	kCantonese	soeng1
+U+342E	kDefinition	(same as 襄) to help; to assist, to achieve, to rise; to raise
+U+342E	kMandarin	xiāng
+U+342F	kCantonese	jung4
+U+342F	kDefinition	(ancient form of 庸) to employ; to use, to manifest
+U+342F	kMandarin	yōng
+U+3430	kCantonese	seon3
+U+3430	kDefinition	(ancient form of 信) to believe in; to trust, truth, sincerity, confidence, a pledge or token
+U+3430	kMandarin	xìn
+U+3431	kCantonese	caa5 caan2 dou3 zaan2
+U+3431	kDefinition	(same as 鬒) bushy, black hair
+U+3431	kMandarin	zhěn
+U+3432	kCantonese	daai6
+U+3432	kDefinition	name of an island
+U+3432	kHanyuPinyin	10113.010:dài
+U+3432	kMandarin	dài
+U+3433	kCantonese	ngaat6
+U+3433	kDefinition	high and level on the top
+U+3433	kHanyuPinyin	10113.030:wù
+U+3433	kMandarin	wù
+U+3434	kCantonese	paan1
+U+3434	kDefinition	(non-classical of 攀) to drag down; to seize, to pull, to hold to
+U+3434	kMandarin	pān
+U+3435	kCantonese	jyu4
+U+3435	kDefinition	Confucianism; scholar
+U+3435	kMandarin	rú
+U+3437	kCantonese	maa6
+U+3437	kDefinition	a kind of punishment in Han Dynasty, name of chessmen in Chinese chess game (simplified form, a variant 罵) to curse; to revile; to abuse, to scold
+U+3437	kMandarin	mǎ
+U+3438	kCantonese	gim1 him3
+U+3438	kDefinition	(non-classical form of 欠) to owe money, deficient, to yawn, last name
+U+3438	kHanyuPinyin	10125.020:qiàn,cì
+U+3438	kMandarin	qiàn
+U+3439	kCantonese	go1 kwok3 ngaat6
+U+3439	kDefinition	(standard form of 仡) strong; valiant, a minority ethnic group in China
+U+3439	kMandarin	yì
+U+343A	kCantonese	zung3
+U+343A	kDefinition	(standard form of 眾) all; the whole of; a multitude, a crowd (three or more)
+U+343A	kHanyuPinyin	10124.030:yín,zhòng
+U+343A	kMandarin	yín
+U+343B	kCantonese	fu1 mou5 noi6
+U+343B	kDefinition	name of a person
+U+343B	kHanyuPinyin	10122.010:nèi
+U+343B	kMandarin	nèi
+U+343C	kCantonese	cing2
+U+343C	kDefinition	(corrupted form of 拯) to save; to lift up
+U+343C	kMandarin	chèng
+U+343D	kCantonese	fung1
+U+343D	kDefinition	(simplified form of 偑) name of a place, last name
+U+343D	kMandarin	fēng
+U+3440	kCantonese	taai3
+U+3441	kCantonese	zyut3 zyut6
+U+3441	kDefinition	(same as U+20B74 𠭴) short; of short stature
+U+3441	kMandarin	zhuō
+U+3442	kCantonese	fong2 pong4
+U+3442	kDefinition	(same as 仿) to imitate, like; resembling, according to
+U+3442	kMandarin	fǎng
+U+3443	kCantonese	au2 au3 paai1
+U+3443	kDefinition	(same as 拗) to pull; to drag, to break off, to pluck, as a flower
+U+3443	kMandarin	ǎo
+U+3444	kCantonese	mou5
+U+3444	kDefinition	(ancient form of 侮) to insult, to ridicule
+U+3444	kMandarin	wǔ
+U+3445	kCantonese	zok3 zok6
+U+3445	kDefinition	(same as 作) to make; to do; to act, to write; to compose; to rise, work
+U+3445	kMandarin	zuò
+U+3447	kCantonese	zaau3
+U+3447	kDefinition	(a simplified form) clever; ingenious; cute; pretty
+U+3447	kMandarin	zhòu
+U+3447	kXHC1983	1506.160:zhòu
+U+3448	kCantonese	dung1
+U+3448	kDefinition	(simplified form) rude; barbarous, stupid; dull, last name
+U+3448	kMandarin	dòng
+U+3449	kCantonese	cuk1
+U+3449	kDefinition	cannot straighten up
+U+3449	kHanyuPinyin	10151.010:sù
+U+3449	kMandarin	sù
+U+344A	kCantonese	zik6
+U+344A	kDefinition	a kind of disease
+U+344A	kHanyuPinyin	10152.030:yì
+U+344A	kMandarin	yì
+U+344B	kCantonese	kung4
+U+344B	kDefinition	small, poor, submit to the dominion of; slow; late
+U+344B	kHanyuPinyin	10147.110:qióng
+U+344B	kMandarin	qióng
+U+344C	kCantonese	hong1
+U+344C	kDefinition	(same as 尪) weak; a rickety person; emaciated
+U+344C	kHanyuPinyin	10143.120:wāng,kuāng
+U+344C	kMandarin	kuāng
+U+344C	kXHC1983	0659.100:kuāng
+U+344D	kCantonese	leoi5
+U+344D	kDefinition	inferior; secondary, ugly
+U+344D	kHanyuPinyin	10149.010:lèi
+U+344D	kMandarin	lèi
+U+344E	kCantonese	nou5
+U+344E	kDefinition	last name
+U+344E	kHanyuPinyin	10155.010:nǎo
+U+344E	kMandarin	nǎo
+U+344F	kCantonese	cyu5 zyu2
+U+344F	kDefinition	(corrupted form of U+4F47 佇) to stand and wait; to hope for
+U+344F	kMandarin	zhù
+U+3450	kCantonese	suk1
+U+3450	kDefinition	to move; to start; to shake, name of a person
+U+3450	kHanyuPinyin	10147.050:shū
+U+3450	kMandarin	shū
+U+3454	kCantonese	seoi2
+U+3454	kDefinition	(a simplified form) (corrupted form of 偦) all together, mutually, last name
+U+3454	kMandarin	xǔ
+U+3457	kCantonese	saan1 saan6
+U+3457	kDefinition	a god, pregnant
+U+3457	kHanyuPinyin	10163.040:shēn
+U+3457	kMandarin	shēn
+U+3458	kCantonese	gaai3
+U+3458	kDefinition	(same as 价) a servant, a middle-man, good, great; (a simplified form) price; value
+U+3458	kMandarin	jiè
+U+3459	kCantonese	dip6
+U+3459	kDefinition	frivolous; flippant; capricious; playful
+U+3459	kHanyuPinyin	10156.150:dié
+U+3459	kMandarin	dié
+U+345A	kCantonese	naa4 no4
+U+345A	kDefinition	(non-classical form of 那) that, there
+U+345A	kHanyuPinyin	10154.070:nuó
+U+345A	kMandarin	nuó
+U+345B	kCantonese	cuk1
+U+345B	kDefinition	to shake one's head
+U+345B	kHanyuPinyin	10157.040:sù
+U+345B	kMandarin	sù
+U+345C	kCantonese	zaai6
+U+345C	kDefinition	(a dialect) to engrave
+U+345C	kHanyuPinyin	10156.130:yì,chì
+U+345C	kMandarin	yì
+U+345D	kCantonese	lung6
+U+345D	kDefinition	to make a fool of; idiotic, simple, stupid
+U+345D	kMandarin	lòng
+U+345E	kCantonese	zing6
+U+345E	kDefinition	(same as 媵) (in old time) a maid who accompanies a bride to her new home; to escort, a concubine
+U+345E	kHanyuPinyin	10166.030:yìng
+U+345E	kMandarin	yìng
+U+345F	kCantonese	mang1
+U+345F	kDefinition	insincere and cunning person; a pretentious person
+U+345F	kHanyuPinyin	10163.020:běng
+U+345F	kMandarin	běng
+U+3463	kCantonese	lam2 lam4
+U+3463	kDefinition	stupid; loutish, without ability; unable; lacking power
+U+3463	kHanyuPinyin	10172.010:lán
+U+3463	kMandarin	lán
+U+3464	kCantonese	miu4
+U+3464	kDefinition	(same as 媌) good looking, a prostitute
+U+3464	kMandarin	miáo
+U+3465	kCantonese	zi6
+U+3465	kDefinition	disrespectful; irreverent, to make light of; to neglect; careless; rush, to exchange, (said of one's personality) easy to get along with
+U+3465	kHanyuPinyin	10178.010:yì
+U+3465	kMandarin	yì
+U+3466	kCantonese	leoi6
+U+3466	kDefinition	anger; rage; angry, (same as 戾) recalcitrant; stubbornly persisting in doing something wrong; cruel; despotic
+U+3466	kHanyuPinyin	10184.080:lì
+U+3466	kMandarin	lì
+U+3467	kCantonese	gwai3
+U+3467	kDefinition	(corrupted form of 悸) perturbed, to throb, palpitation of the heart
+U+3467	kMandarin	jì
+U+3468	kCantonese	zyu5
+U+3468	kDefinition	great; big; tall; vast, noble; high in rank, very; much
+U+3468	kMandarin	yǔ
+U+3469	kCantonese	lo4
+U+3469	kDefinition	(simplified form of U+5138 儸) smart; clever
+U+3469	kMandarin	luó
+U+3469	kXHC1983	0750.060:luó
+U+346A	kCantonese	caai4
+U+346A	kDefinition	(non-classical form of 儕) a generation, a class; a series; a kind
+U+346A	kMandarin	chái
+U+346B	kVietnamese	nộm
+U+346E	kCantonese	gwaat1 waan4
+U+346E	kDefinition	last name, girl's name
+U+346E	kHanyuPinyin	10195.090:hún
+U+346E	kMandarin	hún
+U+346F	kCantonese	seoi1
+U+346F	kDefinition	last name, all; together; mutually, a low rank officer to take charge of the bandits in ancient time
+U+346F	kHanyuPinyin	10188.050:xǔ
+U+346F	kMandarin	xǔ
+U+3470	kCantonese	fui4
+U+3470	kDefinition	(a corrupted form) distress; very difficulty; anxiety; very tired
+U+3470	kMandarin	huì
+U+3471	kCantonese	nau4
+U+3471	kDefinition	a kind of monkey, fingering for an ancient string instrument
+U+3471	kMandarin	rǎo
+U+3473	kCantonese	zaau3
+U+3473	kDefinition	(same as 媰) pregnant (妊娠, 妊身); cruel; pretty, cute, clever, ingenious, smart; to be hired; (used for 謅) to jest, to chaff, to bawl, mean person (as opposed to real gentleman)
+U+3473	kHanyuPinyin	10204.060:zhòu,zhū
+U+3473	kMandarin	zhòu
+U+3473	kXHC1983	1506.161:zhòu
+U+3474	kCantonese	caam1 cam1
+U+3474	kDefinition	(standard form of 侵) to usurp, to encroach upon, to raid
+U+3475	kCantonese	zat6
+U+3475	kDefinition	(same as 嫉) envy; jealousy, to hate
+U+3475	kMandarin	hàn
+U+3476	kCantonese	haai4 hei3
+U+3476	kDefinition	(non-classical form of 愾) anger; passion; rage, to sigh; to groan
+U+3476	kHanyuPinyin	10203.080:xì
+U+3476	kMandarin	xì
+U+3477	kCantonese	taai3
+U+3477	kDefinition	(same as 態) manner, bearing, behaviour, policy, attitude
+U+3477	kMandarin	tài
+U+3478	kCantonese	ziu4
+U+3478	kHanyuPinyin	10201.020:yáo
+U+3478	kMandarin	yáo
+U+3479	kCantonese	gwat3 mok6 wui6
+U+3479	kDefinition	(non-classical of 會) to meet; to assemble, to co-operate, a society; a guild; an association
+U+3479	kMandarin	huì
+U+347A	kCantonese	zeoi6 zeon3
+U+347A	kDefinition	(a variant of 俊) superior, handsome, refined, eminent
+U+347A	kMandarin	jùn
+U+347B	kCantonese	maa6 mei5
+U+347B	kDefinition	strong, robust, vigorous
+U+347B	kHanyuPinyin	10215.050:mà
+U+347B	kMandarin	mà
+U+347C	kCantonese	loek6
+U+347C	kDefinition	name of a god
+U+347C	kHanyuPinyin	10211.020:lüè
+U+347C	kMandarin	lüè
+U+347D	kCantonese	tong4
+U+347D	kDefinition	(same as 傏) to ward off; to parry; to keep out, as wind, rain, or cold
+U+347D	kMandarin	táng
+U+347E	kCantonese	ziu4
+U+347E	kDefinition	(interchangeable 繇) joy, delight, gratification
+U+347E	kHanyuPinyin	10213.050:yáo
+U+347E	kMandarin	yáo
+U+347F	kCantonese	coek3 huk6 zau3 ziu6
+U+347F	kDefinition	long, of space or time, profitable, excelling
+U+347F	kHanyuPinyin	10215.110:zhào
+U+347F	kMandarin	zhào
+U+3480	kCantonese	cim4 cip3 zak6
+U+3480	kDefinition	do not fear to
+U+3480	kHanyuPinyin	10214.090:zhāi,zhǎ
+U+3480	kMandarin	zhāi
+U+3481	kCantonese	sou3 zyu5
+U+3481	kDefinition	(same as 俁) of great stature; stalwart, to injure, to grieve
+U+3481	kHanyuPinyin	10211.030:yǔ
+U+3481	kMandarin	yǔ
+U+3482	kCantonese	zoek6
+U+3482	kDefinition	to bestow; to grant, to act; to do, quiet; still, peace; tranquility
+U+3482	kHanyuPinyin	10223.130:zhuó
+U+3482	kMandarin	zhuó
+U+3483	kCantonese	zi6
+U+3483	kDefinition	(same as 貳) capital form of two, a second job, to harbour doubts; to hesitate, to revolt
+U+3483	kMandarin	èr
+U+3484	kCantonese	ngam4 zim5
+U+3484	kDefinition	brittle and friable, fear; dread; fright; scare
+U+3484	kHanyuPinyin	10220.130:rǎn
+U+3484	kMandarin	rǎn
+U+3485	kCantonese	kai2
+U+3485	kDefinition	to unbind the collar
+U+3485	kHanyuPinyin	10221.030:qǐ
+U+3485	kMandarin	qǐ
+U+3486	kCantonese	kap1
+U+3486	kDefinition	(same as 歙) to gather the harvest; to gather together
+U+3486	kMandarin	chì
+U+3487	kCantonese	ng5
+U+3487	kDefinition	(same as 憮) to skip about; to dance for joy; to soothe, slow, disappointed
+U+3487	kHanyuPinyin	10220.020:wǔ
+U+3487	kMandarin	wǔ
+U+3488	kCantonese	hon6
+U+3488	kDefinition	dangerous; lofty; steep; high and dangerous
+U+3488	kHanyuPinyin	10216.130:hàn
+U+3488	kMandarin	hàn
+U+3489	kCantonese	tong2
+U+3489	kDefinition	(same as 惝) alarmed; agitated
+U+3489	kMandarin	tǎng
+U+348A	kCantonese	saap1 sik1
+U+348A	kDefinition	loquacious
+U+348A	kHanyuPinyin	10232.080:sè
+U+348A	kMandarin	sè
+U+348B	kCantonese	si1
+U+348B	kDefinition	(same as U+5EDD 廝) a servant; a menial, a woodcutter
+U+348C	kCantonese	king4
+U+348C	kDefinition	(ancient form of 煢) along; desolate; orphaned
+U+348C	kMandarin	qióng
+U+348D	kCantonese	leoi5
+U+348D	kDefinition	(interchangeable U+50AB 儽) utterly weary in body and spirits; negligent; lax
+U+348D	kHanyuPinyin	10223.040:léi
+U+348D	kMandarin	léi
+U+348E	kCantonese	sat3
+U+348E	kDefinition	evil, wicked, wrong, foul
+U+348E	kHanyuPinyin	10220.030:sà
+U+348E	kMandarin	sà
+U+3491	kCantonese	hung2 kui2 wak6
+U+3491	kDefinition	grow up, commodity prices
+U+3491	kHanyuPinyin	10224.090:kuǐ,huì
+U+3491	kMandarin	kuǐ
+U+3492	kCantonese	buk6
+U+3492	kDefinition	(same as 僕) a slave; a servant, used conventionally for oneself, a charioteer
+U+3492	kMandarin	pú
+U+3493	kCantonese	taat3
+U+3493	kDefinition	to escape; to abscond; to flee, (interchangeable 達)
+U+3493	kHanyuPinyin	10217.020:tà
+U+3493	kMandarin	tà
+U+3493	kXHC1983	1107.091:tà
+U+3494	kCantonese	suk6
+U+3494	kDefinition	to shake one's head, ugly, not in peace
+U+3494	kHanyuPinyin	10225.090:shú,dú,tù
+U+3494	kMandarin	shú
+U+3495	kCantonese	zoeng1
+U+3495	kDefinition	unyield
+U+3495	kHanyuPinyin	10228.010:yāng
+U+3495	kMandarin	yāng
+U+3496	kCantonese	ngaau5
+U+3496	kDefinition	(same as 藕) the root-stock of the lotus; arrowroot
+U+3496	kMandarin	ǒu
+U+3497	kCantonese	toi4
+U+3497	kDefinition	(a variant of 儓) a servant
+U+3497	kMandarin	tái
+U+3499	kCantonese	min4 min6
+U+3499	kDefinition	to hand or bow the head; to droop; to lower, low; beneath
+U+3499	kHanyuPinyin	10232.100:mián
+U+3499	kMandarin	mián
+U+349A	kCantonese	waan2
+U+349A	kDefinition	(same as U+7A69 穩) firm; stable; secure, dependent upon others
+U+349A	kHanyuPinyin	10231.080:yìn,wěn
+U+349A	kMandarin	yìn
+U+349B	kCantonese	deoi2 diu6
+U+349B	kDefinition	to stand alone; independent
+U+349B	kHanyuPinyin	10232.070:diào
+U+349B	kMandarin	diào
+U+349C	kCantonese	zyu5
+U+349C	kDefinition	respectful; attentive, carefully; cautious; to heed; to be watchful, to rely on; to trust to; to lean towards
+U+349C	kHanyuPinyin	10231.040:yǔ
+U+349C	kMandarin	yǔ
+U+349D	kCantonese	mit6 ziu5
+U+349D	kDefinition	to deceive; artful; false
+U+349D	kHanyuPinyin	10233.010:miè,wà
+U+349D	kMandarin	miè
+U+349E	kCantonese	zeon3
+U+349E	kDefinition	valiant; brave, eminent
+U+349E	kMandarin	jùn
+U+349F	kCantonese	niu5 seoi1
+U+349F	kDefinition	(same as 褭) with a charming; slim carriage (of a woman), pretty
+U+349F	kHanyuPinyin	10236.140:niǎo
+U+349F	kMandarin	niǎo
+U+34A0	kCantonese	haai6
+U+34A0	kDefinition	narrow; contracted, quickly; fast; hasty; soon; promptly
+U+34A0	kHanyuPinyin	10236.080:xiè
+U+34A0	kMandarin	xiè
+U+34A1	kCantonese	zaau4
+U+34A1	kDefinition	name of a person
+U+34A1	kHanyuPinyin	10237.110:yóu
+U+34A1	kMandarin	yóu
+U+34A4	kCantonese	sip3 zip3
+U+34A4	kDefinition	to have one's heart won; to submit, admire, etc. sincerely and willingly, (interchangeable 懾) to fear; to dread; to be scared of
+U+34A4	kHanyuPinyin	10238.070:chè
+U+34A4	kMandarin	chè
+U+34A5	kCantonese	fung1 gaam2
+U+34A5	kDefinition	an immortal
+U+34A5	kHanyuPinyin	10238.090:fēng
+U+34A5	kMandarin	fēng
+U+34A6	kCantonese	deoi3 leoi5
+U+34A6	kDefinition	(same as 儡) puppets, very tired; fatigued; weary and weak
+U+34A6	kHanyuPinyin	10238.100:lěi,lèi
+U+34A6	kMandarin	lěi
+U+34A7	kCantonese	lai6
+U+34A7	kDefinition	(same as 儷) a pair; a couple, luxuriant; lush; exuberant
+U+34A7	kMandarin	lì
+U+34A8	kCantonese	sin1
+U+34A8	kDefinition	(ancient form of 仙) an immortal; a fairy; a genie
+U+34A9	kCantonese	lo2
+U+34A9	kDefinition	(same as 梴 裸) naked, to strip; to unclothe
+U+34A9	kMandarin	luǒ
+U+34AA	kCantonese	sek3
+U+34AA	kDefinition	(ancient form of 錫) tin; pewter
+U+34AB	kCantonese	gei3 hei2
+U+34AB	kDefinition	(ancient form of 旡) choked and unable to breath
+U+34AB	kMandarin	jì
+U+34AD	kCantonese	kwaan1 kwaan1 leoi4
+U+34AD	kDefinition	(same as 昆) an elder brother
+U+34AF	kCantonese	jip6
+U+34B0	kCantonese	cyun4 zan2
+U+34B0	kDefinition	(a variant, seal type of U+5168 全) perfect, complete, absolute
+U+34B0	kMandarin	quán
+U+34B2	kCantonese	coi4
+U+34B2	kDefinition	(a variant of 財) wealth; property; valuables, bribes
+U+34B2	kMandarin	cái
+U+34B3	kCantonese	loeng5
+U+34B3	kDefinition	(ancient form of 兩) two, a pair; a couple; both
+U+34B3	kMandarin	liǎng
+U+34B4	kCantonese	gwat1
+U+34B4	kDefinition	to come; to go out
+U+34B4	kHanyuPinyin	10129.040:gǔ
+U+34B4	kMandarin	gǔ
+U+34B5	kCantonese	mau6 mo1
+U+34B5	kDefinition	(same as 貌) manner; appearance; form; face; bearing
+U+34B5	kMandarin	mào
+U+34B6	kCantonese	gung1
+U+34B6	kDefinition	(ancient form of 公) public; open to all
+U+34B7	kCantonese	hing2 hing3
+U+34B7	kDefinition	(simple form of U+8208 興) to prosper, to begin, to increase; to rise; to raise, flourishing
+U+34B7	kMandarin	guǎ
+U+34B8	kCantonese	seoi6
+U+34B8	kDefinition	(same as U+9042 遂) to obey; to comply with; to follow the wishes of another, (an ancient form of U+6B72 歲) a year, age, the harvest
+U+34B8	kHanyuPinyin	10248.050:suì
+U+34B8	kMandarin	suì
+U+34B9	kCantonese	din1
+U+34B9	kDefinition	(non-classical of 顛) to upset; to turn over, to fall, upside down
+U+34BB	kCantonese	mou6
+U+34BB	kDefinition	(same as 冒) to go forward with eyes covered, to risk, to rush upon, to put forth, to issue forth
+U+34BB	kMandarin	mào
+U+34BC	kCantonese	mang4 mun4
+U+34BC	kDefinition	average; equivalent; corresponding, to cover something carefully and tightly without a break; (Cant.) blocked
+U+34BC	kHanyuPinyin	10101.030:mán
+U+34BC	kMandarin	mán
+U+34BD	kCantonese	hyun1
+U+34BD	kDefinition	a kind of cap for children
+U+34BD	kHanyuPinyin	21519.060:quān
+U+34BD	kMandarin	quān
+U+34BE	kCantonese	si6
+U+34BE	kDefinition	a kind of wrapper used to cover over the face and head
+U+34BE	kHanyuPinyin	21526.050:shì
+U+34BE	kMandarin	shì
+U+34BF	kCantonese	lei4
+U+34BF	kDefinition	a kind of turban used in ancient time
+U+34BF	kHanyuPinyin	21542.110:lí
+U+34BF	kMandarin	lí
+U+34C1	kCantonese	mong5
+U+34C1	kDefinition	a net; net-like, radical 122
+U+34C1	kMandarin	wǎng
+U+34C2	kCantonese	kaau3 taau3
+U+37AE	kDefinition	variant of 出 U+51FA, to go out, send out; to stand; to produce
+U+37AE	kJapaneseKun	DERU DASU
+U+37AE	kJapaneseOn	SHUTSU SUI
+U+5364	kCantonese	lou5
+U+5364	kDefinition	salt
+U+5364	kHanyuPinyin	10093.130:xī,lǔ 74609.020:lǔ,xī
+U+5364	kJapaneseOn	SEI
+U+5364	kMandarin	lǔ
+U+5364	kXHC1983	0737.050:lǔ
+U+5EFE	kCantonese	gung2
+U+5EFE	kDefinition	two hands; KangXi radical 55
+U+5EFE	kHanyuPinyin	10513.110,10514.010,10514.020:gǒng
+U+5EFE	kJapaneseKun	SASAGERU
+U+5EFE	kJapaneseOn	KYOU KU
+U+5EFE	kMandarin	gǒng
+U+5EFE	kVietnamese	trấp
+U+4FFE	kCantonese	bei2
+U+4FFE	kDefinition	so that, in order that; to cause; (Cant.) to give (synonymous with Mandarin 給)
+U+4FFE	kHangul	비
+U+4FFE	kHanyuPinyin	10180.020:bǐ,bì,bēi,pì
+U+4FFE	kJapaneseKun	SHIMU
+U+4FFE	kJapaneseOn	HI HEI
+U+4FFE	kKorean	PI
+U+4FFE	kMandarin	bǐ bì
+U+4FFE	kTang	byɛ̌
+U+4FFE	kXHC1983	0056.010:bǐ
+U+4FFF	kHanyuPinyin	10175.050:hǔ,chí
+U+4FFF	kJapaneseKun	KATATAGAI
+U+4FFF	kJapaneseOn	CHI JI
+U+91B1	kCantonese	put3
+U+91B1	kDefinition	to brew for the second time
+U+91B1	kHangul	발
+U+91B1	kHanyuPinyin	63599.090:pō,fā
+U+91B1	kJapaneseKun	KAMOSU
+U+91B1	kJapaneseOn	HATSU
+U+91B1	kKorean	PAL
+U+91B1	kMandarin	fā pò
+U+91B1	kTang	pɑt
+U+91B1	kXHC1983	0295.011:fā 0884.081:pō
+U+81B0	kCantonese	faan4
+U+81B0	kDefinition	to cook meat for a sacrifice or offering
+U+81B0	kHangul	번
+U+81B0	kHanyuPinyin	32112.080:fán,pán
+U+81B0	kJapaneseKun	HIMOROGI
+U+81B0	kJapaneseOn	HAN
+U+81B0	kKorean	PEN
+U+81B0	kMandarin	fán
+U+81B0	kXHC1983	0300.080:fán
+U+34CE	kCantonese	caam1 saam6
+U+34CE	kDefinition	cold, cold air, bitterly cold
+U+34CE	kHanyuPinyin	10297.260:qīn,qìn,qǐn
+U+34CE	kMandarin	qīn
+U+34D8	kCantonese	suk1
+U+34D8	kDefinition	(same as U+738A 玊) jade with some defects, a lapidary, to polish gems; a surname
+U+34D8	kHanyuPinyin	10278.080,10278.090:sù
+U+34D8	kMandarin	sù
+U+4E0B	kHanyuPinlu	xià(6430) xia(249)
+U+4E09	kHanyuPinlu	sān(3030)
+U+55EF	kHanyuPinlu	ń(48) ň(48) ǹ(48) ńg(48) ňg(48) ǹg(48)
+U+379E	kXHC1983	1092.070*,1092.071:sóng
+U+5750	kXHC1983	1551.040,1552.011:zuò
+
+# EOF

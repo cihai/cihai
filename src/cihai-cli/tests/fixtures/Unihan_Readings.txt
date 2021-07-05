@@ -1,0 +1,108 @@
+#
+# Unihan_Readings.txt
+# Date: 2013-02-25 22:46:17 GMT [JHJ]
+# Unicode version: 6.3.0
+#
+# Unicode Character Database
+# Copyright (c) 1991-2013 Unicode, Inc.
+# For terms of use, see http://www.unicode.org/terms_of_use.html
+# For documentation, see http://www.unicode.org/reports/tr44/
+#
+# This file contains data on the following fields from the Unihan database:
+#	kCantonese
+#	kDefinition
+#	kHangul
+#	kHanyuPinlu
+#	kHanyuPinyin
+#	kJapaneseKun
+#	kJapaneseOn
+#	kKorean
+#	kMandarin
+#	kTang
+#	kVietnamese
+#	kXHC1983
+#
+# For details on the file format, see http://www.unicode.org/reports/tr38/
+#
+U+3400	kCantonese	jau1
+U+3400	kDefinition	(same as U+4E18 丘) hillock or mound
+U+3400	kMandarin	qiū
+U+3401	kCantonese	tim2
+U+3401	kDefinition	to lick; to taste, a mat, bamboo bark
+U+3401	kHanyuPinyin	10019.020:tiàn
+U+3401	kMandarin	tiàn
+U+3402	kDefinition	(J) non-standard form of U+559C 喜, to like, love, enjoy; a joyful thing
+U+3404	kMandarin	kuà
+U+3405	kCantonese	ng5
+U+3405	kDefinition	(an ancient form of U+4E94 五) five
+U+3405	kMandarin	wǔ
+U+3406	kCantonese	zaan2
+U+3406	kDefinition	(corrupted form) to follow, to trust to; to put confidence in; to depend on, to turn around; to turn the body, (interchangeable 隱)
+U+3406	kHanyuPinyin	10038.080:yǐn
+U+3406	kMandarin	yǐn
+U+340C	kCantonese	zyu4
+U+3447	kMandarin	zhòu
+U+3447	kXHC1983	1506.160:zhòu
+U+3448	kCantonese	dung1
+U+4E00	kHangul	일
+U+4E00	kHanyuPinlu	yī(32747)
+U+4E00	kHanyuPinyin	10001.010:yī
+U+37AE	kDefinition	variant of 出 U+51FA, to go out, send out; to stand; to produce
+U+37AE	kJapaneseKun	DERU DASU
+U+37AE	kJapaneseOn	SHUTSU SUI
+U+37AF	kCantonese	zit3
+U+4E00	kJapaneseOn	ICHI ITSU
+U+4E00	kKorean	IL
+U+4E00	kMandarin	yī
+U+3529	kMandarin	è
+U+3529	kTang	qop
+U+352A	kCantonese	lou5
+U+346A	kMandarin	chái
+U+346B	kVietnamese	nộm
+U+346E	kCantonese	gwaat1 waan4
+U+346E	kDefinition	last name, girl's name
+U+340C	kDefinition	a tribe of savages in South China
+U+340C	kHanyuPinyin	10036.020:yí
+U+340C	kMandarin	yí
+U+3416	kCantonese	zip6
+U+3416	kDefinition	㐖毒, an old name for India
+U+3416	kHanyuPinyin	10053.130:xié
+U+3416	kMandarin	xié
+U+341C	kCantonese	caau4
+U+341C	kDefinition	(same as 仇) an enemy, enmity, hatred, to hate, a rival, a match
+U+341C	kMandarin	chóu
+U+3421	kCantonese	no6
+U+3421	kDefinition	(same as 懦) weak; timid; imbecile
+U+3421	kMandarin	nuò
+U+3424	kCantonese	kaau4
+U+3424	kDefinition	to implore; to beseech, to seek after, to beg; to pray
+U+3424	kHanyuPinyin	10263.070:dān,qiú
+U+3424	kMandarin	dān
+U+3427	kDefinition	(J) non-standard form of 第 U+7B2C, sequence, number; grade, degree
+U+3428	kCantonese	zeoi6
+U+3428	kDefinition	a kind of fish in legend (a record in old books)
+U+3428	kHanyuPinyin	10055.060:xù
+U+3428	kMandarin	xù
+U+3429	kCantonese	zing4
+U+3429	kDefinition	wine cups
+U+3429	kHanyuPinyin	10023.010:xíng
+U+3429	kMandarin	xíng
+U+342B	kCantonese	gun3 hung1 zung1
+U+342B	kDefinition	(same as 凶) cruel, unfortunate, sad
+U+342B	kMandarin	xiōng
+U+342C	kCantonese	lau4
+U+342C	kDefinition	(same as U+65D2 旒, a corrupted form of U+8352 荒) a cup with pendants, a pennant, wild, barren, uncultivated
+U+597D	kCantonese	hou2 hou3
+U+597D	kDefinition	good, excellent, fine; well
+U+597D	kHangul	호:0E
+U+597D	kHanyuPinlu	hǎo(6060) hāo(142) hào(115)
+U+597D	kHanyuPinyin	21028.010:hǎo,hào
+U+597D	kJapaneseKun	KONOMU SUKU YOI
+U+597D	kJapaneseOn	KOU
+U+597D	kKorean	HO
+U+597D	kMandarin	hǎo
+U+597D	kTang	*xɑ̀u *xɑ̌u
+U+597D	kVietnamese	háo
+U+597D	kXHC1983	0445.030:hǎo 0448.030:hào
+
+# EOF

@@ -14,6 +14,36 @@ windows:
   - focus: true
   - pane 
   - make watch_test
+- window_name: cli
+  start_directory: ./src/cihai-cli/
+  focus: True
+  layout: main-horizontal
+  options:
+    main-pane-height: 35
+  panes:
+  - focus: true
+  - pane 
+  - make watch_test
+- window_name: unihan-db
+  start_directory: ./src/unihan-db/
+  focus: True
+  layout: main-horizontal
+  options:
+    main-pane-height: 35
+  panes:
+  - focus: true
+  - pane 
+  - make watch_test
+- window_name: unihan-etl
+  start_directory: ./src/unihan-etl/
+  focus: True
+  layout: main-horizontal
+  options:
+    main-pane-height: 35
+  panes:
+  - focus: true
+  - pane 
+  - make watch_test
 - window_name: docs
   layout: main-horizontal
   options:

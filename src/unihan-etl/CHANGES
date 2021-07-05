@@ -1,0 +1,229 @@
+# Changelog
+
+## current
+
+- Updates go here
+- #296: Update poetry to 1.1
+  - CI: Use poetry 1.1.7 and `install-poetry.py` installer
+  - Relock poetry.lock at 1.1 (w/ 1.1.7's fix)
+
+## unihan-etl 0.13.0 (2021-06-16)
+
+- {issue}`236`: Convert to markdown
+
+## unihan-etl 0.12.0 (2021-06-15)
+
+- Update {}`black` to 21.6b0
+- Update trove classifiers to 3.9
+- {issue}`235`: Drop python 2.7, 3.5. Remove python 2 modesets and
+  `__future__`
+
+## unihan-etl 0.11.0 (2020-08-09)
+
+- {issue}`230` Move packaging / publishing to poetry
+- {issue}`229` Self host docs
+- {issue}`229` Add metadata / icons / etc. for doc site
+- {issue}`229` Move travis -> github actions
+- {issue}`229` Overhaul Makefiles
+
+## unihan-etl 0.10.4 (2020-08-05)
+
+- Update CHANGES headings to produce working links
+- Relax `appdirs` version constraint
+- {issue}`228` Move from Pipfile to poetry
+
+## unihan-etl 0.10.3 (2019-08-18)
+
+- Fix flicker in download progress bar
+
+## unihan-etl 0.10.2 (2019-08-17)
+
+- Add `project_urls` to setup.py
+- Use plain reStructuredText for CHANGES
+- Use `collections` that's compatible with python 2 and 3
+- PEP8 tweaks
+
+## unihan-etl 0.10.1 (2017-09-08)
+
+- Add code links in API
+- Add `__version__` to `unihan_etl`
+
+## unihan-etl 0.10.0 (2017-08-29)
+
+- {issue}`91` New fields from UNIHAN
+  [Revision 25](https://www.unicode.org/reports/tr38/tr38-25.html).
+
+  - kJinmeiyoKanji
+  - kJoyoKanji
+  - kKoreanEducationHanja
+  - kKoreanName
+  - kTGH
+
+  UNIHAN Revision 25 was released 2018-05-18 and issued for Unicode **11.0**:
+
+- Add tests and example corpus for kCCCII
+- Add configuration / make tests for isort, flake8
+- Switch tmuxp config to use pipenv
+- Add _Pipfile_
+- Add `make sync_pipfile` task to sync _requirements/_.txt* files
+  with *Pipfile\*
+- Update and sync Pipfile
+- Developer package updates (linting / docs / testing)
+
+  - isort 4.2.15 to 4.3.4
+  - flake8 3.3.0 to 3.5.0
+  - vulture 0.14 to 0.27
+  - sphinx 1.6.2 to 1.7.6
+  - alagitpull 0.0.12 to 0.0.21
+  - releases 1.3.1 to 1.6.1
+  - sphinx-argparse 0.2.1 to 1.6.2
+  - pytest 3.1.2 to 3.6.4
+
+- Move documentation over to numpy-style
+- Add sphinxcontrib-napoleon 0.6.1
+- Update LICENSE New BSD to MIT
+- All future commits and contributions are licensed to the
+  _cihai software foundation_. This includes commits by Tony Narlock (creator).
+
+## unihan-etl 0.9.5 (2017-06-26)
+
+- Enhance support for locations on _kHDZRadBreak_ fields.
+
+## unihan-etl 0.9.4 (2017-06-05)
+
+- Fix kIRG_GSource without location
+- Fix kFenn output
+- Fix kHanyuPinlu support output for n diacritics
+
+## unihan-etl 0.9.3 (2017-05-31)
+
+- Add expansion for kIRGKangXi
+
+## unihan-etl 0.9.2 (2017-05-31)
+
+- Normalize Radical-Stroke expansion for kRSUnicode
+- Migrate more fields to regular expressions
+- Normalize character field for kDaeJaweon, kHanyuPinyin,
+  and kCheungBauer, kFennIndex, kCheungBauerIndex, kIICore,
+  kIRGHanyuDaZidian
+
+## unihan-etl 0.9.1 (2017-05-27)
+
+- Support for expanding kGSR
+- Convert some field expansions to use regexes
+
+## unihan-etl 0.9.0 (2017-05-26)
+
+- Fix bug where destination file was made into directory on
+  first run
+- Rename from unihan-tabular to unihan-etl
+- Support for expanding multi-value fields
+- Support for pruning empty fields
+- Improve help dialog
+- Added a page about UNIHAN and the project to documentation
+- Split constant values into their own module
+- Split functionality for expanding unstructured values into
+  its own module
+
+## unihan-etl 0.8.1 (2017-05-20)
+
+- Update to add _kJa_ and adjust source file of
+  _kCompatibilityVariant_ per Unicode 8.0.0.
+
+## unihan-etl 0.8.0 (2017-05-17)
+
+- Support for configuring logging via options and CLI
+- Convert all print statements to use logger
+
+## unihan-etl 0.7.4 (2017-05-14)
+
+- Allow for local / file system sources for Unihan.zip
+- Only extract zip if unextracted
+
+## unihan-etl 0.7.3 (2017-05-13)
+
+- Update package classifiers
+
+## unihan-etl 0.7.2 (2017-05-13)
+
+- Add back datapackage
+
+## unihan-etl 0.7.1 (2017-05-12)
+
+- Fix python 2 CSV output
+- Default to CSV output
+
+## unihan-etl 0.7.0 (2017-05-12)
+
+- Move unicodecsv module to dependency package
+- Support for XDG directory specification
+- Support for custom destination output, including replacing
+  template variable `{ext}`
+
+## unihan-etl 0.6.3 (2017-05-11)
+
+- Move _**about**.py_ to module level
+
+## unihan-etl 0.6.2 (2017-05-11)
+
+- Fix python package import
+
+## unihan-etl 0.6.1 (2017-05-10)
+
+- Fix readme bug on pypi
+
+## unihan-etl 0.6.0 (2017-05-10)
+
+- Support for exporting in YAML and JSON
+- More internal factoring and simplification
+- Return data as list
+
+## unihan-etl 0.5.1 (2017-05-08)
+
+- Drop python 3.3 an 3.4 support
+
+## unihan-etl 0.5.0 (2017-05-08)
+
+- Rename from cihaidata_unihan unihan_tabular
+- Drop datapackages in favor of a universal JSON, YAML and CSV
+  export.
+- Only use UnicodeWriter in Python 2, fixes issue with python
+  would encode {}`b` in front of values
+
+## unihan-etl 0.4.2 (2017-05-07)
+
+- Rename _scripts/_ to _cihaidata_unihan/_
+
+## unihan-etl 0.4.1 (2017-05-07)
+
+- Enable invoking tool via `$ cihaidata_unihan`
+
+## unihan-etl 0.4.0 (2017-05-07)
+
+- Major internal refactor and simplification
+- Convert to pytest `assert` statements
+- Convert full test suite to pytest functions and fixtures
+- Get CLI documentation up again
+- Improve test coverage
+- Lint code, remove unused imports
+- Switch license BSD -> MIT
+
+## unihan-etl 0.3.0 (2017-04-17)
+
+- Rebooted
+- Modernize _Makefile_ in docs
+- Add Makefile to main project
+- Modernize package metadata to use _**about**.py_
+- Update requirements to use _requirements/_ folder for
+  base, testing and doc dependencies.
+- Update sphinx theme to alabaster with new logo.
+- Update travis to use coverall
+- Update links on README to use https
+- Update travis to test up to python 3.6
+- Add support for pypy (why not)
+- Lock base dependencies
+- Add dev dependencies for isort, vulture and flake8
+
+<!---
+vim: set filetype=markdown:
+-->

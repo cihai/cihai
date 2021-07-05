@@ -1,0 +1,59 @@
+#
+# Unihan_Variants.txt
+# Date: 2013-02-25 22:46:17 GMT [JHJ]
+# Unicode version: 6.3.0
+#
+# Unicode Character Database
+# Copyright (c) 1991-2013 Unicode, Inc.
+# For terms of use, see http://www.unicode.org/terms_of_use.html
+# For documentation, see http://www.unicode.org/reports/tr44/
+#
+# This file contains data on the following fields from the Unihan database:
+#	kCompatibilityVariant
+#	kSemanticVariant
+#	kSimplifiedVariant
+#	kSpecializedSemanticVariant
+#	kTraditionalVariant
+#	kZVariant
+#
+# For details on the file format, see http://www.unicode.org/reports/tr38/
+#
+U+3400	kSemanticVariant	U+4E18
+U+3405	kSemanticVariant	U+4E94<kMatthews
+U+342B	kSemanticVariant	U+51F6
+U+342E	kSemanticVariant	U+8944
+U+342F	kSemanticVariant	U+5EB8
+U+3431	kSemanticVariant	U+9B12<kMatthews
+U+3434	kSemanticVariant	U+6500
+U+343D	kTraditionalVariant	U+5051
+U+3441	kSemanticVariant	U+20B74
+U+3444	kSemanticVariant	U+4FAE<kMatthews
+U+3447	kTraditionalVariant	U+3473
+U+3448	kTraditionalVariant	U+5032
+U+344C	kSemanticVariant	U+5C29<kMatthews
+U+3454	kTraditionalVariant	U+346F
+U+345D	kSemanticVariant	U+22671<kMeyerWempe
+U+3469	kTraditionalVariant	U+5138
+U+346F	kSimplifiedVariant	U+3454
+U+3473	kSimplifiedVariant	U+3447
+U+3487	kSemanticVariant	U+511B<kMatthews
+U+348B	kSemanticVariant	U+5EDD<kMatthews U+53AE<kMatthews
+U+3493	kSimplifiedVariant	U+20242
+U+349A	kSemanticVariant	U+7A69<kFenn,kMatthews
+U+349A	kSpecializedSemanticVariant	U+6587<kFenn
+U+349E	kSemanticVariant	U+5136<kMatthews
+U+9F9F	kTraditionalVariant	U+9F9C
+U+9FA0	kSemanticVariant	U+7C65
+U+9FA1	kSemanticVariant	U+5439<kMatthews
+U+9FA2	kSemanticVariant	U+548A<kLau,kMatthews U+548C<kLau,kMatthews
+U+9FA2	kSpecializedSemanticVariant	U+548C<kFenn
+U+9FA2	kZVariant	U+548C
+U+9FA4	kSemanticVariant	U+8AE7<kMatthews
+U+9FA5	kSemanticVariant	U+7C72<kLau,kMatthews,kMeyerWempe
+U+9FAD	kSimplifiedVariant	U+29A0E
+U+9FAF	kSimplifiedVariant	U+28C46
+U+9FCC	kSemanticVariant	U+6DBC
+U+F900	kCompatibilityVariant	U+8C48
+U+F900	kZVariant	U+8C48
+
+# EOF

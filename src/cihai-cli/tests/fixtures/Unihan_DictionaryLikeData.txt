@@ -1,0 +1,50 @@
+#
+# Unihan_DictionaryLikeData.txt
+# Date: 2013-02-25 22:46:17 GMT [JHJ]
+# Unicode version: 6.3.0
+#
+# Unicode Character Database
+# Copyright (c) 1991-2013 Unicode, Inc.
+# For terms of use, see http://www.unicode.org/terms_of_use.html
+# For documentation, see http://www.unicode.org/reports/tr44/
+#
+# This file contains data on the following fields from the Unihan database:
+#	kCangjie
+#	kCheungBauer
+#	kCihaiT
+#	kFenn
+#	kFourCornerCode
+#	kFrequency
+#	kGradeLevel
+#	kHDZRadBreak
+#	kHKGlyph
+#	kPhonetic
+#	kTotalStrokes
+#
+# For details on the file format, see http://www.unicode.org/reports/tr38/
+#
+U+3400	kCangjie	TM
+U+3400	kTotalStrokes	5
+U+3401	kCangjie	MOW
+U+3401	kCihaiT	37.103
+U+3401	kTotalStrokes	6
+U+34BB	kTotalStrokes	11
+U+34BC	kCangjie	TLBO
+U+34BC	kCheungBauer	055/08;TLBO;mang4
+U+34BC	kCihaiT	165.501
+U+34BC	kFenn	563P
+U+34BC	kPhonetic	928
+UU+4E00	kFourCornerCode	1000.0
+U+4E00	kFrequency	1
+U+4E00	kGradeLevel	1
+U+4E00	kHDZRadBreak	⼀[U+2F00]:10001.010
+U+4E00	kHKGlyph	0001
+U+4E00	kPhonetic	1499
+U+4E00	kTotalStrokes	1
+U+4E01	kCangjie	MN
+U+4E01	kCihaiT	6.301
+U+4E01	kFenn	2C
+U+4E01	kFourCornerCode	1020.0
+U+4E01	kFrequency	4
+
+# EOF

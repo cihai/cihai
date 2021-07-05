@@ -1,0 +1,113 @@
+#
+# Unihan_OtherMappings.txt
+# Date: 2013-02-25 22:46:17 GMT [JHJ]
+# Unicode version: 6.3.0
+#
+# Unicode Character Database
+# Copyright (c) 1991-2013 Unicode, Inc.
+# For terms of use, see http://www.unicode.org/terms_of_use.html
+# For documentation, see http://www.unicode.org/reports/tr44/
+#
+# This file contains data on the following fields from the Unihan database:
+#	kBigFive
+#	kCCCII
+#	kCNS1986
+#	kCNS1992
+#	kEACC
+#	kGB0
+#	kGB1
+#	kGB3
+#	kGB5
+#	kGB7
+#	kGB8
+#	kHKSCS
+#	kIBMJapan
+#	kJis0
+#	kJis1
+#	kJIS0213
+#	kKPS0
+#	kKPS1
+#	kKSC0
+#	kKSC1
+#	kMainlandTelegraph
+#	kPseudoGB1
+#	kTaiwanTelegraph
+#	kXerox
+#
+# For details on the file format, see http://www.unicode.org/reports/tr38/
+#
+U+3402	kJIS0213	1,14,03
+U+3406	kJIS0213	2,01,13
+U+4DB5	kKPS1	9294
+U+4E00	kCCCII	213021
+U+4E00	kCNS1986	1-4421
+U+4E00	kCNS1992	1-4421
+U+4E00	kEACC	213021
+U+4E00	kGB0	5027
+U+4E00	kGB1	5027
+U+4E00	kJis0	1676
+U+4E00	kKPS0	FCD6
+U+4E00	kKSC0	7673
+U+4E00	kMainlandTelegraph	0001
+U+4E00	kTaiwanTelegraph	0001
+U+4E00	kXerox	241:042
+U+4E01	kBigFive	A442
+U+4E01	kCCCII	213022
+U+4E01	kCNS1986	1-4423
+U+4E01	kCNS1992	1-4423
+U+4E01	kEACC	213022
+U+4E01	kGB0	2201
+U+4E01	kGB1	2201
+U+4E01	kJis0	3590
+U+4E01	kKPS0	E8B9
+U+4E01	kKSC0	7943
+U+4E01	kMainlandTelegraph	0002
+U+4E01	kTaiwanTelegraph	0002
+U+4E01	kXerox	250:132
+U+4E02	kCCCII	236123
+U+4E02	kGB5	1601
+U+4E02	kJIS0213	2,01,02
+U+4E02	kJis1	1601
+U+4E03	kBigFive	A443
+U+4E03	kCCCII	213023
+U+4E03	kCNS1986	1-4424
+U+4E03	kCNS1992	1-4424
+U+4E03	kEACC	213023
+U+4E0C	kGB1	5602
+U+4E0C	kJis1	1604
+U+4E0C	kTaiwanTelegraph	8002
+U+4E1F	kJis1	1606
+U+4E1F	kKSC1	7742
+U+4E1F	kTaiwanTelegraph	0016
+U+4E08	kMainlandTelegraph	0004
+U+4E08	kTaiwanTelegraph	0004
+U+4E08	kXerox	246:341
+U+4E03	kGB0	3863
+U+4E03	kGB1	3863
+U+4E03	kJis0	2823
+U+4E03	kKPS0	EFA6
+U+4E03	kKSC0	8650
+U+4E03	kMainlandTelegraph	0003
+U+4E03	kTaiwanTelegraph	0003
+U+4E03	kXerox	241:345
+U+4E04	kCCCII	2D3026
+U+4E04	kCNS1986	E-2126
+U+4E04	kCNS1992	3-2126
+U+4E04	kHKSCS	9EB3
+U+4E04	kJis1	1602
+U+4E05	kCCCII	2D3025
+U+4E05	kCNS1986	E-2125
+U+4E05	kCNS1992	3-2125
+U+4E05	kJis1	1603
+U+4E06	kPseudoGB1	9329
+U+4E07	kBigFive	C945
+U+4E28	kIBMJapan	FA68
+U+4E28	kJIS0213	1,14,04
+U+4E07	kCCCII	216421
+U+4E07	kCNS1986	2-2126
+U+4E07	kCNS1992	2-2126
+U+4E07	kEACC	274F22
+U+4E07	kGB0	4582
+U+4E0F	kEACC	216424
+
+# EOF

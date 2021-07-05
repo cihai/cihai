@@ -1,0 +1,668 @@
+{
+  "name": "unihan-etl",
+	"title": "Unicode Han Database (Unihan)",
+	"licenses": [
+	{
+		"url": "http://www.unicode.org/copyright.html#Exhibit1",
+		"name": "UNICODE, INC. LICENSE AGREEMENT - DATA FILES AND SOFTWARE"
+	}
+	],
+	"sources": [{
+		"web": "http://www.unicode.org/Public/UNIDATA/Unihan.zip"
+	}],
+  "resources": [
+    {
+      "name": "unihan",
+			 "path": "https://github.com/cihai/cihaidata-unihan/releases/download/v0.7.2/unihan.csv",
+      "schema": {
+				"primaryKey": "char",
+        "fields": [
+          {
+            "name": "ucn",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "char",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kAccountingNumeric",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kBigFive",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kCCCII",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kCNS1986",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kCNS1992",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kCangjie",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kCantonese",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kCheungBauer",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kCheungBauerIndex",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kCihaiT",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kCompatibilityVariant",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kCowles",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kDaeJaweon",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kDefinition",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kEACC",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kFenn",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kFennIndex",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kFourCornerCode",
+            "title": "",
+            "description": "",
+            "type": "integer",
+            "format": "default"
+          },
+          {
+            "name": "kFrequency",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kGB0",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kGB1",
+            "title": "",
+            "description": "",
+            "type": "number",
+            "format": "default"
+          },
+          {
+            "name": "kGB3",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kGB5",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kGB7",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kGB8",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kGSR",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kGradeLevel",
+            "title": "",
+            "description": "",
+            "type": "number",
+            "format": "default"
+          },
+          {
+            "name": "kHDZRadBreak",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kHKGlyph",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kHKSCS",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kHanYu",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kHangul",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kHanyuPinlu",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kHanyuPinyin",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kIBMJapan",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kIICore",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kIRGDaeJaweon",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kIRGDaiKanwaZiten",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kIRGHanyuDaZidian",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kIRGKangXi",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kIRG_GSource",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kIRG_HSource",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kIRG_JSource",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kIRG_KPSource",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kIRG_KSource",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kIRG_MSource",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kIRG_TSource",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kIRG_USource",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kIRG_VSource",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kJIS0213",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kJapaneseKun",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kJapaneseOn",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kJis0",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kJis1",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kKPS0",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kKPS1",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kKSC0",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kKSC1",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kKangXi",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kKarlgren",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kKorean",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kLau",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kMainlandTelegraph",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kMandarin",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kMatthews",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kMeyerWempe",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kMorohashi",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kNelson",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kOtherNumeric",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kPhonetic",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kPrimaryNumeric",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kPseudoGB1",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kRSAdobe_Japan1_6",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kRSJapanese",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kRSKanWa",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kRSKangXi",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kRSKorean",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kRSUnicode",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kSBGY",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kSemanticVariant",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kSimplifiedVariant",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kSpecializedSemanticVariant",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kTaiwanTelegraph",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kTang",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kTotalStrokes",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kTraditionalVariant",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kVietnamese",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kXHC1983",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kXerox",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "kZVariant",
+            "title": "",
+            "description": "",
+            "type": "string",
+            "format": "default"
+          }
+        ]
+      }
+    }
+  ]
+}
