@@ -40,7 +40,7 @@ Repository = "https://github.com/cihai/cihai"
 python = "^3.6"
 click = ">=7<8"
 kaptan = "*"
-sqlalchemy = "<1.4"
+sqlalchemy = "<1.5"
 appdirs = "*"
 unihan-etl = "~=0.13.0"
 cihai-cli = {version="*", optional=true}
