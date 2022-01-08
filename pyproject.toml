@@ -37,7 +37,7 @@ Documentation = "https://cihai.git-pull.com"
 Repository = "https://github.com/cihai/cihai"
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = "^3.7"
 click = ">=7<8"
 kaptan = "*"
 sqlalchemy = "<1.4"
@@ -49,10 +49,9 @@ cihai-cli = {version="*", optional=true}
 ### Docs ###
 sphinx = "*"
 alagitpull = "^0.1.0"
-sphinx-issues = "^1.2.0"
 sphinx-argparse = "^0.2.5"
-sphinx-autodoc-typehints = "^1.12.0"
-myst_parser = "^0.15.0"
+sphinx-autodoc-typehints = "~1.14.1"
+myst_parser = "~0.16.1"
 
 ### Testing ###
 pytest = "*"
@@ -64,7 +63,7 @@ coverage = "*"
 pytest-cov = "*"
 
 ### Format ###
-black = {version="==21.9b0", python="^3.6.2"}
+black = "==21.12b0"
 isort = "*"
 
 ### Lint ###
@@ -72,8 +71,12 @@ flake8 = "*"
 
 [tool.poetry.extras]
 "cli" = ["cihai-cli"]
-docs = ["sphinx", "myst_parser", "sphinx-issues", "sphinx-argparse", "alagitpull", "sphinx-autodoc-typehints"]
+docs = ["sphinx", "myst_parser", "sphinx-argparse", "alagitpull", "sphinx-autodoc-typehints"]
 test = ["pytest", "pytest-rerunfailures"]
 coverage = ["codecov", "coverage", "pytest-cov"]
 format = ["black", "isort"]
 lint = ["flake8"]
+
+[build-system]
+requires = ["poetry_core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
