@@ -23,13 +23,15 @@ classifiers = [
   "Topic :: Software Development :: Internationalization"
 ]
 keywords = ["unihan", "sqlalchemy", "library", "cjk", "unicode"]
-
+homepage = "https://cihai.git-pull.com"
+readme = "README.md"
 packages = [
     { include = "cihai" }
 ]
+include = [
+    { path = "tests", format = "sdist" }
+]
 
-homepage = "https://cihai.git-pull.com"
-readme = "README.md"
 
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/cihai/cihai/issues"
