@@ -31,29 +31,29 @@ class ImportStringError(ImportError, CihaiException):
         self.exception = exception
 
         msg = (
-            'import_string() failed for %r. Possible reasons are:\n\n'
-            '- missing __init__.py in a package;\n'
-            '- package or module path not included in sys.path;\n'
-            '- duplicated package or module name taking precedence in '
-            'sys.path;\n'
-            '- missing module, class, function or variable;\n\n'
-            'Debugged import:\n\n%s\n\n'
-            'Original exception:\n\n%s: %s'
+            "import_string() failed for %r. Possible reasons are:\n\n"
+            "- missing __init__.py in a package;\n"
+            "- package or module path not included in sys.path;\n"
+            "- duplicated package or module name taking precedence in "
+            "sys.path;\n"
+            "- missing module, class, function or variable;\n\n"
+            "Debugged import:\n\n%s\n\n"
+            "Original exception:\n\n%s: %s"
         )
 
-        name = ''
+        name = ""
         tracked = []
-        for part in import_name.replace(':', '.').split('.'):
-            name += (name and '.') + part
+        for part in import_name.replace(":", ".").split("."):
+            name += (name and ".") + part
             imported = import_string(name, silent=True)
             if imported:
-                tracked.append((name, getattr(imported, '__file__', None)))
+                tracked.append((name, getattr(imported, "__file__", None)))
             else:
-                track = ['- %r found in %r.' % (n, i) for n, i in tracked]
-                track.append('- %r not found.' % name)
+                track = ["- %r found in %r." % (n, i) for n, i in tracked]
+                track.append("- %r not found." % name)
                 msg = msg % (
                     import_name,
-                    '\n'.join(track),
+                    "\n".join(track),
                     exception.__class__.__name__,
                     str(exception),
                 )
@@ -62,7 +62,7 @@ class ImportStringError(ImportError, CihaiException):
         ImportError.__init__(self, msg)
 
     def __repr__(self):
-        return '<%s(%r, %r)>' % (
+        return "<%s(%r, %r)>" % (
             self.__class__.__name__,
             self.import_name,
             self.exception,

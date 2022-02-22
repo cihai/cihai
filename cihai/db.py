@@ -10,7 +10,7 @@ class Database(object):
     """
 
     def __init__(self, config):
-        self.engine = create_engine(config['database']['url'])
+        self.engine = create_engine(config["database"]["url"])
 
         self.metadata = MetaData()
         self.metadata.bind = self.engine

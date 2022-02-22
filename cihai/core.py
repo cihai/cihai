@@ -90,10 +90,10 @@ class Cihai(object):
         self.bootstrap()
 
     def bootstrap(self):
-        for namespace, class_string in self.config.get('datasets', {}).items():
+        for namespace, class_string in self.config.get("datasets", {}).items():
             self.add_dataset(class_string, namespace)
 
-        for dataset, plugins in self.config.get('plugins', {}).items():
+        for dataset, plugins in self.config.get("plugins", {}).items():
             for namespace, class_string in plugins.items():
                 getattr(self, dataset).add_plugin(class_string, namespace)
 
@@ -130,13 +130,13 @@ class Cihai(object):
         if config_path:
             if not os.path.exists(config_path):
                 raise exc.CihaiException(
-                    '{0} does not exist.'.format(os.path.abspath(config_path))
+                    "{0} does not exist.".format(os.path.abspath(config_path))
                 )
             if not any(
-                config_path.endswith(ext) for ext in ('json', 'yml', 'yaml', 'ini')
+                config_path.endswith(ext) for ext in ("json", "yml", "yaml", "ini")
             ):
                 raise exc.CihaiException(
-                    '{0} does not have a yaml,yml,json,ini extend.'.format(
+                    "{0} does not have a yaml,yml,json,ini extend.".format(
                         os.path.abspath(config_path)
                     )
                 )

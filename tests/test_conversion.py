@@ -9,7 +9,7 @@ from cihai._compat import string_types, text_type
 
 
 def test_text_type():
-    c1 = '(same as U+7A69 穩) firm; stable; secure'
+    c1 = "(same as U+7A69 穩) firm; stable; secure"
     c2 = text_type()
 
     assert isinstance(c1, string_types)
@@ -33,8 +33,8 @@ U+356D	kCantonese	au3 jaau1
 
 
 def test_ucn_from_unicode():
-    text = '一'
-    python_unicode = u'\u4e00'
+    text = "一"
+    python_unicode = "\u4e00"
 
     expected = "U+4E00"
     bytes_expected = b"U+4E00"
@@ -47,8 +47,8 @@ def test_ucn_from_unicode():
 
 
 def test_ucn_from_unicode_16():
-    text = '𦄀'
-    python_unicode = u'\u26100'
+    text = "𦄀"
+    python_unicode = "\u26100"
 
     expected = "U+26100"
     bytes_expected = b"U+26100"
@@ -61,8 +61,8 @@ def test_ucn_from_unicode_16():
 
 
 def test_ucn_to_unicode():
-    before = 'U+4E00'
-    expected = '\u4e00'
+    before = "U+4E00"
+    expected = "\u4e00"
 
     result = conversion.ucn_to_unicode(before)
 
@@ -71,16 +71,16 @@ def test_ucn_to_unicode():
     assert isinstance(result, text_type)
 
     # wide character
-    before = 'U+20001'
-    expected = '\U00020001'
+    before = "U+20001"
+    expected = "\U00020001"
 
     result = conversion.ucn_to_unicode(before)
 
     assert result == expected
     assert isinstance(result, text_type)
 
-    before = '(same as U+7A69 穩) firm; stable; secure'
-    expected = '(same as 穩 穩) firm; stable; secure'
+    before = "(same as U+7A69 穩) firm; stable; secure"
+    expected = "(same as 穩 穩) firm; stable; secure"
 
     result = conversion.ucnstring_to_unicode(before)
 
@@ -97,13 +97,13 @@ def test_ucn_to_unicode():
 
 
 def test_hexd():
-    assert conversion.hexd(0xFFFF) == 'ffff'
+    assert conversion.hexd(0xFFFF) == "ffff"
 
 
 def test_euc_from_unicode():
-    expected = '一'  # u'\u4e00'
-    euc_bytestring = b'd2bb'
-    euc_unicode = 'd2bb'
+    expected = "一"  # u'\u4e00'
+    euc_bytestring = b"d2bb"
+    euc_unicode = "d2bb"
 
     result = conversion.python_to_euc(expected, as_bytes=True)
 
@@ -117,8 +117,8 @@ def test_euc_from_unicode():
 
 
 def test_euc_to_utf8():
-    expected = '一'
-    euc_bytestring = b'b0ec'
+    expected = "一"
+    euc_bytestring = b"b0ec"
 
     result = conversion.euc_to_utf8(euc_bytestring)
 
@@ -126,9 +126,9 @@ def test_euc_to_utf8():
 
 
 def test_euc_to_unicode():
-    expected = '一'
-    expected_ustring = u'\u4e00'
-    euc_bytestring = b'd2bb'
+    expected = "一"
+    expected_ustring = "\u4e00"
+    euc_bytestring = b"d2bb"
 
     result = conversion.euc_to_unicode(euc_bytestring)
 

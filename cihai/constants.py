@@ -1,11 +1,11 @@
 #: Default configuration
 DEFAULT_CONFIG = {
     "debug": False,
-    "database": {"url": 'sqlite:///{user_data_dir}/cihai.db'},
+    "database": {"url": "sqlite:///{user_data_dir}/cihai.db"},
     "dirs": {
-        "cache": '{user_cache_dir}',
-        "log": '{user_log_dir}',
-        "data": '{user_data_dir}',
+        "cache": "{user_cache_dir}",
+        "log": "{user_log_dir}",
+        "data": "{user_data_dir}",
     },
 }
 

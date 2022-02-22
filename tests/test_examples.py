@@ -22,7 +22,7 @@ def test_basic_usage(unihan_options, capsys):
 
     captured = capsys.readouterr()
 
-    assert 'lookup for 好: good' in captured.out
+    assert "lookup for 好: good" in captured.out
     assert 'matches for "good": 好' in captured.out
 
 
@@ -31,5 +31,5 @@ def test_basic_usage_manual(unihan_options, capsys):
 
     captured = capsys.readouterr()
 
-    assert 'lookup for 好: good' in captured.out
+    assert "lookup for 好: good" in captured.out
     assert 'matches for "good": 好' in captured.out

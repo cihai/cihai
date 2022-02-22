@@ -94,6 +94,6 @@ class UnihanVariants(DatasetPlugin):
             """
             return parse_untagged(getattr(table, col))
 
-        if hasattr(self.sql.base.classes, 'Unihan'):
+        if hasattr(self.sql.base.classes, "Unihan"):
             self.sql.base.classes.Unihan.tagged_vars = tagged_vars
             self.sql.base.classes.Unihan.untagged_vars = untagged_vars

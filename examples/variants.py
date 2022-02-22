@@ -18,7 +18,7 @@ def run(unihan_options={}):
         c.unihan.bootstrap(unihan_options)
 
     c.unihan.add_plugin(
-        'cihai.data.unihan.dataset.UnihanVariants', namespace='variants'
+        "cihai.data.unihan.dataset.UnihanVariants", namespace="variants"
     )
 
     print("## ZVariants")
@@ -31,5 +31,5 @@ def run(unihan_options={}):
     variant_list(c.unihan, "kSpecializedSemanticVariant")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     run()

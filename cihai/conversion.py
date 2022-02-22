@@ -104,7 +104,7 @@ def euc_to_python(hexstr):
     """
     hi = hexstr[0:2]
     lo = hexstr[2:4]
-    gb_enc = b'\\x' + hi + b'\\x' + lo
+    gb_enc = b"\\x" + hi + b"\\x" + lo
     return gb_enc.decode("gb2312")
 
 
@@ -113,11 +113,11 @@ def euc_to_utf8(euchex):
     Convert EUC hex (e.g. "d2bb") to UTF8 hex (e.g. "e4 b8 80").
     """
     utf8 = euc_to_python(euchex).encode("utf-8")
-    uf8 = utf8.decode('unicode_escape')
+    uf8 = utf8.decode("unicode_escape")
 
-    uf8 = uf8.encode('latin1')
+    uf8 = uf8.encode("latin1")
 
-    uf8 = uf8.decode('euc-jp')
+    uf8 = uf8.decode("euc-jp")
     return uf8
 
 
@@ -129,8 +129,8 @@ def ucn_to_unicode(ucn):
     if isinstance(ucn, string_types):
         ucn = ucn.strip("U+")
         if len(ucn) > int(4):
-            char = b'\\U' + format(int(ucn, 16), '08x').encode('latin1')
-            char = char.decode('unicode_escape')
+            char = b"\\U" + format(int(ucn, 16), "08x").encode("latin1")
+            char = char.decode("unicode_escape")
         else:
             char = unichr(int(ucn, 16))
     else:
@@ -173,15 +173,15 @@ def euc_to_unicode(hexstr):
     lo = hexstr[2:4]
     # hi and lo are only 2 characters long, no risk with eval-ing them
 
-    gb_enc = b'\\x' + hi + b'\\x' + lo
+    gb_enc = b"\\x" + hi + b"\\x" + lo
     assert isinstance(gb_enc, bytes)
 
     # Requires coercing back to text_type in 2.7
-    gb_enc = gb_enc.decode('unicode_escape')
+    gb_enc = gb_enc.decode("unicode_escape")
 
-    gb_enc = gb_enc.encode('latin1')
+    gb_enc = gb_enc.encode("latin1")
 
-    gb_enc = gb_enc.decode('gb2312')
+    gb_enc = gb_enc.decode("gb2312")
 
     assert isinstance(gb_enc, text_type)
     return gb_enc
@@ -197,15 +197,15 @@ def python_to_ucn(uni_char, as_bytes=False):
     Converts a one character Python unicode string (e.g. u'\\u4e00') to the
     corresponding Unicode UCN ('U+4E00').
     """
-    ucn = uni_char.encode('unicode_escape').decode('latin1')
-    ucn = text_type(ucn).replace('\\', '').upper().lstrip('U')
+    ucn = uni_char.encode("unicode_escape").decode("latin1")
+    ucn = text_type(ucn).replace("\\", "").upper().lstrip("U")
     if len(ucn) > int(4):
         # get rid of the zeroes that Python uses to pad 32 byte UCNs
         ucn = ucn.lstrip("0")
     ucn = "U+" + ucn.upper()
 
     if as_bytes:
-        ucn = ucn.encode('latin1')
+        ucn = ucn.encode("latin1")
 
     return ucn
 
@@ -220,7 +220,7 @@ def python_to_euc(uni_char, as_bytes=False):
     euc = repr(uni_char.encode("gb2312"))[1:-1].replace("\\x", "").strip("'")
 
     if as_bytes:
-        euc = euc.encode('utf-8')
+        euc = euc.encode("utf-8")
         assert isinstance(euc, bytes)
 
     return euc
@@ -228,7 +228,7 @@ def python_to_euc(uni_char, as_bytes=False):
 
 def ucnstring_to_unicode(ucn_string):
     """Return ucnstring as Unicode."""
-    ucn_string = ucnstring_to_python(ucn_string).decode('utf-8')
+    ucn_string = ucnstring_to_python(ucn_string).decode("utf-8")
 
     assert isinstance(ucn_string, text_type)
     return ucn_string
@@ -243,7 +243,7 @@ def ucnstring_to_python(ucn_string):
     for r in res:
         ucn_string = ucn_string.replace(text_type(r), text_type(ucn_to_unicode(r)))
 
-    ucn_string = ucn_string.encode('utf-8')
+    ucn_string = ucn_string.encode("utf-8")
 
     assert isinstance(ucn_string, bytes)
     return ucn_string

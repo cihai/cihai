@@ -20,7 +20,7 @@ class DatasetExample(object):
         :rtype: dict
 
         """
-        dataset = {'好': {'definition': 'hao'}}
+        dataset = {"好": {"definition": "hao"}}
 
         if request in dataset:
             response.update(dataset[request])
@@ -46,7 +46,7 @@ class DatasetExample(object):
         :rtype: dict
 
         """
-        dataset = {'好': {'definition': 'hao'}}
+        dataset = {"好": {"definition": "hao"}}
 
         for char, key in dataset.items():
             for key, val in dataset[char].items():

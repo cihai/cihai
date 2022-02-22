@@ -19,16 +19,16 @@ def bootstrap_unihan(metadata, options={}):
     metadata.bind.execute(table.insert(), data)
 
 
-TABLE_NAME = 'Unihan'
+TABLE_NAME = "Unihan"
 
 
 def flatten_datasets(d):
     return sorted({c for cs in d.values() for c in cs})
 
 
-DEFAULT_COLUMNS = ['ucn', 'char']
+DEFAULT_COLUMNS = ["ucn", "char"]
 try:
-    DEFAULT_FIELDS = [f for t, f in UNIHAN_MANIFEST.items() if t in ['Unihan']]
+    DEFAULT_FIELDS = [f for t, f in UNIHAN_MANIFEST.items() if t in ["Unihan"]]
 except Exception:
     DEFAULT_FIELDS = [f for t, f in UNIHAN_MANIFEST.items()]
 
@@ -66,8 +66,8 @@ def create_unihan_table(columns, metadata):
     if TABLE_NAME not in metadata.tables:
         table = Table(TABLE_NAME, metadata)
 
-        table.append_column(Column('char', String(12), primary_key=True))
-        table.append_column(Column('ucn', String(12), primary_key=True))
+        table.append_column(Column("char", String(12), primary_key=True))
+        table.append_column(Column("ucn", String(12), primary_key=True))
 
         for column_name in columns:
             col = Column(column_name, String(256), nullable=True)

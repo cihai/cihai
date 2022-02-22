@@ -38,12 +38,12 @@ def expand_config(d, dirs):
         Standard library functions for expanding variables. Same concept, used inside.
     """
     context = {
-        'user_cache_dir': dirs.user_cache_dir,
-        'user_config_dir': dirs.user_config_dir,
-        'user_data_dir': dirs.user_data_dir,
-        'user_log_dir': dirs.user_log_dir,
-        'site_config_dir': dirs.site_config_dir,
-        'site_data_dir': dirs.site_data_dir,
+        "user_cache_dir": dirs.user_cache_dir,
+        "user_config_dir": dirs.user_config_dir,
+        "user_data_dir": dirs.user_data_dir,
+        "user_log_dir": dirs.user_log_dir,
+        "site_config_dir": dirs.site_config_dir,
+        "site_data_dir": dirs.site_data_dir,
     }
 
     for k, v in d.items():
@@ -55,7 +55,7 @@ def expand_config(d, dirs):
 
 
 class Configurator(object):
-    def __init__(self, namespace=''):
+    def __init__(self, namespace=""):
         """
         Manage config. Provides facilities for loading / writing configs.
 

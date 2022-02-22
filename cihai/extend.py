@@ -94,10 +94,10 @@ class Dataset(object):
         setattr(self, namespace, _cls())
         plugin = getattr(self, namespace)
 
-        if hasattr(self, 'sql') and isinstance(self, SQLAlchemyMixin):
+        if hasattr(self, "sql") and isinstance(self, SQLAlchemyMixin):
             plugin.sql = self.sql
 
-        if bootstrap and hasattr(plugin, 'bootstrap') and callable(plugin.bootstrap):
+        if bootstrap and hasattr(plugin, "bootstrap") and callable(plugin.bootstrap):
             plugin.bootstrap()
 
 

@@ -8,7 +8,7 @@ def run(unihan_options={}):
         c.unihan.bootstrap(unihan_options)
 
     c.unihan.add_plugin(
-        'cihai.data.unihan.dataset.UnihanVariants', namespace='variants'
+        "cihai.data.unihan.dataset.UnihanVariants", namespace="variants"
     )
 
     print(
@@ -33,5 +33,5 @@ def run(unihan_options={}):
             print("t2s: {}".format(simp_var))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     run()

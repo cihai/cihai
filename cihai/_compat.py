@@ -18,9 +18,9 @@ if PY2:
     from StringIO import StringIO
 
     def console_to_str(s):
-        return s.decode('utf_8')
+        return s.decode("utf_8")
 
-    exec('def reraise(tp, value, tb=None):\n raise tp, value, tb')
+    exec("def reraise(tp, value, tb=None):\n raise tp, value, tb")
 
 else:
     unichr = chr
@@ -41,7 +41,7 @@ else:
         try:
             return s.decode(console_encoding)
         except UnicodeDecodeError:
-            return s.decode('utf_8')
+            return s.decode("utf_8")
 
     def reraise(tp, value, tb=None):
         if value.__traceback__ is not tb:
