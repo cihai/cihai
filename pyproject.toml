@@ -1,6 +1,3 @@
-[tool.black]
-skip-string-normalization = true
-
 [tool.poetry]
 name = "cihai"
 version = "0.12.0"

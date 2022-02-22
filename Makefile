@@ -13,7 +13,7 @@ isort:
 	poetry run isort `${PY_FILES}`
 
 black:
-	poetry run black `${PY_FILES}` --skip-string-normalization
+	poetry run black `${PY_FILES}`
 
 test:
 	poetry run py.test $(test)
