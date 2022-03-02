@@ -37,7 +37,6 @@ Repository = "https://github.com/cihai/cihai"
 
 [tool.poetry.dependencies]
 python = "^3.7"
-click = ">=7<8"
 kaptan = "*"
 sqlalchemy = "<1.4"
 appdirs = "*"
