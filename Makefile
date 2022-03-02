@@ -18,6 +18,9 @@ black:
 test:
 	poetry run py.test $(test)
 
+start:
+	$(MAKE) test && poetry run ptw .
+
 watch_test:
 	if command -v entr > /dev/null; then ${PY_FILES} | entr -c $(MAKE) test; else $(MAKE) test entr_warn; fi
 
@@ -35,6 +38,12 @@ serve_docs:
 
 dev_docs:
 	$(MAKE) -j watch_docs serve_docs
+
+start_docs:
+	$(MAKE) -C docs start
+
+design_docs:
+	$(MAKE) -C docs design
 
 flake8:
 	poetry run flake8
