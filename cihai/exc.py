@@ -49,7 +49,7 @@ class ImportStringError(ImportError, CihaiException):
             if imported:
                 tracked.append((name, getattr(imported, "__file__", None)))
             else:
-                track = ["- %r found in %r." % (n, i) for n, i in tracked]
+                track = [f"- {n!r} found in {i!r}." for n, i in tracked]
                 track.append("- %r not found." % name)
                 msg = msg % (
                     import_name,
@@ -62,7 +62,7 @@ class ImportStringError(ImportError, CihaiException):
         ImportError.__init__(self, msg)
 
     def __repr__(self):
-        return "<%s(%r, %r)>" % (
+        return "<{}({!r}, {!r})>".format(
             self.__class__.__name__,
             self.import_name,
             self.exception,

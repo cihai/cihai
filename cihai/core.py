@@ -15,7 +15,7 @@ from .utils import import_string, merge_dict
 log = logging.getLogger(__name__)
 
 
-class Cihai(object):
+class Cihai:
     """
     Central application object.
 
@@ -130,13 +130,13 @@ class Cihai(object):
         if config_path:
             if not os.path.exists(config_path):
                 raise exc.CihaiException(
-                    "{0} does not exist.".format(os.path.abspath(config_path))
+                    f"{os.path.abspath(config_path)} does not exist."
                 )
             if not any(
                 config_path.endswith(ext) for ext in ("json", "yml", "yaml", "ini")
             ):
                 raise exc.CihaiException(
-                    "{0} does not have a yaml,yml,json,ini extend.".format(
+                    "{} does not have a yaml,yml,json,ini extend.".format(
                         os.path.abspath(config_path)
                     )
                 )

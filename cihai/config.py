@@ -54,7 +54,7 @@ def expand_config(d, dirs):
             d[k] = d[k].format(**context)
 
 
-class Configurator(object):
+class Configurator:
     def __init__(self, namespace=""):
         """
         Manage config. Provides facilities for loading / writing configs.
@@ -92,7 +92,6 @@ class Configurator(object):
 
         This is based on XDG. So it will look for
         """
-        pass
 
     @property
     def file(self):
@@ -107,7 +106,6 @@ class Configurator(object):
         """Returns the difference of whatever user customizations differ from
         cihai.constants.DEFAULT_CONFIG.
         """
-        pass
 
     def write(self, **updates):
         """If no delta is created from DEFAULT, it not write.
@@ -117,4 +115,3 @@ class Configurator(object):
         if updates:
             self._data.update(**updates)
         # save file
-        pass

@@ -16,7 +16,7 @@ from . import utils
 from ._compat import string_types
 
 
-class ConfigMixin(object):
+class ConfigMixin:
     """
     This piggybacks cihai's global config state, as well as your datasets.
 
@@ -48,7 +48,7 @@ class ConfigMixin(object):
     """
 
 
-class SQLAlchemyMixin(object):
+class SQLAlchemyMixin:
     """Your dataset can use any backend you'd like, we provide a backend for you, that
     automatically piggybacks on cihai's zero-config, XDG / SQLAchemy configuration. So
     it's preconfigured for the user.
@@ -76,7 +76,7 @@ class SQLAlchemyMixin(object):
     base = None
 
 
-class Dataset(object):
+class Dataset:
     """
     Cihai dataset, e.g. UNIHAN.
 
@@ -101,7 +101,7 @@ class Dataset(object):
             plugin.bootstrap()
 
 
-class DatasetPlugin(object):
+class DatasetPlugin:
     """
     Extend the functionality of datasets with custom methods, actions, etc.
 
