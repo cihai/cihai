@@ -13,3 +13,9 @@ repos:
     rev: 4.0.1
     hooks:
     - id: flake8
+-   id: codespell
+    name: codespell
+    description: Checks for common misspellings in text files.
+    entry: codespell
+    language: python
+    types: [text]
