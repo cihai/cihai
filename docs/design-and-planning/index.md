@@ -12,8 +12,7 @@
 
 ## Late 2013
 
-These were part of the initial brain storming the project and
-preserved for historic purposes only.
+These were part of the initial brain storming the project and preserved for historic purposes only.
 
 - {ref}`design-and-planning/2013/extending`
 - {ref}`design-and-planning/2013/internals`

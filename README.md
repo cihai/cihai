@@ -1,5 +1,4 @@
-_cihai_ - Python library for
-[CJK](https://cihai.git-pull.com/glossary.html#term-cjk) (chinese,
+_cihai_ - Python library for [CJK](https://cihai.git-pull.com/glossary.html#term-cjk) (chinese,
 japanese, korean) data
 
 [![Python Package](https://img.shields.io/pypi/v/cihai.svg)](http://badge.fury.io/py/cihai)
@@ -8,8 +7,7 @@ japanese, korean) data
 [![Code Coverage](https://codecov.io/gh/cihai/cihai/branch/master/graph/badge.svg)](https://codecov.io/gh/cihai/cihai)
 [![License](https://img.shields.io/github/license/cihai/cihai.svg)](https://github.com/cihai/cihai/blob/master/LICENSE)
 
-This project is under active development. Follow our progress and check
-back for updates!
+This project is under active development. Follow our progress and check back for updates!
 
 ## Usage
 
@@ -76,12 +74,10 @@ ucn: U+5715
 
 ### UNIHAN data
 
-All datasets that cihai uses have stand-alone tools to export their
-data. No library required.
+All datasets that cihai uses have stand-alone tools to export their data. No library required.
 
-- [unihan-etl](https://unihan-etl.git-pull.com) -
-  [UNIHAN](http://unicode.org/charts/unihan.html) data exports for
-  csv, yaml and json.
+- [unihan-etl](https://unihan-etl.git-pull.com) - [UNIHAN](http://unicode.org/charts/unihan.html)
+  data exports for csv, yaml and json.
 
 ## Developing
 
@@ -99,8 +95,8 @@ Makefile commands prefixed with `watch_` will watch files and rerun.
 
 `poetry run py.test`
 
-Helpers: `make test` Rerun tests on file change: `make watch_test`
-(requires [entr(1)](http://eradman.com/entrproject/))
+Helpers: `make test` Rerun tests on file change: `make watch_test` (requires
+[entr(1)](http://eradman.com/entrproject/))
 
 ### Documentation
 
@@ -110,28 +106,24 @@ Default preview server: <http://localhost:8035>
 
 Helpers: `make build_docs`, `make serve_docs`
 
-Rebuild docs on file change: `make watch_docs` (requires
-[entr(1)](http://eradman.com/entrproject/))
+Rebuild docs on file change: `make watch_docs` (requires [entr(1)](http://eradman.com/entrproject/))
 
-Rebuild docs and run server via one terminal: `make dev_docs` (requires
-above, and a `make(1)` with `-J` support, e.g. GNU Make)
+Rebuild docs and run server via one terminal: `make dev_docs` (requires above, and a `make(1)` with
+`-J` support, e.g. GNU Make)
 
 ### Formatting / Linting
 
-The project uses [black](https://github.com/psf/black) and
-[isort](https://pypi.org/project/isort/) (one after the other) and runs
-[flake8](https://flake8.pycqa.org/) via CI. See the configuration in
+The project uses [black](https://github.com/psf/black) and [isort](https://pypi.org/project/isort/)
+(one after the other) and runs [flake8](https://flake8.pycqa.org/) via CI. See the configuration in
 <span class="title-ref">pyproject.toml</span> and \`setup.cfg\`:
 
-`make black isort`: Run `black` first, then `isort` to handle import
-nuances `make flake8`, to watch (requires `entr(1)`):
-`make watch_flake8`
+`make black isort`: Run `black` first, then `isort` to handle import nuances `make flake8`, to watch
+(requires `entr(1)`): `make watch_flake8`
 
 ### Releasing
 
-As of 0.10, [poetry](https://python-poetry.org/) handles virtualenv
-creation, package requirements, versioning, building, and publishing.
-Therefore there is no setup.py or requirements files.
+As of 0.10, [poetry](https://python-poetry.org/) handles virtualenv creation, package requirements,
+versioning, building, and publishing. Therefore there is no setup.py or requirements files.
 
 Update <span class="title-ref">\_\_version\_\_</span> in <span
 class="title-ref">\_\_about\_\_.py</span> and \`pyproject.toml\`:
@@ -146,8 +138,7 @@ class="title-ref">\_\_about\_\_.py</span> and \`pyproject.toml\`:
 ## Quick links
 
 - [Usage](https://cihai.git-pull.com/usage.html)
-- [Datasets](https://cihai.git-pull.com/datasets.html) a full list of
-  current and future data sets
+- [Datasets](https://cihai.git-pull.com/datasets.html) a full list of current and future data sets
 - Python [API](https://cihai.git-pull.com/api.html)
 - [Roadmap](https://cihai.git-pull.com/design-and-planning/)
 - Python support: >= 3.6, pypy

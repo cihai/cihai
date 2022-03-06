@@ -4,8 +4,8 @@
 
 ## Python 2.7 and UCS
 
-Note, to get this working on python 2.7, you must have python built with
-_UCS4_ via `--enable-unicode=ucs4`. You can test for UCS4 with:
+Note, to get this working on python 2.7, you must have python built with _UCS4_ via
+`--enable-unicode=ucs4`. You can test for UCS4 with:
 
 ```{code-block} python
 
@@ -15,6 +15,5 @@ True
 
 ```
 
-Most packaged and included python distributions will already be build with
-UCS4 (such as Ubuntu's system python). On python 3.3 and greater, this
-distinction no longer exists, no action is needed.
+Most packaged and included python distributions will already be build with UCS4 (such as Ubuntu's
+system python). On python 3.3 and greater, this distinction no longer exists, no action is needed.

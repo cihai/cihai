@@ -1,6 +1,5 @@
 ---
 orphan: true
-
 ---
 
 (design-and-planning-2018-plugin-system)=
@@ -19,13 +18,12 @@ cihai_unihan_variants
 
 # Benefits
 
-Automatic configuration
-Datasets are automatically namespaced as configs. Recipricocally, they have access to
-the instance of cihai's configuration.
+Automatic configuration Datasets are automatically namespaced as configs. Recipricocally, they have
+access to the instance of cihai's configuration.
 
-With the database mixin, your dataset can be automatically configured and work with
-your user's configured DB backend. By default, it's SQLite! Reciprocally, you can also
-access databases and tables connected to cihai.
+With the database mixin, your dataset can be automatically configured and work with your user's
+configured DB backend. By default, it's SQLite! Reciprocally, you can also access databases and
+tables connected to cihai.
 
 ```{code-block} python
 
@@ -39,9 +37,9 @@ c.unihan2.lookup('好')
 
 ```
 
-The optional namespace= allows for cihai to allow root-level access to datasets, while
-being able to deprecate / move a dataset (however unlikely) if it were to conflict
-with a new method name / property on the main cihai object.
+The optional namespace= allows for cihai to allow root-level access to datasets, while being able to
+deprecate / move a dataset (however unlikely) if it were to conflict with a new method name /
+property on the main cihai object.
 
 It also allows namespacing a forked dataset, and adding it:
 
@@ -61,8 +59,8 @@ c.add_dataset(Unihan, namespace='unihan')  # raw class
 
 Future possibilities:
 
-This makes it possible to develop locally, make a touch adjustment, maintain a VCS
-branch, in the event a dataset fall out of sync or you want to hack on it / fork it.
+This makes it possible to develop locally, make a touch adjustment, maintain a VCS branch, in the
+event a dataset fall out of sync or you want to hack on it / fork it.
 
 ```{code-block} python
 
@@ -72,18 +70,17 @@ c.add_dataset('package.to.unihan.Unihan', namespace='unihan')  # import string
 
 # Versioning
 
-Please provide a __version__ on your package if you distribute it. This is to make
-sure cihai <-> dataset <-> extension have the fresh / new features and data, but can
-also lock API's so production cases don't break.
+Please provide a **version** on your package if you distribute it. This is to make sure cihai <->
+dataset <-> extension have the fresh / new features and data, but can also lock API's so production
+cases don't break.
 
 # Extending datasets
 
 You can also create packages, or even pure functions, that extend datasets.
 
-Extensions for datasets have access to the dataset's configuration, the sqlalchemy
-database (if it used it), and any other data-access it made available. For instance,
-if it had a custom data backend, it could make that available to the extension for
-it to use.
+Extensions for datasets have access to the dataset's configuration, the sqlalchemy database (if it
+used it), and any other data-access it made available. For instance, if it had a custom data
+backend, it could make that available to the extension for it to use.
 
 ```{code-block} python
 
@@ -100,9 +97,9 @@ c.unihan.variants2.lookup('好')
 
 ```
 
-For the first draft, pointing straight to the package -> module -> object via import
-string it the surest thing (since this is compatible with the user's local python
-package environment and works well regardless of developing or general usage):
+For the first draft, pointing straight to the package -> module -> object via import string it the
+surest thing (since this is compatible with the user's local python package environment and works
+well regardless of developing or general usage):
 
 c.unihan.add_extension('package.to.import.unihan.Unihan')
 
@@ -116,14 +113,12 @@ This is similar to the way FLASK_CONFIG points to an object inside of a python m
 
 Early cihai ideas made SQLAlchemy a requirement.
 
-The initial plan was to keep everything under a single namespace, database, and be
-able to reduce queries by building big queries. This is phased out in turn of making
-cihai easy to hack on.
+The initial plan was to keep everything under a single namespace, database, and be able to reduce
+queries by building big queries. This is phased out in turn of making cihai easy to hack on.
 
 # Idea: pip-based add_dataset/add_extension
 
-For development / hacking purposes, all of the same file, and vcs
-still exist:
+For development / hacking purposes, all of the same file, and vcs still exist:
 
 ```{code-block} python
 
@@ -146,35 +141,34 @@ c.unihan.add_extension('./path/to/dataset', classname=Unihan, namespace='unihan'
 
 # Idea: Namespacing
 
-Of the now, the idea is to avoid overengineering / bureaucracy caused by adopting
-setuptools namespacing. Be like Django, which doesn't enforce package naming.
+Of the now, the idea is to avoid overengineering / bureaucracy caused by adopting setuptools
+namespacing. Be like Django, which doesn't enforce package naming.
 
 cihai.extensions.datasetname.extensionname, but that has difficulties [^id7]
 
 This namespace / organzation makes it possible for cihai to detect. [^id8]
 
-cihai-contrib makes packages available under cihaicontrib, similar to sphinx-contrib's
-structure [^id9] uses Python's namespaces [^id10]
+cihai-contrib makes packages available under cihaicontrib, similar to sphinx-contrib's structure
+[^id9] uses Python's namespaces [^id10]
 
 # See Also
 
-[^id6]: Add variant methods. Github issues for cihai.
-  <https://github.com/cihai/cihai/pull/131>. Accessed September 1st, 2018.
+[^id6]:
+    Add variant methods. Github issues for cihai. <https://github.com/cihai/cihai/pull/131>.
+    Accessed September 1st, 2018.
 
-[^id7]: Flask's deprecration of flask.ext and flask_ext:
-  <http://flask.pocoo.org/docs/1.0/extensiondev/>
-  Accessed September 1st, 2018.
+[^id7]:
+    Flask's deprecration of flask.ext and flask_ext: <http://flask.pocoo.org/docs/1.0/extensiondev/>
+    Accessed September 1st, 2018.
 
-[^id8]: Sphinx extensions
-  <http://www.sphinx-doc.org/en/master/extdev/index.html#dev-extensions>.
-  Accessed September 1st, 2018.
+[^id8]:
+    Sphinx extensions <http://www.sphinx-doc.org/en/master/extdev/index.html#dev-extensions>.
+    Accessed September 1st, 2018.
 
-[^id9]: sphinx-contrib
-  <https://github.com/sphinx-contrib/documentedlist/tree/master/sphinxcontrib>
-  Accessed September 1st, 2018.
+[^id9]:
+    sphinx-contrib <https://github.com/sphinx-contrib/documentedlist/tree/master/sphinxcontrib>
+    Accessed September 1st, 2018.
 
-[^id10]: Python namespaces.
-  <https://packaging.python.org/guides/packaging-namespace-packages/>
-  Accessed September 7th, 2018.
-
-
+[^id10]:
+    Python namespaces. <https://packaging.python.org/guides/packaging-namespace-packages/> Accessed
+    September 7th, 2018.
