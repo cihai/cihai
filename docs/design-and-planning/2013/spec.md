@@ -20,7 +20,7 @@ Scribblings on cihai dev.
 
 It can accept a custom configuration file via command line with `-c`:
 
-```{code-block} bash
+```console
 
 $ python -m cihai -c myconfig.yml
 
@@ -31,7 +31,7 @@ the `cihai` package as `config.yml`.
 
 Developers may use `dev/config.yml`. The TestCase will use the `test_config.yml`.
 
-```{code-block} bash
+```console
 
 $ python -m cihai
 
@@ -39,7 +39,7 @@ $ python -m cihai
 
 Will start up cihai with normal configuration settings. A configuration file may also be used.
 
-```{code-block} bash
+```console
 
 $ python -m cihai -c dev/config.yml
 

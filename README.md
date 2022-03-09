@@ -13,7 +13,7 @@ This project is under active development. Follow our progress and check back for
 
 ### API / Library (this repository)
 
-```sh
+```console
 $ pip install --user cihai
 ```
 
@@ -40,11 +40,11 @@ See [API](https://cihai.git-pull.com/api.html) documentation and
 
 ### CLI ([cihai-cli](https://cihai-cli.git-pull.com))
 
-```sh
+```console
 $ pip install --user cihai[cli]
 ```
 
-```sh
+```console
 # character lookup
 $ cihai info 好
 char: 好
