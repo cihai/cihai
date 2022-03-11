@@ -19,7 +19,6 @@ about = {}
 with open("../cihai/__about__.py") as fp:
     exec(fp.read(), about)
 
-
 extensions = [
     "sphinx.ext.autodoc",
     "sphinx_autodoc_typehints",
