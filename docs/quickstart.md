@@ -1,15 +1,13 @@
-(usage)=
+(quickstart)=
 
-# Usage
+# Quickstart
 
 cihai is designed to work out-of-the-box without configuration.
 
 ## Installation
 
 ```console
-
 $ pip install --user cihai
-
 ```
 
 (configuration)=

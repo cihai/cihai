@@ -9,7 +9,7 @@ japanese, korean) data
 
 This project is under active development. Follow our progress and check back for updates!
 
-## Usage
+## Quickstart
 
 ### API / Library (this repository)
 
@@ -137,7 +137,7 @@ class="title-ref">\_\_about\_\_.py</span> and \`pyproject.toml\`:
 
 ## Quick links
 
-- [Usage](https://cihai.git-pull.com/usage.html)
+- [Quickstart](https://cihai.git-pull.com/quickstart.html)
 - [Datasets](https://cihai.git-pull.com/datasets.html) a full list of current and future data sets
 - Python [API](https://cihai.git-pull.com/api.html)
 - [Roadmap](https://cihai.git-pull.com/design-and-planning/)

@@ -12,7 +12,7 @@
 :maxdepth: 2
 
 features
-usage
+quickstart
 examples
 extend
 datasets
