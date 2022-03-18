@@ -3,8 +3,8 @@
 Python library for [CJK](https://cihai.git-pull.com/glossary.html#term-cjk) (chinese, japanese,
 korean) data
 
-[![Python Package](https://img.shields.io/pypi/v/cihai.svg)](http://badge.fury.io/py/cihai)
-[![Docs](https://github.com/cihai/cihai/workflows/Publish%20Docs/badge.svg)](https://github.com/cihai/cihai/actions?query=workflow%3A%22Publish+Docs%22)
+[![Python Package](https://img.shields.io/pypi/v/cihai.svg)](https://pypi.org/project/cihai/)
+[![Docs](https://github.com/cihai/cihai/workflows/Publish%20Docs/badge.svg)](https://cihai.git-pull.com/)
 [![Build Status](https://github.com/cihai/cihai/workflows/test/badge.svg)](https://github.com/cihai/cihai/actions?query=workflow%3A%22test%22)
 [![Code Coverage](https://codecov.io/gh/cihai/cihai/branch/master/graph/badge.svg)](https://codecov.io/gh/cihai/cihai)
 [![License](https://img.shields.io/github/license/cihai/cihai.svg)](https://github.com/cihai/cihai/blob/master/LICENSE)
