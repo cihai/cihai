@@ -1,7 +1,5 @@
 (index)=
 
-# cihai
-
 ```{include} ../README.md
 
 ```
@@ -18,8 +16,15 @@ extend
 datasets
 api
 troubleshooting
+
+```
+
+```{toctree}
+:caption: Project
+:hidden:
+
+design-and-planning/index
 history
 glossary
-design-and-planning/index
-
+GitHub <https://github.com/cihai/cihai>
 ```
