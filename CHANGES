@@ -4,11 +4,13 @@
 
 - Add latest updates to master here
 
-#### Compatibility
+### Compatibility
+
 - Add python 3.10 support (#317)
 - Remove python 3.6 support (#317)
 
-#### Development
+### Development
+
 - Update poetry to 1.1
   - CI: Use poetry 1.1.12 and `install-poetry.py` installer (#296 + #317)
   - Relock poetry.lock at 1.1 (w/ 1.1.7's fix)
@@ -27,8 +29,7 @@
 - Update {}`black` to 21.6b0
 - Update trove classifiers to 3.9
 - Update unihan-etl to 0.12.0 (removes python 2.7, 3.5 support)
-- {issue}`288` Remove python 2.7, 3.5 support. Remove `__future__` and
-  unused modesets
+- {issue}`288` Remove python 2.7, 3.5 support. Remove `__future__` and unused modesets
 
 ## cihai 0.10.0 (2020-08-09)
 
@@ -71,27 +72,25 @@
 - Update sphinx to 1.7.9
 - _util_ -> _utils_
 - _conf_ -> _config_
-- Add `cihai.__version__` (so the version is available without having to
-  access `__about__`)
+- Add `cihai.__version__` (so the version is available without having to access `__about__`)
 - Add source code link on GitHub on API pages
 - Add `__github__` to `__about__`
 - Move {}`DEFAULT_CONFIG` to _constants.py_
 - Move _cihai/unihan.py_ -> _cihai/unihan/{**init**.py,dataset.py}_
 - Move _cihai/bootstrap.py_ -> _cihai/unihan/bootstrap.py_
 - Treat Unihan as a `Dataset`
-- Automatically include dataset when created {}`c = Cihai()`, {}`c = Cihai(unihan=False)` will do without
-- Tests for examples. We want to make sure our examples work out of the box and new changes catch API breaks when they need updating
+- Automatically include dataset when created {}`c = Cihai()`, {}`c = Cihai(unihan=False)` will do
+  without
+- Tests for examples. We want to make sure our examples work out of the box and new changes catch
+  API breaks when they need updating
 
 ## cihai 0.8.1 (2018-07-21)
 
-- Loosen kaptan requirement to greater than 0.5.10, less than
-  0.6
+- Loosen kaptan requirement to greater than 0.5.10, less than 0.6
 
-  This should fix issues with pyyaml, as well as downstream with
-  cihai-cli.
+  This should fix issues with pyyaml, as well as downstream with cihai-cli.
 
-- Loosen other version requirements to avoid entanglements
-  downstream in the future.
+- Loosen other version requirements to avoid entanglements downstream in the future.
 - Update Sphinx to 1.7.5 to 1.7.6
 - Update releases to 1.6.0 to 1.6.1
 - Update and sync Pipfile
@@ -117,8 +116,8 @@
 - Move documentation over to numpy-style
 - Add sphinxcontrib-napoleon 0.6.1
 - Update LICENSE New BSD to MIT
-- All future commits and contributions are licensed to the
-  _cihai software foundation_. This includes commits by Tony Narlock (creator).
+- All future commits and contributions are licensed to the _cihai software foundation_. This
+  includes commits by Tony Narlock (creator).
 
 ## cihai 0.7.4 (2017-05-26)
 
@@ -126,8 +125,7 @@
 
 ## cihai 0.7.3 (2017-05-20)
 
-- Update unihan-tabular to 0.7.3, adds _kJa_ and fixes
-  _kCompatibilityVariant_.
+- Update unihan-tabular to 0.7.3, adds _kJa_ and fixes _kCompatibilityVariant_.
 
 ## cihai 0.7.2 (2017-05-20)
 
@@ -172,22 +170,18 @@
 
 ## cihai 0.4.0 (2017-05-16)
 
-- Automatically reflect database schemas and make available
-  in main cihai object
+- Automatically reflect database schemas and make available in main cihai object
 - Use click library for CLI
 - Initial support for character lookups via `$ cihai info <char>`.
-- {issue}`3` Bootstrap UNIHAN into cihai by default via unihan-tabular
-  project
+- {issue}`3` Bootstrap UNIHAN into cihai by default via unihan-tabular project
 - {issue}`4` Drop python 3.3 and 3.4 support
 - {issue}`4` Initial [XDG][xdg] base directory support
 - Move tests to pytest functions and fixtures
 - Remove unused test_unihan file
 - PEP8, sort imports
-- Move default config from _cihai/config.yml_ to
-  _conf/default.yml_.
+- Move default config from _cihai/config.yml_ to _conf/default.yml_.
 - Split configuration functionality into `cihai.conf`.
-- Functionality for replaces, tildes, environmental variables
-  and xdg variables in settings.
+- Functionality for replaces, tildes, environmental variables and xdg variables in settings.
 - Document CLI usage via sphinx-argparse
 
 ## cihai 0.3.0 (2017-04-16)
@@ -196,8 +190,7 @@
 - Modernize _Makefile_ in docs
 - Add Makefile to main project
 - Modernize package metadata to use _**about**.py_
-- Update requirements to use _requirements/_ folder for
-  base, testing and doc dependencies.
+- Update requirements to use _requirements/_ folder for base, testing and doc dependencies.
 - Update sphinx theme to alabaster with new logo.
 - Update travis to use coverall
 - Update links on README to use https
