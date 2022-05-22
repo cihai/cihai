@@ -18,7 +18,7 @@ classifiers = [
   "Topic :: Utilities",
   "Topic :: Software Development :: Internationalization"
 ]
-keywords = ["unihan", "sqlalchemy", "library", "cjk", "unicode"]
+keywords = ["unihan", "sqlalchemy", "library", "cjk", "unicode", "dictionary", "dataset", "encyclopedia", "chinese", "japanese", "korean", "languages", "study"]
 homepage = "https://cihai.git-pull.com"
 readme = "README.md"
 packages = [
