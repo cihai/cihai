@@ -12,7 +12,7 @@ windows:
   panes:
   - focus: true
   - pane 
-  - make watch_test
+  - make start
 - window_name: docs
   layout: main-horizontal
   options:
