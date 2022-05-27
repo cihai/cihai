@@ -15,8 +15,9 @@ classifiers = [
   'Programming Language :: Python :: 3.8',
   'Programming Language :: Python :: 3.9',
   'Programming Language :: Python :: Implementation :: PyPy',
-  "Topic :: Utilities",
-  "Topic :: Software Development :: Internationalization"
+  "Topic :: Software Development :: Internationalization",
+  "Topic :: Software Development :: Localization",
+  "Topic :: Utilities"
 ]
 keywords = ["unihan", "sqlalchemy", "library", "cjk", "unicode", "dictionary", "dataset", "encyclopedia", "chinese", "japanese", "korean", "languages", "study"]
 homepage = "https://cihai.git-pull.com"
