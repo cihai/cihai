@@ -1,3 +1,5 @@
+import pytest
+
 import examples.basic_usage
 import examples.basic_usage_manual
 import examples.dataset
@@ -17,7 +19,7 @@ def test_ts_difficulties(unihan_options):
     examples.variant_ts_difficulties.run(unihan_options=unihan_options)
 
 
-def test_basic_usage(unihan_options, capsys):
+def test_basic_usage(unihan_options, capsys: pytest.CaptureFixture[str]):
     examples.basic_usage.run(unihan_options=unihan_options)
 
     captured = capsys.readouterr()
@@ -26,7 +28,7 @@ def test_basic_usage(unihan_options, capsys):
     assert 'matches for "good": 好' in captured.out
 
 
-def test_basic_usage_manual(unihan_options, capsys):
+def test_basic_usage_manual(unihan_options, capsys: pytest.CaptureFixture[str]):
     examples.basic_usage_manual.run(unihan_options=unihan_options)
 
     captured = capsys.readouterr()
