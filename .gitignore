@@ -48,5 +48,6 @@ docs/_build
 .DS_Store
 
 .cache/
+.mypy_cache/
 .pytest_cache/
 .eggs/
