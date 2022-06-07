@@ -61,16 +61,16 @@ cihai-cli = { version = "~=0.9.0a0", optional = true }
 [tool.poetry.dev-dependencies]
 ### Docs ###
 sphinx = "*"
-sphinx-argparse = "^0.2.5"
-furo = "^2022.2.23"
-sphinx-autobuild = "^2021.3.14"
-sphinx-autodoc-typehints = "~1.17.0"
-sphinx-issues = "^3.0.0"
+sphinx-argparse = "*"
+furo = "*"
+sphinx-autobuild = "*"
+sphinx-autodoc-typehints = "*"
+sphinx-issues = "*"
 sphinx-inline-tabs = { version = "*", python = "^3.7" }
 sphinxext-opengraph = "*"
-sphinx-copybutton = "^0.5.0"
+sphinx-copybutton = "*"
 sphinxext-rediraffe = "*"
-myst_parser = "~0.17.0"
+myst_parser = "*"
 
 ### Testing ###
 pytest = "*"
