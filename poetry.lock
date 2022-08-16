@@ -899,6 +899,14 @@ optional = false
 python-versions = ">=3.6"
 
 [[package]]
+name = "types-appdirs"
+version = "1.4.3"
+description = "Typing stubs for appdirs"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "typing-extensions"
 version = "4.3.0"
 description = "Backported and Experimental Type Hints for Python 3.7+"
@@ -982,7 +990,7 @@ test = []
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "ab1162503e66f720b5d3a34c1341ebf55ec404ad0b64745f218c6a74ecbd0e32"
+content-hash = "4ad7fdc52ebd8580629feb82cc9a2a1bdce1de6a04dae5c1908a284b4f7427f6"
 
 [metadata.files]
 alabaster = [
@@ -1322,6 +1330,10 @@ tornado = [
     {file = "tornado-6.2.tar.gz", hash = "sha256:9b630419bde84ec666bfd7ea0a4cb2a8a651c2d5cccdbdd1972a0c859dfc3c13"},
 ]
 typed-ast = []
+types-appdirs = [
+    {file = "types-appdirs-1.4.3.tar.gz", hash = "sha256:387bb4048b43c26ffdb9497f4629145c71fc309b12f040edd0bb95b603d95792"},
+    {file = "types_appdirs-1.4.3-py3-none-any.whl", hash = "sha256:5668e717e2278cce002139fa008d6f17ec4754b1430005185d1d7f30139bee39"},
+]
 typing-extensions = []
 unicodecsv = [
     {file = "unicodecsv-0.14.1.tar.gz", hash = "sha256:018c08037d48649a0412063ff4eda26eaa81eff1546dbffa51fa5293276ff7fc"},
