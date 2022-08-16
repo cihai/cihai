@@ -142,7 +142,7 @@ def ucn_to_unicode(ucn):
 
 
 def euc_to_unicode(hexstr):
-    """
+    r"""
     Return EUC-CN (GB2312) hex to a Python unicode.
 
     Parameters
@@ -158,16 +158,16 @@ def euc_to_unicode(hexstr):
     --------
 
     >>> u'\u4e00'.encode('gb2312').decode('utf-8')
-    u'\u04bb'
+    '\u04bb'
 
-    >>> (b'\\x' + b'd2' + b'\\x' + b'bb').replace('\\x', '') \\
+    >>> (b'\\x' + b'd2' + b'\\x' + b'bb').replace('\\x', '') \  # doctest: +SKIP
     ... .decode('hex').decode('utf-8')
     u'\u04bb'
 
     Note: bytes don't have a ``.replace``:
 
-    >>> gb_enc = gb_enc.replace('\\x', '').decode('hex')
-    >>> gb_enc.decode('string_escape')  # Won't work with Python 3.x.
+    >>> gb_enc = gb_enc.replace('\\x', '').decode('hex')  # doctest: +SKIP
+    >>> gb_enc.decode('string_escape')  # Won't work with Python 3.x.  # doctest: +SKIP
     """
     hi = hexstr[0:2]
     lo = hexstr[2:4]
