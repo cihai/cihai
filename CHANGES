@@ -16,7 +16,6 @@ Infrastructure updates for static type checking and doctest examples.
 - Update poetry to 1.1
   - CI: Use poetry 1.1.12 and `install-poetry.py` installer (#296 + #317)
   - Relock poetry.lock at 1.1 (w/ 1.1.7's fix)
-- Add `.pre-commit-config.yaml` (#317)
 - Initial [doctests] support added, via #323 
 
   [doctests]: https://docs.python.org/3/library/doctest.html
