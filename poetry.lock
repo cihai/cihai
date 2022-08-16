@@ -907,6 +907,14 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "types-colorama"
+version = "0.4.15"
+description = "Typing stubs for colorama"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "typing-extensions"
 version = "4.3.0"
 description = "Backported and Experimental Type Hints for Python 3.7+"
@@ -990,7 +998,7 @@ test = []
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "4ad7fdc52ebd8580629feb82cc9a2a1bdce1de6a04dae5c1908a284b4f7427f6"
+content-hash = "5669cec7cade9c11cc3f65faf143310f75f5a6f138c0949812fac09e7ccbe768"
 
 [metadata.files]
 alabaster = [
@@ -1333,6 +1341,10 @@ typed-ast = []
 types-appdirs = [
     {file = "types-appdirs-1.4.3.tar.gz", hash = "sha256:387bb4048b43c26ffdb9497f4629145c71fc309b12f040edd0bb95b603d95792"},
     {file = "types_appdirs-1.4.3-py3-none-any.whl", hash = "sha256:5668e717e2278cce002139fa008d6f17ec4754b1430005185d1d7f30139bee39"},
+]
+types-colorama = [
+    {file = "types-colorama-0.4.15.tar.gz", hash = "sha256:fd128b1e32f3fecec5f09df4366d21498ee86ea31fcf8b4e8f1ade6d0bbf9832"},
+    {file = "types_colorama-0.4.15-py3-none-any.whl", hash = "sha256:9cdc88dcde9e8ebafb2fdfaf5cee260452f93e5c57eb5d8b2a7f65b836d4e5d0"},
 ]
 typing-extensions = []
 unicodecsv = [
