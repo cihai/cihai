@@ -37,11 +37,12 @@ See [API](https://cihai.git-pull.com/api.html) documentation and
 ### CLI ([cihai-cli](https://cihai-cli.git-pull.com))
 
 ```console
-$ pip install --user cihai[cli]
+$ pip install --user 'cihai[cli]'
 ```
 
+Character lookup:
+
 ```console
-# character lookup
 $ cihai info 好
 char: 好
 kCantonese: hou2 hou3
@@ -54,8 +55,10 @@ kTang: '*xɑ̀u *xɑ̌u'
 kTotalStrokes: '6'
 kVietnamese: háo
 ucn: U+597D
+```
 
-# reverse lookup
+Reverse lookup:
+```console
 $ cihai reverse library
 char: 圕
 kCangjie: WLGA
@@ -79,17 +82,25 @@ All datasets that cihai uses have stand-alone tools to export their data. No lib
 
 [poetry](https://python-poetry.org/) is a required package to develop.
 
-`git clone https://github.com/cihai/cihai.git`
+```console
+$ git clone https://github.com/cihai/cihai.git`
+```
 
-`cd cihai`
+```console
+$ cd cihai/
+````
 
-`poetry install -E "docs test coverage lint format"`
+```console
+$ poetry install -E "docs test coverage lint format"
+```
 
 Makefile commands prefixed with `watch_` will watch files and rerun.
 
 ### Tests
 
-`poetry run py.test`
+```console
+$ poetry run py.test`
+```
 
 Helpers: `make test` Rerun tests on file change: `make watch_test` (requires
 [entr(1)](http://eradman.com/entrproject/))
@@ -111,7 +122,7 @@ Rebuild docs and run server via one terminal: `make dev_docs` (requires above, a
 
 The project uses [black](https://github.com/psf/black) and [isort](https://pypi.org/project/isort/)
 (one after the other) and runs [flake8](https://flake8.pycqa.org/) via CI. See the configuration in
-<span class="title-ref">pyproject.toml</span> and \`setup.cfg\`:
+`pyproject.toml` and `setup.cfg`:
 
 `make black isort`: Run `black` first, then `isort` to handle import nuances `make flake8`, to watch
 (requires `entr(1)`): `make watch_flake8`
@@ -121,15 +132,37 @@ The project uses [black](https://github.com/psf/black) and [isort](https://pypi.
 As of 0.10, [poetry](https://python-poetry.org/) handles virtualenv creation, package requirements,
 versioning, building, and publishing. Therefore there is no setup.py or requirements files.
 
-Update <span class="title-ref">\_\_version\_\_</span> in <span
-class="title-ref">\_\_about\_\_.py</span> and \`pyproject.toml\`:
+Update `__version__` in `__about__.py` and `pyproject.toml`:
 
-    git commit -m 'build(cihai): Tag v0.1.1'
-    git tag v0.1.1
-    git push
-    git push --tags
-    poetry build
-    poetry deploy
+```console
+$ git commit -m 'build(cihai): Tag v0.1.1'
+```
+
+```console
+$ git tag v0.1.1
+```
+
+```console
+$ git push
+```
+
+```console
+$ git push --tags
+```
+
+#### Automated deployment
+
+CI will automatically push to the PyPI index when a tag is pushed.
+
+#### Manual deployment
+
+```console
+$ poetry build
+```
+
+```console
+$ poetry deploy
+```
 
 ## Quick links
 
