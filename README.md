@@ -80,89 +80,15 @@ All datasets that cihai uses have stand-alone tools to export their data. No lib
 
 ## Developing
 
-[poetry](https://python-poetry.org/) is a required package to develop.
-
 ```console
 $ git clone https://github.com/cihai/cihai.git`
 ```
 
 ```console
 $ cd cihai/
-````
-
-```console
-$ poetry install -E "docs test coverage lint format"
 ```
 
-Makefile commands prefixed with `watch_` will watch files and rerun.
-
-### Tests
-
-```console
-$ poetry run py.test`
-```
-
-Helpers: `make test` Rerun tests on file change: `make watch_test` (requires
-[entr(1)](http://eradman.com/entrproject/))
-
-### Documentation
-
-Default preview server: <http://localhost:8035>
-
-`cd docs/` and `make html` to build. `make serve` to start http server.
-
-Helpers: `make build_docs`, `make serve_docs`
-
-Rebuild docs on file change: `make watch_docs` (requires [entr(1)](http://eradman.com/entrproject/))
-
-Rebuild docs and run server via one terminal: `make dev_docs` (requires above, and a `make(1)` with
-`-J` support, e.g. GNU Make)
-
-### Formatting / Linting
-
-The project uses [black](https://github.com/psf/black) and [isort](https://pypi.org/project/isort/)
-(one after the other) and runs [flake8](https://flake8.pycqa.org/) via CI. See the configuration in
-`pyproject.toml` and `setup.cfg`:
-
-`make black isort`: Run `black` first, then `isort` to handle import nuances `make flake8`, to watch
-(requires `entr(1)`): `make watch_flake8`
-
-### Releasing
-
-As of 0.10, [poetry](https://python-poetry.org/) handles virtualenv creation, package requirements,
-versioning, building, and publishing. Therefore there is no setup.py or requirements files.
-
-Update `__version__` in `__about__.py` and `pyproject.toml`:
-
-```console
-$ git commit -m 'build(cihai): Tag v0.1.1'
-```
-
-```console
-$ git tag v0.1.1
-```
-
-```console
-$ git push
-```
-
-```console
-$ git push --tags
-```
-
-#### Automated deployment
-
-CI will automatically push to the PyPI index when a tag is pushed.
-
-#### Manual deployment
-
-```console
-$ poetry build
-```
-
-```console
-$ poetry deploy
-```
+[Bootstrap your environment and learn more about contributing](https://cihai.git-pull.com/contributing/). We use the same conventions / tools across all cihai projects: `pytest`, `sphinx`, `flake8`, `mypy`, `black`, `isort`, `tmuxp`, and file watcher helpers (e.g. `entr(1)`).
 
 ## Quick links
 
