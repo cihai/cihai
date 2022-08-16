@@ -1,13 +1,7 @@
-# cihai
+# cihai &middot; [![Python Package](https://img.shields.io/pypi/v/cihai.svg)](https://pypi.org/project/cihai/) [![License](https://img.shields.io/github/license/cihai/cihai.svg)](https://github.com/cihai/cihai/blob/master/LICENSE) [![Code Coverage](https://codecov.io/gh/cihai/cihai/branch/master/graph/badge.svg)](https://codecov.io/gh/cihai/cihai)
 
 Python library for [CJK](https://cihai.git-pull.com/glossary.html#term-cjk) (chinese, japanese,
-korean) data
-
-[![Python Package](https://img.shields.io/pypi/v/cihai.svg)](https://pypi.org/project/cihai/)
-[![Docs](https://github.com/cihai/cihai/workflows/docs/badge.svg)](https://cihai.git-pull.com/)
-[![Build Status](https://github.com/cihai/cihai/workflows/tests/badge.svg)](https://github.com/cihai/cihai/actions?query=workflow%3A%22tests%22)
-[![Code Coverage](https://codecov.io/gh/cihai/cihai/branch/master/graph/badge.svg)](https://codecov.io/gh/cihai/cihai)
-[![License](https://img.shields.io/github/license/cihai/cihai.svg)](https://github.com/cihai/cihai/blob/master/LICENSE)
+korean) data.
 
 This project is under active development. Follow our progress and check back for updates!
 
@@ -153,3 +147,6 @@ class="title-ref">\_\_about\_\_.py</span> and \`pyproject.toml\`:
 - pypi: <https://pypi.python.org/pypi/cihai>
 - OpenHub: <https://www.openhub.net/p/cihai>
 - License: MIT
+
+[![Docs](https://github.com/cihai/cihai/workflows/docs/badge.svg)](https://cihai.git-pull.com/)
+[![Build Status](https://github.com/cihai/cihai/workflows/tests/badge.svg)](https://github.com/cihai/cihai/actions?query=workflow%3A%22tests%22)
