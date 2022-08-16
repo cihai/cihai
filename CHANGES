@@ -29,6 +29,10 @@ Infrastructure updates for static type checking and doctest examples.
 
 - CI (docs): Skip if no `PUBLISH` condition triggered, via #323
 
+### Documentation
+
+- Add {ref}`development workflow docs <developing>` (universal to all cihai projects)
+
 ## cihai 0.12.0 (2021-06-16)
 
 - {issue}`291`: Convert to markdown

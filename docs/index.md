@@ -22,6 +22,7 @@ troubleshooting
 :caption: Project
 :hidden:
 
+contributing/index
 design-and-planning/index
 history
 glossary
