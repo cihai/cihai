@@ -90,6 +90,7 @@ isort = "*"
 ### Lint ###
 flake8 = "*"
 mypy = "*"
+sqlalchemy-stubs = "^0.4"
 
 [tool.poetry.extras]
 "cli" = ["cihai-cli"]
@@ -110,7 +111,7 @@ docs = [
 test = ["pytest", "pytest-rerunfailures", "pytest-watcher"]
 coverage = ["codecov", "coverage", "pytest-cov"]
 format = ["black", "isort"]
-lint = ["flake8", "mypy"]
+lint = ["flake8", "mypy", "sqlalchemy-stubs"]
 
 [build-system]
 requires = ["poetry_core>=1.0.0"]
