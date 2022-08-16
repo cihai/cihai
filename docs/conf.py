@@ -2,21 +2,22 @@
 import inspect
 import os
 import sys
+import typing as t
 from os.path import dirname, relpath
 from pathlib import Path
 
 import cihai
 
 # Get the project root dir, which is the parent dir of this
-cwd = Path.cwd()
+cwd = Path(__file__).parent
 project_root = cwd.parent
 
 sys.path.insert(0, str(project_root))
 sys.path.insert(0, str(cwd / "_ext"))
 
 # package data
-about = {}
-with open("../cihai/__about__.py") as fp:
+about: t.Dict[str, str] = {}
+with open(project_root / "cihai" / "__about__.py") as fp:
     exec(fp.read(), about)
 
 extensions = [
