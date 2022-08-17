@@ -121,6 +121,7 @@ lint = [
 ]
 
 [tool.mypy]
+strict = true
 plugins = [
   "sqlmypy",
 ]
