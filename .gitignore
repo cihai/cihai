@@ -51,3 +51,6 @@ docs/_build
 .mypy_cache/
 .pytest_cache/
 .eggs/
+
+# Monkeytype
+monkeytype.sqlite3
