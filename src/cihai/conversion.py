@@ -60,11 +60,12 @@ See these resources for more information:
 """
 import logging
 import re
+from typing import Any, Iterator, Tuple, Union
 
 log = logging.getLogger(__name__)
 
 
-def hexd(n):
+def hexd(n: int) -> str:
     """Return hex digits (strip '0x' at the beginning)."""
     return hex(n)[2:]
 
@@ -96,7 +97,7 @@ def gb2312_to_euc(gb2312hex):
     return euc
 
 
-def euc_to_python(hexstr):
+def euc_to_python(hexstr: bytes) -> str:
     """
     Convert a EUC-CN (GB2312) hex to a Python unicode string.
     """
@@ -106,7 +107,7 @@ def euc_to_python(hexstr):
     return gb_enc.decode("gb2312")
 
 
-def euc_to_utf8(euchex):
+def euc_to_utf8(euchex: bytes) -> str:
     """
     Convert EUC hex (e.g. "d2bb") to UTF8 hex (e.g. "e4 b8 80").
     """
@@ -119,7 +120,7 @@ def euc_to_utf8(euchex):
     return uf8
 
 
-def ucn_to_unicode(ucn):
+def ucn_to_unicode(ucn: str) -> str:
     """
     Convert a Unicode Universal Character Number (e.g. "U+4E00" or "4E00") to
     Python unicode (u'\\u4e00')
@@ -139,7 +140,7 @@ def ucn_to_unicode(ucn):
     return char
 
 
-def euc_to_unicode(hexstr):
+def euc_to_unicode(hexstr: bytes) -> str:
     r"""
     Return EUC-CN (GB2312) hex to a Python unicode.
 
@@ -188,7 +189,7 @@ def euc_to_unicode(hexstr):
 """ Convert from internal Python unicode / string objects """
 
 
-def python_to_ucn(uni_char, as_bytes=False):
+def python_to_ucn(uni_char: str, as_bytes: bool = False) -> Union[bytes, str]:
     """
     Return UCN character from Python Unicode character.
 
@@ -208,7 +209,7 @@ def python_to_ucn(uni_char, as_bytes=False):
     return ucn
 
 
-def python_to_euc(uni_char, as_bytes=False):
+def python_to_euc(uni_char: str, as_bytes: bool = False) -> Union[bytes, str]:
     """
     Return EUC character from a Python Unicode character.
 
@@ -224,7 +225,7 @@ def python_to_euc(uni_char, as_bytes=False):
     return euc
 
 
-def ucnstring_to_unicode(ucn_string):
+def ucnstring_to_unicode(ucn_string: str) -> str:
     """Return ucnstring as Unicode."""
     ucn_string = ucnstring_to_python(ucn_string).decode("utf-8")
 
@@ -232,7 +233,7 @@ def ucnstring_to_unicode(ucn_string):
     return ucn_string
 
 
-def ucnstring_to_python(ucn_string):
+def ucnstring_to_python(ucn_string: str) -> bytes:
     """
     Return string with Unicode UCN (e.g. "U+4E00") to native Python Unicode
     (u'\\u4e00').
@@ -247,7 +248,7 @@ def ucnstring_to_python(ucn_string):
     return ucn_string
 
 
-def parse_var(var):
+def parse_var(var: str) -> Union[Tuple[str, str], Tuple[str, None]]:
     """
     Returns a tuple consisting of a string and a tag, or None, if none is
     specified.
@@ -260,7 +261,7 @@ def parse_var(var):
     return ucn_to_unicode(bits[0]), tag
 
 
-def parse_vars(_vars):
+def parse_vars(_vars: str) -> Iterator[Union[Tuple[str, str], Tuple[str, None]]]:
     """
     Return an iterator of (char, tag) tuples.
     """
@@ -268,7 +269,7 @@ def parse_vars(_vars):
         yield parse_var(var)
 
 
-def parse_untagged(_vars):
+def parse_untagged(_vars: str) -> Iterator[Any]:
     """
     Return an iterator of chars.
     """

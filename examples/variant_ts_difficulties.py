@@ -1,8 +1,13 @@
 #!/usr/bin/env python
+import typing as t
+
 from cihai.core import Cihai
 
 
-def run(unihan_options=None):
+def run(unihan_options: t.Optional[t.Dict[str, str]] = None) -> None:
+    if unihan_options is None:
+        unihan_options = {}
+
     c = Cihai()
     if not c.unihan.is_bootstrapped:  # download and install Unihan to db
         c.unihan.bootstrap(unihan_options)

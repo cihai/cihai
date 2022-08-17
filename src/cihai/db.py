@@ -1,4 +1,6 @@
 """Cihai core functionality."""
+from typing import Dict, Union
+
 from sqlalchemy import MetaData, create_engine
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
@@ -9,7 +11,7 @@ class Database:
     Cihai SQLAlchemy instance
     """
 
-    def __init__(self, config):
+    def __init__(self, config: Dict[str, Union[bool, Dict[str, str], str]]) -> None:
         self.engine = create_engine(config["database"]["url"])
 
         self.metadata = MetaData()
@@ -18,7 +20,7 @@ class Database:
 
         self.session = Session(self.engine)
 
-    def reflect_db(self):
+    def reflect_db(self) -> None:
         """
         No-op to reflect db info.
 

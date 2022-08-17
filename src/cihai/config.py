@@ -1,9 +1,12 @@
 import os
+from typing import Dict, Union
 
 from appdirs import AppDirs
 
 
-def expand_config(d, dirs):
+def expand_config(
+    d: Dict[str, Union[bool, Dict[str, str], str]], dirs: AppDirs
+) -> None:
     """
     Expand configuration XDG variables, environmental variables, and tildes.
 
@@ -53,7 +56,7 @@ def expand_config(d, dirs):
 
 
 class Configurator:
-    def __init__(self, namespace=""):
+    def __init__(self, namespace: str = "") -> None:
         """
         Manage config. Provides facilities for loading / writing configs.
 
