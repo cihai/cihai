@@ -5,12 +5,14 @@ import os
 import kaptan
 from appdirs import AppDirs
 
+from unihan_etl.util import merge_dict
+
 from . import exc, extend
 from ._compat import string_types
 from .config import expand_config
 from .constants import DEFAULT_CONFIG, UNIHAN_CONFIG
 from .db import Database
-from .utils import import_string, merge_dict
+from .utils import import_string
 
 log = logging.getLogger(__name__)
 

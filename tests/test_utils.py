@@ -1,6 +1,7 @@
 import pytest
 
 from cihai import exc, utils
+from unihan_etl.util import merge_dict
 
 
 def test_merge_dict():
@@ -9,7 +10,7 @@ def test_merge_dict():
 
     expected = {"hi world": 1, "innerdict": {"hey": 1, "welcome": 2}}
 
-    assert utils.merge_dict(dict1, dict2) == expected
+    assert merge_dict(dict1, dict2) == expected
 
 
 def test_import_string():
