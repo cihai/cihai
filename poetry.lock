@@ -106,7 +106,7 @@ unicode_backport = ["unicodedata2"]
 
 [[package]]
 name = "cihai-cli"
-version = "0.10.0a0"
+version = "0.10.0"
 description = "Command line frontend for the cihai CJK language library"
 category = "main"
 optional = true
@@ -998,7 +998,7 @@ test = []
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "6f4b3294a6157e290f212e7445eb6c6ec3e94de7b921f7b2062a6feb3b15ac38"
+content-hash = "463aa61123cfff4dd34161f9c315639755c4a99269cf3116649b25be4f4f136e"
 
 [metadata.files]
 alabaster = [
@@ -1058,8 +1058,8 @@ charset-normalizer = [
     {file = "charset_normalizer-2.1.1-py3-none-any.whl", hash = "sha256:83e9a75d1911279afd89352c68b45348559d1fc0506b054b346651b5e7fee29f"},
 ]
 cihai-cli = [
-    {file = "cihai-cli-0.10.0a0.tar.gz", hash = "sha256:170b72b3686a599136df7282cf00edb09c857f4f8995c7d52df40404b72a633a"},
-    {file = "cihai_cli-0.10.0a0-py3-none-any.whl", hash = "sha256:fd37b1448f9232c41f630bf288451d48d80d844796fac76fa6b99d748d679c84"},
+    {file = "cihai-cli-0.10.0.tar.gz", hash = "sha256:b91144b28e33ce119d656302e46851cc3d8f66c71360483253e00720cd9902c4"},
+    {file = "cihai_cli-0.10.0-py3-none-any.whl", hash = "sha256:c06f570609cc727ef2370804e2378b80baa65a83fd0846928323eb085f0b16bd"},
 ]
 click = [
     {file = "click-8.1.3-py3-none-any.whl", hash = "sha256:bb4d8133cb15a609f44e8213d9b391b0809795062913b383c62be0ee95b1db48"},
