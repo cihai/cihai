@@ -37,7 +37,7 @@ See [API](https://cihai.git-pull.com/api.html) documentation and
 ### CLI ([cihai-cli](https://cihai-cli.git-pull.com))
 
 ```console
-$ pip install --user 'cihai[cli]'
+$ pip install --user 'cihai-cli'
 ```
 
 Character lookup:
@@ -58,6 +58,7 @@ ucn: U+597D
 ```
 
 Reverse lookup:
+
 ```console
 $ cihai reverse library
 char: 圕
