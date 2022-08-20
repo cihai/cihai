@@ -4,7 +4,7 @@ Utility and helper methods for cihai.
 import sys
 
 from . import exc
-from ._compat import collections_abc, reraise
+from ._compat import collections_abc
 
 
 def merge_dict(base, additional):
@@ -125,8 +125,6 @@ def import_string(import_name, silent=False):  # NOQA: C901
 
     except ImportError as e:
         if not silent:
-            reraise(
-                exc.ImportStringError,
-                exc.ImportStringError(import_name, e),
-                sys.exc_info()[2],
-            )
+            raise exc.ImportStringError(import_name, e).with_traceback(
+                sys.exc_info()[2]
+            ) from None
