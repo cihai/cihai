@@ -11,6 +11,8 @@
 
   - Update `import_string()` and `ImportStringError` to latest from werkzeug
   - Use `merge_dict` from `unihan_etl`
+  - Bump unihan-etl to 0.15.0+ (to avoid any chance of using compat imports from
+    it in the future)
 
 ## cihai 0.13.0 (2022-08-16)
 
