@@ -1,6 +1,5 @@
 from sqlalchemy import Column, or_
 
-from ..._compat import string_types
 from ...conversion import parse_untagged, parse_vars
 from ...extend import Dataset, DatasetPlugin, SQLAlchemyMixin
 from . import bootstrap
@@ -40,7 +39,7 @@ class Unihan(Dataset, SQLAlchemyMixin):
         :class:`sqlalchemy.orm.query.Query` :
             reverse matches
         """
-        if isinstance(hints, string_types):
+        if isinstance(hints, str):
             hints = [hints]
 
         Unihan = self.sql.base.classes.Unihan

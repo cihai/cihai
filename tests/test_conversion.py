@@ -5,15 +5,14 @@ test.conversion
 
 """
 from cihai import conversion
-from cihai._compat import string_types, text_type
 
 
-def test_text_type():
+def test_str():
     c1 = "(same as U+7A69 穩) firm; stable; secure"
-    c2 = text_type()
+    c2 = str()
 
-    assert isinstance(c1, string_types)
-    assert isinstance(c2, text_type)
+    assert isinstance(c1, str)
+    assert isinstance(c2, str)
 
 
 """Return UCN character from Python Unicode character.
@@ -40,7 +39,7 @@ def test_ucn_from_unicode():
     bytes_expected = b"U+4E00"
 
     assert conversion.python_to_ucn(python_unicode) == expected
-    assert isinstance(conversion.python_to_ucn(python_unicode), text_type)
+    assert isinstance(conversion.python_to_ucn(python_unicode), str)
     assert isinstance(conversion.python_to_ucn(python_unicode, as_bytes=True), bytes)
 
     assert conversion.python_to_ucn(text, as_bytes=True) == bytes_expected
@@ -54,7 +53,7 @@ def test_ucn_from_unicode_16():
     bytes_expected = b"U+26100"
 
     assert conversion.python_to_ucn(python_unicode) == expected
-    assert isinstance(conversion.python_to_ucn(python_unicode), text_type)
+    assert isinstance(conversion.python_to_ucn(python_unicode), str)
     assert isinstance(conversion.python_to_ucn(python_unicode, as_bytes=True), bytes)
 
     assert conversion.python_to_ucn(text, as_bytes=True) == bytes_expected
@@ -68,7 +67,7 @@ def test_ucn_to_unicode():
 
     assert result == expected
 
-    assert isinstance(result, text_type)
+    assert isinstance(result, str)
 
     # wide character
     before = "U+20001"
@@ -77,7 +76,7 @@ def test_ucn_to_unicode():
     result = conversion.ucn_to_unicode(before)
 
     assert result == expected
-    assert isinstance(result, text_type)
+    assert isinstance(result, str)
 
     before = "(same as U+7A69 穩) firm; stable; secure"
     expected = "(same as 穩 穩) firm; stable; secure"
@@ -85,7 +84,7 @@ def test_ucn_to_unicode():
     result = conversion.ucnstring_to_unicode(before)
 
     assert result == expected
-    assert isinstance(result, text_type)
+    assert isinstance(result, str)
 
 
 """Return EUC character from a Python Unicode character.
@@ -113,7 +112,7 @@ def test_euc_from_unicode():
     result = conversion.python_to_euc(expected)
 
     assert euc_unicode == result
-    assert isinstance(result, text_type)
+    assert isinstance(result, str)
 
 
 def test_euc_to_utf8():
@@ -133,7 +132,7 @@ def test_euc_to_unicode():
     result = conversion.euc_to_unicode(euc_bytestring)
 
     assert expected == expected_ustring
-    assert isinstance(result, text_type)
+    assert isinstance(result, str)
 
     assert expected == result
     assert expected_ustring == result
