@@ -5,12 +5,13 @@ import os
 import kaptan
 from appdirs import AppDirs
 
+from unihan_etl.util import merge_dict
+
 from . import exc, extend
-from ._compat import string_types
 from .config import expand_config
 from .constants import DEFAULT_CONFIG, UNIHAN_CONFIG
 from .db import Database
-from .utils import import_string, merge_dict
+from .utils import import_string
 
 log = logging.getLogger(__name__)
 
@@ -98,7 +99,7 @@ class Cihai(object):
                 getattr(self, dataset).add_plugin(class_string, namespace)
 
     def add_dataset(self, _cls, namespace):
-        if isinstance(_cls, string_types):
+        if isinstance(_cls, str):
             _cls = import_string(_cls)
 
         setattr(self, namespace, _cls())

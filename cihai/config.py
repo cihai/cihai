@@ -2,8 +2,6 @@ import os
 
 from appdirs import AppDirs
 
-from ._compat import string_types
-
 
 def expand_config(d, dirs):
     """
@@ -49,7 +47,7 @@ def expand_config(d, dirs):
     for k, v in d.items():
         if isinstance(v, dict):
             expand_config(v, dirs)
-        if isinstance(v, string_types):
+        if isinstance(v, str):
             d[k] = os.path.expanduser(os.path.expandvars(d[k]))
             d[k] = d[k].format(**context)
 

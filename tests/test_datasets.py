@@ -15,7 +15,6 @@ import sqlalchemy
 from sqlalchemy import MetaData
 
 from cihai import conversion
-from cihai._compat import unichr
 
 cjk_ranges = {  # http://www.unicode.org/reports/tr38/#BlockListing
     "CJK Unified Ideographs": range(0x4E00, 0x9FD5 + 1),
@@ -94,8 +93,8 @@ def chars():
         c = 0x4E00 + random.randint(1, 333)
         char = {
             "hex": c,
-            "char": unichr(int(c)),
-            "ucn": conversion.python_to_ucn(unichr(int(c))),
+            "char": chr(int(c)),
+            "ucn": conversion.python_to_ucn(chr(int(c))),
         }
         if char not in chars:
             chars.append(char)

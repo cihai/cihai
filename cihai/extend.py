@@ -13,7 +13,6 @@ You can also create plugins which extend another. So if Unihan doesn't have a lo
 for variant glyphs, this can be added.
 """
 from . import utils
-from ._compat import string_types
 
 
 class ConfigMixin(object):
@@ -89,7 +88,7 @@ class Dataset(object):
         pass
 
     def add_plugin(self, _cls, namespace, bootstrap=True):
-        if isinstance(_cls, string_types):
+        if isinstance(_cls, str):
             _cls = utils.import_string(_cls)
         setattr(self, namespace, _cls())
         plugin = getattr(self, namespace)

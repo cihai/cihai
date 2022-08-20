@@ -11,7 +11,7 @@ class ImportStringError(ImportError, CihaiException):
 
     Notes
     -----
-    This is from werkzeug.utils c769200 on May 23, LICENSE BSD.
+    This is from werkzeug.utils d36aaf1 on August 20 2022, LICENSE BSD.
     https://github.com/pallets/werkzeug
 
     Changes:
@@ -20,50 +20,41 @@ class ImportStringError(ImportError, CihaiException):
     """
 
     #: String in dotted notation that failed to be imported.
-    import_name = None
+    import_name: str
     #: Wrapped exception.
-    exception = None
+    exception: BaseException
 
     def __init__(self, import_name, exception):
         from .utils import import_string
 
         self.import_name = import_name
         self.exception = exception
-
-        msg = (
-            "import_string() failed for %r. Possible reasons are:\n\n"
-            "- missing __init__.py in a package;\n"
-            "- package or module path not included in sys.path;\n"
-            "- duplicated package or module name taking precedence in "
-            "sys.path;\n"
-            "- missing module, class, function or variable;\n\n"
-            "Debugged import:\n\n%s\n\n"
-            "Original exception:\n\n%s: %s"
-        )
-
+        msg = import_name
         name = ""
         tracked = []
         for part in import_name.replace(":", ".").split("."):
-            name += (name and ".") + part
+            name = f"{name}.{part}" if name else part
             imported = import_string(name, silent=True)
             if imported:
                 tracked.append((name, getattr(imported, "__file__", None)))
             else:
-                track = ["- %r found in %r." % (n, i) for n, i in tracked]
-                track.append("- %r not found." % name)
-                msg = msg % (
-                    import_name,
-                    "\n".join(track),
-                    exception.__class__.__name__,
-                    str(exception),
+                track = [f"- {n!r} found in {i!r}." for n, i in tracked]
+                track.append(f"- {name!r} not found.")
+                track_str = "\n".join(track)
+                msg = (
+                    f"import_string() failed for {import_name!r}. Possible reasons"
+                    f" are:\n\n"
+                    "- missing __init__.py in a package;\n"
+                    "- package or module path not included in sys.path;\n"
+                    "- duplicated package or module name taking precedence in"
+                    " sys.path;\n"
+                    "- missing module, class, function or variable;\n\n"
+                    f"Debugged import:\n\n{track_str}\n\n"
+                    f"Original exception:\n\n{type(exception).__name__}: {exception}"
                 )
                 break
 
-        ImportError.__init__(self, msg)
+        super().__init__(msg)
 
-    def __repr__(self):
-        return "<%s(%r, %r)>" % (
-            self.__class__.__name__,
-            self.import_name,
-            self.exception,
-        )
+    def __repr__(self) -> str:
+        return f"<{type(self).__name__}({self.import_name!r}, {self.exception!r})>"

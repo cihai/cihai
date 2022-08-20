@@ -4,6 +4,16 @@
 
 - _Insert changes/features/fixes for next release here_
 
+### Breaking changes
+
+- Python 2 compatibility module and imports removed. Python 2.x was officially
+  dropped in 0.11.0 (2021-06-15) via #325
+
+  - Update `import_string()` and `ImportStringError` to latest from werkzeug
+  - Use `merge_dict` from `unihan_etl`
+  - Bump unihan-etl to 0.15.0+ (to avoid any chance of using compat imports from
+    it in the future)
+
 ## cihai 0.13.0 (2022-08-16)
 
 ### Compatibility
