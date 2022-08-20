@@ -44,6 +44,9 @@ Character lookup:
 
 ```console
 $ cihai info 好
+```
+
+```yaml
 char: 好
 kCantonese: hou2 hou3
 kDefinition: good, excellent, fine; well
@@ -51,8 +54,8 @@ kHangul: 호
 kJapaneseOn: KOU
 kKorean: HO
 kMandarin: hǎo
-kTang: '*xɑ̀u *xɑ̌u'
-kTotalStrokes: '6'
+kTang: "*xɑ̀u *xɑ̌u"
+kTotalStrokes: "6"
 kVietnamese: háo
 ucn: U+597D
 ```
@@ -61,6 +64,9 @@ Reverse lookup:
 
 ```console
 $ cihai reverse library
+```
+
+```yaml
 char: 圕
 kCangjie: WLGA
 kCantonese: syu1
