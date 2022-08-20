@@ -1,8 +1,32 @@
 # Changelog
 
-## cihai 0.15.x (unreleased)
+## cihai 0.16.x (unreleased)
 
 - _Insert changes/features/fixes for next release here_
+
+## cihai 0.15.0 (2022-08-20)
+
+### Breaking changes
+
+The CLI version of `cihai` installed through `cihai-cli` again
+
+Before (cihai 0.9 to 0.14, cihai-cli 0.5 to 0.10):
+
+```console
+$ pip install cihai[cli]
+```
+
+After (cihai 0.15+, cihai-cli 0.11+):
+
+```console
+$ pip install cihai-cli
+```
+
+This made deploying cihai + cihai-cli and pinning packages extremely laborious.
+
+We can reinvestigate this model in the future.
+
+via: **[cihai#326](https://github.com/cihai/cihai/pull/326)**, [cihai-cli#279](https://github.com/cihai/cihai-cli/pull/279)
 
 ## cihai 0.14.1 (2022-08-20)
 
