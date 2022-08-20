@@ -95,7 +95,7 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "charset-normalizer"
-version = "2.1.0"
+version = "2.1.1"
 description = "The Real First Universal Charset Detector. Open, modern and actively maintained alternative to Chardet."
 category = "dev"
 optional = false
@@ -398,10 +398,10 @@ sphinx = ">=4,<6"
 typing-extensions = "*"
 
 [package.extras]
-testing = ["sphinx-pytest", "pytest-param-files (>=0.3.4,<0.4.0)", "pytest-regressions", "pytest-cov", "pytest (>=6,<7)", "coverage", "beautifulsoup4"]
-rtd = ["sphinxext-opengraph (>=0.6.3,<0.7.0)", "sphinxcontrib.mermaid (>=0.7.1,<0.8.0)", "sphinxext-rediraffe (>=0.2.7,<0.3.0)", "sphinx-design", "sphinx-book-theme", "ipython"]
-linkify = ["linkify-it-py (>=1.0,<2.0)"]
 code_style = ["pre-commit (>=2.12,<3.0)"]
+linkify = ["linkify-it-py (>=1.0,<2.0)"]
+rtd = ["ipython", "sphinx-book-theme", "sphinx-design", "sphinxext-rediraffe (>=0.2.7,<0.3.0)", "sphinxcontrib.mermaid (>=0.7.1,<0.8.0)", "sphinxext-opengraph (>=0.6.3,<0.7.0)"]
+testing = ["beautifulsoup4", "coverage", "pytest (>=6,<7)", "pytest-cov", "pytest-regressions", "pytest-param-files (>=0.3.4,<0.4.0)", "sphinx-pytest"]
 
 [[package]]
 name = "packaging"
@@ -672,7 +672,7 @@ livereload = "*"
 sphinx = "*"
 
 [package.extras]
-test = ["pytest-cov", "pytest"]
+test = ["pytest", "pytest-cov"]
 
 [[package]]
 name = "sphinx-autodoc-typehints"
@@ -686,8 +686,8 @@ python-versions = ">=3.7"
 Sphinx = ">=5.1.1"
 
 [package.extras]
-testing = ["covdefaults (>=2.2)", "coverage (>=6.4.2)", "diff-cover (>=6.5.1)", "nptyping (>=2.2)", "pytest (>=7.1.2)", "pytest-cov (>=3)", "sphobjinv (>=2.2.2)", "typing-extensions (>=4.3)"]
 type_comments = ["typed-ast (>=1.5.4)"]
+testing = ["typing-extensions (>=4.3)", "sphobjinv (>=2.2.2)", "pytest-cov (>=3)", "pytest (>=7.1.2)", "nptyping (>=2.2)", "diff-cover (>=6.5.1)", "coverage (>=6.4.2)", "covdefaults (>=2.2)"]
 
 [[package]]
 name = "sphinx-basic-ng"
@@ -817,8 +817,8 @@ optional = false
 python-versions = ">=3.5"
 
 [package.extras]
+lint = ["flake8", "mypy", "docutils-stubs"]
 test = ["pytest"]
-lint = ["docutils-stubs", "mypy", "flake8"]
 
 [[package]]
 name = "sphinxext-opengraph"
@@ -1054,8 +1054,8 @@ certifi = [
     {file = "certifi-2022.6.15.tar.gz", hash = "sha256:84c85a9078b11105f04f3036a9482ae10e4621616db313fe045dd24743a0820d"},
 ]
 charset-normalizer = [
-    {file = "charset-normalizer-2.1.0.tar.gz", hash = "sha256:575e708016ff3a5e3681541cb9d79312c416835686d054a23accb873b254f413"},
-    {file = "charset_normalizer-2.1.0-py3-none-any.whl", hash = "sha256:5189b6f22b01957427f35b6a08d9a0bc45b46d3788ef5a92e978433c7a35f8a5"},
+    {file = "charset-normalizer-2.1.1.tar.gz", hash = "sha256:5a3d016c7c547f69d6f81fb0db9449ce888b418b5b9952cc5e6e66843e9dd845"},
+    {file = "charset_normalizer-2.1.1-py3-none-any.whl", hash = "sha256:83e9a75d1911279afd89352c68b45348559d1fc0506b054b346651b5e7fee29f"},
 ]
 cihai-cli = [
     {file = "cihai-cli-0.9.0.tar.gz", hash = "sha256:70abfeb05e71f63f8e5e92a06323e87435d5b2ce6ea579f9baab34fde5aae8d8"},
