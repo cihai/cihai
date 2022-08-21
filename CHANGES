@@ -6,11 +6,12 @@
 
 ### Internal
 
-- Update unihan-etl 0.16.0 -> 0.17.1:
+- Update unihan-etl 0.16.0 -> 0.17.2:
 
   - unihan-etl 0.16.0 adds `--no-cache` / `cache` as an option
   - unihan-etl 0.17.0 adds type annotations (`mypy --strict`)
   - unihan-etl 0.17.1 fixes bugs from 0.17.0's annotations
+  - unihan-etl 0.17.2 docs / changelog issue linking update
 
 ## cihai 0.15.0 (2022-08-20)
 
