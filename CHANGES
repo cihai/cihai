@@ -1,8 +1,13 @@
 # Changelog
 
-## cihai 0.16.x (unreleased)
+## cihai 0.17.x (unreleased)
 
 - _Insert changes/features/fixes for next release here_
+
+## cihai 0.16.0 (2022-08-21)
+
+Purely on the inside. We're adding comprehensive type annotations to all cihai
+projects for better maintainability and downstream usage.
 
 ### Internal
 
