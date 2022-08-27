@@ -4,6 +4,10 @@
 
 - _Insert changes/features/fixes for next release here_
 
+### Documentation
+
+- Render changelog with sphinx-autoissues, #327
+
 ## cihai 0.16.0 (2022-08-21)
 
 Purely on the inside. We're adding comprehensive type annotations to all cihai
