@@ -93,7 +93,7 @@ Infrastructure updates for static type checking and doctest examples.
 
 ## cihai 0.12.0 (2021-06-16)
 
-- {issue}`291`: Convert to markdown
+- #291: Convert to markdown
 
 ## cihai 0.11.1 (2021-06-15)
 
@@ -104,7 +104,7 @@ Infrastructure updates for static type checking and doctest examples.
 - Update {}`black` to 21.6b0
 - Update trove classifiers to 3.9
 - Update unihan-etl to 0.12.0 (removes python 2.7, 3.5 support)
-- {issue}`288` Remove python 2.7, 3.5 support. Remove `__future__` and unused modesets
+- #288 Remove python 2.7, 3.5 support. Remove `__future__` and unused modesets
 
 ## cihai 0.10.0 (2020-08-09)
 
@@ -112,12 +112,12 @@ Infrastructure updates for static type checking and doctest examples.
 
   resolver: <https://pip.pypa.io/en/stable/user_guide/#resolver-changes-2020>
 
-- {issue}`285` Move packaging / publishing to poetry
-- {issue}`284` Self host docs
-- {issue}`284` Add metadata / icons / etc. for doc site
-- {issue}`284` Move travis -> github actions
-- {issue}`284` Overhaul Makefiles
-- {issue}`283` Move from Pipfile to poetry
+- #285 Move packaging / publishing to poetry
+- #284 Self host docs
+- #284 Add metadata / icons / etc. for doc site
+- #284 Move travis -> github actions
+- #284 Overhaul Makefiles
+- #283 Move from Pipfile to poetry
 - Improvements to plugin/extension system
 
 ## cihai 0.9.0p1 (2019-08-18)
@@ -248,9 +248,9 @@ Infrastructure updates for static type checking and doctest examples.
 - Automatically reflect database schemas and make available in main cihai object
 - Use click library for CLI
 - Initial support for character lookups via `$ cihai info <char>`.
-- {issue}`3` Bootstrap UNIHAN into cihai by default via unihan-tabular project
-- {issue}`4` Drop python 3.3 and 3.4 support
-- {issue}`4` Initial [XDG][xdg] base directory support
+- #3 Bootstrap UNIHAN into cihai by default via unihan-tabular project
+- #4 Drop python 3.3 and 3.4 support
+- #4 Initial [XDG][xdg] base directory support
 - Move tests to pytest functions and fixtures
 - Remove unused test_unihan file
 - PEP8, sort imports
