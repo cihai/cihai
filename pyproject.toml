@@ -65,7 +65,6 @@ sphinx-argparse = "*"
 furo = "*"
 sphinx-autobuild = "*"
 sphinx-autodoc-typehints = "*"
-sphinx-issues = "*"
 sphinx-inline-tabs = { version = "*", python = "^3.7" }
 sphinxext-opengraph = "*"
 sphinx-copybutton = "*"
@@ -99,7 +98,6 @@ types-colorama = "^0.4.15"
 docs = [
   "docutils",
   "sphinx",
-  "sphinx-issues",
   "sphinx-argparse",
   "sphinx-autodoc-typehints",
   "sphinx-autobuild",
