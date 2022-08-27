@@ -29,7 +29,7 @@ extensions = [
     "sphinx.ext.linkcode",
     "sphinx_inline_tabs",
     "sphinx_copybutton",
-    "sphinx_issues",
+    "sphinx_autoissues",
     "sphinxext.opengraph",
     "sphinxext.rediraffe",
     "myst_parser",
@@ -100,8 +100,9 @@ copybutton_prompt_text = (
 copybutton_prompt_is_regexp = True
 copybutton_remove_prompts = True
 
-# sphinx-issues
-issues_github_path = "cihai/cihai"
+# sphinx-autoissues
+issuetracker = "github"
+issuetracker_project = "cihai/cihai"
 
 # sphinxext-rediraffe
 rediraffe_redirects = "redirects.txt"
