@@ -48,8 +48,8 @@ class DatasetExample(object):
         """
         dataset = {"好": {"definition": "hao"}}
 
-        for char, key in dataset.items():
-            for key, val in dataset[char].items():
+        for char in dataset.keys():
+            for val in dataset[char].values():
                 if request in val:
                     response.update({char: dataset[char]})
 

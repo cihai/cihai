@@ -6,7 +6,10 @@ from . import bootstrap
 
 
 class Unihan(Dataset, SQLAlchemyMixin):
-    def bootstrap(self, options={}):
+    def bootstrap(self, options=None):
+        if options is None:
+            options = {}
+
         bootstrap.bootstrap_unihan(self.sql.metadata, options=options)
         self.sql.reflect_db()  # automap new table created during bootstrap
 

@@ -2,7 +2,7 @@
 from cihai.core import Cihai
 
 
-def run(unihan_options={}):
+def run(unihan_options=None):
     c = Cihai()
     if not c.unihan.is_bootstrapped:  # download and install Unihan to db
         c.unihan.bootstrap(unihan_options)

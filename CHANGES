@@ -4,6 +4,10 @@
 
 - _Insert changes/features/fixes for next release here_
 
+### Development
+
+- Add [flake8-bugbear](https://github.com/PyCQA/flake8-bugbear) (#328)
+
 ### Documentation
 
 - Render changelog with sphinx-autoissues, #327

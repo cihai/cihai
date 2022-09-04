@@ -6,7 +6,7 @@ the hood.
 from cihai.core import Cihai
 
 
-def run(unihan_options={}):
+def run(unihan_options=None):
     c = Cihai(unihan=False)
     c.add_dataset("cihai.data.unihan.dataset.Unihan", namespace="unihan")
 

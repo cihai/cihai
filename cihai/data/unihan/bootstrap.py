@@ -7,7 +7,10 @@ from unihan_etl.util import merge_dict
 from .constants import UNIHAN_ETL_DEFAULT_OPTIONS, UNIHAN_FIELDS
 
 
-def bootstrap_unihan(metadata, options={}):
+def bootstrap_unihan(metadata, options=None):
+    if options is None:
+        options = {}
+
     """Download, extract and import unihan to database."""
     options = merge_dict(UNIHAN_ETL_DEFAULT_OPTIONS.copy(), options)
 
