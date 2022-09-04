@@ -89,6 +89,7 @@ isort = "*"
 
 ### Lint ###
 flake8 = "*"
+flake8-bugbear = "^22.8.23"
 mypy = "*"
 sqlalchemy-stubs = "^0.4"
 types-appdirs = "^1.4.3"
@@ -112,7 +113,7 @@ docs = [
 test = ["pytest", "pytest-rerunfailures", "pytest-watcher"]
 coverage = ["codecov", "coverage", "pytest-cov"]
 format = ["black", "isort"]
-lint = ["flake8", "mypy", "sqlalchemy-stubs", "types-appdirs", "types-colorama"]
+lint = ["flake8", "flake8-bugbear", "mypy", "sqlalchemy-stubs", "types-appdirs", "types-colorama"]
 
 [tool.mypy]
 plugins = [
