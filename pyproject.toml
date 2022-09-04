@@ -113,7 +113,14 @@ docs = [
 test = ["pytest", "pytest-rerunfailures", "pytest-watcher"]
 coverage = ["codecov", "coverage", "pytest-cov"]
 format = ["black", "isort"]
-lint = ["flake8", "flake8-bugbear", "mypy", "sqlalchemy-stubs", "types-appdirs", "types-colorama"]
+lint = [
+  "flake8",
+  "flake8-bugbear",
+  "mypy",
+  "sqlalchemy-stubs",
+  "types-appdirs",
+  "types-colorama",
+]
 
 [tool.mypy]
 plugins = [
