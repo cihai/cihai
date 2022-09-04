@@ -9,7 +9,7 @@ def variant_list(unihan, field):
             print(var)
 
 
-def run(unihan_options={}):
+def run(unihan_options=None):
     """Wrapped so we can test in tests/test_examples.py"""
     print("This example prints variant character data.")
 
