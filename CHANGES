@@ -7,6 +7,7 @@
 ### Development
 
 - Add [flake8-bugbear](https://github.com/PyCQA/flake8-bugbear) (#328)
+- Add [flake8-comprehensions](https://github.com/adamchainz/flake8-comprehensions) (#329)
 
 ### Documentation
 
