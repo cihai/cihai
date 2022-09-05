@@ -42,7 +42,7 @@ def is_bootstrapped(metadata):
     if TABLE_NAME in metadata.tables.keys():
         table = metadata.tables[TABLE_NAME]
 
-        if set(fields) == set(c.name for c in table.columns):
+        if set(fields) == {c.name for c in table.columns}:
             return True
         else:
             return False
