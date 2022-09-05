@@ -90,6 +90,7 @@ isort = "*"
 ### Lint ###
 flake8 = "*"
 flake8-bugbear = "^22.8.23"
+flake8-comprehensions = "^3.10.0"
 mypy = "*"
 sqlalchemy-stubs = "^0.4"
 types-appdirs = "^1.4.3"
@@ -116,6 +117,7 @@ format = ["black", "isort"]
 lint = [
   "flake8",
   "flake8-bugbear",
+  "flake8-comprehensions",
   "mypy",
   "sqlalchemy-stubs",
   "types-appdirs",
