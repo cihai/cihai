@@ -206,6 +206,18 @@ sphinx = ">=4.0,<6.0"
 sphinx-basic-ng = "*"
 
 [[package]]
+name = "gp-libs"
+version = "0.0.1a9"
+description = "Internal utilities for projects following git-pull python package spec"
+category = "dev"
+optional = false
+python-versions = ">=3.7,<4.0"
+
+[package.dependencies]
+docutils = ">=0.18.0,<0.19.0"
+myst_parser = "*"
+
+[[package]]
 name = "idna"
 version = "3.3"
 description = "Internationalized Domain Names in Applications (IDNA)"
@@ -695,14 +707,6 @@ testing = ["covdefaults (>=2.2)", "coverage (>=6.4.2)", "diff-cover (>=6.5.1)", 
 type_comments = ["typed-ast (>=1.5.4)"]
 
 [[package]]
-name = "sphinx-autoissues"
-version = "0.0.1"
-description = "Sphinx integration with different issuetrackers"
-category = "dev"
-optional = false
-python-versions = ">=3.7,<4.0"
-
-[[package]]
 name = "sphinx-basic-ng"
 version = "0.0.1a12"
 description = "A modern skeleton for Sphinx themes."
@@ -994,7 +998,7 @@ test = []
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "6ebf1524b5a5e98f7dc99bfb1cbd59013d8f1c900c1f0cf9be84541181239870"
+content-hash = "c61b1844579a66b71ca8787d917cb767cbae71adab5eba571b052b25ff1b00d0"
 
 [metadata.files]
 alabaster = [
@@ -1134,6 +1138,10 @@ flake8-comprehensions = [
 furo = [
     {file = "furo-2022.6.21-py3-none-any.whl", hash = "sha256:061b68e323345e27fcba024cf33a1e77f3dfd8d9987410be822749a706e2add6"},
     {file = "furo-2022.6.21.tar.gz", hash = "sha256:9aa983b7488a4601d13113884bfb7254502c8729942e073a0acb87a5512af223"},
+]
+gp-libs = [
+    {file = "gp-libs-0.0.1a9.tar.gz", hash = "sha256:835608ba29220c4d77e7e3f5a9ae27368ac1eb4b43f0cd1e6cdec9c27e9a9e3a"},
+    {file = "gp_libs-0.0.1a9-py3-none-any.whl", hash = "sha256:2c055bd65f0880325a800775a2ee4c23dacc9eb8a56408fdb665a66da7d38ed3"},
 ]
 idna = [
     {file = "idna-3.3-py3-none-any.whl", hash = "sha256:84d9dd047ffa80596e0f246e2eab0b391788b0503584e8945f2368256d2735ff"},
@@ -1344,10 +1352,6 @@ sphinx-autobuild = [
 sphinx-autodoc-typehints = [
     {file = "sphinx_autodoc_typehints-1.19.2-py3-none-any.whl", hash = "sha256:3d761de928d5a86901331133d6d4a2552afa2e798ebcfc0886791792aeb4dd9a"},
     {file = "sphinx_autodoc_typehints-1.19.2.tar.gz", hash = "sha256:872fb2d7b3d794826c28e36edf6739e93549491447dcabeb07c58855e9f914de"},
-]
-sphinx-autoissues = [
-    {file = "sphinx-autoissues-0.0.1.tar.gz", hash = "sha256:a308fd914d700ff2aa2b4584c29975a030ede7171898130ec816eca7ec2c8ce8"},
-    {file = "sphinx_autoissues-0.0.1-py3-none-any.whl", hash = "sha256:07503b774c3a64b97d2614fa409410316fbfeb87ba4553dbe3a7d2131b7453a0"},
 ]
 sphinx-basic-ng = [
     {file = "sphinx_basic_ng-0.0.1a12-py3-none-any.whl", hash = "sha256:e8b6efd2c5ece014156de76065eda01ddfca0fee465aa020b1e3c12f84570bbe"},

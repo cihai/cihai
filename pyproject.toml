@@ -63,13 +63,13 @@ unihan-etl = "~=0.17.2"
 sphinx = "*"
 sphinx-argparse = "*"
 furo = "*"
+gp-libs = "*"
 sphinx-autobuild = "*"
 sphinx-autodoc-typehints = "*"
 sphinx-inline-tabs = { version = "*", python = "^3.7" }
 sphinxext-opengraph = "*"
 sphinx-copybutton = "*"
 sphinxext-rediraffe = "*"
-sphinx-autoissues = "*"
 myst_parser = "*"
 docutils = "~0.18.0"
 
@@ -107,9 +107,9 @@ docs = [
   "sphinxext-opengraph",
   "sphinx-inline-tabs",
   "sphinxext-rediraffe",
-  "sphinx-autoissues",
   "myst_parser",
   "furo",
+  "gp-libs",
 ]
 test = ["pytest", "pytest-rerunfailures", "pytest-watcher"]
 coverage = ["codecov", "coverage", "pytest-cov"]

@@ -11,7 +11,14 @@
 
 ### Documentation
 
-- Render changelog with sphinx-autoissues, #327
+- Render changelog in [`linkify_issues`] (~~#327~~, #330)
+- Fix Table of contents rendering with sphinx autodoc with [`sphinx_toctree_autodoc_fix`] (#330)
+- Test doctests in our docs via [`pytest_doctest_docutils`] (built on [`doctest_docutils`]) (#330)
+
+[`linkify_issues`]: https://gp-libs.git-pull.com/linkify_issues/
+[`sphinx_toctree_autodoc_fix`]: https://gp-libs.git-pull.com/sphinx_toctree_autodoc_fix/
+[`pytest_doctest_docutils`]: https://gp-libs.git-pull.com/doctest/pytest.html
+[`doctest_docutils`]: https://gp-libs.git-pull.com/doctest
 
 ## cihai 0.16.0 (2022-08-21)
 
