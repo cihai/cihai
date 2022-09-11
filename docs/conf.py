@@ -11,13 +11,14 @@ import cihai
 # Get the project root dir, which is the parent dir of this
 cwd = Path(__file__).parent
 project_root = cwd.parent
+src_root = project_root / "src"
 
-sys.path.insert(0, str(project_root))
+sys.path.insert(0, str(src_root))
 sys.path.insert(0, str(cwd / "_ext"))
 
 # package data
 about: t.Dict[str, str] = {}
-with open(project_root / "cihai" / "__about__.py") as fp:
+with open(src_root / "cihai" / "__about__.py") as fp:
     exec(fp.read(), about)
 
 extensions = [
@@ -213,16 +214,18 @@ def linkcode_resolve(domain, info):  # NOQA: C901
     fn = relpath(fn, start=dirname(cihai.__file__))
 
     if "dev" in about["__version__"]:
-        return "%s/blob/master/%s/%s%s" % (
+        return "%s/blob/master/%s/%s/%s%s" % (
             about["__github__"],
+            "src",
             about["__package_name__"],
             fn,
             linespec,
         )
     else:
-        return "%s/blob/v%s/%s/%s%s" % (
+        return "%s/blob/v%s/%s/%s/%s%s" % (
             about["__github__"],
             about["__version__"],
+            "src",
             about["__package_name__"],
             fn,
             linespec,

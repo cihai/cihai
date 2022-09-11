@@ -25,7 +25,7 @@ watch_test:
 	if command -v entr > /dev/null; then ${PY_FILES} | entr -c $(MAKE) test; else $(MAKE) test entr_warn; fi
 
 vulture:
-	poetry run vulture cihai
+	poetry run vulture src/cihai
 
 build_docs:
 	$(MAKE) -C docs html
