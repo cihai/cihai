@@ -57,7 +57,7 @@ python = "^3.7"
 kaptan = "*"
 sqlalchemy = "<1.4"
 appdirs = "*"
-unihan-etl = "~=0.17.2"
+unihan-etl = "~=0.18.0"
 
 [tool.poetry.dev-dependencies]
 ### Docs ###
