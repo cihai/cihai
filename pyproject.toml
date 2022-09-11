@@ -38,9 +38,10 @@ keywords = [
 homepage = "https://cihai.git-pull.com"
 readme = "README.md"
 packages = [
-  { include = "cihai" },
+  { include = "*", from = "src" },
 ]
 include = [
+  { path = "examples", format = "sdist" },
   { path = "tests", format = "sdist" },
 ]
 
