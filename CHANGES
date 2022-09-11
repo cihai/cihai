@@ -1,11 +1,16 @@
 # Changelog
 
-## cihai 0.17.x (unreleased)
+## cihai 0.18.x (unreleased)
 
 - _Insert changes/features/fixes for next release here_
 
+## cihai 0.17.0 (2022-09-11)
+
+**Maintenance only release, no bug fixes or features**
+
 ### Development
 
+- Move to to `src/` layout (#331)
 - Add [flake8-bugbear](https://github.com/PyCQA/flake8-bugbear) (#328)
 - Add [flake8-comprehensions](https://github.com/adamchainz/flake8-comprehensions) (#329)
 
