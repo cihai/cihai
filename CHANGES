@@ -4,6 +4,15 @@
 
 - _Insert changes/features/fixes for next release here_
 
+## cihai 0.17.1 (unreleased)
+
+### Infrastructure
+
+- CI speedups (#333)
+
+  - Split out release to separate job so the PyPI Upload docker image isn't pulled on normal runs
+  - Clean up CodeQL
+
 ## cihai 0.17.0 (2022-09-11)
 
 **Maintenance only release, no bug fixes or features**
