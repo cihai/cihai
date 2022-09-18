@@ -13,6 +13,8 @@
   - Split out release to separate job so the PyPI Upload docker image isn't pulled on normal runs
   - Clean up CodeQL
 
+- poetry: Bump 1.1.x to 1.2.x
+
 ## cihai 0.17.0 (2022-09-11)
 
 **Maintenance only release, no bug fixes or features**
