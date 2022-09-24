@@ -33,7 +33,6 @@ extensions = [
     "sphinxext.opengraph",
     "sphinxext.rediraffe",
     "myst_parser",
-    "sphinx_toctree_autodoc_fix",
     "linkify_issues",
 ]
 
@@ -96,6 +95,9 @@ html_sidebars = {
 
 # linkify_issues
 issue_url_tpl = "https://github.com/cihai/cihai/issues/{issue_id}"
+
+# sphinx.ext.autodoc
+toc_object_entries_show_parents = "hide"
 
 # sphinxext.opengraph
 ogp_site_url = about["__docs__"]
