@@ -4,6 +4,12 @@
 
 - _Insert changes/features/fixes for next release here_
 
+## cihai 0.18.1 (2022-10-01)
+
+### Packaging
+
+- Add PyYAML dependency
+
 ## cihai 0.18.0 (2022-10-01)
 
 ### Breaking changes
