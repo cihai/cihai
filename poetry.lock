@@ -1013,7 +1013,7 @@ test = []
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "2f18e8e463f5c2cc81d11cb4f9f80edb1d51f8c9901e9ef842d1c2989a4b6494"
+content-hash = "e68480e34a1232572f49a5a2256379c253b7c87fae855e0a8aa6a6ce6b403ec0"
 
 [metadata.files]
 alabaster = [

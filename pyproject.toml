@@ -72,12 +72,12 @@ sphinxext-opengraph = "*"
 sphinx-copybutton = "*"
 sphinxext-rediraffe = "*"
 myst_parser = "*"
-docutils = "~0.18.0"
+docutils = "*"
 
 ### Testing ###
 pytest = "*"
 pytest-rerunfailures = "*"
-pytest-watcher = "^0.2.3"
+pytest-watcher = "*"
 
 ### Coverage ###
 codecov = "*"
@@ -90,12 +90,12 @@ isort = "*"
 
 ### Lint ###
 flake8 = "*"
-flake8-bugbear = "^22.8.23"
-flake8-comprehensions = "^3.10.0"
+flake8-bugbear = "*"
+flake8-comprehensions = "*"
 mypy = "*"
-sqlalchemy-stubs = "^0.4"
-types-appdirs = "^1.4.3"
-types-colorama = "^0.4.15"
+sqlalchemy-stubs = "*"
+types-appdirs = "*"
+types-colorama = "*"
 
 [tool.poetry.extras]
 docs = [
