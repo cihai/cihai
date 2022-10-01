@@ -573,7 +573,7 @@ python-versions = "*"
 name = "PyYAML"
 version = "6.0"
 description = "YAML parser and emitter for Python"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 
@@ -1010,7 +1010,7 @@ test = []
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "fa93b6b3911aabb8f12de15779e43bb632ae06d7b59db2d1021cd12196624b7f"
+content-hash = "b67605c04edabd5cfd2afbcc3b4034361974a0d2751ccea34a20c63655b6d36d"
 
 [metadata.files]
 alabaster = [
