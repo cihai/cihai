@@ -54,7 +54,6 @@ Repository = "https://github.com/cihai/cihai"
 
 [tool.poetry.dependencies]
 python = "^3.7"
-kaptan = "*"
 sqlalchemy = "<1.4"
 appdirs = "*"
 unihan-etl = "~=0.18.0"
@@ -96,6 +95,7 @@ mypy = "*"
 sqlalchemy-stubs = "*"
 types-appdirs = "*"
 types-colorama = "*"
+types-PyYAML = "*"
 
 [tool.poetry.extras]
 docs = [
@@ -123,6 +123,7 @@ lint = [
   "sqlalchemy-stubs",
   "types-appdirs",
   "types-colorama",
+  "types-PyYAML",
 ]
 
 [tool.mypy]
@@ -133,7 +134,6 @@ plugins = [
 [[tool.mypy.overrides]]
 module = [
   "unihan_etl.*",
-  "kaptan",
 ]
 ignore_missing_imports = true
 

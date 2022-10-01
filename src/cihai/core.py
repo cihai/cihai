@@ -1,10 +1,11 @@
 """Cihai core functionality."""
 import logging
 import os
+import pathlib
 
-import kaptan
 from appdirs import AppDirs
 
+from cihai.config_reader import ConfigReader
 from unihan_etl.util import merge_dict
 
 from . import exc, extend
@@ -123,8 +124,9 @@ class Cihai(object):
         :class:`Cihai` :
             application object
         """
-
-        config_reader = kaptan.Kaptan()
+        if isinstance(config_path, str):
+            config_path = pathlib.Path(config_path)
+        config_reader = ConfigReader(path=config_path)
 
         config = {}
 
@@ -133,16 +135,14 @@ class Cihai(object):
                 raise exc.CihaiException(
                     "{0} does not exist.".format(os.path.abspath(config_path))
                 )
-            if not any(
-                config_path.endswith(ext) for ext in ("json", "yml", "yaml", "ini")
-            ):
+            if config_path.suffix not in [".json", ".yml", ".yaml"]:
                 raise exc.CihaiException(
-                    "{0} does not have a yaml,yml,json,ini extend.".format(
+                    "{0} does not have a yaml, yml, json extension.".format(
                         os.path.abspath(config_path)
                     )
                 )
             else:
-                custom_config = config_reader.import_config(config_path).get()
+                custom_config = config_reader.import_config()
                 config = merge_dict(config, custom_config)
 
         return cls(config)
