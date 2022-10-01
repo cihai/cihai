@@ -134,7 +134,6 @@ plugins = [
 [[tool.mypy.overrides]]
 module = [
   "unihan_etl.*",
-  "kaptan",
 ]
 ignore_missing_imports = true
 
