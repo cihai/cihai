@@ -96,6 +96,7 @@ mypy = "*"
 sqlalchemy-stubs = "*"
 types-appdirs = "*"
 types-colorama = "*"
+types-PyYAML = "*"
 
 [tool.poetry.extras]
 docs = [
@@ -123,6 +124,7 @@ lint = [
   "sqlalchemy-stubs",
   "types-appdirs",
   "types-colorama",
+  "types-PyYAML",
 ]
 
 [tool.mypy]
