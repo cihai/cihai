@@ -4,6 +4,15 @@
 
 - _Insert changes/features/fixes for next release here_
 
+## cihai 0.18.2 (2022-10-02)
+
+**Maintenance only release, no bug fixes or features**
+
+### Packaging
+
+- Bump unihan-etl to 0.18.0 -> 0.18.1 (just packaging updates)
+- Pin `importlib_metadata` to `<5` while internal dependencies are figured out
+
 ## cihai 0.18.1 (2022-10-01)
 
 ### Packaging
