@@ -40,7 +40,7 @@ class ConfigMixin(object):
     default_config : your dataset's default configuration
 
     get_default_config : override function in case you'd like custom configs (for
-        instnace if you want a platform to use a different db driver, or do version
+        instance if you want a platform to use a different db driver, or do version
         checks, etc.)
 
         internal functions use get_default_config()
@@ -53,7 +53,7 @@ class SQLAlchemyMixin(object):
     it's preconfigured for the user.
 
     In addition, this mixin gives you access to any other of the user's sqlalchemy
-    sql that use this mixin. So if you want a dataset that utilitizes UNIHAN, you can
+    sql that use this mixin. So if you want a dataset that utilizes UNIHAN, you can
     access that easily.
 
     This will provide the following instance-level properties in methods:

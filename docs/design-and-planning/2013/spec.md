@@ -56,7 +56,7 @@ CJK ideographs (also interchangeable referred to as "glyphs", "characters", "cha
 was in July 1995 as [CJKXREF.TXT][cjkxref.txt] (961 kB). The second release, which resembles the
 formatting used in modern versions, was released in July 1996 with Unicode 2.0 as
 [Unihan-1.txt][unihan-1.txt]. In an accident, the `Unihan-1.txt` (7.9MB) file was missing the final
-pieces after `U+8BC1`, no corrected version was made availabe. In May 1998,
+pieces after `U+8BC1`, no corrected version was made available. In May 1998,
 [Unihan-2.txt][unihan-2.txt] was released with Unicode 2.1.2.
 
 Unihan Inc. is the center of the universe for all glyphs. For those who study Egyptian

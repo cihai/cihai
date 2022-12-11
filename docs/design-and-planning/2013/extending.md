@@ -83,7 +83,7 @@ you must create an SQL schema / table for your data.
 The pristine format of your data may be in CSV, excel or another format. As long as your data is
 normalized into a {obj}`dict` that is compatible with the sql table, it is ok.
 
-To accomodate this, {class}`Cihai` provides all plugins a instance of
+To accommodate this, {class}`Cihai` provides all plugins a instance of
 {class}`sqlalchemy.schema.MetaData` on creation. [sqlalchemy][sqlalchemy] is the swiss army knife of
 databases in the python programming language.
 

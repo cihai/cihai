@@ -29,7 +29,7 @@ class Cihai(object):
 
     Notes
     -----
-    Inspired by the early pypa/warehouse applicaton object [1]_.
+    Inspired by the early pypa/warehouse application object [1]_.
 
     **Configuration templates**
 
@@ -40,7 +40,7 @@ class Cihai(object):
 
     Examples
     --------
-    To use cihai programatically, invoke and install the UNIHAN [2]_ dataset:
+    To use cihai programmatically, invoke and install the UNIHAN [2]_ dataset:
 
     .. literalinclude:: ../examples/basic_usage.py
         :language: python

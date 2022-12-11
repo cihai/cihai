@@ -11,7 +11,7 @@
 For all data sets, the goal is to achieve:
 
 - Clear and permissive a licensing for public and private use
-- Compatibilty with [Data Packages][data packages], for data to be language agnostic and consistent
+- Compatibility with [Data Packages][data packages], for data to be language agnostic and consistent
 - Open source scripting used to process data into a common format
 
 | Set       | License           | Data Package           | Project           |

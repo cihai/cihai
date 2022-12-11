@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Chinese characater decomposition.
+"""Chinese character decomposition.
 
 cihai.datasets.decomp
 ~~~~~~~~~~~~~~~~~~~~~

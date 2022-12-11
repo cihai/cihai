@@ -64,7 +64,7 @@ desire to help.
 
 This is an observation and doesn't infer endorsement by IPython or its contributors.
 
-There is no requirement for providing an open source derivitive (or an upstream patch) for a
+There is no requirement for providing an open source derivative (or an upstream patch) for a
 modification, so does IPython development go stale? [93 pages of patches][93 pages of patches]
 committed to the project.
 
