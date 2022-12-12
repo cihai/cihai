@@ -14,7 +14,7 @@ relational friendly format.
 
 Certain datasets may also offer to download the latest datasets from a server as well.
 
-Cihai is a tool to convert CJK datasets to a common, relational format and provide a convient Python
+Cihai is a tool to convert CJK datasets to a common, relational format and provide a convenent Python
 API for studying deeply.
 
 ## Bootstrapping
