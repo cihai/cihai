@@ -1,4 +1,5 @@
 import os
+import typing as t
 import zipfile
 
 import pytest
@@ -31,6 +32,12 @@ def zip_file(zip_path, fixture_path):
         zf.write(f, os.path.basename(f))
     zf.close()
     return zf
+
+
+class UnihanOptions(t.TypedDict):
+    source: str
+    work_dir: str
+    zip_path: str
 
 
 @pytest.fixture

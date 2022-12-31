@@ -1,3 +1,6 @@
+from typing import Dict, List, Optional
+
+import sqlalchemy.sql.schema
 from sqlalchemy import Column, String, Table
 
 from unihan_etl import process as unihan
@@ -7,7 +10,9 @@ from unihan_etl.util import merge_dict
 from .constants import UNIHAN_ETL_DEFAULT_OPTIONS, UNIHAN_FIELDS
 
 
-def bootstrap_unihan(metadata, options=None):
+def bootstrap_unihan(
+    metadata: sqlalchemy.sql.schema.MetaData, options: Optional[Dict[str, str]] = None
+) -> None:
     if options is None:
         options = {}
 
@@ -36,7 +41,7 @@ except Exception:
     DEFAULT_FIELDS = [f for t, f in UNIHAN_MANIFEST.items()]
 
 
-def is_bootstrapped(metadata):
+def is_bootstrapped(metadata: sqlalchemy.sql.schema.MetaData) -> bool:
     """Return True if cihai is correctly bootstrapped."""
     fields = UNIHAN_FIELDS + DEFAULT_COLUMNS
     if TABLE_NAME in metadata.tables.keys():
@@ -50,7 +55,9 @@ def is_bootstrapped(metadata):
         return False
 
 
-def create_unihan_table(columns, metadata):
+def create_unihan_table(
+    columns: List[str], metadata: sqlalchemy.sql.schema.MetaData
+) -> sqlalchemy.sql.schema.Table:
     """Create table and return  :class:`sqlalchemy.Table`.
 
     Parameters

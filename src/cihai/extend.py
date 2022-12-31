@@ -12,7 +12,13 @@ For convenience, you can use cihai's configuration namespace and SQLAlchemy sett
 You can also create plugins which extend another. So if Unihan doesn't have a lookup
 for variant glyphs, this can be added.
 """
+import typing as t
+
 from . import utils
+
+if t.TYPE_CHECKING:
+    from cihai.data.unihan.dataset import UnihanVariants
+    from cihai.db import Database
 
 
 class ConfigMixin:
@@ -62,6 +68,8 @@ class SQLAlchemyMixin:
     they don't clobber.
     """
 
+    sql: "Database"
+
     #: :class:`sqlalchemy.engine.Engine` instance.
     engine = None
 
@@ -87,10 +95,17 @@ class Dataset:
     def bootstrap(self):
         pass
 
-    def add_plugin(self, _cls, namespace, bootstrap=True):
+    def add_plugin(
+        self,
+        _cls: t.Union[t.Type["UnihanVariants"], str],
+        namespace: str,
+        bootstrap: bool = True,
+    ) -> None:
         if isinstance(_cls, str):
-            _cls = utils.import_string(_cls)
-        setattr(self, namespace, _cls())
+            cls = utils.import_string(_cls)
+        else:
+            cls = _cls
+        setattr(self, namespace, cls())
         plugin = getattr(self, namespace)
 
         if hasattr(self, "sql") and isinstance(self, SQLAlchemyMixin):

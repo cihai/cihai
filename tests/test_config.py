@@ -1,4 +1,5 @@
 import os
+import pathlib
 
 from appdirs import AppDirs
 
@@ -22,8 +23,8 @@ def test_expand_config_xdg_vars():
 
     expected_dict = {
         "dirs": {
-            "cache": dirs.user_cache_dir,
-            "data": os.path.join(dirs.user_cache_dir, "data"),
+            "cache": pathlib.Path(dirs.user_cache_dir),
+            "data": pathlib.Path(dirs.user_cache_dir) / "data",
         }
     }
 
@@ -34,7 +35,7 @@ def test_expand_config_xdg_vars():
 def test_expand_config_user_vars():
     initial_dict = {"dirs": {"cache": "~"}}
 
-    expected_dict = {"dirs": {"cache": os.path.expanduser("~")}}
+    expected_dict = {"dirs": {"cache": pathlib.Path.home()}}
 
     expand_config(initial_dict, dirs)
     assert initial_dict == expected_dict
@@ -44,7 +45,7 @@ def test_expand_config_env_vars(tmpdir, monkeypatch):
     monkeypatch.setenv("MYDIR", str(tmpdir))
     initial_dict = {"dirs": {"cache": "${MYDIR}"}}
 
-    expected_dict = {"dirs": {"cache": os.environ.get("MYDIR")}}
+    expected_dict = {"dirs": {"cache": pathlib.Path(str(os.environ.get("MYDIR")))}}
 
     expand_config(initial_dict, dirs)
     assert initial_dict == expected_dict

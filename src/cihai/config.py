@@ -1,12 +1,16 @@
 import os
-from typing import Dict, Union
+import pathlib
+import typing as t
 
 from appdirs import AppDirs
 
+from cihai.constants import app_dirs
 
-def expand_config(
-    d: Dict[str, Union[bool, Dict[str, str], str]], dirs: AppDirs
-) -> None:
+if t.TYPE_CHECKING:
+    from .types import RawConfigDict
+
+
+def expand_config(d: "RawConfigDict", dirs: "AppDirs" = app_dirs) -> None:
     """
     Expand configuration XDG variables, environmental variables, and tildes.
 
@@ -51,8 +55,13 @@ def expand_config(
         if isinstance(v, dict):
             expand_config(v, dirs)
         if isinstance(v, str):
-            d[k] = os.path.expanduser(os.path.expandvars(d[k]))
-            d[k] = d[k].format(**context)
+            d[k] = os.path.expanduser(os.path.expandvars(v).format(**context))
+
+            path = pathlib.Path(d[k])
+            if path.exists() or any(
+                str(path).startswith(app_dir) for app_dir in context.values()
+            ):
+                d[k] = path
 
 
 class Configurator:

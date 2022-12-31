@@ -1,4 +1,7 @@
+from typing import Dict, List, Optional, Union
+
 from sqlalchemy import Column, or_
+from sqlalchemy.orm.query import Query
 
 from ...conversion import parse_untagged, parse_vars
 from ...extend import Dataset, DatasetPlugin, SQLAlchemyMixin
@@ -6,14 +9,14 @@ from . import bootstrap
 
 
 class Unihan(Dataset, SQLAlchemyMixin):
-    def bootstrap(self, options=None):
+    def bootstrap(self, options: Optional[Dict[str, str]] = None) -> None:
         if options is None:
             options = {}
 
         bootstrap.bootstrap_unihan(self.sql.metadata, options=options)
         self.sql.reflect_db()  # automap new table created during bootstrap
 
-    def lookup_char(self, char):
+    def lookup_char(self, char: str) -> Query:
         """Return character information from datasets.
 
         Parameters
@@ -29,7 +32,7 @@ class Unihan(Dataset, SQLAlchemyMixin):
         Unihan = self.sql.base.classes.Unihan
         return self.sql.session.query(Unihan).filter_by(char=char)
 
-    def reverse_char(self, hints):
+    def reverse_char(self, hints: Union[str, List[str]]) -> Query:
         """Return QuerySet of objects from SQLAlchemy of results.
 
         Parameters
@@ -51,7 +54,7 @@ class Unihan(Dataset, SQLAlchemyMixin):
             or_(*[column.contains(hint) for column in columns for hint in hints])
         )
 
-    def with_fields(self, *fields):
+    def with_fields(self, *fields) -> Query:
         """Returns list of characters with information for certain fields.
 
         Parameters
@@ -71,7 +74,7 @@ class Unihan(Dataset, SQLAlchemyMixin):
         return query
 
     @property
-    def is_bootstrapped(self):
+    def is_bootstrapped(self) -> bool:
         """Return True if UNIHAN and database is set up.
 
         Returns
@@ -83,7 +86,7 @@ class Unihan(Dataset, SQLAlchemyMixin):
 
 
 class UnihanVariants(DatasetPlugin):
-    def bootstrap(self):
+    def bootstrap(self) -> None:
         def tagged_vars(table, col):
             """
             Return a variant column as an iterator of (char, tag) tuples.

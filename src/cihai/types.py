@@ -1,27 +1,41 @@
 import pathlib
 import typing as t
 
-from typing_extensions import NotRequired, TypedDict
+if t.TYPE_CHECKING:
+    from cihai.extend import Dataset
 
-from cihai._internal.types import StrPath
+
+class RawPluginConfigDict(t.TypedDict):
+    pass
+
+
+class RawDirsConfigDict(t.TypedDict):
+    cache: t.Union[str, pathlib.Path]
+    log: t.Union[str, pathlib.Path]
+    data: t.Union[str, pathlib.Path]
+
+
+class DirsConfigDict(t.TypedDict):
+    cache: pathlib.Path
+    log: pathlib.Path
+    data: pathlib.Path
+
+
+class RawDatabaseConfigDict(t.TypedDict):
+    url: str
 
 
 class RawConfigDict(t.TypedDict):
-    name: str
-    dir: StrPath
-    url: str
+    plugins: t.Dict[str, RawPluginConfigDict]
+    datasets: t.Dict[str, t.Union[str, "Dataset"]]
+    database: RawDatabaseConfigDict
+    dirs: RawDirsConfigDict
+    debug: bool
 
 
-RawConfigDir = dict[str, RawConfigDict]
-RawConfig = dict[str, RawConfigDir]
-
-
-class ConfigDict(TypedDict):
-    name: str
-    dir: pathlib.Path
-    url: str
-    shell_command_after: NotRequired[t.Optional[t.List[str]]]
-
-
-ConfigDir = dict[str, ConfigDict]
-Config = dict[str, ConfigDir]
+class ConfigDict(t.TypedDict):
+    plugins: t.Dict[str, RawPluginConfigDict]
+    datasets: t.Dict[str, t.Union[str, "Dataset"]]
+    database: RawDatabaseConfigDict
+    dirs: RawDirsConfigDict
+    debug: bool

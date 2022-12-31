@@ -1,12 +1,11 @@
-"""
-Utility and helper methods for cihai.
-"""
+"""Utility and helper methods for cihai."""
 import sys
+import typing as t
 
 from . import exc
 
 
-def supports_wide():
+def supports_wide() -> bool:
     """Return affirmative if python interpreter supports wide characters.
 
     Returns
@@ -17,7 +16,7 @@ def supports_wide():
     return sys.maxunicode > 0xFFFF
 
 
-def import_string(import_name: str, silent: bool = False):
+def import_string(import_name: str, silent: bool = False) -> t.Any:
     """Imports an object based on a string.
 
     This is useful if you want to use import paths as endpoints or
