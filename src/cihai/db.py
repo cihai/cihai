@@ -30,7 +30,6 @@ class Database:
         self.engine = create_engine(config["database"]["url"])
 
         self.metadata = MetaData()
-        self.metadata.bind = self.engine
         self.reflect_db()
 
         self.session = Session(self.engine)
@@ -42,6 +41,6 @@ class Database:
         This is available as a method so the database can be reflected
         outside initialization (such bootstrapping unihan during CLI usage).
         """
-        self.metadata.reflect(views=True, extend_existing=True)
+        self.metadata.reflect(bind=self.engine, views=True, extend_existing=True)
         self.base = automap_base(metadata=self.metadata)
         self.base.prepare()

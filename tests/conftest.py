@@ -4,6 +4,8 @@ import zipfile
 
 import pytest
 
+import sqlalchemy
+
 from cihai.data.unihan.constants import UNIHAN_FILES
 
 
@@ -52,3 +54,13 @@ def unihan_options(
 @pytest.fixture(scope="function")
 def tmpdb_file(tmpdir: str) -> str:
     return tmpdir.join("test.db")
+
+
+@pytest.fixture(scope="session")
+def engine() -> sqlalchemy.Engine:
+    return sqlalchemy.create_engine("sqlite:///")
+
+
+@pytest.fixture(scope="session")
+def metadata() -> sqlalchemy.MetaData:
+    return sqlalchemy.MetaData()

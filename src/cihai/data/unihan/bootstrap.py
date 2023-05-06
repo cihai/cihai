@@ -1,6 +1,7 @@
 import typing as t
 
 import sqlalchemy.sql.schema
+import sqlalchemy
 from sqlalchemy import Column, String, Table
 
 from unihan_etl import process as unihan
@@ -11,6 +12,7 @@ from .constants import UNIHAN_ETL_DEFAULT_OPTIONS, UNIHAN_FIELDS
 
 
 def bootstrap_unihan(
+    engine: sqlalchemy.Engine,
     metadata: sqlalchemy.sql.schema.MetaData,
     options: t.Optional[t.Dict[str, object]] = None,
 ) -> None:
@@ -24,9 +26,11 @@ def bootstrap_unihan(
     p.download()
     data = p.export()
     table = create_unihan_table(UNIHAN_FIELDS, metadata)
-    metadata.create_all()
-    assert metadata.bind is not None
-    metadata.bind.execute(table.insert(), data)
+
+    metadata.create_all(engine)
+    with engine.connect() as conn:
+        conn.execute(sqlalchemy.insert(table), data)
+        conn.commit()
 
 
 TABLE_NAME = "Unihan"

@@ -26,7 +26,9 @@ class Unihan(Dataset, SQLAlchemyMixin):
         if options is None:
             options = {}
 
-        bootstrap.bootstrap_unihan(self.sql.metadata, options=options)
+        bootstrap.bootstrap_unihan(
+            engine=self.sql.engine, metadata=self.sql.metadata, options=options
+        )
         self.sql.reflect_db()  # automap new table created during bootstrap
 
     def lookup_char(self, char: str) -> "Query[Unihan]":
@@ -83,7 +85,7 @@ class Unihan(Dataset, SQLAlchemyMixin):
         Unihan = self.sql.base.classes.Unihan
         query = self.sql.session.query(Unihan)
         for field in fields:
-            query = query.filter(Column(field).isnot(None))  # type:ignore
+            query = query.filter(Column(field).isnot(None))
         return query
 
     @property
