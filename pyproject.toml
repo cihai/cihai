@@ -139,6 +139,11 @@ plugins = [
   "sqlmypy",
 ]
 
+[tool.ruff]
+
+[tool.ruff.per-file-ignores]
+"*/__init__.py" = ["F401"]
+
 [build-system]
 requires = ["poetry_core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
