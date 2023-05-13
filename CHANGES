@@ -4,11 +4,19 @@
 
 - _Insert changes/features/fixes for next release here_
 
+## cihai 0.18.3 (2023-05-13)
+
+_Maintenance only release, no bug fixes, changes, or features._
+
 ### Packaging
 
 - Bump unihan-etl from 0.18.1 -> 0.18.2
 
   Typing update for `merge_dict`
+
+### Development
+
+- Chore: flake8 fixes
 
 ## cihai 0.18.2 (2022-10-02)
 
