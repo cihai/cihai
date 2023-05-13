@@ -74,7 +74,7 @@ def test_add_dataset_unihan(unihan_options):
                 variants.append(var)
             yield (char, variants)
 
-    result = {char: variants for (char, variants) in variant_list("kZVariant")}
+    result = dict(variant_list("kZVariant"))
 
     assert len(result.values()) > 0
     assert len(result.keys()) > 0
