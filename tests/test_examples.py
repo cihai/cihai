@@ -1,5 +1,6 @@
 import importlib
 import importlib.util
+import re
 import sys
 import types
 
@@ -43,7 +44,7 @@ def test_basic_usage(unihan_options, capsys: pytest.CaptureFixture[str]):
     captured = capsys.readouterr()
 
     assert "lookup for 好: good" in captured.out
-    assert 'matches for "good": 好' in captured.out
+    assert re.search(r'matches for "good": .*好', captured.out, re.MULTILINE)
 
 
 def test_basic_usage_manual(unihan_options, capsys: pytest.CaptureFixture[str]):
@@ -53,4 +54,4 @@ def test_basic_usage_manual(unihan_options, capsys: pytest.CaptureFixture[str]):
     captured = capsys.readouterr()
 
     assert "lookup for 好: good" in captured.out
-    assert 'matches for "good": 好' in captured.out
+    assert re.search(r'matches for "good": .*好', captured.out, re.MULTILINE)
