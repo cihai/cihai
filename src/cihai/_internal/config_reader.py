@@ -5,11 +5,11 @@ import typing as t
 import yaml
 
 if t.TYPE_CHECKING:
-    from typing_extensions import Literal, TypeAlias
-
-    FormatLiteral = Literal["json", "yaml"]
+    from typing_extensions import TypeAlias
 
     RawConfigData: TypeAlias = t.Dict[t.Any, t.Any]
+
+FormatLiteral = t.Literal["json", "yaml"]
 
 
 class ConfigReader:

@@ -78,7 +78,7 @@ def kuten_to_gb2312(kuten):
     zone, point = int(kuten[:2]), int(kuten[2:])
     hi, lo = hexd(zone + 0x20), hexd(point + 0x20)
 
-    gb2312 = "{}{}".format(hi, lo)
+    gb2312 = f"{hi}{lo}"
 
     assert isinstance(gb2312, bytes)
     return gb2312
@@ -92,7 +92,7 @@ def gb2312_to_euc(gb2312hex):
     hi, lo = int(gb2312hex[:2], 16), int(gb2312hex[2:], 16)
     hi, lo = hexd(hi + 0x80), hexd(lo + 0x80)
 
-    euc = "{}{}".format(hi, lo)
+    euc = f"{hi}{lo}"
     assert isinstance(euc, bytes)
     return euc
 
