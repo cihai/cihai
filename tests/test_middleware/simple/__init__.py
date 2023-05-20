@@ -1,13 +1,26 @@
-class DatasetExample:
+import typing as t
 
+
+if t.TYPE_CHECKING:
+    from cihai.types import UntypedDict
+
+    # from typing_extensions import TypedDict
+    # from typing import TypedDict
+
+    class CharData(t.TypedDict, total=False):
+        definition: str
+
+    Response = t.Dict[str, CharData]
+
+
+class DatasetExample:
     """Sample dataset to demonstrate a simple extension with Cihai.
 
     This object is passed into :meth:`cihai.Cihai.use` in the
     :class:`cihai.Cihai` object.
-
     """
 
-    def get(self, request, response):
+    def get(self, request: str, response: "Response") -> "Response":
         """Return chinese character data from sample dataset.
 
         The source of information in this example is a :obj:`dict`. In real
@@ -20,14 +33,15 @@ class DatasetExample:
         :rtype: dict
 
         """
-        dataset = {"好": {"definition": "hao"}}
+        dataset: "Response" = {"好": {"definition": "hao"}}
 
         if request in dataset:
-            response.update(dataset[request])
+            response[request] = response[request] if request in response else {}
+            response[request].update(dataset[request])
 
         return response
 
-    def reverse(self, request, response):
+    def reverse(self, request: str, response: "Response") -> "Response":
         """Return chinese character data from a reverse lookup sample dataset.
 
         :param request: The character or string being looked up, e.g. '好'.
@@ -46,11 +60,14 @@ class DatasetExample:
         :rtype: dict
 
         """
-        dataset = {"好": {"definition": "hao"}}
+        dataset: "Response" = {"好": {"definition": "hao"}}
 
         for char in dataset.keys():
             for val in dataset[char].values():
+                assert isinstance(val, dict)
                 if request in val:
-                    response.update({char: dataset[char]})
+                    if char not in dataset:
+                        dataset[char] = {}
+                    response[char].update(dataset[char])
 
         return response

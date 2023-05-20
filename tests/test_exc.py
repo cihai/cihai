@@ -3,7 +3,7 @@ import pytest
 from cihai import exc
 
 
-def test_base_exception():
+def test_base_exception() -> None:
     with pytest.raises(exc.CihaiException):
         raise exc.CihaiException()  # Make sure its base of CihaiException
 

@@ -1,12 +1,11 @@
 """Cihai core functionality."""
+import inspect
 import logging
 import os
 import pathlib
 import typing as t
-
 from cihai._internal.config_reader import ConfigReader
 from cihai.data.unihan.dataset import Unihan
-from cihai.types import ConfigDict
 from unihan_etl.util import merge_dict
 
 from . import exc, extend
@@ -16,13 +15,16 @@ from .db import Database
 from .utils import import_string
 
 if t.TYPE_CHECKING:
-    from cihai.types import RawConfigDict
+    from typing_extensions import TypeGuard
+    from cihai.types import ConfigDict, UntypedDict
+
+    DS = t.TypeVar("DS", bound=t.Type[extend.Dataset])
 
 
 log = logging.getLogger(__name__)
 
 
-def is_valid_config(config: t.Dict[t.Any, t.Any]) -> t.TypeGuard["RawConfigDict"]:
+def is_valid_config(config: "UntypedDict") -> "TypeGuard[ConfigDict]":
     return True
 
 
@@ -66,13 +68,13 @@ class Cihai:
     """
 
     #: :py:class:`dict` of default config, can be monkey-patched during tests
-    default_config: "RawConfigDict" = DEFAULT_CONFIG
-    config: ConfigDict
+    default_config: "UntypedDict" = DEFAULT_CONFIG
+    config: "ConfigDict"
     unihan: Unihan
 
     def __init__(
         self,
-        config: t.Optional["RawConfigDict"] = None,
+        config: t.Optional["UntypedDict"] = None,
         unihan: bool = True,
     ) -> None:
         """
@@ -82,18 +84,24 @@ class Cihai:
         unihan : boolean, optional
             Bootstrap the core UNIHAN dataset (recommended)
         """
+        _config: "UntypedDict" = config if config is not None else {}
         if config is None:
-            config = self.default_config
+            _config = self.default_config
 
         # Merges custom configuration settings on top of defaults
         #: Configuration dictionary
-        self.config = merge_dict(self.default_config, config)
+        _config = merge_dict(self.default_config, _config)
 
         if unihan:
-            self.config = merge_dict(UNIHAN_CONFIG, self.config)
+            _config = merge_dict(UNIHAN_CONFIG, _config)
 
         #: Expand template variables
-        expand_config(self.config, app_dirs)
+        expand_config(_config, app_dirs)
+
+        if not is_valid_config(config=_config):
+            raise exc.CihaiException("Invalid exception with configuration")
+
+        self.config = _config
 
         if not os.path.exists(app_dirs.user_data_dir):
             os.makedirs(app_dirs.user_data_dir)
@@ -105,13 +113,31 @@ class Cihai:
 
     def bootstrap(self) -> None:
         for namespace, class_string in self.config.get("datasets", {}).items():
+            assert isinstance(class_string, str) or (
+                inspect.isclass(class_string)
+                and (
+                    issubclass(class_string, extend.Dataset)
+                    or class_string == extend.Dataset
+                )
+            )
+            assert isinstance(namespace, str)
             self.add_dataset(class_string, namespace)
 
         for dataset, plugins in self.config.get("plugins", {}).items():
+            assert isinstance(dataset, str)
+            assert isinstance(plugins, dict)
             for namespace, class_string in plugins.items():
+                assert isinstance(namespace, str)
+                assert isinstance(class_string, str) or (
+                    inspect.isclass(class_string)
+                    and (
+                        issubclass(class_string, extend.DatasetPlugin)
+                        or class_string == extend.DatasetPlugin
+                    )
+                )
                 getattr(self, dataset).add_plugin(class_string, namespace)
 
-    def add_dataset(self, _cls: t.Union[extend.Dataset, str], namespace: str) -> None:
+    def add_dataset(self, _cls: t.Union["DS", str], namespace: str) -> None:
         if isinstance(_cls, str):
             _cls = import_string(_cls)
 
@@ -125,7 +151,7 @@ class Cihai:
 
     @classmethod
     def from_file(
-        cls, config_path: pathlib.Path, *args: object, **kwargs: object
+        cls, config_path: t.Union[pathlib.Path, str], *args: object, **kwargs: object
     ) -> "Cihai":
         """
         Create a Cihai instance from a JSON or YAML config.
@@ -145,6 +171,4 @@ class Cihai:
 
         config = ConfigReader.from_file(path=config_path)
 
-        if not is_valid_config(config=config.content):
-            raise exc.CihaiException("Invalid exception with configuration")
         return cls(config.content)

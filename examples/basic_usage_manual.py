@@ -8,7 +8,7 @@ import typing as t
 from cihai.core import Cihai
 
 
-def run(unihan_options: t.Optional[t.Dict[str, str]] = None) -> None:
+def run(unihan_options: t.Optional[t.Dict[str, object]] = None) -> None:
     if unihan_options is None:
         unihan_options = {}
 
@@ -20,6 +20,7 @@ def run(unihan_options: t.Optional[t.Dict[str, str]] = None) -> None:
 
     query = c.unihan.lookup_char("好")
     glyph = query.first()
+    assert glyph is not None
     print("lookup for 好: %s" % glyph.kDefinition)
 
     query = c.unihan.reverse_char("good")

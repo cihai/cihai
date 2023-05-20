@@ -6,13 +6,13 @@ from cihai.data.unihan.dataset import Unihan
 
 
 def variant_list(unihan: Unihan, field: str) -> None:
-    for char in unihan.with_fields(field):
+    for char in unihan.with_fields([field]):
         print("Character: {}".format(char.char))
         for var in char.untagged_vars(field):
             print(var)
 
 
-def run(unihan_options: t.Optional[t.Dict[str, str]] = None) -> None:
+def run(unihan_options: t.Optional[t.Dict[str, object]] = None) -> None:
     if unihan_options is None:
         unihan_options = {}
 

@@ -8,7 +8,8 @@ import typing as t
 
 import pytest
 
-from tests.conftest import UnihanOptions
+if t.TYPE_CHECKING:
+    from .types import UnihanOptions
 
 
 class LoadScriptFn(t.Protocol):
@@ -34,20 +35,20 @@ def load_script(example: str, project_root: pathlib.Path) -> types.ModuleType:
 
 
 def test_dataset(
-    unihan_options: UnihanOptions,
+    unihan_options: "UnihanOptions",
     project_root: pathlib.Path,
 ) -> None:
     example = load_script("dataset", project_root=project_root)
     example.run()
 
 
-def test_variants(unihan_options: UnihanOptions, project_root: pathlib.Path) -> None:
+def test_variants(unihan_options: "UnihanOptions", project_root: pathlib.Path) -> None:
     example = load_script("variants", project_root=project_root)
     example.run()
 
 
 def test_ts_difficulties(
-    unihan_options: UnihanOptions, project_root: pathlib.Path
+    unihan_options: "UnihanOptions", project_root: pathlib.Path
 ) -> None:
     example = load_script("variant_ts_difficulties", project_root=project_root)
     example.run(unihan_options=unihan_options)
@@ -55,7 +56,7 @@ def test_ts_difficulties(
 
 def test_basic_usage(
     capsys: pytest.CaptureFixture[str],
-    unihan_options: UnihanOptions,
+    unihan_options: "UnihanOptions",
     project_root: pathlib.Path,
 ) -> None:
     example = load_script("basic_usage", project_root=project_root)
@@ -69,7 +70,7 @@ def test_basic_usage(
 
 def test_basic_usage_manual(
     capsys: pytest.CaptureFixture[str],
-    unihan_options: UnihanOptions,
+    unihan_options: "UnihanOptions",
     project_root: pathlib.Path,
 ) -> None:
     example = load_script("basic_usage_manual", project_root=project_root)

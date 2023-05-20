@@ -60,7 +60,10 @@ See these resources for more information:
 """
 import logging
 import re
-from typing import Any, Iterator, Tuple, Union
+import typing as t
+
+if t.TYPE_CHECKING:
+    from typing_extensions import TypeAlias
 
 log = logging.getLogger(__name__)
 
@@ -70,7 +73,7 @@ def hexd(n: int) -> str:
     return hex(n)[2:]
 
 
-def kuten_to_gb2312(kuten):
+def kuten_to_gb2312(kuten: str) -> bytes:
     """
     Convert GB kuten / quwei form (94 zones * 94 points) to GB2312-1980 /
     ISO-2022-CN hex (internal representation)
@@ -84,13 +87,13 @@ def kuten_to_gb2312(kuten):
     return gb2312
 
 
-def gb2312_to_euc(gb2312hex):
+def gb2312_to_euc(gb2312hex: str) -> bytes:
     """
     Convert GB2312-1980 hex (internal representation) to EUC-CN hex (the
     "external encoding")
     """
-    hi, lo = int(gb2312hex[:2], 16), int(gb2312hex[2:], 16)
-    hi, lo = hexd(hi + 0x80), hexd(lo + 0x80)
+    hi_int, lo_int = int(gb2312hex[:2], 16), int(gb2312hex[2:], 16)
+    hi, lo = hexd(hi_int + 0x80), hexd(lo_int + 0x80)
 
     euc = f"{hi}{lo}"
     assert isinstance(euc, bytes)
@@ -98,9 +101,7 @@ def gb2312_to_euc(gb2312hex):
 
 
 def euc_to_python(hexstr: bytes) -> str:
-    """
-    Convert a EUC-CN (GB2312) hex to a Python unicode string.
-    """
+    """Convert a EUC-CN (GB2312) hex to a Python unicode string."""
     hi = hexstr[0:2]
     lo = hexstr[2:4]
     gb_enc = b"\\x" + hi + b"\\x" + lo
@@ -108,15 +109,13 @@ def euc_to_python(hexstr: bytes) -> str:
 
 
 def euc_to_utf8(euchex: bytes) -> str:
-    """
-    Convert EUC hex (e.g. "d2bb") to UTF8 hex (e.g. "e4 b8 80").
-    """
+    """Convert EUC hex (e.g. "d2bb") to UTF8 hex (e.g. "e4 b8 80")."""
     utf8 = euc_to_python(euchex).encode("utf-8")
     uf8 = utf8.decode("unicode_escape")
 
-    uf8 = uf8.encode("latin1")
+    uf8_bytes = uf8.encode("latin1")
 
-    uf8 = uf8.decode("euc-jp")
+    uf8 = uf8_bytes.decode("euc-jp")
     return uf8
 
 
@@ -128,8 +127,8 @@ def ucn_to_unicode(ucn: str) -> str:
     if isinstance(ucn, str):
         ucn = ucn.strip("U+")
         if len(ucn) > int(4):
-            char = b"\\U" + format(int(ucn, 16), "08x").encode("latin1")
-            char = char.decode("unicode_escape")
+            char_bytes = b"\\U" + format(int(ucn, 16), "08x").encode("latin1")
+            char = char_bytes.decode("unicode_escape")
         else:
             char = chr(int(ucn, 16))
     else:
@@ -176,20 +175,35 @@ def euc_to_unicode(hexstr: bytes) -> str:
     assert isinstance(gb_enc, bytes)
 
     # Requires coercing back to str in 2.7
-    gb_enc = gb_enc.decode("unicode_escape")
+    gb_enc_uni_escape = gb_enc.decode("unicode_escape")
 
-    gb_enc = gb_enc.encode("latin1")
+    gb_enc_bytes = gb_enc_uni_escape.encode("latin1")
 
-    gb_enc = gb_enc.decode("gb2312")
+    gb_enc_str = gb_enc_bytes.decode("gb2312")
 
-    assert isinstance(gb_enc, str)
-    return gb_enc
+    assert isinstance(gb_enc_str, str)
+    return gb_enc_str
 
 
 """ Convert from internal Python unicode / string objects """
 
 
-def python_to_ucn(uni_char: str, as_bytes: bool = False) -> Union[bytes, str]:
+@t.overload
+def python_to_ucn(uni_char: str, as_bytes: t.Literal[True]) -> bytes:
+    ...
+
+
+@t.overload
+def python_to_ucn(uni_char: str, as_bytes: t.Literal[False]) -> str:
+    ...
+
+
+@t.overload
+def python_to_ucn(uni_char: str, as_bytes: t.Literal[False] = False) -> str:
+    ...
+
+
+def python_to_ucn(uni_char: str, as_bytes: bool = False) -> t.Union[bytes, str]:
     """
     Return UCN character from Python Unicode character.
 
@@ -204,12 +218,12 @@ def python_to_ucn(uni_char: str, as_bytes: bool = False) -> Union[bytes, str]:
     ucn = "U+" + ucn.upper()
 
     if as_bytes:
-        ucn = ucn.encode("latin1")
+        return ucn.encode("latin1")
 
     return ucn
 
 
-def python_to_euc(uni_char: str, as_bytes: bool = False) -> Union[bytes, str]:
+def python_to_euc(uni_char: str, as_bytes: bool = False) -> t.Union[bytes, str]:
     """
     Return EUC character from a Python Unicode character.
 
@@ -219,8 +233,7 @@ def python_to_euc(uni_char: str, as_bytes: bool = False) -> Union[bytes, str]:
     euc = repr(uni_char.encode("gb2312"))[1:-1].replace("\\x", "").strip("'")
 
     if as_bytes:
-        euc = euc.encode("utf-8")
-        assert isinstance(euc, bytes)
+        return euc.encode("utf-8")
 
     return euc
 
@@ -242,13 +255,16 @@ def ucnstring_to_python(ucn_string: str) -> bytes:
     for r in res:
         ucn_string = ucn_string.replace(str(r), str(ucn_to_unicode(r)))
 
-    ucn_string = ucn_string.encode("utf-8")
+    ucn_bytestr = ucn_string.encode("utf-8")
 
-    assert isinstance(ucn_string, bytes)
-    return ucn_string
+    assert isinstance(ucn_bytestr, bytes)
+    return ucn_bytestr
 
 
-def parse_var(var: str) -> Union[Tuple[str, str], Tuple[str, None]]:
+ParsedVar: "TypeAlias" = t.Tuple[str, t.Optional[str]]
+
+
+def parse_var(var: str) -> ParsedVar:
     """
     Returns a tuple consisting of a string and a tag, or None, if none is
     specified.
@@ -261,7 +277,10 @@ def parse_var(var: str) -> Union[Tuple[str, str], Tuple[str, None]]:
     return ucn_to_unicode(bits[0]), tag
 
 
-def parse_vars(_vars: str) -> Iterator[Union[Tuple[str, str], Tuple[str, None]]]:
+ParsedVars: "TypeAlias" = t.Iterator[ParsedVar]
+
+
+def parse_vars(_vars: str) -> t.Generator[ParsedVar, str, None]:
     """
     Return an iterator of (char, tag) tuples.
     """
@@ -269,7 +288,10 @@ def parse_vars(_vars: str) -> Iterator[Union[Tuple[str, str], Tuple[str, None]]]
         yield parse_var(var)
 
 
-def parse_untagged(_vars: str) -> Iterator[Any]:
+UntaggedVars: "TypeAlias" = t.Iterator[t.Any]
+
+
+def parse_untagged(_vars: str) -> UntaggedVars:
     """
     Return an iterator of chars.
     """

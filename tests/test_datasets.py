@@ -8,6 +8,7 @@ settings found in ``test_config.yml``.
 
 """
 import random
+import typing as t
 
 import pytest
 
@@ -15,6 +16,11 @@ import sqlalchemy
 from sqlalchemy import MetaData
 
 from cihai import conversion
+
+if t.TYPE_CHECKING:
+    from sqlalchemy.engine import ResultProxy
+    from sqlalchemy.sql import ClauseElement
+
 
 cjk_ranges = {  # http://www.unicode.org/reports/tr38/#BlockListing
     "CJK Unified Ideographs": range(0x4E00, 0x9FD5 + 1),
@@ -59,77 +65,118 @@ sample_table = sqlalchemy.Table(
 metadata.create_all()
 
 
-def get_char_fk(char):
-    return (
+class Char(t.TypedDict):
+    id: int
+    char: str
+    ucn: str
+
+
+def get_char_fk(char: str) -> int:
+    q = (
         unicode_table.select(unicode_table.c.id)
         .where(unicode_table.c.char == char)
         .limit(1)
         .execute()
-        .fetchone()
-        .id
     )
+    assert q is not None
+    row = q.fetchone()
+
+    assert row is not None
+    assert isinstance(row.id, int)
+    return row.id
 
 
-def get_char_fk_multiple(*args):
+def get_char_fk_multiple(*args: t.Sequence[str]) -> "ResultProxy":
     """Retrieve the Rows"""
 
-    where_opts = []
+    or_ops: t.List[t.Union[str, bool, "ClauseElement"]] = []
 
     for arg in args:
-        where_opts.append(unicode_table.c.char == arg)
+        or_ops.append(unicode_table.c.char == arg)
 
-    where_opts = sqlalchemy.or_(*where_opts)
+    or_op = sqlalchemy.or_(*or_ops)
 
-    results = unicode_table.select().where(where_opts).execute()
+    results = unicode_table.select().where(or_op).execute()
+
+    assert results is not None
 
     return results
 
 
 @pytest.fixture(scope="session")
-def chars():
-    chars = []
+def chars() -> t.List[Char]:
+    chars: t.List[Char] = []
 
     while len(chars) < 3:
-        c = 0x4E00 + random.randint(1, 333)
-        char = {
-            "hex": c,
-            "char": chr(int(c)),
-            "ucn": conversion.python_to_ucn(chr(int(c))),
-        }
-        if char not in chars:
-            chars.append(char)
+        c: int = 0x4E00 + random.randint(1, 333)
+        char = Char(
+            {
+                # In SQLAlchemy, sqlite supports this
+                # https://docs.sqlalchemy.org/en/20/dialects/sqlite.html#insert-on-conflict-upsert
+                "id": c,
+                "char": chr(int(c)),
+                "ucn": conversion.python_to_ucn(chr(int(c)), as_bytes=False),
+            }
+        )
 
-        metadata.bind.execute(unicode_table.insert(), chars)
+        q = unicode_table.select().where(unicode_table.c.id == char["id"])
+
+        assert q is not None
+
+        ex = q.execute()
+
+        assert ex is not None
+
+        exists = ex.first() is not None
+        if char not in chars and not exists:
+            chars.append(char)
+        else:
+            continue
+
+    assert metadata.bind is not None
+
+    metadata.bind.execute(unicode_table.insert(), chars)
     return chars
 
 
-def test_insert_row(chars):
+def test_insert_row(chars: t.List[Char]) -> None:
     cjkchar = chars[0]
 
-    row = unicode_table.select().limit(1).execute().fetchone()
+    query = (
+        unicode_table.select()
+        .where(unicode_table.c.char == cjkchar["char"])
+        .limit(1)
+        .execute()
+    )
 
+    assert query is not None
+    row = query.fetchone()
+
+    assert row is not None
     assert row.char == cjkchar["char"]
 
 
-def test_insert_bad_fk():
-    wat = sample_table.insert().values(value="", char_id="wat").execute()
+def test_insert_bad_fk() -> None:
+    example_bad_key = sample_table.insert().values(value="", char_id="wat").execute()
 
-    assert wat
+    assert example_bad_key
 
 
-def test_insert_on_foreign_key(chars):
+def test_insert_on_foreign_key(chars: t.List[Char]) -> None:
     cjkchar = chars[0]
     char = cjkchar["char"]
 
     sample_table.insert().values(char_id=get_char_fk(char), value="hey").execute()
 
     select_char = unicode_table.select().where(unicode_table.c.char == char).limit(1)
-    row = select_char.execute().fetchone()
+    query = select_char.execute()
+    assert query is not None
+    row = query.fetchone()
 
     assert row is not None
 
 
-def test_get_char_foreign_key_multiple(chars):
+def test_get_char_foreign_key_multiple(chars: t.List[Char]) -> None:
     char_fk_multiple = get_char_fk_multiple(*[c["char"] for c in chars])
 
     for char in char_fk_multiple:

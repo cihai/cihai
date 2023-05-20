@@ -15,7 +15,7 @@ class MyDataset(Dataset):
     def givemedata(self, key: str) -> str:
         return data[key]
 
-    def search(self, needle: str) -> Dict[str, str]:
+    def search(self, needle: str) -> Dict[str, object]:
         return {k: v for k, v in data.items() if needle in k}
 
     def backwards(self, needle: str) -> List[str]:
@@ -26,13 +26,15 @@ def run() -> None:
     c = Cihai(unihan=False)
 
     c.add_dataset(MyDataset, namespace="moo")
-    c.moo.bootstrap()
+    my_dataset = MyDataset()
+    my_dataset = MyDataset()
+    my_dataset.bootstrap()
 
-    print("Definitions exactly for 好", c.moo.givemedata("好"))
+    print("Definitions exactly for 好", my_dataset.givemedata("好"))
 
-    print("Definitions matching with 你好:", ", ".join(c.moo.search("好")))
+    print("Definitions matching with 你好:", ", ".join(my_dataset.search("好")))
 
-    print("Reverse definition with Good:", ", ".join(c.moo.backwards("Good")))
+    print("Reverse definition with Good:", ", ".join(my_dataset.backwards("Good")))
 
 
 if __name__ == "__main__":

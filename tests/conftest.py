@@ -7,23 +7,27 @@ import pytest
 from cihai.data.unihan.constants import UNIHAN_FILES
 
 
+if t.TYPE_CHECKING:
+    from .types import UnihanOptions
+
+
 @pytest.fixture
-def fixture_path():
+def fixture_path() -> str:
     return os.path.abspath(os.path.join(os.path.dirname(__file__), "fixtures"))
 
 
 @pytest.fixture
-def test_config_file(fixture_path):
+def test_config_file(fixture_path: str) -> str:
     return os.path.join(fixture_path, "test_config.yml")
 
 
 @pytest.fixture
-def zip_path(tmpdir):
+def zip_path(tmpdir: str) -> str:
     return tmpdir.join("Unihan.zip")
 
 
 @pytest.fixture
-def zip_file(zip_path, fixture_path):
+def zip_file(zip_path: str, fixture_path: str) -> zipfile.ZipFile:
     _files = []
     for f in UNIHAN_FILES:
         _files += [os.path.join(fixture_path, f)]
@@ -34,14 +38,10 @@ def zip_file(zip_path, fixture_path):
     return zf
 
 
-class UnihanOptions(t.TypedDict):
-    source: str
-    work_dir: str
-    zip_path: str
-
-
 @pytest.fixture
-def unihan_options(zip_file, zip_path, tmpdir):
+def unihan_options(
+    zip_file: zipfile.ZipFile, zip_path: str, tmpdir: str
+) -> "UnihanOptions":
     return {
         "source": str(zip_path),
         "work_dir": str(tmpdir),
@@ -50,5 +50,5 @@ def unihan_options(zip_file, zip_path, tmpdir):
 
 
 @pytest.fixture(scope="function")
-def tmpdb_file(tmpdir):
+def tmpdb_file(tmpdir: str) -> str:
     return tmpdir.join("test.db")

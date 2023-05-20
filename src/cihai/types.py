@@ -1,39 +1,45 @@
 import pathlib
 import typing as t
 
+from typing_extensions import NotRequired, TypedDict
+
 if t.TYPE_CHECKING:
+    from typing_extensions import TypeAlias
     from cihai.extend import Dataset
 
 
-class RawPluginConfigDict(t.TypedDict):
+UntypedDict: "TypeAlias" = t.Dict[str, object]
+
+
+class RawPluginConfigDict(TypedDict):
     pass
 
 
-class RawDirsConfigDict(t.TypedDict):
+class RawDirsConfigDict(TypedDict):
     cache: t.Union[str, pathlib.Path]
     log: t.Union[str, pathlib.Path]
     data: t.Union[str, pathlib.Path]
 
 
-class DirsConfigDict(t.TypedDict):
+class DirsConfigDict(TypedDict):
     cache: pathlib.Path
     log: pathlib.Path
     data: pathlib.Path
 
 
-class RawDatabaseConfigDict(t.TypedDict):
+class RawDatabaseConfigDict(TypedDict):
     url: str
 
 
-class RawConfigDict(t.TypedDict):
-    plugins: t.Dict[str, RawPluginConfigDict]
+class RawConfigDict(TypedDict):
+    plugins: NotRequired[t.Dict[str, RawPluginConfigDict]]
     datasets: t.Dict[str, t.Union[str, "Dataset"]]
     database: RawDatabaseConfigDict
     dirs: RawDirsConfigDict
     debug: bool
 
 
-class ConfigDict(t.TypedDict):
+class ConfigDict(TypedDict):
     plugins: t.Dict[str, RawPluginConfigDict]
     datasets: t.Dict[str, t.Union[str, "Dataset"]]
     database: RawDatabaseConfigDict

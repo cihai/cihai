@@ -1,3 +1,5 @@
+import typing as t
+
 #: Mapping of files from unihan-etl (UNIHAN database)
 UNIHAN_FILES = [
     "Unihan_DictionaryLikeData.txt",
@@ -10,7 +12,7 @@ UNIHAN_FILES = [
 
 
 #: Mapping of field names from unihan-etl (UNIHAN database)
-UNIHAN_FIELDS = [
+UNIHAN_FIELDS: t.List[str] = [
     "kAccountingNumeric",
     "kCangjie",
     "kCantonese",

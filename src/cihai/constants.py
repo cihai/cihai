@@ -4,13 +4,13 @@ import typing as t
 from appdirs import AppDirs
 
 if t.TYPE_CHECKING:
-    from cihai.types import ConfigDict
+    from cihai.types import UntypedDict
 
 #: XDG App directory locations
 app_dirs = AppDirs("cihai", "cihai team")
 
 #: Default configuration
-DEFAULT_CONFIG: "ConfigDict" = {
+DEFAULT_CONFIG: "UntypedDict" = {
     "debug": False,
     "database": {"url": "sqlite:///{user_data_dir}/cihai.db"},
     "dirs": {
@@ -23,7 +23,7 @@ DEFAULT_CONFIG: "ConfigDict" = {
 }
 
 #: User will be prompted to automatically configure their installation for UNIHAN
-UNIHAN_CONFIG = {
+UNIHAN_CONFIG: "UntypedDict" = {
     "datasets": {"unihan": "cihai.data.unihan.dataset.Unihan"},
     # Turn off by default for using as a plugin example in examples/
     # "plugins": {"unihan": {"variants": "cihai.data.unihan.dataset.UnihanVariants"}},

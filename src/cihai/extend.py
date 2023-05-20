@@ -17,8 +17,13 @@ import typing as t
 from . import utils
 
 if t.TYPE_CHECKING:
-    from cihai.data.unihan.dataset import UnihanVariants
     from cihai.db import Database
+    from sqlalchemy.engine import Engine
+    from sqlalchemy.ext.automap import AutomapBase
+    from sqlalchemy.orm.session import Session
+    from sqlalchemy.sql.schema import MetaData
+
+    DSP = t.TypeVar("DSP", bound=t.Type["DatasetPlugin"])
 
 
 class ConfigMixin:
@@ -71,16 +76,16 @@ class SQLAlchemyMixin:
     sql: "Database"
 
     #: :class:`sqlalchemy.engine.Engine` instance.
-    engine = None
+    engine: "Engine"
 
     #: :class:`sqlalchemy.schema.MetaData` instance.
-    metadata = None
+    metadata: "MetaData"
 
     #: :class:`sqlalchemy.orm.session.Session` instance.
-    session = None
+    session: "Session"
 
     #: :class:`sqlalchemy.ext.automap.AutomapBase` instance.
-    base = None
+    base: "AutomapBase"
 
 
 class Dataset:
@@ -92,12 +97,12 @@ class Dataset:
     cihai.data.unihan.dataset.Unihan : reference implementation
     """
 
-    def bootstrap(self):
+    def bootstrap(self) -> None:
         pass
 
     def add_plugin(
         self,
-        _cls: t.Union[t.Type["UnihanVariants"], str],
+        _cls: t.Union["DSP", str],
         namespace: str,
         bootstrap: bool = True,
     ) -> None:
