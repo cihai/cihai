@@ -2,7 +2,20 @@
 
 ## cihai 0.19.x (unreleased)
 
-- _Insert changes/features/fixes for next release here_
+<!-- Maintainers, insert changes / features for the next release here -->
+
+_Maintenance only, no bug fixes or features_
+
+### Internal improvements
+
+- Move formatting, import sorting, and linting to [ruff].
+
+  This rust-based checker has dramatically improved performance. Linting and
+  formatting can be done almost instantly.
+
+  This change replaces black, isort, flake8 and flake8 plugins.
+
+[ruff]: https://ruff.rs
 
 ## cihai 0.18.3 (2023-05-13)
 
