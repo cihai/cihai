@@ -138,6 +138,10 @@ lint = [
 plugins = [
   "sqlmypy",
 ]
+files = [
+  "src/",
+  "tests/",
+]
 
 [tool.ruff]
 
