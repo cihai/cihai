@@ -8,6 +8,9 @@ from pathlib import Path
 
 import cihai
 
+if t.TYPE_CHECKING:
+    from sphinx.application import Sphinx
+
 # Get the project root dir, which is the parent dir of this
 cwd = Path(__file__).parent
 project_root = cwd.parent
@@ -244,3 +247,14 @@ def linkcode_resolve(domain, info):  # NOQA: C901
             fn,
             linespec,
         )
+
+
+def remove_tabs_js(app: "Sphinx", exc: Exception) -> None:
+    # Fix for sphinx-inline-tabs#18
+    if app.builder.format == "html" and not exc:
+        tabs_js = Path(app.builder.outdir) / "_static" / "tabs.js"
+        tabs_js.unlink()
+
+
+def setup(app: "Sphinx") -> None:
+    app.connect("build-finished", remove_tabs_js)
