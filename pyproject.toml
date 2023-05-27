@@ -56,7 +56,7 @@ Repository = "https://github.com/cihai/cihai"
 python = "^3.8"
 appdirs = "*"
 PyYAML = "~6.0"
-sqlalchemy = "<1.4"
+sqlalchemy = "<2"
 unihan-etl = "~=0.19.1"
 
 [tool.poetry.group.dev.dependencies]
