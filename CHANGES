@@ -1,8 +1,10 @@
 # Changelog
 
-## cihai 0.19.x (unreleased)
+## cihai 0.20.x (unreleased)
 
 <!-- Maintainers, insert changes / features for the next release here -->
+
+## cihai 0.19.0 (2023-05-28)
 
 _Maintenance only, no bug fixes or features_
 
@@ -17,6 +19,7 @@ _Maintenance only, no bug fixes or features_
 - poetry: 1.4.0 -> 1.5.0
 
   See also: https://github.com/python-poetry/poetry/releases/tag/1.5.0
+- unihan-etl: 0.18.2 -> 0.19.1: Dev dependency updates
 
 [ruff]: https://ruff.rs
 
