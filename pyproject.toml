@@ -58,7 +58,7 @@ python = "^3.7"
 appdirs = "*"
 PyYAML = "~6.0"
 sqlalchemy = "<1.4"
-unihan-etl = "~=0.19.0"
+unihan-etl = "~=0.19.1"
 
 [tool.poetry.group.dev.dependencies]
 ### Docs ###
