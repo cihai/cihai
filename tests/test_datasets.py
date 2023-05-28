@@ -104,7 +104,6 @@ def chars():
 
 
 def test_insert_row(chars):
-
     cjkchar = chars[0]
 
     row = unicode_table.select().limit(1).execute().fetchone()
@@ -119,7 +118,6 @@ def test_insert_bad_fk():
 
 
 def test_insert_on_foreign_key(chars):
-
     cjkchar = chars[0]
     char = cjkchar["char"]
 

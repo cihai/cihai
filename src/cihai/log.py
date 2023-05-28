@@ -61,7 +61,6 @@ def default_log_template(self, record):
 
 
 class LogFormatter(logging.Formatter):
-
     template = default_log_template
 
     def __init__(self, color=True, *args, **kwargs):
