@@ -86,6 +86,7 @@ coverage = "*"
 pytest-cov = "*"
 
 ### Lint ###
+black = "*"
 ruff = "*"
 mypy = "*"
 sqlalchemy-stubs = "*"
@@ -111,6 +112,7 @@ docs = [
 test = ["pytest", "pytest-rerunfailures", "pytest-watcher"]
 coverage = ["codecov", "coverage", "pytest-cov"]
 lint = [
+  "black",
   "ruff",
   "mypy",
   "sqlalchemy-stubs",

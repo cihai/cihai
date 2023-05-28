@@ -204,9 +204,39 @@ depending on the project! An example of what to look for:
 
 ## Formatting / Linting
 
+### black
+
+[black] is used for formatting.
+
+````{tab} Command
+
+poetry:
+
+```console
+$ poetry run black .
+```
+
+If you setup manually:
+
+```console
+$ black .
+```
+
+````
+
+````{tab} make
+
+```console
+$ make black
+```
+
+````
+
+In the future, `ruff` (below) may replace black as formatter.
+
 ### ruff
 
-The project uses [ruff] to handles formatting, sorting imports and linting.
+The project uses [ruff] to handles sorting imports and linting.
 
 ````{tab} Command
 
@@ -370,5 +400,6 @@ $ poetry deploy
 [poetry]: https://python-poetry.org/
 [entr(1)]: http://eradman.com/entrproject/
 [`entr(1)`]: http://eradman.com/entrproject/
+[black]: https://github.com/psf/black
 [ruff]: https://ruff.rs
 [mypy]: http://mypy-lang.org/
