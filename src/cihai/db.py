@@ -4,7 +4,7 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 
 
-class Database(object):
+class Database:
     """
     Cihai SQLAlchemy instance
     """

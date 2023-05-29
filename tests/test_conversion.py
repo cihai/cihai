@@ -9,7 +9,7 @@ from cihai import conversion
 
 def test_str():
     c1 = "(same as U+7A69 穩) firm; stable; secure"
-    c2 = str()
+    c2 = ""
 
     assert isinstance(c1, str)
     assert isinstance(c2, str)

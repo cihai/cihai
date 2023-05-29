@@ -52,7 +52,7 @@ def expand_config(d, dirs):
             d[k] = d[k].format(**context)
 
 
-class Configurator(object):
+class Configurator:
     def __init__(self, namespace=""):
         """
         Manage config. Provides facilities for loading / writing configs.

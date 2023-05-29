@@ -1,4 +1,4 @@
-class DatasetExample(object):
+class DatasetExample:
 
     """Sample dataset to demonstrate a simple extension with Cihai.
 
