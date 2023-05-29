@@ -12,7 +12,18 @@ For convenience, you can use cihai's configuration namespace and SQLAlchemy sett
 You can also create plugins which extend another. So if Unihan doesn't have a lookup
 for variant glyphs, this can be added.
 """
+import typing as t
+
 from . import utils
+
+if t.TYPE_CHECKING:
+    from cihai.db import Database
+    from sqlalchemy.engine import Engine
+    from sqlalchemy.ext.automap import AutomapBase
+    from sqlalchemy.orm.session import Session
+    from sqlalchemy.sql.schema import MetaData
+
+    DSP = t.TypeVar("DSP", bound=t.Type["DatasetPlugin"])
 
 
 class ConfigMixin:
@@ -62,17 +73,19 @@ class SQLAlchemyMixin:
     they don't clobber.
     """
 
+    sql: "Database"
+
     #: :class:`sqlalchemy.engine.Engine` instance.
-    engine = None
+    engine: "Engine"
 
     #: :class:`sqlalchemy.schema.MetaData` instance.
-    metadata = None
+    metadata: "MetaData"
 
     #: :class:`sqlalchemy.orm.session.Session` instance.
-    session = None
+    session: "Session"
 
     #: :class:`sqlalchemy.ext.automap.AutomapBase` instance.
-    base = None
+    base: "AutomapBase"
 
 
 class Dataset:
@@ -84,13 +97,20 @@ class Dataset:
     cihai.data.unihan.dataset.Unihan : reference implementation
     """
 
-    def bootstrap(self):
+    def bootstrap(self) -> None:
         pass
 
-    def add_plugin(self, _cls, namespace, bootstrap=True):
+    def add_plugin(
+        self,
+        _cls: t.Union["DSP", str],
+        namespace: str,
+        bootstrap: bool = True,
+    ) -> None:
         if isinstance(_cls, str):
-            _cls = utils.import_string(_cls)
-        setattr(self, namespace, _cls())
+            cls = utils.import_string(_cls)
+        else:
+            cls = _cls
+        setattr(self, namespace, cls())
         plugin = getattr(self, namespace)
 
         if hasattr(self, "sql") and isinstance(self, SQLAlchemyMixin):

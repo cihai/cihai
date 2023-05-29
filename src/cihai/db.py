@@ -1,15 +1,32 @@
 """Cihai core functionality."""
+import typing as t
 from sqlalchemy import MetaData, create_engine
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 
+from cihai.types import ConfigDict
+
+if t.TYPE_CHECKING:
+    from sqlalchemy.engine import Engine
+    from sqlalchemy.ext.automap import AutomapBase
+
 
 class Database:
-    """
-    Cihai SQLAlchemy instance
-    """
+    """Cihai SQLAlchemy instance"""
 
-    def __init__(self, config):
+    #: :class:`sqlalchemy.engine.Engine` instance.
+    engine: "Engine"
+
+    #: :class:`sqlalchemy.schema.MetaData` instance.
+    metadata: MetaData
+
+    #: :class:`sqlalchemy.orm.session.Session` instance.
+    session: Session
+
+    #: :class:`sqlalchemy.ext.automap.AutomapBase` instance.
+    base: "AutomapBase"
+
+    def __init__(self, config: ConfigDict) -> None:
         self.engine = create_engine(config["database"]["url"])
 
         self.metadata = MetaData()
@@ -18,7 +35,7 @@ class Database:
 
         self.session = Session(self.engine)
 
-    def reflect_db(self):
+    def reflect_db(self) -> None:
         """
         No-op to reflect db info.
 
@@ -28,15 +45,3 @@ class Database:
         self.metadata.reflect(views=True, extend_existing=True)
         self.base = automap_base(metadata=self.metadata)
         self.base.prepare()
-
-    #: :class:`sqlalchemy.engine.Engine` instance.
-    engine = None
-
-    #: :class:`sqlalchemy.schema.MetaData` instance.
-    metadata = None
-
-    #: :class:`sqlalchemy.orm.session.Session` instance.
-    session = None
-
-    #: :class:`sqlalchemy.ext.automap.AutomapBase` instance.
-    base = None

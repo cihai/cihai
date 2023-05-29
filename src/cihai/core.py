@@ -1,20 +1,31 @@
 """Cihai core functionality."""
+import inspect
 import logging
 import os
 import pathlib
-
-from appdirs import AppDirs
-
-from cihai.config_reader import ConfigReader
+import typing as t
+from cihai._internal.config_reader import ConfigReader
+from cihai.data.unihan.dataset import Unihan
 from unihan_etl.util import merge_dict
 
 from . import exc, extend
 from .config import expand_config
-from .constants import DEFAULT_CONFIG, UNIHAN_CONFIG
+from .constants import DEFAULT_CONFIG, UNIHAN_CONFIG, app_dirs
 from .db import Database
 from .utils import import_string
 
+if t.TYPE_CHECKING:
+    from typing_extensions import TypeGuard
+    from cihai.types import ConfigDict, UntypedDict
+
+    DS = t.TypeVar("DS", bound=t.Type[extend.Dataset])
+
+
 log = logging.getLogger(__name__)
+
+
+def is_valid_config(config: "UntypedDict") -> "TypeGuard[ConfigDict]":
+    return True
 
 
 class Cihai:
@@ -57,9 +68,15 @@ class Cihai:
     """
 
     #: :py:class:`dict` of default config, can be monkey-patched during tests
-    default_config = DEFAULT_CONFIG
+    default_config: "UntypedDict" = DEFAULT_CONFIG
+    config: "ConfigDict"
+    unihan: Unihan
 
-    def __init__(self, config=None, unihan=True):
+    def __init__(
+        self,
+        config: t.Optional["UntypedDict"] = None,
+        unihan: bool = True,
+    ) -> None:
         """
         Parameters
         ----------
@@ -67,41 +84,64 @@ class Cihai:
         unihan : boolean, optional
             Bootstrap the core UNIHAN dataset (recommended)
         """
+        _config: "UntypedDict" = config if config is not None else {}
         if config is None:
-            config = {}
+            _config = self.default_config
 
         # Merges custom configuration settings on top of defaults
         #: Configuration dictionary
-        self.config = merge_dict(self.default_config, config)
+        _config = merge_dict(self.default_config, _config)
 
         if unihan:
-            self.config = merge_dict(UNIHAN_CONFIG, self.config)
-
-        #: XDG App directory locations
-        dirs = AppDirs("cihai", "cihai team")  # appname  # app author
+            _config = merge_dict(UNIHAN_CONFIG, _config)
 
         #: Expand template variables
-        expand_config(self.config, dirs)
+        expand_config(_config, app_dirs)
 
-        if not os.path.exists(dirs.user_data_dir):
-            os.makedirs(dirs.user_data_dir)
+        if not is_valid_config(config=_config):
+            raise exc.CihaiException("Invalid exception with configuration")
+
+        self.config = _config
+
+        if not os.path.exists(app_dirs.user_data_dir):
+            os.makedirs(app_dirs.user_data_dir)
 
         #: :class:`cihai.db.Database` : Database instance
         self.sql = Database(self.config)
 
         self.bootstrap()
 
-    def bootstrap(self):
+    def bootstrap(self) -> None:
         for namespace, class_string in self.config.get("datasets", {}).items():
+            assert isinstance(class_string, str) or (
+                inspect.isclass(class_string)
+                and (
+                    issubclass(class_string, extend.Dataset)
+                    or class_string == extend.Dataset
+                )
+            )
+            assert isinstance(namespace, str)
             self.add_dataset(class_string, namespace)
 
         for dataset, plugins in self.config.get("plugins", {}).items():
+            assert isinstance(dataset, str)
+            assert isinstance(plugins, dict)
             for namespace, class_string in plugins.items():
+                assert isinstance(namespace, str)
+                assert isinstance(class_string, str) or (
+                    inspect.isclass(class_string)
+                    and (
+                        issubclass(class_string, extend.DatasetPlugin)
+                        or class_string == extend.DatasetPlugin
+                    )
+                )
                 getattr(self, dataset).add_plugin(class_string, namespace)
 
-    def add_dataset(self, _cls, namespace):
+    def add_dataset(self, _cls: t.Union["DS", str], namespace: str) -> None:
         if isinstance(_cls, str):
             _cls = import_string(_cls)
+
+        assert callable(_cls)
 
         setattr(self, namespace, _cls())
         dataset = getattr(self, namespace)
@@ -110,7 +150,9 @@ class Cihai:
             dataset.sql = self.sql
 
     @classmethod
-    def from_file(cls, config_path=None, *args, **kwargs):
+    def from_file(
+        cls, config_path: t.Union[pathlib.Path, str], *args: object, **kwargs: object
+    ) -> "Cihai":
         """
         Create a Cihai instance from a JSON or YAML config.
 
@@ -126,23 +168,7 @@ class Cihai:
         """
         if isinstance(config_path, str):
             config_path = pathlib.Path(config_path)
-        config_reader = ConfigReader(path=config_path)
 
-        config = {}
+        config = ConfigReader.from_file(path=config_path)
 
-        if config_path:
-            if not os.path.exists(config_path):
-                raise exc.CihaiException(
-                    f"{os.path.abspath(config_path)} does not exist."
-                )
-            if config_path.suffix not in [".json", ".yml", ".yaml"]:
-                raise exc.CihaiException(
-                    "{} does not have a yaml, yml, json extension.".format(
-                        os.path.abspath(config_path)
-                    )
-                )
-            else:
-                custom_config = config_reader.import_config()
-                config = merge_dict(config, custom_config)
-
-        return cls(config)
+        return cls(config.content)

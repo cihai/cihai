@@ -1,9 +1,16 @@
 import os
+import pathlib
+import typing as t
 
 from appdirs import AppDirs
 
+from cihai.constants import app_dirs
 
-def expand_config(d, dirs):
+if t.TYPE_CHECKING:
+    from .types import UntypedDict
+
+
+def expand_config(d: "UntypedDict", dirs: "AppDirs" = app_dirs) -> None:
     """
     Expand configuration XDG variables, environmental variables, and tildes.
 
@@ -44,75 +51,17 @@ def expand_config(d, dirs):
         "site_data_dir": dirs.site_data_dir,
     }
 
+    if "datasets" in d and "plugins" not in d:
+        d["datasets"] = {}
+
     for k, v in d.items():
         if isinstance(v, dict):
             expand_config(v, dirs)
         if isinstance(v, str):
-            d[k] = os.path.expanduser(os.path.expandvars(d[k]))
-            d[k] = d[k].format(**context)
+            d[k] = os.path.expanduser(os.path.expandvars(v).format(**context))
 
-
-class Configurator:
-    def __init__(self, namespace=""):
-        """
-        Manage config. Provides facilities for loading / writing configs.
-
-        Used on Cihai and available for its extensions.
-
-        Parameters
-        ----------
-        namespace : str, optional
-            Creates a configuration object that reads/writes on a namespace.
-
-            Leaving this empty / reads and writes to the root level cihai config.
-
-            Namespace is designed for plugins to manage settings.
-
-        Attributes
-        ----------
-        dirs : appdirs.AppDirs
-            XDG App directory locations for cihai
-
-        Class Attributes
-        ----------------
-        data : dict
-            property / getter for options
-        _data : dict
-            where the raw dictionary resides
-        """
-        self.dirs = AppDirs("cihai", "cihai team")  # appname  # app author
-
-        self.namespace = namespace
-
-    def get_names(self):
-        """
-        Return a list of possible places config can reside, and order of search.
-
-        This is based on XDG. So it will look for
-        """
-        pass
-
-    @property
-    def file(self):
-        """Find a config file where it exists, as the first place."""
-        return
-
-    def read(self):
-        """Read to dictionary."""
-        return
-
-    def get_delta(self, **updates):
-        """Returns the difference of whatever user customizations differ from
-        cihai.constants.DEFAULT_CONFIG.
-        """
-        pass
-
-    def write(self, **updates):
-        """If no delta is created from DEFAULT, it not write.
-
-        If file doesn't exist, it will create.
-        """
-        if updates:
-            self._data.update(**updates)
-        # save file
-        pass
+            path = pathlib.Path(t.cast(str, d[k]))
+            if path.exists() or any(
+                str(path).startswith(app_dir) for app_dir in context.values()
+            ):
+                d[k] = path

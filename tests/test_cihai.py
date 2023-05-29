@@ -4,17 +4,19 @@ Test :class:`Cihai` object. Other tests will use an instance of ``Cihai``
 using the ``test_config.yml``.
 
 """
+import typing as t
+
 import cihai
 from cihai.constants import UNIHAN_CONFIG
 from cihai.core import Cihai
-from cihai.data.unihan import bootstrap
+from cihai.data.unihan import bootstrap, constants as unihan_constants
 
 
-def test_cihai_version():
+def test_cihai_version() -> None:
     assert cihai.__version__
 
 
-def test_config_defaults():
+def test_config_defaults() -> None:
     """Test config defaults."""
 
     app = Cihai()
@@ -22,42 +24,44 @@ def test_config_defaults():
     assert "database" in app.config
 
 
-def test_config_dict_args():
+def test_config_dict_args() -> None:
     """Accepts dict as config."""
 
     expected = "world"
 
     app = Cihai({"hello": expected})
 
-    result = app.config["hello"]
+    result = app.config["hello"]  # type: ignore
 
     assert result == expected
 
 
-def test_yaml_config_and_override(test_config_file):
+def test_yaml_config_and_override(test_config_file: str) -> None:
     app = Cihai.from_file(test_config_file)
 
     assert app.config["database"]
 
 
-def test_unihan_options(unihan_options, test_config_file):
+def test_unihan_options(
+    unihan_options: t.Dict[str, object], test_config_file: str
+) -> None:
     app = Cihai.from_file(test_config_file)
     bootstrap.bootstrap_unihan(app.sql.metadata, unihan_options)
     assert "Unihan" in app.sql.metadata.tables
     assert app.sql.metadata.tables["Unihan"].columns
     assert set(app.sql.metadata.tables["Unihan"].columns.keys()) == set(
-        bootstrap.UNIHAN_FIELDS + ["ucn", "char"]
+        unihan_constants.UNIHAN_FIELDS + ["ucn", "char"]
     )
     assert bootstrap.is_bootstrapped(app.sql.metadata)
 
 
-def test_bootstraps_unihan_by_default():
+def test_bootstraps_unihan_by_default() -> None:
     app = Cihai()
     assert UNIHAN_CONFIG.items() == app.config.items()
     assert app.unihan, "cihai bootstraps unihan by default"
 
 
-def test_cihai_without_unihan():
+def test_cihai_without_unihan() -> None:
     app = Cihai(unihan=False)
     assert (
         UNIHAN_CONFIG.items() != app.config.items()

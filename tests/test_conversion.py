@@ -7,7 +7,7 @@ test.conversion
 from cihai import conversion
 
 
-def test_str():
+def test_str() -> None:
     c1 = "(same as U+7A69 穩) firm; stable; secure"
     c2 = ""
 
@@ -31,7 +31,7 @@ U+356D	kCantonese	au3 jaau1
 """
 
 
-def test_ucn_from_unicode():
+def test_ucn_from_unicode() -> None:
     text = "一"
     python_unicode = "\u4e00"
 
@@ -45,7 +45,7 @@ def test_ucn_from_unicode():
     assert conversion.python_to_ucn(text, as_bytes=True) == bytes_expected
 
 
-def test_ucn_from_unicode_16():
+def test_ucn_from_unicode_16() -> None:
     text = "𦄀"
     python_unicode = "\u26100"
 
@@ -59,7 +59,7 @@ def test_ucn_from_unicode_16():
     assert conversion.python_to_ucn(text, as_bytes=True) == bytes_expected
 
 
-def test_ucn_to_unicode():
+def test_ucn_to_unicode() -> None:
     before = "U+4E00"
     expected = "\u4e00"
 
@@ -91,15 +91,14 @@ def test_ucn_to_unicode():
 
     Converts a one character Python unicode string (e.g. u'\\u4e00') to the
     corresponding EUC hex ('d2bb').
-
 """
 
 
-def test_hexd():
+def test_hexd() -> None:
     assert conversion.hexd(0xFFFF) == "ffff"
 
 
-def test_euc_from_unicode():
+def test_euc_from_unicode() -> None:
     expected = "一"  # u'\u4e00'
     euc_bytestring = b"d2bb"
     euc_unicode = "d2bb"
@@ -115,7 +114,7 @@ def test_euc_from_unicode():
     assert isinstance(result, str)
 
 
-def test_euc_to_utf8():
+def test_euc_to_utf8() -> None:
     expected = "一"
     euc_bytestring = b"b0ec"
 
@@ -124,7 +123,7 @@ def test_euc_to_utf8():
     assert expected == result
 
 
-def test_euc_to_unicode():
+def test_euc_to_unicode() -> None:
     expected = "一"
     expected_ustring = "\u4e00"
     euc_bytestring = b"d2bb"

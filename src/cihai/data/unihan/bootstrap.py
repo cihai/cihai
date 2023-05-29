@@ -1,13 +1,19 @@
+import typing as t
+
+import sqlalchemy.sql.schema
 from sqlalchemy import Column, String, Table
 
 from unihan_etl import process as unihan
-from unihan_etl.process import UNIHAN_MANIFEST
+from unihan_etl.constants import UNIHAN_MANIFEST
 from unihan_etl.util import merge_dict
 
 from .constants import UNIHAN_ETL_DEFAULT_OPTIONS, UNIHAN_FIELDS
 
 
-def bootstrap_unihan(metadata, options=None):
+def bootstrap_unihan(
+    metadata: sqlalchemy.sql.schema.MetaData,
+    options: t.Optional[t.Dict[str, object]] = None,
+) -> None:
     if options is None:
         options = {}
 
@@ -19,24 +25,21 @@ def bootstrap_unihan(metadata, options=None):
     data = p.export()
     table = create_unihan_table(UNIHAN_FIELDS, metadata)
     metadata.create_all()
+    assert metadata.bind is not None
     metadata.bind.execute(table.insert(), data)
 
 
 TABLE_NAME = "Unihan"
 
 
-def flatten_datasets(d):
-    return sorted({c for cs in d.values() for c in cs})
-
-
 DEFAULT_COLUMNS = ["ucn", "char"]
 try:
-    DEFAULT_FIELDS = [f for t, f in UNIHAN_MANIFEST.items() if t in ["Unihan"]]
+    DEFAULT_FIELDS = [f for c, f in UNIHAN_MANIFEST.items() if c in ["Unihan"]]
 except Exception:
-    DEFAULT_FIELDS = [f for t, f in UNIHAN_MANIFEST.items()]
+    DEFAULT_FIELDS = [f for f in UNIHAN_MANIFEST.values()]
 
 
-def is_bootstrapped(metadata):
+def is_bootstrapped(metadata: sqlalchemy.sql.schema.MetaData) -> bool:
     """Return True if cihai is correctly bootstrapped."""
     fields = UNIHAN_FIELDS + DEFAULT_COLUMNS
     if TABLE_NAME in metadata.tables.keys():
@@ -50,7 +53,9 @@ def is_bootstrapped(metadata):
         return False
 
 
-def create_unihan_table(columns, metadata):
+def create_unihan_table(
+    columns: t.List[str], metadata: sqlalchemy.sql.schema.MetaData
+) -> sqlalchemy.sql.schema.Table:
     """Create table and return  :class:`sqlalchemy.Table`.
 
     Parameters

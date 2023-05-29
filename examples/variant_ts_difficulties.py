@@ -1,8 +1,13 @@
 #!/usr/bin/env python
+import typing as t
+
 from cihai.core import Cihai
 
 
-def run(unihan_options=None):
+def run(unihan_options: t.Optional[t.Dict[str, object]] = None) -> None:
+    if unihan_options is None:
+        unihan_options = {}
+
     c = Cihai()
     if not c.unihan.is_bootstrapped:  # download and install Unihan to db
         c.unihan.bootstrap(unihan_options)
@@ -18,7 +23,7 @@ def run(unihan_options=None):
     print("https://www.unicode.org/reports/tr38/#N10211")
     print("3.7.1 bullet 4")
 
-    for char in c.unihan.with_fields("kTraditionalVariant", "kSimplifiedVariant"):
+    for char in c.unihan.with_fields(["kTraditionalVariant", "kSimplifiedVariant"]):
         print("Character: {}".format(char.char))
         trad = set(char.untagged_vars("kTraditionalVariant"))
         simp = set(char.untagged_vars("kSimplifiedVariant"))

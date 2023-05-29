@@ -1,4 +1,5 @@
 """Exceptions raised from the Cihai library."""
+from typing import Union
 
 
 class CihaiException(Exception):
@@ -24,7 +25,9 @@ class ImportStringError(ImportError, CihaiException):
     #: Wrapped exception.
     exception: BaseException
 
-    def __init__(self, import_name, exception):
+    def __init__(
+        self, import_name: str, exception: Union[ModuleNotFoundError, ImportError]
+    ) -> None:
         from .utils import import_string
 
         self.import_name = import_name

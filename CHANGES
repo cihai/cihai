@@ -6,9 +6,24 @@
 
 ### Breaking
 
-- Drop python 3.7 support (#343)
+- **Python 3.7 Dropped**
 
-  EOL June 27th, 2023
+  Python 3.7 support has been dropped (#343)
+
+  Its end-of-life is June 27th, 2023 and Python 3.8 will add support for
+  `typing.TypedDict` and `typing.Protocol` out of the box without needing
+  `typing_extensions`.
+
+### Development
+
+- **Improved typings**
+
+  Move to strict mypy typings (#324)
+
+  This will make future refactoring simplifications easier and maintain code
+  quality in the long term, in addition to more intelligent completions.
+
+    [`mypy --strict`]: https://mypy.readthedocs.io/en/stable/command_line.html#cmdoption-mypy-strict
 
 ## cihai 0.19.0 (2023-05-28)
 
