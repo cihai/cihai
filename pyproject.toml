@@ -11,7 +11,6 @@ classifiers = [
   "Intended Audience :: Developers",
   "Programming Language :: Python",
   "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3.7",
   "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
@@ -54,7 +53,7 @@ Repository = "https://github.com/cihai/cihai"
 "Q & A" = "https://github.com/cihai/cihai/discussions"
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.8"
 appdirs = "*"
 PyYAML = "~6.0"
 sqlalchemy = "<1.4"
@@ -68,8 +67,8 @@ furo = "*"
 gp-libs = "*"
 sphinx-autobuild = "*"
 sphinx-autodoc-typehints = "*"
-sphinx-inline-tabs = "<2023.4.21"  # For Python 3.7 support
-sphinxext-opengraph = "<0.8"  # https://github.com/wpilibsuite/sphinxext-opengraph/issues/100
+sphinx-inline-tabs = "*" # For Python 3.7 support
+sphinxext-opengraph = "<0.8" # https://github.com/wpilibsuite/sphinxext-opengraph/issues/100
 sphinx-copybutton = "*"
 sphinxext-rediraffe = "*"
 myst_parser = ">=0.18.1"
