@@ -17,7 +17,7 @@ from .utils import import_string
 log = logging.getLogger(__name__)
 
 
-class Cihai(object):
+class Cihai:
     """
     Central application object.
 
@@ -133,11 +133,11 @@ class Cihai(object):
         if config_path:
             if not os.path.exists(config_path):
                 raise exc.CihaiException(
-                    "{0} does not exist.".format(os.path.abspath(config_path))
+                    f"{os.path.abspath(config_path)} does not exist."
                 )
             if config_path.suffix not in [".json", ".yml", ".yaml"]:
                 raise exc.CihaiException(
-                    "{0} does not have a yaml, yml, json extension.".format(
+                    "{} does not have a yaml, yml, json extension.".format(
                         os.path.abspath(config_path)
                     )
                 )

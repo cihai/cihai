@@ -71,7 +71,7 @@ class LogFormatter(logging.Formatter):
         try:
             record.message = record.getMessage()
         except Exception as e:
-            record.message = "Bad message (%r): %r" % (e, record.__dict__)
+            record.message = "Bad message ({!r}): {!r}".format(e, record.__dict__)
 
         date_format = "%H:%m:%S"
         record.asctime = time.strftime(date_format, self.converter(record.created))
