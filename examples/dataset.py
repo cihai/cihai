@@ -27,7 +27,6 @@ def run() -> None:
 
     c.add_dataset(MyDataset, namespace="moo")
     my_dataset = MyDataset()
-    my_dataset = MyDataset()
     my_dataset.bootstrap()
 
     print("Definitions exactly for 好", my_dataset.givemedata("好"))
