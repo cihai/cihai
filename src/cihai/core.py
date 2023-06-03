@@ -6,6 +6,7 @@ import pathlib
 import typing as t
 from cihai._internal.config_reader import ConfigReader
 from cihai.data.unihan.dataset import Unihan
+
 from unihan_etl.util import merge_dict
 
 from . import exc, extend
@@ -71,6 +72,7 @@ class Cihai:
     default_config: "UntypedDict" = DEFAULT_CONFIG
     config: "ConfigDict"
     unihan: Unihan
+    sql: Database
 
     def __init__(
         self,

@@ -13,16 +13,16 @@ import typing as t
 import pytest
 
 import sqlalchemy
-from sqlalchemy import MetaData
 
 from cihai import conversion
 
 if t.TYPE_CHECKING:
-    from sqlalchemy.engine import ResultProxy
-    from sqlalchemy.sql import ClauseElement
+    pass
 
 
-cjk_ranges = {  # http://www.unicode.org/reports/tr38/#BlockListing
+cjk_ranges: t.Dict[
+    str, t.Sequence[int]
+] = {  # http://www.unicode.org/reports/tr38/#BlockListing
     "CJK Unified Ideographs": range(0x4E00, 0x9FD5 + 1),
     "CJK Unified Ideographs Extension A": range(0x3400, 0x4DBF + 1),
     "CJK Unified Ideographs Extension B": range(0x20000, 0x2A6DF + 1),
@@ -43,141 +43,174 @@ cjk_ranges = {  # http://www.unicode.org/reports/tr38/#BlockListing
 }
 
 
-engine = sqlalchemy.create_engine("sqlite:///")
-metadata = MetaData(bind=engine)
-
-unicode_table = sqlalchemy.Table(
-    "cjk",
-    metadata,
-    sqlalchemy.Column("id", sqlalchemy.Integer(), primary_key=True),
-    sqlalchemy.Column("char", sqlalchemy.Unicode()),
-    sqlalchemy.Column("ucn", sqlalchemy.String()),
-)
-
-sample_table = sqlalchemy.Table(
-    "sample_table",
-    metadata,
-    sqlalchemy.Column("id", sqlalchemy.Integer(), primary_key=True),
-    sqlalchemy.Column("char_id", sqlalchemy.ForeignKey("cjk.id")),
-    sqlalchemy.Column("value", sqlalchemy.Unicode()),
-)
-
-metadata.create_all()
-
-
 class Char(t.TypedDict):
     id: int
     char: str
     ucn: str
 
 
-def get_char_fk(char: str) -> int:
-    q = (
-        unicode_table.select(unicode_table.c.id)
-        .where(unicode_table.c.char == char)
-        .limit(1)
-        .execute()
+@pytest.fixture(scope="session")
+def unihan_table(
+    engine: sqlalchemy.Engine, metadata: sqlalchemy.MetaData
+) -> sqlalchemy.Table:
+    return sqlalchemy.Table(
+        "cjk",
+        metadata,
+        sqlalchemy.Column("id", sqlalchemy.Integer(), primary_key=True),
+        sqlalchemy.Column("char", sqlalchemy.String()),
+        sqlalchemy.Column("ucn", sqlalchemy.String()),
     )
-    assert q is not None
-    row = q.fetchone()
-
-    assert row is not None
-    assert isinstance(row.id, int)
-    return row.id
-
-
-def get_char_fk_multiple(*args: t.Sequence[str]) -> "ResultProxy":
-    """Retrieve the Rows"""
-
-    or_ops: t.List[t.Union[str, bool, "ClauseElement"]] = []
-
-    for arg in args:
-        or_ops.append(unicode_table.c.char == arg)
-
-    or_op = sqlalchemy.or_(*or_ops)
-
-    results = unicode_table.select().where(or_op).execute()
-
-    assert results is not None
-
-    return results
 
 
 @pytest.fixture(scope="session")
-def chars() -> t.List[Char]:
+def sample_table(
+    engine: sqlalchemy.Engine, metadata: sqlalchemy.MetaData
+) -> sqlalchemy.Table:
+    return sqlalchemy.Table(
+        "sample_table",
+        metadata,
+        sqlalchemy.Column("id", sqlalchemy.Integer(), primary_key=True),
+        sqlalchemy.Column("char_id", sqlalchemy.ForeignKey("cjk.id")),
+        sqlalchemy.Column("value", sqlalchemy.String()),
+    )
+
+
+@pytest.fixture(autouse=True, scope="session")
+def create_all(
+    engine: sqlalchemy.Engine,
+    metadata: sqlalchemy.MetaData,
+    unihan_table: sqlalchemy.Table,
+    sample_table: sqlalchemy.Table,
+) -> None:
+    metadata.create_all(engine)
+
+
+def get_char_fk(
+    char: str, engine: sqlalchemy.Engine, unihan_table: sqlalchemy.Table
+) -> int:
+    with engine.connect() as connection:
+        results = connection.execute(
+            sqlalchemy.select(unihan_table.c.id)
+            .select_from(unihan_table)
+            .where(unihan_table.c.char == char)
+            .limit(1)
+        )
+        row = results.fetchone()
+        assert row is not None
+        foreign_key = row.id
+        assert isinstance(foreign_key, int)
+        return foreign_key
+
+
+def get_char_fk_multiple(
+    engine: sqlalchemy.Engine, unihan_table: sqlalchemy.Table, *args: t.List[str]
+) -> sqlalchemy.Result[t.Any]:
+    """Retrieve the Rows"""
+    with engine.connect() as connection:
+        return connection.execute(
+            sqlalchemy.select(unihan_table).where(
+                unihan_table.c.char.in_([str(arg) for arg in args])
+            )
+        )
+
+
+@pytest.fixture(scope="session")
+def chars(
+    metadata: sqlalchemy.MetaData,
+    engine: sqlalchemy.Engine,
+    unihan_table: sqlalchemy.Table,
+) -> t.List[Char]:
     chars: t.List[Char] = []
 
     while len(chars) < 3:
-        c: int = 0x4E00 + random.randint(1, 333)
+        c = 0x4E00 + random.randint(1, 333)
         char = Char(
-            {
-                # In SQLAlchemy, sqlite supports this
-                # https://docs.sqlalchemy.org/en/20/dialects/sqlite.html#insert-on-conflict-upsert
-                "id": c,
-                "char": chr(int(c)),
-                "ucn": conversion.python_to_ucn(chr(int(c)), as_bytes=False),
-            }
+            id=c,
+            char=chr(int(c)),
+            ucn=conversion.python_to_ucn(chr(int(c)), as_bytes=False),
         )
 
-        q = unicode_table.select().where(unicode_table.c.id == char["id"])
-
-        assert q is not None
-
-        ex = q.execute()
-
-        assert ex is not None
-
-        exists = ex.first() is not None
-        if char not in chars and not exists:
+        if char not in chars:
             chars.append(char)
-        else:
-            continue
 
-    assert metadata.bind is not None
+    with engine.connect() as connection:
+        connection.execute(sqlalchemy.insert(unihan_table), chars)
 
-    metadata.bind.execute(unicode_table.insert(), chars)
+        count = connection.scalar(
+            sqlalchemy.select(sqlalchemy.func.count()).select_from(unihan_table)
+        )
+        assert isinstance(count, int)
+        assert count > 0, "Setup should have more than 1 row of data added"
+
+        connection.commit()
     return chars
 
 
-def test_insert_row(chars: t.List[Char]) -> None:
+def test_insert_row(
+    chars: t.List[Char], unihan_table: sqlalchemy.Table, engine: sqlalchemy.Engine
+) -> None:
     cjkchar = chars[0]
 
-    query = (
-        unicode_table.select()
-        .where(unicode_table.c.char == cjkchar["char"])
-        .limit(1)
-        .execute()
-    )
+    with engine.connect() as connection:
+        row = connection.execute(
+            sqlalchemy.select(unihan_table)
+            .where(unihan_table.c.char == cjkchar["char"])
+            .limit(1)
+            .select_from(unihan_table)
+        ).fetchone()
 
-    assert query is not None
-    row = query.fetchone()
-
-    assert row is not None
-    assert row.char == cjkchar["char"]
+        assert row is not None
+        assert row.char == cjkchar["char"]
 
 
-def test_insert_bad_fk() -> None:
-    example_bad_key = sample_table.insert().values(value="", char_id="wat").execute()
+def test_insert_bad_key(
+    sample_table: sqlalchemy.Table, engine: sqlalchemy.Engine
+) -> None:
+    with engine.connect() as connection:
+        bad_key = connection.execute(
+            sqlalchemy.insert(sample_table),
+            [{"value": "", "char_id": "non_existant_char"}],
+        )
 
-    assert example_bad_key
+        assert bad_key
 
 
-def test_insert_on_foreign_key(chars: t.List[Char]) -> None:
+def test_insert_on_foreign_key(
+    chars: t.List[Char],
+    sample_table: sqlalchemy.Table,
+    unihan_table: sqlalchemy.Table,
+    engine: sqlalchemy.Engine,
+) -> None:
     cjkchar = chars[0]
     char = cjkchar["char"]
 
-    sample_table.insert().values(char_id=get_char_fk(char), value="hey").execute()
+    with engine.connect() as connection:
+        connection.execute(
+            sqlalchemy.insert(sample_table),
+            [
+                {
+                    "char_id": get_char_fk(
+                        char, engine=engine, unihan_table=unihan_table
+                    ),
+                    "value": "hey",
+                }
+            ],
+        )
 
-    select_char = unicode_table.select().where(unicode_table.c.char == char).limit(1)
-    query = select_char.execute()
-    assert query is not None
-    row = query.fetchone()
+        select_char = unihan_table.select().where(unihan_table.c.char == char).limit(1)
+        row = connection.execute(select_char).fetchone()
 
-    assert row is not None
+        assert row is not None
 
 
-def test_get_char_foreign_key_multiple(chars: t.List[Char]) -> None:
-    char_fk_multiple = get_char_fk_multiple(*[c["char"] for c in chars])
+def test_get_char_foreign_key_multiple(
+    chars: t.List[Char], engine: sqlalchemy.Engine, unihan_table: sqlalchemy.Table
+) -> None:
+    char_fk_multiple = get_char_fk_multiple(
+        engine, unihan_table, [c["char"] for c in chars]
+    )
 
     for char in char_fk_multiple:
+        assert char is not None
+        assert isinstance(char, dict)
         assert char["char"]

@@ -5,6 +5,7 @@ using the ``test_config.yml``.
 
 """
 import typing as t
+import sqlalchemy
 
 import cihai
 from cihai.constants import UNIHAN_CONFIG
@@ -43,10 +44,14 @@ def test_yaml_config_and_override(test_config_file: str) -> None:
 
 
 def test_unihan_options(
-    unihan_options: t.Dict[str, object], test_config_file: str
+    unihan_options: t.Dict[str, object],
+    engine: sqlalchemy.Engine,
+    test_config_file: str,
 ) -> None:
     app = Cihai.from_file(test_config_file)
-    bootstrap.bootstrap_unihan(app.sql.metadata, unihan_options)
+    bootstrap.bootstrap_unihan(
+        engine=engine, metadata=app.sql.metadata, options=unihan_options
+    )
     assert "Unihan" in app.sql.metadata.tables
     assert app.sql.metadata.tables["Unihan"].columns
     assert set(app.sql.metadata.tables["Unihan"].columns.keys()) == set(

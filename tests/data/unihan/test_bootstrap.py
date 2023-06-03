@@ -10,7 +10,7 @@ def test_reflect_db(
 ) -> None:
     c = Cihai(config={"database": {"url": f"sqlite:///{tmpdb_file}"}})
     assert not c.unihan.is_bootstrapped
-    bootstrap.bootstrap_unihan(c.sql.metadata, unihan_options)
+    bootstrap.bootstrap_unihan(c.sql.engine, c.sql.metadata, unihan_options)
     assert not hasattr(c.sql.base.classes, "Unihan")
     c.unihan.sql.reflect_db()
     assert hasattr(c.sql.base.classes, "Unihan")
