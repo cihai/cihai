@@ -1,7 +1,8 @@
-from typing_extensions import TypedDict
+import pathlib
+import typing as t
 
 
-class UnihanOptions(TypedDict):
-    source: str
-    work_dir: str
-    zip_path: str
+class UnihanOptions(t.TypedDict):
+    source: pathlib.Path
+    work_dir: pathlib.Path
+    zip_path: pathlib.Path

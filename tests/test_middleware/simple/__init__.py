@@ -4,9 +4,6 @@ import typing as t
 if t.TYPE_CHECKING:
     from cihai.types import UntypedDict
 
-    # from typing_extensions import TypedDict
-    # from typing import TypedDict
-
     class CharData(t.TypedDict, total=False):
         definition: str
 

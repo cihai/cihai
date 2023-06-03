@@ -18,6 +18,16 @@
   [Migrating to SQLAlchemy
   2.0](https://docs.sqlalchemy.org/en/20/changelog/migration_20.html)
 
+### Development
+
+- Move from pytest's `tmp_dir` (`py.path.local`) to `tmp_path` (`pathlib.Path`),
+  #346
+- Remove unnecessary use of `typing_extension`'s `TypedDict` (#346)
+
+  Note: `typing_extension`'s `TypedDict` is still
+  used for `NotRequired` `TypedDict`s until the minimum python version supprots
+  them ([3.11](https://www.python.org/downloads/release/python-3110/) via [PEP-655](https://peps.python.org/pep-0655/))
+
 ## cihai 0.20.0 (2023-05-29)
 
 ### Breaking changes
