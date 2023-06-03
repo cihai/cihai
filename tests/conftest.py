@@ -15,7 +15,7 @@ if t.TYPE_CHECKING:
 
 
 @pytest.fixture
-def tests_path(project_root: pathlib.Path) -> pathlib.Path:
+def tests_path() -> pathlib.Path:
     return pathlib.Path(__file__).parent
 
 
