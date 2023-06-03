@@ -1,4 +1,5 @@
 import os
+import pathlib
 import typing as t
 import zipfile
 
@@ -14,8 +15,13 @@ if t.TYPE_CHECKING:
 
 
 @pytest.fixture
-def fixture_path() -> str:
-    return os.path.abspath(os.path.join(os.path.dirname(__file__), "fixtures"))
+def tests_path(project_root: pathlib.Path) -> pathlib.Path:
+    return pathlib.Path(__file__).parent
+
+
+@pytest.fixture
+def fixture_path(tests_path: pathlib.Path) -> pathlib.Path:
+    return tests_path / "fixtures"
 
 
 @pytest.fixture
@@ -24,36 +30,36 @@ def test_config_file(fixture_path: str) -> str:
 
 
 @pytest.fixture
-def zip_path(tmpdir: str) -> str:
-    return tmpdir.join("Unihan.zip")
+def zip_path(tmp_path: pathlib.Path) -> pathlib.Path:
+    return tmp_path / "Unihan.zip"
 
 
 @pytest.fixture
-def zip_file(zip_path: str, fixture_path: str) -> zipfile.ZipFile:
+def zip_file(zip_path: pathlib.Path, fixture_path: pathlib.Path) -> zipfile.ZipFile:
     _files = []
     for f in UNIHAN_FILES:
-        _files += [os.path.join(fixture_path, f)]
-    zf = zipfile.ZipFile(str(zip_path), "a")
-    for f in _files:
-        zf.write(f, os.path.basename(f))
+        _files += [fixture_path / f]
+    zf = zipfile.ZipFile(zip_path, "a")
+    for _f in _files:
+        zf.write(_f, _f.name)
     zf.close()
     return zf
 
 
 @pytest.fixture
 def unihan_options(
-    zip_file: zipfile.ZipFile, zip_path: str, tmpdir: str
+    zip_file: zipfile.ZipFile, zip_path: pathlib.Path, tmp_path: pathlib.Path
 ) -> "UnihanOptions":
     return {
-        "source": str(zip_path),
-        "work_dir": str(tmpdir),
-        "zip_path": str(tmpdir.join("downloads").join("Moo.zip")),
+        "source": zip_path,
+        "work_dir": tmp_path,
+        "zip_path": tmp_path / "downloads" / "Moo.zip",
     }
 
 
 @pytest.fixture(scope="function")
-def tmpdb_file(tmpdir: str) -> str:
-    return tmpdir.join("test.db")
+def tmpdb_file(tmpdir: pathlib.Path) -> pathlib.Path:
+    return tmpdir / "test.db"
 
 
 @pytest.fixture(scope="session")
