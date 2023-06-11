@@ -4,6 +4,11 @@
 
 <!-- Maintainers, insert changes / features for the next release here -->
 
+### Development
+
+- unihan-etl: Bump 0.19.2 -> 0.20.0 (Drops python 3.7, normalizes `typing`
+  imports)
+
 ## cihai 0.21.0 (2023-06-03)
 
 ### Breaking changes
