@@ -1,5 +1,5 @@
 """Exceptions raised from the Cihai library."""
-from typing import Union
+import typing as t
 
 
 class CihaiException(Exception):
@@ -26,7 +26,7 @@ class ImportStringError(ImportError, CihaiException):
     exception: BaseException
 
     def __init__(
-        self, import_name: str, exception: Union[ModuleNotFoundError, ImportError]
+        self, import_name: str, exception: t.Union[ModuleNotFoundError, ImportError]
     ) -> None:
         from .utils import import_string
 

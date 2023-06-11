@@ -8,15 +8,15 @@ Notes
 .. _typeshed's: https://github.com/python/typeshed/blob/5df8de7/stdlib/_typeshed/__init__.pyi#L115-L118
 """  # NOQA E501
 from os import PathLike
-from typing import TYPE_CHECKING, Union
+import typing as t
 
-if TYPE_CHECKING:
+if t.TYPE_CHECKING:
     from typing_extensions import TypeAlias
 
-StrPath: "TypeAlias" = Union[str, "PathLike[str]"]  # stable
+StrPath: "TypeAlias" = t.Union[str, "PathLike[str]"]  # stable
 """:class:`os.PathLike` or :class:`str`"""
 
-StrOrBytesPath: "TypeAlias" = Union[
+StrOrBytesPath: "TypeAlias" = t.Union[
     str, bytes, "PathLike[str]", "PathLike[bytes]"  # stable
 ]
 """:class:`os.PathLike`, :class:`str` or :term:`bytes-like object`"""

@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from typing import Dict, List
+import typing as t
 
 from cihai.core import Cihai
 from cihai.extend import Dataset
@@ -15,10 +15,10 @@ class MyDataset(Dataset):
     def givemedata(self, key: str) -> str:
         return data[key]
 
-    def search(self, needle: str) -> Dict[str, object]:
+    def search(self, needle: str) -> t.Dict[str, object]:
         return {k: v for k, v in data.items() if needle in k}
 
-    def backwards(self, needle: str) -> List[str]:
+    def backwards(self, needle: str) -> t.List[str]:
         return [k for k, v in data.items() if needle in v]
 
 

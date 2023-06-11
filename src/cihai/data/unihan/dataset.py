@@ -1,4 +1,3 @@
-from typing import Dict, List, Optional, Union
 import typing as t
 
 from sqlalchemy import or_
@@ -22,7 +21,7 @@ class Unihan(Dataset, SQLAlchemyMixin):
     tagged_vars: t.Callable[[str], "ParsedVars"]
     untagged_vars: t.Callable[[str], "UntaggedVars"]
 
-    def bootstrap(self, options: Optional[Dict[str, object]] = None) -> None:
+    def bootstrap(self, options: t.Optional[t.Dict[str, object]] = None) -> None:
         if options is None:
             options = {}
 
@@ -47,7 +46,7 @@ class Unihan(Dataset, SQLAlchemyMixin):
         Unihan = self.sql.base.classes.Unihan
         return self.sql.session.query(Unihan).filter_by(char=char)
 
-    def reverse_char(self, hints: Union[str, List[str]]) -> "Query[Unihan]":
+    def reverse_char(self, hints: t.Union[str, t.List[str]]) -> "Query[Unihan]":
         """Return QuerySet of objects from SQLAlchemy of results.
 
         Parameters
