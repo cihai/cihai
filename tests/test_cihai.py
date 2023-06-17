@@ -4,12 +4,19 @@ Test :class:`Cihai` object. Other tests will use an instance of ``Cihai``
 using the ``test_config.yml``.
 """
 
+import dataclasses
+import pathlib
+import typing as t
+
 import sqlalchemy
 
 import cihai
-from cihai.constants import UNIHAN_CONFIG
+from cihai.constants import UnihanConfig
 from cihai.core import Cihai
 from cihai.data.unihan import bootstrap, constants as unihan_constants
+
+if t.TYPE_CHECKING:
+    from unihan_etl.options import Options as UnihanOptions
 
 
 def test_cihai_version() -> None:
@@ -21,31 +28,31 @@ def test_config_defaults() -> None:
     """Test cihai object defaults (no params passed)."""
     app = Cihai()
 
-    assert "database" in app.config
+    assert hasattr(app.config, "database")
 
 
 def test_config_dict_args() -> None:
     """Test initialization from dictionary."""
-    expected = "world"
+    expected = "sqlite:///"
 
-    app = Cihai({"hello": expected})
+    app = Cihai({"database": {"url": expected}})
 
-    result = app.config["hello"]  # type: ignore
+    result = app.config.database.url
 
     assert result == expected
 
 
-def test_yaml_config_and_override(test_config_file: str) -> None:
+def test_yaml_config_and_override(test_config_file: pathlib.Path) -> None:
     """Test initialization from config file path."""
     app = Cihai.from_file(test_config_file)
 
-    assert app.config["database"]
+    assert hasattr(app.config, "database")
 
 
 def test_unihan_options(
-    unihan_options: dict[str, object],
+    unihan_options: "UnihanOptions",
     engine: sqlalchemy.Engine,
-    test_config_file: str,
+    test_config_file: pathlib.Path,
 ) -> None:
     """Test initialization of UNIHAN with options."""
     app = Cihai.from_file(test_config_file)
@@ -67,7 +74,8 @@ def test_unihan_options(
 def test_bootstraps_unihan_by_default() -> None:
     """Test bootstrapping UNIHAN by default."""
     app = Cihai()
-    assert UNIHAN_CONFIG.items() == app.config.items()
+
+    assert UnihanConfig().datasets.items() == app.config.datasets.items()
     assert app.unihan, "cihai bootstraps unihan by default"
 
 
@@ -75,6 +83,7 @@ def test_cihai_without_unihan() -> None:
     """Test bootstrapping without UNIHAN."""
     app = Cihai(unihan=False)
     assert (
-        UNIHAN_CONFIG.items() != app.config.items()
+        dataclasses.asdict(UnihanConfig()).items()
+        != dataclasses.asdict(app.config).items()
     ), "app can be initialized without unihan"
     assert not hasattr(app, "unihan")

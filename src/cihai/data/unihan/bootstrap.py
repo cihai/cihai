@@ -9,27 +9,27 @@ from sqlalchemy import Column, String, Table
 
 from unihan_etl import core as unihan
 from unihan_etl.constants import UNIHAN_MANIFEST
-from unihan_etl.util import merge_dict
+from unihan_etl.options import Options
 
 from .constants import UNIHAN_ETL_DEFAULT_OPTIONS, UNIHAN_FIELDS
-
-if t.TYPE_CHECKING:
-    from unihan_etl.options import Options as UnihanOptions
 
 
 def bootstrap_unihan(
     engine: sqlalchemy.Engine,
     metadata: sqlalchemy.sql.schema.MetaData,
-    options: t.Optional[t.Union[dict[str, object], "UnihanOptions"]] = None,
+    options: t.Union["t.Mapping[str, t.Any]", Options, None] = None,
 ) -> None:
     """UNIHAN bootstrap script (download from web, import to database)."""
     if options is None:
         options = {}
+    if not isinstance(options, Options):
+        assert isinstance(options, dict)
+        options = Options(**options)
 
     """Download, extract and import unihan to database."""
-    options = merge_dict(
-        UNIHAN_ETL_DEFAULT_OPTIONS.copy(),
-        options if isinstance(options, dict) else dataclasses.asdict(options),
+    options = dataclasses.replace(
+        UNIHAN_ETL_DEFAULT_OPTIONS,
+        **dataclasses.asdict(options),
     )
 
     unihan_pkgr = unihan.Packager(options)

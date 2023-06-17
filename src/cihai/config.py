@@ -1,24 +1,35 @@
 """Configuration options for Cihai app."""
 
+import dataclasses
 import os
 import pathlib
 import typing as t
 
-from cihai.constants import app_dirs
+from cihai.constants import DEFAULT_CONFIG, app_dirs
 
 if t.TYPE_CHECKING:
-    from appdirs import AppDirs
+    from cihai.constants import Config
+    from cihai.types import UntypedDict
+    from unihan_etl._internal.app_dirs import AppDirs
 
-    from .types import UntypedDict
+    C = t.TypeVar("C", Config, UntypedDict)
 
 
-def expand_config(d: "UntypedDict", dirs: "AppDirs" = app_dirs) -> None:
+def is_default_option(field_name: str, val: t.Any) -> bool:
+    """Return True if field default option in configuration."""
+    return bool(val == getattr(DEFAULT_CONFIG, field_name, ""))
+
+
+def expand_config(
+    d: "C",
+    dirs: "AppDirs" = app_dirs,
+) -> "C":
     """
     Expand configuration XDG variables, environmental variables, and tildes.
 
     Parameters
     ----------
-    d : dict
+    d : dict or Options
         config information
     dirs : appdirs.AppDirs
         XDG application mapping
@@ -53,19 +64,56 @@ def expand_config(d: "UntypedDict", dirs: "AppDirs" = app_dirs) -> None:
         "site_data_dir": dirs.site_data_dir,
     }
 
-    if "datasets" in d and "plugins" not in d:
-        d["datasets"] = {}
+    if dataclasses.is_dataclass(d):
+        for field in dataclasses.fields(d):
+            if field.name == "dirs":
+                continue
 
-    for k, v in d.items():
-        if isinstance(v, dict):
-            expand_config(v, dirs)
-        if isinstance(v, str):
-            d[k] = os.path.expanduser(  # NOQA: PTH111
-                os.path.expandvars(v).format(**context),
-            )
+            v = getattr(d, field.name)
+            if dataclasses.is_dataclass(v):
+                setattr(d, field.name, expand_config(getattr(d, field.name)))
+                v = getattr(d, field.name)
 
-            path = pathlib.Path(t.cast("str", d[k]))
-            if path.exists() or any(
-                str(path).startswith(app_dir) for app_dir in context.values()
-            ):
-                d[k] = path
+            if isinstance(v, dict):
+                setattr(d, field.name, expand_config(v, dirs))
+                v = getattr(d, field.name)
+
+            if isinstance(v, pathlib.Path):
+                setattr(d, field.name, str(v))
+                v = getattr(d, field.name)
+
+            if isinstance(v, str):
+                setattr(
+                    d,
+                    field.name,
+                    os.path.expanduser(  # noqa: PTH111
+                        os.path.expandvars(v).format(**context),
+                    ),
+                )
+
+                path = pathlib.Path(t.cast("str", getattr(d, field.name)))
+                if path.exists() or any(
+                    str(path).startswith(str(app_dir)) for app_dir in context.values()
+                ):
+                    setattr(d, field.name, path)
+    elif isinstance(d, dict):
+        if "datasets" in d and "plugins" not in d:
+            d["datasets"] = {}
+
+        for k, v in d.items():
+            if isinstance(v, dict):
+                v = d[k] = expand_config(v, dirs)
+            if isinstance(v, pathlib.Path):
+                v = d[k] = str(v)
+            if isinstance(v, str):
+                d[k] = os.path.expanduser(  # noqa: PTH111
+                    os.path.expandvars(v).format(**context),
+                )
+
+                path = pathlib.Path(t.cast("str", d[k]))
+                if path.exists() or any(
+                    str(path).startswith(str(app_dir)) for app_dir in context.values()
+                ):
+                    d[k] = path
+
+    return d
