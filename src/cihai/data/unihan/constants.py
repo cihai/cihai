@@ -1,6 +1,8 @@
 """Constants for UNIHAN cihai dataset."""
 import typing as t
 
+from unihan_etl.options import Options
+
 #: Mapping of files from unihan-etl (UNIHAN database)
 UNIHAN_FILES = [
     "Unihan_DictionaryLikeData.txt",
@@ -55,9 +57,9 @@ UNIHAN_FIELDS: t.List[str] = [
 ]
 
 #: Default settings passed to unihan-etl
-UNIHAN_ETL_DEFAULT_OPTIONS = {
-    "input_files": UNIHAN_FILES,
-    "fields": UNIHAN_FIELDS,
-    "format": "python",
-    "expand": False,
-}
+UNIHAN_ETL_DEFAULT_OPTIONS = Options(
+    input_files=UNIHAN_FILES,
+    fields=UNIHAN_FIELDS,
+    format="python",
+    expand=False,
+)

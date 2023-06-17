@@ -1,4 +1,5 @@
 """Cihai core functionality."""
+import dataclasses
 import inspect
 import logging
 import pathlib
@@ -6,18 +7,15 @@ import typing as t
 
 from cihai._internal.config_reader import ConfigReader
 from cihai.data.unihan.dataset import Unihan
-from unihan_etl.util import merge_dict
 
 from . import exc, extend
 from .config import expand_config
-from .constants import DEFAULT_CONFIG, UNIHAN_CONFIG, app_dirs
+from .constants import DEFAULT_CONFIG, Config, UnihanConfig, app_dirs
 from .db import Database
 from .utils import import_string
 
 if t.TYPE_CHECKING:
     from typing_extensions import TypeGuard
-
-    from cihai.types import ConfigDict, UntypedDict
 
     DS = t.TypeVar("DS", bound=t.Type[extend.Dataset])
 
@@ -32,7 +30,7 @@ class CihaiConfigError(exc.CihaiException):
         return super().__init__("Invalid exception with configuration")
 
 
-def is_valid_config(config: "UntypedDict") -> "TypeGuard[ConfigDict]":
+def is_valid_config(config: "Config") -> "TypeGuard[Config]":
     """Upcast cihai configuration.
 
     NOTE: This does not validate configuration yet!
@@ -79,14 +77,14 @@ class Cihai:
     """
 
     #: :py:class:`dict` of default config, can be monkey-patched during tests
-    default_config: "UntypedDict" = DEFAULT_CONFIG
-    config: "ConfigDict"
+    default_config: "Config" = DEFAULT_CONFIG
+    config: "Config"
     unihan: Unihan
     sql: Database
 
     def __init__(
         self,
-        config: t.Optional["UntypedDict"] = None,
+        config: t.Optional[t.Union["t.Mapping[str,t.Any]", "Config"]] = None,
         unihan: bool = True,
     ) -> None:
         """Initialize Cihai application.
@@ -97,24 +95,30 @@ class Cihai:
         unihan : boolean, optional
             Bootstrap the core UNIHAN dataset (recommended)
         """
-        _config: UntypedDict = config if config is not None else {}
         if config is None:
-            _config = self.default_config
+            config = self.default_config
+        if not isinstance(config, Config):
+            config = Config(**config)
+
+        assert isinstance(config, Config)
 
         # Merges custom configuration settings on top of defaults
         #: Configuration dictionary
-        _config = merge_dict(self.default_config, _config)
+        config = dataclasses.replace(self.default_config, **dataclasses.asdict(config))
 
         if unihan:
-            _config = merge_dict(UNIHAN_CONFIG, _config)
+            for dataset_name, dataset_options in UnihanConfig().datasets.items():
+                if dataset_name not in config.datasets:
+                    config.datasets[dataset_name] = dataset_options
 
         #: Expand template variables
-        expand_config(_config, app_dirs)
+        config = dataclasses.replace(
+            config, **dataclasses.asdict(expand_config(config, app_dirs))
+        )
 
-        if not is_valid_config(config=_config):
+        if not is_valid_config(config=config):
             raise CihaiConfigError()
-
-        self.config = _config
+        self.config = config
 
         user_data_dir = pathlib.Path(app_dirs.user_data_dir)
 
@@ -128,7 +132,7 @@ class Cihai:
 
     def bootstrap(self) -> None:
         """Initialize Cihai."""
-        for namespace, class_string in self.config.get("datasets", {}).items():
+        for namespace, class_string in self.config.datasets.items():
             assert isinstance(class_string, str) or (
                 inspect.isclass(class_string)
                 and (
@@ -139,7 +143,7 @@ class Cihai:
             assert isinstance(namespace, str)
             self.add_dataset(class_string, namespace)
 
-        for dataset, plugins in self.config.get("plugins", {}).items():
+        for dataset, plugins in self.config.plugins.items():
             assert isinstance(dataset, str)
             assert isinstance(plugins, dict)
             for namespace, class_string in plugins.items():
