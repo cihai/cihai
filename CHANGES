@@ -6,8 +6,10 @@
 
 ### Development
 
-- unihan-etl: Bump 0.19.2 -> 0.20.0 (Drops python 3.7, normalizes `typing`
-  imports)
+- unihan-etl: Updates
+
+  - 0.19.2 -> 0.20.0: Drops python 3.7, normalizes `typing` imports
+  - 0.20.0 -> 0.21.0: Moves to {mod}`pathlib` (#349)
 
 ## cihai 0.21.0 (2023-06-03)
 

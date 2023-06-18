@@ -747,13 +747,13 @@ files = [
 
 [[package]]
 name = "platformdirs"
-version = "3.5.3"
+version = "3.6.0"
 description = "A small Python package for determining appropriate platform-specific dirs, e.g. a \"user data dir\"."
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "platformdirs-3.5.3-py3-none-any.whl", hash = "sha256:0ade98a4895e87dc51d47151f7d2ec290365a585151d97b4d8d6312ed6132fed"},
-    {file = "platformdirs-3.5.3.tar.gz", hash = "sha256:e48fabd87db8f3a7df7150a4a5ea22c546ee8bc39bc2473244730d4b56d2cc4e"},
+    {file = "platformdirs-3.6.0-py3-none-any.whl", hash = "sha256:ffa199e3fbab8365778c4a10e1fbf1b9cd50707de826eb304b50e57ec0cc8d38"},
+    {file = "platformdirs-3.6.0.tar.gz", hash = "sha256:57e28820ca8094678b807ff529196506d7a21e17156cb1cddb3e74cebce54640"},
 ]
 
 [package.extras]
@@ -1425,13 +1425,13 @@ files = [
 
 [[package]]
 name = "unihan-etl"
-version = "0.20.0"
+version = "0.21.0"
 description = "Export UNIHAN data of Chinese, Japanese, Korean to CSV, JSON or YAML"
 optional = false
 python-versions = ">=3.8,<4.0"
 files = [
-    {file = "unihan_etl-0.20.0-py3-none-any.whl", hash = "sha256:fd63978cf45ca27ba7db36341b8a7496d5c29d1ca1cf4f45d263bcfe4298b991"},
-    {file = "unihan_etl-0.20.0.tar.gz", hash = "sha256:139020d3a6f80119dd99c8fb36857fde29671d9a21ce18d6074e8a1b320b4a1c"},
+    {file = "unihan_etl-0.21.0-py3-none-any.whl", hash = "sha256:929c89ee954ac0d3f560b4f1c38d6941c67260883641d29053f5330be111e786"},
+    {file = "unihan_etl-0.21.0.tar.gz", hash = "sha256:13a1dee6bcc553b9b7d3668f62ffda38d45e4e38179d8f9107b968e5cbacba4f"},
 ]
 
 [package.dependencies]
@@ -1530,4 +1530,4 @@ test = []
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "490d8bf8da139e665ed577e0260bc7ef115062f8a5fa2040cf55814c2d948a0e"
+content-hash = "5f392a307231ec5bbc5e597b9d487ee4de641e3ee9077098e0fe942e14cf6a23"
