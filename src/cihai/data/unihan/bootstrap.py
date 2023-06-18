@@ -22,9 +22,9 @@ def bootstrap_unihan(
     """Download, extract and import unihan to database."""
     options = merge_dict(UNIHAN_ETL_DEFAULT_OPTIONS.copy(), options)
 
-    p = unihan.Packager(options)
-    p.download()
-    data = p.export()
+    unihan_pkgr = unihan.Packager(options)
+    unihan_pkgr.download()
+    data = unihan_pkgr.export()
     table = create_unihan_table(UNIHAN_FIELDS, metadata)
 
     metadata.create_all(engine)
