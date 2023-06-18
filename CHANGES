@@ -4,7 +4,15 @@
 
 <!-- Maintainers, insert changes / features for the next release here -->
 
-## cihai 0.22.0 (2023-06-18)
+## cihai 0.22.1 (2023-06-18)
+
+### Bug fix
+
+- unihan-etl: Bump 0.21.0 -> 0.21.1
+
+  Fix file extensions of output files
+
+## cihai 0.22.1 (2023-06-18)
 
 _Maintenance only, no bug fixes, or new features_
 
