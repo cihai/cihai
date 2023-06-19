@@ -60,7 +60,7 @@ replaced.
 You may point to a custom config with the `-c` argument, `$ cihai -c path/to/config.yaml`.
 
 You can also override bootstrapping settings. The "unihan_options" dictionary in Cihai's
-configuration will be passed right to {ref}`unihan-etl:index`'s {class}`unihan_etl.process.Packager`
+configuration will be passed right to {ref}`unihan-etl:index`'s {class}`unihan_etl.core.Packager`
 `option` param, which is then merged on top of unihan-etl's default settings:
 
 ```{code-block} yaml

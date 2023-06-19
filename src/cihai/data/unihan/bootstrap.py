@@ -4,7 +4,7 @@ import sqlalchemy.sql.schema
 import sqlalchemy
 from sqlalchemy import Column, String, Table
 
-from unihan_etl import process as unihan
+from unihan_etl import core as unihan
 from unihan_etl.constants import UNIHAN_MANIFEST
 from unihan_etl.util import merge_dict
 
@@ -22,9 +22,9 @@ def bootstrap_unihan(
     """Download, extract and import unihan to database."""
     options = merge_dict(UNIHAN_ETL_DEFAULT_OPTIONS.copy(), options)
 
-    p = unihan.Packager(options)
-    p.download()
-    data = p.export()
+    unihan_pkgr = unihan.Packager(options)
+    unihan_pkgr.download()
+    data = unihan_pkgr.export()
     table = create_unihan_table(UNIHAN_FIELDS, metadata)
 
     metadata.create_all(engine)
