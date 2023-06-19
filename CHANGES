@@ -4,6 +4,14 @@
 
 <!-- Maintainers, insert changes / features for the next release here -->
 
+_Maintenance only, no bug fixes, or new features_
+
+### Internal improvements
+
+- unihan-etl: 0.21.1 -> 0.22.1 (#348):
+
+  {obj}`dataclasses.dataclass`-based configuration
+
 ## cihai 0.22.1 (2023-06-18)
 
 ### Bug fix
