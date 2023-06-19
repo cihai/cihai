@@ -4,7 +4,7 @@ import sqlalchemy.sql.schema
 import sqlalchemy
 from sqlalchemy import Column, String, Table
 
-from unihan_etl import process as unihan
+from unihan_etl import core as unihan
 from unihan_etl.constants import UNIHAN_MANIFEST
 from unihan_etl.util import merge_dict
 
