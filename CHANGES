@@ -4,6 +4,16 @@
 
 <!-- Maintainers, insert changes / features for the next release here -->
 
+### Development
+
+- unihan-etl: 0.23.1 -> 0.24.0 (#314)
+
+  Subdependency updated for zhon: 1.1.5 -> 2.0.0 (#289, fixes #282)
+
+  [zhon 2.0's Release notes](https://github.com/tsroten/zhon/blob/v2.0.0/CHANGES.rst#v200-2023-06-24)
+
+  Fixes pytest warning related to regular expressions.
+
 ## cihai 0.24.0 (2023-06-24)
 
 _Maintenance only, no bug fixes, or new features_
