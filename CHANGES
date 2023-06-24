@@ -4,6 +4,14 @@
 
 <!-- Maintainers, insert changes / features for the next release here -->
 
+_Maintenance only, no bug fixes, or new features_
+
+### Development
+
+- unihan-etl: 0.22.1 -> 0.23.0 (#351)
+
+  Package introduces configurable application directories (for test purposes)
+
 ## cihai 0.23.0 (2023-06-19)
 
 _Maintenance only, no bug fixes, or new features_
