@@ -6,9 +6,9 @@
 
 ### Development
 
-- unihan-etl: 0.23.1 -> 0.24.0 (#314)
+- unihan-etl: 0.23.1 -> 0.24.0 (#352)
 
-  Subdependency updated for zhon: 1.1.5 -> 2.0.0 (#289, fixes #282)
+  Subdependency updated for zhon: 1.1.5 -> 2.0.0
 
   [zhon 2.0's Release notes](https://github.com/tsroten/zhon/blob/v2.0.0/CHANGES.rst#v200-2023-06-24)
 
