@@ -140,7 +140,8 @@ select = [
   "Q", # flake8-quotes
   "PTH", # flake8-use-pathlib
   "ERA", # eradicate
-  "SIM"  # flake8-simplify
+  "SIM",  # flake8-simplify
+  "RUF" # Ruff-specific rules
 ]
 
 [tool.ruff.isort]
