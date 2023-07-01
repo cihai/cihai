@@ -5,6 +5,7 @@ using the ``test_config.yml``.
 
 """
 import typing as t
+
 import sqlalchemy
 
 import cihai

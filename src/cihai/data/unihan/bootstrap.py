@@ -1,7 +1,7 @@
 import typing as t
 
-import sqlalchemy.sql.schema
 import sqlalchemy
+import sqlalchemy.sql.schema
 from sqlalchemy import Column, String, Table
 
 from unihan_etl import core as unihan

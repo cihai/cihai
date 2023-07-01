@@ -4,11 +4,9 @@ import typing as t
 import zipfile
 
 import pytest
-
 import sqlalchemy
 
 from cihai.data.unihan.constants import UNIHAN_FILES
-
 
 if t.TYPE_CHECKING:
     from .types import UnihanOptions

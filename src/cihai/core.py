@@ -4,9 +4,9 @@ import logging
 import os
 import pathlib
 import typing as t
+
 from cihai._internal.config_reader import ConfigReader
 from cihai.data.unihan.dataset import Unihan
-
 from unihan_etl.util import merge_dict
 
 from . import exc, extend
@@ -17,6 +17,7 @@ from .utils import import_string
 
 if t.TYPE_CHECKING:
     from typing_extensions import TypeGuard
+
     from cihai.types import ConfigDict, UntypedDict
 
     DS = t.TypeVar("DS", bound=t.Type[extend.Dataset])

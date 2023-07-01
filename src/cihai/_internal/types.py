@@ -7,8 +7,8 @@ Notes
 
 .. _typeshed's: https://github.com/python/typeshed/blob/5df8de7/stdlib/_typeshed/__init__.pyi#L115-L118
 """  # NOQA E501
-from os import PathLike
 import typing as t
+from os import PathLike
 
 if t.TYPE_CHECKING:
     from typing_extensions import TypeAlias
