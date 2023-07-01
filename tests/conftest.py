@@ -1,12 +1,17 @@
 """Pytest configuration for cihai tests."""
 
+import dataclasses
 import pathlib
 import zipfile
 
 import pytest
 import sqlalchemy
 
-from cihai.data.unihan.constants import UNIHAN_FILES
+from cihai.data.unihan.constants import (
+    UNIHAN_ETL_DEFAULT_OPTIONS,
+    UNIHAN_ETL_DEFAULT_OPTIONS_DICT,
+    UNIHAN_FILES,
+)
 from unihan_etl.options import Options as UnihanOptions
 
 
@@ -58,8 +63,22 @@ def unihan_options(
         source=str(zip_path),
         work_dir=tmp_path,
         zip_path=tmp_path / "downloads" / "Moo.zip",
-        input_files=UNIHAN_FILES,
         destination=tmp_path / "unihan.csv",
+        **UNIHAN_ETL_DEFAULT_OPTIONS_DICT,
+    )
+    return UnihanOptions(
+        **(
+            dataclasses.asdict(UNIHAN_ETL_DEFAULT_OPTIONS)
+            | dataclasses.asdict(
+                UnihanOptions(
+                    source=str(zip_path),
+                    work_dir=tmp_path,
+                    zip_path=tmp_path / "downloads" / "Moo.zip",
+                    input_files=UNIHAN_FILES,
+                    destination=tmp_path / "unihan.csv",
+                ),
+            )
+        ),
     )
 
 

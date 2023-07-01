@@ -50,10 +50,20 @@ UNIHAN_FIELDS: list[str] = [
     "kZVariant",
 ]
 
-#: Default settings passed to unihan-etl
-UNIHAN_ETL_DEFAULT_OPTIONS = Options(
-    input_files=UNIHAN_FILES,
-    fields=UNIHAN_FIELDS,
-    format="python",
-    expand=False,
-)
+
+class UnihanEtlDefaultOptionsDict(t.TypedDict):
+    """Default settings passed to unihan-etl."""
+
+    input_files: t.List[str]
+    fields: t.Sequence[str]
+    format: t.Literal["json", "csv", "yaml", "python"]
+    expand: bool
+
+
+UNIHAN_ETL_DEFAULT_OPTIONS_DICT: UnihanEtlDefaultOptionsDict = {
+    "input_files": UNIHAN_FILES,
+    "fields": UNIHAN_FIELDS,
+    "format": "python",
+    "expand": False,
+}
+UNIHAN_ETL_DEFAULT_OPTIONS = Options(**UNIHAN_ETL_DEFAULT_OPTIONS_DICT)
