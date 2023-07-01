@@ -107,10 +107,7 @@ class Dataset:
         namespace: str,
         bootstrap: bool = True,
     ) -> None:
-        if isinstance(_cls, str):
-            cls = utils.import_string(_cls)
-        else:
-            cls = _cls
+        cls = utils.import_string(_cls) if isinstance(_cls, str) else _cls
         setattr(self, namespace, cls())
         plugin = getattr(self, namespace)
 

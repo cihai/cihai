@@ -46,13 +46,10 @@ except Exception:
 def is_bootstrapped(metadata: sqlalchemy.sql.schema.MetaData) -> bool:
     """Return True if cihai is correctly bootstrapped."""
     fields = UNIHAN_FIELDS + DEFAULT_COLUMNS
-    if TABLE_NAME in metadata.tables.keys():
+    if TABLE_NAME in metadata.tables:
         table = metadata.tables[TABLE_NAME]
 
-        if set(fields) == {c.name for c in table.columns}:
-            return True
-        else:
-            return False
+        return set(fields) == {c.name for c in table.columns}
     else:
         return False
 
