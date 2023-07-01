@@ -136,7 +136,8 @@ select = [
   "I", # isort
   "UP",  # pyupgrade
   "B", # flake8-bugbear
-  "C4" # flake8-comprehensions
+  "C4", # flake8-comprehensions
+  "Q" # flake8-quotes
 ]
 
 [tool.ruff.isort]
