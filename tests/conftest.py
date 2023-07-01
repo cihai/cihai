@@ -59,6 +59,7 @@ def unihan_options(
         work_dir=tmp_path,
         zip_path=tmp_path / "downloads" / "Moo.zip",
         input_files=UNIHAN_FILES,
+        destination=tmp_path / "unihan.csv",
     )
 
 
