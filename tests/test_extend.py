@@ -48,7 +48,7 @@ def test_add_dataset_unihan(unihan_options: t.Dict[str, object]) -> None:
     assert hasattr(c, "unihan")
     assert isinstance(c.unihan, extend.Dataset)
 
-    c.unihan.sql
+    assert c.unihan.sql is not None
 
     c.unihan.bootstrap(options=unihan_options)
     U = c.sql.base.classes.Unihan  # noqa: N806
