@@ -130,7 +130,13 @@ files = [
 
 [tool.ruff]
 target-version = "py38"
-select = ["E", "F", "I", "UP"]
+select = [
+  "E", # pycodestyle
+  "F", # pyflakes
+  "I", # isort
+  "UP",  # pyupgrade
+  "B", # bugbear
+]
 
 [tool.ruff.isort]
 known-first-party = ["unihan_etl", "cihai"]
