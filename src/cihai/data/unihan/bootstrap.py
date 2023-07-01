@@ -40,7 +40,7 @@ DEFAULT_COLUMNS = ["ucn", "char"]
 try:
     DEFAULT_FIELDS = [f for c, f in UNIHAN_MANIFEST.items() if c in ["Unihan"]]
 except Exception:
-    DEFAULT_FIELDS = [f for f in UNIHAN_MANIFEST.values()]
+    DEFAULT_FIELDS = list(UNIHAN_MANIFEST.values())
 
 
 def is_bootstrapped(metadata: sqlalchemy.sql.schema.MetaData) -> bool:
