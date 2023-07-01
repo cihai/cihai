@@ -138,7 +138,8 @@ select = [
   "B", # flake8-bugbear
   "C4", # flake8-comprehensions
   "Q", # flake8-quotes
-  "PTH" # flake8-use-pathlib
+  "PTH", # flake8-use-pathlib
+  "ERA" # eradicate
 ]
 
 [tool.ruff.isort]
