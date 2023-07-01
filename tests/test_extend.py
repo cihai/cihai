@@ -48,7 +48,7 @@ def test_add_dataset_unihan(unihan_options: t.Dict[str, object]) -> None:
     assert hasattr(c, "unihan")
     assert isinstance(c.unihan, extend.Dataset)
 
-    c.unihan.sql
+    assert c.unihan.sql is not None
 
     c.unihan.bootstrap(options=unihan_options)
     U = c.sql.base.classes.Unihan
@@ -60,14 +60,14 @@ def test_add_dataset_unihan(unihan_options: t.Dict[str, object]) -> None:
     assert first_glyph is not None
 
     char = first_glyph.char
-    kDefQuery = c.unihan.lookup_char(char=char).first()
-    assert kDefQuery is not None
-    assert kDefQuery.kDefinition == first_glyph.kDefinition
+    kdef_query = c.unihan.lookup_char(char=char).first()
+    assert kdef_query is not None
+    assert kdef_query.kDefinition == first_glyph.kDefinition
 
-    charQuery = c.unihan.reverse_char(hints=[first_glyph.kDefinition]).first()
-    assert charQuery is not None
+    char_query = c.unihan.reverse_char(hints=[first_glyph.kDefinition]).first()
+    assert char_query is not None
 
-    assert charQuery.char == char, "works with list of column value matches"
+    assert char_query.char == char, "works with list of column value matches"
 
     reverse_query = c.unihan.reverse_char(hints=first_glyph.kDefinition).first()
 

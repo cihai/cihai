@@ -10,6 +10,7 @@ from . import bootstrap
 
 if t.TYPE_CHECKING:
     from sqlalchemy.sql.schema import Table
+
     from ...conversion import ParsedVars, UntaggedVars
 
 

@@ -1,9 +1,11 @@
 import os
 import pathlib
 import typing as t
-from appdirs import AppDirs
-from cihai.config import expand_config
+
 import pytest
+from appdirs import AppDirs
+
+from cihai.config import expand_config
 
 if t.TYPE_CHECKING:
     from cihai.types import UntypedDict

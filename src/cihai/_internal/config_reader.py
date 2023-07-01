@@ -12,6 +12,16 @@ if t.TYPE_CHECKING:
 FormatLiteral = t.Literal["json", "yaml"]
 
 
+class ConfigFormatNotImplementedError(NotImplementedError):
+    def __init__(self, format: str):
+        return super().__init__(f"{format} not supported in configuration")
+
+
+class ConfigExtensionNotImplementedError(NotImplementedError):
+    def __init__(self, ext: str, path: t.Union[str, pathlib.Path]):
+        return super().__init__(f"{ext} not supported in {path}")
+
+
 class ConfigReader:
     r"""Parse string data (YAML and JSON) into a dictionary.
 
@@ -46,7 +56,7 @@ class ConfigReader:
         elif format == "json":
             return t.cast(t.Dict[str, t.Any], json.loads(content))
         else:
-            raise NotImplementedError(f"{format} not supported in configuration")
+            raise NotImplementedError(format=format)
 
     @classmethod
     def load(cls, format: "FormatLiteral", content: str) -> "ConfigReader":
@@ -102,14 +112,14 @@ class ConfigReader:
         {'session_name': 'my session'}
         """
         assert isinstance(path, pathlib.Path)
-        content = open(path).read()
+        content = path.open().read()
 
         if path.suffix in [".yaml", ".yml"]:
             format: "FormatLiteral" = "yaml"
         elif path.suffix == ".json":
             format = "json"
         else:
-            raise NotImplementedError(f"{path.suffix} not supported in {path}")
+            raise ConfigExtensionNotImplementedError(ext=path.suffix, path=path)
 
         return cls._load(
             format=format,
@@ -184,7 +194,7 @@ class ConfigReader:
                 indent=2,
             )
         else:
-            raise NotImplementedError(f"{format} not supported in config")
+            raise ConfigFormatNotImplementedError(format=format)
 
     def dump(self, format: "FormatLiteral", indent: int = 2, **kwargs: t.Any) -> str:
         r"""Dump via ConfigReader instance.

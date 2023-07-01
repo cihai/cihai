@@ -1,7 +1,7 @@
 import typing as t
 
-import sqlalchemy.sql.schema
 import sqlalchemy
+import sqlalchemy.sql.schema
 from sqlalchemy import Column, String, Table
 
 from unihan_etl import core as unihan
@@ -40,19 +40,16 @@ DEFAULT_COLUMNS = ["ucn", "char"]
 try:
     DEFAULT_FIELDS = [f for c, f in UNIHAN_MANIFEST.items() if c in ["Unihan"]]
 except Exception:
-    DEFAULT_FIELDS = [f for f in UNIHAN_MANIFEST.values()]
+    DEFAULT_FIELDS = list(UNIHAN_MANIFEST.values())
 
 
 def is_bootstrapped(metadata: sqlalchemy.sql.schema.MetaData) -> bool:
     """Return True if cihai is correctly bootstrapped."""
     fields = UNIHAN_FIELDS + DEFAULT_COLUMNS
-    if TABLE_NAME in metadata.tables.keys():
+    if TABLE_NAME in metadata.tables:
         table = metadata.tables[TABLE_NAME]
 
-        if set(fields) == {c.name for c in table.columns}:
-            return True
-        else:
-            return False
+        return set(fields) == {c.name for c in table.columns}
     else:
         return False
 

@@ -1,12 +1,11 @@
 """Cihai core functionality."""
 import inspect
 import logging
-import os
 import pathlib
 import typing as t
+
 from cihai._internal.config_reader import ConfigReader
 from cihai.data.unihan.dataset import Unihan
-
 from unihan_etl.util import merge_dict
 
 from . import exc, extend
@@ -17,12 +16,18 @@ from .utils import import_string
 
 if t.TYPE_CHECKING:
     from typing_extensions import TypeGuard
+
     from cihai.types import ConfigDict, UntypedDict
 
     DS = t.TypeVar("DS", bound=t.Type[extend.Dataset])
 
 
 log = logging.getLogger(__name__)
+
+
+class CihaiConfigError(exc.CihaiException):
+    def __init__(self) -> None:
+        return super().__init__("Invalid exception with configuration")
 
 
 def is_valid_config(config: "UntypedDict") -> "TypeGuard[ConfigDict]":
@@ -101,12 +106,14 @@ class Cihai:
         expand_config(_config, app_dirs)
 
         if not is_valid_config(config=_config):
-            raise exc.CihaiException("Invalid exception with configuration")
+            raise CihaiConfigError()
 
         self.config = _config
 
-        if not os.path.exists(app_dirs.user_data_dir):
-            os.makedirs(app_dirs.user_data_dir)
+        user_data_dir = pathlib.Path(app_dirs.user_data_dir)
+
+        if not user_data_dir.exists():
+            user_data_dir.mkdir(parents=True)
 
         #: :class:`cihai.db.Database` : Database instance
         self.sql = Database(self.config)

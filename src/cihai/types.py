@@ -5,6 +5,7 @@ from typing_extensions import NotRequired, TypedDict
 
 if t.TYPE_CHECKING:
     from typing_extensions import TypeAlias
+
     from cihai.extend import Dataset
 
 

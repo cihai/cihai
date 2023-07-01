@@ -17,11 +17,12 @@ import typing as t
 from . import utils
 
 if t.TYPE_CHECKING:
-    from cihai.db import Database
     from sqlalchemy.engine import Engine
     from sqlalchemy.ext.automap import AutomapBase
     from sqlalchemy.orm.session import Session
     from sqlalchemy.sql.schema import MetaData
+
+    from cihai.db import Database
 
     DSP = t.TypeVar("DSP", bound=t.Type["DatasetPlugin"])
 
@@ -106,10 +107,7 @@ class Dataset:
         namespace: str,
         bootstrap: bool = True,
     ) -> None:
-        if isinstance(_cls, str):
-            cls = utils.import_string(_cls)
-        else:
-            cls = _cls
+        cls = utils.import_string(_cls) if isinstance(_cls, str) else _cls
         setattr(self, namespace, cls())
         plugin = getattr(self, namespace)
 

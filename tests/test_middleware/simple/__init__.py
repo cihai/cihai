@@ -1,6 +1,5 @@
 import typing as t
 
-
 if t.TYPE_CHECKING:
     from cihai.types import UntypedDict
 
@@ -59,7 +58,7 @@ class DatasetExample:
         """
         dataset: "Response" = {"好": {"definition": "hao"}}
 
-        for char in dataset.keys():
+        for char in dataset:
             for val in dataset[char].values():
                 assert isinstance(val, dict)
                 if request in val:

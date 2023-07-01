@@ -24,7 +24,7 @@ def run(unihan_options: t.Optional[t.Dict[str, object]] = None) -> None:
     print("3.7.1 bullet 4")
 
     for char in c.unihan.with_fields(["kTraditionalVariant", "kSimplifiedVariant"]):
-        print("Character: {}".format(char.char))
+        print(f"Character: {char.char}")
         trad = set(char.untagged_vars("kTraditionalVariant"))
         simp = set(char.untagged_vars("kSimplifiedVariant"))
         Unihan = c.sql.base.classes.Unihan
@@ -33,9 +33,9 @@ def run(unihan_options: t.Optional[t.Dict[str, object]] = None) -> None:
         else:
             print("Case 2 (non-idempotent)")
         for trad_var in trad:
-            print("s2t: {}".format(trad_var))
+            print(f"s2t: {trad_var}")
         for simp_var in simp:
-            print("t2s: {}".format(simp_var))
+            print(f"t2s: {simp_var}")
 
 
 if __name__ == "__main__":

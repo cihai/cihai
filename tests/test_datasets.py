@@ -11,7 +11,6 @@ import random
 import typing as t
 
 import pytest
-
 import sqlalchemy
 
 from cihai import conversion
