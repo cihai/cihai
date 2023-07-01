@@ -6,6 +6,8 @@
 
 ## cihai 0.26.0 (2023-07-01)
 
+_Maintenance only, no bug fixes, or new features_
+
 ### Development
 
 - Ruff: Add additional rules, fix linting issues (#353)
