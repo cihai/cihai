@@ -25,6 +25,11 @@ if t.TYPE_CHECKING:
 log = logging.getLogger(__name__)
 
 
+class CihaiConfigError(exc.CihaiException):
+    def __init__(self) -> None:
+        return super().__init__("Invalid exception with configuration")
+
+
 def is_valid_config(config: "UntypedDict") -> "TypeGuard[ConfigDict]":
     return True
 
@@ -101,7 +106,7 @@ class Cihai:
         expand_config(_config, app_dirs)
 
         if not is_valid_config(config=_config):
-            raise exc.CihaiException("Invalid exception with configuration")
+            raise CihaiConfigError()
 
         self.config = _config
 
