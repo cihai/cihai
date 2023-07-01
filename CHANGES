@@ -4,6 +4,10 @@
 
 <!-- Maintainers, insert changes / features for the next release here -->
 
+### Development
+
+- Ruff: Add additional rules, fix linting issues (#353)
+
 ## cihai 0.25.0 (2023-06-24)
 
 _Maintenance only, no bug fixes, or new features_
