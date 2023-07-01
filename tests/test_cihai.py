@@ -55,9 +55,11 @@ def test_unihan_options(
     )
     assert "Unihan" in app.sql.metadata.tables
     assert app.sql.metadata.tables["Unihan"].columns
-    assert set(app.sql.metadata.tables["Unihan"].columns.keys()) == set(
-        unihan_constants.UNIHAN_FIELDS + ["ucn", "char"]
-    )
+    assert set(app.sql.metadata.tables["Unihan"].columns.keys()) == {
+        *unihan_constants.UNIHAN_FIELDS,
+        "ucn",
+        "char",
+    }
     assert bootstrap.is_bootstrapped(app.sql.metadata)
 
 

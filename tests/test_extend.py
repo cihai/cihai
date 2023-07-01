@@ -51,7 +51,7 @@ def test_add_dataset_unihan(unihan_options: t.Dict[str, object]) -> None:
     assert c.unihan.sql is not None
 
     c.unihan.bootstrap(options=unihan_options)
-    U = c.sql.base.classes.Unihan  # noqa: N806
+    U = c.sql.base.classes.Unihan
 
     first_glyph = (
         c.unihan.sql.session.query(U).filter(U.kDefinition.isnot(None)).first()
