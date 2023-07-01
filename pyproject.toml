@@ -139,7 +139,8 @@ select = [
   "C4", # flake8-comprehensions
   "Q", # flake8-quotes
   "PTH", # flake8-use-pathlib
-  "ERA" # eradicate
+  "ERA", # eradicate
+  "SIM"  # flake8-simplify
 ]
 
 [tool.ruff.isort]
