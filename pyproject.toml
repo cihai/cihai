@@ -141,6 +141,7 @@ select = [
   "PTH", # flake8-use-pathlib
   "ERA", # eradicate
   "SIM",  # flake8-simplify
+  "PERF", # Perflint
   "RUF" # Ruff-specific rules
 ]
 
