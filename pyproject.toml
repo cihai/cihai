@@ -137,7 +137,8 @@ select = [
   "UP",  # pyupgrade
   "B", # flake8-bugbear
   "C4", # flake8-comprehensions
-  "Q" # flake8-quotes
+  "Q", # flake8-quotes
+  "PTH" # flake8-use-pathlib
 ]
 
 [tool.ruff.isort]
