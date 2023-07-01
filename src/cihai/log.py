@@ -119,7 +119,7 @@ class DebugLogFormatter(LogFormatter):
             Style.RESET_ALL,
             " ",
         ]
-        module_funcName = [Fore.GREEN, Style.BRIGHT, "%(module)s.%(funcName)s()"]
+        module_funcname = [Fore.GREEN, Style.BRIGHT, "%(module)s.%(funcName)s()"]
         lineno = [
             Fore.BLACK,
             Style.DIM,
@@ -131,7 +131,7 @@ class DebugLogFormatter(LogFormatter):
         ]
 
         tpl = "".join(
-            reset + levelname + asctime + name + module_funcName + lineno + reset
+            reset + levelname + asctime + name + module_funcname + lineno + reset
         )
 
         return tpl
