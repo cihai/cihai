@@ -26,5 +26,4 @@ DEFAULT_CONFIG: "UntypedDict" = {
 UNIHAN_CONFIG: "UntypedDict" = {
     "datasets": {"unihan": "cihai.data.unihan.dataset.Unihan"},
     # Turn off by default for using as a plugin example in examples/
-    # "plugins": {"unihan": {"variants": "cihai.data.unihan.dataset.UnihanVariants"}},
 }
