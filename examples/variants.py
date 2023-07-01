@@ -7,7 +7,7 @@ from cihai.data.unihan.dataset import Unihan
 
 def variant_list(unihan: Unihan, field: str) -> None:
     for char in unihan.with_fields([field]):
-        print("Character: {}".format(char.char))
+        print(f"Character: {char.char}")
         for var in char.untagged_vars(field):
             print(var)
 
