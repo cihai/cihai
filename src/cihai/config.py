@@ -58,7 +58,9 @@ def expand_config(d: "UntypedDict", dirs: "AppDirs" = app_dirs) -> None:
         if isinstance(v, dict):
             expand_config(v, dirs)
         if isinstance(v, str):
-            d[k] = os.path.expanduser(os.path.expandvars(v).format(**context))
+            d[k] = os.path.expanduser(  # NOQA: PTH111
+                os.path.expandvars(v).format(**context),
+            )
 
             path = pathlib.Path(t.cast(str, d[k]))
             if path.exists() or any(

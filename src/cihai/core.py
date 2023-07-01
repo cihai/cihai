@@ -1,7 +1,6 @@
 """Cihai core functionality."""
 import inspect
 import logging
-import os
 import pathlib
 import typing as t
 
@@ -106,8 +105,10 @@ class Cihai:
 
         self.config = _config
 
-        if not os.path.exists(app_dirs.user_data_dir):
-            os.makedirs(app_dirs.user_data_dir)
+        user_data_dir = pathlib.Path(app_dirs.user_data_dir)
+
+        if not user_data_dir.exists():
+            user_data_dir.mkdir(parents=True)
 
         #: :class:`cihai.db.Database` : Database instance
         self.sql = Database(self.config)
