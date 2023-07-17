@@ -57,3 +57,4 @@ monkeytype.sqlite3
 
 # Test data
 .cihai_cache/
+.unihan_cache/
