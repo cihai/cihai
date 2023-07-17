@@ -182,6 +182,9 @@ convention = "numpy"
 [tool.ruff.lint.per-file-ignores]
 "*/__init__.py" = ["F401", "PLC0414"]
 
+[tool.poetry.plugins.pytest11]
+cihai = "cihai.pytest_plugin"
+
 [tool.pytest.ini_options]
 addopts = "--tb=short --no-header --showlocals --doctest-modules"
 doctest_optionflags = "ELLIPSIS NORMALIZE_WHITESPACE"
