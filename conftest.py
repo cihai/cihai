@@ -67,6 +67,7 @@ def add_doctest_fixtures(
 
     if isinstance(request._pyfuncitem, DoctestItem):
         request.getfixturevalue("set_home")
+        doctest_namespace["request"] = request
     doctest_namespace["tmp_path"] = tmp_path
 
 
