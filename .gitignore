@@ -54,3 +54,6 @@ docs/_build
 
 # Monkeytype
 monkeytype.sqlite3
+
+# Test data
+.cihai_cache/
