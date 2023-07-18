@@ -270,10 +270,7 @@ def parse_var(var: str) -> ParsedVar:
     specified.
     """
     bits = var.split("<", 1)
-    if len(bits) < 2:
-        tag = None
-    else:
-        tag = bits[1]
+    tag = None if len(bits) < 2 else bits[1]
     return ucn_to_unicode(bits[0]), tag
 
 

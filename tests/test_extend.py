@@ -82,10 +82,7 @@ def test_add_dataset_unihan(unihan_options: t.Dict[str, object]) -> None:
         field: str,
     ) -> t.Generator[t.Tuple[Unihan, t.List[str]], str, None]:
         for char in c.unihan.with_fields([field]):
-            variants: t.List[str] = []
-            for var in char.untagged_vars(field):
-                variants.append(var)
-            yield (char, variants)
+            yield (char, list(char.untagged_vars(field)))
 
     result = dict(variant_list("kZVariant"))
 

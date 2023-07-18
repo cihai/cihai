@@ -1,9 +1,9 @@
-# flake8: NOQA E501
+# flake8: NOQA: E501
 import inspect
-import os
+import pathlib
 import sys
 import typing as t
-from os.path import dirname, relpath
+from os.path import relpath
 from pathlib import Path
 
 import cihai
@@ -21,7 +21,7 @@ sys.path.insert(0, str(cwd / "_ext"))
 
 # package data
 about: t.Dict[str, str] = {}
-with open(src_root / "cihai" / "__about__.py") as fp:
+with (src_root / "cihai" / "__about__.py").open() as fp:
     exec(fp.read(), about)
 
 extensions = [
@@ -136,8 +136,8 @@ htmlhelp_basename = "%sdoc" % about["__title__"]
 latex_documents = [
     (
         "index",
-        "{0}.tex".format(about["__package_name__"]),
-        "{0} Documentation".format(about["__title__"]),
+        "{}.tex".format(about["__package_name__"]),
+        "{} Documentation".format(about["__title__"]),
         about["__author__"],
         "manual",
     )
@@ -147,7 +147,7 @@ man_pages = [
     (
         "index",
         about["__package_name__"],
-        "{0} Documentation".format(about["__title__"]),
+        "{} Documentation".format(about["__title__"]),
         about["__author__"],
         1,
     )
@@ -156,8 +156,8 @@ man_pages = [
 texinfo_documents = [
     (
         "index",
-        "{0}".format(about["__package_name__"]),
-        "{0} Documentation".format(about["__title__"]),
+        "{}".format(about["__package_name__"]),
+        "{} Documentation".format(about["__title__"]),
         about["__author__"],
         about["__package_name__"],
         about["__description__"],
@@ -199,7 +199,7 @@ def linkcode_resolve(domain: str, info: t.Dict[str, str]) -> t.Union[None, str]:
     for part in fullname.split("."):
         try:
             obj = getattr(obj, part)
-        except Exception:
+        except Exception:  # ruff: noqa: PERF203
             return None
 
     # strip decorators, which would resolve to the source of the decorator
@@ -224,15 +224,12 @@ def linkcode_resolve(domain: str, info: t.Dict[str, str]) -> t.Union[None, str]:
     except Exception:
         lineno = None
 
-    if lineno:
-        linespec = "#L%d-L%d" % (lineno, lineno + len(source) - 1)
-    else:
-        linespec = ""
+    linespec = "#L%d-L%d" % (lineno, lineno + len(source) - 1) if lineno else ""
 
-    fn = relpath(fn, start=dirname(cihai.__file__))
+    fn = relpath(fn, start=pathlib.Path(cihai.__file__).parent)
 
     if "dev" in about["__version__"]:
-        return "%s/blob/master/%s/%s/%s%s" % (
+        return "{}/blob/master/{}/{}/{}{}".format(
             about["__github__"],
             "src",
             about["__package_name__"],
@@ -240,7 +237,7 @@ def linkcode_resolve(domain: str, info: t.Dict[str, str]) -> t.Union[None, str]:
             linespec,
         )
     else:
-        return "%s/blob/v%s/%s/%s/%s%s" % (
+        return "{}/blob/v{}/{}/{}/{}{}".format(
             about["__github__"],
             about["__version__"],
             "src",
