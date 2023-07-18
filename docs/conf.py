@@ -4,7 +4,6 @@ import pathlib
 import sys
 import typing as t
 from os.path import relpath
-from pathlib import Path
 
 import cihai
 
@@ -12,7 +11,7 @@ if t.TYPE_CHECKING:
     from sphinx.application import Sphinx
 
 # Get the project root dir, which is the parent dir of this
-cwd = Path(__file__).parent
+cwd = pathlib.Path(__file__).parent
 project_root = cwd.parent
 src_root = project_root / "src"
 
@@ -250,7 +249,7 @@ def linkcode_resolve(domain: str, info: t.Dict[str, str]) -> t.Union[None, str]:
 def remove_tabs_js(app: "Sphinx", exc: Exception) -> None:
     # Fix for sphinx-inline-tabs#18
     if app.builder.format == "html" and not exc:
-        tabs_js = Path(app.builder.outdir) / "_static" / "tabs.js"
+        tabs_js = pathlib.Path(app.builder.outdir) / "_static" / "tabs.js"
         tabs_js.unlink(missing_ok=True)
 
 

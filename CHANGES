@@ -4,11 +4,21 @@
 
 <!-- Maintainers, insert changes / features for the next release here -->
 
+### Bug fixes
+
+- ci: Fix for tests (#355)
+- unihan-etl:
+
+  - 0.26.0 -> 0.27.0 (#355)
+
+    Fix for pytest fixtures
+
+  - 0.25.0 -> 0.26.0
+
+    pytest plugin with cached UNIHAN data.
+
 ### Development
 
-- unihan-etl: 0.25.0 -> 0.26.0
-
-  pytest plugin with cached UNIHAN data.
 - ruff: code quality improvements (#354)
 
 ## cihai 0.26.0 (2023-07-01)

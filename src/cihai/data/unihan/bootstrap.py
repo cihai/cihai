@@ -1,3 +1,4 @@
+import dataclasses
 import typing as t
 
 import sqlalchemy
@@ -10,17 +11,23 @@ from unihan_etl.util import merge_dict
 
 from .constants import UNIHAN_ETL_DEFAULT_OPTIONS, UNIHAN_FIELDS
 
+if t.TYPE_CHECKING:
+    from unihan_etl.options import Options as UnihanOptions
+
 
 def bootstrap_unihan(
     engine: sqlalchemy.Engine,
     metadata: sqlalchemy.sql.schema.MetaData,
-    options: t.Optional[t.Dict[str, object]] = None,
+    options: t.Optional[t.Union[t.Dict[str, object], "UnihanOptions"]] = None,
 ) -> None:
     if options is None:
         options = {}
 
     """Download, extract and import unihan to database."""
-    options = merge_dict(UNIHAN_ETL_DEFAULT_OPTIONS.copy(), options)
+    options = merge_dict(
+        UNIHAN_ETL_DEFAULT_OPTIONS.copy(),
+        options if isinstance(options, dict) else dataclasses.asdict(options),
+    )
 
     unihan_pkgr = unihan.Packager(options)
     unihan_pkgr.download()
