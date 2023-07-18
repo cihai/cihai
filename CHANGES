@@ -9,6 +9,7 @@
 - unihan-etl: 0.25.0 -> 0.26.0
 
   pytest plugin with cached UNIHAN data.
+- ruff: code quality improvements (#354)
 
 ## cihai 0.26.0 (2023-07-01)
 
