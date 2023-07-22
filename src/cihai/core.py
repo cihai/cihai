@@ -91,7 +91,7 @@ class Cihai:
         unihan : boolean, optional
             Bootstrap the core UNIHAN dataset (recommended)
         """
-        _config: "UntypedDict" = config if config is not None else {}
+        _config: UntypedDict = config if config is not None else {}
         if config is None:
             _config = self.default_config
 
