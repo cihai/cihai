@@ -4,6 +4,16 @@
 
 <!-- Maintainers, insert changes / features for the next release here -->
 
+## cihai 0.28.0 (2023-07-22)
+
+_Maintenance only, no bug fixes, or new features_
+
+### Development
+
+  - 0.27.0 -> 0.28.0
+
+    pytest fixture renamings
+
 ## cihai 0.27.0 (2023-07-18)
 
 ### Bug fixes
