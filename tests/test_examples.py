@@ -43,12 +43,12 @@ def test_dataset(
 
 
 def test_variants(
-    quick_unihan_options: "UnihanOptions",
-    ensure_quick_unihan: None,
+    unihan_quick_options: "UnihanOptions",
+    unihan_ensure_quick: None,
     project_root: pathlib.Path,
 ) -> None:
     example = load_script("variants", project_root=project_root)
-    example.run(unihan_options=quick_unihan_options)
+    example.run(unihan_options=unihan_quick_options)
 
 
 def test_ts_difficulties(
