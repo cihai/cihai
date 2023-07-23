@@ -12,6 +12,8 @@ from . import bootstrap
 if t.TYPE_CHECKING:
     from sqlalchemy.sql.schema import Table
 
+    from unihan_etl.options import Options as UnihanOptions
+
     from ...conversion import ParsedVars, UntaggedVars
 
 
@@ -25,7 +27,10 @@ class Unihan(Dataset, SQLAlchemyMixin):
     tagged_vars: t.Callable[[str], "ParsedVars"]
     untagged_vars: t.Callable[[str], "UntaggedVars"]
 
-    def bootstrap(self, options: t.Optional[t.Dict[str, object]] = None) -> None:
+    def bootstrap(
+        self,
+        options: t.Optional[t.Union[t.Dict[str, object], "UnihanOptions"]] = None,
+    ) -> None:
         """Fetch, extract, import UNIHAN to DB, and initialize DB mapping."""
         if options is None:
             options = {}
