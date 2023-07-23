@@ -167,7 +167,7 @@ texinfo_documents = [
 intersphinx_mapping = {
     "python": ("http://docs.python.org/", None),
     "sphinx": ("http://www.sphinx-doc.org/en/stable/", None),
-    "sqlalchemy": ("http://docs.sqlalchemy.org/en/latest/", None),
+    "sqlalchemy": ("http://docs.sqlalchemy.org/en/20/", None),
     "pandas": ("http://pandas.pydata.org/pandas-docs/stable", None),
     "unihan-etl": ("https://unihan-etl.git-pull.com/", None),
 }
