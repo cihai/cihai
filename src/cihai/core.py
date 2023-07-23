@@ -68,7 +68,7 @@ class Cihai:
     .. literalinclude:: ../examples/basic_usage.py
         :language: python
 
-    Above: :attr:`~cihai.data.unihan.bootstrap.is_bootstrapped` can check if the system
+    Above: :attr:`~cihai.unihan.bootstrap.is_bootstrapped` can check if the system
     has the database installed.
 
     References
