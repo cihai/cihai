@@ -14,6 +14,7 @@ examples
 extend
 datasets/index
 api/index
+pytest-plugin
 troubleshooting
 
 ```
