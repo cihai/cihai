@@ -126,7 +126,7 @@ def ucn_to_unicode(ucn: str) -> str:
     """
     if isinstance(ucn, str):
         ucn = ucn.strip("U+")
-        if len(ucn) > int(4):
+        if len(ucn) > 4:
             char_bytes = b"\\U" + format(int(ucn, 16), "08x").encode("latin1")
             char = char_bytes.decode("unicode_escape")
         else:
@@ -212,7 +212,7 @@ def python_to_ucn(uni_char: str, as_bytes: bool = False) -> t.Union[bytes, str]:
     """
     ucn = uni_char.encode("unicode_escape").decode("latin1")
     ucn = str(ucn).replace("\\", "").upper().lstrip("U")
-    if len(ucn) > int(4):
+    if len(ucn) > 4:
         # get rid of the zeroes that Python uses to pad 32 byte UCNs
         ucn = ucn.lstrip("0")
     ucn = "U+" + ucn.upper()
