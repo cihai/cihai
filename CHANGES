@@ -16,9 +16,9 @@ _Maintenance only, no bug fixes, or new features_
 
 ### Development
 
-  - 0.27.0 -> 0.28.0
+- 0.27.0 -> 0.28.0
 
-    pytest fixture renamings
+  pytest fixture renamings
 
 ## cihai 0.27.0 (2023-07-18)
 
