@@ -4,6 +4,12 @@
 
 <!-- Maintainers, insert changes / features for the next release here -->
 
+### Development
+
+- ruff: Remove ERA / `eradicate` plugin
+
+  This rule had too many false positives to trust. Other ruff rules have been beneficial.
+
 ## cihai 0.28.0 (2023-07-22)
 
 _Maintenance only, no bug fixes, or new features_
