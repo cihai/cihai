@@ -168,7 +168,7 @@ def test_insert_bad_key(
     with engine.connect() as connection:
         bad_key = connection.execute(
             sqlalchemy.insert(sample_table),
-            [{"value": "", "char_id": "non_existant_char"}],
+            [{"value": "", "char_id": "non_existent_char"}],
         )
 
         assert bad_key

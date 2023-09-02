@@ -124,7 +124,7 @@ _Maintenance only, no bug fixes, or new features_
 - Remove unnecessary use of `typing_extension`'s `TypedDict` (#346)
 
   Note: `typing_extension`'s `TypedDict` is still
-  used for `NotRequired` `TypedDict`s until the minimum python version supprots
+  used for `NotRequired` `TypedDict`s until the minimum python version supports
   them ([3.11](https://www.python.org/downloads/release/python-3110/) via [PEP-655](https://peps.python.org/pep-0655/))
 
 ## cihai 0.20.0 (2023-05-29)

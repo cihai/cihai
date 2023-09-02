@@ -41,7 +41,7 @@ An example of this would be the
 ## Combining datasets
 
 Combining general datasets in general is usually considered general library usage. But if you're
-usage is common, saves from repetition, it's worth considering making into a reuseable extension and
+usage is common, saves from repetition, it's worth considering making into a reusable extension and
 open sourcing it.
 
 Using the library to mix and match data from various sources is what cihai is meant to do! If you
