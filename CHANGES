@@ -4,6 +4,10 @@
 
 <!-- Maintainers, insert changes / features for the next release here -->
 
+### Packaging
+
+- Move pytest configuration to `pyproject.toml` (#357)
+
 ### Development
 
 - ruff: Remove ERA / `eradicate` plugin
