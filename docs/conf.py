@@ -129,40 +129,6 @@ copybutton_remove_prompts = True
 rediraffe_redirects = "redirects.txt"
 rediraffe_branch = "master~1"
 
-htmlhelp_basename = "%sdoc" % about["__title__"]
-
-latex_documents = [
-    (
-        "index",
-        "{}.tex".format(about["__package_name__"]),
-        "{} Documentation".format(about["__title__"]),
-        about["__author__"],
-        "manual",
-    )
-]
-
-man_pages = [
-    (
-        "index",
-        about["__package_name__"],
-        "{} Documentation".format(about["__title__"]),
-        about["__author__"],
-        1,
-    )
-]
-
-texinfo_documents = [
-    (
-        "index",
-        "{}".format(about["__package_name__"]),
-        "{} Documentation".format(about["__title__"]),
-        about["__author__"],
-        about["__package_name__"],
-        about["__description__"],
-        "Miscellaneous",
-    )
-]
-
 intersphinx_mapping = {
     "python": ("http://docs.python.org/", None),
     "sphinx": ("http://www.sphinx-doc.org/en/stable/", None),
@@ -170,8 +136,6 @@ intersphinx_mapping = {
     "pandas": ("http://pandas.pydata.org/pandas-docs/stable", None),
     "unihan-etl": ("https://unihan-etl.git-pull.com/", None),
 }
-
-autodoc_member_order = "groupwise"
 
 
 def linkcode_resolve(domain: str, info: t.Dict[str, str]) -> t.Union[None, str]:
