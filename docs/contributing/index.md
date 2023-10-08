@@ -19,11 +19,11 @@ Cihai projects use standard conventions and patterns based on best practices in 
 
 To be efficient at debugging, developing, testing, documenting, etc. it helps to familiarize yourself with the tool within, independently if needed.
 
-`<cihai-project>` can be assumed to be an existing or future cihai project, including 
+`<cihai-project>` can be assumed to be an existing or future cihai project, including
 [cihai](https://github.com/cihai/cihai),
 [cihai-cli](https://github.com/cihai/cihai-cli),
 [unihan-etl](https://github.com/cihai/unihan-etl),
-[unihan-db](https://github.com/cihai/unihan-db). 
+[unihan-db](https://github.com/cihai/unihan-db).
 See [GitHub](https://github.com/cihai), [GitLab](https:/gitlab.com/cihai) and
 [Codeberg](https://codeberg.org/cihai).
 
@@ -325,8 +325,6 @@ $ make watch_mypy
 requires [`entr(1)`].
 ````
 
-
-
 ## Releasing
 
 Since this software used in production projects, we don't want to release breaking changes.
@@ -344,12 +342,12 @@ contributor. Set the header with the new version and the date. Leave the "curren
 _Insert changes/features/fixes for next release here_ at the top:
 
 ```markdown
-package-name 0.10.x (unreleased)
---------------------------------
-- *Insert changes/features/fixes for next release here*
+## package-name 0.10.x (unreleased)
 
-package-name 0.9.1 (2020-10-12)
--------------------------------
+- _Insert changes/features/fixes for next release here_
+
+## package-name 0.9.1 (2020-10-12)
+
 - :issue:`1`: Fix bug
 ```
 

@@ -77,8 +77,7 @@ academics.
 Perhaps non-profits will snub them for not using a permissive license? [IPython gets a $1.15M sloan
 foundation grant][ipython gets a $1.15m sloan foundation grant].
 
-[93 pages of patches]:
-  https://github.com/ipython/ipython/pulls?direction=desc&page=1&sort=created&state=closed
+[93 pages of patches]: https://github.com/ipython/ipython/pulls?direction=desc&page=1&sort=created&state=closed
 [ipython gets a $1.15m sloan foundation grant]: http://ipython.org/sloan-grant.html
 [microsoft donated $100k to ipython]: http://ipython.org/microsoft-donation-2013.html
 

@@ -335,10 +335,8 @@ conflict:
    - Middleware is a package module, symbolically `.`'s are used to separate modules and packages
      (java, python, informally in JS).
 
-[sqlalchemy's labels]:
-  https://github.com/zzzeek/sqlalchemy/blob/347e89044ce53ef0ec8d07937cd8279e9c4e5226/lib/sqlalchemy/sql/elements.py#L2393
-[avoid label collisions]:
-  https://github.com/zzzeek/sqlalchemy/blob/347e89044ce53ef0ec8d07937cd8279e9c4e5226/test/sql/test_compiler.py#L2549
+[sqlalchemy's labels]: https://github.com/zzzeek/sqlalchemy/blob/347e89044ce53ef0ec8d07937cd8279e9c4e5226/lib/sqlalchemy/sql/elements.py#L2393
+[avoid label collisions]: https://github.com/zzzeek/sqlalchemy/blob/347e89044ce53ef0ec8d07937cd8279e9c4e5226/test/sql/test_compiler.py#L2549
 [aws_cli]: https://github.com/aws/aws-cli
 
 ## Extension philosophy
