@@ -13,6 +13,9 @@
 - ruff: Remove ERA / `eradicate` plugin
 
   This rule had too many false positives to trust. Other ruff rules have been beneficial.
+- Poetry: 1.6.1 -> 1.7.0
+
+  See also: https://github.com/python-poetry/poetry/blob/1.7.0/CHANGELOG.md
 
 ## cihai 0.28.0 (2023-07-22)
 
