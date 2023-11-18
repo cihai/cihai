@@ -16,6 +16,12 @@
 - Poetry: 1.6.1 -> 1.7.0
 
   See also: https://github.com/python-poetry/poetry/blob/1.7.0/CHANGELOG.md
+- Move formatting from `black` to [`ruff format`] (#360)
+
+  This retains the same formatting style of `black` while eliminating a
+  dev dependency by using our existing rust-based `ruff` linter.
+
+  [`ruff format`]: https://docs.astral.sh/ruff/formatter/
 
 ## cihai 0.28.0 (2023-07-22)
 
@@ -343,7 +349,7 @@ Infrastructure updates for static type checking and doctest examples.
 
 ## cihai 0.11.0 (2021-06-15)
 
-- Update {}`black` to 21.6b0
+- Update `black` to 21.6b0
 - Update trove classifiers to 3.9
 - Update unihan-etl to 0.12.0 (removes python 2.7, 3.5 support)
 - #288 Remove python 2.7, 3.5 support. Remove `__future__` and unused modesets
@@ -392,11 +398,11 @@ Infrastructure updates for static type checking and doctest examples.
 - Add `cihai.__version__` (so the version is available without having to access `__about__`)
 - Add source code link on GitHub on API pages
 - Add `__github__` to `__about__`
-- Move {}`DEFAULT_CONFIG` to _constants.py_
+- Move `DEFAULT_CONFIG` to _constants.py_
 - Move _cihai/unihan.py_ -> _cihai/unihan/{**init**.py,dataset.py}_
 - Move _cihai/bootstrap.py_ -> _cihai/unihan/bootstrap.py_
 - Treat Unihan as a `Dataset`
-- Automatically include dataset when created {}`c = Cihai()`, {}`c = Cihai(unihan=False)` will do
+- Automatically include dataset when created `c = Cihai()`, `c = Cihai(unihan=False)` will do
   without
 - Tests for examples. We want to make sure our examples work out of the box and new changes catch
   API breaks when they need updating
