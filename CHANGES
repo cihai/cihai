@@ -10,12 +10,18 @@
 
 ### Development
 
+- unihan-etl: 0.28.0 -> 0.29.0
+
+  Move from `black` to `ruff format`, CI and dev package updates
+
 - ruff: Remove ERA / `eradicate` plugin
 
   This rule had too many false positives to trust. Other ruff rules have been beneficial.
+
 - Poetry: 1.6.1 -> 1.7.0
 
   See also: https://github.com/python-poetry/poetry/blob/1.7.0/CHANGELOG.md
+
 - Move formatting from `black` to [`ruff format`] (#360)
 
   This retains the same formatting style of `black` while eliminating a
@@ -29,7 +35,7 @@ _Maintenance only, no bug fixes, or new features_
 
 ### Development
 
-- 0.27.0 -> 0.28.0
+- unihan-etl: 0.27.0 -> 0.28.0
 
   pytest fixture renamings
 
