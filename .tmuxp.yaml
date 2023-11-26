@@ -11,6 +11,7 @@ windows:
     main-pane-height: 35
   panes:
   - focus: true
+  - pane
   - make watch_mypy
   - make start
 - window_name: docs
