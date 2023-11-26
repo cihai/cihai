@@ -20,7 +20,6 @@ def test_cihai_version() -> None:
 
 def test_config_defaults() -> None:
     """Test config defaults."""
-
     app = Cihai()
 
     assert "database" in app.config
@@ -28,7 +27,6 @@ def test_config_defaults() -> None:
 
 def test_config_dict_args() -> None:
     """Accepts dict as config."""
-
     expected = "world"
 
     app = Cihai({"hello": expected})

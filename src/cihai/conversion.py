@@ -154,7 +154,6 @@ def euc_to_unicode(hexstr: bytes) -> str:
 
     Examples
     --------
-
     >>> u'\u4e00'.encode('gb2312').decode('utf-8')
     '\u04bb'
 

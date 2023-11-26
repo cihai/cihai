@@ -78,7 +78,6 @@ def create_unihan_table(
     :class:`sqlalchemy.schema.Table` :
         Newly created table with columns and index.
     """
-
     if TABLE_NAME not in metadata.tables:
         table = Table(TABLE_NAME, metadata)
 
