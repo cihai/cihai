@@ -1,5 +1,5 @@
 # flake8: noqa: E501
-"""Conversion functions for various CJK encodings and representations.
+r"""Conversion functions for various CJK encodings and representations.
 
 Notes
 -----
@@ -76,7 +76,7 @@ def hexd(n: int) -> str:
 def kuten_to_gb2312(kuten: str) -> bytes:
     """
     Convert GB kuten / quwei form (94 zones * 94 points) to GB2312-1980 /
-    ISO-2022-CN hex (internal representation)
+    ISO-2022-CN hex (internal representation).
     """
     zone, point = int(kuten[:2]), int(kuten[2:])
     hi, lo = hexd(zone + 0x20), hexd(point + 0x20)
@@ -90,7 +90,7 @@ def kuten_to_gb2312(kuten: str) -> bytes:
 def gb2312_to_euc(gb2312hex: str) -> bytes:
     """
     Convert GB2312-1980 hex (internal representation) to EUC-CN hex (the
-    "external encoding")
+    "external encoding").
     """
     hi_int, lo_int = int(gb2312hex[:2], 16), int(gb2312hex[2:], 16)
     hi, lo = hexd(hi_int + 0x80), hexd(lo_int + 0x80)
@@ -120,9 +120,9 @@ def euc_to_utf8(euchex: bytes) -> str:
 
 
 def ucn_to_unicode(ucn: str) -> str:
-    """
+    r"""
     Convert a Unicode Universal Character Number (e.g. "U+4E00" or "4E00") to
-    Python unicode (u'\\u4e00')
+    Python unicode (u'\\u4e00').
     """
     if isinstance(ucn, str):
         ucn = ucn.strip("U+")
@@ -203,7 +203,7 @@ def python_to_ucn(uni_char: str, as_bytes: t.Literal[False] = False) -> str:
 
 
 def python_to_ucn(uni_char: str, as_bytes: bool = False) -> t.Union[bytes, str]:
-    """
+    r"""
     Return UCN character from Python Unicode character.
 
     Converts a one character Python unicode string (e.g. u'\\u4e00') to the
@@ -223,7 +223,7 @@ def python_to_ucn(uni_char: str, as_bytes: bool = False) -> t.Union[bytes, str]:
 
 
 def python_to_euc(uni_char: str, as_bytes: bool = False) -> t.Union[bytes, str]:
-    """
+    r"""
     Return EUC character from a Python Unicode character.
 
     Converts a one character Python unicode string (e.g. u'\\u4e00') to the
@@ -246,7 +246,7 @@ def ucnstring_to_unicode(ucn_string: str) -> str:
 
 
 def ucnstring_to_python(ucn_string: str) -> bytes:
-    """
+    r"""
     Return string with Unicode UCN (e.g. "U+4E00") to native Python Unicode
     (u'\\u4e00').
     """
@@ -277,9 +277,7 @@ ParsedVars: "TypeAlias" = t.Iterator[ParsedVar]
 
 
 def parse_vars(_vars: str) -> t.Generator[ParsedVar, str, None]:
-    """
-    Return an iterator of (char, tag) tuples.
-    """
+    """Return an iterator of (char, tag) tuples."""
     for var in _vars.split(" "):
         yield parse_var(var)
 
@@ -288,7 +286,5 @@ UntaggedVars: "TypeAlias" = t.Iterator[t.Any]
 
 
 def parse_untagged(_vars: str) -> UntaggedVars:
-    """
-    Return an iterator of chars.
-    """
+    """Return an iterator of chars."""
     return (char for char, _tag in parse_vars(_vars))

@@ -1,4 +1,4 @@
-"""Tests for cihai datasets
+"""Tests for cihai datasets.
 
 tests.datasets
 ~~~~~~~~~~~~~~
@@ -104,7 +104,7 @@ def get_char_fk(
 def get_char_fk_multiple(
     engine: sqlalchemy.Engine, unihan_table: sqlalchemy.Table, *args: t.List[str]
 ) -> sqlalchemy.Result[t.Any]:
-    """Retrieve the Rows"""
+    """Retrieve the Rows."""
     with engine.connect() as connection:
         return connection.execute(
             sqlalchemy.select(unihan_table).where(

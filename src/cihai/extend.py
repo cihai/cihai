@@ -1,5 +1,5 @@
 """
-Cihai Plugin System
+Cihai Plugin System.
 
 Status: Experimental, API can change
 
