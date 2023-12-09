@@ -28,7 +28,8 @@ if t.TYPE_CHECKING:
 
 
 class ConfigMixin:
-    """
+    """Cihai configuration context.
+
     This piggybacks cihai's global config state, as well as your datasets.
 
     Cihai will automatically manage the user's config, as well as your datasets,
@@ -60,7 +61,9 @@ class ConfigMixin:
 
 
 class SQLAlchemyMixin:
-    """Your dataset can use any backend you'd like, we provide a backend for you, that
+    """Cihai RDBMS backend functionality using SQLAlchemy.
+
+    Your dataset can use any backend you'd like, we provide a backend for you, that
     automatically piggybacks on cihai's zero-config, XDG / SQLAchemy configuration. So
     it's preconfigured for the user.
 
@@ -99,6 +102,7 @@ class Dataset:
     """
 
     def bootstrap(self) -> None:
+        """Bootstrapping (e.g. fetching, extraction, transform, loading) Cihai data."""
         pass
 
     def add_plugin(
@@ -107,6 +111,7 @@ class Dataset:
         namespace: str,
         bootstrap: bool = True,
     ) -> None:
+        """Add plugin for Cihai dataset."""
         cls = utils.import_string(_cls) if isinstance(_cls, str) else _cls
         setattr(self, namespace, cls())
         plugin = getattr(self, namespace)
