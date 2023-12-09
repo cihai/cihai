@@ -206,6 +206,14 @@ def python_to_ucn(uni_char: str, as_bytes: bool = False) -> t.Union[bytes, str]:
 
     Converts a one character Python unicode string (e.g. u'\\u4e00') to the
     corresponding Unicode UCN ('U+4E00').
+
+    Examples
+    --------
+    >>> python_to_ucn(u'\\u4e00')
+    'U+4E00'
+
+    >>> python_to_ucn('一')
+    'U+4E00'
     """
     ucn = uni_char.encode("unicode_escape").decode("latin1")
     ucn = str(ucn).replace("\\", "").upper().lstrip("U")
