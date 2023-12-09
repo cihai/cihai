@@ -26,17 +26,22 @@ log = logging.getLogger(__name__)
 
 
 class CihaiConfigError(exc.CihaiException):
+    """Cihai Configuration error."""
+
     def __init__(self) -> None:
         return super().__init__("Invalid exception with configuration")
 
 
 def is_valid_config(config: "UntypedDict") -> "TypeGuard[ConfigDict]":
+    """Upcast cihai configuration.
+
+    NOTE: This does not validate configuration yet!
+    """
     return True
 
 
 class Cihai:
-    """
-    Central application object.
+    """Central application object.
 
     By default, this automatically adds the UNIHAN dataset.
 
@@ -84,7 +89,8 @@ class Cihai:
         config: t.Optional["UntypedDict"] = None,
         unihan: bool = True,
     ) -> None:
-        """
+        """Initialize Cihai application.
+
         Parameters
         ----------
         config : dict, optional
@@ -121,6 +127,7 @@ class Cihai:
         self.bootstrap()
 
     def bootstrap(self) -> None:
+        """Initialize Cihai."""
         for namespace, class_string in self.config.get("datasets", {}).items():
             assert isinstance(class_string, str) or (
                 inspect.isclass(class_string)
@@ -147,6 +154,7 @@ class Cihai:
                 getattr(self, dataset).add_plugin(class_string, namespace)
 
     def add_dataset(self, _cls: t.Union["DS", str], namespace: str) -> None:
+        """Add dataset to Cihai."""
         if isinstance(_cls, str):
             _cls = import_string(_cls)
 
