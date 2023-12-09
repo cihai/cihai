@@ -116,7 +116,13 @@ def euc_to_utf8(euchex: bytes) -> str:
 def ucn_to_unicode(ucn: str) -> str:
     r"""Convert Unicode Universal Character Number (e.g. "U+4E00" or "4E00") to Unicode.
 
-    Example: "U+4E00" or "4E00" to ``u'\\u4e00'``
+    Examples
+    --------
+    >>> ucn_to_unicode("U+4E00")
+    '一'
+
+    >>> ucn_to_unicode("4E00")
+    '一'
     """
     if isinstance(ucn, str):
         ucn = ucn.strip("U+")
