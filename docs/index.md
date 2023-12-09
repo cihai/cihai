@@ -13,7 +13,7 @@ features
 examples
 extend
 datasets
-api
+api/index
 troubleshooting
 
 ```
