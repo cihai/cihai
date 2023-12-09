@@ -1,13 +1,9 @@
-"""Tests for cihai.
-
-test.conversion
-~~~~~~~~~~~~~~~
-
-"""
+"""Test character conversion utilities."""
 from cihai import conversion
 
 
 def test_str() -> None:
+    """Sanity test for returning unicode strings."""
     c1 = "(same as U+7A69 穩) firm; stable; secure"
     c2 = ""
 
@@ -32,6 +28,7 @@ U+356D	kCantonese	au3 jaau1
 
 
 def test_ucn_from_unicode() -> None:
+    """Test python_to_ucn()."""
     text = "一"
     python_unicode = "\u4e00"
 
@@ -46,6 +43,7 @@ def test_ucn_from_unicode() -> None:
 
 
 def test_ucn_from_unicode_16() -> None:
+    """Test python_to_ucn() using 16 bit unicode characters."""
     text = "𦄀"
     python_unicode = "\u26100"
 
@@ -60,6 +58,7 @@ def test_ucn_from_unicode_16() -> None:
 
 
 def test_ucn_to_unicode() -> None:
+    """Test ucn_to_unicode()."""
     before = "U+4E00"
     expected = "\u4e00"
 
@@ -95,10 +94,12 @@ def test_ucn_to_unicode() -> None:
 
 
 def test_hexd() -> None:
+    """Test hexd()."""
     assert conversion.hexd(0xFFFF) == "ffff"
 
 
 def test_euc_from_unicode() -> None:
+    """Test euc_from_unicode()."""
     expected = "一"  # u'\u4e00'
     euc_bytestring = b"d2bb"
     euc_unicode = "d2bb"
@@ -115,6 +116,7 @@ def test_euc_from_unicode() -> None:
 
 
 def test_euc_to_utf8() -> None:
+    """Test euc_to_utf8()."""
     expected = "一"
     euc_bytestring = b"b0ec"
 
@@ -124,6 +126,7 @@ def test_euc_to_utf8() -> None:
 
 
 def test_euc_to_unicode() -> None:
+    """Test euc_to_unicode()."""
     expected = "一"
     expected_ustring = "\u4e00"
     euc_bytestring = b"d2bb"
