@@ -1,4 +1,14 @@
-"""Typings for cihai."""
+"""Typings for cihai.
+
+This is meant to be imported from inside :const:`typing.TYPE_CHECKING` so it does not
+require ``typing_extensions`` at runtime:
+
+>>> from typing import TYPE_CHECKING
+>>> if TYPE_CHECKING:
+...     from .types import DirsConfigDict
+>>> def my_fn(dir_config: "DirsConfigDict") -> None:
+...     pass
+"""
 import pathlib
 import typing as t
 
