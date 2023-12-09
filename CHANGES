@@ -4,6 +4,10 @@
 
 <!-- Maintainers, insert changes / features for the next release here -->
 
+### Documentation
+
+- API docs: Split into multiple pages (#363)
+
 ## cihai 0.30.0 (2023-12-09)
 
 ### Bug fixes
