@@ -103,7 +103,16 @@ def euc_to_python(hexstr: bytes) -> str:
 
 
 def euc_to_utf8(euchex: bytes) -> str:
-    """Convert EUC hex (e.g. "d2bb") to UTF8 hex (e.g. "e4 b8 80")."""
+    """Convert EUC hex (e.g. b"d2bb") to UTF8 hex (e.g. "e4 b8 80").
+
+    Examples
+    --------
+    >>> euc_to_utf8(b"d2bb")
+    '匯'
+
+    >>> euc_to_utf8(b"A4A6")
+    'う'
+    """
     utf8 = euc_to_python(euchex).encode("utf-8")
     uf8 = utf8.decode("unicode_escape")
 
