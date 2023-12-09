@@ -1,3 +1,4 @@
+"""Test configuration for cihai."""
 import os
 import pathlib
 import typing as t
@@ -16,6 +17,7 @@ dirs = AppDirs("cihai", "cihai team")  # appname  # app author
 
 
 def test_expand_config_xdg_vars() -> None:
+    """Test resolution of XDG Variables."""
     initial_dict: UntypedDict = {
         "dirs": {"cache": "{user_cache_dir}", "data": "{user_cache_dir}/data"}
     }
@@ -32,6 +34,7 @@ def test_expand_config_xdg_vars() -> None:
 
 
 def test_expand_config_user_vars() -> None:
+    """Test resolution of home directory ("~")."""
     initial_dict: UntypedDict = {"dirs": {"cache": "~"}}
 
     expected_dict: UntypedDict = {"dirs": {"cache": pathlib.Path.home()}}
@@ -41,6 +44,7 @@ def test_expand_config_user_vars() -> None:
 
 
 def test_expand_config_env_vars(tmpdir: str, monkeypatch: pytest.MonkeyPatch) -> None:
+    """Test resolution of environment variables."""
     monkeypatch.setenv("MYDIR", str(tmpdir))
     initial_dict: UntypedDict = {"dirs": {"cache": "${MYDIR}"}}
 
