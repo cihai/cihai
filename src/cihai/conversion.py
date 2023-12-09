@@ -69,7 +69,13 @@ log = logging.getLogger(__name__)
 
 
 def hexd(n: int) -> str:
-    """Return hex digits (strip '0x' at the beginning)."""
+    """Return hex digits (strip '0x' at the beginning).
+
+    Examples
+    --------
+    >>> hexd(19968)
+    '4e00'
+    """
     return hex(n)[2:]
 
 
