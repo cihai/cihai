@@ -7,6 +7,7 @@
 ### Bug fixes
 
 - `gb2312_to_euc()`: Fix `AssertionError` (#361)
+- `kuten_to_gb2312()`: Fix `AssertionError` (#361)
 
 ### CI
 
