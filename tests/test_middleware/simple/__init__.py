@@ -1,9 +1,12 @@
+"""Simple demonstration dataset for Cihai."""
 import typing as t
 
 if t.TYPE_CHECKING:
     from cihai.types import UntypedDict
 
     class CharData(t.TypedDict, total=False):
+        """Character definition dictionary."""
+
         definition: str
 
     Response = t.Dict[str, CharData]
