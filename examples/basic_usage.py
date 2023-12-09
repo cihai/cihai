@@ -1,10 +1,12 @@
 #!/usr/bin/env python
+"""Demonstrate basic case of Cihai's python API with UNIHAN."""
 import typing as t
 
 from cihai.core import Cihai
 
 
 def run(unihan_options: t.Optional[t.Dict[str, object]] = None) -> None:
+    """Initialize Cihai with UNIHAN (automatically initialized implicitly)."""
     if unihan_options is None:
         unihan_options = {}
     c = Cihai()
