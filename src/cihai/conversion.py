@@ -74,11 +74,17 @@ def hexd(n: int) -> str:
 
 
 def kuten_to_gb2312(kuten: str) -> bytes:
-    """Convert GB kuten / quwei form (94 zones * 94 points) to GB2312-1980 / ISO-2022-CN hex."""
+    """Convert GB kuten / quwei form (94 zones * 94 points) to GB2312-1980 / ISO-2022-CN hex.
+
+    Examples
+    --------
+    >>> kuten_to_gb2312("5027")
+    b'523b'
+    """
     zone, point = int(kuten[:2]), int(kuten[2:])
     hi, lo = hexd(zone + 0x20), hexd(point + 0x20)
 
-    gb2312 = f"{hi}{lo}"
+    gb2312 = f"{hi}{lo}".encode()
 
     assert isinstance(gb2312, bytes)
     return gb2312
