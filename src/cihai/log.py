@@ -20,11 +20,14 @@ LEVEL_COLORS = {
 
 
 class LogFormatter(logging.Formatter):
+    """Log formatter for cihai."""
+
     def __init__(self, color: bool = True, **kwargs: t.Any):
         init()
         logging.Formatter.__init__(self, **kwargs)
 
     def format(self, record: logging.LogRecord) -> str:
+        """Format log message to include newlines and prefixes."""
         try:
             record.message = record.getMessage()
         except Exception as e:
