@@ -1,3 +1,4 @@
+"""Extension tests for cihai."""
 import typing as t
 
 from cihai import extend
@@ -6,11 +7,15 @@ from cihai.data.unihan.dataset import Unihan, UnihanVariants
 
 
 class SimplestDataset(extend.Dataset):
+    """Very terse dataset for cihai."""
+
     def a_method(self) -> str:
+        """Return a string."""
         return "hi"
 
 
 def test_add_dataset() -> None:
+    """Test adding a dataset."""
     c = Cihai()
     c.add_dataset(SimplestDataset, namespace="simple")
     assert hasattr(c, "simple")
@@ -23,11 +28,15 @@ def test_add_dataset() -> None:
 
 
 class SimplestSQLAlchemyDataset(extend.Dataset, extend.SQLAlchemyMixin):
+    """Basic SQLAlchemy dataset for cihai."""
+
     def a_method(self) -> str:
+        """Return a string."""
         return "hi"
 
 
 def test_add_dataset_with_db() -> None:
+    """Test adding dataset with SQLAlchemy to Cihai."""
     c = Cihai()
     c.add_dataset(SimplestSQLAlchemyDataset, namespace="simple")
     assert hasattr(c, "simple")
@@ -43,6 +52,7 @@ def test_add_dataset_with_db() -> None:
 
 
 def test_add_dataset_unihan(unihan_options: t.Dict[str, object]) -> None:
+    """Test adding UNIHAN dataset to Cihai."""
     c = Cihai()
     c.add_dataset(Unihan, namespace="unihan")
     assert hasattr(c, "unihan")

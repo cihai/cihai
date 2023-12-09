@@ -1,3 +1,4 @@
+"""Cihai Metadata package."""
 __title__ = "cihai"
 __package_name__ = "cihai"
 __version__ = "0.29.0"

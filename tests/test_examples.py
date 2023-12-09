@@ -1,3 +1,4 @@
+"""Test examples/ found in cihai source directory."""
 import importlib
 import importlib.util
 import pathlib
@@ -13,13 +14,17 @@ if t.TYPE_CHECKING:
 
 
 class LoadScriptFn(t.Protocol):
+    """Protocol typings for load_script()."""
+
     def __callable__(
         self, example: str, project_root: pathlib.Path
     ) -> types.ModuleType:
+        """Return script as a module."""
         ...
 
 
 def load_script(example: str, project_root: pathlib.Path) -> types.ModuleType:
+    """Load script as module via name and project root."""
     file_path = f"{project_root}/examples/{example}.py"
     module_name = "run"
 
@@ -38,6 +43,7 @@ def test_dataset(
     unihan_options: "UnihanOptions",
     project_root: pathlib.Path,
 ) -> None:
+    """Test example dataset."""
     example = load_script("dataset", project_root=project_root)
     example.run()
 
@@ -47,6 +53,7 @@ def test_variants(
     unihan_ensure_quick: None,
     project_root: pathlib.Path,
 ) -> None:
+    """Test variants."""
     example = load_script("variants", project_root=project_root)
     example.run(unihan_options=unihan_quick_options)
 
@@ -54,6 +61,7 @@ def test_variants(
 def test_ts_difficulties(
     unihan_options: "UnihanOptions", project_root: pathlib.Path
 ) -> None:
+    """Test variant_ts_difficulties."""
     example = load_script("variant_ts_difficulties", project_root=project_root)
     example.run(unihan_options=unihan_options)
 
@@ -63,6 +71,7 @@ def test_basic_usage(
     unihan_options: "UnihanOptions",
     project_root: pathlib.Path,
 ) -> None:
+    """Test basic_usage."""
     example = load_script("basic_usage", project_root=project_root)
     example.run(unihan_options=unihan_options)
 
@@ -77,6 +86,7 @@ def test_basic_usage_manual(
     unihan_options: "UnihanOptions",
     project_root: pathlib.Path,
 ) -> None:
+    """Test basic_usage_manual."""
     example = load_script("basic_usage_manual", project_root=project_root)
     example.run(unihan_options=unihan_options)
 

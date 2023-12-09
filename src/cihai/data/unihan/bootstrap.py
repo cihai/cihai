@@ -1,3 +1,4 @@
+"""Fetch + extract + transform + load UNIHAN dataset to Cihai."""
 import dataclasses
 import typing as t
 
@@ -20,6 +21,7 @@ def bootstrap_unihan(
     metadata: sqlalchemy.sql.schema.MetaData,
     options: t.Optional[t.Union[t.Dict[str, object], "UnihanOptions"]] = None,
 ) -> None:
+    """UNIHAN bootstrap script (download from web, import to database)."""
     if options is None:
         options = {}
 
@@ -78,7 +80,6 @@ def create_unihan_table(
     :class:`sqlalchemy.schema.Table` :
         Newly created table with columns and index.
     """
-
     if TABLE_NAME not in metadata.tables:
         table = Table(TABLE_NAME, metadata)
 

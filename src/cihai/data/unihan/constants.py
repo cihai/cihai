@@ -1,3 +1,4 @@
+"""Constants for UNIHAN cihai dataset."""
 import typing as t
 
 #: Mapping of files from unihan-etl (UNIHAN database)

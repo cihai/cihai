@@ -1,5 +1,5 @@
 # flake8: noqa: E501
-"""Conversion functions for various CJK encodings and representations.
+r"""Conversion functions for various CJK encodings and representations.
 
 Notes
 -----
@@ -69,39 +69,60 @@ log = logging.getLogger(__name__)
 
 
 def hexd(n: int) -> str:
-    """Return hex digits (strip '0x' at the beginning)."""
+    """Return hex digits (strip '0x' at the beginning).
+
+    Examples
+    --------
+    >>> hexd(19968)
+    '4e00'
+    """
     return hex(n)[2:]
 
 
 def kuten_to_gb2312(kuten: str) -> bytes:
-    """
-    Convert GB kuten / quwei form (94 zones * 94 points) to GB2312-1980 /
-    ISO-2022-CN hex (internal representation)
+    """Convert GB kuten / quwei form (94 zones * 94 points) to GB2312-1980 / ISO-2022-CN hex.
+
+    Examples
+    --------
+    >>> kuten_to_gb2312("5027")
+    b'523b'
     """
     zone, point = int(kuten[:2]), int(kuten[2:])
     hi, lo = hexd(zone + 0x20), hexd(point + 0x20)
 
-    gb2312 = f"{hi}{lo}"
+    gb2312 = f"{hi}{lo}".encode()
 
     assert isinstance(gb2312, bytes)
     return gb2312
 
 
 def gb2312_to_euc(gb2312hex: str) -> bytes:
-    """
-    Convert GB2312-1980 hex (internal representation) to EUC-CN hex (the
-    "external encoding")
+    """Convert GB2312-1980 hex (internal representation) to EUC-CN hex (the "external encoding").
+
+    Examples
+    --------
+    >>> gb2312_to_euc("30A1")
+    b'b0121'
     """
     hi_int, lo_int = int(gb2312hex[:2], 16), int(gb2312hex[2:], 16)
     hi, lo = hexd(hi_int + 0x80), hexd(lo_int + 0x80)
 
-    euc = f"{hi}{lo}"
+    euc = f"{hi}{lo}".encode()
     assert isinstance(euc, bytes)
     return euc
 
 
 def euc_to_python(hexstr: bytes) -> str:
-    """Convert a EUC-CN (GB2312) hex to a Python unicode string."""
+    r"""Convert a EUC-CN (GB2312) hex to a Python unicode string.
+
+    Examples
+    --------
+    >>> euc_to_python(b"A1A4")
+    '\\xA1\\xA4'
+
+    >>> euc_to_python(b"3041")
+    '\\x30\\x41'
+    """
     hi = hexstr[0:2]
     lo = hexstr[2:4]
     gb_enc = b"\\x" + hi + b"\\x" + lo
@@ -109,7 +130,16 @@ def euc_to_python(hexstr: bytes) -> str:
 
 
 def euc_to_utf8(euchex: bytes) -> str:
-    """Convert EUC hex (e.g. "d2bb") to UTF8 hex (e.g. "e4 b8 80")."""
+    """Convert EUC hex (e.g. b"d2bb") to UTF8 hex (e.g. "e4 b8 80").
+
+    Examples
+    --------
+    >>> euc_to_utf8(b"d2bb")
+    '匯'
+
+    >>> euc_to_utf8(b"A4A6")
+    'う'
+    """
     utf8 = euc_to_python(euchex).encode("utf-8")
     uf8 = utf8.decode("unicode_escape")
 
@@ -120,9 +150,15 @@ def euc_to_utf8(euchex: bytes) -> str:
 
 
 def ucn_to_unicode(ucn: str) -> str:
-    """
-    Convert a Unicode Universal Character Number (e.g. "U+4E00" or "4E00") to
-    Python unicode (u'\\u4e00')
+    r"""Convert Unicode Universal Character Number (e.g. "U+4E00" or "4E00") to Unicode.
+
+    Examples
+    --------
+    >>> ucn_to_unicode("U+4E00")
+    '一'
+
+    >>> ucn_to_unicode("4E00")
+    '一'
     """
     if isinstance(ucn, str):
         ucn = ucn.strip("U+")
@@ -140,8 +176,7 @@ def ucn_to_unicode(ucn: str) -> str:
 
 
 def euc_to_unicode(hexstr: bytes) -> str:
-    r"""
-    Return EUC-CN (GB2312) hex to a Python unicode.
+    r"""Return EUC-CN (GB2312) hex to a Python unicode.
 
     Parameters
     ----------
@@ -154,7 +189,6 @@ def euc_to_unicode(hexstr: bytes) -> str:
 
     Examples
     --------
-
     >>> u'\u4e00'.encode('gb2312').decode('utf-8')
     '\u04bb'
 
@@ -204,11 +238,18 @@ def python_to_ucn(uni_char: str, as_bytes: t.Literal[False] = False) -> str:
 
 
 def python_to_ucn(uni_char: str, as_bytes: bool = False) -> t.Union[bytes, str]:
-    """
-    Return UCN character from Python Unicode character.
+    r"""Return UCN character from Python Unicode character.
 
     Converts a one character Python unicode string (e.g. u'\\u4e00') to the
     corresponding Unicode UCN ('U+4E00').
+
+    Examples
+    --------
+    >>> python_to_ucn(u'\\u4e00')
+    'U+4E00'
+
+    >>> python_to_ucn('一')
+    'U+4E00'
     """
     ucn = uni_char.encode("unicode_escape").decode("latin1")
     ucn = str(ucn).replace("\\", "").upper().lstrip("U")
@@ -224,8 +265,7 @@ def python_to_ucn(uni_char: str, as_bytes: bool = False) -> t.Union[bytes, str]:
 
 
 def python_to_euc(uni_char: str, as_bytes: bool = False) -> t.Union[bytes, str]:
-    """
-    Return EUC character from a Python Unicode character.
+    r"""Return EUC character from a Python Unicode character.
 
     Converts a one character Python unicode string (e.g. u'\\u4e00') to the
     corresponding EUC hex ('d2bb').
@@ -239,7 +279,13 @@ def python_to_euc(uni_char: str, as_bytes: bool = False) -> t.Union[bytes, str]:
 
 
 def ucnstring_to_unicode(ucn_string: str) -> str:
-    """Return ucnstring as Unicode."""
+    """Return ucnstring as Unicode.
+
+    Examples
+    --------
+    >>> ucnstring_to_unicode('U+7A69')
+    '穩'
+    """
     ucn_string = ucnstring_to_python(ucn_string).decode("utf-8")
 
     assert isinstance(ucn_string, str)
@@ -247,9 +293,10 @@ def ucnstring_to_unicode(ucn_string: str) -> str:
 
 
 def ucnstring_to_python(ucn_string: str) -> bytes:
-    """
-    Return string with Unicode UCN (e.g. "U+4E00") to native Python Unicode
-    (u'\\u4e00').
+    r"""Return string with Unicode UCN (e.g. "U+4E00") to native Python Unicode (u'\\u4e00').
+
+    >>> ucnstring_to_python('U+7A69')
+    b'\xe7\xa9\xa9'
     """
     res = re.findall(r"U\+[0-9a-fA-F]*", ucn_string)
     for r in res:
@@ -265,10 +312,7 @@ ParsedVar: "TypeAlias" = t.Tuple[str, t.Optional[str]]
 
 
 def parse_var(var: str) -> ParsedVar:
-    """
-    Returns a tuple consisting of a string and a tag, or None, if none is
-    specified.
-    """
+    """Return tuple consisting of a string and a tag, or None, if none is specified."""
     bits = var.split("<", 1)
     tag = None if len(bits) < 2 else bits[1]
     return ucn_to_unicode(bits[0]), tag
@@ -278,9 +322,7 @@ ParsedVars: "TypeAlias" = t.Iterator[ParsedVar]
 
 
 def parse_vars(_vars: str) -> t.Generator[ParsedVar, str, None]:
-    """
-    Return an iterator of (char, tag) tuples.
-    """
+    """Return an iterator of (char, tag) tuples."""
     for var in _vars.split(" "):
         yield parse_var(var)
 
@@ -289,7 +331,5 @@ UntaggedVars: "TypeAlias" = t.Iterator[t.Any]
 
 
 def parse_untagged(_vars: str) -> UntaggedVars:
-    """
-    Return an iterator of chars.
-    """
+    """Return an iterator of chars."""
     return (char for char, _tag in parse_vars(_vars))

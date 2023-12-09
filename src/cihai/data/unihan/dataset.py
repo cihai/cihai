@@ -1,3 +1,4 @@
+"""Module for UNIHAN Dataset for cihai."""
 import typing as t
 
 from sqlalchemy import or_
@@ -15,6 +16,8 @@ if t.TYPE_CHECKING:
 
 
 class Unihan(Dataset, SQLAlchemyMixin):
+    """UNIHAN Dataset for cihai."""
+
     char: str
     kDefinition: str
     kTraditionhalVariant: str
@@ -23,6 +26,7 @@ class Unihan(Dataset, SQLAlchemyMixin):
     untagged_vars: t.Callable[[str], "UntaggedVars"]
 
     def bootstrap(self, options: t.Optional[t.Dict[str, object]] = None) -> None:
+        """Fetch, extract, import UNIHAN to DB, and initialize DB mapping."""
         if options is None:
             options = {}
 
@@ -70,7 +74,7 @@ class Unihan(Dataset, SQLAlchemyMixin):
         )
 
     def with_fields(self, fields: t.List[str]) -> "Query[Unihan]":
-        """Returns list of characters with information for certain fields.
+        """Return list of characters with information for certain fields.
 
         Parameters
         ----------
@@ -101,17 +105,17 @@ class Unihan(Dataset, SQLAlchemyMixin):
 
 
 class UnihanVariants(DatasetPlugin, SQLAlchemyMixin):
+    """Support for CJK Variant lookups through UNIHAN dataset."""
+
     def bootstrap(self) -> None:
+        """Map custom lookup for UNIHAN variants to Unihan SQLAlchemy table."""
+
         def tagged_vars(table: "Table", col: str) -> "ParsedVars":
-            """
-            Return a variant column as an iterator of (char, tag) tuples.
-            """
+            """Return a variant column as an iterator of (char, tag) tuples."""
             return parse_vars(getattr(table, col))
 
         def untagged_vars(table: "Table", col: str) -> "UntaggedVars":
-            """
-            Return a variant column as an iterator of chars.
-            """
+            """Return a variant column as an iterator of chars."""
             return parse_untagged(getattr(table, col))
 
         if hasattr(self.sql.base.classes, "Unihan"):

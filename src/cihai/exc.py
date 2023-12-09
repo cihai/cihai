@@ -60,4 +60,5 @@ class ImportStringError(ImportError, CihaiException):
         super().__init__(msg)
 
     def __repr__(self) -> str:
+        """Representation of an ImportStringError."""
         return f"<{type(self).__name__}({self.import_name!r}, {self.exception!r})>"

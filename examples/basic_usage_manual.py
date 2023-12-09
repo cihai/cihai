@@ -1,14 +1,12 @@
 #!/usr/bin/env python
-"""
-Demonstrate what basic_usage's unihan=True (default Cihai) does under
-the hood.
-"""
+"""Demonstrate what basic_usage's unihan=True (default Cihai) does under the hood."""
 import typing as t
 
 from cihai.core import Cihai
 
 
 def run(unihan_options: t.Optional[t.Dict[str, object]] = None) -> None:
+    """Demonstrate cihai usage using explicit UNIHAN lookups."""
     if unihan_options is None:
         unihan_options = {}
 

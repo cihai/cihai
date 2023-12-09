@@ -13,7 +13,7 @@ if t.TYPE_CHECKING:
 
 
 class Database:
-    """Cihai SQLAlchemy instance"""
+    """Cihai SQLAlchemy instance."""
 
     #: :class:`sqlalchemy.engine.Engine` instance.
     engine: "Engine"

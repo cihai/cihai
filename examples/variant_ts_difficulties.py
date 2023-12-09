@@ -1,10 +1,12 @@
 #!/usr/bin/env python
+"""Cihai example for difficult cases of traditional and simplified CJK variants."""
 import typing as t
 
 from cihai.core import Cihai
 
 
 def run(unihan_options: t.Optional[t.Dict[str, object]] = None) -> None:
+    """Print difficult traditional / simplified CJK variants."""
     if unihan_options is None:
         unihan_options = {}
 

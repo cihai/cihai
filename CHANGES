@@ -4,9 +4,19 @@
 
 <!-- Maintainers, insert changes / features for the next release here -->
 
+### Bug fixes
+
+- `gb2312_to_euc()`: Fix `AssertionError` (#361)
+- `kuten_to_gb2312()`: Fix `AssertionError` (#361)
+
 ### CI
 
 - Move CodeQL from advanced configuration file to GitHub's default
+- ci: Add pydocstyle rule to ruff (#361)
+
+### Documentation
+
+- Add docstrings to functions, methods, classes, and packages (#361)
 
 ## cihai 0.29.0 (2023-11-19)
 
