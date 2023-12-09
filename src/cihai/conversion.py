@@ -95,7 +95,16 @@ def gb2312_to_euc(gb2312hex: str) -> bytes:
 
 
 def euc_to_python(hexstr: bytes) -> str:
-    """Convert a EUC-CN (GB2312) hex to a Python unicode string."""
+    r"""Convert a EUC-CN (GB2312) hex to a Python unicode string.
+
+    Examples
+    --------
+    >>> euc_to_python(b"A1A4")
+    '\\xA1\\xA4'
+
+    >>> euc_to_python(b"3041")
+    '\\x30\\x41'
+    """
     hi = hexstr[0:2]
     lo = hexstr[2:4]
     gb_enc = b"\\x" + hi + b"\\x" + lo
