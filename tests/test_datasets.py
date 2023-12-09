@@ -43,6 +43,8 @@ cjk_ranges: t.Dict[
 
 
 class Char(t.TypedDict):
+    """Cihai character for UNIHAN dataset."""
+
     id: int
     char: str
     ucn: str
@@ -50,8 +52,10 @@ class Char(t.TypedDict):
 
 @pytest.fixture(scope="session")
 def unihan_table(
-    engine: sqlalchemy.Engine, metadata: sqlalchemy.MetaData
+    engine: sqlalchemy.Engine,
+    metadata: sqlalchemy.MetaData,
 ) -> sqlalchemy.Table:
+    """UNIHAN SQLAlchemy CJK Table for use in cihai dataset tests."""
     return sqlalchemy.Table(
         "cjk",
         metadata,
@@ -63,8 +67,10 @@ def unihan_table(
 
 @pytest.fixture(scope="session")
 def sample_table(
-    engine: sqlalchemy.Engine, metadata: sqlalchemy.MetaData
+    engine: sqlalchemy.Engine,
+    metadata: sqlalchemy.MetaData,
 ) -> sqlalchemy.Table:
+    """UNIHAN SQLAlchemy Sample Table for use in cihai dataset tests."""
     return sqlalchemy.Table(
         "sample_table",
         metadata,
@@ -81,12 +87,16 @@ def create_all(
     unihan_table: sqlalchemy.Table,
     sample_table: sqlalchemy.Table,
 ) -> None:
+    """Bootstrap datasets in SQLAlchemy dataset tests for cihai."""
     metadata.create_all(engine)
 
 
 def get_char_fk(
-    char: str, engine: sqlalchemy.Engine, unihan_table: sqlalchemy.Table
+    char: str,
+    engine: sqlalchemy.Engine,
+    unihan_table: sqlalchemy.Table,
 ) -> int:
+    """Return character's foreign key / primary key from UNIHAN / CJK Table."""
     with engine.connect() as connection:
         results = connection.execute(
             sqlalchemy.select(unihan_table.c.id)
@@ -102,9 +112,11 @@ def get_char_fk(
 
 
 def get_char_fk_multiple(
-    engine: sqlalchemy.Engine, unihan_table: sqlalchemy.Table, *args: t.List[str]
+    engine: sqlalchemy.Engine,
+    unihan_table: sqlalchemy.Table,
+    *args: t.List[str],
 ) -> sqlalchemy.Result[t.Any]:
-    """Retrieve the Rows."""
+    """Retrieve characters from list of foreign / primary keys."""
     with engine.connect() as connection:
         return connection.execute(
             sqlalchemy.select(unihan_table).where(
@@ -119,6 +131,7 @@ def chars(
     engine: sqlalchemy.Engine,
     unihan_table: sqlalchemy.Table,
 ) -> t.List[Char]:
+    """Return list of characters from Cihai test SQL backend."""
     chars: t.List[Char] = []
 
     while len(chars) < 3:
@@ -148,6 +161,7 @@ def chars(
 def test_insert_row(
     chars: t.List[Char], unihan_table: sqlalchemy.Table, engine: sqlalchemy.Engine
 ) -> None:
+    """Test inserting rows into UNIHAN / CJK table."""
     cjkchar = chars[0]
 
     with engine.connect() as connection:
@@ -165,6 +179,7 @@ def test_insert_row(
 def test_insert_bad_key(
     sample_table: sqlalchemy.Table, engine: sqlalchemy.Engine
 ) -> None:
+    """Test inserting non-existant character into UNIHAN / CJK table."""
     with engine.connect() as connection:
         bad_key = connection.execute(
             sqlalchemy.insert(sample_table),
@@ -180,6 +195,7 @@ def test_insert_on_foreign_key(
     unihan_table: sqlalchemy.Table,
     engine: sqlalchemy.Engine,
 ) -> None:
+    """Test inserting based on relation into UNIHAN / CJK table."""
     cjkchar = chars[0]
     char = cjkchar["char"]
 
@@ -205,6 +221,7 @@ def test_insert_on_foreign_key(
 def test_get_char_foreign_key_multiple(
     chars: t.List[Char], engine: sqlalchemy.Engine, unihan_table: sqlalchemy.Table
 ) -> None:
+    """Test retrieving multiple characters by key from UNIHAN / CJK table."""
     char_fk_multiple = get_char_fk_multiple(
         engine, unihan_table, [c["char"] for c in chars]
     )
