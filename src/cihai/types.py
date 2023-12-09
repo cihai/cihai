@@ -1,3 +1,4 @@
+"""Typings for cihai."""
 import pathlib
 import typing as t
 
@@ -13,26 +14,36 @@ UntypedDict: "TypeAlias" = t.Dict[str, object]
 
 
 class RawPluginConfigDict(TypedDict):
+    """Barebones plugin config dictionary."""
+
     pass
 
 
 class RawDirsConfigDict(TypedDict):
+    """Raw directory config dictionary."""
+
     cache: t.Union[str, pathlib.Path]
     log: t.Union[str, pathlib.Path]
     data: t.Union[str, pathlib.Path]
 
 
 class DirsConfigDict(TypedDict):
+    """Directory config dictionary."""
+
     cache: pathlib.Path
     log: pathlib.Path
     data: pathlib.Path
 
 
 class RawDatabaseConfigDict(TypedDict):
+    """Raw database config dictionary."""
+
     url: str
 
 
 class RawConfigDict(TypedDict):
+    """Raw, unresolved configuration dictionary."""
+
     plugins: NotRequired[t.Dict[str, RawPluginConfigDict]]
     datasets: t.Dict[str, t.Union[str, "Dataset"]]
     database: RawDatabaseConfigDict
@@ -41,6 +52,8 @@ class RawConfigDict(TypedDict):
 
 
 class ConfigDict(TypedDict):
+    """Cihai Configuration dictionary."""
+
     plugins: t.Dict[str, RawPluginConfigDict]
     datasets: t.Dict[str, t.Union[str, "Dataset"]]
     database: RawDatabaseConfigDict
