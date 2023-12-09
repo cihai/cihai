@@ -243,7 +243,13 @@ def python_to_euc(uni_char: str, as_bytes: bool = False) -> t.Union[bytes, str]:
 
 
 def ucnstring_to_unicode(ucn_string: str) -> str:
-    """Return ucnstring as Unicode."""
+    """Return ucnstring as Unicode.
+
+    Examples
+    --------
+    >>> ucnstring_to_unicode('U+7A69')
+    '穩'
+    """
     ucn_string = ucnstring_to_python(ucn_string).decode("utf-8")
 
     assert isinstance(ucn_string, str)
