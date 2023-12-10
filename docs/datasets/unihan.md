@@ -29,5 +29,3 @@
    :inherited-members:
    :show-inheritance:
 ```
-
-

@@ -26,6 +26,5 @@ extend
 log
 types
 utils
-data/index
 internals/index
 ```

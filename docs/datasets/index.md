@@ -1,10 +1,25 @@
 (datasets)=
+(data)=
 
 # Datasets
 
+```{module} cihai
+
+```
+
+:::{warning}
+Be careful with these! Internal APIs are **not** covered by version policies. They can break or be removed between minor versions!
+
+If you need an internal API stabilized please [file an issue](https://github.com/cihai/cihai/issues).
+:::
+
 ## Current Datasets
 
-- [unihan-etl][unihan-etl] - [UNIHAN][unihan] data package, included in cihai by default.
+```{toctree}
+:maxdepth: 1
+
+unihan
+```
 
 ## Planned datasets
 
@@ -23,9 +38,7 @@ For all data sets, the goal is to achieve:
 | handedict | OK                | TODO                   | TODO              |
 | cfdict    | OK                | MISSING [^cite_cfdict] | UNKNOWN           |
 
-[unihan]: http://www.unicode.org/charts/unihan.html
 [data packages]: http://frictionlessdata.io/data-packages/
-[unihan-etl]: https://unihan-etl.git-pull.com
 
 [^cite_unhn-l]: <http://unicode.org/charts/unihan.html#Disclaimers>
 [^cite_unhn-d]: <https://raw.githubusercontent.com/cihai/unihan-etl/master/datapackage.json>

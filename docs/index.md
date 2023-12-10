@@ -12,7 +12,7 @@ quickstart
 features
 examples
 extend
-datasets
+datasets/index
 api/index
 troubleshooting
 
