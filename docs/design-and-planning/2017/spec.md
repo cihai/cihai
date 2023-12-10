@@ -12,15 +12,15 @@ Created 2017-04-29
    backend.
 2. {ref}`incremental_config` cihai should be incrementally configurable, such as by specifying where
    data should be outputted.
-3. {ref}`relational_backend` cihai will use [SQLAlchemy][sqlalchemy] as a database backend to story
+3. {ref}`relational_backend` cihai will use [SQLAlchemy] as a database backend to story
    information for retrieval.
 4. {ref}`automatic_extensions` cihai will make data accessible to third party libraries if they
    exist in the script's site-packages.
 
-   e.g. If [pandas][pandas] is found, it will be able to return a {class}`pandas.DataFrame` for a
+   e.g. If [pandas] is found, it will be able to return a {class}`pandas.DataFrame` for a
    queried set of information.
 
-5. {ref}`unihan_core` cihai will use [UNIHAN][unihan] as a core and source of truth for information,
+5. {ref}`unihan_core` cihai will use [UNIHAN] as a core and source of truth for information,
    as it contains all the glyphs and is reliable, free and well-maintained, and provides are good
    source of starter information.
 6. {ref}`data_normalization` cihai will adopt a standard data format to store additional CJK data
@@ -33,7 +33,7 @@ Created 2017-04-29
 
 cihai will be able to be used immediately without a user configuring their system.
 
-cihai will conform with the [XDG specification][xdg specification] for determining where to check
+cihai will conform with the [XDG specification] for determining where to check
 out data to. This includes:
 
 - Where to store downloaded source files, e.g. _XDG_CACHE_HOME/cihai/downloads_
@@ -49,7 +49,7 @@ configuration used in {ref}`incremental_config`.
 
 ## Incremental configuration
 
-The [SQLAlchemy][sqlalchemy] data backend used, which for SQLite, also includes the file path used
+The [SQLAlchemy] data backend used, which for SQLite, also includes the file path used
 to store the SQLite file, is customizable.
 
 [xdg specification]: https://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html
@@ -60,7 +60,7 @@ to store the SQLite file, is customizable.
 
 cihai will be powered by a relational database backend.
 
-Most python distributions include support for [SQLite][sqlite], which in conjunction with
+Most python distributions include support for [SQLite], which in conjunction with
 {ref}`zero configuration <zero_config>`, makes for data store that will work across a wide array of
 systems.
 
@@ -83,7 +83,7 @@ This comes at no performance penalty since the ability to export in a third part
 
 ## UNIHAN core
 
-cihai's library of CJK information will be backed on the reliable [UNIHAN][unihan] database, which
+cihai's library of CJK information will be backed on the reliable [UNIHAN] database, which
 is a approved by the Unicode Consortium.
 
 ### Operation
@@ -99,7 +99,7 @@ standard for keeping data conserved, readily available and sustainable.
 
 ### Standards
 
-The initial consideration, since 2013, was datasets would follow [Data Packages][data packages].
+The initial consideration, since 2013, was datasets would follow [Data Packages].
 
 In place of Data Packages, a simpler, and more lax guideline and alone with python interfaces may be
 considered. This determination is pending further review of datasets.

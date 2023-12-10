@@ -4,7 +4,7 @@
 
 - Handling CJK Variants
 
-  cihai builds upon [UNIHAN][unihan] to handle [variants][variants]: "thousands of years worth of
+  cihai builds upon [UNIHAN]: "thousands of years worth of
   writing have produced thousands of pairs which can be used more-or-less interchangeably." For more
   information, see "Unification Rules" on page 679 of _The Unicode Standard_
   ([.pdf](http://www.unicode.org/versions/Unicode9.0.0/ch18.pdf)).

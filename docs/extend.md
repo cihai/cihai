@@ -10,7 +10,7 @@ available in a growing list of CJKV information.
 Expand cihai's knowledge! Create a {class}`cihai.extend.Dataset`.
 
 You can also make your dataset available in open source so other cihai users can use it! If you do,
-bring it up on the [issue tracker][issue tracker]!
+bring it up on the [issue tracker]!
 
 _examples/dataset.py_:
 

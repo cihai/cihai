@@ -547,7 +547,7 @@ Infrastructure updates for static type checking and doctest examples.
 - Initial support for character lookups via `$ cihai info <char>`.
 - #3 Bootstrap UNIHAN into cihai by default via unihan-tabular project
 - #4 Drop python 3.3 and 3.4 support
-- #4 Initial [XDG][xdg] base directory support
+- #4 Initial [XDG] base directory support
 - Move tests to pytest functions and fixtures
 - Remove unused test_unihan file
 - PEP8, sort imports

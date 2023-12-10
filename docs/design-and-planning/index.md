@@ -21,6 +21,6 @@ These were part of the initial brain storming the project and preserved for hist
 
 ## Late 2012
 
-- [State of datasets][state of datasets] on cjklib tracker
+- [State of datasets] on cjklib tracker
 
 [state of datasets]: https://github.com/cburgmer/cjklib/issues/3

@@ -65,17 +65,17 @@ desire to help.
 This is an observation and doesn't infer endorsement by IPython or its contributors.
 
 There is no requirement for providing an open source derivative (or an upstream patch) for a
-modification, so does IPython development go stale? [93 pages of patches][93 pages of patches]
+modification, so does IPython development go stale? [93 pages of patches]
 committed to the project.
 
 There is no requirement restricting large corporations from using them and giving nothing back,
-[Microsoft donated $100K to IPython][microsoft donated $100k to ipython].
+[Microsoft donated $100K to IPython].
 
 Perhaps academic institutions will snub them for using a permissive license? The core developers are
 academics.
 
 Perhaps non-profits will snub them for not using a permissive license? [IPython gets a $1.15M sloan
-foundation grant][ipython gets a $1.15m sloan foundation grant].
+foundation grant].
 
 [93 pages of patches]: https://github.com/ipython/ipython/pulls?direction=desc&page=1&sort=created&state=closed
 [ipython gets a $1.15m sloan foundation grant]: http://ipython.org/sloan-grant.html
@@ -94,8 +94,8 @@ Whether you are a copyleft, academic, private or none of the above. Providing yo
 permissive license will open your work to the world.
 
 - [Open Data Commons Attribution License (ODC-By)
-  v1.0][open data commons attribution license (odc-by) v1.0]
-- [MIT License][mit license]
+  v1.0]
+- [MIT License]
 
 [mit license]: _http://opensource.org/licenses/MIT
 [open data commons attribution license (odc-by) v1.0]: http://opendatacommons.org/licenses/by/1.0

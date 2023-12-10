@@ -52,16 +52,16 @@ $ python -m cihai -c dev/config.yml
 Unihan, which is short for "Han Unification" is a standard published by the Unicode Consortium for
 CJK ideographs (also interchangeable referred to as "glyphs", "characters", "chars").
 
-[Unihan's History][unihan's history] goes into greater detail on this. The first electronic release
-was in July 1995 as [CJKXREF.TXT][cjkxref.txt] (961 kB). The second release, which resembles the
+[Unihan's History] goes into greater detail on this. The first electronic release
+was in July 1995 as [CJKXREF.TXT] (961 kB). The second release, which resembles the
 formatting used in modern versions, was released in July 1996 with Unicode 2.0 as
-[Unihan-1.txt][unihan-1.txt]. In an accident, the `Unihan-1.txt` (7.9MB) file was missing the final
+[Unihan-1.txt]. In an accident, the `Unihan-1.txt` (7.9MB) file was missing the final
 pieces after `U+8BC1`, no corrected version was made available. In May 1998,
-[Unihan-2.txt][unihan-2.txt] was released with Unicode 2.1.2.
+[Unihan-2.txt] was released with Unicode 2.1.2.
 
 Unihan Inc. is the center of the universe for all glyphs. For those who study Egyptian
 hieroglyphics, which are still mysterious, they are covered in Unicode block
-[U+13000..U+1342F][u+13000..u+1342f].
+[U+13000..U+1342F].
 
 [u+13000..u+1342f]: Fhttp://en.wikipedia.org/wiki/Egyptian_Hieroglyphs_(Unicode_block)
 [unihan's history]: http://www.unicode.org/reports/tr38/#History
@@ -87,7 +87,7 @@ cjklib: https://code.google.com/p/cjklib/
 
 Early iterations of Cihai focused on external API as a first. Every data set was to be a plugin.
 
-The idea was, [Hanzi][hanzi], a similar project in nodejs could share a similar API and datasets
+The idea was, [Hanzi], a similar project in nodejs could share a similar API and datasets
 could be universal. The potential would be to provide two high-quality libraries for python and
 node, which are extendable to new data sets and reduce duplication.
 
@@ -310,8 +310,8 @@ conflict:
    The first middleware using `words` can get `result.words`. The middleware called after will get
    `results.words_1`.
 
-   This is seen in [SQLAlchemy's labels][sqlalchemy's labels] to [avoid label
-   collisions][avoid label collisions].
+   This is seen in [SQLAlchemy's labels] to [avoid label
+   collisions].
 
 2. Middleware / datasets use namespace with `_` (`c.unihan_kDefinition`):
 
@@ -331,7 +331,7 @@ conflict:
 
    - Internal Core API is far simpler and lighter
    - Easier to look at
-   - More common practice, [aws_cli][aws_cli].
+   - More common practice, [aws_cli].
    - Middleware is a package module, symbolically `.`'s are used to separate modules and packages
      (java, python, informally in JS).
 
@@ -343,7 +343,7 @@ conflict:
 
 The middleware approach provides the best practice to get the job done.
 
-[Connect][connect] in node represents the best practice in plugin architecture in JS. Middleware is
+[Connect] in node represents the best practice in plugin architecture in JS. Middleware is
 added as a way to provide a lite, dead-simple framework.
 
 Cihai / Hanzi can take a similar approach.
