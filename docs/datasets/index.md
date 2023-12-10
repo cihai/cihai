@@ -26,7 +26,7 @@ unihan
 For all data sets, the goal is to achieve:
 
 - Clear and permissive a licensing for public and private use
-- Compatibility with [Data Packages][data packages], for data to be language agnostic and consistent
+- Compatibility with [data Packages], for data to be language agnostic and consistent
 - Open source scripting used to process data into a common format
 
 | Set       | License           | Data Package           | Project           |
@@ -38,7 +38,7 @@ For all data sets, the goal is to achieve:
 | handedict | OK                | TODO                   | TODO              |
 | cfdict    | OK                | MISSING [^cite_cfdict] | UNKNOWN           |
 
-[data packages]: http://frictionlessdata.io/data-packages/
+[data packages]: https://specs.frictionlessdata.io/data-package/
 
 [^cite_unhn-l]: <http://unicode.org/charts/unihan.html#Disclaimers>
 [^cite_unhn-d]: <https://raw.githubusercontent.com/cihai/unihan-etl/master/datapackage.json>
