@@ -26,11 +26,15 @@ class DatasetExample:
         modules, the dataset may be a CSV, sqlite database, or an API. As long
         as the data appends to the :param:`response` and returns it.
 
-        :param request: The character or string being looked up, e.g. '好'.
-        :type request: str
-        :returns: Cihai response dictionary
-        :rtype: dict
+        Parameters
+        ----------
+        request : str
+            The character or string being looked up, e.g. '好'.
 
+        Returns
+        -------
+        str
+           Cihai response dictionary
         """
         dataset: Response = {"好": {"definition": "hao"}}
 
@@ -43,21 +47,25 @@ class DatasetExample:
     def reverse(self, request: str, response: "Response") -> "Response":
         """Return chinese character data from a reverse lookup sample dataset.
 
-        :param request: The character or string being looked up, e.g. '好'.
-        :type request: str
-        :returns: Cihai reverse look up. The results should be formatted as::
+        Parameters
+        ----------
+        request : str
+            The character or string being looked up, e.g. '好'.
 
-            {
-                '好': {
-                    'definition': 'good.'
+        Returns
+        -------
+        dict
+
+            Cihai reverse look up. The results should be formatted as::
+
+                {
+                    '好': {
+                        'definition': 'good.'
+                    }
                 }
-            }
 
-        When the character already exists in :param:`response`, the character
-        ``好`` must be mixed-in with, not overwritten.
-
-        :rtype: dict
-
+            When the character already exists in :param:`response`, the character
+            ``好`` must be mixed-in with, not overwritten.
         """
         dataset: Response = {"好": {"definition": "hao"}}
 
