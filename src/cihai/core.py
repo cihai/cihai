@@ -164,7 +164,7 @@ class Cihai:
 
         assert callable(_cls)
 
-        setattr(self, namespace, _cls())
+        setattr(self, namespace, _cls(cihai=self))
         dataset = getattr(self, namespace)
 
         if isinstance(dataset, extend.SQLAlchemyMixin):

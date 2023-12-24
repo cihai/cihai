@@ -22,6 +22,7 @@ if t.TYPE_CHECKING:
     from sqlalchemy.orm.session import Session
     from sqlalchemy.sql.schema import MetaData
 
+    from cihai.core import Cihai
     from cihai.db import Database
 
     DSP = t.TypeVar("DSP", bound=t.Type["DatasetPlugin"])
@@ -100,6 +101,11 @@ class Dataset:
     --------
     cihai.data.unihan.dataset.Unihan : reference implementation
     """
+
+    cihai: "Cihai"
+
+    def __init__(self, cihai: "Cihai"):
+        self.cihai = cihai
 
     def bootstrap(self) -> None:
         """Bootstrapping (e.g. fetching, extraction, transform, loading) Cihai data."""
