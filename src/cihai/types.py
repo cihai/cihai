@@ -22,7 +22,15 @@ if t.TYPE_CHECKING:
 
 PluginName: "TypeAlias" = str
 PluginOptions: "TypeAlias" = t.Dict[str, object]
-PluginMap: "TypeAlias" = t.Dict[PluginName, PluginOptions]
+
+
+class PluginDict(TypedDict, total=False):
+    """Plugin schema."""
+
+    options: NotRequired[PluginOptions]
+
+
+PluginMap: "TypeAlias" = t.Dict[PluginName, PluginDict]
 UntypedDict: "TypeAlias" = t.Dict[str, object]
 
 
