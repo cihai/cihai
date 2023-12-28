@@ -27,7 +27,7 @@ def run(unihan_options: t.Optional[dict[str, object]] = None) -> None:
     """Wrapped so we can test in tests/test_examples.py"""
     log.info("This example log.infos variant character data.")
 
-    c = Cihai(config={"plugins": {"variants": unihan_options}})
+    c = Cihai(config={"plugins": {"variants": {"options": unihan_options}}})
     if not c.unihan.is_bootstrapped:  # download and install Unihan to db
         c.unihan.bootstrap()
 

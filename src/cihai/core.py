@@ -140,7 +140,7 @@ class Cihai:
 
     def bootstrap(self) -> None:
         """Initialize Cihai."""
-        for namespace, class_string in self.config.datasets.items():
+        for dataset_name, class_string in self.config.datasets.items():
             assert isinstance(class_string, str) or (
                 inspect.isclass(class_string)
                 and (
@@ -148,22 +148,26 @@ class Cihai:
                     or class_string == extend.Dataset
                 )
             )
-            assert isinstance(namespace, str)
-            self.add_dataset(class_string, namespace)
+            assert isinstance(dataset_name, str)
+            self.add_dataset(class_string, namespace=dataset_name)
 
-        for plugin_name, plugins in self.config.plugins.items():
+        for plugin_name, plugin_dict in self.config.plugins.items():
             assert isinstance(plugin_name, str)
-            assert isinstance(plugins, dict)
-            for namespace, class_string in plugins.items():
-                assert isinstance(namespace, str)
-                assert isinstance(class_string, str) or (
-                    inspect.isclass(class_string)
-                    and (
-                        issubclass(class_string, extend.DatasetPlugin)
-                        or class_string == extend.DatasetPlugin
+            assert isinstance(plugin_dict, dict)
+            if "options" in plugin_dict:
+                assert isinstance(plugin_dict["options"], dict)
+                for option_name, class_string in plugin_dict["options"].items():
+                    assert isinstance(option_name, str)
+                    assert isinstance(class_string, str) or (
+                        inspect.isclass(class_string)
+                        and (
+                            issubclass(class_string, extend.DatasetPlugin)
+                            or class_string == extend.DatasetPlugin
+                        )
                     )
-                )
-                getattr(self, plugin_name).add_plugin(class_string, namespace)
+                    print(f"option_name: {option_name}")
+                    print(f"class string: {class_string}")
+                    getattr(self, plugin_name).add_plugin(class_string, plugin_name)
 
     def add_dataset(self, cls: t.Union["DS", str], namespace: str) -> None:
         """Add dataset to Cihai."""
