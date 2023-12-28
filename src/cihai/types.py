@@ -21,6 +21,9 @@ if t.TYPE_CHECKING:
     from cihai.extend import Dataset
 
 
+PluginName: "TypeAlias" = str
+PluginOptions: "TypeAlias" = dict[str, object]
+PluginMap: "TypeAlias" = dict[PluginName, PluginOptions]
 UntypedDict: "TypeAlias" = dict[str, object]
 
 
@@ -63,7 +66,7 @@ class RawConfigDict(TypedDict):
 class ConfigDict(TypedDict):
     """Cihai Configuration dictionary."""
 
-    plugins: dict[str, RawPluginConfigDict]
+    plugins: dict["PluginName", RawPluginConfigDict]
     datasets: dict[str, t.Union[str, "Dataset"]]
     database: RawDatabaseConfigDict
     dirs: RawDirsConfigDict

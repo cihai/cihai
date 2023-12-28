@@ -96,10 +96,15 @@ class Cihai:
         unihan : boolean, optional
             Bootstrap the core UNIHAN dataset (recommended)
         """
+        print(f"config 1: {t.reveal_type(config)}")
+
         if config is None:
             config = self.default_config
+            print(f"config 2: {t.reveal_type(config)}")
         if not isinstance(config, Config):
             config = Config(**config)
+            print(f"config 3: {t.reveal_type(config)}")
+        print(f"config 4: {t.reveal_type(config)}")
 
         assert isinstance(config, Config)
 
@@ -117,6 +122,7 @@ class Cihai:
             config,
             **dataclasses.asdict(expand_config(config, app_dirs)),
         )
+        print(f"config: {t.reveal_type(config)}")
 
         if not is_valid_config(config=config):
             raise CihaiConfigError
@@ -145,8 +151,8 @@ class Cihai:
             assert isinstance(namespace, str)
             self.add_dataset(class_string, namespace)
 
-        for dataset, plugins in self.config.plugins.items():
-            assert isinstance(dataset, str)
+        for plugin_name, plugins in self.config.plugins.items():
+            assert isinstance(plugin_name, str)
             assert isinstance(plugins, dict)
             for namespace, class_string in plugins.items():
                 assert isinstance(namespace, str)
@@ -157,7 +163,7 @@ class Cihai:
                         or class_string == extend.DatasetPlugin
                     )
                 )
-                getattr(self, dataset).add_plugin(class_string, namespace)
+                getattr(self, plugin_name).add_plugin(class_string, namespace)
 
     def add_dataset(self, cls: t.Union["DS", str], namespace: str) -> None:
         """Add dataset to Cihai."""

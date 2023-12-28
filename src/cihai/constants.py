@@ -13,7 +13,9 @@ from cihai.__about__ import (
 from unihan_etl._internal.app_dirs import AppDirs
 
 if t.TYPE_CHECKING:
-    from cihai.types import UntypedDict
+    from typing_extensions import TypeAlias
+
+    from cihai.types import PluginMap
 
 
 #: XDG App directory locations
@@ -22,8 +24,7 @@ app_dirs = AppDirs(_app_dirs=_app_dirs)
 
 
 #: Default configuration
-# DEFAULT_CONFIG: "UntypedDict" = {
-#     },
+# DEFAULT_CONFIG: "UntypedDict" = {}
 
 
 @dataclasses.dataclass
@@ -33,8 +34,9 @@ class Database:
     url: str = "sqlite:///{user_data_dir}/cihai.db"
 
 
-Dataset = str
-Datasets = dict[str, Dataset]
+DatasetName: "TypeAlias" = str
+Dataset: "TypeAlias" = str
+Datasets = dict[DatasetName, Dataset]
 
 
 @dataclasses.dataclass
@@ -45,7 +47,7 @@ class Config:
     database: Database = dataclasses.field(default_factory=Database)
     dirs: AppDirs = dataclasses.field(default_factory=lambda: app_dirs)
     datasets: Datasets = dataclasses.field(default_factory=dict)
-    plugins: "UntypedDict" = dataclasses.field(default_factory=dict)
+    plugins: "PluginMap" = dataclasses.field(default_factory=dict)
 
     def __post_init__(self) -> None:
         """Resolve variables and paths for Cihai configuration."""
