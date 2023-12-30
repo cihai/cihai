@@ -1,9 +1,8 @@
 # cihai &middot; [![Python Package](https://img.shields.io/pypi/v/cihai.svg)](https://pypi.org/project/cihai/) [![License](https://img.shields.io/github/license/cihai/cihai.svg)](https://github.com/cihai/cihai/blob/master/LICENSE) [![Code Coverage](https://codecov.io/gh/cihai/cihai/branch/master/graph/badge.svg)](https://codecov.io/gh/cihai/cihai)
 
-Python library for [CJK](https://cihai.git-pull.com/glossary.html#term-cjk) (chinese, japanese,
-korean) data.
-
-This project is under active development. Follow our progress and check back for updates!
+Cihai is an open source Python library for looking up and analyzing Chinese
+characters, Japanese kanji, Korean Hanja, and Vietnamese Chữ Nôm ([CJK]) across various
+datasets.
 
 ## Quickstart
 

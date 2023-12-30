@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "cihai"
 version = "0.30.0"
-description = "Library for CJK (chinese, japanese, korean) language data."
+description = "Python library designed for CJK (Chinese, Japanese, Korean, Vietnamese) character and word data retrieval and analysis."
 license = "MIT"
 authors = ["Tony Narlock <tony@git-pull.com>"]
 classifiers = [
