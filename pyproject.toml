@@ -111,6 +111,8 @@ files = [
 
 [tool.ruff]
 target-version = "py38"
+
+[tool.ruff.lint]
 select = [
   "E", # pycodestyle
   "F", # pyflakes
@@ -127,14 +129,14 @@ select = [
   "D", # pydocstyle
 ]
 
-[tool.ruff.isort]
+[tool.ruff.lint.isort]
 known-first-party = ["unihan_etl", "cihai"]
 combine-as-imports = true
 
-[tool.ruff.pydocstyle]
+[tool.ruff.lint.pydocstyle]
 convention = "numpy"
 
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 "*/__init__.py" = ["F401"]
 
 [tool.pytest.ini_options]
