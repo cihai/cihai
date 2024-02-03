@@ -34,7 +34,7 @@ def run() -> None:
     c = Cihai(unihan=False)
 
     c.add_dataset(MyDataset, namespace="moo")
-    my_dataset = MyDataset()
+    my_dataset = MyDataset(cihai=c)
     my_dataset.bootstrap()
 
     print("Definitions exactly for 好", my_dataset.givemedata("好"))
