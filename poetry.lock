@@ -1378,13 +1378,13 @@ files = [
 
 [[package]]
 name = "unihan-etl"
-version = "0.30.1"
+version = "0.33.1"
 description = "Export UNIHAN data of Chinese, Japanese, Korean to CSV, JSON or YAML"
 optional = false
 python-versions = ">=3.8,<4.0"
 files = [
-    {file = "unihan_etl-0.30.1-py3-none-any.whl", hash = "sha256:1f50f1393a795614b19ddeba725948118526648acb5d3b706681d9cd58ca8da9"},
-    {file = "unihan_etl-0.30.1.tar.gz", hash = "sha256:786ebf6dc0a83db48fec51992333deee3363d4a08b6a31d77970860abe488a42"},
+    {file = "unihan_etl-0.33.1-py3-none-any.whl", hash = "sha256:bb8df80a592ca49ef79a361f54fd4e0d42285867e60e6b78e134c89d2b14c022"},
+    {file = "unihan_etl-0.33.1.tar.gz", hash = "sha256:3822042c5225bd1a04558d223bb6357cc10616aa1ac146788391799eaa01d969"},
 ]
 
 [package.dependencies]
@@ -1480,4 +1480,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "d36a4d1642c55895ba7036bb2c5831bdf67bd239e4b797973e665dc88e0bd0f5"
+content-hash = "bddd6e4c670b1f4b053df4cabf0f6cd33e09845765b434bcfc321d4347ba4ef3"
