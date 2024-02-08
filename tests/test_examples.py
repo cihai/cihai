@@ -17,7 +17,9 @@ class LoadScriptFn(t.Protocol):
     """Protocol typings for load_script()."""
 
     def __callable__(
-        self, example: str, project_root: pathlib.Path
+        self,
+        example: str,
+        project_root: pathlib.Path,
     ) -> types.ModuleType:
         """Return script as a module."""
         ...
@@ -59,7 +61,8 @@ def test_variants(
 
 
 def test_ts_difficulties(
-    unihan_options: "UnihanOptions", project_root: pathlib.Path
+    unihan_options: "UnihanOptions",
+    project_root: pathlib.Path,
 ) -> None:
     """Test variant_ts_difficulties."""
     example = load_script("variant_ts_difficulties", project_root=project_root)

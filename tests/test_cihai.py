@@ -51,7 +51,9 @@ def test_unihan_options(
     """Test initialization of UNIHAN with options."""
     app = Cihai.from_file(test_config_file)
     bootstrap.bootstrap_unihan(
-        engine=engine, metadata=app.sql.metadata, options=unihan_options
+        engine=engine,
+        metadata=app.sql.metadata,
+        options=unihan_options,
     )
     assert "Unihan" in app.sql.metadata.tables
     assert app.sql.metadata.tables["Unihan"].columns

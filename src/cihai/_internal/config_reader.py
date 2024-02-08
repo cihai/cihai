@@ -12,9 +12,9 @@ if t.TYPE_CHECKING:
 FormatLiteral = t.Literal["json", "yaml"]
 
 
-class ConfigFormatNotImplementedError(NotImplementedError):
-    def __init__(self, format: str):
-        return super().__init__(f"{format} not supported in configuration")
+class ConfigfmtNotImplementedError(NotImplementedError):
+    def __init__(self, fmt: str):
+        return super().__init__(f"{fmt} not supported in configuration")
 
 
 class ConfigExtensionNotImplementedError(NotImplementedError):
@@ -36,7 +36,7 @@ class ConfigReader:
         self.content = content
 
     @staticmethod
-    def _load(format: "FormatLiteral", content: str) -> t.Dict[str, t.Any]:
+    def _load(fmt: "FormatLiteral", content: str) -> t.Dict[str, t.Any]:
         """Load raw config data and directly return it.
 
         >>> ConfigReader._load("json", '{ "session_name": "my session" }')
@@ -45,7 +45,7 @@ class ConfigReader:
         >>> ConfigReader._load("yaml", 'session_name: my session')
         {'session_name': 'my session'}
         """
-        if format == "yaml":
+        if fmt == "yaml":
             return t.cast(
                 t.Dict[str, t.Any],
                 yaml.load(
@@ -53,13 +53,13 @@ class ConfigReader:
                     Loader=yaml.SafeLoader,
                 ),
             )
-        elif format == "json":
+        elif fmt == "json":
             return t.cast(t.Dict[str, t.Any], json.loads(content))
         else:
-            raise NotImplementedError(format=format)
+            raise NotImplementedError(fmt=fmt)
 
     @classmethod
-    def load(cls, format: "FormatLiteral", content: str) -> "ConfigReader":
+    def load(cls, fmt: "FormatLiteral", content: str) -> "ConfigReader":
         """Load raw config data into a ConfigReader instance (to dump later).
 
         >>> cfg = ConfigReader.load("json", '{ "session_name": "my session" }')
@@ -76,7 +76,7 @@ class ConfigReader:
         """
         return cls(
             content=cls._load(
-                format=format,
+                fmt=fmt,
                 content=content,
             ),
         )
@@ -115,14 +115,14 @@ class ConfigReader:
         content = path.open().read()
 
         if path.suffix in [".yaml", ".yml"]:
-            format: FormatLiteral = "yaml"
+            fmt: FormatLiteral = "yaml"
         elif path.suffix == ".json":
-            format = "json"
+            fmt = "json"
         else:
             raise ConfigExtensionNotImplementedError(ext=path.suffix, path=path)
 
         return cls._load(
-            format=format,
+            fmt=fmt,
             content=content,
         )
 
@@ -168,7 +168,7 @@ class ConfigReader:
 
     @staticmethod
     def _dump(
-        format: "FormatLiteral",
+        fmt: "FormatLiteral",
         content: "RawConfigData",
         indent: int = 2,
         **kwargs: t.Any,
@@ -181,22 +181,22 @@ class ConfigReader:
         >>> ConfigReader._dump("json", { "session_name": "my session" })
         '{\n  "session_name": "my session"\n}'
         """
-        if format == "yaml":
+        if fmt == "yaml":
             return yaml.dump(
                 content,
                 indent=2,
                 default_flow_style=False,
                 Dumper=yaml.SafeDumper,
             )
-        elif format == "json":
+        elif fmt == "json":
             return json.dumps(
                 content,
                 indent=2,
             )
         else:
-            raise ConfigFormatNotImplementedError(format=format)
+            raise ConfigfmtNotImplementedError(fmt=fmt)
 
-    def dump(self, format: "FormatLiteral", indent: int = 2, **kwargs: t.Any) -> str:
+    def dump(self, fmt: "FormatLiteral", indent: int = 2, **kwargs: t.Any) -> str:
         r"""Dump via ConfigReader instance.
 
         >>> cfg = ConfigReader({ "session_name": "my session" })
@@ -206,7 +206,7 @@ class ConfigReader:
         '{\n  "session_name": "my session"\n}'
         """
         return self._dump(
-            format=format,
+            fmt=fmt,
             content=self.content,
             indent=indent,
             **kwargs,

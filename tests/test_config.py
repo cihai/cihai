@@ -19,14 +19,14 @@ dirs = AppDirs("cihai", "cihai team")  # appname  # app author
 def test_expand_config_xdg_vars() -> None:
     """Test resolution of XDG Variables."""
     initial_dict: UntypedDict = {
-        "dirs": {"cache": "{user_cache_dir}", "data": "{user_cache_dir}/data"}
+        "dirs": {"cache": "{user_cache_dir}", "data": "{user_cache_dir}/data"},
     }
 
     expected_dict: UntypedDict = {
         "dirs": {
             "cache": pathlib.Path(dirs.user_cache_dir),
             "data": pathlib.Path(dirs.user_cache_dir) / "data",
-        }
+        },
     }
 
     expand_config(initial_dict, dirs)
@@ -49,7 +49,7 @@ def test_expand_config_env_vars(tmpdir: str, monkeypatch: pytest.MonkeyPatch) ->
     initial_dict: UntypedDict = {"dirs": {"cache": "${MYDIR}"}}
 
     expected_dict: UntypedDict = {
-        "dirs": {"cache": pathlib.Path(str(os.environ.get("MYDIR")))}
+        "dirs": {"cache": pathlib.Path(str(os.environ.get("MYDIR")))},
     }
 
     expand_config(initial_dict, dirs)

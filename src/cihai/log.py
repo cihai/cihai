@@ -134,7 +134,7 @@ class DebugLogFormatter(LogFormatter):
         ]
 
         tpl = "".join(
-            reset + levelname + asctime + name + module_funcname + lineno + reset
+            reset + levelname + asctime + name + module_funcname + lineno + reset,
         )
 
         return tpl

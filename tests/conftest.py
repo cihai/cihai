@@ -51,7 +51,9 @@ def zip_file(zip_path: pathlib.Path, fixture_path: pathlib.Path) -> zipfile.ZipF
 
 @pytest.fixture
 def unihan_options(
-    zip_file: zipfile.ZipFile, zip_path: pathlib.Path, tmp_path: pathlib.Path
+    zip_file: zipfile.ZipFile,
+    zip_path: pathlib.Path,
+    tmp_path: pathlib.Path,
 ) -> "UnihanOptions":
     """Return test UnihanOptions."""
     return {

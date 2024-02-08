@@ -31,7 +31,9 @@ class Unihan(Dataset, SQLAlchemyMixin):
             options = {}
 
         bootstrap.bootstrap_unihan(
-            engine=self.sql.engine, metadata=self.sql.metadata, options=options
+            engine=self.sql.engine,
+            metadata=self.sql.metadata,
+            options=options,
         )
         self.sql.reflect_db()  # automap new table created during bootstrap
 
@@ -70,7 +72,7 @@ class Unihan(Dataset, SQLAlchemyMixin):
         Unihan = self.sql.base.classes.Unihan
         columns = Unihan.__table__.columns
         return self.sql.session.query(Unihan).filter(
-            or_(*[column.contains(hint) for column in columns for hint in hints])
+            or_(*[column.contains(hint) for column in columns for hint in hints]),
         )
 
     def with_fields(self, fields: t.List[str]) -> "Query[Unihan]":
