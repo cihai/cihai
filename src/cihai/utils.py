@@ -69,6 +69,6 @@ def import_string(import_name: str, silent: bool = False) -> t.Any:
     except ImportError as e:
         if not silent:
             raise exc.ImportStringError(import_name, e).with_traceback(
-                sys.exc_info()[2]
+                sys.exc_info()[2],
             ) from None
     return None

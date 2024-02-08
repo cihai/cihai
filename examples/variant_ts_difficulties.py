@@ -15,12 +15,12 @@ def run(unihan_options: t.Optional[t.Dict[str, object]] = None) -> None:
         c.unihan.bootstrap(unihan_options)
 
     c.unihan.add_plugin(
-        "cihai.data.unihan.dataset.UnihanVariants", namespace="variants"
+        "cihai.data.unihan.dataset.UnihanVariants", namespace="variants",
     )
 
     print(
         "This example prints some tricky cases of character-by-character "
-        "Traditional-Simplified mapping."
+        "Traditional-Simplified mapping.",
     )
     print("https://www.unicode.org/reports/tr38/#N10211")
     print("3.7.1 bullet 4")

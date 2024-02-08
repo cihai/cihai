@@ -26,7 +26,7 @@ class ImportStringError(ImportError, CihaiException):
     exception: BaseException
 
     def __init__(
-        self, import_name: str, exception: t.Union[ModuleNotFoundError, ImportError]
+        self, import_name: str, exception: t.Union[ModuleNotFoundError, ImportError],
     ) -> None:
         from .utils import import_string
 

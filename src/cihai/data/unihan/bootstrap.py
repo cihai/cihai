@@ -64,7 +64,7 @@ def is_bootstrapped(metadata: sqlalchemy.sql.schema.MetaData) -> bool:
 
 
 def create_unihan_table(
-    columns: t.List[str], metadata: sqlalchemy.sql.schema.MetaData
+    columns: t.List[str], metadata: sqlalchemy.sql.schema.MetaData,
 ) -> sqlalchemy.sql.schema.Table:
     """Create table and return :class:`sqlalchemy.sql.schema.Table`.
 
