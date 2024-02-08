@@ -10,6 +10,25 @@
 
   Fix `kRSUnicode` double apostrophes.
 
+### Development
+
+- Strengthen linting (#367)
+
+  - Add flake8-commas (COM)
+
+    - https://docs.astral.sh/ruff/rules/#flake8-commas-com
+    - https://pypi.org/project/flake8-commas/
+
+  - Add flake8-builtins (A)
+
+    - https://docs.astral.sh/ruff/rules/#flake8-builtins-a
+    - https://pypi.org/project/flake8-builtins/
+
+  - Add flake8-errmsg (EM)
+
+    - https://docs.astral.sh/ruff/rules/#flake8-errmsg-em
+    - https://pypi.org/project/flake8-errmsg/
+
 ### Documentation
 
 - API docs: Split into multiple pages (#363)
