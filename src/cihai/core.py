@@ -168,7 +168,10 @@ class Cihai:
 
     @classmethod
     def from_file(
-        cls, config_path: t.Union[pathlib.Path, str], *args: object, **kwargs: object,
+        cls,
+        config_path: t.Union[pathlib.Path, str],
+        *args: object,
+        **kwargs: object,
     ) -> "Cihai":
         """
         Create a Cihai instance from a JSON or YAML config.

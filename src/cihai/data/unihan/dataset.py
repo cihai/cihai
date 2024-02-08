@@ -31,7 +31,9 @@ class Unihan(Dataset, SQLAlchemyMixin):
             options = {}
 
         bootstrap.bootstrap_unihan(
-            engine=self.sql.engine, metadata=self.sql.metadata, options=options,
+            engine=self.sql.engine,
+            metadata=self.sql.metadata,
+            options=options,
         )
         self.sql.reflect_db()  # automap new table created during bootstrap
 

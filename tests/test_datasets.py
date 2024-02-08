@@ -20,7 +20,8 @@ if t.TYPE_CHECKING:
 
 
 cjk_ranges: t.Dict[
-    str, t.Sequence[int],
+    str,
+    t.Sequence[int],
 ] = {  # http://www.unicode.org/reports/tr38/#BlockListing
     "CJK Unified Ideographs": range(0x4E00, 0x9FD5 + 1),
     "CJK Unified Ideographs Extension A": range(0x3400, 0x4DBF + 1),
@@ -159,7 +160,9 @@ def chars(
 
 
 def test_insert_row(
-    chars: t.List[Char], unihan_table: sqlalchemy.Table, engine: sqlalchemy.Engine,
+    chars: t.List[Char],
+    unihan_table: sqlalchemy.Table,
+    engine: sqlalchemy.Engine,
 ) -> None:
     """Test inserting rows into UNIHAN / CJK table."""
     cjkchar = chars[0]
@@ -177,7 +180,8 @@ def test_insert_row(
 
 
 def test_insert_bad_key(
-    sample_table: sqlalchemy.Table, engine: sqlalchemy.Engine,
+    sample_table: sqlalchemy.Table,
+    engine: sqlalchemy.Engine,
 ) -> None:
     """Test inserting non-existant character into UNIHAN / CJK table."""
     with engine.connect() as connection:
@@ -205,7 +209,9 @@ def test_insert_on_foreign_key(
             [
                 {
                     "char_id": get_char_fk(
-                        char, engine=engine, unihan_table=unihan_table,
+                        char,
+                        engine=engine,
+                        unihan_table=unihan_table,
                     ),
                     "value": "hey",
                 },
@@ -219,11 +225,15 @@ def test_insert_on_foreign_key(
 
 
 def test_get_char_foreign_key_multiple(
-    chars: t.List[Char], engine: sqlalchemy.Engine, unihan_table: sqlalchemy.Table,
+    chars: t.List[Char],
+    engine: sqlalchemy.Engine,
+    unihan_table: sqlalchemy.Table,
 ) -> None:
     """Test retrieving multiple characters by key from UNIHAN / CJK table."""
     char_fk_multiple = get_char_fk_multiple(
-        engine, unihan_table, [c["char"] for c in chars],
+        engine,
+        unihan_table,
+        [c["char"] for c in chars],
     )
 
     for char in char_fk_multiple:

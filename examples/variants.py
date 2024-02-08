@@ -27,7 +27,8 @@ def run(unihan_options: t.Optional[t.Dict[str, object]] = None) -> None:
         c.unihan.bootstrap()
 
     c.unihan.add_plugin(
-        "cihai.data.unihan.dataset.UnihanVariants", namespace="variants",
+        "cihai.data.unihan.dataset.UnihanVariants",
+        namespace="variants",
     )
 
     print("## ZVariants")
