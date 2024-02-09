@@ -1,10 +1,10 @@
 #
 # Unihan_NumericValues.txt
-# Date: 2013-02-25 22:46:17 GMT [JHJ]
-# Unicode version: 6.3.0
+# Date: 2016-06-01 07:01:48 GMT [JHJ]
+# Unicode version: 9.0.0
 #
 # Unicode Character Database
-# Copyright (c) 1991-2013 Unicode, Inc.
+# © 1991-2016 Unicode®, Inc.
 # For terms of use, see http://www.unicode.org/terms_of_use.html
 # For documentation, see http://www.unicode.org/reports/tr44/
 #
@@ -12,6 +12,8 @@
 #	kAccountingNumeric
 #	kOtherNumeric
 #	kPrimaryNumeric
+#	kVietnameseNumeric
+#	kZhuangNumeric
 #
 # For details on the file format, see http://www.unicode.org/reports/tr38/
 #
@@ -88,5 +90,10 @@ U+22390	kOtherNumeric	2
 U+22998	kOtherNumeric	3
 U+23B1B	kOtherNumeric	3
 U+2626D	kOtherNumeric	4
+U+3431	kVietnameseNumeric	9
+U+53F0	kVietnameseNumeric	2
+U+5549	kVietnameseNumeric	100
+U+3576	kZhuangNumeric	5
+U+4E86	kZhuangNumeric	1
 
 # EOF
