@@ -80,8 +80,14 @@ def test_basic_usage(
 
     captured = capsys.readouterr()
 
-    assert "lookup for 好: good" in captured.out
-    assert re.search(r'matches for "good": .*好', captured.out, re.MULTILINE)
+    assert (
+        "lookup for 㐭: (same as 廩) a granary, to supply (foodstuff)" in captured.out
+    )
+    assert re.search(
+        r'matches for "granary": .*㐭',
+        captured.out,
+        re.MULTILINE,
+    )
 
 
 def test_basic_usage_manual(
@@ -95,5 +101,11 @@ def test_basic_usage_manual(
 
     captured = capsys.readouterr()
 
-    assert "lookup for 好: good" in captured.out
-    assert re.search(r'matches for "good": .*好', captured.out, re.MULTILINE)
+    assert (
+        "lookup for 㐭: (same as 廩) a granary, to supply (foodstuff)" in captured.out
+    )
+    assert re.search(
+        r'matches for "granary": .*㐭',
+        captured.out,
+        re.MULTILINE,
+    )
