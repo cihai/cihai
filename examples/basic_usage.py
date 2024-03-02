@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 """Demonstrate basic case of Cihai's python API with UNIHAN."""
+
 import typing as t
 
 from cihai.core import Cihai

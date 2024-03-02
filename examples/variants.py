@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 """CJK Variant lookup example for Cihai."""
+
 import typing as t
 
 from cihai.core import Cihai

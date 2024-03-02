@@ -1,4 +1,5 @@
 """Test character conversion utilities."""
+
 from cihai import conversion
 
 

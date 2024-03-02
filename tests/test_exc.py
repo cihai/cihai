@@ -1,4 +1,5 @@
 """Exception tests for cihai."""
+
 import pytest
 
 from cihai import exc

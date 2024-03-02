@@ -1,4 +1,5 @@
 """Test utilities for cihai."""
+
 import typing as t
 
 import pytest

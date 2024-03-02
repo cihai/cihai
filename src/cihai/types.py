@@ -9,6 +9,7 @@ require ``typing_extensions`` at runtime:
 >>> def my_fn(dir_config: "DirsConfigDict") -> None:
 ...     pass
 """
+
 import pathlib
 import typing as t
 

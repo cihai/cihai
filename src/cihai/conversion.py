@@ -58,6 +58,7 @@ See these resources for more information:
 .. _MIT: https://bitbucket.org/lost_theory/ltchinese/src/9227813/LICENSE.txt
 .. _conversion.py @9227813: https://bitbucket.org/lost_theory/ltchinese/raw/9227813/ltchinese/conversion.py
 """
+
 import logging
 import re
 import typing as t
@@ -223,18 +224,15 @@ def euc_to_unicode(hexstr: bytes) -> str:
 
 
 @t.overload
-def python_to_ucn(uni_char: str, as_bytes: t.Literal[True]) -> bytes:
-    ...
+def python_to_ucn(uni_char: str, as_bytes: t.Literal[True]) -> bytes: ...
 
 
 @t.overload
-def python_to_ucn(uni_char: str, as_bytes: t.Literal[False]) -> str:
-    ...
+def python_to_ucn(uni_char: str, as_bytes: t.Literal[False]) -> str: ...
 
 
 @t.overload
-def python_to_ucn(uni_char: str, as_bytes: t.Literal[False] = False) -> str:
-    ...
+def python_to_ucn(uni_char: str, as_bytes: t.Literal[False] = False) -> str: ...
 
 
 def python_to_ucn(uni_char: str, as_bytes: bool = False) -> t.Union[bytes, str]:

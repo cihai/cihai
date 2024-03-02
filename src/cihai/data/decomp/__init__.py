@@ -64,6 +64,7 @@ of course quality checking and corrections.
 Last edited Dec 6, 2013 at 8:09 PM by gavingrover, version 3
 
 """
+
 import logging
 
 __copyright__ = "Copyright 2013-2018 Tony Narlock."

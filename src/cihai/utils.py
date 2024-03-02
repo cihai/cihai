@@ -1,4 +1,5 @@
 """Utility and helper methods for cihai."""
+
 import sys
 import typing as t
 

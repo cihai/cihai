@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 """Cihai example for difficult cases of traditional and simplified CJK variants."""
+
 import typing as t
 
 from cihai.core import Cihai

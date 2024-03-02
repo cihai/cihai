@@ -1,4 +1,5 @@
 """Pytest configuration for cihai tests."""
+
 import pathlib
 import typing as t
 import zipfile

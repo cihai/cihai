@@ -21,6 +21,11 @@
 
 ### Development
 
+- ruff 0.2.2 -> 0.3.0 (#368)
+
+  Related formattings. Update CI to use `ruff check .` instead of `ruff .`.
+
+  See also: https://github.com/astral-sh/ruff/blob/v0.3.0/CHANGELOG.md
 - Strengthen linting (#367)
 
   - Add flake8-commas (COM)
