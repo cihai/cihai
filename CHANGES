@@ -6,6 +6,9 @@
 
 ### Development
 
+- poetry: 1.7.1 -> 1.8.1
+
+  See also: https://github.com/python-poetry/poetry/blob/1.8.1/CHANGELOG.md
 - ruff 0.2.2 -> 0.3.0 (#368)
 
   Related formattings. Update CI to use `ruff check .` instead of `ruff .`.
