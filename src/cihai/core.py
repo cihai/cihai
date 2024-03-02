@@ -1,4 +1,5 @@
 """Cihai core functionality."""
+
 import inspect
 import logging
 import pathlib

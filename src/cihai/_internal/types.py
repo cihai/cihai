@@ -6,6 +6,7 @@ Notes
 
 .. _typeshed's: https://github.com/python/typeshed/blob/5df8de7/stdlib/_typeshed/__init__.pyi#L115-L118
 """
+
 import typing as t
 from os import PathLike
 

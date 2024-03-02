@@ -1,4 +1,5 @@
 """Typings for cihai test module."""
+
 import pathlib
 import typing as t
 

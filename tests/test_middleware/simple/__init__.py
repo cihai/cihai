@@ -1,4 +1,5 @@
 """Simple demonstration dataset for Cihai."""
+
 import typing as t
 
 if t.TYPE_CHECKING:

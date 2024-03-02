@@ -1,4 +1,5 @@
 """Fetch + extract + transform + load UNIHAN dataset to Cihai."""
+
 import dataclasses
 import typing as t
 

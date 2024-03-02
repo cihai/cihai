@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 """Example of a custom dataset for cihai."""
+
 import typing as t
 
 from cihai.core import Cihai

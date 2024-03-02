@@ -1,4 +1,5 @@
 """Exceptions raised from the Cihai library."""
+
 import typing as t
 
 

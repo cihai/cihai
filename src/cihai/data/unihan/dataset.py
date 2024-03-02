@@ -1,4 +1,5 @@
 """Module for UNIHAN Dataset for cihai."""
+
 import typing as t
 
 from sqlalchemy import or_

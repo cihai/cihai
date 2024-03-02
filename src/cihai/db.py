@@ -1,4 +1,5 @@
 """Cihai core functionality."""
+
 import typing as t
 
 from sqlalchemy import MetaData, create_engine

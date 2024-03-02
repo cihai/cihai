@@ -1,4 +1,5 @@
 """Configuration options for Cihai app."""
+
 import os
 import pathlib
 import typing as t

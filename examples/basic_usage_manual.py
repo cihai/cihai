@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 """Demonstrate what basic_usage's unihan=True (default Cihai) does under the hood."""
+
 import typing as t
 
 from cihai.core import Cihai

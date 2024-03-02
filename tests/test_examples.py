@@ -1,4 +1,5 @@
 """Test examples/ found in cihai source directory."""
+
 import importlib
 import importlib.util
 import pathlib

@@ -1,4 +1,5 @@
 """Test bootstrapping of database."""
+
 import pathlib
 import typing as t
 

@@ -1,4 +1,5 @@
 """Constants for cihai."""
+
 import pathlib
 import typing as t
 
