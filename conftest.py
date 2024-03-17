@@ -37,7 +37,7 @@ def user_path(home_path: pathlib.Path, home_user_name: str) -> pathlib.Path:
     return p
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture(autouse=True, scope="function")
 def set_home(
     monkeypatch: pytest.MonkeyPatch,
     user_path: pathlib.Path,
@@ -67,6 +67,7 @@ def add_doctest_fixtures(
 
     if isinstance(request._pyfuncitem, DoctestItem):
         request.getfixturevalue("set_home")
+        doctest_namespace["request"] = request
     doctest_namespace["tmp_path"] = tmp_path
 
 
