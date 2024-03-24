@@ -3,17 +3,18 @@
 import typing as t
 
 from sqlalchemy import or_
-from sqlalchemy.orm.query import Query
 from sqlalchemy.sql.schema import Column
 
-from ...conversion import parse_untagged, parse_vars
-from ...extend import Dataset, DatasetPlugin, SQLAlchemyMixin
+from cihai.conversion import parse_untagged, parse_vars
+from cihai.extend import Dataset, DatasetPlugin, SQLAlchemyMixin
+
 from . import bootstrap
 
 if t.TYPE_CHECKING:
+    from sqlalchemy.orm.query import Query
     from sqlalchemy.sql.schema import Table
 
-    from ...conversion import ParsedVars, UntaggedVars
+    from cihai.conversion import ParsedVars, UntaggedVars
 
 
 class Unihan(Dataset, SQLAlchemyMixin):

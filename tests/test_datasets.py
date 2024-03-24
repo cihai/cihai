@@ -16,10 +16,6 @@ import sqlalchemy
 
 from cihai import conversion
 
-if t.TYPE_CHECKING:
-    pass
-
-
 cjk_ranges: t.Dict[
     str,
     t.Sequence[int],

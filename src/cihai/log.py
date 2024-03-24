@@ -23,7 +23,7 @@ LEVEL_COLORS = {
 class LogFormatter(logging.Formatter):
     """Log formatter for cihai."""
 
-    def __init__(self, color: bool = True, **kwargs: t.Any):
+    def __init__(self, color: bool = True, **kwargs: t.Any) -> None:
         init()
         logging.Formatter.__init__(self, **kwargs)
 
@@ -79,9 +79,7 @@ class LogFormatter(logging.Formatter):
             " ",
         ]
 
-        tpl = "".join(reset + levelname + asctime + name + reset)
-
-        return tpl
+        return "".join(reset + levelname + asctime + name + reset)
 
 
 class DebugLogFormatter(LogFormatter):
@@ -134,8 +132,6 @@ class DebugLogFormatter(LogFormatter):
             "%(lineno)d",
         ]
 
-        tpl = "".join(
+        return "".join(
             reset + levelname + asctime + name + module_funcname + lineno + reset,
         )
-
-        return tpl

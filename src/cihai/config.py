@@ -4,11 +4,11 @@ import os
 import pathlib
 import typing as t
 
-from appdirs import AppDirs
-
 from cihai.constants import app_dirs
 
 if t.TYPE_CHECKING:
+    from appdirs import AppDirs
+
     from .types import UntypedDict
 
 
