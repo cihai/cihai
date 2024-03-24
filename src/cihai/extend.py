@@ -104,7 +104,6 @@ class Dataset:
 
     def bootstrap(self) -> None:
         """Bootstrapping (e.g. fetching, extraction, transform, loading) Cihai data."""
-        pass
 
     def add_plugin(
         self,

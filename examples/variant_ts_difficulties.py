@@ -20,26 +20,18 @@ def run(unihan_options: t.Optional[t.Dict[str, object]] = None) -> None:
         namespace="variants",
     )
 
-    print(
-        "This example prints some tricky cases of character-by-character "
-        "Traditional-Simplified mapping.",
-    )
-    print("https://www.unicode.org/reports/tr38/#N10211")
-    print("3.7.1 bullet 4")
-
     for char in c.unihan.with_fields(["kTraditionalVariant", "kSimplifiedVariant"]):
-        print(f"Character: {char.char}")
         trad = set(char.untagged_vars("kTraditionalVariant"))
         simp = set(char.untagged_vars("kSimplifiedVariant"))
         Unihan = c.sql.base.classes.Unihan
         if Unihan.char in trad and Unihan.char in simp:
-            print("Case 1")
+            pass
         else:
-            print("Case 2 (non-idempotent)")
-        for trad_var in trad:
-            print(f"s2t: {trad_var}")
-        for simp_var in simp:
-            print(f"t2s: {simp_var}")
+            pass
+        for _trad_var in trad:
+            pass
+        for _simp_var in simp:
+            pass
 
 
 if __name__ == "__main__":

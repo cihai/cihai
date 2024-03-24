@@ -38,12 +38,6 @@ def run() -> None:
     my_dataset = MyDataset()
     my_dataset.bootstrap()
 
-    print("Definitions exactly for 好", my_dataset.givemedata("好"))
-
-    print("Definitions matching with 你好:", ", ".join(my_dataset.search("好")))
-
-    print("Reverse definition with Good:", ", ".join(my_dataset.backwards("Good")))
-
 
 if __name__ == "__main__":
     run()

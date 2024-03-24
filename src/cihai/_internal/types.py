@@ -8,9 +8,10 @@ Notes
 """
 
 import typing as t
-from os import PathLike
 
 if t.TYPE_CHECKING:
+    from os import PathLike
+
     from typing_extensions import TypeAlias
 
 StrPath: "TypeAlias" = t.Union[str, "PathLike[str]"]  # stable

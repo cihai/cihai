@@ -48,7 +48,7 @@ TABLE_NAME = "Unihan"
 
 DEFAULT_COLUMNS = ["ucn", "char"]
 try:
-    DEFAULT_FIELDS = [f for c, f in UNIHAN_MANIFEST.items() if c in ["Unihan"]]
+    DEFAULT_FIELDS = [f for c, f in UNIHAN_MANIFEST.items() if c == "Unihan"]
 except Exception:
     DEFAULT_FIELDS = list(UNIHAN_MANIFEST.values())
 
@@ -60,8 +60,7 @@ def is_bootstrapped(metadata: sqlalchemy.sql.schema.MetaData) -> bool:
         table = metadata.tables[TABLE_NAME]
 
         return set(fields) == {c.name for c in table.columns}
-    else:
-        return False
+    return False
 
 
 def create_unihan_table(
@@ -93,5 +92,4 @@ def create_unihan_table(
             table.append_column(col)
 
         return table
-    else:
-        return Table(TABLE_NAME, metadata)
+    return Table(TABLE_NAME, metadata)
