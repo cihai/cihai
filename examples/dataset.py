@@ -1,10 +1,15 @@
 #!/usr/bin/env python
 """Example of a custom dataset for cihai."""
 
+import logging
 import typing as t
 
 from cihai.core import Cihai
 from cihai.extend import Dataset
+
+log = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO, format="%(message)s")
+
 
 data = {}  # any data source, internal, a file, on the internet, in a database...
 
@@ -38,11 +43,11 @@ def run() -> None:
     my_dataset = MyDataset()
     my_dataset.bootstrap()
 
-    print("Definitions exactly for 好", my_dataset.givemedata("好"))
+    log.info("Definitions exactly for 好", my_dataset.givemedata("好"))
 
-    print("Definitions matching with 你好:", ", ".join(my_dataset.search("好")))
+    log.info("Definitions matching with 你好:", ", ".join(my_dataset.search("好")))
 
-    print("Reverse definition with Good:", ", ".join(my_dataset.backwards("Good")))
+    log.info("Reverse definition with Good:", ", ".join(my_dataset.backwards("Good")))
 
 
 if __name__ == "__main__":

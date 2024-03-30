@@ -1,18 +1,22 @@
 #!/usr/bin/env python
 """CJK Variant lookup example for Cihai."""
 
+import logging
 import typing as t
 
 from cihai.core import Cihai
 from cihai.data.unihan.dataset import Unihan
 
+log = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO, format="%(message)s")
+
 
 def variant_list(unihan: Unihan, field: str) -> None:
     """Return a list of variants for a CJK character."""
     for char in unihan.with_fields([field]):
-        print(f"Character: {char.char}")
+        log.info(f"Character: {char.char}")
         for var in char.untagged_vars(field):
-            print(var)
+            log.info(var)
 
 
 def run(unihan_options: t.Optional[t.Dict[str, object]] = None) -> None:
@@ -21,7 +25,7 @@ def run(unihan_options: t.Optional[t.Dict[str, object]] = None) -> None:
         unihan_options = {}
 
     """Wrapped so we can test in tests/test_examples.py"""
-    print("This example prints variant character data.")
+    log.info("This example log.infos variant character data.")
 
     c = Cihai(config={"unihan_options": unihan_options})
     if not c.unihan.is_bootstrapped:  # download and install Unihan to db
@@ -32,13 +36,13 @@ def run(unihan_options: t.Optional[t.Dict[str, object]] = None) -> None:
         namespace="variants",
     )
 
-    print("## ZVariants")
+    log.info("## ZVariants")
     variant_list(c.unihan, "kZVariant")
 
-    print("## kSemanticVariant")
+    log.info("## kSemanticVariant")
     variant_list(c.unihan, "kSemanticVariant")
 
-    print("## kSpecializedSemanticVariant")
+    log.info("## kSpecializedSemanticVariant")
     variant_list(c.unihan, "kSpecializedSemanticVariant")
 
 

@@ -72,6 +72,7 @@ def test_ts_difficulties(
 
 def test_basic_usage(
     capsys: pytest.CaptureFixture[str],
+    caplog: pytest.LogCaptureFixture,
     unihan_options: "UnihanOptions",
     project_root: pathlib.Path,
 ) -> None:
@@ -79,20 +80,19 @@ def test_basic_usage(
     example = load_script("basic_usage", project_root=project_root)
     example.run(unihan_options=unihan_options)
 
-    captured = capsys.readouterr()
+    output = "".join(list(caplog.messages) + list(capsys.readouterr().out))
 
-    assert (
-        "lookup for 㐭: (same as 廩) a granary, to supply (foodstuff)" in captured.out
-    )
+    assert "lookup for 㐭: (same as 廩) a granary, to supply (foodstuff)" in output
     assert re.search(
         r'matches for "granary": .*㐭',
-        captured.out,
+        output,
         re.MULTILINE,
     )
 
 
 def test_basic_usage_manual(
     capsys: pytest.CaptureFixture[str],
+    caplog: pytest.LogCaptureFixture,
     unihan_options: "UnihanOptions",
     project_root: pathlib.Path,
 ) -> None:
@@ -100,13 +100,11 @@ def test_basic_usage_manual(
     example = load_script("basic_usage_manual", project_root=project_root)
     example.run(unihan_options=unihan_options)
 
-    captured = capsys.readouterr()
+    output = "".join(list(caplog.messages) + list(capsys.readouterr().out))
 
-    assert (
-        "lookup for 㐭: (same as 廩) a granary, to supply (foodstuff)" in captured.out
-    )
+    assert "lookup for 㐭: (same as 廩) a granary, to supply (foodstuff)" in output
     assert re.search(
         r'matches for "granary": .*㐭',
-        captured.out,
+        output,
         re.MULTILINE,
     )

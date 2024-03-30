@@ -1,13 +1,17 @@
 #!/usr/bin/env python
 """Cihai example for difficult cases of traditional and simplified CJK variants."""
 
+import logging
 import typing as t
 
 from cihai.core import Cihai
 
+log = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO, format="%(message)s")
+
 
 def run(unihan_options: t.Optional[t.Dict[str, object]] = None) -> None:
-    """Print difficult traditional / simplified CJK variants."""
+    """log.info difficult traditional / simplified CJK variants."""
     if unihan_options is None:
         unihan_options = {}
 
@@ -20,26 +24,26 @@ def run(unihan_options: t.Optional[t.Dict[str, object]] = None) -> None:
         namespace="variants",
     )
 
-    print(
-        "This example prints some tricky cases of character-by-character "
+    log.info(
+        "This example log.infos some tricky cases of character-by-character "
         "Traditional-Simplified mapping.",
     )
-    print("https://www.unicode.org/reports/tr38/#N10211")
-    print("3.7.1 bullet 4")
+    log.info("https://www.unicode.org/reports/tr38/#N10211")
+    log.info("3.7.1 bullet 4")
 
     for char in c.unihan.with_fields(["kTraditionalVariant", "kSimplifiedVariant"]):
-        print(f"Character: {char.char}")
+        log.info(f"Character: {char.char}")
         trad = set(char.untagged_vars("kTraditionalVariant"))
         simp = set(char.untagged_vars("kSimplifiedVariant"))
         Unihan = c.sql.base.classes.Unihan
         if Unihan.char in trad and Unihan.char in simp:
-            print("Case 1")
+            log.info("Case 1")
         else:
-            print("Case 2 (non-idempotent)")
+            log.info("Case 2 (non-idempotent)")
         for trad_var in trad:
-            print(f"s2t: {trad_var}")
+            log.info(f"s2t: {trad_var}")
         for simp_var in simp:
-            print(f"t2s: {simp_var}")
+            log.info(f"t2s: {simp_var}")
 
 
 if __name__ == "__main__":
