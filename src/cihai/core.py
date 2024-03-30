@@ -113,7 +113,7 @@ class Cihai:
         expand_config(_config, app_dirs)
 
         if not is_valid_config(config=_config):
-            raise CihaiConfigError()
+            raise CihaiConfigError
 
         self.config = _config
 

@@ -146,8 +146,7 @@ def euc_to_utf8(euchex: bytes) -> str:
 
     uf8_bytes = uf8.encode("latin1")
 
-    uf8 = uf8_bytes.decode("euc-jp")
-    return uf8
+    return uf8_bytes.decode("euc-jp")
 
 
 def ucn_to_unicode(ucn: str) -> str:
