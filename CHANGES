@@ -4,6 +4,10 @@
 
 <!-- Maintainers, insert changes / features for the next release here -->
 
+### Documentation
+
+- Automatically linkify links that were previously only text.
+
 ## cihai 0.32.0 (2024-04-01)
 
 _Maintenance only, no bug fixes, or new features_
