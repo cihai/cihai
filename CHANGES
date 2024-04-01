@@ -7,9 +7,9 @@
 ### Development
 
 - unihan-etl -> 0.30.1 -> 0.34.0
-- poetry: 1.7.1 -> 1.8.1
+- poetry: 1.7.1 -> 1.8.2
 
-  See also: https://github.com/python-poetry/poetry/blob/1.8.1/CHANGELOG.md
+  See also: https://github.com/python-poetry/poetry/blob/1.8.2/CHANGELOG.md
 - ruff 0.2.2 -> 0.3.0 (#368)
 
   Related formattings. Update CI to use `ruff check .` instead of `ruff .`.
