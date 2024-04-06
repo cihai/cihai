@@ -2,6 +2,7 @@
 
 import importlib
 import importlib.util
+import logging
 import pathlib
 import re
 import sys
@@ -71,16 +72,17 @@ def test_ts_difficulties(
 
 
 def test_basic_usage(
-    capsys: pytest.CaptureFixture[str],
     caplog: pytest.LogCaptureFixture,
     unihan_options: "UnihanOptions",
     project_root: pathlib.Path,
 ) -> None:
     """Test basic_usage."""
+    caplog.set_level(logging.INFO)
+
     example = load_script("basic_usage", project_root=project_root)
     example.run(unihan_options=unihan_options)
 
-    output = "".join(list(caplog.messages) + list(capsys.readouterr().out))
+    output = "".join(list(caplog.messages))
 
     assert "lookup for 㐭: (same as 廩) a granary, to supply (foodstuff)" in output
     assert re.search(
@@ -91,16 +93,17 @@ def test_basic_usage(
 
 
 def test_basic_usage_manual(
-    capsys: pytest.CaptureFixture[str],
     caplog: pytest.LogCaptureFixture,
     unihan_options: "UnihanOptions",
     project_root: pathlib.Path,
 ) -> None:
     """Test basic_usage_manual."""
+    caplog.set_level(logging.INFO)
+
     example = load_script("basic_usage_manual", project_root=project_root)
     example.run(unihan_options=unihan_options)
 
-    output = "".join(list(caplog.messages) + list(capsys.readouterr().out))
+    output = "".join(list(caplog.messages))
 
     assert "lookup for 㐭: (same as 廩) a granary, to supply (foodstuff)" in output
     assert re.search(
