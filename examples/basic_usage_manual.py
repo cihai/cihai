@@ -1,9 +1,13 @@
 #!/usr/bin/env python
 """Demonstrate what basic_usage's unihan=True (default Cihai) does under the hood."""
 
+import logging
 import typing as t
 
 from cihai.core import Cihai
+
+log = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO, format="%(message)s")
 
 
 def run(unihan_options: t.Optional[t.Dict[str, object]] = None) -> None:
@@ -20,10 +24,10 @@ def run(unihan_options: t.Optional[t.Dict[str, object]] = None) -> None:
     query = c.unihan.lookup_char("㐭")
     glyph = query.first()
     assert glyph is not None
-    print("lookup for 㐭: %s" % glyph.kDefinition)
+    log.info("lookup for 㐭: %s" % glyph.kDefinition)
 
     query = c.unihan.reverse_char("granary")
-    print('matches for "granary": %s ' % ", ".join([glph.char for glph in query]))
+    log.info('matches for "granary": %s ' % ", ".join([glph.char for glph in query]))
 
 
 if __name__ == "__main__":

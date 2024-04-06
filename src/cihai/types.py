@@ -27,8 +27,6 @@ UntypedDict: "TypeAlias" = t.Dict[str, object]
 class RawPluginConfigDict(TypedDict):
     """Barebones plugin config dictionary."""
 
-    pass
-
 
 class RawDirsConfigDict(TypedDict):
     """Raw directory config dictionary."""

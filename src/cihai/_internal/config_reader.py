@@ -13,12 +13,12 @@ FormatLiteral = t.Literal["json", "yaml"]
 
 
 class ConfigfmtNotImplementedError(NotImplementedError):
-    def __init__(self, fmt: str):
+    def __init__(self, fmt: str) -> None:
         return super().__init__(f"{fmt} not supported in configuration")
 
 
 class ConfigExtensionNotImplementedError(NotImplementedError):
-    def __init__(self, ext: str, path: t.Union[str, pathlib.Path]):
+    def __init__(self, ext: str, path: t.Union[str, pathlib.Path]) -> None:
         return super().__init__(f"{ext} not supported in {path}")
 
 
@@ -53,10 +53,9 @@ class ConfigReader:
                     Loader=yaml.SafeLoader,
                 ),
             )
-        elif fmt == "json":
+        if fmt == "json":
             return t.cast(t.Dict[str, t.Any], json.loads(content))
-        else:
-            raise NotImplementedError(fmt=fmt)
+        raise NotImplementedError(fmt=fmt)
 
     @classmethod
     def load(cls, fmt: "FormatLiteral", content: str) -> "ConfigReader":
@@ -114,7 +113,7 @@ class ConfigReader:
         assert isinstance(path, pathlib.Path)
         content = path.open().read()
 
-        if path.suffix in [".yaml", ".yml"]:
+        if path.suffix in {".yaml", ".yml"}:
             fmt: FormatLiteral = "yaml"
         elif path.suffix == ".json":
             fmt = "json"
@@ -188,13 +187,12 @@ class ConfigReader:
                 default_flow_style=False,
                 Dumper=yaml.SafeDumper,
             )
-        elif fmt == "json":
+        if fmt == "json":
             return json.dumps(
                 content,
                 indent=2,
             )
-        else:
-            raise ConfigfmtNotImplementedError(fmt=fmt)
+        raise ConfigfmtNotImplementedError(fmt=fmt)
 
     def dump(self, fmt: "FormatLiteral", indent: int = 2, **kwargs: t.Any) -> str:
         r"""Dump via ConfigReader instance.

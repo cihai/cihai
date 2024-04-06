@@ -8,6 +8,25 @@
 
 - Automatically linkify links that were previously only text.
 
+### Development
+
+- Aggressive automated lint fixes via `ruff` (#369)
+
+  via ruff v0.3.4, all automated lint fixes, including unsafe and previews were applied:
+
+  ```sh
+  ruff check --select ALL . --fix --unsafe-fixes --preview --show-fixes; ruff format .
+  ```
+
+  Branches were treated with:
+
+  ```sh
+  git rebase \
+      --strategy-option=theirs \
+      --exec 'poetry run ruff check --select ALL . --fix --unsafe-fixes --preview --show-fixes; poetry run ruff format .; git add src tests; git commit --amend --no-edit' \
+      origin/master
+  ```
+
 ## cihai 0.32.0 (2024-04-01)
 
 _Maintenance only, no bug fixes, or new features_
@@ -18,6 +37,7 @@ _Maintenance only, no bug fixes, or new features_
 - poetry: 1.7.1 -> 1.8.2
 
   See also: https://github.com/python-poetry/poetry/blob/1.8.2/CHANGELOG.md
+
 - ruff 0.2.2 -> 0.3.0 (#368)
 
   Related formattings. Update CI to use `ruff check .` instead of `ruff .`.
