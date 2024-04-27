@@ -144,7 +144,7 @@ combine-as-imports = true
 convention = "numpy"
 
 [tool.ruff.lint.per-file-ignores]
-"*/__init__.py" = ["F401"]
+"*/__init__.py" = ["F401", "PLC0414"]
 
 [tool.pytest.ini_options]
 addopts = "--tb=short --no-header --showlocals --doctest-modules"
