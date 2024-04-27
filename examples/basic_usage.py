@@ -23,10 +23,12 @@ def run(unihan_options: t.Optional[t.Dict[str, object]] = None) -> None:
     glyph = query.first()
 
     assert glyph is not None
-    log.info("lookup for 㐭: %s" % glyph.kDefinition)
+    log.info(f"lookup for 㐭: {glyph.kDefinition}")
 
     query = c.unihan.reverse_char("granary")
-    log.info('matches for "granary": %s ' % ", ".join([glph.char for glph in query]))
+    log.info(
+        'matches for "granary": {} '.format(", ".join([glph.char for glph in query]))
+    )
 
 
 if __name__ == "__main__":
