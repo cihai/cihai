@@ -105,7 +105,7 @@ def gb2312_to_euc(gb2312hex: str) -> bytes:
     >>> gb2312_to_euc("30A1")
     b'b0121'
     """
-    hi_int, lo_int = int(gb2312hex[:2], 16), int(gb2312hex[2:], 16)
+    hi_int, lo_int = int(gb2312hex[:2], 16), int(gb2312hex[2:], 16)  # noqa: RUF100, FURB166
     hi, lo = hexd(hi_int + 0x80), hexd(lo_int + 0x80)
 
     euc = f"{hi}{lo}".encode()
