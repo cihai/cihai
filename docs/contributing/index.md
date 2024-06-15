@@ -236,7 +236,7 @@ In the future, `ruff` (below) may replace black as formatter.
 
 ### ruff
 
-The project uses [ruff] to handles sorting imports and linting.
+The project uses [ruff] to handle sorting imports and linting.
 
 ````{tab} Command
 
@@ -327,7 +327,8 @@ requires [`entr(1)`].
 
 ## Releasing
 
-Since this software used in production projects, we don't want to release breaking changes.
+Since this software used in production projects, we don't release breaking changes
+until there's a major feature release.
 
 Choose what the next version is. Assuming it's version 0.9.0, it could be:
 
