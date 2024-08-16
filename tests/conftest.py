@@ -13,31 +13,31 @@ if t.TYPE_CHECKING:
     from .types import UnihanOptions
 
 
-@pytest.fixture()
+@pytest.fixture
 def tests_path() -> pathlib.Path:
     """Return cihai tests/ directory."""
     return pathlib.Path(__file__).parent
 
 
-@pytest.fixture()
+@pytest.fixture
 def fixture_path(tests_path: pathlib.Path) -> pathlib.Path:
     """Return cihai tests/fixtures/ directory."""
     return tests_path / "fixtures"
 
 
-@pytest.fixture()
+@pytest.fixture
 def test_config_file(fixture_path: pathlib.Path) -> pathlib.Path:
     """Return cihai test configuration file."""
     return fixture_path / "test_config.yml"
 
 
-@pytest.fixture()
+@pytest.fixture
 def zip_path(tmp_path: pathlib.Path) -> pathlib.Path:
     """Return path to test Unihan.zip file."""
     return tmp_path / "Unihan.zip"
 
 
-@pytest.fixture()
+@pytest.fixture
 def zip_file(zip_path: pathlib.Path, fixture_path: pathlib.Path) -> zipfile.ZipFile:
     """Create and return ZipFile of UNIHAN."""
     _files = []
@@ -50,7 +50,7 @@ def zip_file(zip_path: pathlib.Path, fixture_path: pathlib.Path) -> zipfile.ZipF
     return zf
 
 
-@pytest.fixture()
+@pytest.fixture
 def unihan_options(
     zip_file: zipfile.ZipFile,
     zip_path: pathlib.Path,
@@ -64,7 +64,7 @@ def unihan_options(
     }
 
 
-@pytest.fixture()
+@pytest.fixture
 def tmpdb_file(tmpdir: pathlib.Path) -> pathlib.Path:
     """Return test.db file."""
     return tmpdir / "test.db"

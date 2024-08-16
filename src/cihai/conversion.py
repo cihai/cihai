@@ -77,7 +77,7 @@ def hexd(n: int) -> str:
     >>> hexd(19968)
     '4e00'
     """
-    return hex(n)[2:]
+    return f"{n:x}"
 
 
 def kuten_to_gb2312(kuten: str) -> bytes:

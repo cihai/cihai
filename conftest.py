@@ -37,7 +37,7 @@ def user_path(home_path: pathlib.Path, home_user_name: str) -> pathlib.Path:
     return p
 
 
-@pytest.fixture()
+@pytest.fixture
 def set_home(
     monkeypatch: pytest.MonkeyPatch,
     user_path: pathlib.Path,
@@ -46,7 +46,7 @@ def set_home(
     monkeypatch.setenv("HOME", str(user_path))
 
 
-@pytest.fixture()
+@pytest.fixture
 def project_root(
     monkeypatch: pytest.MonkeyPatch,
     user_path: pathlib.Path,

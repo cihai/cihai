@@ -28,7 +28,7 @@ def run(unihan_options: t.Optional[t.Dict[str, object]] = None) -> None:
 
     query = c.unihan.reverse_char("granary")
     log.info(
-        'matches for "granary": {} '.format(", ".join([glph.char for glph in query]))
+        'matches for "granary": {} '.format(", ".join([glph.char for glph in query])),
     )
 
 
