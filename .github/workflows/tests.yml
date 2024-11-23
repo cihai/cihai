@@ -45,7 +45,7 @@ jobs:
       - name: Test with pytest
         run: poetry run ./examples/basic_usage.py
 
-      - uses: codecov/codecov-action@v4
+      - uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
 
