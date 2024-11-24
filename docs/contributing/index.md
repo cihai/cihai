@@ -29,7 +29,7 @@ See [GitHub](https://github.com/cihai), [GitLab](https:/gitlab.com/cihai) and
 
 ## Development environment
 
-[poetry] is a required package to develop.
+[uv] is a required package to develop.
 
 ```console
 $ git clone https://github.com/cihai/<cihai-project>.git
@@ -52,7 +52,7 @@ $ cd cihai
 ## Install dependencies
 
 ```console
-$ poetry install -E "docs test coverage lint"
+$ uv sync --all-extras --dev
 ```
 
 Makefile commands prefixed with `watch_` will watch files and rerun.
@@ -62,7 +62,7 @@ Makefile commands prefixed with `watch_` will watch files and rerun.
 [pytest] is used for tests.
 
 ```console
-$ poetry run py.test
+$ uv run py.test
 ```
 
 ### Rerun on file change
@@ -84,7 +84,7 @@ $ make watch_test
 ### Manual (just the command, please)
 
 ```console
-$ poetry run py.test
+$ uv run py.test
 ```
 
 or:
@@ -112,19 +112,19 @@ $ env PYTEST_ADDOPTS="-verbose" make start
 Pick a file:
 
 ```console
-$ env PYTEST_ADDOPTS="tests/test_cihai.py" poetry run make start
+$ env PYTEST_ADDOPTS="tests/test_cihai.py" uv run make start
 ```
 
 Drop into `test_cihai_version()` in `tests/test_cihai.py`:
 
 ```console
-$ env PYTEST_ADDOPTS="-s -x -vv tests/test_cihai.py" poetry run make start
+$ env PYTEST_ADDOPTS="-s -x -vv tests/test_cihai.py" uv run make start
 ```
 
 Drop into `test_cihai_version()` in `tests/test_cihai.py` and stop on first error:
 
 ```console
-$ env PYTEST_ADDOPTS="-s -x -vv tests/test_cihai.py::test_cihai" poetry run make start
+$ env PYTEST_ADDOPTS="-s -x -vv tests/test_cihai.py::test_cihai" uv run make start
 ```
 
 Drop into `pdb` on first error:
@@ -210,10 +210,10 @@ depending on the project! An example of what to look for:
 
 ````{tab} Command
 
-poetry:
+uv:
 
 ```console
-$ poetry run black .
+$ uv run black .
 ```
 
 If you setup manually:
@@ -240,10 +240,10 @@ The project uses [ruff] to handle sorting imports and linting.
 
 ````{tab} Command
 
-poetry:
+uv:
 
 ```console
-$ poetry run ruff
+$ uv run ruff
 ```
 
 If you setup manually:
@@ -274,10 +274,10 @@ requires [`entr(1)`].
 
 ````{tab} Fix files
 
-poetry:
+uv:
 
 ```console
-$ poetry run ruff check . --fix
+$ uv run ruff check . --fix
 ```
 
 If you setup manually:
@@ -294,10 +294,10 @@ $ ruff check . --fix
 
 ````{tab} Command
 
-poetry:
+uv:
 
 ```console
-$ poetry run mypy .
+$ uv run mypy .
 ```
 
 If you setup manually:
@@ -379,24 +379,20 @@ CI will automatically push to the PyPI index when a tag is pushed.
 
 ### Manual deployment
 
-:::{note}
+[uv] handles virtualenv creation, package requirements, versioning,
+building, and publishing. Therefore there is no setup.py or requirements files.
 
-This requires PyPI access.
+Update `__version__` in `__about__.py` and `pyproject.toml`::
 
-:::
+    git commit -m 'build(cihai): Tag v0.1.1'
+    git tag v0.1.1
+    git push
+    git push --tags
 
-In addition to virtualenv creation and installing dependencies, [poetry] handles
-building the package and publishing. Therefore there is no setup.py or requirements files.
+GitHub Actions will detect the new git tag, and in its own workflow run `uv
+build` and push to PyPI.
 
-```console
-$ poetry build
-```
-
-```console
-$ poetry deploy
-```
-
-[poetry]: https://python-poetry.org/
+[uv]: https://github.com/astral-sh/uv
 [entr(1)]: http://eradman.com/entrproject/
 [`entr(1)`]: http://eradman.com/entrproject/
 [black]: https://github.com/psf/black
