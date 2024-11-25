@@ -189,7 +189,7 @@ def linkcode_resolve(domain: str, info: t.Dict[str, str]) -> t.Union[None, str]:
     except Exception:
         lineno = None
 
-    linespec = "#L%d-L%d" % (lineno, lineno + len(source) - 1) if lineno else ""
+    linespec = f"#L{lineno}-L{lineno + len(source) - 1}" if lineno else ""
 
     fn = relpath(fn, start=pathlib.Path(cihai.__file__).parent)
 
