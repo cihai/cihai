@@ -1,9 +1,12 @@
-[tool.poetry]
+[project]
 name = "cihai"
 version = "0.33.0"
 description = "Library for CJK (chinese, japanese, korean) language data."
-license = "MIT"
-authors = ["Tony Narlock <tony@git-pull.com>"]
+requires-python = ">=3.8,<4.0"
+license = { text = "MIT" }
+authors = [
+  {name = "Tony Narlock", email = "tony@git-pull.com"}
+]
 classifiers = [
   "Development Status :: 4 - Beta",
   "License :: OSI Approved :: MIT License",
@@ -46,60 +49,92 @@ include = [
   { path = "examples", format = "sdist" },
   { path = "tests", format = "sdist" },
 ]
+dependencies = [
+  "appdirs",
+  "PyYAML~=6.0",
+  "sqlalchemy[mypy]~=2.0",
+  "unihan-etl~=0.34.0",
+]
 
-[tool.poetry.urls]
+[project.urls]
 "Bug Tracker" = "https://github.com/cihai/cihai/issues"
 Documentation = "https://cihai.git-pull.com"
 Repository = "https://github.com/cihai/cihai"
 "Release notes" = "https://github.com/cihai/cihai/blob/master/CHANGES"
 "Q & A" = "https://github.com/cihai/cihai/discussions"
 
-[tool.poetry.dependencies]
-python = "^3.8"
-appdirs = "*"
-PyYAML = "~6.0"
-sqlalchemy = { extras = ["mypy"], version = "~2.0" }
-unihan-etl = "~=0.34.0"
+[tool.uv]
+dev-dependencies = [
+  # Docs
+  "sphinx",
+  "furo",
+  "gp-libs",
+  "sphinx-autobuild",
+  "sphinx-autodoc-typehints",
+  "sphinx-inline-tabs",
+  "sphinxext-opengraph",
+  "sphinx-copybutton",
+  "sphinxext-rediraffe",
+  "myst-parser",
+  "linkify-it-py",
+  # Testing
+  "gp-libs",
+  "pytest",
+  "pytest-rerunfailures",
+  "pytest-mock",
+  "pytest-watcher",
+  # Coverage
+  "codecov",
+  "coverage",
+  "pytest-cov",
+  # Lint
+  "ruff",
+  "mypy",
+  # Annotations
+  "types-appdirs",
+  "types-colorama",
+  "types-PyYAML",
+]
 
-[tool.poetry.group.docs.dependencies]
-### Docs ###
-sphinx = "*"
-sphinx-argparse = "*"
-furo = "*"
-gp-libs = "*"
-sphinx-autobuild = "*"
-sphinx-autodoc-typehints = "*"
-sphinx-inline-tabs = "*"
-sphinxext-opengraph = "<0.8" # https://github.com/wpilibsuite/sphinxext-opengraph/issues/100
-sphinx-copybutton = "*"
-sphinxext-rediraffe = "*"
-myst_parser = ">=0.18.1"
-docutils = "*"
-linkify-it-py = "*"
+[dependency-groups]
+docs = [
+  "sphinx",
+  "furo",
+  "gp-libs",
+  "sphinx-autobuild",
+  "sphinx-autodoc-typehints",
+  "sphinx-inline-tabs",
+  "sphinxext-opengraph",
+  "sphinx-copybutton",
+  "sphinxext-rediraffe",
+  "myst-parser",
+  "linkify-it-py",
+]
+testing = [
+  "gp-libs",
+  "pytest",
+  "pytest-rerunfailures",
+  "pytest-mock",
+  "pytest-watcher",
+]
+coverage =[
+  "codecov",
+  "coverage",
+  "pytest-cov",
+]
+lint = [
+  "ruff",
+  "mypy",
+]
+typings = [
+  "types-appdirs",
+  "types-colorama",
+  "types-PyYAML",
+]
 
-[tool.poetry.group.test.dependencies]
-### Testing ###
-pytest = "*"
-pytest-rerunfailures = "*"
-pytest-watcher = "*"
-gp-libs = "*"
-
-[tool.poetry.group.coverage.dependencies]
-### Coverage ###
-codecov = "*"
-coverage = "*"
-pytest-cov = "*"
-
-[tool.poetry.group.lint.dependencies]
-### Lint ###
-ruff = "*"
-mypy = "*"
-
-[tool.poetry.group.typings.dependencies]
-### Typings ###
-types-appdirs = "*"
-types-colorama = "*"
-types-PyYAML = "*"
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [tool.mypy]
 strict = true
@@ -162,7 +197,3 @@ filterwarnings = [
 [tool.pytest-watcher]
 now = true
 ignore_patterns = ["*.py.*.py"]
-
-[build-system]
-requires = ["poetry_core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
