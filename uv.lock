@@ -433,15 +433,15 @@ wheels = [
 
 [[package]]
 name = "gp-libs"
-version = "0.0.8"
+version = "0.0.9"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "docutils" },
     { name = "myst-parser" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/13/ae/4ae53e559046992edda1c18fb377449bf1064ea17f7601660bb4797addd1/gp_libs-0.0.8.tar.gz", hash = "sha256:c150ef6de4ab9287894fb6cb85c9a4efbaf1bd85dc021fd827c1903eb6a4ee77", size = 18836 }
+sdist = { url = "https://files.pythonhosted.org/packages/c4/fc/63e3134cf0d5e7267ee9e19dc64cc59bc94e8a2874cb6c979b0e4e2f799a/gp_libs-0.0.9.tar.gz", hash = "sha256:28b3e56c1690cbcbc01483a36a86c7a707e8751e9f4ea3538ce12f8e4547ef2b", size = 14491 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/aa/bb/69b3ed219a8d170c013338f63988acc0e818d9bbd8cc25eec08c09c90b5a/gp_libs-0.0.8-py3-none-any.whl", hash = "sha256:59b22a69f7162d9d6730a21b17c07d9f1ae054f348adf4179b2c3565fa93b59d", size = 15545 },
+    { url = "https://files.pythonhosted.org/packages/df/f9/e63374b3bbdd2d3600d4f3612f5d050db94b527e40ecf41dbfce32406150/gp_libs-0.0.9-py3-none-any.whl", hash = "sha256:0e945022f071a582466e1828133e0e793e1d8d213d0cf5f7d6867bf04fd353af", size = 15556 },
 ]
 
 [[package]]
