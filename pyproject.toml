@@ -1,6 +1,6 @@
 [project]
 name = "cihai"
-version = "0.33.0"
+version = "0.34.0"
 description = "Library for CJK (chinese, japanese, korean) language data."
 requires-python = ">=3.8,<4.0"
 license = { text = "MIT" }

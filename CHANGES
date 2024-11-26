@@ -1,14 +1,21 @@
 # Changelog
 
-## cihai 0.34.x (unreleased)
+## cihai 0.35.x (unreleased)
 
 <!-- Maintainers, insert changes / features for the next release here -->
+
+## cihai 0.34.0 (2024-11-26)
 
 ### Development
 
 - Project and package management: poetry to uv (#380)
 
   [uv] is the new package and project manager for the project, replacing Poetry.
+
+- Remove `kFrequency` per UNIHAN Revision 37
+
+  - https://www.unicode.org/L2/L2024/24006.htm#178-C17
+  - https://www.unicode.org/reports/tr38/tr38-37.html#ChronologicalListing
 
 - Code quality: Use f-strings in more places (#371)
 
