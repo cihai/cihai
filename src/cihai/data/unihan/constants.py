@@ -24,7 +24,6 @@ UNIHAN_FIELDS: t.List[str] = [
     "kDefinition",
     "kFenn",
     "kFourCornerCode",
-    "kFrequency",
     "kGradeLevel",
     "kHDZRadBreak",
     "kHKGlyph",

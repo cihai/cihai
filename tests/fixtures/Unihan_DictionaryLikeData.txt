@@ -15,7 +15,6 @@
 #	kCihaiT
 #	kFenn
 #	kFourCornerCode
-#	kFrequency
 #	kGradeLevel
 #	kHDZRadBreak
 #	kHKGlyph
