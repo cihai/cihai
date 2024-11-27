@@ -6,11 +6,23 @@
 
 ## cihai 0.34.0 (2024-11-26)
 
+### Breaking changes
+
+#### Project and package management: poetry to uv (#380)
+
+[uv] is the new package and project manager for the project, replacing Poetry.
+
+[uv]: https://github.com/astral-sh/uv
+
+#### Build system: poetry to hatchling (#380)
+
+[Build system] moved from [poetry] to [hatchling].
+
+[Build system]: https://packaging.python.org/en/latest/tutorials/packaging-projects/#choosing-a-build-backend
+[poetry]: https://github.com/python-poetry/poetry
+[hatchling]: https://hatch.pypa.io/latest/
+
 ### Development
-
-- Project and package management: poetry to uv (#380)
-
-  [uv] is the new package and project manager for the project, replacing Poetry.
 
 - Remove `kFrequency` per UNIHAN Revision 37
 
