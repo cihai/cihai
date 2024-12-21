@@ -52,7 +52,7 @@ def test_add_dataset_with_db() -> None:
     assert hasattr(c.simple, "sql")
 
 
-def test_add_dataset_unihan(unihan_options: t.Dict[str, object]) -> None:
+def test_add_dataset_unihan(unihan_options: dict[str, object]) -> None:
     """Test adding UNIHAN dataset to Cihai."""
     c = Cihai()
     c.add_dataset(Unihan, namespace="unihan")
@@ -91,7 +91,7 @@ def test_add_dataset_unihan(unihan_options: t.Dict[str, object]) -> None:
 
     def variant_list(
         field: str,
-    ) -> t.Generator[t.Tuple[Unihan, t.List[str]], str, None]:
+    ) -> t.Generator[tuple[Unihan, list[str]], str, None]:
         for char in c.unihan.with_fields([field]):
             yield (char, list(char.untagged_vars(field)))
 

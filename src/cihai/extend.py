@@ -25,7 +25,7 @@ if t.TYPE_CHECKING:
 
     from cihai.db import Database
 
-    DSP = t.TypeVar("DSP", bound=t.Type["DatasetPlugin"])
+    DSP = t.TypeVar("DSP", bound=type["DatasetPlugin"])
 
 
 class ConfigMixin:

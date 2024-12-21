@@ -10,7 +10,7 @@ if t.TYPE_CHECKING:
 
         definition: str
 
-    Response = t.Dict[str, CharData]
+    Response = dict[str, CharData]
 
 
 class DatasetExample:

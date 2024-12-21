@@ -64,7 +64,7 @@ def expand_config(d: "UntypedDict", dirs: "AppDirs" = app_dirs) -> None:
                 os.path.expandvars(v).format(**context),
             )
 
-            path = pathlib.Path(t.cast(str, d[k]))
+            path = pathlib.Path(t.cast("str", d[k]))
             if path.exists() or any(
                 str(path).startswith(app_dir) for app_dir in context.values()
             ):

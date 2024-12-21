@@ -1,7 +1,5 @@
 """Test utilities for cihai."""
 
-import typing as t
-
 import pytest
 
 from cihai import exc, utils
@@ -10,8 +8,8 @@ from unihan_etl.util import merge_dict
 
 def test_merge_dict() -> None:
     """Test merge_dict() utility function combines dictionaries recursively."""
-    dict1: t.Dict[str, object] = {"hi world": 1, "innerdict": {"hey": 1}}
-    dict2: t.Dict[str, object] = {"innerdict": {"welcome": 2}}
+    dict1: dict[str, object] = {"hi world": 1, "innerdict": {"hey": 1}}
+    dict2: dict[str, object] = {"innerdict": {"welcome": 2}}
 
     expected = {"hi world": 1, "innerdict": {"hey": 1, "welcome": 2}}
 

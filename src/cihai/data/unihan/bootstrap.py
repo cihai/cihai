@@ -20,7 +20,7 @@ if t.TYPE_CHECKING:
 def bootstrap_unihan(
     engine: sqlalchemy.Engine,
     metadata: sqlalchemy.sql.schema.MetaData,
-    options: t.Optional[t.Union[t.Dict[str, object], "UnihanOptions"]] = None,
+    options: t.Optional[t.Union[dict[str, object], "UnihanOptions"]] = None,
 ) -> None:
     """UNIHAN bootstrap script (download from web, import to database)."""
     if options is None:
@@ -64,7 +64,7 @@ def is_bootstrapped(metadata: sqlalchemy.sql.schema.MetaData) -> bool:
 
 
 def create_unihan_table(
-    columns: t.List[str],
+    columns: list[str],
     metadata: sqlalchemy.sql.schema.MetaData,
 ) -> sqlalchemy.sql.schema.Table:
     """Create table and return :class:`sqlalchemy.sql.schema.Table`.

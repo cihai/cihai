@@ -27,7 +27,7 @@ class Unihan(Dataset, SQLAlchemyMixin):
     tagged_vars: t.Callable[[str], "ParsedVars"]
     untagged_vars: t.Callable[[str], "UntaggedVars"]
 
-    def bootstrap(self, options: t.Optional[t.Dict[str, object]] = None) -> None:
+    def bootstrap(self, options: t.Optional[dict[str, object]] = None) -> None:
         """Fetch, extract, import UNIHAN to DB, and initialize DB mapping."""
         if options is None:
             options = {}
@@ -55,7 +55,7 @@ class Unihan(Dataset, SQLAlchemyMixin):
         Unihan = self.sql.base.classes.Unihan
         return self.sql.session.query(Unihan).filter_by(char=char)
 
-    def reverse_char(self, hints: t.Union[str, t.List[str]]) -> "Query[Unihan]":
+    def reverse_char(self, hints: t.Union[str, list[str]]) -> "Query[Unihan]":
         """Return QuerySet of objects from SQLAlchemy of results.
 
         Parameters
@@ -77,7 +77,7 @@ class Unihan(Dataset, SQLAlchemyMixin):
             or_(*[column.contains(hint) for column in columns for hint in hints]),
         )
 
-    def with_fields(self, fields: t.List[str]) -> "Query[Unihan]":
+    def with_fields(self, fields: list[str]) -> "Query[Unihan]":
         """Return list of characters with information for certain fields.
 
         Parameters
