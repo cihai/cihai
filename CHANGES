@@ -4,6 +4,27 @@
 
 <!-- Maintainers, insert changes / features for the next release here -->
 
+### Breaking changes
+
+- Drop Python 3.8 (#382)
+
+  The minimum version of Python in this and future releases is Python 3.9.
+
+  Python 3.8 reached end-of-life status on October 7th, 2024 (see PEP 569).
+- unihan-etl 0.37.0 minimum (#382)
+
+  Python 3.9 minimum version.
+
+### Development
+
+- Aggressive automated lint fixes via `ruff` (#382)
+
+  via ruff v0.8.4, all automated lint fixes, including unsafe and previews were applied for Python 3.9:
+
+  ```sh
+  ruff check --select ALL . --fix --unsafe-fixes --preview --show-fixes; ruff format .
+  ```
+
 ## cihai 0.34.0 (2024-11-26)
 
 ### Breaking changes

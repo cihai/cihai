@@ -305,7 +305,7 @@ def ucnstring_to_python(ucn_string: str) -> bytes:
     return ucn_bytestr
 
 
-ParsedVar: "TypeAlias" = t.Tuple[str, t.Optional[str]]
+ParsedVar: "TypeAlias" = tuple[str, t.Optional[str]]
 
 
 def parse_var(var: str) -> ParsedVar:

@@ -21,7 +21,7 @@ sys.path.insert(0, str(src_root))
 sys.path.insert(0, str(cwd / "_ext"))
 
 # package data
-about: t.Dict[str, str] = {}
+about: dict[str, str] = {}
 with (src_root / "cihai" / "__about__.py").open() as fp:
     exec(fp.read(), about)
 
@@ -70,8 +70,8 @@ html_static_path = ["_static"]
 html_css_files = ["css/custom.css"]
 html_favicon = "_static/favicon.ico"
 html_theme = "furo"
-html_theme_path: t.List[str] = []
-html_theme_options: t.Dict[str, t.Union[str, t.List[t.Dict[str, str]]]] = {
+html_theme_path: list[str] = []
+html_theme_options: dict[str, t.Union[str, list[dict[str, str]]]] = {
     "light_logo": "img/cihai.svg",
     "dark_logo": "img/cihai.svg",
     "footer_icons": [
@@ -141,7 +141,7 @@ intersphinx_mapping = {
 }
 
 
-def linkcode_resolve(domain: str, info: t.Dict[str, str]) -> t.Union[None, str]:
+def linkcode_resolve(domain: str, info: dict[str, str]) -> t.Union[None, str]:
     """
     Determine the URL corresponding to Python object.
 

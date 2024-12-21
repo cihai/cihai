@@ -58,7 +58,7 @@ def project_root(
 @pytest.fixture(autouse=True)
 def add_doctest_fixtures(
     request: pytest.FixtureRequest,
-    doctest_namespace: t.Dict[str, t.Any],
+    doctest_namespace: dict[str, t.Any],
     tmp_path: pathlib.Path,
     set_home: pathlib.Path,
 ) -> None:

@@ -16,7 +16,7 @@ import sqlalchemy
 
 from cihai import conversion
 
-cjk_ranges: t.Dict[
+cjk_ranges: dict[
     str,
     t.Sequence[int],
 ] = {  # http://www.unicode.org/reports/tr38/#BlockListing
@@ -112,7 +112,7 @@ def get_char_fk(
 def get_char_fk_multiple(
     engine: sqlalchemy.Engine,
     unihan_table: sqlalchemy.Table,
-    *args: t.List[str],
+    *args: list[str],
 ) -> sqlalchemy.Result[t.Any]:
     """Retrieve characters from list of foreign / primary keys."""
     with engine.connect() as connection:
@@ -128,9 +128,9 @@ def chars(
     metadata: sqlalchemy.MetaData,
     engine: sqlalchemy.Engine,
     unihan_table: sqlalchemy.Table,
-) -> t.List[Char]:
+) -> list[Char]:
     """Return list of characters from Cihai test SQL backend."""
-    chars: t.List[Char] = []
+    chars: list[Char] = []
 
     while len(chars) < 3:
         c = 0x4E00 + random.randint(1, 333)
@@ -157,7 +157,7 @@ def chars(
 
 
 def test_insert_row(
-    chars: t.List[Char],
+    chars: list[Char],
     unihan_table: sqlalchemy.Table,
     engine: sqlalchemy.Engine,
 ) -> None:
@@ -191,7 +191,7 @@ def test_insert_bad_key(
 
 
 def test_insert_on_foreign_key(
-    chars: t.List[Char],
+    chars: list[Char],
     sample_table: sqlalchemy.Table,
     unihan_table: sqlalchemy.Table,
     engine: sqlalchemy.Engine,
@@ -222,7 +222,7 @@ def test_insert_on_foreign_key(
 
 
 def test_get_char_foreign_key_multiple(
-    chars: t.List[Char],
+    chars: list[Char],
     engine: sqlalchemy.Engine,
     unihan_table: sqlalchemy.Table,
 ) -> None:

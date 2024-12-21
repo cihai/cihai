@@ -1,7 +1,5 @@
 """Constants for UNIHAN cihai dataset."""
 
-import typing as t
-
 #: Mapping of files from unihan-etl (UNIHAN database)
 UNIHAN_FILES = [
     "Unihan_DictionaryLikeData.txt",
@@ -14,7 +12,7 @@ UNIHAN_FILES = [
 
 
 #: Mapping of field names from unihan-etl (UNIHAN database)
-UNIHAN_FIELDS: t.List[str] = [
+UNIHAN_FIELDS: list[str] = [
     "kAccountingNumeric",
     "kCangjie",
     "kCantonese",

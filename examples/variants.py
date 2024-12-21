@@ -19,7 +19,7 @@ def variant_list(unihan: Unihan, field: str) -> None:
             log.info(var)
 
 
-def run(unihan_options: t.Optional[t.Dict[str, object]] = None) -> None:
+def run(unihan_options: t.Optional[dict[str, object]] = None) -> None:
     """Lookup variants for a CJK character. Accepts UNIHAN options dictionary."""
     if unihan_options is None:
         unihan_options = {}

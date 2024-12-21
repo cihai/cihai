@@ -20,7 +20,7 @@ if t.TYPE_CHECKING:
 
     from cihai.types import ConfigDict, UntypedDict
 
-    DS = t.TypeVar("DS", bound=t.Type[extend.Dataset])
+    DS = t.TypeVar("DS", bound=type[extend.Dataset])
 
 
 log = logging.getLogger(__name__)
@@ -98,24 +98,24 @@ class Cihai:
         unihan : boolean, optional
             Bootstrap the core UNIHAN dataset (recommended)
         """
-        _config: UntypedDict = config if config is not None else {}
+        config_: UntypedDict = config if config is not None else {}
         if config is None:
-            _config = self.default_config
+            config_ = self.default_config
 
         # Merges custom configuration settings on top of defaults
         #: Configuration dictionary
-        _config = merge_dict(self.default_config, _config)
+        config_ = merge_dict(self.default_config, config_)
 
         if unihan:
-            _config = merge_dict(UNIHAN_CONFIG, _config)
+            config_ = merge_dict(UNIHAN_CONFIG, config_)
 
         #: Expand template variables
-        expand_config(_config, app_dirs)
+        expand_config(config_, app_dirs)
 
-        if not is_valid_config(config=_config):
+        if not is_valid_config(config=config_):
             raise CihaiConfigError
 
-        self.config = _config
+        self.config = config_
 
         user_data_dir = pathlib.Path(app_dirs.user_data_dir)
 
@@ -154,14 +154,14 @@ class Cihai:
                 )
                 getattr(self, dataset).add_plugin(class_string, namespace)
 
-    def add_dataset(self, _cls: t.Union["DS", str], namespace: str) -> None:
+    def add_dataset(self, cls: t.Union["DS", str], namespace: str) -> None:
         """Add dataset to Cihai."""
-        if isinstance(_cls, str):
-            _cls = import_string(_cls)
+        if isinstance(cls, str):
+            cls = import_string(cls)
 
-        assert callable(_cls)
+        assert callable(cls)
 
-        setattr(self, namespace, _cls())
+        setattr(self, namespace, cls())
         dataset = getattr(self, namespace)
 
         if isinstance(dataset, extend.SQLAlchemyMixin):

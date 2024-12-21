@@ -4,8 +4,6 @@ Test :class:`Cihai` object. Other tests will use an instance of ``Cihai``
 using the ``test_config.yml``.
 """
 
-import typing as t
-
 import sqlalchemy
 
 import cihai
@@ -45,7 +43,7 @@ def test_yaml_config_and_override(test_config_file: str) -> None:
 
 
 def test_unihan_options(
-    unihan_options: t.Dict[str, object],
+    unihan_options: dict[str, object],
     engine: sqlalchemy.Engine,
     test_config_file: str,
 ) -> None:

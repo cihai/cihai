@@ -2,7 +2,6 @@
 """Example of a custom dataset for cihai."""
 
 import logging
-import typing as t
 
 from cihai.core import Cihai
 from cihai.extend import Dataset
@@ -26,11 +25,11 @@ class MyDataset(Dataset):
         """Return data via direct key match."""
         return data[key]
 
-    def search(self, needle: str) -> t.Dict[str, object]:
+    def search(self, needle: str) -> dict[str, object]:
         """Return key-value mapping of keys matching a subset of value."""
         return {k: v for k, v in data.items() if needle in k}
 
-    def backwards(self, needle: str) -> t.List[str]:
+    def backwards(self, needle: str) -> list[str]:
         """Reverse lookup."""
         return [k for k, v in data.items() if needle in v]
 

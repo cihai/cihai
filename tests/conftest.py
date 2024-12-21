@@ -40,11 +40,11 @@ def zip_path(tmp_path: pathlib.Path) -> pathlib.Path:
 @pytest.fixture
 def zip_file(zip_path: pathlib.Path, fixture_path: pathlib.Path) -> zipfile.ZipFile:
     """Create and return ZipFile of UNIHAN."""
-    _files = []
+    files = []
     for f in UNIHAN_FILES:
-        _files += [fixture_path / f]
+        files += [fixture_path / f]
     zf = zipfile.ZipFile(zip_path, "a")
-    for _f in _files:
+    for _f in files:
         zf.write(_f, _f.name)
     zf.close()
     return zf
