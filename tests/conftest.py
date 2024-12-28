@@ -1,16 +1,18 @@
 """Pytest configuration for cihai tests."""
 
+import dataclasses
 import pathlib
-import typing as t
 import zipfile
 
 import pytest
 import sqlalchemy
 
-from cihai.data.unihan.constants import UNIHAN_FILES
-
-if t.TYPE_CHECKING:
-    from .types import UnihanOptions
+from cihai.data.unihan.constants import (
+    UNIHAN_ETL_DEFAULT_OPTIONS,
+    UNIHAN_ETL_DEFAULT_OPTIONS_DICT,
+    UNIHAN_FILES,
+)
+from unihan_etl.options import Options as UnihanOptions
 
 
 @pytest.fixture
@@ -55,13 +57,29 @@ def unihan_options(
     zip_file: zipfile.ZipFile,
     zip_path: pathlib.Path,
     tmp_path: pathlib.Path,
-) -> "UnihanOptions":
+) -> UnihanOptions:
     """Return test UnihanOptions."""
-    return {
-        "source": zip_path,
-        "work_dir": tmp_path,
-        "zip_path": tmp_path / "downloads" / "Moo.zip",
-    }
+    return UnihanOptions(
+        source=str(zip_path),
+        work_dir=tmp_path,
+        zip_path=tmp_path / "downloads" / "Moo.zip",
+        destination=tmp_path / "unihan.csv",
+        **UNIHAN_ETL_DEFAULT_OPTIONS_DICT,
+    )
+    return UnihanOptions(
+        **(
+            dataclasses.asdict(UNIHAN_ETL_DEFAULT_OPTIONS)
+            | dataclasses.asdict(
+                UnihanOptions(
+                    source=str(zip_path),
+                    work_dir=tmp_path,
+                    zip_path=tmp_path / "downloads" / "Moo.zip",
+                    input_files=UNIHAN_FILES,
+                    destination=tmp_path / "unihan.csv",
+                ),
+            )
+        ),
+    )
 
 
 @pytest.fixture

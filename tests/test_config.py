@@ -5,16 +5,12 @@ import pathlib
 import typing as t
 
 import pytest
-from appdirs import AppDirs
 
 from cihai.config import expand_config
+from cihai.constants import app_dirs
 
 if t.TYPE_CHECKING:
     from cihai.types import UntypedDict
-
-
-#: XDG App directory locations
-dirs = AppDirs("cihai", "cihai team")  # appname  # app author
 
 
 def test_expand_config_xdg_vars() -> None:
@@ -25,12 +21,12 @@ def test_expand_config_xdg_vars() -> None:
 
     expected_dict: UntypedDict = {
         "dirs": {
-            "cache": pathlib.Path(dirs.user_cache_dir),
-            "data": pathlib.Path(dirs.user_cache_dir) / "data",
+            "cache": pathlib.Path(app_dirs.user_cache_dir),
+            "data": pathlib.Path(app_dirs.user_cache_dir) / "data",
         },
     }
 
-    expand_config(initial_dict, dirs)
+    expand_config(initial_dict, app_dirs)
     assert initial_dict == expected_dict
 
 
@@ -40,7 +36,7 @@ def test_expand_config_user_vars() -> None:
 
     expected_dict: UntypedDict = {"dirs": {"cache": pathlib.Path.home()}}
 
-    expand_config(initial_dict, dirs)
+    expand_config(initial_dict, app_dirs)
     assert initial_dict == expected_dict
 
 
@@ -53,5 +49,5 @@ def test_expand_config_env_vars(tmpdir: str, monkeypatch: pytest.MonkeyPatch) ->
         "dirs": {"cache": pathlib.Path(str(os.environ.get("MYDIR")))},
     }
 
-    expand_config(initial_dict, dirs)
+    expand_config(initial_dict, app_dirs)
     assert initial_dict == expected_dict

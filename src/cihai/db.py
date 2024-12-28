@@ -6,11 +6,11 @@ from sqlalchemy import MetaData, create_engine
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 
-from cihai.types import ConfigDict
-
 if t.TYPE_CHECKING:
     from sqlalchemy.engine import Engine
     from sqlalchemy.ext.automap import AutomapBase
+
+    from cihai.constants import Config
 
 
 class Database:
@@ -28,8 +28,8 @@ class Database:
     #: :class:`sqlalchemy.ext.automap.AutomapBase` instance.
     base: "AutomapBase"
 
-    def __init__(self, config: ConfigDict) -> None:
-        self.engine = create_engine(config["database"]["url"])
+    def __init__(self, config: "Config") -> None:
+        self.engine = create_engine(config.database.url)
 
         self.metadata = MetaData()
         self.reflect_db()

@@ -8,7 +8,7 @@ from cihai.data.unihan.dataset import Unihan, UnihanVariants
 
 
 class SimplestDataset(extend.Dataset):
-    """Very terse dataset for cihai."""
+    """Barebones dataset for cihai."""
 
     def a_method(self) -> str:
         """Return a string."""
@@ -22,7 +22,7 @@ def test_add_dataset() -> None:
     assert hasattr(c, "simple")
     assert isinstance(c.simple, extend.Dataset)
 
-    simple = SimplestDataset()
+    simple = SimplestDataset(cihai=c)
     assert hasattr(simple, "a_method")
     assert callable(simple.a_method)
     assert simple.a_method() == "hi"
@@ -43,7 +43,7 @@ def test_add_dataset_with_db() -> None:
     assert hasattr(c, "simple")
     assert isinstance(c.simple, extend.Dataset)
 
-    s = SimplestSQLAlchemyDataset()
+    s = SimplestSQLAlchemyDataset(cihai=c)
     assert hasattr(s, "a_method")
     assert callable(s.a_method)
     assert s.a_method() == "hi"

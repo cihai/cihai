@@ -1,7 +1,7 @@
 [project]
 name = "cihai"
 version = "0.35.0"
-description = "Library for CJK (chinese, japanese, korean) language data."
+description = "Python library designed for CJK (Chinese, Japanese, Korean, Vietnamese) character and word data retrieval and analysis."
 requires-python = ">=3.9,<4.0"
 license = { text = "MIT" }
 authors = [
