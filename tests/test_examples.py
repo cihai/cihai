@@ -12,7 +12,7 @@ import typing as t
 import pytest
 
 if t.TYPE_CHECKING:
-    from .types import UnihanOptions
+    from unihan_etl.options import Options as UnihanOptions
 
 
 class LoadScriptFn(t.Protocol):
@@ -59,6 +59,12 @@ def test_variants(
 ) -> None:
     """Test variants."""
     example = load_script("variants", project_root=project_root)
+    # print(f"unihan_quick_options: {unihan_quick_options}")
+    # unihan_quick_options.fields = ["kDefinition"] + [
+    #     field for field in unihan_quick_options.fields if field.endswith("Variant")
+    # ]
+    # print(f"unihan_quick_options filtered: {unihan_quick_options}")
+
     example.run(unihan_options=unihan_quick_options)
 
 
