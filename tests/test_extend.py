@@ -1,6 +1,6 @@
 """Extension tests for cihai."""
 
-import typing as t
+from collections.abc import Generator
 
 from cihai import extend
 from cihai.core import Cihai
@@ -91,7 +91,7 @@ def test_add_dataset_unihan(unihan_options: dict[str, object]) -> None:
 
     def variant_list(
         field: str,
-    ) -> t.Generator[tuple[Unihan, list[str]], str, None]:
+    ) -> Generator[tuple[Unihan, list[str]], str, None]:
         for char in c.unihan.with_fields([field]):
             yield (char, list(char.untagged_vars(field)))
 

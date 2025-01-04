@@ -1,6 +1,7 @@
 """Module for UNIHAN Dataset for cihai."""
 
 import typing as t
+from collections.abc import Callable
 
 from sqlalchemy import or_
 from sqlalchemy.sql.schema import Column
@@ -24,8 +25,8 @@ class Unihan(Dataset, SQLAlchemyMixin):
     kDefinition: str
     kTraditionhalVariant: str
     kSimplifiedVariant: str
-    tagged_vars: t.Callable[[str], "ParsedVars"]
-    untagged_vars: t.Callable[[str], "UntaggedVars"]
+    tagged_vars: Callable[[str], "ParsedVars"]
+    untagged_vars: Callable[[str], "UntaggedVars"]
 
     def bootstrap(self, options: t.Optional[dict[str, object]] = None) -> None:
         """Fetch, extract, import UNIHAN to DB, and initialize DB mapping."""

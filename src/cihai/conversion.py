@@ -62,6 +62,7 @@ See these resources for more information:
 import logging
 import re
 import typing as t
+from collections.abc import Generator, Iterator
 
 if t.TYPE_CHECKING:
     from typing_extensions import TypeAlias
@@ -315,16 +316,16 @@ def parse_var(var: str) -> ParsedVar:
     return ucn_to_unicode(bits[0]), tag
 
 
-ParsedVars: "TypeAlias" = t.Iterator[ParsedVar]
+ParsedVars: "TypeAlias" = Iterator[ParsedVar]
 
 
-def parse_vars(_vars: str) -> t.Generator[ParsedVar, str, None]:
+def parse_vars(_vars: str) -> Generator[ParsedVar, str, None]:
     """Return an iterator of (char, tag) tuples."""
     for var in _vars.split(" "):
         yield parse_var(var)
 
 
-UntaggedVars: "TypeAlias" = t.Iterator[t.Any]
+UntaggedVars: "TypeAlias" = Iterator[t.Any]
 
 
 def parse_untagged(_vars: str) -> UntaggedVars:

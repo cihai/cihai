@@ -10,6 +10,7 @@ settings found in ``test_config.yml``.
 
 import random
 import typing as t
+from collections.abc import Sequence
 
 import pytest
 import sqlalchemy
@@ -18,7 +19,7 @@ from cihai import conversion
 
 cjk_ranges: dict[
     str,
-    t.Sequence[int],
+    Sequence[int],
 ] = {  # http://www.unicode.org/reports/tr38/#BlockListing
     "CJK Unified Ideographs": range(0x4E00, 0x9FD5 + 1),
     "CJK Unified Ideographs Extension A": range(0x3400, 0x4DBF + 1),
