@@ -1,5 +1,7 @@
 """Configuration options for Cihai app."""
 
+from __future__ import annotations
+
 import os
 import pathlib
 import typing as t
@@ -12,7 +14,7 @@ if t.TYPE_CHECKING:
     from .types import UntypedDict
 
 
-def expand_config(d: "UntypedDict", dirs: "AppDirs" = app_dirs) -> None:
+def expand_config(d: UntypedDict, dirs: AppDirs = app_dirs) -> None:
     """
     Expand configuration XDG variables, environmental variables, and tildes.
 

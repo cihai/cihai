@@ -13,6 +13,8 @@ You can also create plugins which extend another. So if Unihan doesn't have a lo
 for variant glyphs, this can be added.
 """
 
+from __future__ import annotations
+
 import typing as t
 
 from . import utils
@@ -78,19 +80,19 @@ class SQLAlchemyMixin:
     they don't clobber.
     """
 
-    sql: "Database"
+    sql: Database
 
     #: :class:`sqlalchemy.engine.Engine` instance.
-    engine: "Engine"
+    engine: Engine
 
     #: :class:`sqlalchemy.schema.MetaData` instance.
-    metadata: "MetaData"
+    metadata: MetaData
 
     #: :class:`sqlalchemy.orm.session.Session` instance.
-    session: "Session"
+    session: Session
 
     #: :class:`sqlalchemy.ext.automap.AutomapBase` instance.
-    base: "AutomapBase"
+    base: AutomapBase
 
 
 class Dataset:
@@ -107,7 +109,7 @@ class Dataset:
 
     def add_plugin(
         self,
-        _cls: t.Union["DSP", str],
+        _cls: DSP | str,
         namespace: str,
         bootstrap: bool = True,
     ) -> None:

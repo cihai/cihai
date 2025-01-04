@@ -1,11 +1,15 @@
 #!/usr/bin/env python
 """CJK Variant lookup example for Cihai."""
 
+from __future__ import annotations
+
 import logging
 import typing as t
 
 from cihai.core import Cihai
-from cihai.data.unihan.dataset import Unihan
+
+if t.TYPE_CHECKING:
+    from cihai.data.unihan.dataset import Unihan
 
 log = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(message)s")
@@ -19,7 +23,7 @@ def variant_list(unihan: Unihan, field: str) -> None:
             log.info(var)
 
 
-def run(unihan_options: t.Optional[dict[str, object]] = None) -> None:
+def run(unihan_options: dict[str, object] | None = None) -> None:
     """Lookup variants for a CJK character. Accepts UNIHAN options dictionary."""
     if unihan_options is None:
         unihan_options = {}

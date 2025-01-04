@@ -1,5 +1,7 @@
 """Constants for cihai."""
 
+from __future__ import annotations
+
 import pathlib
 import typing as t
 
@@ -12,7 +14,7 @@ if t.TYPE_CHECKING:
 app_dirs = AppDirs("cihai", "cihai team")
 
 #: Default configuration
-DEFAULT_CONFIG: "UntypedDict" = {
+DEFAULT_CONFIG: UntypedDict = {
     "debug": False,
     "database": {"url": "sqlite:///{user_data_dir}/cihai.db"},
     "dirs": {
@@ -25,7 +27,7 @@ DEFAULT_CONFIG: "UntypedDict" = {
 }
 
 #: User will be prompted to automatically configure their installation for UNIHAN
-UNIHAN_CONFIG: "UntypedDict" = {
+UNIHAN_CONFIG: UntypedDict = {
     "datasets": {"unihan": "cihai.data.unihan.dataset.Unihan"},
     # Turn off by default for using as a plugin example in examples/
 }

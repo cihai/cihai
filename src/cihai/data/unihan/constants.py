@@ -1,6 +1,8 @@
 """Constants for UNIHAN cihai dataset."""
 
 #: Mapping of files from unihan-etl (UNIHAN database)
+from __future__ import annotations
+
 UNIHAN_FILES = [
     "Unihan_DictionaryLikeData.txt",
     "Unihan_IRGSources.txt",

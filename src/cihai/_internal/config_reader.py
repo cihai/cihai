@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import json
 import pathlib
 import typing as t
@@ -18,7 +20,7 @@ class ConfigfmtNotImplementedError(NotImplementedError):
 
 
 class ConfigExtensionNotImplementedError(NotImplementedError):
-    def __init__(self, ext: str, path: t.Union[str, pathlib.Path]) -> None:
+    def __init__(self, ext: str, path: str | pathlib.Path) -> None:
         return super().__init__(f"{ext} not supported in {path}")
 
 
@@ -32,11 +34,11 @@ class ConfigReader:
     '{\n  "session_name": "my session"\n}'
     """
 
-    def __init__(self, content: "RawConfigData") -> None:
+    def __init__(self, content: RawConfigData) -> None:
         self.content = content
 
     @staticmethod
-    def _load(fmt: "FormatLiteral", content: str) -> dict[str, t.Any]:
+    def _load(fmt: FormatLiteral, content: str) -> dict[str, t.Any]:
         """Load raw config data and directly return it.
 
         >>> ConfigReader._load("json", '{ "session_name": "my session" }')
@@ -58,7 +60,7 @@ class ConfigReader:
         raise NotImplementedError(fmt=fmt)
 
     @classmethod
-    def load(cls, fmt: "FormatLiteral", content: str) -> "ConfigReader":
+    def load(cls, fmt: FormatLiteral, content: str) -> ConfigReader:
         """Load raw config data into a ConfigReader instance (to dump later).
 
         >>> cfg = ConfigReader.load("json", '{ "session_name": "my session" }')
@@ -126,7 +128,7 @@ class ConfigReader:
         )
 
     @classmethod
-    def from_file(cls, path: pathlib.Path) -> "ConfigReader":
+    def from_file(cls, path: pathlib.Path) -> ConfigReader:
         r"""Load data from file path.
 
         **YAML file**
@@ -167,8 +169,8 @@ class ConfigReader:
 
     @staticmethod
     def _dump(
-        fmt: "FormatLiteral",
-        content: "RawConfigData",
+        fmt: FormatLiteral,
+        content: RawConfigData,
         indent: int = 2,
         **kwargs: t.Any,
     ) -> str:
@@ -194,7 +196,7 @@ class ConfigReader:
             )
         raise ConfigfmtNotImplementedError(fmt=fmt)
 
-    def dump(self, fmt: "FormatLiteral", indent: int = 2, **kwargs: t.Any) -> str:
+    def dump(self, fmt: FormatLiteral, indent: int = 2, **kwargs: t.Any) -> str:
         r"""Dump via ConfigReader instance.
 
         >>> cfg = ConfigReader({ "session_name": "my session" })

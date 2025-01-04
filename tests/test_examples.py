@@ -1,17 +1,20 @@
 """Test examples/ found in cihai source directory."""
 
+from __future__ import annotations
+
 import importlib
 import importlib.util
 import logging
-import pathlib
 import re
 import sys
-import types
 import typing as t
 
-import pytest
-
 if t.TYPE_CHECKING:
+    import pathlib
+    import types
+
+    import pytest
+
     from .types import UnihanOptions
 
 
@@ -44,7 +47,7 @@ def load_script(example: str, project_root: pathlib.Path) -> types.ModuleType:
 
 
 def test_dataset(
-    unihan_options: "UnihanOptions",
+    unihan_options: UnihanOptions,
     project_root: pathlib.Path,
 ) -> None:
     """Test example dataset."""
@@ -53,7 +56,7 @@ def test_dataset(
 
 
 def test_variants(
-    unihan_quick_options: "UnihanOptions",
+    unihan_quick_options: UnihanOptions,
     unihan_ensure_quick: None,
     project_root: pathlib.Path,
 ) -> None:
@@ -63,7 +66,7 @@ def test_variants(
 
 
 def test_ts_difficulties(
-    unihan_options: "UnihanOptions",
+    unihan_options: UnihanOptions,
     project_root: pathlib.Path,
 ) -> None:
     """Test variant_ts_difficulties."""
@@ -73,7 +76,7 @@ def test_ts_difficulties(
 
 def test_basic_usage(
     caplog: pytest.LogCaptureFixture,
-    unihan_options: "UnihanOptions",
+    unihan_options: UnihanOptions,
     project_root: pathlib.Path,
 ) -> None:
     """Test basic_usage."""
@@ -94,7 +97,7 @@ def test_basic_usage(
 
 def test_basic_usage_manual(
     caplog: pytest.LogCaptureFixture,
-    unihan_options: "UnihanOptions",
+    unihan_options: UnihanOptions,
     project_root: pathlib.Path,
 ) -> None:
     """Test basic_usage_manual."""

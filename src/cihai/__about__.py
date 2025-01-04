@@ -1,5 +1,7 @@
 """Cihai Metadata package."""
 
+from __future__ import annotations
+
 __title__ = "cihai"
 __package_name__ = "cihai"
 __version__ = "0.35.0"

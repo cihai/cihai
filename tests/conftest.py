@@ -1,5 +1,7 @@
 """Pytest configuration for cihai tests."""
 
+from __future__ import annotations
+
 import pathlib
 import typing as t
 import zipfile
@@ -55,7 +57,7 @@ def unihan_options(
     zip_file: zipfile.ZipFile,
     zip_path: pathlib.Path,
     tmp_path: pathlib.Path,
-) -> "UnihanOptions":
+) -> UnihanOptions:
     """Return test UnihanOptions."""
     return {
         "source": zip_path,

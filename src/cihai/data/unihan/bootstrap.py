@@ -1,5 +1,7 @@
 """Fetch + extract + transform + load UNIHAN dataset to Cihai."""
 
+from __future__ import annotations
+
 import dataclasses
 import typing as t
 
@@ -20,7 +22,7 @@ if t.TYPE_CHECKING:
 def bootstrap_unihan(
     engine: sqlalchemy.Engine,
     metadata: sqlalchemy.sql.schema.MetaData,
-    options: t.Optional[t.Union[dict[str, object], "UnihanOptions"]] = None,
+    options: dict[str, object] | UnihanOptions | None = None,
 ) -> None:
     """UNIHAN bootstrap script (download from web, import to database)."""
     if options is None:

@@ -1,9 +1,14 @@
 """Test bootstrapping of database."""
 
-import pathlib
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
 
 from cihai.core import Cihai
 from cihai.data.unihan import bootstrap
+
+if TYPE_CHECKING:
+    import pathlib
 
 
 def test_reflect_db(

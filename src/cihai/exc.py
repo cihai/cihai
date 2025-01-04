@@ -1,6 +1,6 @@
 """Exceptions raised from the Cihai library."""
 
-import typing as t
+from __future__ import annotations
 
 
 class CihaiException(Exception):
@@ -29,7 +29,7 @@ class ImportStringError(ImportError, CihaiException):
     def __init__(
         self,
         import_name: str,
-        exception: t.Union[ModuleNotFoundError, ImportError],
+        exception: ModuleNotFoundError | ImportError,
     ) -> None:
         from .utils import import_string
 

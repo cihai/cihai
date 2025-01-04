@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 """Example of a custom dataset for cihai."""
 
+from __future__ import annotations
+
 import logging
 
 from cihai.core import Cihai
