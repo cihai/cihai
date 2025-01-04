@@ -6,14 +6,14 @@ using the ``test_config.yml``.
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+import typing as t
 
 import cihai
 from cihai.constants import UNIHAN_CONFIG
 from cihai.core import Cihai
 from cihai.data.unihan import bootstrap, constants as unihan_constants
 
-if TYPE_CHECKING:
+if t.TYPE_CHECKING:
     import sqlalchemy
 
 

@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+import typing as t
 
 from cihai import extend
 from cihai.core import Cihai
 from cihai.data.unihan.dataset import Unihan, UnihanVariants
 
-if TYPE_CHECKING:
+if t.TYPE_CHECKING:
     from collections.abc import Generator
 
 

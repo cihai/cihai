@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+import typing as t
 
 from cihai.core import Cihai
 from cihai.data.unihan import bootstrap
 
-if TYPE_CHECKING:
+if t.TYPE_CHECKING:
     import pathlib
 
 
