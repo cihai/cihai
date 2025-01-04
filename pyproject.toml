@@ -206,3 +206,16 @@ filterwarnings = [
 [tool.pytest-watcher]
 now = true
 ignore_patterns = ["*.py.*.py"]
+
+[tool.coverage.report]
+exclude_also = [
+  "def __repr__",
+  "raise AssertionError",
+  "raise NotImplementedError",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+  "if t.TYPE_CHECKING:",
+  "class .*\\bProtocol\\):",
+  "@(abc\\.)?abstractmethod",
+  "from __future__ import annotations",
+]
