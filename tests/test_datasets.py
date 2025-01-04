@@ -8,14 +8,18 @@ settings found in ``test_config.yml``.
 
 """
 
+from __future__ import annotations
+
 import random
 import typing as t
-from collections.abc import Sequence
 
 import pytest
 import sqlalchemy
 
 from cihai import conversion
+
+if t.TYPE_CHECKING:
+    from collections.abc import Sequence
 
 cjk_ranges: dict[
     str,

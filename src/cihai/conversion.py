@@ -59,6 +59,8 @@ See these resources for more information:
 .. _conversion.py @9227813: https://bitbucket.org/lost_theory/ltchinese/raw/9227813/ltchinese/conversion.py
 """
 
+from __future__ import annotations
+
 import logging
 import re
 import typing as t
@@ -235,7 +237,7 @@ def python_to_ucn(uni_char: str, as_bytes: t.Literal[False]) -> str: ...
 def python_to_ucn(uni_char: str, as_bytes: t.Literal[False] = False) -> str: ...
 
 
-def python_to_ucn(uni_char: str, as_bytes: bool = False) -> t.Union[bytes, str]:
+def python_to_ucn(uni_char: str, as_bytes: bool = False) -> bytes | str:
     r"""Return UCN character from Python Unicode character.
 
     Converts a one character Python unicode string (e.g. u'\\u4e00') to the
@@ -262,7 +264,7 @@ def python_to_ucn(uni_char: str, as_bytes: bool = False) -> t.Union[bytes, str]:
     return ucn
 
 
-def python_to_euc(uni_char: str, as_bytes: bool = False) -> t.Union[bytes, str]:
+def python_to_euc(uni_char: str, as_bytes: bool = False) -> bytes | str:
     r"""Return EUC character from a Python Unicode character.
 
     Converts a one character Python unicode string (e.g. u'\\u4e00') to the
@@ -306,7 +308,7 @@ def ucnstring_to_python(ucn_string: str) -> bytes:
     return ucn_bytestr
 
 
-ParsedVar: "TypeAlias" = tuple[str, t.Optional[str]]
+ParsedVar: TypeAlias = tuple[str, t.Optional[str]]
 
 
 def parse_var(var: str) -> ParsedVar:
@@ -316,7 +318,7 @@ def parse_var(var: str) -> ParsedVar:
     return ucn_to_unicode(bits[0]), tag
 
 
-ParsedVars: "TypeAlias" = Iterator[ParsedVar]
+ParsedVars: TypeAlias = Iterator[ParsedVar]
 
 
 def parse_vars(_vars: str) -> Generator[ParsedVar, str, None]:
@@ -325,7 +327,7 @@ def parse_vars(_vars: str) -> Generator[ParsedVar, str, None]:
         yield parse_var(var)
 
 
-UntaggedVars: "TypeAlias" = Iterator[t.Any]
+UntaggedVars: TypeAlias = Iterator[t.Any]
 
 
 def parse_untagged(_vars: str) -> UntaggedVars:

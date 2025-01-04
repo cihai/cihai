@@ -1,5 +1,7 @@
 """Test utilities for cihai."""
 
+from __future__ import annotations
+
 import pytest
 
 from cihai import exc, utils

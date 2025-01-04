@@ -4,12 +4,17 @@ Test :class:`Cihai` object. Other tests will use an instance of ``Cihai``
 using the ``test_config.yml``.
 """
 
-import sqlalchemy
+from __future__ import annotations
+
+import typing as t
 
 import cihai
 from cihai.constants import UNIHAN_CONFIG
 from cihai.core import Cihai
 from cihai.data.unihan import bootstrap, constants as unihan_constants
+
+if t.TYPE_CHECKING:
+    import sqlalchemy
 
 
 def test_cihai_version() -> None:

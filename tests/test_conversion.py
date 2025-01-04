@@ -1,5 +1,7 @@
 """Test character conversion utilities."""
 
+from __future__ import annotations
+
 from cihai import conversion
 
 

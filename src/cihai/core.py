@@ -1,12 +1,13 @@
 """Cihai core functionality."""
 
+from __future__ import annotations
+
 import inspect
 import logging
 import pathlib
 import typing as t
 
 from cihai._internal.config_reader import ConfigReader
-from cihai.data.unihan.dataset import Unihan
 from unihan_etl.util import merge_dict
 
 from . import exc, extend
@@ -18,6 +19,7 @@ from .utils import import_string
 if t.TYPE_CHECKING:
     from typing_extensions import TypeGuard
 
+    from cihai.data.unihan.dataset import Unihan
     from cihai.types import ConfigDict, UntypedDict
 
     DS = t.TypeVar("DS", bound=type[extend.Dataset])
@@ -33,7 +35,7 @@ class CihaiConfigError(exc.CihaiException):
         return super().__init__("Invalid exception with configuration")
 
 
-def is_valid_config(config: "UntypedDict") -> "TypeGuard[ConfigDict]":
+def is_valid_config(config: UntypedDict) -> TypeGuard[ConfigDict]:
     """Upcast cihai configuration.
 
     NOTE: This does not validate configuration yet!
@@ -80,14 +82,14 @@ class Cihai:
     """
 
     #: :py:class:`dict` of default config, can be monkey-patched during tests
-    default_config: "UntypedDict" = DEFAULT_CONFIG
-    config: "ConfigDict"
+    default_config: UntypedDict = DEFAULT_CONFIG
+    config: ConfigDict
     unihan: Unihan
     sql: Database
 
     def __init__(
         self,
-        config: t.Optional["UntypedDict"] = None,
+        config: UntypedDict | None = None,
         unihan: bool = True,
     ) -> None:
         """Initialize Cihai application.
@@ -154,7 +156,7 @@ class Cihai:
                 )
                 getattr(self, dataset).add_plugin(class_string, namespace)
 
-    def add_dataset(self, cls: t.Union["DS", str], namespace: str) -> None:
+    def add_dataset(self, cls: DS | str, namespace: str) -> None:
         """Add dataset to Cihai."""
         if isinstance(cls, str):
             cls = import_string(cls)
@@ -170,10 +172,10 @@ class Cihai:
     @classmethod
     def from_file(
         cls,
-        config_path: t.Union[pathlib.Path, str],
+        config_path: pathlib.Path | str,
         *args: object,
         **kwargs: object,
-    ) -> "Cihai":
+    ) -> Cihai:
         """
         Create a Cihai instance from a JSON or YAML config.
 

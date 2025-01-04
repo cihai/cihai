@@ -1,10 +1,15 @@
 """Extension tests for cihai."""
 
-from collections.abc import Generator
+from __future__ import annotations
+
+import typing as t
 
 from cihai import extend
 from cihai.core import Cihai
 from cihai.data.unihan.dataset import Unihan, UnihanVariants
+
+if t.TYPE_CHECKING:
+    from collections.abc import Generator
 
 
 class SimplestDataset(extend.Dataset):

@@ -1,5 +1,7 @@
 """Utility and helper methods for cihai."""
 
+from __future__ import annotations
+
 import sys
 import typing as t
 

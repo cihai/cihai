@@ -10,18 +10,21 @@ require ``typing_extensions`` at runtime:
 ...     pass
 """
 
-import pathlib
+from __future__ import annotations
+
 import typing as t
 
 from typing_extensions import NotRequired, TypedDict
 
 if t.TYPE_CHECKING:
+    import pathlib
+
     from typing_extensions import TypeAlias
 
     from cihai.extend import Dataset
 
 
-UntypedDict: "TypeAlias" = dict[str, object]
+UntypedDict: TypeAlias = dict[str, object]
 
 
 class RawPluginConfigDict(TypedDict):
@@ -31,9 +34,9 @@ class RawPluginConfigDict(TypedDict):
 class RawDirsConfigDict(TypedDict):
     """Raw directory config dictionary."""
 
-    cache: t.Union[str, pathlib.Path]
-    log: t.Union[str, pathlib.Path]
-    data: t.Union[str, pathlib.Path]
+    cache: str | pathlib.Path
+    log: str | pathlib.Path
+    data: str | pathlib.Path
 
 
 class DirsConfigDict(TypedDict):
@@ -54,7 +57,7 @@ class RawConfigDict(TypedDict):
     """Raw, unresolved configuration dictionary."""
 
     plugins: NotRequired[dict[str, RawPluginConfigDict]]
-    datasets: dict[str, t.Union[str, "Dataset"]]
+    datasets: dict[str, str | Dataset]
     database: RawDatabaseConfigDict
     dirs: RawDirsConfigDict
     debug: bool
@@ -64,7 +67,7 @@ class ConfigDict(TypedDict):
     """Cihai Configuration dictionary."""
 
     plugins: dict[str, RawPluginConfigDict]
-    datasets: dict[str, t.Union[str, "Dataset"]]
+    datasets: dict[str, str | Dataset]
     database: RawDatabaseConfigDict
     dirs: RawDirsConfigDict
     debug: bool

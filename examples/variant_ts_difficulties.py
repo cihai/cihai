@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 """Cihai example for difficult cases of traditional and simplified CJK variants."""
 
+from __future__ import annotations
+
 import logging
-import typing as t
 
 from cihai.core import Cihai
 
@@ -10,7 +11,7 @@ log = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(message)s")
 
 
-def run(unihan_options: t.Optional[dict[str, object]] = None) -> None:
+def run(unihan_options: dict[str, object] | None = None) -> None:
     """log.info difficult traditional / simplified CJK variants."""
     if unihan_options is None:
         unihan_options = {}

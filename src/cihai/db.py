@@ -1,23 +1,25 @@
 """Cihai core functionality."""
 
+from __future__ import annotations
+
 import typing as t
 
 from sqlalchemy import MetaData, create_engine
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 
-from cihai.types import ConfigDict
-
 if t.TYPE_CHECKING:
     from sqlalchemy.engine import Engine
     from sqlalchemy.ext.automap import AutomapBase
+
+    from cihai.types import ConfigDict
 
 
 class Database:
     """Cihai SQLAlchemy instance."""
 
     #: :class:`sqlalchemy.engine.Engine` instance.
-    engine: "Engine"
+    engine: Engine
 
     #: :class:`sqlalchemy.schema.MetaData` instance.
     metadata: MetaData
@@ -26,7 +28,7 @@ class Database:
     session: Session
 
     #: :class:`sqlalchemy.ext.automap.AutomapBase` instance.
-    base: "AutomapBase"
+    base: AutomapBase
 
     def __init__(self, config: ConfigDict) -> None:
         self.engine = create_engine(config["database"]["url"])

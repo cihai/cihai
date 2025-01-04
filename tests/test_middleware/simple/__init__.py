@@ -1,5 +1,7 @@
 """Simple demonstration dataset for Cihai."""
 
+from __future__ import annotations
+
 import typing as t
 
 if t.TYPE_CHECKING:
@@ -20,7 +22,7 @@ class DatasetExample:
     :class:`cihai.Cihai` object.
     """
 
-    def get(self, request: str, response: "Response") -> "Response":
+    def get(self, request: str, response: Response) -> Response:
         """Return chinese character data from sample dataset.
 
         The source of information in this example is a :obj:`dict`. In real
@@ -45,7 +47,7 @@ class DatasetExample:
 
         return response
 
-    def reverse(self, request: str, response: "Response") -> "Response":
+    def reverse(self, request: str, response: Response) -> Response:
         """Return chinese character data from a reverse lookup sample dataset.
 
         Parameters

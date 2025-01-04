@@ -167,14 +167,23 @@ select = [
   "PERF", # Perflint
   "RUF", # Ruff-specific rules
   "D", # pydocstyle
+  "FA100",  # future annotations
 ]
 ignore = [
   "COM812", # missing trailing comma, ruff format conflict
 ]
+extend-safe-fixes = [
+  "UP006",
+  "UP007",
+]
+pyupgrade.keep-runtime-typing = false
 
 [tool.ruff.lint.isort]
 known-first-party = ["unihan_etl", "cihai"]
 combine-as-imports = true
+required-imports = [
+  "from __future__ import annotations",
+]
 
 [tool.ruff.lint.pydocstyle]
 convention = "numpy"
@@ -197,3 +206,16 @@ filterwarnings = [
 [tool.pytest-watcher]
 now = true
 ignore_patterns = ["*.py.*.py"]
+
+[tool.coverage.report]
+exclude_also = [
+  "def __repr__",
+  "raise AssertionError",
+  "raise NotImplementedError",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+  "if t.TYPE_CHECKING:",
+  "class .*\\bProtocol\\):",
+  "@(abc\\.)?abstractmethod",
+  "from __future__ import annotations",
+]

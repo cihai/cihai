@@ -1,7 +1,8 @@
 """Module for UNIHAN Dataset for cihai."""
 
+from __future__ import annotations
+
 import typing as t
-from collections.abc import Callable
 
 from sqlalchemy import or_
 from sqlalchemy.sql.schema import Column
@@ -12,6 +13,8 @@ from cihai.extend import Dataset, DatasetPlugin, SQLAlchemyMixin
 from . import bootstrap
 
 if t.TYPE_CHECKING:
+    from collections.abc import Callable
+
     from sqlalchemy.orm.query import Query
     from sqlalchemy.sql.schema import Table
 
@@ -25,10 +28,10 @@ class Unihan(Dataset, SQLAlchemyMixin):
     kDefinition: str
     kTraditionhalVariant: str
     kSimplifiedVariant: str
-    tagged_vars: Callable[[str], "ParsedVars"]
-    untagged_vars: Callable[[str], "UntaggedVars"]
+    tagged_vars: Callable[[str], ParsedVars]
+    untagged_vars: Callable[[str], UntaggedVars]
 
-    def bootstrap(self, options: t.Optional[dict[str, object]] = None) -> None:
+    def bootstrap(self, options: dict[str, object] | None = None) -> None:
         """Fetch, extract, import UNIHAN to DB, and initialize DB mapping."""
         if options is None:
             options = {}
@@ -40,7 +43,7 @@ class Unihan(Dataset, SQLAlchemyMixin):
         )
         self.sql.reflect_db()  # automap new table created during bootstrap
 
-    def lookup_char(self, char: str) -> "Query[Unihan]":
+    def lookup_char(self, char: str) -> Query[Unihan]:
         """Return character information from datasets.
 
         Parameters
@@ -56,7 +59,7 @@ class Unihan(Dataset, SQLAlchemyMixin):
         Unihan = self.sql.base.classes.Unihan
         return self.sql.session.query(Unihan).filter_by(char=char)
 
-    def reverse_char(self, hints: t.Union[str, list[str]]) -> "Query[Unihan]":
+    def reverse_char(self, hints: str | list[str]) -> Query[Unihan]:
         """Return QuerySet of objects from SQLAlchemy of results.
 
         Parameters
@@ -78,7 +81,7 @@ class Unihan(Dataset, SQLAlchemyMixin):
             or_(*[column.contains(hint) for column in columns for hint in hints]),
         )
 
-    def with_fields(self, fields: list[str]) -> "Query[Unihan]":
+    def with_fields(self, fields: list[str]) -> Query[Unihan]:
         """Return list of characters with information for certain fields.
 
         Parameters
@@ -115,11 +118,11 @@ class UnihanVariants(DatasetPlugin, SQLAlchemyMixin):
     def bootstrap(self) -> None:
         """Map custom lookup for UNIHAN variants to Unihan SQLAlchemy table."""
 
-        def tagged_vars(table: "Table", col: str) -> "ParsedVars":
+        def tagged_vars(table: Table, col: str) -> ParsedVars:
             """Return a variant column as an iterator of (char, tag) tuples."""
             return parse_vars(getattr(table, col))
 
-        def untagged_vars(table: "Table", col: str) -> "UntaggedVars":
+        def untagged_vars(table: Table, col: str) -> UntaggedVars:
             """Return a variant column as an iterator of chars."""
             return parse_untagged(getattr(table, col))
 

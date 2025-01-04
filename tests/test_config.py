@@ -1,15 +1,18 @@
 """Test configuration for cihai."""
 
+from __future__ import annotations
+
 import os
 import pathlib
 import typing as t
 
-import pytest
 from appdirs import AppDirs
 
 from cihai.config import expand_config
 
 if t.TYPE_CHECKING:
+    import pytest
+
     from cihai.types import UntypedDict
 
 

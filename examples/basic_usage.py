@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 """Demonstrate basic case of Cihai's python API with UNIHAN."""
 
+from __future__ import annotations
+
 import logging
-import typing as t
 
 from cihai.core import Cihai
 
@@ -10,7 +11,7 @@ log = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(message)s")
 
 
-def run(unihan_options: t.Optional[dict[str, object]] = None) -> None:
+def run(unihan_options: dict[str, object] | None = None) -> None:
     """Initialize Cihai with UNIHAN (automatically initialized implicitly)."""
     if unihan_options is None:
         unihan_options = {}
