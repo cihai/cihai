@@ -31,7 +31,7 @@ print('matches for "good": %s ' % ', '.join([glph.char for glph in query]))
 # matches for "good": 㑘, 㑤, 㓛, 㘬, 㙉, 㚃, 㚒, 㚥, 㛦, 㜴, 㜺, 㝖, 㤛, 㦝, ...
 ```
 
-See [API](https://cihai.git-pull.com/api.html) documentation and
+See [API](https://cihai.git-pull.com/api/) documentation and
 [/examples](https://github.com/cihai/cihai/tree/master/examples).
 
 ### CLI ([cihai-cli](https://cihai-cli.git-pull.com))
@@ -105,13 +105,13 @@ $ cd cihai/
 
 - [Quickstart](https://cihai.git-pull.com/quickstart.html)
 - [Datasets](https://cihai.git-pull.com/datasets.html) a full list of current and future data sets
-- Python [API](https://cihai.git-pull.com/api.html)
+- Python [API](https://cihai.git-pull.com/api/)
 - [Roadmap](https://cihai.git-pull.com/design-and-planning/)
 - Python support: >= 3.9, pypy
 - Source: <https://github.com/cihai/cihai>
 - Docs: <https://cihai.git-pull.com>
 - Changelog: <https://cihai.git-pull.com/history.html>
-- API: <https://cihai.git-pull.com/api.html>
+- API: <https://cihai.git-pull.com/api/>
 - Issues: <https://github.com/cihai/cihai/issues>
 - Test coverage: <https://codecov.io/gh/cihai/cihai>
 - pypi: <https://pypi.python.org/pypi/cihai>
