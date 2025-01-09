@@ -79,7 +79,7 @@ def test_bootstraps_unihan_by_default() -> None:
 def test_cihai_without_unihan() -> None:
     """Test bootstrapping without UNIHAN."""
     app = Cihai(unihan=False)
-    assert (
-        UNIHAN_CONFIG.items() != app.config.items()
-    ), "app can be initialized without unihan"
+    assert UNIHAN_CONFIG.items() != app.config.items(), (
+        "app can be initialized without unihan"
+    )
     assert not hasattr(app, "unihan")
