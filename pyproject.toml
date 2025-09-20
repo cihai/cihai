@@ -62,8 +62,8 @@ Repository = "https://github.com/cihai/cihai"
 "Release notes" = "https://github.com/cihai/cihai/blob/master/CHANGES"
 "Q & A" = "https://github.com/cihai/cihai/discussions"
 
-[tool.uv]
-dev-dependencies = [
+[dependency-groups]
+dev = [
   # Docs
   "sphinx",
   "furo",
@@ -95,7 +95,6 @@ dev-dependencies = [
   "types-PyYAML",
 ]
 
-[dependency-groups]
 docs = [
   "sphinx",
   "furo",
