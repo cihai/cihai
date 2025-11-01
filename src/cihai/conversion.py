@@ -67,7 +67,7 @@ import typing as t
 from collections.abc import Generator, Iterator
 
 if t.TYPE_CHECKING:
-    from typing_extensions import TypeAlias
+    from typing import TypeAlias
 
 log = logging.getLogger(__name__)
 
@@ -308,7 +308,7 @@ def ucnstring_to_python(ucn_string: str) -> bytes:
     return ucn_bytestr
 
 
-ParsedVar: TypeAlias = tuple[str, t.Optional[str]]
+ParsedVar: TypeAlias = tuple[str, str | None]
 
 
 def parse_var(var: str) -> ParsedVar:
