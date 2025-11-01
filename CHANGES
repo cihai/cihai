@@ -35,6 +35,7 @@ $ uvx --from 'cihai' --prerelease allow python -c "import cihai; print(cihai.__v
 
 ### Breaking changes
 
+- Bump unihan-etl v0.37.0 -> v0.38.0
 - Drop support for Python 3.9; the new minimum is Python 3.10 (#386).
 
   See also:
