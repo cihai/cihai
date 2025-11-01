@@ -1,5 +1,32 @@
 # Changelog
 
+You can test the unpublished version of cihai before it's released, see
+[developmental releases](https://cihai.git-pull.com/quickstart.html#developmental-releases).
+
+[pip](https://pip.pypa.io/en/stable/):
+
+```console
+$ pip install --user --upgrade --pre cihai
+```
+
+[pipx](https://pypa.github.io/pipx/docs/):
+
+```console
+$ pipx run --pip-args '\--pre' --spec 'cihai' python -c "import cihai; print(cihai.__version__)"
+```
+
+[uv](https://docs.astral.sh/uv/getting-started/features/#python-versions):
+
+```console
+$ uv add cihai --prerelease allow
+```
+
+[uvx](https://docs.astral.sh/uv/guides/tools/):
+
+```console
+$ uvx --from 'cihai' --prerelease allow python -c "import cihai; print(cihai.__version__)"
+```
+
 ## cihai 0.36.x (unreleased)
 
 <!-- Maintainers, insert changes / features for the next release here -->
