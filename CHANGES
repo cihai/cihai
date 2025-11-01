@@ -8,6 +8,8 @@
 
 ### Development
 
+- Add Python 3.14 to test matrix (#385)
+
 #### chore: Implement PEP 563 deferred annotation resolution (#383)
 
 - Add `from __future__ import annotations` to defer annotation resolution and reduce unnecessary runtime computations during type checking.
