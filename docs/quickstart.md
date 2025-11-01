@@ -10,6 +10,37 @@ cihai is designed to work out-of-the-box without configuration.
 $ pip install --user cihai
 ```
 
+(developmental-releases)=
+
+### Developmental releases
+
+New versions of cihai are published to PyPI as alpha, beta, or release candidates.
+Identifiers like `a1`, `b1`, and `rc1` mark alpha, beta, and release candidates, respectively.
+
+- [pip]\:
+
+  ```console
+  $ pip install --user --upgrade --pre cihai
+  ```
+
+- [pipx]\:
+
+  ```console
+  $ pipx run --pip-args '\--pre' --spec 'cihai' python -c "import cihai; print(cihai.__version__)"
+  ```
+
+- [uv]\:
+
+  ```console
+  $ uv add cihai --prerelease allow
+  ```
+
+- [uvx]\:
+
+  ```console
+  $ uvx --from 'cihai' --prerelease allow python -c "import cihai; print(cihai.__version__)"
+  ```
+
 (configuration)=
 
 ## Configuration
@@ -75,3 +106,7 @@ unihan_options:
 ```
 
 [psycopg]: http://initd.org/psycopg/
+[pip]: https://pip.pypa.io/en/stable/
+[pipx]: https://pypa.github.io/pipx/docs/
+[uv]: https://docs.astral.sh/uv/
+[uvx]: https://docs.astral.sh/uv/guides/tools/
