@@ -42,9 +42,9 @@ def run(unihan_options: dict[str, object] | None = None) -> None:
         else:
             log.info("Case 2 (non-idempotent)")
         for trad_var in trad:
-            log.info(f"s2t: {trad_var}")
+            log.info("s2t: %s", trad_var)
         for simp_var in simp:
-            log.info(f"t2s: {simp_var}")
+            log.info("t2s: %s", simp_var)
 
 
 if __name__ == "__main__":
