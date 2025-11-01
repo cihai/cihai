@@ -7,7 +7,7 @@ import typing as t
 import yaml
 
 if t.TYPE_CHECKING:
-    from typing_extensions import TypeAlias
+    from typing import TypeAlias
 
     RawConfigData: TypeAlias = dict[t.Any, t.Any]
 
@@ -113,7 +113,7 @@ class ConfigReader:
         {'session_name': 'my session'}
         """
         assert isinstance(path, pathlib.Path)
-        content = path.open().read()
+        content = path.open(encoding="utf-8").read()
 
         if path.suffix in {".yaml", ".yml"}:
             fmt: FormatLiteral = "yaml"

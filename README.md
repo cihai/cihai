@@ -107,7 +107,7 @@ $ cd cihai/
 - [Datasets](https://cihai.git-pull.com/datasets.html) a full list of current and future data sets
 - Python [API](https://cihai.git-pull.com/api/)
 - [Roadmap](https://cihai.git-pull.com/design-and-planning/)
-- Python support: >= 3.9, pypy
+- Python support: >= 3.10, pypy
 - Source: <https://github.com/cihai/cihai>
 - Docs: <https://cihai.git-pull.com>
 - Changelog: <https://cihai.git-pull.com/history.html>

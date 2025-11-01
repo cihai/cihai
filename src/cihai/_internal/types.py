@@ -13,8 +13,7 @@ import typing as t
 
 if t.TYPE_CHECKING:
     from os import PathLike
-
-    from typing_extensions import TypeAlias
+    from typing import TypeAlias
 
 StrPath: TypeAlias = t.Union[str, "PathLike[str]"]  # stable
 """:class:`os.PathLike` or :class:`str`"""

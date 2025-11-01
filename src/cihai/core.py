@@ -17,7 +17,7 @@ from .db import Database
 from .utils import import_string
 
 if t.TYPE_CHECKING:
-    from typing_extensions import TypeGuard
+    from typing import TypeGuard
 
     from cihai.data.unihan.dataset import Unihan
     from cihai.types import ConfigDict, UntypedDict

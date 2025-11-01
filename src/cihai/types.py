@@ -12,14 +12,18 @@ require ``typing_extensions`` at runtime:
 
 from __future__ import annotations
 
+import sys
 import typing as t
+from typing import TypedDict
 
-from typing_extensions import NotRequired, TypedDict
+if sys.version_info >= (3, 11):
+    from typing import NotRequired
+else:
+    from typing_extensions import NotRequired
 
 if t.TYPE_CHECKING:
     import pathlib
-
-    from typing_extensions import TypeAlias
+    from typing import TypeAlias
 
     from cihai.extend import Dataset
 
