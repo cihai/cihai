@@ -27,11 +27,13 @@ $ uv add cihai --prerelease allow
 $ uvx --from 'cihai' --prerelease allow python -c "import cihai; print(cihai.__version__)"
 ```
 
-## cihai 0.36.x (unreleased)
+## cihai 0.37.x (unreleased)
 
 <!-- Maintainers, insert changes / features for the next release here -->
 
 - _Add your latest changes from PRs here_
+
+## cihai 0.36.0 (2025-11-01)
 
 ### Breaking changes
 
