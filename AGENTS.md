@@ -156,7 +156,7 @@ cihai uses pytest with doctests enabled via `pyproject.toml`. Key points:
 
 ## Coding Standards
 
-- Imports: prefer namespace imports (`import pathlib`) and `import typing as t`; include `from __future__ import annotations` at the top of Python files.
+- Imports: prefer namespace imports for standard library (`import pathlib`) and `import typing as t`; third-party packages may use `from X import Y`; include `from __future__ import annotations` at the top of Python files.
 - Docstrings: use NumPy style with reStructuredText formatting.
 - Doctests: narrative style, blank lines between sections; move complex flows into dedicated tests.
 - Lint/type: keep code ruff- and mypy-clean before requesting review.
