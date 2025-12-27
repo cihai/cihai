@@ -55,7 +55,7 @@ $ cd cihai
 $ uv sync --all-extras --dev
 ```
 
-Makefile commands prefixed with `watch_` will watch files and rerun.
+Justfile commands prefixed with `watch-` will watch files and rerun.
 
 ## Tests
 
@@ -70,13 +70,13 @@ $ uv run py.test
 via [pytest-watcher] (works out of the box):
 
 ```console
-$ make start
+$ just start
 ```
 
 via [`entr(1)`] (requires installation):
 
 ```console
-$ make watch_test
+$ just watch-test
 ```
 
 [pytest-watcher]: https://github.com/olzhasar/pytest-watcher
@@ -90,7 +90,7 @@ $ uv run py.test
 or:
 
 ```console
-$ make test
+$ just test
 ```
 
 ### pytest options
@@ -106,43 +106,43 @@ information read [docs.pytest.com] for the latest documentation.
 Verbose:
 
 ```console
-$ env PYTEST_ADDOPTS="-verbose" make start
+$ env PYTEST_ADDOPTS="-verbose" just start
 ```
 
 Pick a file:
 
 ```console
-$ env PYTEST_ADDOPTS="tests/test_cihai.py" uv run make start
+$ env PYTEST_ADDOPTS="tests/test_cihai.py" just start
 ```
 
 Drop into `test_cihai_version()` in `tests/test_cihai.py`:
 
 ```console
-$ env PYTEST_ADDOPTS="-s -x -vv tests/test_cihai.py" uv run make start
+$ env PYTEST_ADDOPTS="-s -x -vv tests/test_cihai.py" just start
 ```
 
 Drop into `test_cihai_version()` in `tests/test_cihai.py` and stop on first error:
 
 ```console
-$ env PYTEST_ADDOPTS="-s -x -vv tests/test_cihai.py::test_cihai" uv run make start
+$ env PYTEST_ADDOPTS="-s -x -vv tests/test_cihai.py::test_cihai" just start
 ```
 
 Drop into `pdb` on first error:
 
 ```console
-$ env PYTEST_ADDOPTS="-x -s --pdb" make start
+$ env PYTEST_ADDOPTS="-x -s --pdb" just start
 ```
 
 If you have [ipython] installed:
 
 ```console
-$ env PYTEST_ADDOPTS="--pdbcls=IPython.terminal.debugger:TerminalPdb" make start
+$ env PYTEST_ADDOPTS="--pdbcls=IPython.terminal.debugger:TerminalPdb" just start
 ```
 
 [ipython]: https://ipython.org/
 
 ```console
-$ make test
+$ just test
 ```
 
 You probably didn't see anything but tests scroll by.
@@ -178,20 +178,19 @@ $ py.test tests/test_{conversion,exc}.py tests/test_config.py::test_configurator
 
 [sphinx-autobuild] will automatically build the docs, watch for file changes and launch a server.
 
-From home directory: `make start_docs` From inside `docs/`: `make start`
+From home directory: `just start-docs` From inside `docs/`: `just start`
 
 [sphinx-autobuild]: https://github.com/executablebooks/sphinx-autobuild
 
 ### Manual documentation (the hard way)
 
-`cd docs/` and `make html` to build. `make serve` to start http server.
+`cd docs/` and `just html` to build. `just serve` to start http server.
 
-Helpers: `make build_docs`, `make serve_docs`
+Helpers: `just build-docs`, `just serve-docs`
 
-Rebuild docs on file change: `make watch_docs` (requires [entr(1)])
+Rebuild docs on file change: `just watch-docs` (requires [entr(1)])
 
-Rebuild docs and run server via one terminal: `make dev_docs` (requires above, and a `make(1)` with
-`-J` support, e.g. GNU Make)
+Rebuild docs and run server via one terminal: `just dev-docs`
 
 ### View documentation locally
 
@@ -224,14 +223,6 @@ $ black .
 
 ````
 
-````{tab} make
-
-```console
-$ make black
-```
-
-````
-
 In the future, `ruff` (below) may replace black as formatter.
 
 ### ruff
@@ -254,10 +245,10 @@ $ ruff check .
 
 ````
 
-````{tab} make
+````{tab} just
 
 ```console
-$ make ruff
+$ just ruff
 ```
 
 ````
@@ -265,7 +256,7 @@ $ make ruff
 ````{tab} Watch
 
 ```console
-$ make watch_ruff
+$ just watch-ruff
 ```
 
 requires [`entr(1)`].
@@ -308,10 +299,10 @@ $ mypy .
 
 ````
 
-````{tab} make
+````{tab} just
 
 ```console
-$ make mypy
+$ just mypy
 ```
 
 ````
@@ -319,7 +310,7 @@ $ make mypy
 ````{tab} Watch
 
 ```console
-$ make watch_mypy
+$ just watch-mypy
 ```
 
 requires [`entr(1)`].
