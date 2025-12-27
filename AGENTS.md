@@ -50,7 +50,7 @@ uv pip install --editable . -G dev
 
 ```bash
 # Run all tests (doctests included via pytest config)
-make test
+just test
 # or directly
 uv run py.test
 
@@ -61,7 +61,7 @@ uv run py.test tests/test_core.py
 uv run py.test tests/test_core.py::test_bootstrap
 
 # Run tests with test watcher
-make start
+just start
 # or
 uv run ptw .
 
@@ -73,39 +73,39 @@ uv run ptw . --now --doctest-modules
 
 ```bash
 # Run ruff for linting
-make ruff
+just ruff
 # or directly
 uv run ruff check .
 
 # Format code with ruff
-make ruff_format
+just ruff-format
 # or directly
 uv run ruff format .
 
 # Run mypy for type checking
-make mypy
+just mypy
 # or directly
 uv run mypy src tests docs
 
 # Watch mode for linting (using entr)
-make watch_ruff
-make watch_mypy
+just watch-ruff
+just watch-mypy
 ```
 
 ### Documentation
 
 ```bash
 # Build documentation
-make build_docs
+just build-docs
 
 # Start documentation server with auto-reload
-make start_docs
+just start-docs
 
 # Live dev loop for docs
-make dev_docs
+just dev-docs
 
 # Update documentation CSS/JS
-make design_docs
+just design-docs
 ```
 
 ### Development Workflow
