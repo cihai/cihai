@@ -33,6 +33,10 @@ $ uvx --from 'cihai' --prerelease allow python -c "import cihai; print(cihai.__v
 
 - _Add your latest changes from PRs here_
 
+### Documentation
+
+- Migrate docs deployment to AWS OIDC authentication and AWS CLI
+
 ## cihai 0.36.0 (2025-11-01)
 
 ### Breaking changes
