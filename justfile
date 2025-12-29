@@ -11,20 +11,19 @@ doc_files := "find . -type f -not -path '*/\\.*' | grep -i '.*[.]rst$\\|.*[.]md$
 default:
     @just --list
 
-# ============================================================================
-# Testing
-# ============================================================================
-
 # Run tests with pytest
+[group: 'test']
 test *args:
     uv run py.test {{ args }}
 
 # Run tests then start continuous testing with pytest-watcher
+[group: 'test']
 start:
     just test
     uv run ptw .
 
 # Watch files and run tests on change (requires entr)
+[group: 'test']
 watch-test:
     #!/usr/bin/env bash
     set -euo pipefail
@@ -35,15 +34,13 @@ watch-test:
         just _entr-warn
     fi
 
-# ============================================================================
-# Documentation
-# ============================================================================
-
 # Build documentation
+[group: 'docs']
 build-docs:
     just -f docs/justfile html
 
 # Watch files and rebuild docs on change
+[group: 'docs']
 watch-docs:
     #!/usr/bin/env bash
     set -euo pipefail
@@ -55,10 +52,12 @@ watch-docs:
     fi
 
 # Serve documentation
+[group: 'docs']
 serve-docs:
     just -f docs/justfile serve
 
 # Watch and serve docs simultaneously
+[group: 'docs']
 dev-docs:
     #!/usr/bin/env bash
     set -euo pipefail
@@ -66,26 +65,27 @@ dev-docs:
     just serve-docs
 
 # Start documentation server with auto-reload
+[group: 'docs']
 start-docs:
     just -f docs/justfile start
 
 # Start documentation design mode (watches static files)
+[group: 'docs']
 design-docs:
     just -f docs/justfile design
 
-# ============================================================================
-# Linting & Formatting
-# ============================================================================
-
 # Format code with ruff
+[group: 'lint']
 ruff-format:
     uv run ruff format .
 
 # Run ruff linter
+[group: 'lint']
 ruff:
     uv run ruff check .
 
 # Watch files and run ruff on change
+[group: 'lint']
 watch-ruff:
     #!/usr/bin/env bash
     set -euo pipefail
@@ -97,14 +97,17 @@ watch-ruff:
     fi
 
 # Run vulture to find dead code
+[group: 'lint']
 vulture:
     uv run vulture src/cihai
 
 # Run mypy type checker
+[group: 'lint']
 mypy:
     uv run mypy $(${{ py_files }})
 
 # Watch files and run mypy on change
+[group: 'lint']
 watch-mypy:
     #!/usr/bin/env bash
     set -euo pipefail
@@ -116,24 +119,19 @@ watch-mypy:
     fi
 
 # Format markdown files with prettier
+[group: 'format']
 format-markdown:
     prettier --parser=markdown -w *.md docs/*.md docs/**/*.md CHANGES
 
-# ============================================================================
-# Typing
-# ============================================================================
-
 # Run monkeytype to collect runtime types
+[group: 'typing']
 monkeytype-create:
     uv run monkeytype run $(uv run which py.test)
 
 # Apply collected monkeytype annotations
+[group: 'typing']
 monkeytype-apply:
     uv run monkeytype list-modules | xargs -n1 -I{} sh -c 'uv run monkeytype apply {}'
-
-# ============================================================================
-# Private helpers
-# ============================================================================
 
 [private]
 _entr-warn:
