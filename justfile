@@ -28,7 +28,7 @@ watch-test:
     #!/usr/bin/env bash
     set -euo pipefail
     if command -v entr > /dev/null; then
-        ${{ py_files }} | entr -c just test
+        {{ py_files }} | entr -c just test
     else
         just test
         just _entr-warn
@@ -45,7 +45,7 @@ watch-docs:
     #!/usr/bin/env bash
     set -euo pipefail
     if command -v entr > /dev/null; then
-        ${{ doc_files }} | entr -c just build-docs
+        {{ doc_files }} | entr -c just build-docs
     else
         just build-docs
         just _entr-warn
@@ -90,7 +90,7 @@ watch-ruff:
     #!/usr/bin/env bash
     set -euo pipefail
     if command -v entr > /dev/null; then
-        ${{ py_files }} | entr -c just ruff
+        {{ py_files }} | entr -c just ruff
     else
         just ruff
         just _entr-warn
@@ -104,7 +104,7 @@ vulture:
 # Run mypy type checker
 [group: 'lint']
 mypy:
-    uv run mypy $(${{ py_files }})
+    uv run mypy $({{ py_files }})
 
 # Watch files and run mypy on change
 [group: 'lint']
@@ -112,7 +112,7 @@ watch-mypy:
     #!/usr/bin/env bash
     set -euo pipefail
     if command -v entr > /dev/null; then
-        ${{ py_files }} | entr -c just mypy
+        {{ py_files }} | entr -c just mypy
     else
         just mypy
         just _entr-warn
