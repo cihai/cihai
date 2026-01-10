@@ -152,6 +152,7 @@ cihai uses pytest with doctests enabled via `pyproject.toml`. Key points:
 - Doctests run automatically; keep examples minimal or move heavier scenarios into `tests/` or `examples/` with pytest fixtures.
 - Use `pytest-watcher` (`uv run ptw .`) for continuous feedback during development.
 - Favor `tmp_path` and `monkeypatch` fixtures instead of `tempfile`/`unittest.mock`.
+- **Use functional tests only**: Write tests as standalone functions (`test_*`), not classes. Avoid `class TestFoo:` groupings. This applies to pytest tests, not doctests.
 
 ## Coding Standards
 
