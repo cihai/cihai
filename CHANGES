@@ -31,7 +31,9 @@ $ uvx --from 'cihai' --prerelease allow python -c "import cihai; print(cihai.__v
 
 <!-- Maintainers, insert changes / features for the next release here -->
 
-- _Add your latest changes from PRs here_
+### CI
+
+- Migrate to PyPI Trusted Publisher (#387)
 
 ### Development
 
