@@ -160,7 +160,34 @@ cihai uses pytest with doctests enabled via `pyproject.toml`. Key points:
 - Docstrings: use NumPy style with reStructuredText formatting.
 - Doctests: narrative style, blank lines between sections; move complex flows into dedicated tests.
 - Lint/type: keep code ruff- and mypy-clean before requesting review.
-- Commits: follow the repo’s conventional component-based style (imperative, short subject; include `py(deps)` prefixes for dependency bumps).
+
+## Git Commit Standards
+
+Commit subjects: `Component/File(commit-type[scope]): Concise description`
+
+Body template:
+```
+why: Reason or impact.
+what:
+- Key technical changes
+- Single topic only
+```
+
+Guidelines:
+- Subject ≤50 chars; body lines ≤72 chars; imperative mood.
+- One topic per commit; separate subject and body with a blank line.
+
+Common commit types:
+- **feat**: New features or enhancements
+- **fix**: Bug fixes
+- **refactor**: Code restructuring without functional change
+- **docs**: Documentation updates
+- **chore**: Maintenance (dependencies, tooling, config)
+- **test**: Test-related updates
+- **style**: Code style and formatting
+- **py(deps)**: Dependencies
+- **py(deps[dev])**: Dev dependencies
+- **ai(rules[LLM type])**: AI rule updates (e.g., `ai(rules[AGENTS])`)
 
 ## Data Considerations
 
