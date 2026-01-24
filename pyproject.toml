@@ -52,7 +52,7 @@ dependencies = [
   "appdirs",
   "PyYAML~=6.0",
   "sqlalchemy[mypy]~=2.0",
-  "unihan-etl~=0.38.0",
+  "unihan-etl~=0.39.1",
 ]
 
 [project.urls]
