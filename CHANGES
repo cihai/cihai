@@ -31,6 +31,12 @@ $ uvx --from 'cihai' --prerelease allow python -c "import cihai; print(cihai.__v
 
 <!-- Maintainers, insert changes / features for the next release here -->
 
+_Add your latest changes from PRs here_
+
+### Breaking changes
+
+- Bump unihan-etl v0.38.0 -> v0.39.1 (#389)
+
 ### CI
 
 - Migrate to PyPI Trusted Publisher (#387)
