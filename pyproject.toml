@@ -145,6 +145,14 @@ files = [
   "tests/",
 ]
 
+[[tool.mypy.overrides]]
+module = ["sphinx_fonts"]
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = ["tests.docs._ext.test_sphinx_fonts"]
+disable_error_code = ["arg-type"]
+
 [tool.ruff]
 target-version = "py310"
 
