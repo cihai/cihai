@@ -203,31 +203,9 @@ depending on the project! An example of what to look for:
 
 ## Formatting / Linting
 
-### black
-
-[black] is used for formatting.
-
-````{tab} Command
-
-uv:
-
-```console
-$ uv run black .
-```
-
-If you setup manually:
-
-```console
-$ black .
-```
-
-````
-
-In the future, `ruff` (below) may replace black as formatter.
-
 ### ruff
 
-The project uses [ruff] to handle sorting imports and linting.
+The project uses [ruff] to handle formatting, sorting imports, and linting.
 
 ````{tab} Command
 
@@ -275,6 +253,34 @@ If you setup manually:
 
 ```console
 $ ruff check . --fix
+```
+
+````
+
+#### ruff format
+
+[ruff format] is used for formatting.
+
+````{tab} Command
+
+uv:
+
+```console
+$ uv run ruff format .
+```
+
+If you setup manually:
+
+```console
+$ ruff format .
+```
+
+````
+
+````{tab} just
+
+```console
+$ just ruff-format
 ```
 
 ````
@@ -386,6 +392,5 @@ build` and push to PyPI.
 [uv]: https://github.com/astral-sh/uv
 [entr(1)]: http://eradman.com/entrproject/
 [`entr(1)`]: http://eradman.com/entrproject/
-[black]: https://github.com/psf/black
 [ruff]: https://ruff.rs
 [mypy]: http://mypy-lang.org/
