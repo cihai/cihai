@@ -1,2 +1,10 @@
 # "api.md" "api/index.md"  # dirhtml: same output path
 # "datasets.md" "datasets/index.md"  # dirhtml: same output path
+"features.md" "topics/features.md"
+"examples.md" "topics/examples.md"
+"extend.md" "topics/extending.md"
+"troubleshooting.md" "topics/troubleshooting.md"
+"contributing/index.md" "project/contributing.md"
+"api/internals/index.md" "internals/index.md"
+"api/internals/config_reader.md" "internals/api/config_reader.md"
+"api/internals/types.md" "internals/api/types.md"
