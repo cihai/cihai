@@ -14,7 +14,7 @@ bring it up on the [issue tracker]!
 
 _examples/dataset.py_:
 
-```{literalinclude} ../examples/dataset.py
+```{literalinclude} ../../examples/dataset.py
 :language: python
 
 ```

@@ -3,23 +3,18 @@
 
 # Datasets
 
-```{module} cihai
+Data sources available through cihai.
 
-```
+::::{grid} 1 1 2 2
+:gutter: 2 2 3 3
 
-:::{warning}
-Be careful with these! Internal APIs are **not** covered by version policies. They can break or be removed between minor versions!
-
-If you need an internal API stabilized please [file an issue](https://github.com/cihai/cihai/issues).
+:::{grid-item-card} UNIHAN
+:link: unihan
+:link-type: doc
+Unicode Han Database -- readings, meanings, variants.
 :::
 
-## Current Datasets
-
-```{toctree}
-:maxdepth: 1
-
-unihan
-```
+::::
 
 ## Planned datasets
 
@@ -45,3 +40,9 @@ For all data sets, the goal is to achieve:
 [^cite_unhn-p]: <https://unihan-etl.git-pull.com/>
 [^cite_cdct-l]: <https://www.mdbg.net/chinese/dictionary?page=cedict>
 [^cite_cfdict]: The database at <http://www.chine-informations.com/chinois/open/CFDICT/download.php> is missing.
+
+```{toctree}
+:hidden:
+
+unihan
+```

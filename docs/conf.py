@@ -40,8 +40,11 @@ extensions = [
     "sphinxext.opengraph",
     "sphinxext.rediraffe",
     "myst_parser",
+    "sphinx_design",
     "linkify_issues",
 ]
+
+myst_heading_anchors = 4
 
 myst_enable_extensions = [
     "colon_fence",
