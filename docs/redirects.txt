@@ -1,2 +1,2 @@
-"api.md" "api/index.md"
-"datasets.md" "datasets/index.md"
+# "api.md" "api/index.md"  # dirhtml: same output path
+# "datasets.md" "datasets/index.md"  # dirhtml: same output path
