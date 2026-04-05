@@ -65,18 +65,9 @@ Repository = "https://github.com/cihai/cihai"
 [dependency-groups]
 dev = [
   # Docs
-  "sphinx<9",
-  "furo",
+  "gp-sphinx==0.0.1a1",
   "gp-libs",
   "sphinx-autobuild",
-  "sphinx-autodoc-typehints",
-  "sphinx-inline-tabs",
-  "sphinxext-opengraph",
-  "sphinx-copybutton",
-  "sphinxext-rediraffe",
-  "myst-parser",
-  "sphinx-design",
-  "linkify-it-py",
   # Testing
   "gp-libs",
   "pytest",
@@ -97,18 +88,9 @@ dev = [
 ]
 
 docs = [
-  "sphinx<9",
-  "furo",
+  "gp-sphinx==0.0.1a1",
   "gp-libs",
   "sphinx-autobuild",
-  "sphinx-autodoc-typehints",
-  "sphinx-inline-tabs",
-  "sphinxext-opengraph",
-  "sphinx-copybutton",
-  "sphinxext-rediraffe",
-  "myst-parser",
-  "sphinx-design",
-  "linkify-it-py",
 ]
 testing = [
   "gp-libs",
@@ -146,14 +128,6 @@ files = [
   "src/",
   "tests/",
 ]
-
-[[tool.mypy.overrides]]
-module = ["sphinx_fonts"]
-ignore_missing_imports = true
-
-[[tool.mypy.overrides]]
-module = ["tests.docs._ext.test_sphinx_fonts"]
-disable_error_code = ["arg-type"]
 
 [tool.ruff]
 target-version = "py310"
