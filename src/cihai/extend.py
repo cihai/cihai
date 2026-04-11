@@ -3,7 +3,7 @@ Cihai Plugin System.
 
 Status: Experimental, API can change
 
-As a pilot, the UNIHAN library, and an plugin for it, in #131 [1]_
+As a pilot, the UNIHAN library, and an plugin for it, in #131.
 
 You can bring any data layout / backend you like to cihai.
 
