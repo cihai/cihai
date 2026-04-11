@@ -48,10 +48,6 @@ class Cihai:
 
     By default, this automatically adds the UNIHAN dataset.
 
-    Attributes
-    ----------
-    config : dict
-
     Notes
     -----
     Inspired by the early `pypa/warehouse <https://github.com/pypa/warehouse>`_
