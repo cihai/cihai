@@ -30,6 +30,5 @@ Internal type aliases and protocols.
 ```{toctree}
 :hidden:
 
-api/config_reader
-api/types
+api/index
 ```

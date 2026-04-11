@@ -2,7 +2,7 @@
 
 # cihai
 
-Python library for [CJK](glossary.md#term-cjk) (Chinese, Japanese, Korean)
+Python library for {term}`CJK` (Chinese, Japanese, Korean)
 character data. Look up readings, definitions, and variants from the
 [UNIHAN](datasets/unihan.md) database and beyond.
 

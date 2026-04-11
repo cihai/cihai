@@ -48,13 +48,10 @@ class Cihai:
 
     By default, this automatically adds the UNIHAN dataset.
 
-    Attributes
-    ----------
-    config : dict
-
     Notes
     -----
-    Inspired by the early pypa/warehouse application object [1]_.
+    Inspired by the early `pypa/warehouse <https://github.com/pypa/warehouse>`_
+    application object.
 
     **Configuration templates**
 
@@ -65,20 +62,13 @@ class Cihai:
 
     Examples
     --------
-    To use cihai programmatically, invoke and install the UNIHAN [2]_ dataset:
+    To use cihai programmatically, invoke and install the `UNIHAN
+    <https://www.unicode.org/reports/tr38/>`_ dataset — see
+    :ref:`examples` for a runnable walkthrough based on
+    ``examples/basic_usage.py``.
 
-    .. literalinclude:: ../examples/basic_usage.py
-        :language: python
-
-    Above: :attr:`~cihai.data.unihan.bootstrap.is_bootstrapped` can check if the system
-    has the database installed.
-
-    References
-    ----------
-    .. [1] PyPA Warehouse on GitHub. https://github.com/pypa/warehouse.
-       Accessed sometime in 2013.
-    .. [2] UNICODE HAN DATABASE (UNIHAN) documentation.
-       https://www.unicode.org/reports/tr38/. Accessed March 31st, 2018.
+    :attr:`~cihai.data.unihan.bootstrap.is_bootstrapped` can check if the
+    system has the database installed.
     """
 
     #: :py:class:`dict` of default config, can be monkey-patched during tests
