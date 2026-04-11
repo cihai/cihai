@@ -67,13 +67,12 @@ class Cihai:
     Examples
     --------
     To use cihai programmatically, invoke and install the `UNIHAN
-    <https://www.unicode.org/reports/tr38/>`_ dataset:
+    <https://www.unicode.org/reports/tr38/>`_ dataset — see
+    :ref:`examples` for a runnable walkthrough based on
+    ``examples/basic_usage.py``.
 
-    .. literalinclude:: ../examples/basic_usage.py
-        :language: python
-
-    Above: :attr:`~cihai.data.unihan.bootstrap.is_bootstrapped` can check if the system
-    has the database installed.
+    :attr:`~cihai.data.unihan.bootstrap.is_bootstrapped` can check if the
+    system has the database installed.
     """
 
     #: :py:class:`dict` of default config, can be monkey-patched during tests
