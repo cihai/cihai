@@ -6,8 +6,9 @@
 .. glossary::
 
     CJK
-        1. In computer software, `internationalization`_ of *Chinese, Japanese,
-           and Korean* language.
+        1. In computer software, `internationalization
+           <https://en.wikipedia.org/wiki/Internationalization_and_localization>`_
+           of *Chinese, Japanese, and Korean* language.
         2. In cihai, specifically, character information from Chinese,
            Japanese and Korean languages. Such as definitions, dictionary
            index references, phonetics, character decompositions and
