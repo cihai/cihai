@@ -39,6 +39,12 @@ _Notes on the upcoming release will go here._
 
 - Bump unihan-etl v0.39.1 -> v0.41.0 (#393)
 
+### Documentation
+
+- Resolve pre-existing Sphinx warnings and broken xrefs in core
+  docstrings, glossary, internals toctree, and `cihai.conversion`
+  cross-reference (#397)
+
 ## cihai 0.36.1 (2026-01-24)
 
 ### Breaking changes
