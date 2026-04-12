@@ -36,6 +36,7 @@ _Notes on the upcoming release will go here._
 ### Documentation
 
 - Visual improvements to API docs from [gp-sphinx](https://gp-sphinx.git-pull.com)-based Sphinx packages (#396)
+- Bump gp-sphinx docs stack to v0.0.1a8 (#398)
 
 
 <!-- Maintainers, insert changes / features for the next release here -->
