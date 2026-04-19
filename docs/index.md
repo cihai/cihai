@@ -96,4 +96,5 @@ project/index
 design-and-planning/index
 history
 glossary
+GitHub <https://github.com/cihai/cihai>
 ```
