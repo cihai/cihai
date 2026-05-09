@@ -65,7 +65,7 @@ Repository = "https://github.com/cihai/cihai"
 [dependency-groups]
 dev = [
   # Docs
-  "gp-sphinx==0.0.1a16",
+  "gp-sphinx==0.0.1a17",
   "sphinx-autodoc-api-style==0.0.1a16",
   "gp-libs",
   "sphinx-autobuild",
@@ -89,7 +89,7 @@ dev = [
 ]
 
 docs = [
-  "gp-sphinx==0.0.1a16",
+  "gp-sphinx==0.0.1a17",
   "sphinx-autodoc-api-style==0.0.1a16",
   "gp-libs",
   "sphinx-autobuild",
