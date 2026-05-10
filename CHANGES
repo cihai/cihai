@@ -751,7 +751,7 @@ pytest were updated.
 
 Documentation moved to NumPy-style docstrings with
 `sphinxcontrib-napoleon`. The license changed from New BSD to MIT, and
-future commits and contributions were assigned to the cihai software
+all future commits and contributions are licensed to the cihai software
 foundation, including commits by Tony Narlock.
 
 ## cihai 0.7.4 (2017-05-26)
