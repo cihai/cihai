@@ -602,7 +602,8 @@ After cihai `0.15.0`:
 $ pip install cihai-cli
 ```
 
-See cihai #326 and cihai-cli #279.
+See cihai #326 and
+[cihai-cli #279](https://github.com/cihai/cihai-cli/pull/279).
 
 ## cihai 0.14.1 (2022-08-20)
 
