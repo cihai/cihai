@@ -287,6 +287,15 @@ Common commit types:
 - **ai(claude[rules])**: Claude Code rules (CLAUDE.md)
 - **ai(claude[command])**: Claude Code command changes
 
+#### Release commits
+
+Never create tags. Never push tags. The user handles tagging and tag
+pushes (tags trigger the CI publish workflow).
+
+Release commit subjects are plain and short: `Tag v<version>`. Put
+the detailed why/what in the commit body. Don't use the
+`Scope(type[detail]):` format for releases — don't bury the lede.
+
 ## Data Considerations
 
 - `Cihai` bootstraps the UNIHAN dataset via `unihan-etl`; tests redirect XDG data dirs to temporary locations—avoid hardcoding paths.
