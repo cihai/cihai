@@ -52,7 +52,7 @@ dependencies = [
   "appdirs",
   "PyYAML~=6.0",
   "sqlalchemy[mypy]~=2.0",
-  "unihan-etl~=0.41.0",
+  "unihan-etl~=0.42.0",
 ]
 
 [project.urls]
@@ -127,6 +127,7 @@ build-backend = "hatchling.build"
 # from any `exclude-newer` constraint (global or per-user) without
 # committing a date that would age into the lockfile. Mirrors the
 # pattern at vcspull/pyproject.toml for libvcs.
+unihan-etl = false
 gp-libs = false
 gp-furo-theme = false
 gp-sphinx = false

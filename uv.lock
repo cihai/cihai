@@ -16,9 +16,10 @@ gp-sphinx = false
 sphinx-autodoc-sphinx = false
 sphinx-autodoc-api-style = false
 sphinx-autodoc-fastmcp = false
+unihan-etl = false
 sphinx-autodoc-pytest-fixtures = false
-sphinx-gp-llms = false
 sphinx-autodoc-argparse = false
+sphinx-gp-llms = false
 sphinx-ux-autodoc-layout = false
 sphinx-ux-badges = false
 gp-libs = false
@@ -315,7 +316,7 @@ requires-dist = [
     { name = "appdirs" },
     { name = "pyyaml", specifier = "~=6.0" },
     { name = "sqlalchemy", extras = ["mypy"], specifier = "~=2.0" },
-    { name = "unihan-etl", specifier = "~=0.41.0" },
+    { name = "unihan-etl", specifier = "~=0.42.0" },
 ]
 
 [package.metadata.requires-dev]
@@ -1835,7 +1836,7 @@ sdist = { url = "https://files.pythonhosted.org/packages/6f/a4/691ab63b17505a260
 
 [[package]]
 name = "unihan-etl"
-version = "0.41.0"
+version = "0.42.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "appdirs" },
@@ -1843,9 +1844,9 @@ dependencies = [
     { name = "unicodecsv" },
     { name = "zhon" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/ec/1e/2943d26c29a8c2f9c56f39c979b48a34d816466be2e60ec92c0b805e1fbb/unihan_etl-0.41.0.tar.gz", hash = "sha256:16140b4691baf42e77fe5789aeaa60d1fc755f85265ef60e99a7eff5f260b241", size = 394944, upload-time = "2026-03-21T12:02:17.539Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/5d/f1/7e29c1b5b7b45abdd657e16781c073d2104c9b09f7df5945913306ff1ece/unihan_etl-0.42.0.tar.gz", hash = "sha256:27e5c6a177576ed4b75d3bd59c535245fb661ea8974fcf03117f18b74e1c5df7", size = 342744, upload-time = "2026-06-28T13:40:11.118Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/16/0d/24a189a6741c7698d2d5c3e6bb7d6a8a0bef4f0d4de7bf2c308c117e24b4/unihan_etl-0.41.0-py3-none-any.whl", hash = "sha256:71f909ef75dd19eb1d0479bed24a7b66ab4299f4caa1755d3af7951a7096b6d3", size = 83394, upload-time = "2026-03-21T12:02:16.177Z" },
+    { url = "https://files.pythonhosted.org/packages/73/80/09c238e27e37710b5506962e3ce5cc13de14da71e16003f7ff8b6e38dc3f/unihan_etl-0.42.0-py3-none-any.whl", hash = "sha256:e03a668117b5907f1e75fe380fee8d7c8b7ff60bc3531a3cb8f4b5b327b201b1", size = 83558, upload-time = "2026-06-28T13:40:09.428Z" },
 ]
 
 [[package]]
