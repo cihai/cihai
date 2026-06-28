@@ -12,5 +12,5 @@ def test_base_exception() -> None:
     with pytest.raises(exc.CihaiException):
         raise exc.CihaiException  # Make sure its base of CihaiException
 
-    with pytest.raises(Exception, match=""):
+    with pytest.raises(Exception, match=r"^$"):
         raise exc.CihaiException  # Extends python base exception
