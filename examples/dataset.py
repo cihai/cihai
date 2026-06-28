@@ -12,7 +12,7 @@ log = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(message)s")
 
 
-data = {}  # any data source, internal, a file, on the internet, in a database...
+data: dict[str, str] = {}  # any data source: file, internet, database...
 
 
 class MyDataset(Dataset):
