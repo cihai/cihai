@@ -27,13 +27,15 @@ $ uv add cihai --prerelease allow
 $ uvx --from 'cihai' --prerelease allow python -c "import cihai; print(cihai.__version__)"
 ```
 
-## cihai 0.37.x (unreleased)
+## cihai 0.38.x (unreleased)
 
 <!-- KEEP THIS PLACEHOLDER - DO NOT REMOVE OR MODIFY THIS LINE -->
 _Notes on the upcoming release will go here._
 <!-- END PLACEHOLDER - ADD NEW CHANGELOG ENTRIES BELOW THIS LINE -->
 
-cihai 0.37.x is a documentation and data-dependency refresh for the
+## cihai 0.37.0 (2026-06-28)
+
+cihai 0.37.0 is a documentation and data-dependency refresh for the
 library. The {class}`cihai.core.Cihai` runtime API stays stable, while
 the docs move onto the shared gp-sphinx platform, gain a clearer
 Library Skeleton structure, and fix several long-standing Sphinx
