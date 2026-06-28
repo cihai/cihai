@@ -42,16 +42,18 @@ the current UNIHAN tooling.
 
 ### Breaking changes
 
-#### Minimum `unihan-etl>=0.41.0` (was `>=0.39.1`) (#393)
+#### Minimum `unihan-etl>=0.42.0` (was `>=0.39.1`) (#393)
 
-cihai now depends on `unihan-etl~=0.41.0`, up from the `0.39.1` line.
+cihai now depends on `unihan-etl~=0.42.0`, up from the `0.39.1` line.
 No cihai code changes were needed for the bump: the `unihan-etl`
-`0.40.0` CLI subcommand redesign and `0.41.0` documentation updates do
-not change the programmatic API cihai uses to bootstrap UNIHAN data.
+`0.40.0` CLI subcommand redesign and later documentation updates do not
+change the programmatic API cihai uses to bootstrap UNIHAN data. The
+`0.42.0` release also restores compatibility with pytest 9.1, which
+cihai's test suite relies on through `unihan_etl.pytest_plugin`.
 
 See the upstream
-[unihan-etl 0.41.0 release notes](https://unihan-etl.git-pull.com/history.html#unihan-etl-0-41-0-2026-03-21)
-for the CLI documentation improvements that shipped there.
+[unihan-etl 0.42.0 release notes](https://unihan-etl.git-pull.com/history.html#unihan-etl-0-42-0-2026-06-28)
+for details.
 
 ### What's new
 
