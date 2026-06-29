@@ -33,6 +33,19 @@ $ uvx --from 'cihai' --prerelease allow python -c "import cihai; print(cihai.__v
 _Notes on the upcoming release will go here._
 <!-- END PLACEHOLDER - ADD NEW CHANGELOG ENTRIES BELOW THIS LINE -->
 
+### Breaking changes
+
+#### Minimum `unihan-etl>=0.43.0` (was `>=0.42.0`)
+
+cihai now depends on `unihan-etl~=0.43.0`, up from the `0.42.0` line.
+No cihai code changes were needed for the bump: the `0.43.0` cache
+hardening and bundled pytest-fixture changes do not alter the
+programmatic API cihai uses to bootstrap UNIHAN data.
+
+See the upstream
+[unihan-etl 0.43.0 release notes](https://unihan-etl.git-pull.com/history.html#unihan-etl-0-43-0-2026-06-28)
+for details.
+
 ## cihai 0.37.0 (2026-06-28)
 
 cihai 0.37.0 is a documentation and data-dependency refresh for the
