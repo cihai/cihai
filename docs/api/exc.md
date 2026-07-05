@@ -1,7 +1,7 @@
 # Exceptions - `cihai.exc`
 
-When using cihai via Python, you can catch Cihai-specific exceptions via these. All Cihai-specific
-exceptions are catchable via {exc}`~cihai.exc.CihaiException` since its the base exception.
+When using cihai via Python, catch project-specific failures through this module. All Cihai-specific
+exceptions inherit from {exc}`~cihai.exc.CihaiException`.
 
 ```{eval-rst}
 .. automodule:: cihai.exc

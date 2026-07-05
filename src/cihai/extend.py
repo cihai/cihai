@@ -38,28 +38,19 @@ class ConfigMixin:
     Cihai will automatically manage the user's config, as well as your datasets,
     neatly in XDG.
 
-    Raises
-    ------
-    Functions inside, and what you write relating to dataset config should return
-
-    CihaiDatasetConfigException (CihaiDatasetException)
-
-    config.cihai = links directly back to Cihai's configuration dictionary
-    (todo note: make this non-mutable property)
-
-    config : dict
-        your local user's config
-
-    check() : function, optional
-        this is ran on start. it can raise DatasetConfigException
-
-    default_config : your dataset's default configuration
-
-    get_default_config : override function in case you'd like custom configs (for
-        instance if you want a platform to use a different db driver, or do version
-        checks, etc.)
-
-        internal functions use get_default_config()
+    Configuration attributes
+    ------------------------
+    ``config.cihai``
+        Links directly back to Cihai's configuration dictionary.
+    ``config``
+        Your local user's config.
+    ``check()``
+        Optional function run on start. It can raise dataset config exceptions.
+    ``default_config``
+        Your dataset's default configuration.
+    ``get_default_config``
+        Override function for custom configs, such as platform-specific database
+        drivers or version checks. Internal functions use ``get_default_config()``.
     """
 
 

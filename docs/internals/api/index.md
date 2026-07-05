@@ -2,6 +2,9 @@
 
 # Internal API
 
+These references document cihai internals for maintainers. Use the public API pages unless you are
+debugging configuration loading or contributing changes to cihai itself.
+
 ```{module} cihai
 
 ```

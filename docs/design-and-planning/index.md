@@ -4,20 +4,20 @@
 
 ## 2018
 
-- {ref}`design-and-planning/2018/plugin-system`
+- {doc}`Extensions <2018/plugin-system>`
 
 ## 2017
 
-- {ref}`design-and-planning/2017/spec`
+- {doc}`Internals Planning <2017/spec>`
 
 ## Late 2013
 
 These were part of the initial brain storming the project and preserved for historic purposes only.
 
-- {ref}`design-and-planning/2013/extending`
-- {ref}`design-and-planning/2013/internals`
-- {ref}`design-and-planning/2013/information_liberation`
-- {ref}`design-and-planning/2013/spec`
+- {doc}`Extending <2013/extending>`
+- {doc}`Internal Design decisions <2013/internals>`
+- {doc}`Information Liberation <2013/information_liberation>`
+- {doc}`Planning <2013/spec>`
 
 ## Late 2012
 

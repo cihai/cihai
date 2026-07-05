@@ -33,6 +33,24 @@ $ uvx --from 'cihai' --prerelease allow python -c "import cihai; print(cihai.__v
 _Notes on the upcoming release will go here._
 <!-- END PLACEHOLDER - ADD NEW CHANGELOG ENTRIES BELOW THIS LINE -->
 
+### Documentation
+
+#### Documentation links point readers to the right APIs (#401)
+
+The documentation now links overview and topic prose directly to the
+classes, methods, modules, and dataset pages readers need next. The
+homepage, feature overview, extension guide, API reference stubs, and
+UNIHAN dataset page give readers a clearer path from the concept they
+are reading about to the exact {class}`cihai.core.Cihai`,
+{class}`cihai.extend.Dataset`, {class}`cihai.extend.DatasetPlugin`,
+and {class}`cihai.data.unihan.dataset.Unihan` APIs that implement it.
+
+Archival design notes remain available for project history, but their
+navigation links and external references no longer create broken
+documentation targets. The generated docs are quieter as a result, so
+future broken links and API-reference issues are easier to spot during
+review.
+
 ## cihai 0.38.0 (2026-06-28)
 
 cihai 0.38.0 raises the `unihan-etl` dependency floor to the 0.43.0

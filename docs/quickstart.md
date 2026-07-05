@@ -53,8 +53,8 @@ You can override cihai's default storage and file directories via a config file.
 
 The default configuration is at {attr}`cihai.constants.DEFAULT_CONFIG`.
 
-Database configuration accepts any SQLAlchemy {sqlalchemy:ref}`database_urls`. If you're using a DB
-other than SQLite, such as Postgres, be sure to install the requisite driver, such as
+Database configuration accepts any SQLAlchemy {external+sqlalchemy:ref}`database_urls`. If you're
+using a DB other than SQLite, such as Postgres, be sure to install the requisite driver, such as
 [psycopg][psycopg].
 
 [xdg directories]: https://specifications.freedesktop.org/basedir-spec/basedir-spec-0.6.html
@@ -63,7 +63,7 @@ other than SQLite, such as Postgres, be sure to install the requisite driver, su
 
 cihai is designed to allow you to incrementally override settings to your liking.
 
-Internally, the config is parsed through {func}`cihai.conf.expand_config`. This will replace
+Internally, the config is parsed through {func}`cihai.config.expand_config`. This will replace
 environment variables, XDG variables and tildes. You can also enter absolute paths.
 
 Environmental variables require a dollar sign added to them, e.g. `${ENVVAR}`. XDG variables such as
