@@ -12,11 +12,11 @@ Kryskalla.
     - PEP8, PEP257.
     - ``int()`` casting for comparisons
     - Python 3 support.
-    - Python 3 fix for :meth:`~.ucn_to_python`.
+    - Python 3 fix for the historical ``ucn_to_python`` helper.
     - Python 3 ``__future__`` statements.
     - All methods converting to ``_python`` will return ``Unicode``.
     - All methods converting Unicode to x will return bytestring.
-    - Add :meth:`~.ucnstring_to_python`
+    - Add :func:`cihai.conversion.ucnstring_to_python`
     - Any other change upon @ `conversion.py @9227813`_.
 
 The following terms are used to represent the encodings / representation used
@@ -65,9 +65,6 @@ import logging
 import re
 import typing as t
 from collections.abc import Generator, Iterator
-
-if t.TYPE_CHECKING:
-    from typing import TypeAlias
 
 log = logging.getLogger(__name__)
 
@@ -187,7 +184,7 @@ def euc_to_unicode(hexstr: bytes) -> str:
 
     Returns
     -------
-    unicode :
+    str :
         Python unicode  e.g. ``u'\\u4e00'`` / '一'.
 
     Examples
@@ -308,28 +305,28 @@ def ucnstring_to_python(ucn_string: str) -> bytes:
     return ucn_bytestr
 
 
-ParsedVar: TypeAlias = tuple[str, str | None]
+ParsedVar: t.TypeAlias = tuple[str, str | None]
 
 
-def parse_var(var: str) -> ParsedVar:
+def parse_var(var: str) -> tuple[str, str | None]:
     """Return tuple consisting of a string and a tag, or None, if none is specified."""
     bits = var.split("<", 1)
     tag = None if len(bits) < 2 else bits[1]
     return ucn_to_unicode(bits[0]), tag
 
 
-ParsedVars: TypeAlias = Iterator[ParsedVar]
+ParsedVars: t.TypeAlias = Iterator[ParsedVar]
 
 
-def parse_vars(_vars: str) -> Generator[ParsedVar, str, None]:
+def parse_vars(_vars: str) -> Generator[tuple[str, str | None], str, None]:
     """Return an iterator of (char, tag) tuples."""
     for var in _vars.split(" "):
         yield parse_var(var)
 
 
-UntaggedVars: TypeAlias = Iterator[t.Any]
+UntaggedVars: t.TypeAlias = Iterator[t.Any]
 
 
-def parse_untagged(_vars: str) -> UntaggedVars:
+def parse_untagged(_vars: str) -> Iterator[t.Any]:
     """Return an iterator of chars."""
     return (char for char, _tag in parse_vars(_vars))

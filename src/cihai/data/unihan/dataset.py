@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import typing as t
+from collections.abc import Callable, Iterator
 
 from sqlalchemy import or_
 from sqlalchemy.sql.schema import Column
@@ -13,12 +14,8 @@ from cihai.extend import Dataset, DatasetPlugin, SQLAlchemyMixin
 from . import bootstrap
 
 if t.TYPE_CHECKING:
-    from collections.abc import Callable
-
     from sqlalchemy.orm.query import Query
     from sqlalchemy.sql.schema import Table
-
-    from cihai.conversion import ParsedVars, UntaggedVars
 
 
 class Unihan(Dataset, SQLAlchemyMixin):
@@ -28,8 +25,8 @@ class Unihan(Dataset, SQLAlchemyMixin):
     kDefinition: str
     kTraditionhalVariant: str
     kSimplifiedVariant: str
-    tagged_vars: Callable[[str], ParsedVars]
-    untagged_vars: Callable[[str], UntaggedVars]
+    tagged_vars: Callable[[str], Iterator[tuple[str, str | None]]]
+    untagged_vars: Callable[[str], Iterator[t.Any]]
 
     def bootstrap(self, options: dict[str, object] | None = None) -> None:
         """Fetch, extract, import UNIHAN to DB, and initialize DB mapping."""
@@ -64,7 +61,7 @@ class Unihan(Dataset, SQLAlchemyMixin):
 
         Parameters
         ----------
-        hints: list of str
+        hints : str | list[str]
             strings to lookup
 
         Returns
@@ -86,7 +83,7 @@ class Unihan(Dataset, SQLAlchemyMixin):
 
         Parameters
         ----------
-        *fields : list of str
+        fields : list[str]
             fields for which information should be available
 
         Returns
@@ -118,11 +115,11 @@ class UnihanVariants(DatasetPlugin, SQLAlchemyMixin):
     def bootstrap(self) -> None:
         """Map custom lookup for UNIHAN variants to Unihan SQLAlchemy table."""
 
-        def tagged_vars(table: Table, col: str) -> ParsedVars:
+        def tagged_vars(table: Table, col: str) -> Iterator[tuple[str, str | None]]:
             """Return a variant column as an iterator of (char, tag) tuples."""
             return parse_vars(getattr(table, col))
 
-        def untagged_vars(table: Table, col: str) -> UntaggedVars:
+        def untagged_vars(table: Table, col: str) -> Iterator[t.Any]:
             """Return a variant column as an iterator of chars."""
             return parse_untagged(getattr(table, col))
 

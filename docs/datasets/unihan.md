@@ -1,4 +1,4 @@
-# UNIHAN - `cihai.data.unihan`
+# UNIHAN Dataset
 
 The {term}`UNIHAN` dataset gives a {class}`cihai.core.Cihai` application its default character
 lookup data: definitions, readings, variants, and related fields loaded through

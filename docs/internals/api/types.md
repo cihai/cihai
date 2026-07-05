@@ -1,4 +1,4 @@
-# Typings - `cihai._internal.types`
+# Typings
 
 Internal type aliases support configuration loading and expansion. Prefer the public types in
 {mod}`cihai.types` unless you are working on cihai internals.

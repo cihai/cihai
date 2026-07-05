@@ -1,6 +1,6 @@
 """Typings for cihai.
 
-This is meant to be imported from inside :const:`typing.TYPE_CHECKING` so it does not
+This is meant to be imported from inside ``typing.TYPE_CHECKING`` so it does not
 require ``typing_extensions`` at runtime:
 
 >>> from typing import TYPE_CHECKING
@@ -23,12 +23,11 @@ else:
 
 if t.TYPE_CHECKING:
     import pathlib
-    from typing import TypeAlias
 
     from cihai.extend import Dataset
 
 
-UntypedDict: TypeAlias = dict[str, object]
+UntypedDict: t.TypeAlias = dict[str, object]
 
 
 class RawPluginConfigDict(TypedDict):

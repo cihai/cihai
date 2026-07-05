@@ -8,6 +8,7 @@ import typing as t
 import sqlalchemy
 import sqlalchemy.sql.schema
 from sqlalchemy import Column, String, Table
+from sqlalchemy.engine import Engine
 
 from unihan_etl import core as unihan
 from unihan_etl.constants import UNIHAN_MANIFEST
@@ -20,7 +21,7 @@ if t.TYPE_CHECKING:
 
 
 def bootstrap_unihan(
-    engine: sqlalchemy.Engine,
+    engine: Engine,
     metadata: sqlalchemy.sql.schema.MetaData,
     options: dict[str, object] | UnihanOptions | None = None,
 ) -> None:

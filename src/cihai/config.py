@@ -22,8 +22,8 @@ def expand_config(d: UntypedDict, dirs: AppDirs = app_dirs) -> None:
     ----------
     d : dict
         config information
-    dirs : appdirs.AppDirs
-        XDG application mapping
+    dirs : object
+        AppDirs-compatible XDG application mapping
 
     Notes
     -----

@@ -6,6 +6,11 @@ orphan: true
 
 # Internal Design decisions
 
+:::{note}
+This page is a historical planning note. Prototype APIs and object names may not
+match the current public API.
+:::
+
 ## Convenient relational, cohesive output of datasets
 
 Whether you are Cihai, python, creating a CJK tool in another programming language, or simple

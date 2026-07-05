@@ -4,7 +4,7 @@
 
 # API Reference
 
-cihai's public API for CJK character lookups and dataset management.
+cihai's public API for {term}`CJK` character lookups and dataset management.
 
 :::{warning}
 cihai is pre-1.0. APIs may change between minor versions. Pin to a range:
@@ -18,10 +18,10 @@ If you need an API stabilized please [file an issue](https://github.com/cihai/ci
 ::::{grid} 1 1 2 2
 :gutter: 2 2 3 3
 
-:::{grid-item-card} Cihai (core)
+:::{grid-item-card} Core application
 :link: core
 :link-type: doc
-Application object. Bootstrap datasets, run lookups.
+{class}`cihai.core.Cihai` application object. Bootstrap datasets and run lookups.
 :::
 
 :::{grid-item-card} Config
@@ -33,7 +33,7 @@ Configuration loading and expansion.
 :::{grid-item-card} Database
 :link: db
 :link-type: doc
-SQLAlchemy engine/session setup and helpers.
+{term}`SQLAlchemy` engine/session setup and helpers.
 :::
 
 :::{grid-item-card} Extend
@@ -58,7 +58,7 @@ Default paths and configuration values.
 :::{grid-item-card} Conversion
 :link: conversion
 :link-type: doc
-CJK encoding conversion utilities.
+{term}`CJK` encoding conversion utilities.
 :::
 
 :::{grid-item-card} Exceptions

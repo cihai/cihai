@@ -6,13 +6,6 @@ import typing as t
 
 import yaml
 
-if t.TYPE_CHECKING:
-    from typing import TypeAlias
-
-    RawConfigData: TypeAlias = dict[t.Any, t.Any]
-
-FormatLiteral = t.Literal["json", "yaml"]
-
 
 class ConfigfmtNotImplementedError(NotImplementedError):
     def __init__(self, fmt: str) -> None:
@@ -34,11 +27,11 @@ class ConfigReader:
     '{\n  "session_name": "my session"\n}'
     """
 
-    def __init__(self, content: RawConfigData) -> None:
+    def __init__(self, content: dict[t.Any, t.Any]) -> None:
         self.content = content
 
     @staticmethod
-    def _load(fmt: FormatLiteral, content: str) -> dict[str, t.Any]:
+    def _load(fmt: t.Literal["json", "yaml"], content: str) -> dict[str, t.Any]:
         """Load raw config data and directly return it.
 
         >>> ConfigReader._load("json", '{ "session_name": "my session" }')
@@ -60,7 +53,7 @@ class ConfigReader:
         raise NotImplementedError(fmt=fmt)
 
     @classmethod
-    def load(cls, fmt: FormatLiteral, content: str) -> ConfigReader:
+    def load(cls, fmt: t.Literal["json", "yaml"], content: str) -> ConfigReader:
         """Load raw config data into a ConfigReader instance (to dump later).
 
         >>> cfg = ConfigReader.load("json", '{ "session_name": "my session" }')
@@ -116,7 +109,7 @@ class ConfigReader:
         content = path.open(encoding="utf-8").read()
 
         if path.suffix in {".yaml", ".yml"}:
-            fmt: FormatLiteral = "yaml"
+            fmt: t.Literal["json", "yaml"] = "yaml"
         elif path.suffix == ".json":
             fmt = "json"
         else:
@@ -169,8 +162,8 @@ class ConfigReader:
 
     @staticmethod
     def _dump(
-        fmt: FormatLiteral,
-        content: RawConfigData,
+        fmt: t.Literal["json", "yaml"],
+        content: dict[t.Any, t.Any],
         indent: int = 2,
         **kwargs: t.Any,
     ) -> str:
@@ -196,7 +189,9 @@ class ConfigReader:
             )
         raise ConfigfmtNotImplementedError(fmt=fmt)
 
-    def dump(self, fmt: FormatLiteral, indent: int = 2, **kwargs: t.Any) -> str:
+    def dump(
+        self, fmt: t.Literal["json", "yaml"], indent: int = 2, **kwargs: t.Any
+    ) -> str:
         r"""Dump via ConfigReader instance.
 
         >>> cfg = ConfigReader({ "session_name": "my session" })

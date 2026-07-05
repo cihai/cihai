@@ -31,14 +31,14 @@ def import_string(import_name: str, silent: bool = False) -> t.Any:
 
     Parameters
     ----------
-    import_name : string
+    import_name : str
         the dotted name for the object to import.
     silent : bool
         if set to `True` import errors are ignored and `None` is returned instead.
 
     Returns
     -------
-    imported object
+    object
 
     Raises
     ------

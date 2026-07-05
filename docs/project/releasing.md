@@ -30,7 +30,11 @@ $ git tag v0.36.1
 ```
 
 ```console
-$ git push && git push --tags
+$ git push
+```
+
+```console
+$ git push --tags
 ```
 
 ## Automated deployment

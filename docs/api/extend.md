@@ -1,4 +1,4 @@
-# Extending - `cihai.extend`
+# Extending
 
 Extension classes let advanced users add datasets or dataset-specific behavior to
 {class}`cihai.core.Cihai`. Start with {class}`cihai.extend.Dataset`; use

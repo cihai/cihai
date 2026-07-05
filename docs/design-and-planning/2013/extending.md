@@ -8,7 +8,8 @@ orphan: true
 
 :::{note}
 
-This document is part of brain storming the project of cihai. It's for historic purposes only.
+This document is part of historical planning for cihai. Prototype APIs and
+object names may not match the current public API.
 
 :::
 
@@ -50,7 +51,7 @@ c.use(mydata)
 
 ```
 
-`c`, the instance of {class}`Cihai`, may now access `MyDataSet`'s information.
+`c`, the instance of ``Cihai``, may now access `MyDataSet`'s information.
 
 ### Code
 
@@ -83,7 +84,7 @@ you must create an SQL schema / table for your data.
 The pristine format of your data may be in CSV, excel or another format. As long as your data is
 normalized into a {obj}`dict` that is compatible with the sql table, it is ok.
 
-To accommodate this, {class}`Cihai` provides all plugins a instance of
+To accommodate this, ``Cihai`` provides all plugins a instance of
 {class}`sqlalchemy.schema.MetaData` on creation. [sqlalchemy][sqlalchemy] is the swiss army knife of
 databases in the python programming language.
 
@@ -94,7 +95,7 @@ With an instance of `MetaData`, you will be able to create SQL tables, import an
 In previous examples, the plugin class with `.get` and `.reverse` character lookups was merged with
 1 SQL table.
 
-As said previously, it doesn't matter how or where the data comes from. As long as {class}`Cihai`
+As said previously, it doesn't matter how or where the data comes from. As long as ``Cihai``
 can retrieve data via `.get` with the correct arguments and response. The prior example had the data
 class combined with a single table.
 

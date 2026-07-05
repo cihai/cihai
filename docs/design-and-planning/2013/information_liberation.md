@@ -8,7 +8,8 @@ orphan: true
 
 :::{note}
 
-This document is part of brain storming the project of cihai. It's for historic purposes only.
+This document is part of historical planning for cihai. Prototype APIs and
+project assumptions may not match the current public API.
 
 :::
 

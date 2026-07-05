@@ -8,7 +8,7 @@ Explore cihai's capabilities and underlying concepts at a high level, with detai
 :::{grid-item-card} Features
 :link: features
 :link-type: doc
-CJK variants, extensibility, encoding utilities.
+{term}`CJK` variants, extensibility, encoding utilities.
 :::
 
 :::{grid-item-card} Examples

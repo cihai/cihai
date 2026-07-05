@@ -2,6 +2,12 @@
 
 # Design and Planning
 
+:::{note}
+These pages preserve historical planning notes. Prototype APIs and object names
+may not match the current public API; use {ref}`api` for current reference
+links.
+:::
+
 ## 2018
 
 - {doc}`Extensions <2018/plugin-system>`

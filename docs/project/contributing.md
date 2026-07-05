@@ -335,18 +335,24 @@ Choose what the next version is. Assuming it's version 0.9.0, it could be:
 
 Let's assume we pick 0.9.1
 
-`CHANGES`: Assure any PRs merged since last release are mentioned. Give a thank you to the
-contributor. Set the header with the new version and the date. Leave the "current" header and
-_Insert changes/features/fixes for next release here_ at the top:
+`CHANGES`: make sure every merged PR since the last release is mentioned, thank
+contributors where appropriate, and keep the unreleased placeholder at the top.
+Use deliverable headings with prose so readers see what changed before they see
+implementation details:
 
 ```markdown
 ## package-name 0.10.x (unreleased)
 
-- _Insert changes/features/fixes for next release here_
+### What's new
+
+#### Clear user-facing deliverable (#1)
+
+package-name 0.10.x ships a reader-facing improvement. Explain who benefits,
+what changed, and where to read more.
 
 ## package-name 0.9.1 (2020-10-12)
 
-- :issue:`1`: Fix bug
+package-name 0.9.1 fixes a released bug.
 ```
 
 `package_name/__init__.py` and `__about__.py` - Set version
@@ -379,12 +385,23 @@ CI will automatically push to the PyPI index when a tag is pushed.
 [uv] handles virtualenv creation, package requirements, versioning,
 building, and publishing. Therefore there is no setup.py or requirements files.
 
-Update `__version__` in `__about__.py` and `pyproject.toml`::
+Update `__version__` in `__about__.py` and `pyproject.toml`:
 
-    git commit -m 'build(cihai): Tag v0.1.1'
-    git tag v0.1.1
-    git push
-    git push --tags
+```console
+$ git commit -m 'Tag v0.1.1'
+```
+
+```console
+$ git tag v0.1.1
+```
+
+```console
+$ git push
+```
+
+```console
+$ git push --tags
+```
 
 GitHub Actions will detect the new git tag, and in its own workflow run `uv
 build` and push to PyPI.

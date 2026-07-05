@@ -9,7 +9,7 @@ class CihaiException(Exception):
 
 class ImportStringError(ImportError, CihaiException):
     """
-    Provides information about a failed :func:`import_string` attempt.
+    Provides information about a failed :func:`cihai.utils.import_string` attempt.
 
     Notes
     -----

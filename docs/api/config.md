@@ -1,4 +1,4 @@
-# Config - `cihai.config`
+# Config
 
 Use this module when you need to expand cihai configuration dictionaries before passing them to
 {class}`cihai.core.Cihai`. Most users only need {func}`cihai.config.expand_config` indirectly

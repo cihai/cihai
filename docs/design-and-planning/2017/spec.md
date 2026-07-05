@@ -8,6 +8,11 @@ orphan: true
 
 Created 2017-04-29
 
+:::{note}
+This page is a historical planning note. Prototype APIs and object names may not
+match the current public API.
+:::
+
 1. {ref}`zero-config` - cihai should be able to work without configuration with a default data
    backend.
 2. {ref}`incremental-config` cihai should be incrementally configurable, such as by specifying where

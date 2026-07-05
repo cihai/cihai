@@ -8,10 +8,10 @@ Data sources available through cihai.
 ::::{grid} 1 1 2 2
 :gutter: 2 2 3 3
 
-:::{grid-item-card} UNIHAN
+:::{grid-item-card} Default dataset
 :link: unihan
 :link-type: doc
-Unicode Han Database -- readings, meanings, variants.
+{term}`UNIHAN` readings, meanings, and variants.
 :::
 
 ::::

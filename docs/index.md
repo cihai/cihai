@@ -4,7 +4,7 @@
 
 Python library for {term}`CJK` (Chinese, Japanese, Korean)
 character data. Look up readings, definitions, and variants from the
-[UNIHAN](datasets/unihan.md) database and beyond.
+{doc}`UNIHAN dataset <datasets/unihan>` and beyond.
 
 ::::{grid} 1 2 3 3
 :gutter: 2 2 3 3

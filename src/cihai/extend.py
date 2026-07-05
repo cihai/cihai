@@ -27,8 +27,6 @@ if t.TYPE_CHECKING:
 
     from cihai.db import Database
 
-    DSP = t.TypeVar("DSP", bound=type["DatasetPlugin"])
-
 
 class ConfigMixin:
     """Cihai configuration context.
@@ -100,7 +98,7 @@ class Dataset:
 
     def add_plugin(
         self,
-        _cls: DSP | str,
+        _cls: type[DatasetPlugin] | str,
         namespace: str,
         bootstrap: bool = True,
     ) -> None:

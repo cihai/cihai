@@ -20,9 +20,7 @@ if t.TYPE_CHECKING:
     from typing import TypeGuard
 
     from cihai.data.unihan.dataset import Unihan
-    from cihai.types import ConfigDict, UntypedDict
-
-    DS = t.TypeVar("DS", bound=type[extend.Dataset])
+    from cihai.types import ConfigDict
 
 
 log = logging.getLogger(__name__)
@@ -35,7 +33,7 @@ class CihaiConfigError(exc.CihaiException):
         return super().__init__("Invalid exception with configuration")
 
 
-def is_valid_config(config: UntypedDict) -> TypeGuard[ConfigDict]:
+def is_valid_config(config: dict[str, object]) -> TypeGuard[ConfigDict]:
     """Upcast cihai configuration.
 
     NOTE: This does not validate configuration yet!
@@ -72,25 +70,25 @@ class Cihai:
     """
 
     #: :py:class:`dict` of default config, can be monkey-patched during tests
-    default_config: UntypedDict = DEFAULT_CONFIG
+    default_config: dict[str, object] = DEFAULT_CONFIG
     config: ConfigDict
     unihan: Unihan
     sql: Database
 
     def __init__(
         self,
-        config: UntypedDict | None = None,
+        config: dict[str, object] | None = None,
         unihan: bool = True,
     ) -> None:
         """Initialize Cihai application.
 
         Parameters
         ----------
-        config : dict, optional
-        unihan : boolean, optional
+        config : dict | None
+        unihan : bool
             Bootstrap the core UNIHAN dataset (recommended)
         """
-        config_: UntypedDict = config if config is not None else {}
+        config_: dict[str, object] = config if config is not None else {}
         if config is None:
             config_ = self.default_config
 
@@ -146,7 +144,7 @@ class Cihai:
                 )
                 getattr(self, dataset).add_plugin(class_string, namespace)
 
-    def add_dataset(self, cls: DS | str, namespace: str) -> None:
+    def add_dataset(self, cls: type[extend.Dataset] | str, namespace: str) -> None:
         """Add dataset to Cihai."""
         if isinstance(cls, str):
             cls = import_string(cls)
@@ -171,7 +169,7 @@ class Cihai:
 
         Parameters
         ----------
-        config_path : str, optional
+        config_path : str
             path to custom config file
 
         Returns

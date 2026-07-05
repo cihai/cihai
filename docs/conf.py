@@ -47,3 +47,12 @@ conf = merge_sphinx_config(
     exclude_patterns=["_build", "AGENTS.md", "CLAUDE.md"],
 )
 globals().update(conf)
+
+autodoc_type_aliases = {
+    "ConfigDict": "cihai.types.ConfigDict",
+    "UntypedDict": "cihai.types.UntypedDict",
+    "ParsedVar": "cihai.conversion.ParsedVar",
+    "ParsedVars": "cihai.conversion.ParsedVars",
+    "UntaggedVars": "cihai.conversion.UntaggedVars",
+    "Engine": "sqlalchemy.engine.Engine",
+}

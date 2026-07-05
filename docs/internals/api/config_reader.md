@@ -1,4 +1,4 @@
-# Config reader - `cihai._internal.config_reader`
+# Config Reader
 
 {class}`cihai._internal.config_reader.ConfigReader` loads and dumps raw YAML or JSON configuration
 data before the public configuration layer expands it. This is an internal API with no compatibility

@@ -6,6 +6,11 @@ orphan: true
 
 # Extensions
 
+:::{note}
+This page is a historical planning note. Prototype APIs and object names may not
+match the current public API.
+:::
+
 Initially discussed in #131 [^id6]
 
 The provisional recommended naming convention is this:
