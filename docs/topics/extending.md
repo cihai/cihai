@@ -12,6 +12,10 @@ Expand cihai's knowledge! Create a {class}`cihai.extend.Dataset`.
 You can also make your dataset available in open source so other cihai users can use it! If you do,
 bring it up on the [issue tracker]!
 
+Datasets that need access to cihai's database handle can inherit
+{class}`cihai.extend.SQLAlchemyMixin`. Datasets that need the shared configuration context can inherit
+{class}`cihai.extend.ConfigMixin`.
+
 _examples/dataset.py_:
 
 ```{literalinclude} ../../examples/dataset.py

@@ -65,8 +65,8 @@ class Cihai:
     :ref:`examples` for a runnable walkthrough based on
     ``examples/basic_usage.py``.
 
-    :attr:`~cihai.data.unihan.bootstrap.is_bootstrapped` can check if the
-    system has the database installed.
+    :attr:`~cihai.data.unihan.dataset.Unihan.is_bootstrapped` can check
+    if the system has the database installed.
     """
 
     #: :py:class:`dict` of default config, can be monkey-patched during tests

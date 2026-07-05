@@ -23,7 +23,7 @@ class Unihan(Dataset, SQLAlchemyMixin):
 
     char: str
     kDefinition: str
-    kTraditionhalVariant: str
+    kTraditionalVariant: str
     kSimplifiedVariant: str
     tagged_vars: Callable[[str], Iterator[tuple[str, str | None]]]
     untagged_vars: Callable[[str], Iterator[t.Any]]

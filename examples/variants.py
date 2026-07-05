@@ -33,7 +33,7 @@ def run(unihan_options: dict[str, object] | None = None) -> None:
 
     c = Cihai(config={"unihan_options": unihan_options})
     if not c.unihan.is_bootstrapped:  # download and install Unihan to db
-        c.unihan.bootstrap()
+        c.unihan.bootstrap(unihan_options)
 
     c.unihan.add_plugin(
         "cihai.data.unihan.dataset.UnihanVariants",

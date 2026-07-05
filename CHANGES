@@ -151,7 +151,7 @@ broken links and noisy warnings that obscured real failures. The
 {class}`cihai.core.Cihai` docstring no longer carries numeric footnote
 references that Napoleon splits across fragments, no longer embeds a
 literalinclude path that resolves from the wrong page, and no longer
-duplicates the documented `config` attribute.
+duplicates the documented {attr}`~cihai.core.Cihai.config` attribute.
 
 The docs tree also routes the internal API landing page through
 {ref}`internal_api`, resolves {term}`CJK` through the glossary domain,
@@ -402,9 +402,9 @@ configuration.
 ### Fixes
 
 - {func}`cihai.conversion.gb2312_to_euc` no longer raises
-  `AssertionError` for the reported input (#361).
+  {exc}`AssertionError` for the reported input (#361).
 - {func}`cihai.conversion.kuten_to_gb2312` no longer raises
-  `AssertionError` for the reported input (#361).
+  {exc}`AssertionError` for the reported input (#361).
 
 ### Documentation
 
@@ -759,7 +759,7 @@ UNIHAN dataset model.
 
 The package now exposes `cihai.__version__` without requiring access to
 `__about__`, source links appear on API pages, and `__github__` is
-available in package metadata. {attr}`cihai.constants.DEFAULT_CONFIG`
+available in package metadata. {data}`cihai.constants.DEFAULT_CONFIG`
 moved to `constants.py`, the UNIHAN module moved into `cihai/unihan/`,
 and UNIHAN is treated as a dataset.
 

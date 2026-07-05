@@ -17,6 +17,7 @@ import pytest
 import sqlalchemy
 
 from cihai import conversion
+from cihai.data.unihan.dataset import Unihan
 
 if t.TYPE_CHECKING:
     from collections.abc import Sequence
@@ -51,6 +52,21 @@ class Char(t.TypedDict):
     id: int
     char: str
     ucn: str
+
+
+class UnihanAnnotationCase(t.NamedTuple):
+    """Expected public UNIHAN annotation."""
+
+    field_name: str
+    test_id: str
+
+
+UNIHAN_ANNOTATION_CASES = [
+    UnihanAnnotationCase(
+        field_name="kTraditionalVariant",
+        test_id="traditional-variant",
+    ),
+]
 
 
 @pytest.fixture(scope="session")
@@ -177,8 +193,21 @@ def test_insert_row(
             .select_from(unihan_table),
         ).fetchone()
 
-        assert row is not None
-        assert row.char == cjkchar["char"]
+    assert row is not None
+    assert row.char == cjkchar["char"]
+
+
+@pytest.mark.parametrize(
+    ("case",),
+    [(case,) for case in UNIHAN_ANNOTATION_CASES],
+    ids=[case.test_id for case in UNIHAN_ANNOTATION_CASES],
+)
+def test_unihan_public_annotations_include_known_fields(
+    case: UnihanAnnotationCase,
+) -> None:
+    """UNIHAN public annotations should match real field names."""
+    assert case.field_name in Unihan.__annotations__
+    assert "kTraditionhalVariant" not in Unihan.__annotations__
 
 
 def test_insert_bad_key(

@@ -92,7 +92,7 @@ Point the advanced reader at the deep-dive rather than inlining it,
 and put the link where their interest peaks — on the phrase that made
 them curious ("write your own dataset") — not as a standalone
 footnote the eye skips. Use the MyST roles listed in the root
-`AGENTS.md` (`{class}`, `{meth}`, `{func}`, `{attr}`, `{exc}`,
+`AGENTS.md` (`{class}`, `{meth}`, `{func}`, `{data}`, `{attr}`, `{exc}`,
 `{ref}`, `{doc}`, `{term}`). A `{ref}` must match its target's anchor
 exactly — anchors mix hyphen, underscore, and dotted forms across
 pages (`developmental-releases`, `internal_api`, `cihai.conversion`).
@@ -103,7 +103,7 @@ Link the first prose mention of any symbol that has a useful
 destination on that page. This includes Python objects, cihai APIs,
 CJK terms with glossary entries, dataset and topic pages, and
 external tools or projects (unihan-etl, SQLAlchemy). Use the most
-specific target available: `{class}`, `{meth}`, `{func}`, `{mod}`,
+specific target available: `{class}`, `{meth}`, `{func}`, `{data}`, `{mod}`,
 `{exc}`, or `{attr}` for API objects; `{ref}`, `{doc}`, or `{term}`
 for documentation pages, section anchors, and glossary entries; and a
 Markdown link or reference link for external projects. After the

@@ -21,16 +21,22 @@ Install and make your first lookup in 5 minutes.
 Features, examples, extending, troubleshooting.
 :::
 
-:::{grid-item-card} API Reference
-:link: api/index
+:::{grid-item-card} How-to
+:link: how-to/index
 :link-type: doc
-Every public class, function, and exception.
+Task guides for configuration and data setup.
 :::
 
 ::::
 
 ::::{grid} 1 2 3 3
 :gutter: 2 2 3 3
+
+:::{grid-item-card} API Reference
+:link: api/index
+:link-type: doc
+Every public class, function, and exception.
+:::
 
 :::{grid-item-card} Datasets
 :link: datasets/index
@@ -95,6 +101,7 @@ See [Quickstart](quickstart.md) for detailed installation and first steps.
 
 quickstart
 topics/index
+how-to/index
 api/index
 datasets/index
 internals/index

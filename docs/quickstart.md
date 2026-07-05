@@ -10,6 +10,20 @@ cihai is designed to work out-of-the-box without configuration.
 $ pip install --user cihai
 ```
 
+## First lookup
+
+Most projects start with {class}`cihai.core.Cihai`, bootstrap the
+{attr}`~cihai.core.Cihai.unihan` dataset once, then query it with
+{meth}`~cihai.data.unihan.dataset.Unihan.lookup_char` or
+{meth}`~cihai.data.unihan.dataset.Unihan.reverse_char`.
+
+This script is also tested by `tests/test_examples.py`.
+
+```{literalinclude} ../examples/basic_usage.py
+:language: python
+
+```
+
 (developmental-releases)=
 
 ### Developmental releases
@@ -51,7 +65,7 @@ data.
 
 You can override cihai's default storage and file directories via a config file.
 
-The default configuration is at {attr}`cihai.constants.DEFAULT_CONFIG`.
+The default configuration is at {data}`cihai.constants.DEFAULT_CONFIG`.
 
 Database configuration accepts any SQLAlchemy {external+sqlalchemy:ref}`database_urls`. If you're
 using a DB other than SQLite, such as Postgres, be sure to install the requisite driver, such as
@@ -88,22 +102,28 @@ replaced as an environmental variable. The XDG variable for _user_data_dir_ is c
 _mydata/_, which makes the data stored deeper. The environmental variable _$ENVVAR_ is also
 replaced.
 
-You may point to a custom config with the `-c` argument, `$ cihai -c path/to/config.yaml`.
+You may point to a custom config with {meth}`cihai.core.Cihai.from_file`.
 
-You can also override bootstrapping settings. The "unihan_options" dictionary in Cihai's
-configuration will be passed right to {ref}`unihan-etl:index`'s {class}`unihan_etl.core.Packager`
-`option` param, which is then merged on top of unihan-etl's default settings:
+You can also override bootstrapping settings. Pass a `unihan_options` dictionary to
+{meth}`~cihai.data.unihan.dataset.Unihan.bootstrap`; the dictionary is passed to
+{ref}`unihan-etl:index`'s {class}`unihan_etl.core.Packager` `option` param, which is
+then merged on top of unihan-etl's default settings:
+
+The `source` value can also point to a local path. You can use `fields` or `input_files` to narrow
+the imported UNIHAN data.
 
 ```{code-block} yaml
 
 unihan_options:
-   source: 'https://custom-mirror.com/Unihan.zip'  # local paths work too
+   source: 'https://custom-mirror.com/Unihan.zip'
    work_dir: '/path/to/unzip/files'
    zip_path: '/path/to/store/Unihan.zip'
-   fields: ['kDefinition']  # and / or:
+   fields: ['kDefinition']
    input_files: ['Unihan_Readings.txt']
 
 ```
+
+See {doc}`how-to/configuration` for a tested configuration-file example.
 
 [psycopg]: http://initd.org/psycopg/
 [pip]: https://pip.pypa.io/en/stable/

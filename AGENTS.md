@@ -362,9 +362,9 @@ These rules apply when authoring entries in `CHANGES`, which is rendered as the 
 - Walls of text dressed up as bullets.
 - Buried breaking changes — they get their own subheading at the top of the entry.
 
-**Always link autodoc'd APIs.** Any class, method, function, exception, or attribute that has its own rendered page must be cited via the appropriate role (`{class}`, `{meth}`, `{func}`, `{exc}`, `{attr}`) — never with plain backticks. Doc pages without explicit ref labels use `{doc}`. Plain backticks are correct for code syntax, env vars, parameter names, and file paths that aren't doc pages — anything without an autodoc destination.
+**Always link autodoc'd APIs.** Any class, method, function, exception, data object, or attribute that has its own rendered page must be cited via the appropriate role (`{class}`, `{meth}`, `{func}`, `{exc}`, `{data}`, `{attr}`) — never with plain backticks. Doc pages without explicit ref labels use `{doc}`. Plain backticks are correct for code syntax, env vars, parameter names, and file paths that aren't doc pages — anything without an autodoc destination.
 
-**MyST roles.** Class references use `{class}`, methods use `{meth}`, functions use `{func}`, exceptions use `{exc}`, attributes use `{attr}`, internal anchors use `{ref}`, doc-path links use `{doc}`.
+**MyST roles.** Class references use `{class}`, methods use `{meth}`, functions use `{func}`, exceptions use `{exc}`, data objects use `{data}`, attributes use `{attr}`, internal anchors use `{ref}`, doc-path links use `{doc}`.
 
 **Summarization style.** When a user asks "what changed in the latest version?" or similar, lead with the entry's lead paragraph (paraphrased if needed), followed by each `####` deliverable heading under `### What's new` with a one-sentence summary. Cite `(#NN)` only if the user asks for source links. Don't invent versions, dates, or numbers not present in `CHANGES`. Don't quote line numbers or file offsets — those shift as the file evolves.
 
@@ -467,4 +467,3 @@ to identify which commits this branch actually introduced. Then:
 - **Scope guard:** If cleaning prior slop would touch a colleague's
   work or expand the branch beyond its stated goal, stay in lane:
   protect the current goal and leave prior slop alone.
-
