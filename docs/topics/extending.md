@@ -2,8 +2,8 @@
 
 # Extending cihai
 
-Use cihai's abstraction and your dataset's users can receive easy configuration, SQL access, and be
-available in a growing list of CJKV information.
+Use cihai's abstraction and your dataset's users can receive easy configuration,
+{term}`SQLAlchemy` access, and be available in a growing list of CJKV information.
 
 ## Creating new dataset
 
@@ -19,8 +19,8 @@ _examples/dataset.py_:
 
 ```
 
-In addition, view our reference implementation of UNIHAN, which is incorporated as a dataset. See
-{class}`cihai.data.unihan.dataset.Unihan`
+In addition, view our reference implementation of the {doc}`UNIHAN dataset <../datasets/unihan>`.
+See {class}`cihai.data.unihan.dataset.Unihan`.
 
 [issue tracker]: https://github.com/cihai/cihai/issues
 

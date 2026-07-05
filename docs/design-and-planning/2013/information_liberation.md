@@ -97,5 +97,5 @@ permissive license will open your work to the world.
   v1.0]
 - [MIT License]
 
-[mit license]: _http://opensource.org/licenses/MIT
+[mit license]: http://opensource.org/licenses/MIT
 [open data commons attribution license (odc-by) v1.0]: http://opendatacommons.org/licenses/by/1.0

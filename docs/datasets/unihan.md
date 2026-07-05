@@ -1,6 +1,10 @@
 # UNIHAN - `cihai.data.unihan`
 
-### Bootstrapping
+The {term}`UNIHAN` dataset gives a {class}`cihai.core.Cihai` application its default character
+lookup data: definitions, readings, variants, and related fields loaded through
+{ref}`unihan-etl:index`.
+
+## Bootstrapping
 
 ```{eval-rst}
 .. automodule:: cihai.data.unihan.bootstrap
@@ -21,7 +25,7 @@
    :show-inheritance:
 ```
 
-### Variants plugin
+## Variants plugin
 
 ```{eval-rst}
 .. autoclass:: cihai.data.unihan.dataset.UnihanVariants

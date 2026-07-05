@@ -63,7 +63,7 @@ Unihan Inc. is the center of the universe for all glyphs. For those who study Eg
 hieroglyphics, which are still mysterious, they are covered in Unicode block
 [U+13000..U+1342F].
 
-[u+13000..u+1342f]: Fhttp://en.wikipedia.org/wiki/Egyptian_Hieroglyphs_(Unicode_block)
+[u+13000..u+1342f]: http://en.wikipedia.org/wiki/Egyptian_Hieroglyphs_(Unicode_block)
 [unihan's history]: http://www.unicode.org/reports/tr38/#History
 [cjkxref.txt]: http://www.unicode.org/Public/1.1-Update/CJKXREF.TXT
 [unihan-1.txt]: http://www.unicode.org/Public/2.0-Update/Unihan-1.txt
@@ -439,7 +439,7 @@ Cihai will allows extensibility to new dictionaries, vocabularies and data.
 
 Middleware allows an arbitrary plugin to make data available.
 
-By default, `Cihai()` creates an instance of Cihai with access to {meth}`Cihai.get`.
+By default, `Cihai()` creates an instance of Cihai with access to `Cihai.get`.
 
 However, since no middleware are included with Cihai, no results are returned.
 

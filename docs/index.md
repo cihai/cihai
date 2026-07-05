@@ -64,6 +64,12 @@ $ uv add cihai
 
 ## At a glance
 
+Most projects start with {class}`cihai.core.Cihai`: create the application object, bootstrap the
+{attr}`~cihai.core.Cihai.unihan` dataset once with
+{meth}`~cihai.data.unihan.dataset.Unihan.bootstrap`, then query it with
+{meth}`~cihai.data.unihan.dataset.Unihan.lookup_char` or
+{meth}`~cihai.data.unihan.dataset.Unihan.reverse_char`.
+
 ```python
 from cihai.core import Cihai
 

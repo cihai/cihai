@@ -8,24 +8,24 @@ orphan: true
 
 Created 2017-04-29
 
-1. {ref}`zero_config` - cihai should be able to work without configuration with a default data
+1. {ref}`zero-config` - cihai should be able to work without configuration with a default data
    backend.
-2. {ref}`incremental_config` cihai should be incrementally configurable, such as by specifying where
+2. {ref}`incremental-config` cihai should be incrementally configurable, such as by specifying where
    data should be outputted.
-3. {ref}`relational_backend` cihai will use [SQLAlchemy] as a database backend to story
+3. {ref}`relational-backend` cihai will use [SQLAlchemy] as a database backend to story
    information for retrieval.
-4. {ref}`automatic_extensions` cihai will make data accessible to third party libraries if they
+4. {ref}`automatic-extensions` cihai will make data accessible to third party libraries if they
    exist in the script's site-packages.
 
    e.g. If [pandas] is found, it will be able to return a {class}`pandas.DataFrame` for a
    queried set of information.
 
-5. {ref}`unihan_core` cihai will use [UNIHAN] as a core and source of truth for information,
+5. {ref}`unihan-core` cihai will use [UNIHAN] as a core and source of truth for information,
    as it contains all the glyphs and is reliable, free and well-maintained, and provides are good
    source of starter information.
-6. {ref}`data_normalization` cihai will adopt a standard data format to store additional CJK data
+6. {ref}`data-normalization` cihai will adopt a standard data format to store additional CJK data
    sets within.
-7. {ref}`data_liberation` cihai libraries will be available under permissive licenses.
+7. {ref}`data-liberation` cihai libraries will be available under permissive licenses.
 
 (zero-config)=
 
@@ -43,7 +43,7 @@ out data to. This includes:
   name used within, e.g. _cihai.yaml_
 
 These default directories will be where cihai will, by default, store information and search for
-configuration used in {ref}`incremental_config`.
+configuration used in {ref}`incremental-config`.
 
 (incremental-config)=
 
@@ -61,7 +61,7 @@ to store the SQLite file, is customizable.
 cihai will be powered by a relational database backend.
 
 Most python distributions include support for [SQLite], which in conjunction with
-{ref}`zero configuration <zero_config>`, makes for data store that will work across a wide array of
+{ref}`zero configuration <zero-config>`, makes for data store that will work across a wide array of
 systems.
 
 The data that cihai organizes will be primarily indexable by the glyph, and joined upon the glyph to
