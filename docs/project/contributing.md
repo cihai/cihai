@@ -15,7 +15,7 @@ This guide applies to all cihai projects, not just the cihai repo.
 
 :::
 
-Cihai projects use standard conventions and patterns based on best practices in python.
+Cihai projects follow shared Python packaging, testing, and documentation conventions.
 
 To be efficient at debugging, developing, testing, documenting, etc. it helps to familiarize yourself with the tool within, independently if needed.
 
@@ -178,19 +178,57 @@ $ py.test tests/test_{conversion,exc}.py tests/test_config.py::test_configurator
 
 [sphinx-autobuild] will automatically build the docs, watch for file changes and launch a server.
 
-From home directory: `just start-docs` From inside `docs/`: `just start`
+From the project root, start the docs server:
+
+```console
+$ just start-docs
+```
+
+From inside `docs/`, start the docs server:
+
+```console
+$ just start
+```
 
 [sphinx-autobuild]: https://github.com/executablebooks/sphinx-autobuild
 
 ### Manual documentation (the hard way)
 
-`cd docs/` and `just html` to build. `just serve` to start http server.
+From inside `docs/`, build the docs:
 
-Helpers: `just build-docs`, `just serve-docs`
+```console
+$ just html
+```
 
-Rebuild docs on file change: `just watch-docs` (requires [entr(1)])
+From inside `docs/`, start the HTTP server:
 
-Rebuild docs and run server via one terminal: `just dev-docs`
+```console
+$ just serve
+```
+
+From the project root, build the docs:
+
+```console
+$ just build-docs
+```
+
+From the project root, serve the built docs:
+
+```console
+$ just serve-docs
+```
+
+Rebuild docs on file change with [entr(1)]:
+
+```console
+$ just watch-docs
+```
+
+Rebuild docs and run the server from one terminal:
+
+```console
+$ just dev-docs
+```
 
 ### View documentation locally
 
