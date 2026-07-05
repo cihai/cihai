@@ -27,10 +27,10 @@ For all data sets, the goal is to achieve:
 | Set       | License           | Data Package           | Project           |
 | --------- | ----------------- | ---------------------- | ----------------- |
 | UNIHAN    | OK [^cite_unhn-l] | OK [^cite_unhn-d]      | OK [^cite_unhn-p] |
-| edict     | OK                | TODO                   | TODO              |
-| cedict    | OK [^cite_cdct-l] | TODO                   | TODO              |
-| cedictgr  | OK                | TODO                   | TODO              |
-| handedict | OK                | TODO                   | TODO              |
+| edict     | OK                | Not published          | Not started       |
+| cedict    | OK [^cite_cdct-l] | Not published          | Not started       |
+| cedictgr  | OK                | Not published          | Not started       |
+| handedict | OK                | Not published          | Not started       |
 | cfdict    | OK                | MISSING [^cite_cfdict] | UNKNOWN           |
 
 [data packages]: https://specs.frictionlessdata.io/data-package/

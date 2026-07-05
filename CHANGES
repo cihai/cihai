@@ -665,9 +665,10 @@ Python 2 compatibility modules and imports were removed. Python 2.x had
 already been officially dropped in cihai `0.11.0` via #325; this
 release removes the leftover compatibility code paths.
 
-`import_string()` and `ImportStringError` were updated from Werkzeug,
-`merge_dict` now comes from `unihan_etl`, and `unihan-etl>=0.15.0` is
-required to avoid future compatibility imports from that dependency.
+{func}`cihai.utils.import_string` and {exc}`cihai.exc.ImportStringError`
+were updated from Werkzeug, `merge_dict` now comes from `unihan_etl`, and
+`unihan-etl>=0.15.0` is required to avoid future compatibility imports
+from that dependency.
 
 ## cihai 0.13.0 (2022-08-16)
 
@@ -758,14 +759,14 @@ UNIHAN dataset model.
 
 The package now exposes `cihai.__version__` without requiring access to
 `__about__`, source links appear on API pages, and `__github__` is
-available in package metadata. `DEFAULT_CONFIG` moved to
-`constants.py`, the UNIHAN module moved into `cihai/unihan/`, and
-UNIHAN is treated as a dataset.
+available in package metadata. {attr}`cihai.constants.DEFAULT_CONFIG`
+moved to `constants.py`, the UNIHAN module moved into `cihai/unihan/`,
+and UNIHAN is treated as a dataset.
 
-`Cihai()` automatically includes the UNIHAN dataset by default.
-Historical code could opt out with `Cihai(unihan=False)`. Examples are
-tested so API-breaking changes are caught when documentation examples
-need updates.
+{class}`cihai.core.Cihai` automatically includes the UNIHAN dataset by
+default. Historical code could opt out with `unihan=False`. Examples
+are tested so API-breaking changes are caught when documentation
+examples need updates.
 
 ### Development
 
