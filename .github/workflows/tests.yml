@@ -21,6 +21,18 @@ jobs:
       - name: Set up Python ${{ matrix.python-version }}
         run: uv python install ${{ matrix.python-version }}
 
+      - name: Test runtime dependencies
+        run: |
+          uv run --no-dev -p python${{ matrix.python-version }} -- python -c '
+          from cihai import _internal, data, config, constants, conversion, core, db, exc, extend, log, types, utils, __about__, __version__
+          from cihai._internal import config_reader, types
+          from cihai.data import decomp, unihan
+          from cihai.data.unihan import bootstrap, constants, dataset
+          from unihan_etl import __version__ as __unihan_etl_version__
+          print("cihai version:", __version__)
+          print("unihan_etl version:", __unihan_etl_version__)
+          '
+
       - name: Install dependencies
         run: uv sync --all-extras --dev
 
