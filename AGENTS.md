@@ -161,6 +161,27 @@ cihai uses pytest with doctests enabled via `pyproject.toml`. Key points:
 - Doctests: narrative style, blank lines between sections; move complex flows into dedicated tests.
 - Lint/type: keep code ruff- and mypy-clean before requesting review.
 
+**Classes with fields** — `NamedTuple`, dataclasses — document every field in
+an `Attributes` section:
+
+```python
+class UnihanAnnotationCase(t.NamedTuple):
+    """Expected public UNIHAN annotation.
+
+    Attributes
+    ----------
+    field_name : str
+        UNIHAN field the annotation is expected to expose.
+    test_id : str
+        Parametrize id identifying the case.
+    """
+```
+
+Autodoc renders every field whether or not you describe it, so an
+undocumented `NamedTuple` field ships to the API docs as "Alias for field
+number 0" and a dataclass field ships bare. Document all of them — a class
+with three fields and two documented still ships a stub for the third.
+
 ## Logging Standards
 
 These rules guide future logging changes; existing code may not yet conform.
