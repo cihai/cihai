@@ -67,6 +67,16 @@ layout now say what each one holds. They previously reached the rendered API
 reference as "Alias for field number 0" or as a bare name carrying only its
 type.
 
+#### Minimum `ruff>=0.16.0` (was unpinned) (#404)
+
+Contributors and CI now resolve the same ruff, so `just ruff` and
+`just ruff-format` report what the build reports instead of varying with
+whatever version each machine happened to install.
+
+This ruff formats Python code blocks inside Markdown, which brings the
+quickstart snippets in the README and documentation homepage under
+`ruff format`.
+
 ## cihai 0.38.0 (2026-06-28)
 
 cihai 0.38.0 raises the `unihan-etl` dependency floor to the 0.43.0
