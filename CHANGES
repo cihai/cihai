@@ -33,6 +33,15 @@ $ uvx --from 'cihai' --prerelease allow python -c "import cihai; print(cihai.__v
 _Notes on the upcoming release will go here._
 <!-- END PLACEHOLDER - ADD NEW CHANGELOG ENTRIES BELOW THIS LINE -->
 
+### Fixes
+
+#### Extension guide example prints its lookups (#404)
+
+The custom-dataset example shown in {ref}`extend` passed each result to
+`log.info()` without a format placeholder, so `logging` raised a
+`TypeError` and printed a traceback in place of the definition, the
+matched characters, and the reverse lookup the example demonstrates.
+
 ### Documentation
 
 #### Documentation links point readers to the right APIs (#401)
