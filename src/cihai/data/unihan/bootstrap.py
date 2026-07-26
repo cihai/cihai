@@ -50,10 +50,7 @@ TABLE_NAME = "Unihan"
 
 
 DEFAULT_COLUMNS = ["ucn", "char"]
-try:
-    DEFAULT_FIELDS = [f for c, f in UNIHAN_MANIFEST.items() if c == "Unihan"]
-except Exception:
-    DEFAULT_FIELDS = list(UNIHAN_MANIFEST.values())
+DEFAULT_FIELDS = [f for c, f in UNIHAN_MANIFEST.items() if c == "Unihan"]
 
 
 def is_bootstrapped(metadata: sqlalchemy.sql.schema.MetaData) -> bool:
