@@ -216,6 +216,10 @@ convention = "numpy"
 # call site that emitted the log line, so it degrades to a diagnostic
 # message instead of narrowing the catch.
 "src/cihai/log.py" = ["BLE001"]
+# Sphinx config execs this repository's own `cihai/__about__.py` to read
+# version metadata without importing the package, which would pull in
+# SQLAlchemy and the dataset machinery just to render the docs.
+"docs/conf.py" = ["S102"]
 
 [tool.pytest.ini_options]
 addopts = "--tb=short --no-header --showlocals --doctest-modules"
