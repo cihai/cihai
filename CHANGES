@@ -86,6 +86,19 @@ This ruff formats Python code blocks inside Markdown, which brings the
 quickstart snippets in the README and documentation homepage under
 `ruff format`.
 
+#### Linting builds on ruff's default rule set (#404)
+
+`just ruff` now runs cihai's own linters on top of the rule set ruff
+enables by default. The configuration previously listed its linters
+under `select`, which replaces the default set rather than adding to
+it, so the rules ruff recommends out of the box never ran here.
+`extend-select` layers cihai's selections on them instead.
+
+Two idioms the new rules flag are scoped as per-file exceptions rather
+than rewritten, each with its reason recorded in `pyproject.toml`: the
+log formatter's catch-all around caller-supplied `%` arguments, and the
+Sphinx config's `exec` of the package's version metadata.
+
 ## cihai 0.38.0 (2026-06-28)
 
 cihai 0.38.0 raises the `unihan-etl` dependency floor to the 0.43.0
