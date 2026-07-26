@@ -60,6 +60,13 @@ Workflow actions moved to their current major releases: `actions/checkout` v7,
 and `dorny/paths-filter` v4. Workflow behavior is unchanged, though setup-uv no
 longer prunes the uv cache, so the first run after this repopulates it.
 
+#### Configuration fields describe themselves in the API reference (#403)
+
+The `TypedDict` keys that describe cihai's configuration and directory
+layout now say what each one holds. They previously reached the rendered API
+reference as "Alias for field number 0" or as a bare name carrying only its
+type.
+
 ## cihai 0.38.0 (2026-06-28)
 
 cihai 0.38.0 raises the `unihan-etl` dependency floor to the 0.43.0
