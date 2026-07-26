@@ -9,12 +9,12 @@ import yaml
 
 class ConfigfmtNotImplementedError(NotImplementedError):
     def __init__(self, fmt: str) -> None:
-        return super().__init__(f"{fmt} not supported in configuration")
+        super().__init__(f"{fmt} not supported in configuration")
 
 
 class ConfigExtensionNotImplementedError(NotImplementedError):
     def __init__(self, ext: str, path: str | pathlib.Path) -> None:
-        return super().__init__(f"{ext} not supported in {path}")
+        super().__init__(f"{ext} not supported in {path}")
 
 
 class ConfigReader:
