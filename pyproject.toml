@@ -210,6 +210,12 @@ convention = "numpy"
 
 [tool.ruff.lint.per-file-ignores]
 "*/__init__.py" = ["F401", "PLC0414"]
+# `LogFormatter.format` renders `record.getMessage()`, which interpolates
+# caller-supplied `%` args and can raise anything a bad format string or a
+# caller's `__str__` produces. A formatter that lets those escape fails the
+# call site that emitted the log line, so it degrades to a diagnostic
+# message instead of narrowing the catch.
+"src/cihai/log.py" = ["BLE001"]
 
 [tool.pytest.ini_options]
 addopts = "--tb=short --no-header --showlocals --doctest-modules"
