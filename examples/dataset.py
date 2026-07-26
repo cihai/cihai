@@ -44,11 +44,14 @@ def run() -> None:
     my_dataset = MyDataset()
     my_dataset.bootstrap()
 
-    log.info("Definitions exactly for 好", my_dataset.givemedata("好"))
+    log.info("Definitions exactly for 好: %s", my_dataset.givemedata("好"))
 
-    log.info("Definitions matching with 你好:", ", ".join(my_dataset.search("好")))
+    log.info("Definitions matching with 你好: %s", ", ".join(my_dataset.search("好")))
 
-    log.info("Reverse definition with Good:", ", ".join(my_dataset.backwards("Good")))
+    log.info(
+        "Reverse definition with Good: %s",
+        ", ".join(my_dataset.backwards("Good")),
+    )
 
 
 if __name__ == "__main__":
