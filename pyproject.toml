@@ -80,7 +80,7 @@ dev = [
   "coverage",
   "pytest-cov",
   # Lint
-  "ruff",
+  "ruff>=0.16.0",
   "mypy",
   # Annotations
   "types-appdirs",
@@ -107,7 +107,7 @@ coverage =[
   "pytest-cov",
 ]
 lint = [
-  "ruff",
+  "ruff>=0.16.0",
   "mypy",
 ]
 typings = [
@@ -161,7 +161,10 @@ files = [
 target-version = "py310"
 
 [tool.ruff.lint]
-select = [
+# `select` is deliberately unset: ruff 0.16 enables a curated default rule
+# set, and an explicit `select` would replace it rather than extend it.
+# `extend-select` layers this project's additional linters on top.
+extend-select = [
   "E", # pycodestyle
   "F", # pyflakes
   "I", # isort
@@ -178,7 +181,7 @@ select = [
   "PERF", # Perflint
   "RUF", # Ruff-specific rules
   "D", # pydocstyle
-  "FA100",  # future annotations
+  "FA100", # future annotations
 ]
 ignore = [
   "COM812", # missing trailing comma, ruff format conflict
@@ -207,6 +210,16 @@ convention = "numpy"
 
 [tool.ruff.lint.per-file-ignores]
 "*/__init__.py" = ["F401", "PLC0414"]
+# `LogFormatter.format` renders `record.getMessage()`, which interpolates
+# caller-supplied `%` args and can raise anything a bad format string or a
+# caller's `__str__` produces. A formatter that lets those escape fails the
+# call site that emitted the log line, so it degrades to a diagnostic
+# message instead of narrowing the catch.
+"src/cihai/log.py" = ["BLE001"]
+# Sphinx config execs this repository's own `cihai/__about__.py` to read
+# version metadata without importing the package, which would pull in
+# SQLAlchemy and the dataset machinery just to render the docs.
+"docs/conf.py" = ["S102"]
 
 [tool.pytest.ini_options]
 addopts = "--tb=short --no-header --showlocals --doctest-modules"

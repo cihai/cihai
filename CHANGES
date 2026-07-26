@@ -33,6 +33,15 @@ $ uvx --from 'cihai' --prerelease allow python -c "import cihai; print(cihai.__v
 _Notes on the upcoming release will go here._
 <!-- END PLACEHOLDER - ADD NEW CHANGELOG ENTRIES BELOW THIS LINE -->
 
+### Fixes
+
+#### Extension guide example prints its lookups (#404)
+
+The custom-dataset example shown in {ref}`extend` passed each result to
+`log.info()` without a format placeholder, so `logging` raised a
+`TypeError` and printed a traceback in place of the definition, the
+matched characters, and the reverse lookup the example demonstrates.
+
 ### Documentation
 
 #### Documentation links point readers to the right APIs (#401)
@@ -66,6 +75,29 @@ The `TypedDict` keys that describe cihai's configuration and directory
 layout now say what each one holds. They previously reached the rendered API
 reference as "Alias for field number 0" or as a bare name carrying only its
 type.
+
+#### Minimum `ruff>=0.16.0` (was unpinned) (#404)
+
+Contributors and CI now resolve the same ruff, so `just ruff` and
+`just ruff-format` report what the build reports instead of varying with
+whatever version each machine happened to install.
+
+This ruff formats Python code blocks inside Markdown, which brings the
+quickstart snippets in the README and documentation homepage under
+`ruff format`.
+
+#### Linting builds on ruff's default rule set (#404)
+
+`just ruff` now runs cihai's own linters on top of the rule set ruff
+enables by default. The configuration previously listed its linters
+under `select`, which replaces the default set rather than adding to
+it, so the rules ruff recommends out of the box never ran here.
+`extend-select` layers cihai's selections on them instead.
+
+Two idioms the new rules flag are scoped as per-file exceptions rather
+than rewritten, each with its reason recorded in `pyproject.toml`: the
+log formatter's catch-all around caller-supplied `%` arguments, and the
+Sphinx config's `exec` of the package's version metadata.
 
 ## cihai 0.38.0 (2026-06-28)
 

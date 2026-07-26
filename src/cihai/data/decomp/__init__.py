@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 """Chinese character decomposition.
 
 cihai.datasets.decomp

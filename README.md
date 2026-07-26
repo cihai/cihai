@@ -21,13 +21,13 @@ c = Cihai()
 if not c.unihan.is_bootstrapped:  # download and install Unihan to db
     c.unihan.bootstrap()
 
-query = c.unihan.lookup_char('好')
+query = c.unihan.lookup_char("好")
 glyph = query.first()
 print("lookup for 好: %s" % glyph.kDefinition)
 # lookup for 好: good, excellent, fine; well
 
-query = c.unihan.reverse_char('good')
-print('matches for "good": %s ' % ', '.join([glph.char for glph in query]))
+query = c.unihan.reverse_char("good")
+print('matches for "good": %s ' % ", ".join([glph.char for glph in query]))
 # matches for "good": 㑘, 㑤, 㓛, 㘬, 㙉, 㚃, 㚒, 㚥, 㛦, 㜴, 㜺, 㝖, 㤛, 㦝, ...
 ```
 

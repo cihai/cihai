@@ -30,7 +30,7 @@ class CihaiConfigError(exc.CihaiException):
     """Cihai Configuration error."""
 
     def __init__(self) -> None:
-        return super().__init__("Invalid exception with configuration")
+        super().__init__("Invalid exception with configuration")
 
 
 def is_valid_config(config: dict[str, object]) -> TypeGuard[ConfigDict]:
