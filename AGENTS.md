@@ -326,36 +326,38 @@ the detailed why/what in the commit body. Don't use the
 
 ## Documentation Standards
 
-### Code Blocks in Documentation
+### Code Blocks
 
-When writing documentation (README, CHANGES, docs/), follow these rules for code blocks:
+Code blocks are paste-and-run units: pasting one block runs exactly one
+intended action. Doctests and other executed examples are exempt — the test
+suite runs them, nobody pastes them.
 
-**One command per code block.** This makes commands individually copyable.
-
-**Put explanations outside the code block**, not as comments inside.
+- **One command per block.** Multiple steps may share a block only when
+  explicitly chained with `&&`, `;`, or `\` continuations — the chain is
+  then one logical command.
+- **Explanations go in prose above the block**, never as `#` comments inside it.
+- **Command menus are per-command blocks with prose lead-ins**, not tables.
+- **Shell commands use the `console` tag with a `$ ` prefix.** This separates
+  interactive commands from scripts and enables prompt-aware copy.
+- **Split long commands with `\`** — one flag or flag+value pair per indented
+  continuation line, positional arguments last.
 
 Good:
 
-Run the tests:
+Show the last ten commits as a graph:
 
 ```console
-$ uv run pytest
-```
-
-Run with coverage:
-
-```console
-$ uv run pytest --cov
+$ git log \
+    --max-count=10 \
+    --graph \
+    --oneline
 ```
 
 Bad:
 
 ```console
-# Run the tests
-$ uv run pytest
-
-# Run with coverage
-$ uv run pytest --cov
+# Show the last ten commits as a graph
+$ git log --max-count=10 --graph --oneline
 ```
 
 ### Changelog Conventions
