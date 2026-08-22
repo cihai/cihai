@@ -1,13 +1,18 @@
 # cihai &middot; [![Python Package](https://img.shields.io/pypi/v/cihai.svg)](https://pypi.org/project/cihai/) [![License](https://img.shields.io/github/license/cihai/cihai.svg)](https://github.com/cihai/cihai/blob/master/LICENSE) [![Code Coverage](https://codecov.io/gh/cihai/cihai/branch/master/graph/badge.svg)](https://codecov.io/gh/cihai/cihai)
 
-Python library for [CJK](https://cihai.git-pull.com/glossary.html#term-cjk) (chinese, japanese,
-korean) data.
+Python library for [CJK](https://cihai.git-pull.com/glossary.html#term-cjk) (Chinese, Japanese,
+Korean) data.
 
-This project is under active development. Follow our progress and check back for updates!
+This project is under active development. Follow our progress and check back
+for updates!
 
 ## Quickstart
 
 ### API / Library (this repository)
+
+Requires Python 3.10 or newer. No configuration required: cihai stores data
+in SQLite under your XDG data directory, and reaches the network only when
+`bootstrap()` downloads UNIHAN.
 
 ```console
 $ pip install --user cihai
@@ -80,7 +85,8 @@ ucn: U+5715
 
 ### UNIHAN data
 
-All datasets that cihai uses have stand-alone tools to export their data. No library required.
+All datasets that cihai uses have stand-alone tools to export their data. No
+library required.
 
 - [unihan-etl](https://unihan-etl.git-pull.com) - [UNIHAN](http://unicode.org/charts/unihan.html)
   data exports for csv, yaml and json.
@@ -88,14 +94,14 @@ All datasets that cihai uses have stand-alone tools to export their data. No lib
 ## Developing
 
 ```console
-$ git clone https://github.com/cihai/cihai.git`
+$ git clone https://github.com/cihai/cihai.git
 ```
 
 ```console
 $ cd cihai/
 ```
 
-[Bootstrap your environment and learn more about contributing](https://cihai.git-pull.com/contributing/). We use the same conventions / tools across all cihai projects: `pytest`, `sphinx`, `mypy`, `ruff`, `tmuxp`, and file watcher helpers (e.g. `entr(1)`).
+[Bootstrap your environment and learn more about contributing](https://cihai.git-pull.com/contributing/). We use the same conventions / tools across all cihai projects: `pytest`, `sphinx`, `mypy`, `ruff`, and file watcher helpers (e.g. `entr(1)`).
 
 ## Python versions
 
