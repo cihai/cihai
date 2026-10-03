@@ -149,9 +149,6 @@ sphinx-ux-badges = false
 [tool.mypy]
 strict = true
 python_version = "3.10"
-plugins = [
-  "sqlalchemy.ext.mypy.plugin",
-]
 files = [
   "src/",
   "tests/",
