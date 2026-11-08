@@ -1,7 +1,7 @@
 """Typings for cihai.
 
-This is meant to be imported from inside ``typing.TYPE_CHECKING`` so it does not
-require ``typing_extensions`` at runtime:
+This is meant to be imported from inside ``typing.TYPE_CHECKING`` so it is not
+imported at runtime:
 
 >>> from typing import TYPE_CHECKING
 >>> if TYPE_CHECKING:
@@ -12,14 +12,8 @@ require ``typing_extensions`` at runtime:
 
 from __future__ import annotations
 
-import sys
 import typing as t
-from typing import TypedDict
-
-if sys.version_info >= (3, 11):
-    from typing import NotRequired
-else:
-    from typing_extensions import NotRequired
+from typing import NotRequired, TypedDict
 
 if t.TYPE_CHECKING:
     import pathlib
