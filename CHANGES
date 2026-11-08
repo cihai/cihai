@@ -33,6 +33,12 @@ $ uvx --from 'cihai' --prerelease allow python -c "import cihai; print(cihai.__v
 _Notes on the upcoming release will go here._
 <!-- END PLACEHOLDER - ADD NEW CHANGELOG ENTRIES BELOW THIS LINE -->
 
+### Breaking changes
+
+#### Python 3.11 is now the minimum
+
+cihai now requires Python 3.11 or newer. Python 3.10 reached end of life in October 2026, and the test matrix now covers Python 3.11 and 3.15.
+
 ### Fixes
 
 #### Extension guide example prints its lookups (#404)
